@@ -9,31 +9,31 @@
 # Ion Gaztañaga <ion_g_m@hotmail.com>, 2005.
 # Ion Gaztañaga <igaztanaga@gmail.com>, 2005.
 # Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2009.
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2021.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2021, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2021-07-20 12:42+0200\n"
+"PO-Revision-Date: 2023-08-27 23:59+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.04.3\n"
+"X-Generator: Lokalize 23.04.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Ion Gaztañaga, Marcos Goyenetxe"
+msgstr "Iñigo Salvador Azurmendi,Ion Gaztañaga,Marcos Goyenetxe"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "igaztanaga@gmail.com, marcos@euskalgnu.org"
+msgstr "xalba@ni.eus,igaztanaga@gmail.com,marcos@euskalgnu.org"
 
 #: src/collection/containermodel.cpp:150
 #, kde-format
@@ -58,7 +58,7 @@ msgstr ""
 #: src/collection/entryfilterdialog.ui:14
 #, kde-format
 msgid "Start Practice"
-msgstr "Hasi entrenamendua"
+msgstr "Hasi praktika"
 
 #. i18n: ectx: property (text), widget (QLabel, headerLabel)
 #: src/collection/entryfilterdialog.ui:20
@@ -68,15 +68,15 @@ msgid ""
 "can choose to ignore some of your configuration settings to start a practice "
 "anyway.</p>"
 msgstr ""
-"<p>Entrenamendurako zure hiztegiaren hautapena hutsik dago.</p><p>Edonola "
-"ere entrenamenduarekin hasteko, azpian, zure konfigurazio-ezarpen batzuei "
+"<p>Praktikarako zure hiztegiaren hautapena hutsik dago.</p><p>Edonola ere, "
+"entrenamenduarekin hasteko, azpian, zure konfigurazio-ezarpen batzuei "
 "ezikusi egitea aukera dezakezu.</p>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
 #: src/collection/entryfilterdialog.ui:30
 #, kde-format
 msgid "Ignore Configuration for:"
-msgstr "Ezikusi konfigurazioari honi:"
+msgstr "Ezikusi honen konfigurazioari:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, lessonCheckBox)
 #: src/collection/entryfilterdialog.ui:36
@@ -88,7 +88,7 @@ msgstr "Ezikusi ikasgaiei"
 #: src/collection/entryfilterdialog.ui:56
 #, kde-format
 msgid "Ignore Word Types"
-msgstr "Ezikusi hitz motei"
+msgstr "Ezikusi hitz motak"
 
 #. i18n: ectx: property (text), widget (QCheckBox, blockedCheckBox)
 #: src/collection/entryfilterdialog.ui:76
@@ -100,19 +100,19 @@ msgstr "Ezikusi blokeatutakoa"
 #: src/collection/entryfilterdialog.ui:96
 #, kde-format
 msgid "Ignore Times Answered Incorrectly"
-msgstr "Ezikusi oker erantzundako aldiei"
+msgstr "Ezikusi oker erantzundako aldiak"
 
 #. i18n: ectx: property (text), widget (QCheckBox, timesPracticedCheckBox)
 #: src/collection/entryfilterdialog.ui:116
 #, kde-format
 msgid "Ignore Times Practiced"
-msgstr "Ezikusi entrenatutako aldiei"
+msgstr "Ezikusi praktikatutako aldiak"
 
 #. i18n: ectx: property (text), widget (QCheckBox, minMaxGradeCheckBox)
 #: src/collection/entryfilterdialog.ui:136
 #, kde-format
 msgid "Ignore Minimum/Maximum Grade"
-msgstr "Ezikusi gehieneko/gutxieneko mailei"
+msgstr "Ezikusi gehieneko/gutxieneko mailak"
 
 #. i18n: ectx: property (text), widget (QLabel, numberAffectedWordsLabel)
 #: src/collection/entryfilterdialog.ui:156
@@ -130,7 +130,7 @@ msgstr "Sarrera kopuru osoa:"
 #: src/collection/entryfilterdialog.ui:192
 #, kde-format
 msgid "Resulting number of words to practice:"
-msgstr "Praktikatu beharreko hitzen emaitza kopurua:"
+msgstr "Praktikatu beharreko hitzen kopurua:"
 
 #: src/collection/lessonmodel.cpp:47
 #, kde-format
@@ -146,7 +146,7 @@ msgstr "Bat ere ez"
 #: src/collection/vocabularymodel.cpp:185
 #, kde-format
 msgid "You can drag and drop words onto their word type."
-msgstr "Hitzak arrastatu eta jaregin ditzakezu haien hitz motaren gainera."
+msgstr "Hitzak, haien hitz-motaren gainera arrastatu eta jaregin ditzaezu."
 
 #: src/collection/vocabularymodel.cpp:187
 #, kde-format
@@ -242,7 +242,7 @@ msgstr "Ez da hizkuntzarik definitu"
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
 msgid "Select a unit before adding vocabulary."
-msgstr "Hautatu unitate bat hiztegia gehitu aurretik."
+msgstr "Hautatu unitate bat hitzak gehitu aurretik."
 
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
@@ -253,8 +253,8 @@ msgstr "Ez da unitaterik hautatu"
 #, kde-format
 msgid "%1 word due"
 msgid_plural "%1 words due"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hitz %1 zor"
+msgstr[1] "%1 hitz zor"
 
 #: src/dashboard/barwidget.cpp:122
 #, kde-format
@@ -267,32 +267,27 @@ msgid "Open this vocabulary collection in the editor"
 msgstr "Ireki hiztegi-bilduma hori editorean"
 
 #: src/dashboard/collectionwidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "Practice options"
+#, kde-format
 msgid "Practice Anyway"
-msgstr "Ariketaren aukerak"
+msgstr "Trebatu nolanahi ere"
 
 #: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
 #: src/editor/editor.cpp:368
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Practice"
+#, kde-format
 msgid "Practice"
-msgstr "Ariketa"
+msgstr "Trebatu"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
 #: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
-#, fuzzy, kde-format
-#| msgid "Last Opened Collections"
+#, kde-format
 msgid "Active Collections"
-msgstr "Azken irekitako bildumak"
+msgstr "Bilduma aktiboak"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
 #: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
-#, fuzzy, kde-format
-#| msgid "Last Opened Collections"
+#, kde-format
 msgid "Completed Collections"
-msgstr "Azken irekitako bildumak"
+msgstr "Osatutako bildumak"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
 #: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
@@ -301,11 +296,9 @@ msgid "Remove"
 msgstr "Kendu"
 
 #: src/dashboard/dashboard.cpp:284
-#, fuzzy, kde-format
-#| msgid "Do you really want to delete the selected entry?"
-#| msgid_plural "Do you really want to delete the selected %1 entries?"
+#, kde-format
 msgid "Are you sure you want to remove this collection?"
-msgstr "Ziur zaude hautatutako sarrera ezabatzea nahi duzula?"
+msgstr "Ziur zaude bilduma hori ezabatzea nahi duzula?"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
 #: src/dashboard/dashboard.ui:14 src/main.cpp:37
@@ -315,24 +308,21 @@ msgstr "Parley"
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/dashboard/dashboard.ui:120
-#, fuzzy, kde-format
-#| msgid "Create a New Collection"
+#, kde-format
 msgid "Create a New Collection..."
-msgstr "Sortu bilduma berria"
+msgstr "Sortu bilduma berria..."
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
-#, fuzzy, kde-format
-#| msgid "Open an Existing Collection"
+#, kde-format
 msgid "Open an Existing Collection..."
-msgstr "Ireki existitzen den bilduma"
+msgstr "Ireki lehendik dagoen bilduma bat..."
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
-#, fuzzy, kde-format
-#| msgid "Download New Collections"
+#, kde-format
 msgid "Download New Collections..."
-msgstr "Deskargatu bilduma berriak"
+msgstr "Zama-jaitsi bilduma berriak..."
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
@@ -361,21 +351,19 @@ msgstr "Grabatu"
 #: src/editor/audiowidget.ui:33
 #, kde-format
 msgid "Download audio file with webservice"
-msgstr ""
+msgstr "Zama-jaitsi audio fitxategi bat web-zerbitzua erabiliz"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:36
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgid "Download"
-msgstr "Deskargatu gramatika"
+msgstr "Zama-jaitsi"
 
 #. i18n: ectx: property (text), widget (QPushButton, showCurrentButton)
 #: src/editor/browserwidget.ui:18
 #, kde-format
 msgid "Lookup Current"
-msgstr "Bilatu unekoa"
+msgstr "Bilatu unekoan"
 
 #. i18n: ectx: property (text), widget (QCheckBox, followTableCheckBox)
 #: src/editor/browserwidget.ui:33
@@ -386,12 +374,12 @@ msgstr "Jarraitu taula"
 #: src/editor/comparisonwidget.cpp:76
 #, kde-format
 msgid "Could not determine word type of adjectives"
-msgstr "Ezin izan da adjektiboen hitz mota zehaztu"
+msgstr "Ezin izan du adjektiboen hitz mota zehaztu"
 
 #: src/editor/comparisonwidget.cpp:95
 #, kde-format
 msgid "Could not determine word type of adverbs"
-msgstr "Ezin izan da adberbioen hitz mota zehaztu"
+msgstr "Ezin izan du adberbioen hitz mota zehaztu"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, absoluteLabel)
 #. i18n: ectx: property (toolTip), widget (QLabel, comparativeLabel)
@@ -399,7 +387,8 @@ msgstr "Ezin izan da adberbioen hitz mota zehaztu"
 #, kde-format
 msgid "The comparative is used to compare nouns or verbs (faster)"
 msgstr ""
-"Konparazioa izenak edo aditzak konparatzeko erabiltzen dira (azkarragoa)"
+"Konparatiboa substantiboak edo aditzak konparatzeko erabiltzen da "
+"(azkarragoa)"
 
 #. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
 #: src/editor/comparisonwidget.ui:27
@@ -453,10 +442,9 @@ msgstr "-"
 
 #. i18n: ectx: property (title), widget (QGroupBox, layout)
 #: src/editor/conjugationwidget.ui:32
-#, fuzzy, kde-format
-#| msgid "Conjugation"
+#, kde-format
 msgid "Conjugation Forms"
-msgstr "Aditz-jokoa"
+msgstr "Aditz-jokoak"
 
 #. i18n: ectx: property (text), widget (QLabel, singularFirstPersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualFirstPersonLabel)
@@ -513,7 +501,7 @@ msgstr "&Hurrengoa"
 #: src/editor/conjugationwidget.ui:330
 #, kde-format
 msgid "&Tense:"
-msgstr "&Aditz-denbora:"
+msgstr "Aditz-&denbora:"
 
 #. i18n: ectx: property (text), widget (QLabel, male_label_3)
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4_2_2)
@@ -577,72 +565,58 @@ msgstr "Deklinazio formak"
 
 #. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
 #: src/editor/declensionwidget.ui:52
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Nominative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
-msgstr "Nominatiboa"
+msgstr "Nominatiboa:"
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Genitive"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
-msgstr "Genitiboa"
+msgstr "Genitiboa:"
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Dative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
-msgstr "Datiboa"
+msgstr "Datiboa:"
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Accusative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr "Akusatiboa"
+msgstr "Akusatiboa:"
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Ablative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
-msgstr "Ablatiboa"
+msgstr "Ablatiboa:"
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Locative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
-msgstr "Lokatiboa"
+msgstr "Lokatiboa:"
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Vocative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
-msgstr "Bokatiboa"
+msgstr "Bokatiboa:"
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #: src/editor/declensionwidget.ui:445
 #, kde-format
 msgid "Number:"
-msgstr ""
+msgstr "Zenbakia:"
 
 #. i18n: ectx: property (text), widget (QPushButton, nextButton)
 #: src/editor/declensionwidget.ui:477
@@ -653,23 +627,18 @@ msgstr "Hurrengoa"
 #: src/editor/editor.cpp:134
 #, kde-format
 msgid "Units"
-msgstr ""
+msgstr "Unitateak"
 
 #: src/editor/editor.cpp:145
-#, fuzzy, kde-format
-#| msgid ""
-#| "Right click to add, delete, or rename lessons. \n"
-#| "With the checkboxes you can select which lessons you want to practice. \n"
-#| "Only checked lessons [x] will be asked in the tests!"
+#, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
 "With the checkboxes you can select which units you want to practice. \n"
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
-"Egin klik saguaren eskuineko botoiarekin ikasgaiak gehitzeko, kentzeko edo "
-"izenez aldatzeko.\n"
-"Kontrol-koadroekin zein ikasgai lantzea nahi dituzun hauta ditzakezu.\n"
-"Soilik [x] duten ikasgaiak galdetuko dira proban."
+"Egin eskuineko klik unitateak gehitzeko, kentzeko, edo berrizendatzeko.\n"
+"Kontrol-koadroekin landu nahi dituzun unitateak hauta ditzakezu.\n"
+"Trebakuntzan, markatutako unitateak [x] bakarrik galdetuko dira!"
 
 #: src/editor/editor.cpp:156
 #, kde-format
@@ -679,12 +648,11 @@ msgstr "Hitz motak"
 #: src/editor/editor.cpp:176
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
-msgstr ""
+msgstr "Inflexioa (aditzak, adjektiboak, izenak)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
 #: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
-#, fuzzy, kde-format
-#| msgid "Comparison forms"
+#, kde-format
 msgid "Comparison Forms"
 msgstr "Konparazio formak"
 
@@ -711,7 +679,7 @@ msgstr "Antonimoak"
 #: src/editor/editor.cpp:246
 #, kde-format
 msgid "False Friends"
-msgstr "Lagun faltsuak"
+msgstr "Sasiadiskideak"
 
 #: src/editor/editor.cpp:261
 #, kde-format
@@ -743,18 +711,17 @@ msgstr "Internet"
 #: src/editor/editor.cpp:335
 #, kde-format
 msgid "LaTeX"
-msgstr ""
+msgstr "LaTeX"
 
 #: src/editor/editor.cpp:412
 #, kde-format
 msgid "Enter search terms here"
-msgstr "Sartu bilaketako terminoak hemen"
+msgstr "Sartu hemen bilaketa-terminoak"
 
 #: src/editor/editor.cpp:413
-#, fuzzy, kde-format
-#| msgid "Helps you train your vocabulary"
+#, kde-format
 msgid "Search your vocabulary"
-msgstr "Zure hiztegia lantzen lagunduko dizu"
+msgstr "Bilatu zure hiztegian"
 
 #: src/editor/editor.cpp:415
 #, kde-format
@@ -764,10 +731,9 @@ msgstr "&Bilatu:"
 #. i18n: ectx: Menu (file)
 #: src/editor/editorui.rc:7 src/practice/practicesummaryui.rc:7
 #: src/practice/practiceui.rc:7 src/statistics/statisticsui.rc:7
-#, fuzzy, kde-format
-#| msgid "&Title:"
+#, kde-format
 msgid "&File"
-msgstr "&Izenburua:"
+msgstr "&Fitxategia"
 
 #. i18n: ectx: Menu (edit)
 #: src/editor/editorui.rc:12
@@ -779,13 +745,13 @@ msgstr "&Editatu"
 #: src/editor/editorui.rc:25 src/practice/practiceui.rc:12
 #, kde-format
 msgid "&View"
-msgstr "&Ikusi"
+msgstr "&Ikuspegia"
 
 #. i18n: ectx: Menu (lesson)
 #: src/editor/editorui.rc:51
 #, kde-format
 msgid "&Unit"
-msgstr ""
+msgstr "&Unitatea"
 
 #. i18n: ectx: Menu (learning)
 #: src/editor/editorui.rc:65 src/practice/practicesummaryui.rc:12
@@ -798,25 +764,25 @@ msgstr "&Ariketa"
 #: src/editor/editorui.rc:72 src/parleyui.rc:24
 #, kde-format
 msgid "Editor Toolbar"
-msgstr "Editorearen tresna-barra"
+msgstr "Editore tresna-barra"
 
 #. i18n: ectx: property (title), widget (QGroupBox, direc_label)
 #: src/editor/FromToEntryPageForm.ui:26
 #, kde-format
 msgid "Properties From Original"
-msgstr "Propietateak jatorrizkotik"
+msgstr "Jatorrizkoaren propietateak"
 
 #. i18n: ectx: property (text), widget (QLabel, grade_label)
 #: src/editor/FromToEntryPageForm.ui:72
 #, kde-format
 msgid "&Confidence Level:"
-msgstr ""
+msgstr "&Konfiantza-maila:"
 
 #. i18n: ectx: property (text), widget (QLabel, fauxami_label)
 #: src/editor/FromToEntryPageForm.ui:95
 #, kde-format
 msgid "&False friend:"
-msgstr "&Antzekotasun gramatikala:"
+msgstr "Sasia&diskidea:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, GroupBox3)
 #: src/editor/FromToEntryPageForm.ui:110
@@ -828,19 +794,19 @@ msgstr "Ariketa &kopurua"
 #: src/editor/FromToEntryPageForm.ui:142
 #, kde-format
 msgid "&Wrong:"
-msgstr "&Okerrak:"
+msgstr "&Gaizki:"
 
 #. i18n: ectx: property (text), widget (QLabel, qcount_label)
 #: src/editor/FromToEntryPageForm.ui:155
 #, kde-format
 msgid "Tot&al:"
-msgstr "&Guztira:"
+msgstr "G&uztira:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, GroupBox2)
 #: src/editor/FromToEntryPageForm.ui:171
 #, kde-format
 msgid "&Last Practiced"
-msgstr "&Azken ladutakoa"
+msgstr "&Landutako azkena"
 
 #. i18n: ectx: property (text), widget (QPushButton, never)
 #: src/editor/FromToEntryPageForm.ui:183
@@ -858,25 +824,25 @@ msgstr "Ga&ur"
 #: src/editor/FromToEntryPageForm.ui:206
 #, kde-format
 msgid "The date this expression was last practiced"
-msgstr "Adierazpen hau landu zen azken data"
+msgstr "Esamolde hori trebatu zen azken data"
 
 #. i18n: ectx: property (specialValueText), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:209
 #, kde-format
 msgid "Not Practiced Yet"
-msgstr "Oraindik landu gabe"
+msgstr "Oraindik trebatu gabe"
 
 #. i18n: ectx: property (displayFormat), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:229
 #, kde-format
 msgid "dd.MM.yyyy"
-msgstr "ee.HH.uuuu"
+msgstr "uuuu.MM.dd"
 
 #. i18n: ectx: property (text), widget (QPushButton, resetGradesButton)
 #: src/editor/FromToEntryPageForm.ui:260
 #, kde-format
 msgid "&Reset Confidence Levels"
-msgstr ""
+msgstr "Be&rrezarri konfiantza mailak"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:111
 #: src/parleydocument.cpp:473
@@ -888,32 +854,29 @@ msgstr "Aditza"
 #: src/parleydocument.cpp:459
 #, kde-format
 msgid "Noun"
-msgstr "Substantiboa"
+msgstr "Izena"
 
 #: src/editor/inflectionwidget.cpp:81
-#, fuzzy, kde-format
-#| msgid "\"%1\" is a verb"
+#, kde-format
 msgid "\"%1\" is a:"
-msgstr "\"%1\" aditz bat da"
+msgstr "\"%1\" ... da:"
 
 #: src/editor/inflectionwidget.cpp:124
 #, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
-msgstr ""
+msgstr "Mesedez, sartu izenaren generoa"
 
 #: src/editor/latexwidget.cpp:22
-#, fuzzy, kde-format
-#| msgid "Enter search terms here"
+#, kde-format
 msgid "Enter LaTeX code here."
-msgstr "Sartu bilaketako terminoak hemen"
+msgstr "Sartu hemen LaTeX kodea."
 
 #. i18n: ectx: property (text), widget (QLabel, texLabel)
 #: src/editor/latexwidget.ui:17
-#, fuzzy, kde-format
-#| msgid "Enter search terms here"
+#, kde-format
 msgid "LaTeX code:"
-msgstr "Sartu bilaketako terminoak hemen"
+msgstr "LaTeX kodea:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -921,111 +884,100 @@ msgstr "Sartu bilaketako terminoak hemen"
 #: src/settings/kgametheme/kgamethemeselector.ui:55
 #, kde-format
 msgid "Preview"
-msgstr "Aurrebista"
+msgstr "Aurreikuspegia"
 
 #. i18n: ectx: property (text), widget (QCheckBox, mathModeCheckBox)
 #: src/editor/latexwidget.ui:57
 #, kde-format
 msgid "Math mode"
-msgstr ""
+msgstr "Matematika modua"
 
 #: src/editor/lessonview.cpp:31
 #, kde-format
 msgid "New Unit"
-msgstr ""
+msgstr "Unitate berria"
 
 #: src/editor/lessonview.cpp:33
-#, fuzzy, kde-format
-#| msgid "Add a new lesson to your document"
+#, kde-format
 msgid "Add a new unit to your document"
-msgstr "Gehitu ikasgai berri bat zure dokumentuari"
+msgstr "Gehitu unitate berri bat zure dokumentuari"
 
 #: src/editor/lessonview.cpp:39
-#, fuzzy, kde-format
-#| msgid "Rename"
+#, kde-format
 msgid "Rename Unit"
-msgstr "Aldatu izena"
+msgstr "Berrizendatu unitatea"
 
 #: src/editor/lessonview.cpp:47
-#, fuzzy, kde-format
-#| msgid "&Delete Entry"
+#, kde-format
 msgid "Delete Unit"
-msgstr "&Ezabatu sarrera"
+msgstr "Ezabatu unitatea"
 
 #: src/editor/lessonview.cpp:49
-#, fuzzy, kde-format
-#| msgid "Delete the selected lesson."
+#, kde-format
 msgid "Delete the selected unit."
-msgstr "Ezabatu hautatutako ikasgaia."
+msgstr "Ezabatu hautatutako unitatea."
 
 #: src/editor/lessonview.cpp:55
-#, fuzzy, kde-format
-#| msgid "Split Lesson into Smaller Lessons"
+#, kde-format
 msgid "Split Unit into Smaller Units"
-msgstr "Zatitu ikasgaia ikasgai txikiagoetan"
+msgstr "Zatitu unitatea unitate txikiagoetan"
 
 #: src/editor/lessonview.cpp:57
-#, fuzzy, kde-format
-#| msgid "Make multiple smaller lessons out of one big lesson."
+#, kde-format
 msgid "Make multiple smaller units out of one big unit."
-msgstr "Sortu hainbat ikasgai txiki ikasgai handi batetik."
+msgstr "Unitate handi batetik hainbat unitate txikiago egitea."
 
 #: src/editor/lessonview.cpp:63
 #, kde-format
 msgid "Move to new lesson"
-msgstr "Eraman ikasgai berrira"
+msgstr "Eraman unitate berrira"
 
 #: src/editor/lessonview.cpp:65
 #, kde-format
 msgid "Moves the selected vocabulary to a new lesson"
-msgstr "Hautatutako hiztegia ikasgai berri batera eramaten du"
+msgstr "Hautatutako hiztegia unitate berri batera eramaten du"
 
 #: src/editor/lessonview.cpp:71 src/parleyactions.cpp:151
 #, kde-format
 msgid "Remove Confidence Levels"
-msgstr ""
+msgstr "Kendu konfiantza mailak"
 
 #: src/editor/lessonview.cpp:73
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit."
-msgstr "Kendu maila guztiak ikasgai honetatik"
+msgstr "Kendu unitate honetako konfiantza mailak."
 
 #: src/editor/lessonview.cpp:79
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove Confidence Levels From This Unit And All Subunits"
-msgstr "Kendu maila guztiak ikasgai honetatik"
+msgstr ""
+"Kendu unitate honetako eta bere azpi-unitate guztietako konfiantza mailak"
 
 #: src/editor/lessonview.cpp:81
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit and all subunits."
-msgstr "Kendu maila guztiak ikasgai honetatik"
+msgstr ""
+"Kendu unitate honetako eta bere azpi-unitate guztietako konfiantza mailak."
 
 #: src/editor/lessonview.cpp:87
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Expand Units and Subunits"
-msgstr "Kendu maila guztiak ikasgai honetatik"
+msgstr "Zabaldu unitateak eta azpi-unitateak"
 
 #: src/editor/lessonview.cpp:89
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Expand all units and subunits."
-msgstr "Kendu maila guztiak ikasgai honetatik"
+msgstr "Zabaldu unitate eta azpi-unitate guztiak."
 
 #: src/editor/lessonview.cpp:95
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Collapse All Units And Subunits"
-msgstr "Kendu maila guztiak ikasgai honetatik"
+msgstr "Tolestu unitate eta azpi-unitate guztiak"
 
 #: src/editor/lessonview.cpp:97
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Collapse all units and subunits."
-msgstr "Kendu maila guztiak ikasgai honetatik"
+msgstr "Tolestu unitate eta azpi-unitate guztiak."
 
 #: src/editor/lessonview.cpp:189
 #, kde-format
@@ -1033,32 +985,25 @@ msgid "The root lesson cannot be deleted."
 msgstr "Erroko ikasgaia ezin da ezabatu."
 
 #: src/editor/lessonview.cpp:199
-#, fuzzy, kde-format
-#| msgid "There is %1 word left in this lesson. Do you want to delete it?"
-#| msgid_plural ""
-#| "There are %1 words left in this lesson. Do you want to delete them?"
+#, kde-format
 msgid "There is %1 word left in this unit. Do you want to delete it?"
 msgid_plural ""
 "There are %1 words left in this unit. Do you want to delete them?"
-msgstr[0] "Hitz %1 gelditzen da ikasgai honetan. Ezabatzea nahi duzu?"
-msgstr[1] "%1 hitz gelditzen dira ikasgai honetan. Ezabatzea nahi dituzu?"
+msgstr[0] "Hitz %1 gelditzen da unitate honetan. Hura ezabatu nahi duzu?"
+msgstr[1] "%1 hitz gelditzen dira unitate honetan. Haiek ezabatu nahi dituzu?"
 
 #: src/editor/lessonview.cpp:217
-#, fuzzy, kde-format
-#| msgid "Entries per Lesson"
+#, kde-format
 msgid "Entries per Unit"
-msgstr "Ikasgaiko sarrerak"
+msgstr "Unitate sarrerako"
 
 #: src/editor/lessonview.cpp:218
-#, fuzzy, kde-format
-#| msgid ""
-#| "The lesson will be split into smaller lessons. How many entries in each "
-#| "lesson do you want?"
+#, kde-format
 msgid ""
 "The unit will be split into smaller unit. How many entries in each unit do "
 "you want?"
 msgstr ""
-"Ikasgaia ikasgai txikiagotan zatituko da. Ikasgai bakoitzak zenbat sarrera "
+"Unitatea unitate txikiagotan zatituko da. Unitate bakoitzak zenbat sarrera "
 "edukitzea nahi dituzu?"
 
 #: src/editor/lessonview.cpp:241
@@ -1086,38 +1031,33 @@ msgstr "Ikasgaia"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/editor/summarywordwidget.ui:42
-#, fuzzy, kde-format
-#| msgid "Word type"
+#, kde-format
 msgid "Word type:"
-msgstr "Hitz mota"
+msgstr "Hitz mota:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
-#, fuzzy, kde-format
-#| msgid "Pronunciation"
+#, kde-format
 msgid "Pronunciation:"
-msgstr "Ahoskera"
+msgstr "Ahoskera:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/summarywordwidget.ui:71
-#, fuzzy, kde-format
-#| msgid "Example"
+#, kde-format
 msgid "Example:"
-msgstr "Adibidea"
+msgstr "Adibidea:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/summarywordwidget.ui:87
-#, fuzzy, kde-format
-#| msgid "Paraphrase"
+#, kde-format
 msgid "Paraphrase:"
-msgstr "Parafrasia"
+msgstr "Parafrasia:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
-#, fuzzy, kde-format
-#| msgid "&Comment:"
+#, kde-format
 msgid "Comment:"
-msgstr "&Iruzkina:"
+msgstr "Iruzkina:"
 
 #: src/editor/synonymwidget.cpp:59
 #, kde-format
@@ -1147,24 +1087,24 @@ msgstr "%1 eta %2 antonimoak dira"
 #: src/editor/synonymwidget.cpp:79
 #, kde-format
 msgid "%1 and %2 are not False Friends"
-msgstr "%1 eta %2 ez dira lagun faltsuak"
+msgstr "%1 eta %2 ez dira sasiadiskideak"
 
 #: src/editor/synonymwidget.cpp:81
 #, kde-format
 msgid "%1 and %2 are False Friends"
-msgstr "%1 eta %2 lagun faltsuak dira"
+msgstr "%1 eta %2 sasiadiskideak dira"
 
 #: src/editor/synonymwidget.cpp:90
 #, kde-format
 msgctxt "Title for a list of synonyms for a word"
 msgid "Synonyms of %1:"
-msgstr "%1-(r)en sinonimoak:"
+msgstr "%1(r)en sinonimoak:"
 
 #: src/editor/synonymwidget.cpp:93
 #, kde-format
 msgctxt "Title for a list of antonyms (opposites) for a word"
 msgid "Antonyms of %1:"
-msgstr "%1-(r)en antonimoak:"
+msgstr "%1(r)en antonimoak:"
 
 #: src/editor/synonymwidget.cpp:97
 #, kde-format
@@ -1172,11 +1112,10 @@ msgctxt ""
 "Title for a list of false friend (things that sound similar but have "
 "different meanings) for a word"
 msgid "False Friends of %1:"
-msgstr "%1-(r)en lagun faltsuak:"
+msgstr "%1(r)en sasiadiskideak:"
 
 #: src/editor/vocabularycolumnsdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Vocabulary Columns"
+#, kde-format
 msgctxt "@title:window"
 msgid "Vocabulary Columns"
 msgstr "Hiztegiaren zutabeak"
@@ -1184,19 +1123,17 @@ msgstr "Hiztegiaren zutabeak"
 #: src/editor/vocabularycolumnsdialog.cpp:58
 #, kde-format
 msgid "Enable/Disable the columns for each language"
-msgstr "Gaitu/Desgaitu zutabeak hizkuntza bakoitzentzako"
+msgstr "Gaitu/ezgaitu hizkuntza bakoitzerako zutabeak"
 
 #: src/editor/vocabularydelegate.cpp:145
-#, fuzzy, kde-format
-#| msgid "Currently selected row"
+#, kde-format
 msgid "Sound file selected: %1"
-msgstr "Unean hautatutako errenkadak"
+msgstr "Hautatutako soinu fitxategia: %1"
 
 #: src/editor/vocabularydelegate.cpp:147
-#, fuzzy, kde-format
-#| msgid "Currently selected row"
+#, kde-format
 msgid "Image file selected: %1"
-msgstr "Unean hautatutako errenkadak"
+msgstr "Hautatutako irudi fitxategia: %1"
 
 #: src/editor/vocabularyview.cpp:79
 #, kde-format
@@ -1206,12 +1143,12 @@ msgstr "&Gehitu sarrera berria"
 #: src/editor/vocabularyview.cpp:82
 #, kde-format
 msgid "Append a new row to the vocabulary"
-msgstr "Hiztegiari errenkada berri bat gehitzen dio"
+msgstr "Hiztegiari errenkada berri bat eransten dio"
 
 #: src/editor/vocabularyview.cpp:91
 #, kde-format
 msgid "&Delete Entry"
-msgstr "&Ezabatu sarrera"
+msgstr "E&zabatu sarrera"
 
 #: src/editor/vocabularyview.cpp:94
 #, kde-format
@@ -1251,14 +1188,14 @@ msgstr "Hiztegiaren zutabeak..."
 #: src/editor/vocabularyview.cpp:141
 #, kde-format
 msgid "Toggle display of individual vocabulary columns"
-msgstr "Erakutsi/ezkutatu hiztegiaren zutabeak banaka"
+msgstr "Txandakatu banakako hiztegi-zutabeak azaltzea"
 
 #: src/editor/vocabularyview.cpp:253
 #, kde-format
 msgid "Do you really want to delete the selected entry?"
 msgid_plural "Do you really want to delete the selected %1 entries?"
-msgstr[0] "Ziur zaude hautatutako sarrera ezabatzea nahi duzula?"
-msgstr[1] "Ziur zaude hautatutako %1 sarrerak ezabatzea nahi dituzula?"
+msgstr[0] "Hautatutako sarrera benetan ezabatu nahi duzu?"
+msgstr[1] "Hautatutako %1 sarrerak benetan ezabatu nahi dituzu?"
 
 #: src/editor/vocabularyview.cpp:254
 #, kde-format
@@ -1268,7 +1205,7 @@ msgstr "Ezabatu"
 #: src/editor/vocabularyview.cpp:362
 #, kde-format
 msgid "Nothing to spell check."
-msgstr ""
+msgstr "Ez dago ortografia zuzentzeko ezer."
 
 #: src/editor/vocabularyview.cpp:387
 #, kde-format
@@ -1283,8 +1220,8 @@ msgid ""
 "Either the language set up is incorrect or no spellchecker was installed for "
 "this locale: %1."
 msgstr ""
-"Hizkuntzaren konfigurazioa oker dago, edo ez da zuzentzaile ortografikorik "
-"instalatu lokala honentzako: %1."
+"Hizkuntzaren konfigurazioa oker dago, edo ez da toki-ezarpen honetarako "
+"zuzentzaile ortografikorik instalatu: %1."
 
 #: src/editor/wordtypeview.cpp:30
 #, kde-format
@@ -1294,17 +1231,17 @@ msgstr "Berria"
 #: src/editor/wordtypeview.cpp:32
 #, kde-format
 msgid "Add a new word type to your document"
-msgstr "Gehitu hitz mota berri bat zure dokumentuari"
+msgstr "Gehitu hitz mota berri bat zure dokumentuan"
 
 #: src/editor/wordtypeview.cpp:38
 #, kde-format
 msgid "Rename"
-msgstr "Aldatu izena"
+msgstr "Berrizendatu"
 
 #: src/editor/wordtypeview.cpp:40
 #, kde-format
 msgid "Rename the selected word type"
-msgstr "Aldatu hautatutako hitz motaren izena"
+msgstr "Berrizendatu hautatutako hitz mota"
 
 #: src/editor/wordtypeview.cpp:46
 #, kde-format
@@ -1314,7 +1251,7 @@ msgstr "Ezabatu hitz mota"
 #: src/editor/wordtypeview.cpp:48
 #, kde-format
 msgid "Delete the selected word type."
-msgstr "Ezabatu hautatutako hitz mota"
+msgstr "Ezabatu hautatutako hitz mota."
 
 #: src/editor/wordtypeview.cpp:55
 #, kde-format
@@ -1327,12 +1264,12 @@ msgstr "Gramatika"
 #: src/editor/wordtypeview.cpp:57
 #, kde-format
 msgid "To let Parley know the grammatical meaning of a word type."
-msgstr "Parley-k hitz mota baten esanahi gramatikala ezagutzeko"
+msgstr "«Parley»k hitz mota baten esanahi gramatikala ezagutu dezan."
 
 #: src/editor/wordtypeview.cpp:65
 #, kde-format
 msgid "This word type folder contains nouns."
-msgstr "Hitz mota honen karpetak izenak ditu."
+msgstr "Hitz-mota karpeta honek izenak ditu."
 
 #: src/editor/wordtypeview.cpp:71
 #, kde-format
@@ -1342,7 +1279,7 @@ msgstr "Izen maskulinoa"
 #: src/editor/wordtypeview.cpp:73
 #, kde-format
 msgid "This word type folder contains masculine nouns."
-msgstr "Hitz mota honen karpetak izen maskulinoak ditu."
+msgstr "Hitz-mota karpeta honek izen maskulinoak ditu."
 
 #: src/editor/wordtypeview.cpp:79
 #, kde-format
@@ -1352,7 +1289,7 @@ msgstr "Izen femeninoa"
 #: src/editor/wordtypeview.cpp:81
 #, kde-format
 msgid "This word type folder contains feminine nouns."
-msgstr "Hitz mota honen karpetak izen femeninoak ditu."
+msgstr "Hitz-mota karpeta honek izena femeninoak ditu."
 
 #: src/editor/wordtypeview.cpp:87
 #, kde-format
@@ -1362,44 +1299,42 @@ msgstr "Izen neutroa"
 #: src/editor/wordtypeview.cpp:89
 #, kde-format
 msgid "This word type folder contains neuter nouns."
-msgstr "Hitz mota honen karpetak izen neutroak ditu."
+msgstr "Hitz-mota karpeta honek izen neutroak ditu."
 
 #: src/editor/wordtypeview.cpp:97
 #, kde-format
 msgid "This word type folder contains adjectives."
-msgstr "Hitz mota honen karpetak adjektiboak ditu."
+msgstr "Hitz-mota karpeta honek adjektiboak ditu."
 
 #: src/editor/wordtypeview.cpp:105
 #, kde-format
 msgid "This word type folder contains adverbs."
-msgstr "Hitz mota honen karpetak adberbioak ditu."
+msgstr "Hitz-mota karpeta honek adberbioak ditu."
 
 #: src/editor/wordtypeview.cpp:113
 #, kde-format
 msgid "This word type folder contains verbs."
-msgstr "Hitz mota honen karpetak aditzak ditu."
+msgstr "Hitz-mota karpeta honek aditzak ditu."
 
 #: src/editor/wordtypeview.cpp:119 src/parleydocument.cpp:485
-#, fuzzy, kde-format
-#| msgid "Conjugation"
+#, kde-format
 msgid "Conjunction"
-msgstr "Aditz-jokoa"
+msgstr "Juntagailua"
 
 #: src/editor/wordtypeview.cpp:121
-#, fuzzy, kde-format
-#| msgid "This word type folder contains nouns."
+#, kde-format
 msgid "This word type folder contains conjunctions."
-msgstr "Hitz mota honen karpetak izenak ditu."
+msgstr "Hitz-mota karpeta honek juntagailuak ditu."
 
 #: src/editor/wordtypeview.cpp:127
 #, kde-format
 msgid "No Special Type"
-msgstr "Ez da mota berezia"
+msgstr "Mota berezirik ez"
 
 #: src/editor/wordtypeview.cpp:130
 #, kde-format
 msgid "This word type folder contains no word type with special meaning."
-msgstr "Hitz mota honen karpetak ez dauka esanahi bereziko hitz motarik."
+msgstr "Hitz-mota karpeta honek ez dauka esanahi berezik duen hitz motarik."
 
 #: src/editor/wordtypeview.cpp:208
 #, kde-format
@@ -1414,15 +1349,13 @@ msgid_plural ""
 "There are %1 words left with this word type. They will lose their word type. "
 "Continue?"
 msgstr[0] ""
-"Hitz bat gelditzen da bere hitz motarekin. Bere hitz mota gal dezake. "
-"Jarraitu?"
+"Hitz mota horretako hitz bat gelditzen da. Bere mota galduko du. Jarraitu?"
 msgstr[1] ""
-"%1 hitz gelditzen dira bere hitz motarekin. Beraien hitz mota gal dezakete. "
+"Hitz mota horretako %1 hitz gelditzen dira. Haien mota galduko dute. "
 "Jarraitu?"
 
 #: src/exportdialog.cpp:53
-#, fuzzy, kde-format
-#| msgid "Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Esportatu"
@@ -1433,10 +1366,9 @@ msgid "HTML document"
 msgstr "HTML dokumentua"
 
 #: src/exportdialog.cpp:102
-#, fuzzy, kde-format
-#| msgid "Start Practice"
+#, kde-format
 msgid "Could not write to file \"%1\""
-msgstr "Hasi ariketak"
+msgstr "Ezin izan du \"%1\" fitxategian idatzi"
 
 #: src/exportdialog.cpp:119
 #, kde-format
@@ -1456,23 +1388,22 @@ msgstr "Esportatu"
 
 #. i18n: ectx: property (text), widget (QRadioButton, flashCardRadio)
 #: src/exportdialog.ui:20
-#, fuzzy, kde-format
-#| msgid "Front and back sides for printing learning cards."
+#, kde-format
 msgid "Flash Cards - to print learning cards (HTML)"
-msgstr "Aurreko eta atzeko aldeak ikasketako txartelak inprimatzeko."
+msgstr "Txartel azkarrak - ikasteko txartelak inprimatzeko (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
 #: src/exportdialog.ui:30
 #, kde-format
 msgid "A vocabulary list that works in a web-browser and can be printed (HTML)"
 msgstr ""
+"Web-arakatzaile batean dabilen eta inprima daitekeen hitz-zerrenda bat (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, csvRadio)
 #: src/exportdialog.ui:40
-#, fuzzy, kde-format
-#| msgid "Comma separated values"
+#, kde-format
 msgid "Comma separated values (CSV)"
-msgstr "Komaz bereiztutako balioak"
+msgstr "Komaz banatutako balioak (CSV)"
 
 #: src/main.cpp:38
 #, kde-format
@@ -1480,12 +1411,7 @@ msgid "Vocabulary Trainer"
 msgstr "Hiztegi trebatzailea"
 
 #: src/main.cpp:40
-#, fuzzy, kde-format
-#| msgid ""
-#| "© 1999-2002\tEwald Arnold\n"
-#| "© 2001-2002\tThe KDE team\n"
-#| "© 2004-2007\tPeter Hedlund\n"
-#| "© 2007-2008\tFrederik Gladhorn\n"
+#, kde-format
 msgid ""
 "© 1999-2002\tEwald Arnold\n"
 "© 2001-2002\tThe KDE team\n"
@@ -1495,7 +1421,7 @@ msgstr ""
 "© 1999-2002\tEwald Arnold\n"
 "© 2001-2002\tThe KDE team\n"
 "© 2004-2007\tPeter Hedlund\n"
-"© 2007-2008\tFrederik Gladhorn\n"
+"© 2007-2010\tFrederik Gladhorn\n"
 
 #: src/main.cpp:45
 #, kde-format
@@ -1505,17 +1431,17 @@ msgstr "Zure hiztegia lantzen lagunduko dizu"
 #: src/main.cpp:49
 #, kde-format
 msgid "Inge Wallin"
-msgstr ""
+msgstr "Inge Wallin"
 
 #: src/main.cpp:49 src/main.cpp:51
 #, kde-format
 msgid "Developer and Co-maintainer"
-msgstr ""
+msgstr "Garatzailea eta arduradunetako bat"
 
 #: src/main.cpp:51
 #, kde-format
 msgid "Amarvir Singh"
-msgstr ""
+msgstr "Amarvir Singh"
 
 #: src/main.cpp:53
 #, kde-format
@@ -1525,17 +1451,17 @@ msgstr "Frederik Gladhorn"
 #: src/main.cpp:53
 #, kde-format
 msgid "Developer, former maintainer"
-msgstr ""
+msgstr "Garatzailea eta aurreko arduraduna"
 
 #: src/main.cpp:55
 #, kde-format
 msgid "Daniel Laidig"
-msgstr ""
+msgstr "Daniel Laidig"
 
 #: src/main.cpp:55
 #, kde-format
 msgid "Developer"
-msgstr ""
+msgstr "Garatzailea"
 
 #: src/main.cpp:57
 #, kde-format
@@ -1545,7 +1471,7 @@ msgstr "David Capel"
 #: src/main.cpp:57
 #, kde-format
 msgid "Practice Dialogs"
-msgstr "Ariketen elkarrizketa-koadroak"
+msgstr "Praktiketako elkarrizketa-koadroak"
 
 #: src/main.cpp:59
 #, kde-format
@@ -1555,7 +1481,7 @@ msgstr "Avgoustinos Kadis"
 #: src/main.cpp:59
 #, kde-format
 msgid "Scripting"
-msgstr "Script-en garapena"
+msgstr "Gidoigintza"
 
 #: src/main.cpp:61
 #, kde-format
@@ -1565,7 +1491,7 @@ msgstr "Peter Hedlund"
 #: src/main.cpp:62
 #, kde-format
 msgid "Countless fixes, former maintainer, port to KDE4"
-msgstr "Hainbat konponketa, garai bateko mantentzailea, KDE4-rako moldaketak"
+msgstr "Konponketa zenbatezinak, aurreko mantentzailea, KDE4ra eratortzea"
 
 #: src/main.cpp:65
 #, kde-format
@@ -1585,7 +1511,7 @@ msgstr "Lee Olson"
 #: src/main.cpp:70
 #, kde-format
 msgid "Artwork and Oxygen Icons"
-msgstr "Arte-lanak eta Oxygen ikonoak"
+msgstr "Artelanak eta Oxygen ikonoak"
 
 #: src/main.cpp:72
 #, kde-format
@@ -1595,7 +1521,7 @@ msgstr "Anne-Marie Mahfouf"
 #: src/main.cpp:72
 #, kde-format
 msgid "Port to KConfig XT"
-msgstr "KConfig XT-ra moldaketa"
+msgstr "«KConfig XT»ra eratortzea"
 
 #: src/main.cpp:74
 #, kde-format
@@ -1605,7 +1531,7 @@ msgstr "Jeremy Whiting"
 #: src/main.cpp:74
 #, kde-format
 msgid "Rewriting the kvtml library for KDE4"
-msgstr "kvtml liburutegiaren berridazketa KDE4-rentzako"
+msgstr "«kvtml» liburutegia KDE4rako berridaztea"
 
 #: src/main.cpp:76
 #, kde-format
@@ -1615,7 +1541,7 @@ msgstr "Markus Büchele"
 #: src/main.cpp:76
 #, kde-format
 msgid "Bug reports and testing on the way to KDE4"
-msgstr "Akatsen berri ematea eta probak egitea KDE4-rentzako"
+msgstr "KDE4 bidean akatsen berri ematea eta probak egitea"
 
 #: src/main.cpp:78
 #, kde-format
@@ -1625,18 +1551,17 @@ msgstr "Ramona Knapp"
 #: src/main.cpp:78
 #, kde-format
 msgid "Conceived the name Parley"
-msgstr "Parley izenaren sorrera"
+msgstr "«Parley» izena bururatu zitzaion"
 
 #: src/main.cpp:91
-#, fuzzy, kde-format
-#| msgid "+[file]"
+#, kde-format
 msgid "[file]"
-msgstr "+[fitxategia]"
+msgstr "[fitxategia]"
 
 #: src/main.cpp:91
 #, kde-format
 msgid "Document file to open"
-msgstr "Dokumentu fitxategia irekitzeko"
+msgstr "Ireki beharreko dokumentu-fitxategia"
 
 #: src/parleyactions.cpp:72
 #, kde-format
@@ -1646,17 +1571,17 @@ msgstr "Hiztegi-bilduma berri bat sortzen du"
 #: src/parleyactions.cpp:77
 #, kde-format
 msgid "Opens an existing vocabulary collection"
-msgstr "Existitzen den hiztegi-bilduma bat irakurtzen du"
+msgstr "Aurrez dagoen hiztegi-bilduma bat irekitzen du"
 
 #: src/parleyactions.cpp:85
 #, kde-format
 msgid "Open &Downloaded Vocabularies..."
-msgstr "Ireki &deskargatutako hiztegiak..."
+msgstr "Ireki &zama-jaitsitako hiztegiak..."
 
 #: src/parleyactions.cpp:86
 #, kde-format
 msgid "Open downloaded vocabulary collections"
-msgstr "Deskargatutako hiztegi-bildumak irekitzen ditu"
+msgstr "Zama-jaitsitako hiztegi-bildumak ireki"
 
 #: src/parleyactions.cpp:91
 #, kde-format
@@ -1666,7 +1591,7 @@ msgstr "Gorde hiztegi-dokumentu aktiboa"
 #: src/parleyactions.cpp:98
 #, kde-format
 msgid "Save the active vocabulary collection with a different name"
-msgstr "Gorde hiztegi-bilduma aktiboa izen desberdin batekin"
+msgstr "Gorde hiztegi-bilduma aktiboa beste izen batekin"
 
 #: src/parleyactions.cpp:105
 #, kde-format
@@ -1691,23 +1616,22 @@ msgstr "Editatu dokumentuaren propietateak"
 #: src/parleyactions.cpp:123
 #, kde-format
 msgid "Dashboard"
-msgstr ""
+msgstr "Aginte-mahaia"
 
 #: src/parleyactions.cpp:124
-#, fuzzy, kde-format
-#| msgid "Save the active vocabulary collection with a different name"
+#, kde-format
 msgid "Close the current vocabulary collection and show the dashboard"
-msgstr "Gorde hiztegi-bilduma aktiboa izen desberdin batekin"
+msgstr "Itxi uneko hiztegi-bilduma eta erakutsi aginte-mahaia"
 
 #: src/parleyactions.cpp:130
 #, kde-format
 msgid "Quit Parley"
-msgstr "Irten Parley-tik"
+msgstr "Irten «Parley»tik"
 
 #: src/parleyactions.cpp:135
 #, kde-format
 msgid "Show the configuration dialog"
-msgstr "Erakutsi konfigurazioaren elkarrizketa-koadroa"
+msgstr "Erakutsi konfiguratzeko elkarrizketa-koadroa"
 
 #: src/parleyactions.cpp:142
 #, kde-format
@@ -1721,10 +1645,9 @@ msgid ""
 msgstr "Editatu bilduman dauden hizkuntzak eta haien propietate gramatikalak."
 
 #: src/parleyactions.cpp:152
-#, fuzzy, kde-format
-#| msgid "Remove all grades from the current document"
+#, kde-format
 msgid "Remove all confidence levels from the current document"
-msgstr "Kendu maila guztiak uneko dokumentutik"
+msgstr "Kendu uneko dokumentuko konfiantza maila guztiak"
 
 #: src/parleyactions.cpp:163
 #, fuzzy, kde-format
@@ -1745,75 +1668,68 @@ msgstr "Itzulpen automatikoa"
 
 #. i18n: ectx: label, entry (AutomaticTranslation), group (General)
 #: src/parleyactions.cpp:175 src/settings/parley.kcfg:50
-#, fuzzy, kde-format
-#| msgid "Enable automatic translation of the lesson entries."
+#, kde-format
 msgid "Enable automatic translation of the unit entries."
-msgstr "Gaitu ikasgaiko sarreran itzulpen automatikoa."
+msgstr "Gaitu unitate-sarreren itzulpen automatikoa."
 
 #: src/parleyactions.cpp:185
 #, kde-format
 msgid "Start Practice..."
-msgstr "Hasi ariketak lantzen..."
+msgstr "Hasi praktika..."
 
 #: src/parleyactions.cpp:186
-#, fuzzy, kde-format
-#| msgid "Start Practice"
+#, kde-format
 msgid "Start practicing"
-msgstr "Hasi ariketak"
+msgstr "Hasi praktikatzen"
 
 #: src/parleyactions.cpp:194
 #, kde-format
 msgid "Configure Practice..."
-msgstr "Konfiguratu ariketa..."
+msgstr "Konfiguratu praktika..."
 
 #: src/parleyactions.cpp:195
 #, kde-format
 msgid "Change practice settings"
-msgstr "Aldatu ariketaren ezarpenak"
+msgstr "Aldatu praktikaren ezarpenak"
 
 #: src/parleyactions.cpp:203
-#, fuzzy, kde-format
-#| msgid "&Export..."
+#, kde-format
 msgid "Export Results..."
-msgstr "&Esportatu..."
+msgstr "Esportatu emaitzak..."
 
 #: src/parleyactions.cpp:204
-#, fuzzy, kde-format
-#| msgid "Select the lessons to practice:"
+#, kde-format
 msgid "Write a file with the results of the practice"
-msgstr "Hautatu ikasgaiak lantzeko:"
+msgstr "Praktikaren emaitzekin fitxategi bat sortu"
 
 #: src/parleyactions.cpp:212
-#, fuzzy, kde-format
-#| msgid "&Edit"
+#, kde-format
 msgid "Editor"
-msgstr "&Editatu"
+msgstr "Editorea"
 
 #: src/parleyactions.cpp:213
-#, fuzzy, kde-format
-#| msgid "Save the active vocabulary collection"
+#, kde-format
 msgid "Switch to vocabulary editor"
-msgstr "Gorde hiztegi-dokumentu aktiboa"
+msgstr "Hiztegi-editorera aldatu"
 
 #: src/parleyactions.cpp:221
 #, kde-format
 msgid "Show Se&arch"
-msgstr "Erakutsi &bilaketa"
+msgstr "Erakutsi bil&aketa"
 
 #: src/parleyactions.cpp:222
 #, kde-format
 msgid "Toggle display of the search bar"
-msgstr "Erakutsi/ezkutatu bilaketa-barra"
+msgstr "Txandakatu bilaketa-barra azaltzea"
 
 #: src/parleydocument.cpp:121 src/parleydocument.cpp:568
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
-msgstr "%1-(r)en propietateak"
+msgstr "%1(r)en propietateak"
 
 #: src/parleydocument.cpp:158
-#, fuzzy, kde-format
-#| msgid "Open Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Ireki hiztegi-bilduma"
@@ -1821,7 +1737,7 @@ msgstr "Ireki hiztegi-bilduma"
 #: src/parleydocument.cpp:159
 #, kde-format
 msgid "Open in practice &mode"
-msgstr "Ireki ariketa &moduan"
+msgstr "Ireki praktika &moduan"
 
 #: src/parleydocument.cpp:200
 #, kde-format
@@ -1832,24 +1748,27 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
+"Hiztegi-bilduma beste prozesu batek giltzatu du. Fitxategia ireki dezakezu "
+"giltzatzearen jabetza hartzen baduzu, baina beste prozesuko aldaketak "
+"galduko dituzu.\n"
+"\n"
+"Giltzatzearen jabetza hartu nahi duzu?\n"
 
 #: src/parleydocument.cpp:202
 #, kde-format
 msgid "Take Over Lock"
-msgstr ""
+msgstr "Giltzatzeaz jabetu"
 
 #: src/parleydocument.cpp:231
-#, fuzzy, kde-format
-#| msgid "Writing file \"%1\" resulted in an error: %2"
+#, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
-msgstr "Errore bat gertatu da %1 fitxategia idaztean: %2"
+msgstr "\"%1\" bilduma irekitzean errorea gertatu da: %2"
 
 #: src/parleydocument.cpp:232
-#, fuzzy, kde-format
-#| msgid "Last Opened Collections"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
-msgstr "Azken irekitako bildumak"
+msgstr "Bilduma irekitzea"
 
 #: src/parleydocument.cpp:260
 #, kde-format
@@ -1860,14 +1779,13 @@ msgid ""
 msgstr ""
 "Hiztegia aldatu da.\n"
 "\n"
-"Gorde fitxategia irten aurretik?\n"
+"Irten aurretik fitxategia gorde?\n"
 
 #: src/parleydocument.cpp:293
-#, fuzzy, kde-format
-#| msgid "Open Downloaded Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
-msgstr "Ireki deskargatutako hiztegi-bilduma"
+msgstr "Ireki zama-jaitsitako hiztegi-bilduma"
 
 #: src/parleydocument.cpp:331 src/parleydocument.cpp:416
 #, kde-format
@@ -1877,22 +1795,25 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
+"\"%1\" fitxategia beste prozesu batek giltzatu du. Fitxategian gorde "
+"dezakezu giltzatzearen jabetza hartzen baduzu, baina beste prozesuko "
+"aldaketak galduko dituzu.\n"
+"\n"
+"Giltzatzearen jabetza hartu nahi duzu?\n"
 
 #: src/parleydocument.cpp:360 src/parleydocument.cpp:450
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
-msgstr "Errore bat gertatu da %1 fitxategia idaztean: %2"
+msgstr "\"%1\" fitxategian idaztean errore bat gertatu da: %2"
 
 #: src/parleydocument.cpp:361 src/parleydocument.cpp:451
-#, fuzzy, kde-format
-#| msgid "Save File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "Gorde fitxategia"
 
 #: src/parleydocument.cpp:376
-#, fuzzy, kde-format
-#| msgid "Save Vocabulary As"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Gorde hiztegia honela"
@@ -1902,7 +1823,7 @@ msgstr "Gorde hiztegia honela"
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr ""
-"<qt><p><b>%1</b>fitxategia</p> badago lehendik ere. Gainidatzi nahi duzu?</"
+"<qt><p><b>%1</b></p>fitxategia lehendik ere badago. Gainidatzi nahi duzu?</"
 "qt>"
 
 #: src/parleydocument.cpp:396
@@ -1930,7 +1851,7 @@ msgstr "Hizkuntzak"
 #: src/parleydocument.cpp:506
 #, kde-format
 msgid "A Second Language"
-msgstr "Bigarren hizkuntza"
+msgstr "Bigarren hizkuntza bat"
 
 #: src/parleydocument.cpp:509
 #, kde-format
@@ -1938,10 +1859,9 @@ msgid "Lesson 1"
 msgstr "1. ikasgaia"
 
 #: src/parleydocument.cpp:551
-#, fuzzy, kde-format
-#| msgid "Downloads new vocabulary collections"
+#, kde-format
 msgid "Could not open vocabulary collection \"%1\""
-msgstr "Hiztegi-bilduma berriak deskargatzen ditu"
+msgstr "Ezin izan du \"%1\" hiztegi-bilduma ireki"
 
 #: src/parleymainwindow.cpp:133
 #, kde-format
@@ -1949,7 +1869,7 @@ msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
 "when document is modified"
 msgid "%1 [*]"
-msgstr ""
+msgstr "%1 [*]"
 
 #: src/parleymainwindow.cpp:173
 #, kde-format
@@ -1957,22 +1877,22 @@ msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr ""
+"Ezin zara praktikatzen hasi, hizkuntza ezaguna ikasi beharreko bera denean."
 
 #: src/parleymainwindow.cpp:173
-#, fuzzy, kde-format
-#| msgid "&Second language:"
+#, kde-format
 msgid "Select languages"
-msgstr "&Bigarren hizkuntza:"
+msgstr "Aukeratu hizkuntzak"
 
 #: src/parleymainwindow.cpp:211
 #, kde-format
 msgid "Download New Vocabularies..."
-msgstr "Deskargatu hiztegi berriak..."
+msgstr "Zama-jaitsi hiztegi berriak..."
 
 #: src/parleymainwindow.cpp:217
 #, kde-format
 msgid "Downloads new vocabulary collections"
-msgstr "Hiztegi-bilduma berriak deskargatzen ditu"
+msgstr "Hiztegi-bilduma berriak zama-jaisten ditu"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/parleyui.rc:21
@@ -1982,35 +1902,31 @@ msgstr "Tresna-barra nagusia"
 
 #. i18n: ectx: ToolBar (practiceToolBar)
 #: src/parleyui.rc:29 src/practice/practiceui.rc:18
-#, fuzzy, kde-format
-#| msgid "Main Toolbar"
+#, kde-format
 msgid "Practice Toolbar"
-msgstr "Tresna-barra nagusia"
+msgstr "Praktika tresna-barra"
 
 #. i18n: ectx: ToolBar (statisticsToolBar)
 #: src/parleyui.rc:33 src/statistics/statisticsui.rc:19
-#, fuzzy, kde-format
-#| msgid "Main Toolbar"
+#, kde-format
 msgid "Statistics Toolbar"
-msgstr "Tresna-barra nagusia"
+msgstr "Estatistika tresna-barra"
 
 #. i18n: ectx: ToolBar (practiceSummaryToolBar)
 #: src/parleyui.rc:40 src/practice/practicesummaryui.rc:20
-#, fuzzy, kde-format
-#| msgid "Practice Summary"
+#, kde-format
 msgid "Practice Summary Toolbar"
-msgstr "Ariketaren laburpena"
+msgstr "Praktika-laburpen tresna-barra"
 
 #: src/practice/audiobutton.cpp:57 src/practice/audiobutton.cpp:58
 #, kde-format
 msgid "Stop"
-msgstr ""
+msgstr "Gelditu"
 
 #: src/practice/comparisonbackendmode.cpp:59
-#, fuzzy, kde-format
-#| msgid "A neutral conjugation form exists"
+#, kde-format
 msgid "All comparison forms were right."
-msgstr "Aditz-joko forma neutro bat existitzen da"
+msgstr "Konparazio forma guztiak ondo daude."
 
 #: src/practice/comparisonbackendmode.cpp:65
 #, kde-format
@@ -2018,7 +1934,7 @@ msgctxt ""
 "the user entered the wrong absolute form when practicing comparison forms of "
 "adjectives (the base form of the adjective is wrong)"
 msgid "\"%1\" is the wrong word."
-msgstr ""
+msgstr "\"%1\" okerreko hitza da."
 
 #: src/practice/comparisonbackendmode.cpp:70
 #, kde-format
@@ -2026,35 +1942,32 @@ msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (good, better, best)"
 msgid "Both comparison forms (comparative and superlative) are wrong."
-msgstr ""
+msgstr "Konparazio forma biak (konparatiboa eta superlatiboa) gaizki daude."
 
 #: src/practice/comparisonbackendmode.cpp:74
-#, fuzzy, kde-format
-#| msgid "The answer was wrong."
+#, kde-format
 msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (second form wrong - better)"
 msgid "The comparative is wrong."
-msgstr "Erantzuna ez da zuzena."
+msgstr "Konparatiboa gaizki dago."
 
 #: src/practice/comparisonbackendmode.cpp:78
-#, fuzzy, kde-format
-#| msgid "The answer was wrong."
+#, kde-format
 msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (third form wrong - best)"
 msgid "The superlative is wrong."
-msgstr "Erantzuna ez da zuzena."
+msgstr "Superlatiboa gaizki dago."
 
 #: src/practice/comparisonmodewidget.cpp:65
-#, fuzzy, kde-format
-#| msgid "Enter Comparison Forms:"
+#, kde-format
 msgid "Enter the comparison forms."
-msgstr "Sartu konparazio formak:"
+msgstr "Sartu konparazio formak."
 
 #: src/practice/configure/blockoptions.cpp:22
 msgid "Do not Care"
-msgstr "Ez dio axola"
+msgstr "Ez arduratu"
 
 #: src/practice/configure/blockoptions.cpp:24
 msgid "30 Min"
@@ -2159,14 +2072,14 @@ msgstr "12 hilabete"
 #: src/practice/configure/blockoptions.cpp:220
 #, kde-format
 msgid "Illogical blocking times.\n"
-msgstr "Zentzurik gabeko blokeo-denborak.\n"
+msgstr "Logikarik gabeko blokeo-denborak.\n"
 
 #: src/practice/configure/blockoptions.cpp:222
 #: src/practice/configure/blockoptions.cpp:235
 #, kde-format
 msgid "The time for level %1 should be lower than the time for level %2.\n"
 msgstr ""
-"%1 mailaren denborak %2 mailaren denbora baina txikiagoa izan behar du.\n"
+"%1 mailaren denbora %2 mailaren denbora baina txikiagoa izan behar du.\n"
 
 #: src/practice/configure/blockoptions.cpp:233
 #, kde-format
@@ -2175,7 +2088,7 @@ msgid ""
 "Illogical expiration times.\n"
 msgstr ""
 "\n"
-"Zentzurik gabeko iraungipen-denborak.\n"
+"Logikarik gabeko iraungitze-denborak.\n"
 
 #: src/practice/configure/blockoptions.cpp:247
 #, kde-format
@@ -2184,44 +2097,43 @@ msgid ""
 "Illogical blocking vs. expiration times.\n"
 msgstr ""
 "\n"
-"Zentzurik gabeko blokeo vs. iraungipen denborak.\n"
+"Logikarik gabeko blokeo eta iraungipen denbora erlazioak.\n"
 
 #: src/practice/configure/blockoptions.cpp:249
 #, kde-format
 msgid ""
 "The blocking time at level %1 should be lower than the expiration time.\n"
 msgstr ""
-"%1 mailako blokeo denborak iraungipen denbora baina txikiagoa izan behar "
-"du.\n"
+"%1 mailako blokeo denbora iraungipen denbora baina txikiagoa izan behar du.\n"
 
 #: src/practice/configure/blockoptions.cpp:255
 #, kde-format
 msgid "Illogical Values"
-msgstr "Zentzurik gabeko balioak"
+msgstr "Logikarik gabeko balioak"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev2)
 #: src/practice/configure/blockoptions.ui:40
 #, kde-format
 msgid "Level &2:"
-msgstr "Maila &2:"
+msgstr "&2. maila:"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev5)
 #: src/practice/configure/blockoptions.ui:53
 #, kde-format
 msgid "Level &5:"
-msgstr "Maila &5:"
+msgstr "&5. maila:"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev6)
 #: src/practice/configure/blockoptions.ui:63
 #, kde-format
 msgid "Level &6:"
-msgstr "Maila &6:"
+msgstr "&6. maila:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Expire)
 #: src/practice/configure/blockoptions.ui:79
 #, kde-format
 msgid "E&xpiring"
-msgstr "I&raungipena"
+msgstr "I&raungitzea"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Block)
 #: src/practice/configure/blockoptions.ui:95
@@ -2233,37 +2145,37 @@ msgstr "Bl&okeoa"
 #: src/practice/configure/blockoptions.ui:118
 #, kde-format
 msgid "Level &4:"
-msgstr "Maila &4:"
+msgstr "&4. maila:"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev7)
 #: src/practice/configure/blockoptions.ui:128
 #, kde-format
 msgid "Level &7:"
-msgstr "Maila &7:"
+msgstr "&7. maila:"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev1)
 #: src/practice/configure/blockoptions.ui:150
 #, kde-format
 msgid "Level &1:"
-msgstr "Maila &1:"
+msgstr "&1. maila:"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev3)
 #: src/practice/configure/blockoptions.ui:192
 #, kde-format
 msgid "Level &3:"
-msgstr "Maila &3:"
+msgstr "&3. maila:"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/blockoptions.ui:218
 #, kde-format
 msgid "Do not practice vocabulary that has been asked within:"
-msgstr "Ez landu hemen galdetutako hiztegia:"
+msgstr "Ez praktikatu tarte honetan galdetutako hiztegia:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/blockoptions.ui:228
 #, kde-format
 msgid "Vocabulary drops one grade after this much time:"
-msgstr "Hiztegia maila bat jeitsiko da denbora honen ostean:"
+msgstr "Hiztegiaren maila bat jaitsiko da denbora honen ostean:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdjective)
 #: src/practice/configure/comparisonoptionswidget.ui:16
@@ -2281,11 +2193,10 @@ msgstr "Sartu adberbioak"
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Practice"
-msgstr "Konfiguratu ariketa"
+msgstr "Konfiguratu praktika"
 
 #: src/practice/configure/configurepracticedialog.cpp:28
-#, fuzzy, kde-format
-#| msgid "General"
+#, kde-format
 msgctxt ""
 "@title:group Configure general settings for practicing vocabulary, short "
 "title in config dialog."
@@ -2293,12 +2204,10 @@ msgid "General"
 msgstr "Orokorra"
 
 #: src/practice/configure/configurepracticedialog.cpp:30
-#, fuzzy, kde-format
-#| msgctxt "Configure advanced settings for practicing vocabulary."
-#| msgid "Advanced Practice Settings"
+#, kde-format
 msgctxt "Configure general settings for practicing vocabulary."
 msgid "General Practice Settings"
-msgstr "Ariketen ezarpen aurreratuak"
+msgstr "Praktikaren ezarpen orokorrak"
 
 #: src/practice/configure/configurepracticedialog.cpp:35
 #, kde-format
@@ -2310,7 +2219,7 @@ msgstr "Blokeoa"
 #: src/practice/configure/configurepracticedialog.cpp:37
 #, kde-format
 msgid "Blocking Settings"
-msgstr "Blokeoen ezarpenak"
+msgstr "Blokeoaren ezarpenak"
 
 #: src/practice/configure/configurepracticedialog.cpp:42
 #, kde-format
@@ -2322,7 +2231,7 @@ msgstr "Atalaseak"
 #: src/practice/configure/configurepracticedialog.cpp:44
 #, kde-format
 msgid "Threshold Settings"
-msgstr "Atalaseen ezarpenak"
+msgstr "Atalasearen ezarpenak"
 
 #: src/practice/configure/configurepracticedialog.cpp:49
 #, kde-format
@@ -2330,61 +2239,55 @@ msgctxt ""
 "@title:group Configure specific settings for practicing vocabulary, short "
 "title in config dialog."
 msgid "Specific"
-msgstr ""
+msgstr "Berariazkoa"
 
 #: src/practice/configure/configurepracticedialog.cpp:51
-#, fuzzy, kde-format
-#| msgctxt "Configure advanced settings for practicing vocabulary."
-#| msgid "Advanced Practice Settings"
+#, kde-format
 msgctxt "Configure specific settings for practicing vocabulary."
 msgid "Specific Practice Settings"
-msgstr "Ariketen ezarpen aurreratuak"
+msgstr "Praktikaren berariazko ezarpenak"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: src/practice/configure/generalpracticeoptions.ui:17
-#, fuzzy, kde-format
-#| msgid "Correct:"
+#, kde-format
 msgid "Correction"
-msgstr "Zuzenak:"
+msgstr "Zuzenketa"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:23
 #, kde-format
 msgid "Answers with wrong accents are still counted as correct."
-msgstr ""
+msgstr "Okerreko azentuak dituzten erantzunak ontzat hartuko dira."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:26
-#, fuzzy, kde-format
-#| msgid "Ignore accent mistakes"
+#, kde-format
 msgid "Ignore accents"
-msgstr "Ezikusi egin azentuen akatsei"
+msgstr "Ezikusi azentuak"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:36
 #, kde-format
 msgid "Any captitalization in the answer is counted as correct."
-msgstr ""
+msgstr "Erantzunean ipinitako edozein maiuskula ontzat hartuko da."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:39
-#, fuzzy, kde-format
-#| msgid "Ignore capitalization mistakes"
+#, kde-format
 msgid "Ignore capitalization"
-msgstr "Ezikusi egin maiuskulen/minuskulen akatsei"
+msgstr "Ezikusi maiuskulak"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:49
 #, kde-format
 msgid "Any punctuation mistake in the answer is counted as correct."
-msgstr ""
+msgstr "Erantzuneko puntuazio akatsak ontzat hartuko dira."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:52
-#, fuzzy, kde-format
-#| msgid "Ignore capitalization mistakes"
+#, kde-format
 msgid "Ignore punctuation"
-msgstr "Ezikusi egin maiuskulen/minuskulen akatsei"
+msgstr "Ezikusi puntuazioa"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:62
@@ -2392,60 +2295,55 @@ msgstr "Ezikusi egin maiuskulen/minuskulen akatsei"
 msgid ""
 "During the practice you can use the hint button to see parts of the solution."
 msgstr ""
+"Praktikaldian, argibide botoia erabil dezakezu ebazpenaren zatiak ikusteko."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:65
-#, fuzzy, kde-format
-#| msgid "Enable Hints"
+#, kde-format
 msgid "Enable hints"
 msgstr "Gaitu argibideak"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
 #: src/practice/configure/generalpracticeoptions.ui:91
-#, fuzzy, kde-format
-#| msgid "Show Solution"
+#, kde-format
 msgid "Images and Sound"
-msgstr "Erakutsi soluzioa"
+msgstr "Irudiak eta soinua"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:97
 #, kde-format
 msgid "During the practice, images are shown for the question."
-msgstr ""
+msgstr "Praktikaldian, irudiak erakutsiko dira galdera gisa."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:100
-#, fuzzy, kde-format
-#| msgid "Solution"
+#, kde-format
 msgid "Image for question"
-msgstr "Soluzioa"
+msgstr "Galderaren irudia"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:110
 #, kde-format
 msgid "During the practice, images are shown for the solution."
-msgstr ""
+msgstr "Praktikaldian, irudiak erakutsiko dira ebazpen gisa."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:113
-#, fuzzy, kde-format
-#| msgid "Show Solution"
+#, kde-format
 msgid "Image for solution"
-msgstr "Erakutsi soluzioa"
+msgstr "Ebazpenaren irudia"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:123
-#, fuzzy, kde-format
-#| msgid "Show images on the back of the flashcard."
+#, kde-format
 msgid "Allow using images instead of words in flashcards."
-msgstr "Erakutsi irudiak txartelaren atzealdean"
+msgstr "Txartel azkarretan, eman hitzen ordez irudiak erabiltzeko baimena."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:126
-#, fuzzy, kde-format
-#| msgid "Show images on the back of flashcard"
+#, kde-format
 msgid "Allow images instead of words"
-msgstr "Erakutsi irudiak txartelen atzealdean"
+msgstr "Hitzen ordez irudiak baimendu"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PracticeSoundEnabled)
 #: src/practice/configure/generalpracticeoptions.ui:136
@@ -2464,30 +2362,27 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
-#, fuzzy, kde-format
-#| msgid "Select Synonyms"
+#, kde-format
 msgid "Accept any synonym"
-msgstr "Hautatu sinonimoak"
+msgstr "Onartu edozein sinonimo"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: src/practice/configure/generalpracticeoptions.ui:191
-#, fuzzy, kde-format
-#| msgid "Expression"
+#, kde-format
 msgid "Sessions"
-msgstr "Adierazpena"
+msgstr "Saioak"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/generalpracticeoptions.ui:202
 #, kde-format
 msgid "Max session size:"
-msgstr ""
+msgstr "Saio baten gehienezko neurria:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
-#, fuzzy, kde-format
-#| msgid "Total number of entries:"
+#, kde-format
 msgid "Max number of new words:"
-msgstr "Sarrera kopuru osoa:"
+msgstr "Hitz berrien gehienezko kopurua:"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:23
@@ -2496,25 +2391,26 @@ msgid ""
 "When creating multiple choice practices, try to show answers of the same "
 "word type."
 msgstr ""
+"Aukera anizkoitzeko praktikak sortzean, saiatu hitz-mota bereko erantzunak "
+"erakusten."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:26
 #, kde-format
 msgid "Use choices of the same word type"
-msgstr "Erabili hitz mota berdinaren aukerak"
+msgstr "Erabili hitz-mota bereko aukerak"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/specificpracticeoptions.ui:41
-#, fuzzy, kde-format
-#| msgid "Number of choices"
+#, kde-format
 msgid "Number of choices:"
-msgstr "Aukera kopurua"
+msgstr "Aukera kopurua:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
 #: src/practice/configure/thresholdoptions.ui:17
 #, kde-format
 msgid "Only practice vocabulary that fulfills the following conditions:"
-msgstr "Honako baldintzak betetzen dituzten hiztegia soilik landu:"
+msgstr "Praktikatu bakarrik ondoko baldintzak betetzen dituzten hiztegiak:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/thresholdoptions.ui:26
@@ -2530,86 +2426,73 @@ msgstr "Gehienez"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/thresholdoptions.ui:43
-#, fuzzy, kde-format
-#| msgid "&Grade:"
+#, kde-format
 msgid "Grade:"
-msgstr "&Maila:"
+msgstr "Gradua:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/thresholdoptions.ui:53
-#, fuzzy, kde-format
-#| msgid "Times practiced"
+#, kde-format
 msgid "Times practiced:"
-msgstr "Landutako aldiak"
+msgstr "Praktikatutako aldiak:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
-#, fuzzy, kde-format
-#| msgid "Answered incorrectly"
+#, kde-format
 msgid "Answered incorrectly:"
-msgstr "Erantzun okerrak"
+msgstr "Oker erantzundakoak:"
 
 #: src/practice/conjugationbackendmode.cpp:93
-#, fuzzy, kde-format
-#| msgid "A neutral conjugation form exists"
+#, kde-format
 msgid "All conjugation forms were right."
-msgstr "Aditz-joko forma neutro bat existitzen da"
+msgstr "Aditz-joko guztiak ondo daude."
 
 #: src/practice/conjugationbackendmode.cpp:97
-#, fuzzy, kde-format
-#| msgid "A neutral conjugation form exists"
+#, kde-format
 msgctxt "You did not get the conjugation forms right."
 msgid "You answered %1 conjugation form correctly."
 msgid_plural "You answered %1 conjugation forms correctly."
-msgstr[0] "Aditz-joko forma neutro bat existitzen da"
-msgstr[1] "Aditz-joko forma neutro bat existitzen da"
+msgstr[0] "Aditz-joko %1 ondo erantzun duzu."
+msgstr[1] "%1 aditz-joko ondo erantzun dituzu."
 
 #: src/practice/conjugationmodewidget.cpp:111
-#, fuzzy, kde-format
-#| msgid "Enter the correct conjugation forms."
+#, kde-format
 msgid "Enter all conjugation forms."
-msgstr "Sartu aditz-joko forma zuzenak."
+msgstr "Sartu aditz-joko guztiak."
 
 #: src/practice/genderbackendmode.cpp:61
 #, kde-format
 msgid "Choose the right article for \"%1\""
-msgstr ""
+msgstr "Aukeratu \"%1\"ren artikulu zuzena"
 
 #: src/practice/genderbackendmode.cpp:85
-#, fuzzy, kde-format
-#| msgctxt "@label the gender of the word: masculine"
-#| msgid "&masculine"
+#, kde-format
 msgctxt "@label the gender of the word: masculine"
 msgid "%1 is masculine"
-msgstr "&maskulinoa"
+msgstr "%1 maskulinoa da"
 
 #: src/practice/genderbackendmode.cpp:90
-#, fuzzy, kde-format
-#| msgctxt "@label the gender of the word: feminine"
-#| msgid "&feminine"
+#, kde-format
 msgctxt "@label the gender of the word: feminine"
 msgid "%1 is feminine"
-msgstr "&femeninoa"
+msgstr "%1 femeninoa da"
 
 #: src/practice/genderbackendmode.cpp:95
-#, fuzzy, kde-format
-#| msgctxt "@label the gender of the word: neuter"
-#| msgid "&neuter"
+#, kde-format
 msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
-msgstr "&neutroa"
+msgstr "%1 neutroa da"
 
 #: src/practice/guifrontend.cpp:123
 #, kde-format
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
-msgstr ""
+msgstr "Unitatea: %1"
 
 #: src/practice/guifrontend.cpp:129
-#, fuzzy, kde-format
-#| msgid "Enter the word:"
+#, kde-format
 msgid "New word"
-msgstr "Sartu hitza:"
+msgstr "Hitz berria"
 
 #: src/practice/guifrontend.cpp:132
 #, kde-format
@@ -2617,17 +2500,17 @@ msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
 "initial or long term"
 msgid "%1, confidence %2"
-msgstr ""
+msgstr "%1, konfiantza %2"
 
 #: src/practice/guifrontend.cpp:133
 #, kde-format
 msgid "initial"
-msgstr ""
+msgstr "hasierakoa"
 
 #: src/practice/guifrontend.cpp:133
 #, kde-format
 msgid "long term"
-msgstr ""
+msgstr "Epe luzean"
 
 #: src/practice/guifrontend.cpp:199
 #, kde-format
@@ -2643,12 +2526,12 @@ msgstr[1] ""
 #: src/practice/latexrenderer.cpp:46
 #, kde-format
 msgid "Rendering..."
-msgstr ""
+msgstr "Errendatzen..."
 
 #: src/practice/latexrenderer.cpp:135
 #, kde-format
 msgid "LaTeX error."
-msgstr ""
+msgstr "LaTeX errorea."
 
 #: src/practice/multiplechoicebackendmode.cpp:103
 #: src/practice/writtenbackendmode.cpp:145
@@ -2666,14 +2549,13 @@ msgstr ""
 #: src/practice/practice_mainwindow.ui:131
 #, kde-format
 msgid "Answer Later"
-msgstr ""
+msgstr "Erantzun beranduago"
 
 #. i18n: ectx: property (text), widget (QPushButton, hintButton)
 #: src/practice/practice_mainwindow.ui:141
-#, fuzzy, kde-format
-#| msgid "Hints"
+#, kde-format
 msgid "Hint"
-msgstr "Argibideak"
+msgstr "Argibidea"
 
 #. i18n: ectx: property (text), widget (QPushButton, continueButton)
 #: src/practice/practice_mainwindow.ui:202
@@ -2683,60 +2565,54 @@ msgstr "Jarraitu"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
 #: src/practice/practice_mainwindow.ui:219
-#, fuzzy, kde-format
-#| msgid "I Don't Know It"
+#, kde-format
 msgid "I Did not Know it"
-msgstr "Ez dakit"
+msgstr "Ez nekien hori"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
 #: src/practice/practice_mainwindow.ui:226
-#, fuzzy, kde-format
-#| msgid "I Know It"
+#, kde-format
 msgid "I Knew it"
-msgstr "Badakit"
+msgstr "Hori banekien"
 
 #. i18n: ectx: property (format), widget (QProgressBar, totalProgress)
 #: src/practice/practice_mainwindow.ui:300
 #, no-c-format, kde-format
 msgid "%v/%m"
-msgstr ""
+msgstr "%v/%m"
 
 #. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
 #: src/practice/practice_widget_comparison.ui:35
-#, fuzzy, kde-format
-#| msgid "Absolute:"
+#, kde-format
 msgid "absolute"
-msgstr "Absolutua:"
+msgstr "absolutua"
 
 #. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
 #: src/practice/practice_widget_comparison.ui:80
-#, fuzzy, kde-format
-#| msgid "Comparative:"
+#, kde-format
 msgid "comparative"
-msgstr "Konparatiboa:"
+msgstr "konparatiboa"
 
 #. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
 #: src/practice/practice_widget_comparison.ui:125
-#, fuzzy, kde-format
-#| msgid "Superlative:"
+#, kde-format
 msgid "superlative"
-msgstr "Superlatiboa:"
+msgstr "superlatiboa"
 
 #: src/practice/practicemainwindow.cpp:68
 #, kde-format
 msgid "Stop Practice"
-msgstr "Gelditu ariketa"
+msgstr "Gelditu praktika"
 
 #: src/practice/practicemainwindow.cpp:70
-#, fuzzy, kde-format
-#| msgid "Stop Practice"
+#, kde-format
 msgid "Stop practicing"
-msgstr "Gelditu ariketa"
+msgstr "Praktikatzeari utzi"
 
 #: src/practice/practicemainwindow.cpp:77
 #, kde-format
 msgid "Change answer to right/wrong"
-msgstr ""
+msgstr "Aldatu erantzuna gaizki/ongi"
 
 #: src/practice/practicemainwindow.cpp:79
 #, kde-format
@@ -2744,154 +2620,140 @@ msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
 "This shortcut changes how the answer is counted."
 msgstr ""
+"Erantzuten duzunean, «Parley»k erantzun hori ongi edo gaizki gisa azalduko "
+"du.\n"
+"Lasterbide horrek erantzuna nola zenbatzen den aldatzen du."
 
 #: src/practice/practicesummarycomponent.cpp:62
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
-msgstr ""
+msgstr "%1 praktikatu dituzu, %2 eta %3(tan)."
 
 #: src/practice/practicesummarycomponent.cpp:63
-#, fuzzy, kde-format
-#| msgid "Enter the word:"
+#, kde-format
 msgid "one word"
 msgid_plural "%1 words"
-msgstr[0] "Sartu hitza:"
-msgstr[1] "Sartu hitza:"
+msgstr[0] "hitz bat"
+msgstr[1] "%1 hitz"
 
 #: src/practice/practicesummarycomponent.cpp:64
-#, fuzzy, kde-format
-#| msgid "minutes"
+#, kde-format
 msgid "one minute"
 msgid_plural "%1 minutes"
-msgstr[0] "minutu"
-msgstr[1] "minutu"
+msgstr[0] "minutu bat"
+msgstr[1] "%1 minutu"
 
 #: src/practice/practicesummarycomponent.cpp:65
-#, fuzzy, kde-format
-#| msgid "second"
-#| msgid_plural "seconds"
+#, kde-format
 msgid "one second"
 msgid_plural "%1 seconds"
-msgstr[0] "segundoa"
-msgstr[1] "segundoak"
+msgstr[0] "segundo bat"
+msgstr[1] "%1 segundo"
 
 #: src/practice/practicesummarycomponent.cpp:82
-#, fuzzy, kde-format
-#| msgid "Not Practiced Yet"
+#, kde-format
 msgid "Practice Overview"
-msgstr "Oraindik landu gabe"
+msgstr "Praktikaren gainbegirada"
 
 #: src/practice/practicesummarycomponent.cpp:83
 #, kde-format
 msgid "Switch to the Practice Overview page"
-msgstr ""
+msgstr "Aldatu Praktika gainbegirada orrira"
 
 #: src/practice/practicesummarycomponent.cpp:150
 #, kde-format
 msgid "HTML Files"
-msgstr ""
+msgstr "HTML fitxategiak"
 
 #: src/practice/practicesummarycomponent.cpp:150
-#, fuzzy, kde-format
-#| msgid "General Document Properties"
+#, kde-format
 msgid "OpenDocument text files"
-msgstr "Dokumentuaren propietate orokorrak"
+msgstr "OpenDokument testi fitxategiak"
 
 #: src/practice/practicesummarycomponent.cpp:160
-#, fuzzy, kde-format
-#| msgid "Not Practiced Yet"
+#, kde-format
 msgid "Practice results"
-msgstr "Oraindik landu gabe"
+msgstr "Praktikaren emaitzak"
 
 #: src/practice/practicesummarycomponent.cpp:165
 #, kde-format
 msgid "Answered questions: %1\n"
-msgstr ""
+msgstr "Erantzundako galderak: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:166
-#, fuzzy, kde-format
-#| msgid "Current tense is: %1"
+#, kde-format
 msgid "Correct answers: %1\n"
-msgstr "Uneko aditz-denbora: %1"
+msgstr "Erantzun zuzenak: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:167
-#, fuzzy, kde-format
-#| msgid "Wrong answer:"
+#, kde-format
 msgid "Wrong answers: %1\n"
-msgstr "Erantzun okerrak:"
+msgstr "Erantzun okerrak: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:174
 #, kde-format
 msgid "<b>Attempts</b>"
-msgstr ""
+msgstr "<b>Saiakerak</b>"
 
 #: src/practice/practicesummarycomponent.cpp:175
-#, fuzzy, kde-format
-#| msgid "Solution"
+#, kde-format
 msgid "<b>Question</b>"
-msgstr "Soluzioa"
+msgstr "<b>Galdera</b>"
 
 #: src/practice/practicesummarycomponent.cpp:176
 #, kde-format
 msgid "<b>Correct answer</b>"
-msgstr ""
+msgstr "<b>Erantzun zuzena</b>"
 
 #: src/practice/practicesummarycomponent.cpp:177
 #, kde-format
 msgid "<b>Your errors</b>"
-msgstr ""
+msgstr "<b>Zure erroreak</b>"
 
 #: src/practice/practicesummarycomponent.cpp:192
-#, fuzzy, kde-format
-#| msgid "Start Practice"
+#, kde-format
 msgid "Could not write to %1"
-msgstr "Hasi ariketak"
+msgstr "Ezin izan du %1(e)(a)n idatzi"
 
 #: src/practice/practicesummarycomponent.cpp:192
-#, fuzzy, kde-format
-#| msgid "Start Practice"
+#, kde-format
 msgid "Could not write file"
-msgstr "Hasi ariketak"
+msgstr "Ezin izan du fitxategian idatzi"
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #: src/practice/practicesummarywidget.ui:28
 #, kde-format
 msgid "Attempts"
-msgstr ""
+msgstr "Saiakerak"
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #: src/practice/practicesummarywidget.ui:33
-#, fuzzy, kde-format
-#| msgid "Solution"
+#, kde-format
 msgid "Question"
-msgstr "Soluzioa"
+msgstr "Galdera"
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #: src/practice/practicesummarywidget.ui:38
 #, kde-format
 msgid "Solution"
-msgstr "Soluzioa"
+msgstr "Ebazpena"
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #: src/practice/practicesummarywidget.ui:43
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgid "Your Answer"
-msgstr "Ion Gaztañaga, Marcos Goyenetxe"
+msgstr "Zure erantzuna"
 
 #: src/practice/sessionmanagerbase.cpp:53
-#, fuzzy, kde-format
-#| msgid "Save the active vocabulary collection with a different name"
+#, kde-format
 msgid "The vocabulary collection contains fewer than two languages."
-msgstr "Gorde hiztegi-bilduma aktiboa izen desberdin batekin"
+msgstr "Hiztegi-bildumak bi hizkuntza baino gutxiago ditu."
 
 #: src/practice/sessionmanagerbase.cpp:53
-#, fuzzy, kde-format
-#| msgid "Start Practice"
+#, kde-format
 msgid "Could not start practice"
-msgstr "Hasi ariketak"
+msgstr "Ezin izan du praktikarekin hasi"
 
 #: src/practice/statustoggle.cpp:77
 #, kde-format
@@ -2900,12 +2762,14 @@ msgid ""
 "Words will only be counted as correct if they are answered correctly on the "
 "first attempt."
 msgstr ""
+"Erantzun hori zuzen gisa zenbatuko da.\n"
+"Hitzak zuzen gisa zenbatuko dira, bakarrik, lehenengo saiakeran ondo "
+"erantzun badira."
 
 #: src/practice/statustoggle.cpp:78
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Count this answer as wrong"
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zenbatu erantzun hori oker gisa"
 
 #: src/practice/statustoggle.cpp:81
 #, kde-format
@@ -2914,185 +2778,178 @@ msgid ""
 "Words will only be counted as correct if they are answered correctly on the "
 "first attempt."
 msgstr ""
+"Erantzun hori oker gisa zenbatuko da.\n"
+"Hitzak zuzen gisa zenbatuko dira, bakarrik, lehenengo saiakeran ondo "
+"erantzun badira."
 
 #: src/practice/statustoggle.cpp:82
-#, fuzzy, kde-format
-#| msgid "Ignore Times Answered Incorrectly"
+#, kde-format
 msgid "Count this answer as correct"
-msgstr "Ezikusi egin oker erantzundako aldiei"
+msgstr "Zenbatu erantzun hori zuzen gisa"
 
 #: src/practice/summarybarwidget.cpp:78
-#, fuzzy, kde-format
-#| msgid "Correct!"
+#, kde-format
 msgctxt "test results"
 msgid "%1 % correct"
-msgstr "Zuzena da."
+msgstr "% %1 zuzen"
 
 #: src/practice/summarybarwidget.cpp:80
 #, kde-format
 msgctxt "test results"
 msgid "%1 % wrong"
-msgstr ""
+msgstr "% %1 oker"
 
 #: src/practice/summarybarwidget.cpp:82
-#, fuzzy, kde-format
-#| msgid "Not answered:"
+#, kde-format
 msgctxt "test results"
 msgid "%1 % not answered"
-msgstr "Erantzun gabeak:"
+msgstr "% %1 erantzun gabe"
 
 #: src/practice/summarybarwidget.cpp:140
-#, fuzzy, kde-format
-#| msgid "Answered correctly (first attempt):"
+#, kde-format
 msgid "Answered correctly on the first attempt: %1 of %2 (%3 %)"
-msgstr "Erantzun zuzenak (lehen saiakera):"
+msgstr "Lehen saiakeran zuzen erantzundakoak: %1 / %2 (% %3)"
 
 #: src/practice/summarybarwidget.cpp:147
 #, kde-format
 msgid "Answered wrong on the first attempt: %1 of %2 (%3 %)"
-msgstr ""
+msgstr "Lehen saiakeran oker erantzundakoak: %1 / %2 (% %3)"
 
 #: src/practice/summarybarwidget.cpp:154
 #, kde-format
 msgid "Not answered during this practice: %1 of %2 (%3 %)"
-msgstr ""
+msgstr "Lehen saiakeran erantzun gabekoak: %1 / %2 (% %3)"
 
 #: src/practice/writtenbackendmode.cpp:70
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was wrong."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna gaizki dago."
 
 #: src/practice/writtenbackendmode.cpp:84
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid ""
 "Your answer was a synonym. Please enter another word with the same "
 "translation."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr ""
+"Zure erantzuna sinonimo bat da. Mesedez, sartu itzulpen bera duen beste hitz "
+"bat."
 
 #: src/practice/writtenbackendmode.cpp:88
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was an already entered synonym."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna dagoeneko sartutako sinonimo bat da."
 
 #: src/practice/writtenbackendmode.cpp:91
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was a synonym and your punctuation was wrong."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna sinonimo bat da eta zure puntuazioa gaizki dago."
 
 #: src/practice/writtenbackendmode.cpp:93
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was a synonym and your capitalization was wrong."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna sinonimo bat da eta maiuskulak gaizki daude."
 
 #: src/practice/writtenbackendmode.cpp:95
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was a synonym and accents were wrong."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna sinonimo bat da eta azentuak gaizki daude."
 
 #: src/practice/writtenbackendmode.cpp:97
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was a synonym."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna sinonimo bat da."
 
 #: src/practice/writtenbackendmode.cpp:105
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid ""
 "Your answer was wrong as punctuation mistakes are not accepted. Please try "
 "again."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr ""
+"Zure erantzuna gaizki dago puntuazio akatsak ez baitira onartzen. Mesedez, "
+"saiatu berriz."
 
 #: src/practice/writtenbackendmode.cpp:107
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid ""
 "Your answer was wrong as capitalization mistakes are not accepted. Please "
 "try again."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr ""
+"Zure erantzuna gaizki dago maiuskulak ipintzeko akatsak ez baitira onartzen. "
+"Mesedez, saiatu berriz."
 
 #: src/practice/writtenbackendmode.cpp:109
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid ""
 "Your answer was wrong as accent mistakes are not accepted. Please try again."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr ""
+"Zure erantzuna gaizki dago azentuen akatsak ez baitira onartzen. Mesedez, "
+"saiatu berriz."
 
 #: src/practice/writtenbackendmode.cpp:111
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was wrong. Please try again."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna gaizki dago. Mesedez, saiatu berriz."
 
 #: src/practice/writtenbackendmode.cpp:118
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was right, but your punctuation was wrong."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna ondo dago, baina puntuazioa gaizki dago."
 
 #: src/practice/writtenbackendmode.cpp:120
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was right, but your capitalization was wrong."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna ondo dago, baina maiuskulen erabilera gaizki dago."
 
 #: src/practice/writtenbackendmode.cpp:122
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was right, but accents were wrong."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna ondo dago, baina azentuak gaizki daude."
 
 #: src/practice/writtenbackendmode.cpp:124
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid "Your answer was right."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr "Zure erantzuna ondo dago."
 
 #: src/practice/writtenbackendmode.cpp:128
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid ""
 "Your answer was right... but not on the first try and your punctuation was "
 "wrong."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr ""
+"Zure erantzuna ondo dago... baina ez lehenengo saiakeran, eta puntuazioa "
+"gaizki dago."
 
 #: src/practice/writtenbackendmode.cpp:130
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid ""
 "Your answer was right... but not on the first try and your capitalization "
 "was wrong."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr ""
+"Zure erantzuna ondo dago... baina ez lehenengo saiakeran, eta maiuskulen "
+"erabilera gaizki dago."
 
 #: src/practice/writtenbackendmode.cpp:132
-#, fuzzy, kde-format
-#| msgid "Your answer was wrong."
+#, kde-format
 msgid ""
 "Your answer was right... but not on the first try and accents were wrong."
-msgstr "Zure erantzuna ez da zuzena."
+msgstr ""
+"Zure erantzuna ondo dago... baina ez lehenengo saiakeran, eta azentuak "
+"gaizki daude."
 
 #: src/practice/writtenbackendmode.cpp:134
-#, fuzzy, kde-format
-#| msgid "Count answers as right when only the accentuation is wrong."
+#, kde-format
 msgid "Your answer was right... but not on the first try."
-msgstr "Zenbatu erantzunak zuzenak bezala azentuazioa soilik dagoenean oker."
+msgstr "Zure erantzuna ondo dago... baina ez lehenengo saiakeran."
 
 #: src/practice/writtenbackendmode.cpp:154
 #, kde-format
 msgid "The solution starts with: %1"
-msgstr ""
+msgstr "Ebazpena honekin hasten da: %1"
 
 #: src/practice/writtenpracticewidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Synonym"
+#, kde-format
 msgid "Synonym: "
-msgstr "Sinonimoa"
+msgstr "Sinonimoa: "
 
 #. i18n: ectx: property (title), widget (QGroupBox, tiltle_group)
 #: src/settings/documentproperties.ui:38
@@ -3111,7 +2968,7 @@ msgstr "&Izenburua:"
 #: src/settings/documentproperties.ui:69 src/settings/documentproperties.ui:95
 #, kde-format
 msgid "A title for your document."
-msgstr "Zure dokumentuaren titulua."
+msgstr "Zure dokumentuaren izenburua."
 
 #. i18n: ectx: property (text), widget (QLabel, label_author)
 #: src/settings/documentproperties.ui:76
@@ -3121,16 +2978,15 @@ msgstr "&Egilea:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_author_2)
 #: src/settings/documentproperties.ui:102
-#, fuzzy, kde-format
-#| msgid "&Email:"
+#, kde-format
 msgid "E&mail:"
-msgstr "&Helb. el.:"
+msgstr "E&-posta:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, contactLineEdit)
 #: src/settings/documentproperties.ui:121
 #, kde-format
 msgid "A way to contact you (email or a webpage)."
-msgstr "Zurekin harremanetan jartzeko modua (helb. elek. edo webgunea)"
+msgstr "Zurekin harremanetan jartzeko modua (e-posta edo webgunea)."
 
 #. i18n: ectx: property (text), widget (QLabel, label_remark)
 #: src/settings/documentproperties.ui:128
@@ -3146,16 +3002,15 @@ msgstr "Edozein informazio gehigarri."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/settings/documentproperties.ui:160
-#, fuzzy, kde-format
-#| msgid "Cat&egory"
+#, kde-format
 msgid "Cate&gory:"
-msgstr "&Kategoria"
+msgstr "Kate&goria:"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:173
 #, kde-format
 msgid "A general category into which your document belongs."
-msgstr "Zure dokumentuei dagokion kategoria orokorra."
+msgstr "Zure dokumentuari dagokion kategoria orokor bat."
 
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:185
@@ -3201,9 +3056,9 @@ msgid ""
 "If you consider contributing your file to KDE in the future, an appropriate "
 "license is required."
 msgstr ""
-"Zure dokumentuak edukiko duen lizentzia.\n"
-"Etorkizunean zure fitxategia KDEri ematea pentsatzen ari bazara, lizentzia "
-"egoki bat behar da."
+"Zure dokumentua zein lizentziaren pean egongo den.\n"
+"Zure fitxategia, etorkizunean KDEri ematea pentsatzen ari bazara, lizentzia "
+"apropos bat behar du."
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/settings/documentproperties.ui:239
@@ -3225,10 +3080,9 @@ msgstr "&Bigarren hizkuntza:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
 #: src/settings/documentproperties.ui:311
-#, fuzzy, kde-format
-#| msgid "&Setup Grammar Details"
+#, kde-format
 msgid "&Setup grammar details"
-msgstr "&Konfiguratu gramatikaren xehetasunak"
+msgstr "E&zarri gramatikaren xehetasunak"
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
@@ -3860,7 +3714,7 @@ msgstr "Aldatu norabidea ausaz"
 #: src/settings/parley.kcfg:86
 #, kde-format
 msgid "Limit the time for the user to answer in a test."
-msgstr "Mugatu erabiltzaileak erantzuteko duen denbora proban."
+msgstr "Mugatu proba batean erabiltzaileak erantzuteko duen denbora."
 
 #. i18n: ectx: label, entry (PracticeTimeoutMode), group (PracticeOptions)
 #: src/settings/parley.kcfg:90
@@ -4023,8 +3877,8 @@ msgid ""
 "Use the same word type as the solution for the incorrect answers in a "
 "multiple choice practice."
 msgstr ""
-"Erabili hitz mota berdina soluzio gisa erantzun okerrentzako hainbat "
-"aukeretako ariketan."
+"Aukera anizkoitzeko praktika batean, erantzun okerretarako, ebazpeneko hitz-"
+"mota berdina erabili."
 
 #. i18n: ectx: label, entry (NumberMultipleChoiceAnswers), group (PracticeOptions)
 #: src/settings/parley.kcfg:194
@@ -4033,7 +3887,8 @@ msgid ""
 "How many answers are provided for a multiple choice question, including the "
 "correct answer."
 msgstr ""
-"Zenbat erantzun eman diren aukera anitzeko galderan, erantzun zuzena barne."
+"Aukera anizkoitzeko galdera baterako, erantzun zuzena barne, zenbat erantzun "
+"hornituko diren."
 
 #. i18n: ectx: label, entry (ShowSearch), group (Appearance)
 #: src/settings/parley.kcfg:201
@@ -4207,10 +4062,9 @@ msgstr "Proba batean bistaratuko den hizkuntza."
 
 #. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:313
-#, fuzzy, kde-format
-#| msgid "The language in which the user has to answer."
+#, kde-format
 msgid "The language that you know already."
-msgstr "Erabiltzaileak erantzuteko erabiliko duen hizkuntza."
+msgstr "Ezagutzen duzun hizkuntza."
 
 #. i18n: ectx: label, entry (ShowSolutionAfterAnswer), group (PracticeManager)
 #: src/settings/parley.kcfg:318
@@ -4591,10 +4445,9 @@ msgstr "Nahastutako hizkiak"
 
 #. i18n: ectx: property (text), widget (QRadioButton, multipleChoice)
 #: src/statistics/statisticsmainwindow.ui:98
-#, fuzzy, kde-format
-#| msgid "Multiple Choice"
+#, kde-format
 msgid "M&ultiple Choice"
-msgstr "Aukera anizkoitza"
+msgstr "Aukera ani&zkoitza"
 
 #. i18n: ectx: property (text), widget (QRadioButton, written)
 #: src/statistics/statisticsmainwindow.ui:105
