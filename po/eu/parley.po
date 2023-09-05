@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-08-28 14:56+0200\n"
+"PO-Revision-Date: 2023-09-04 21:50+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -2985,7 +2985,7 @@ msgstr "&Egilea:"
 #: src/settings/documentproperties.ui:102
 #, kde-format
 msgid "E&mail:"
-msgstr "E&-posta:"
+msgstr "E-&posta:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, contactLineEdit)
 #: src/settings/documentproperties.ui:121
