@@ -3727,8 +3727,8 @@ msgid ""
 "Show - show the solution after the given time; Continue - go to the next "
 "question after the given time."
 msgstr ""
-"Mostra - mostra la solució després d'un temps predefinit. Continua - salta a "
-"la següent pregunta després del temps predefinit."
+"Mostra - mostra la solució després d'un temps predefinit. Continua - salta "
+"fins a la següent pregunta després del temps predefinit."
 
 #. i18n: ectx: label, entry (PracticeTimeoutTimePerAnswer), group (PracticeOptions)
 #: src/settings/parley.kcfg:98
