@@ -1,12 +1,10 @@
-include_directories( ${parley_INCLUDE_DIRS}
-		     ${CMAKE_CURRENT_SOURCE_DIR}/collection
-		     ${CMAKE_CURRENT_SOURCE_DIR}/editor  # FIXME: Remove when moving the rest of the files in vocabulary/
-)
-
 # installation of kconfig files .kcfg containing app settings
 add_subdirectory( settings )
 
-set(parley_LIB_SRCS
+# This library is used both by parley itself and the unit tests.
+add_library(parley_LIB STATIC)
+
+target_sources(parley_LIB PRIVATE
     collection/collection.cpp
     collection/collection.h
     collection/containermimedata.cpp
@@ -195,10 +193,9 @@ set(parley_LIB_SRCS
     statistics/statisticsmodel.h
     utils.cpp
     utils.h
-
 )
 
-ki18n_wrap_ui(parley_LIB_SRCS
+ki18n_wrap_ui(parley_LIB
     collection/entryfilterdialog.ui
     editor/multiplechoicewidget.ui
     editor/comparisonwidget.ui
@@ -232,37 +229,85 @@ ki18n_wrap_ui(parley_LIB_SRCS
     dashboard/dashboard.ui
 )
 
-kconfig_add_kcfg_files(parley_LIB_SRCS
+kconfig_add_kcfg_files(parley_LIB
     settings/prefs.kcfgc
     settings/documentsettings.kcfgc
     settings/languagesettings.kcfgc
 )
 
-qt_add_dbus_adaptor(parley_LIB_SRCS editor/org.kde.parley.xml
+set(dbus_SRCS)
+qt_add_dbus_adaptor(dbus_SRCS editor/org.kde.parley.xml
                      editor/editor.h Editor::EditorWindow)
+target_sources(parley_LIB PRIVATE ${dbus_SRCS})
+
+target_include_directories(parley_LIB PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/collection
+    ${CMAKE_CURRENT_SOURCE_DIR}/editor  # FIXME: Remove when moving the rest of the files in vocabulary/
+)
+
 
 #### XSLT Support ####
 # to transform the document xml to html or other
 if(HAVE_LIBXSLT)
-    set(parley_LIB_SRCS ${parley_LIB_SRCS}
+    target_sources(parley_LIB PRIVATE
         exportdialog.cpp
         exportdialog.h
     )
 
-    ki18n_wrap_ui(parley_LIB_SRCS
+    ki18n_wrap_ui(parley_LIB
         exportdialog.ui
+    )
+
+    target_link_libraries(parley_LIB
+        ${LIBXML2_LIBRARIES}
+        ${LIBXSLT_LIBRARIES}
+    )
+
+    target_include_directories(parley_LIB PRIVATE
+        ${LIBXML2_INCLUDE_DIR}
+        ${LIBXSLT_INCLUDE_DIR}
     )
 endif(HAVE_LIBXSLT)
 #### End XSLT Support ####
 
-# This library is used both by parley itself and the unit tests.
-add_library(parley_LIB STATIC ${parley_LIB_SRCS})
+if(X11_Xrender_FOUND)
+    target_link_libraries(parley_LIB
+        ${X11_LIBRARIES}
+        ${X11_Xrender_LIB}
+    )
+endif()
 
-set(parley_SRCS main.cpp)
-add_executable(parley ${parley_SRCS})
+target_link_libraries(parley_LIB
+    LibKEduVocDocumentImport__KEduVocDocument
+    KF5::I18n
+    KF5::NewStuffWidgets
+    KF5::SonnetCore
+    KF5::SonnetUi
+    KF5::XmlGui
+    KF5::Completion
+    KF5::ConfigWidgets
+    KF5::ConfigGui
+    KF5::WidgetsAddons
+    KF5::TextWidgets
+    KF5::KIOWidgets
+    KF5::Notifications
+    KF5::Crash
+    KF5::CoreAddons
+    Qt5::Core
+    Qt5::Svg
+    Qt5::Widgets
+    Qt5::Concurrent
+    Qt5::Multimedia
+    Qt5::WebEngineWidgets
+)
 
-target_link_libraries(parley parley_LIB ${parley_LINK_LIBS})
-target_link_libraries(parley_LIB ${parley_LINK_LIBS})
+add_executable(parley
+    main.cpp
+)
+
+target_link_libraries(parley
+    parley_LIB
+)
 
 ########### install files ###############
 install(TARGETS parley  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )

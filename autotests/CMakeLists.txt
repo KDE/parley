@@ -17,12 +17,6 @@ include_directories(
     ../src/collection
 )
 
-set(unittest_LINK_LIBS
-    Qt::Test
-    ${parley_LINK_LIBS}
-    parley_LIB
-)
-
 set(parley_unittest_helpers
     parleyunittestutilities.cpp
 )
@@ -31,7 +25,9 @@ macro(PARLEY_GUI_UNITTESTS)
    foreach(_testname ${ARGN})
      get_filename_component( _name ${_testname} NAME_WE )
      ecm_add_test( ${_testname} ${parley_unittest_helpers}
-       LINK_LIBRARIES ${unittest_LINK_LIBS}
+       LINK_LIBRARIES
+            parley_LIB
+            Qt5::Test
        TEST_NAME ${_name}
        GUI)
    endforeach()
@@ -41,15 +37,13 @@ macro(PARLEY_NON_GUI_UNITTESTS)
    foreach(_testname ${ARGN})
      get_filename_component( _name ${_testname} NAME_WE )
      ecm_add_test( ${_testname} ${parley_unittest_helpers}
-       LINK_LIBRARIES ${unittest_LINK_LIBS}
+       LINK_LIBRARIES
+            parley_LIB
+            Qt5::Test
        TEST_NAME ${_name}
        )
    endforeach()
 endmacro()
-
-
-include_directories( ${unittest_INCLUDE_DIRS})
-
 
 parley_non_gui_unittests(
     testentrytest.cpp

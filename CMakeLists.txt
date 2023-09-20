@@ -92,42 +92,12 @@ configure_file(
 # let our config-parley.h be found first in any case
 include_directories (BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 
-
-
-# Define link libs for parley executable and unittests
-set( parley_LINK_LIBS
-  LibKEduVocDocumentImport__KEduVocDocument
-  Qt::Core
-  Qt::Svg
-  KF5::I18n
-  KF5::NewStuffWidgets
-  KF5::SonnetCore
-  KF5::SonnetUi
-  KF5::XmlGui
-  KF5::Completion
-  KF5::ConfigWidgets
-  KF5::ConfigGui
-  KF5::WidgetsAddons
-  KF5::TextWidgets
-  KF5::KIOWidgets
-  Qt::Widgets
-  Qt::Gui
-  Qt::Concurrent
-  Qt::Multimedia
-  KF5::Notifications
-  KF5::Crash
-  KF5::CoreAddons
-  Qt::WebEngineWidgets
-)
-
 message(STATUS "cmake cflags ${CMAKE_C_FLAGS}")
 message(STATUS "cmake link flags ${CMAKE_EXE_LINKER_FLAGS}")
 
 if(${LIBXSLT_FOUND} AND ${LIBXML2_FOUND})
   set(HAVE_LIBXSLT 1)
   message(STATUS "XLST found")
-  set( parley_LINK_LIBS ${parley_LINK_LIBS} ${LIBXML2_LIBRARIES} ${LIBXSLT_LIBRARIES})
-  include_directories(${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR})
 else(${LIBXSLT_FOUND} AND ${LIBXML2_FOUND})
   set(HAVE_LIBXSLT 0)
   message(STATUS "XSLT not found, but not required")
