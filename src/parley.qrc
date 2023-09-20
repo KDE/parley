@@ -1,0 +1,11 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/kxmlgui5/parley">
+        <file>parleyui.rc</file>
+        <file alias="editorui.rc">editor/editorui.rc</file>
+        <file alias="dashboardui.rc">dashboard/dashboardui.rc</file>
+        <file alias="statisticsui.rc">statistics/statisticsui.rc</file>
+        <file alias="practiceui.rc">practice/practiceui.rc</file>
+        <file alias="practicesummaryui.rc">practice/practicesummaryui.rc</file>
+    </qresource>
+</RCC>

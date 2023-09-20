@@ -303,6 +303,7 @@ target_link_libraries(parley_LIB
 
 add_executable(parley
     main.cpp
+    parley.qrc
 )
 
 target_link_libraries(parley
@@ -317,17 +318,3 @@ install( PROGRAMS org.kde.parley.desktop DESTINATION  ${KDE_INSTALL_APPDIR} )
 
 # hot new stuff config
 install( FILES parley.knsrc parley-themes.knsrc DESTINATION  ${KDE_INSTALL_KNSRCDIR} )
-
-
-# UI files - define menus and toolbars
-# @todo frameworks find a definitive locations for files and then use KXMLGUI_INSTALL_DIR
-install( FILES parleyui.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
-#install( FILES editor/editorui.rc DESTINATION  ${KDE_INSTALL_DATADIR}/parley )
-install( FILES editor/editorui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
-install( FILES dashboard/dashboardui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
-# install( FILES statistics/statisticsui.rc DESTINATION  ${KDE_INSTALL_DATADIR}/parley )
-# install( FILES practice/practiceui.rc DESTINATION  ${KDE_INSTALL_DATADIR}/parley )
-# install( FILES practice/practicesummaryui.rc DESTINATION  ${KDE_INSTALL_DATADIR}/parley )
-install( FILES statistics/statisticsui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
-install( FILES practice/practiceui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
-install( FILES practice/practicesummaryui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/parley )
