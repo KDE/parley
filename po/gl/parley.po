@@ -377,12 +377,12 @@ msgstr "Seguir a táboa."
 #: src/editor/comparisonwidget.cpp:76
 #, kde-format
 msgid "Could not determine word type of adjectives"
-msgstr "Non se puido determinar o tipo de palabra dos adxectivos"
+msgstr "Non foi posíbel determinar o tipo de palabra dos adxectivos"
 
 #: src/editor/comparisonwidget.cpp:95
 #, kde-format
 msgid "Could not determine word type of adverbs"
-msgstr "Non se puido determinar o tipo de palabra dos adverbios"
+msgstr "Non foi posíbel determinar o tipo de palabra dos adverbios"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, absoluteLabel)
 #. i18n: ectx: property (toolTip), widget (QLabel, comparativeLabel)
@@ -1372,7 +1372,7 @@ msgstr "Documento HTML"
 #: src/exportdialog.cpp:102
 #, kde-format
 msgid "Could not write to file \"%1\""
-msgstr "Non se puido escribir no ficheiro «%1»"
+msgstr "Non foi posíbel escribir no ficheiro «%1»"
 
 #: src/exportdialog.cpp:119
 #, kde-format
@@ -1832,7 +1832,7 @@ msgstr "<qt>O ficheiro <p><b>%1</b></p>xa existe. Quere substituílo?</qt>"
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
-msgstr "Estase a gardar %1"
+msgstr "Gardando %1"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/parleydocument.cpp:497 src/settings/documentproperties.ui:234
@@ -1863,7 +1863,7 @@ msgstr "Lección 1"
 #: src/parleydocument.cpp:551
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
-msgstr "Non se puido abrir a colección de vocabulario «%1»"
+msgstr "Non foi posíbel abrir a colección de vocabulario «%1»"
 
 #: src/parleymainwindow.cpp:133
 #, kde-format
@@ -2550,7 +2550,7 @@ msgstr "Erro de LaTeX."
 #: src/practice/writtenbackendmode.cpp:145
 #, kde-format
 msgid "You revealed the answer by using too many hints."
-msgstr "Revelaches a resposta ao utilizares demasiadas pistas."
+msgstr "Revelaches a resposta ao usares demasiadas pistas."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, answerLaterButton)
 #: src/practice/practice_mainwindow.ui:128
@@ -2726,12 +2726,12 @@ msgstr "<b>Os seus erros</b>"
 #: src/practice/practicesummarycomponent.cpp:192
 #, kde-format
 msgid "Could not write to %1"
-msgstr "Non se puido escribir en %1"
+msgstr "Non foi posíbel escribir en %1"
 
 #: src/practice/practicesummarycomponent.cpp:192
 #, kde-format
 msgid "Could not write file"
-msgstr "Non se puido escribir no ficheiro"
+msgstr "Non foi posíbel escribir no ficheiro"
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #: src/practice/practicesummarywidget.ui:28
@@ -2765,7 +2765,7 @@ msgstr "A colección de vocabulario contén menos de dous idiomas."
 #: src/practice/sessionmanagerbase.cpp:53
 #, kde-format
 msgid "Could not start practice"
-msgstr "Non se puido comezar a práctica"
+msgstr "Non foi posíbel comezar a práctica"
 
 #: src/practice/statustoggle.cpp:77
 #, kde-format
@@ -3237,7 +3237,7 @@ msgstr "Gardar os vocabulario&s automaticamente ao pechar e saír."
 #: src/settings/generaloptionsbase.ui:66
 #, kde-format
 msgid "&Create a backup every"
-msgstr "&Crear unha copia de seguridade de cada."
+msgstr "&Crear unha salvagarda de cada."
 
 #. i18n: ectx: property (text), widget (QLabel, lblBackupInterva)
 #: src/settings/generaloptionsbase.ui:89
@@ -3373,13 +3373,13 @@ msgid ""
 "The selected user defined tense could not be deleted\n"
 "because it is in use."
 msgstr ""
-"Non se puido eliminar este tempo definido\n"
+"Non foi posíbel eliminar este tempo definido\n"
 "polo usuario porque está en uso."
 
 #: src/settings/languagepropertiespage.cpp:399
 #, kde-format
 msgid "Deleting Tense Description"
-msgstr "Estase a eliminar a descrición dun tempo"
+msgstr "Eliminando a descrición dun tempo"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab)
 #: src/settings/languagepropertiespage.ui:21
@@ -3596,7 +3596,7 @@ msgstr "&Limpar"
 #: src/settings/parley.kcfg:11
 #, kde-format
 msgid "Theme to use for practice and welcome screen"
-msgstr "Tema para utilizar na pantalla de prácticas e de benvida"
+msgstr "Tema para usar na pantalla de prácticas e de benvida"
 
 #. i18n: ectx: label, entry (NumPreSetting), group (General)
 #: src/settings/parley.kcfg:15
@@ -3647,13 +3647,13 @@ msgstr ""
 #: src/settings/parley.kcfg:42
 #, kde-format
 msgid "If true, a backup is saved every BackupTime minutes"
-msgstr "De escollelo, gardarase cada certo tempo unha copia de seguridade"
+msgstr "De escollelo, gardarase cada certo tempo unha salvagarda"
 
 #. i18n: ectx: label, entry (BackupTime), group (General)
 #: src/settings/parley.kcfg:46
 #, kde-format
 msgid "Time interval between two automatic backups"
-msgstr "Intervalo de tempo entre dúas copias de seguridade"
+msgstr "Intervalo de tempo entre dúas salvagardas"
 
 #. i18n: ectx: label, entry (FlashcardsFrontImage), group (PracticeOptions)
 #: src/settings/parley.kcfg:57
@@ -4193,7 +4193,7 @@ msgstr "translate-shell está dispoñíbel."
 #: src/settings/translationshelloptions.cpp:23
 #, kde-format
 msgid "translate-shell executable could not be found."
-msgstr "Non se puido atopar o executábel de translate-shell."
+msgstr "Non foi posíbel atopar o executábel de translate-shell."
 
 #: src/settings/translationshelloptions.cpp:38
 #, kde-format
