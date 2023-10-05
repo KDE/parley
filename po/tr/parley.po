@@ -12,13 +12,13 @@
 # H. İbrahim Güngör <ibrahim@pardus.org.tr>, 2011.
 # Volkan Gezer <volkangezer@gmail.com>, 2013, 2014, 2015, 2017.
 # Kaan Ozdincer <kaanozdincer@gmail.com>, 2014.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-08-22 15:52+0300\n"
+"PO-Revision-Date: 2023-10-04 13:44+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.11.70\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1278,7 +1278,7 @@ msgstr ""
 #: src/editor/wordtypeview.cpp:65
 #, kde-format
 msgid "This word type folder contains nouns."
-msgstr "Bu sözcük türü dizini ad içerir."
+msgstr "Bu sözcük türü klasörü ad içerir."
 
 #: src/editor/wordtypeview.cpp:71
 #, kde-format
@@ -1288,7 +1288,7 @@ msgstr "Erkek Ad"
 #: src/editor/wordtypeview.cpp:73
 #, kde-format
 msgid "This word type folder contains masculine nouns."
-msgstr "Bu sözcük türü dizini erkek ad içerir."
+msgstr "Bu sözcük türü klasörü erkek ad içerir."
 
 #: src/editor/wordtypeview.cpp:79
 #, kde-format
@@ -1298,7 +1298,7 @@ msgstr "Dişi Ad"
 #: src/editor/wordtypeview.cpp:81
 #, kde-format
 msgid "This word type folder contains feminine nouns."
-msgstr "Bu sözcük türü dizini dişi ad içerir."
+msgstr "Bu sözcük türü klasörü dişi ad içerir."
 
 #: src/editor/wordtypeview.cpp:87
 #, kde-format
@@ -1308,22 +1308,22 @@ msgstr "Nötr Ad"
 #: src/editor/wordtypeview.cpp:89
 #, kde-format
 msgid "This word type folder contains neuter nouns."
-msgstr "Bu sözcük türü dizini nötr ad içerir."
+msgstr "Bu sözcük türü klasörü nötr ad içerir."
 
 #: src/editor/wordtypeview.cpp:97
 #, kde-format
 msgid "This word type folder contains adjectives."
-msgstr "Bu sözcük türü dizini önadları içerir."
+msgstr "Bu sözcük türü klasörü önadlar içerir."
 
 #: src/editor/wordtypeview.cpp:105
 #, kde-format
 msgid "This word type folder contains adverbs."
-msgstr "Bu sözcük türü dizini belirteç içerir."
+msgstr "Bu sözcük türü klasörü belirteç içerir."
 
 #: src/editor/wordtypeview.cpp:113
 #, kde-format
 msgid "This word type folder contains verbs."
-msgstr "Bu sözcük türü dizini eylemleri içerir."
+msgstr "Bu sözcük türü klasörü eylemleri içerir."
 
 #: src/editor/wordtypeview.cpp:119 src/parleydocument.cpp:485
 #, kde-format
@@ -1333,7 +1333,7 @@ msgstr "Bağlaç"
 #: src/editor/wordtypeview.cpp:121
 #, kde-format
 msgid "This word type folder contains conjunctions."
-msgstr "Bu sözcük türü dizini bağlaçları içerir."
+msgstr "Bu sözcük türü klasörü bağlaçlar içerir."
 
 #: src/editor/wordtypeview.cpp:127
 #, kde-format
@@ -1343,7 +1343,7 @@ msgstr "Özel Tür Yok"
 #: src/editor/wordtypeview.cpp:130
 #, kde-format
 msgid "This word type folder contains no word type with special meaning."
-msgstr "Bu sözcük türü dizini, özel anlamlı hiçbir sözcük türü içermiyor."
+msgstr "Bu sözcük türü klasörü, özel anlamlı hiçbir sözcük türü içermiyor."
 
 #: src/editor/wordtypeview.cpp:208
 #, kde-format
@@ -1407,7 +1407,7 @@ msgstr "Bilgi Kartları - öğrenme kartlarını yazdırmak için (HTML)"
 #, kde-format
 msgid "A vocabulary list that works in a web-browser and can be printed (HTML)"
 msgstr ""
-"Bir web tarayıcısında çalışan ve yazdırılabilir bir sözcük listesi (HTML)"
+"Bir web tarayıcısında çalışan ve yazdırılabilir bir söz dağarcığı (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, csvRadio)
 #: src/exportdialog.ui:40
@@ -1601,7 +1601,7 @@ msgstr "Etkin söz dağarcığı koleksiyonunu kaydet"
 #: src/parleyactions.cpp:98
 #, kde-format
 msgid "Save the active vocabulary collection with a different name"
-msgstr "Etkin sözcük arşivini farklı bir adla kaydet"
+msgstr "Etkin söz dağarcığı koleksiyonunu başka bir adla kaydet"
 
 #: src/parleyactions.cpp:105
 #, kde-format
@@ -1611,7 +1611,7 @@ msgstr "&Dışa Aktar..."
 #: src/parleyactions.cpp:106
 #, kde-format
 msgid "Export to HTML or CSV"
-msgstr "HTML ya da CSV olarak Dışa Aktar"
+msgstr "HTML veya CSV Olarak Dışa Aktar"
 
 #: src/parleyactions.cpp:114
 #, kde-format
@@ -1631,7 +1631,7 @@ msgstr "Gösterge Tablosu"
 #: src/parleyactions.cpp:124
 #, kde-format
 msgid "Close the current vocabulary collection and show the dashboard"
-msgstr "Mevcut sözcük koleksiyonunu kapat ve gösterge tablosunu aç"
+msgstr "Geçerli söz dağarcığı koleksiyonunu kapat ve gösterge tablosunu göster"
 
 #: src/parleyactions.cpp:130
 #, kde-format
@@ -2178,8 +2178,7 @@ msgstr "Düzey &3:"
 #, kde-format
 msgid "Do not practice vocabulary that has been asked within:"
 msgstr ""
-"Aşağıdaki içinde sorulmuş bulunan söz dağarcıklarıyla ilgili alıştırma "
-"yapmayın:"
+"Aşağıdaki içinde sorulmuş bulunan söz dağarcıklarıyla ilgili alıştırma yapma:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/blockoptions.ui:228
@@ -2426,7 +2425,7 @@ msgstr "Seçenek sayısı:"
 msgid "Only practice vocabulary that fulfills the following conditions:"
 msgstr ""
 "Yalnızca aşağıdaki koşulları sağlayan söz dağarcıklarıyla ilgili alıştırma "
-"yapın:"
+"yap:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/thresholdoptions.ui:26
@@ -4121,7 +4120,7 @@ msgstr "İndirilen söz dağarcığını başlatmak için kullanılan komut"
 #: src/settings/parley.kcfg:395
 #, kde-format
 msgid "The folder where downloaded vocabularies are saved by default"
-msgstr "İndirilen söz dağarcıklarının öntanımlı olarak kaydedileceği dizin"
+msgstr "İndirilen söz dağarcıklarının öntanımlı olarak kaydedileceği klasör"
 
 #: src/settings/parleyprefs.cpp:24
 #, kde-format
