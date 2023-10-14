@@ -928,7 +928,7 @@ msgstr "Convertix una unitat més gran en diverses de xicotetes."
 #: src/editor/lessonview.cpp:63
 #, kde-format
 msgid "Move to new lesson"
-msgstr "Mou a una lliçó nova"
+msgstr "Mou cap a una lliçó nova"
 
 #: src/editor/lessonview.cpp:65
 #, kde-format
