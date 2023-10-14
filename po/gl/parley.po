@@ -4079,7 +4079,7 @@ msgstr "Amosar a solución logo de dar a resposta."
 #: src/settings/parley.kcfg:322
 #, kde-format
 msgid "The time the solution is shown (seconds). 0 is unlimited."
-msgstr "O tempo durante o que se mostra a solución (segundos). 0 é ilimitado."
+msgstr "O tempo durante o que se amosa a solución (segundos). 0 é ilimitado."
 
 #. i18n: ectx: label, entry (PracticeMode), group (PracticeManager)
 #: src/settings/parley.kcfg:337
