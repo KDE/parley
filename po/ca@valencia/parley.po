@@ -1119,7 +1119,7 @@ msgstr "Columnes del vocabulari"
 #: src/editor/vocabularycolumnsdialog.cpp:58
 #, kde-format
 msgid "Enable/Disable the columns for each language"
-msgstr "Activa/Desactiva les columnes per a cada idioma"
+msgstr "Activa o desactiva les columnes per a cada idioma"
 
 #: src/editor/vocabularydelegate.cpp:145
 #, kde-format
@@ -1719,7 +1719,7 @@ msgstr "Mostra la &busca"
 #: src/parleyactions.cpp:222
 #, kde-format
 msgid "Toggle display of the search bar"
-msgstr "Mostra/oculta la visualització de la barra de busca"
+msgstr "Mostra o oculta la visualització de la barra de busca"
 
 #: src/parleydocument.cpp:121 src/parleydocument.cpp:568
 #, kde-format
@@ -2363,7 +2363,7 @@ msgid ""
 msgstr ""
 "De manera predeterminada, se us demanarà que introduïu sinònims fins que "
 "encerteu aquell que està associat directament amb la paraula actual. Amb "
-"esta opció activada s'acceptarà qualsevol sinònim."
+"esta opció seleccionada s'acceptarà qualsevol sinònim."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
@@ -3228,7 +3228,7 @@ msgstr "Permet guardar automàticament el vostre treball"
 #: src/settings/generaloptionsbase.ui:42 src/settings/generaloptionsbase.ui:63
 #, kde-format
 msgid "Your work will be automatically saved if you check this option"
-msgstr "El vostre treball es guardarà automàticament si activeu esta opció"
+msgstr "El vostre treball es guardarà automàticament si seleccioneu esta opció"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoSave)
 #: src/settings/generaloptionsbase.ui:45
@@ -3674,7 +3674,7 @@ msgstr "Mostra imatges al revers de la fitxa ràpida."
 #, kde-format
 msgid "In Blocking Query Tab Dialog, if checked then the Query is blocked"
 msgstr ""
-"En el diàleg de pestanya de bloqueig de preguntes, si està marcada llavors "
+"En el diàleg de pestanya de bloqueig de preguntes, si se selecciona, llavors "
 "es bloquejarà la pregunta"
 
 #. i18n: ectx: label, entry (Expire), group (PracticeOptions)
@@ -3684,7 +3684,7 @@ msgid ""
 "In Blocking Query Tab Dialog, if checked then the Query accepts an expiring "
 "time"
 msgstr ""
-"En el diàleg de pestanya de bloqueig de preguntes, si està marcada llavors "
+"En el diàleg de pestanya de bloqueig de preguntes, si se selecciona, llavors "
 "la pregunta acceptarà un temps d'expiració"
 
 #. i18n: ectx: label, entry (TestOrderLesson), group (PracticeOptions)
@@ -3904,7 +3904,7 @@ msgstr ""
 #: src/settings/parley.kcfg:201
 #, kde-format
 msgid "Toggle display of the search bar."
-msgstr "Mostra/oculta la visualització de la barra de busca."
+msgstr "Mostra o oculta la visualització de la barra de busca."
 
 #. i18n: ectx: label, entry (ShowSublessonentries), group (Appearance)
 #: src/settings/parley.kcfg:206
@@ -3918,13 +3918,13 @@ msgstr ""
 #: src/settings/parley.kcfg:211
 #, kde-format
 msgid "Show/hide the unit column."
-msgstr "Mostra/oculta la columna de la unitat."
+msgstr "Mostra o oculta la columna de la unitat."
 
 #. i18n: ectx: label, entry (TableActiveColumnVisible), group (Appearance)
 #: src/settings/parley.kcfg:216
 #, kde-format
 msgid "Show/hide the active column."
-msgstr "Mostra/oculta la columna activa."
+msgstr "Mostra o oculta la columna activa."
 
 #. i18n: ectx: label, entry (LessonEditingSelection), group (Appearance)
 #: src/settings/parley.kcfg:221
