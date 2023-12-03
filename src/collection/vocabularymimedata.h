@@ -32,11 +32,7 @@ public:
     QList<KEduVocTranslation *> translationList() const;
     QList<VocabularyMimeData::MimeExpression> expressionList() const;
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QVariant retrieveData(const QString &mimeType, QVariant::Type type) const override;
-#else
     QVariant retrieveData(const QString &mimeType, QMetaType type) const override;
-#endif
 
     QStringList formats() const override;
 

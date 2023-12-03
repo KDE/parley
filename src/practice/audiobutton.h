@@ -22,11 +22,7 @@ public:
 private Q_SLOTS:
     void playAudio();
     void stopAudio();
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    void playerStateChanged(QMediaPlayer::State newState);
-#else
     void playerStateChanged(QMediaPlayer::PlaybackState newState);
-#endif
 
 private:
     QMediaPlayer *m_player; ///< media object for the files

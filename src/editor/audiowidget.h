@@ -34,11 +34,7 @@ public Q_SLOTS:
 private Q_SLOTS:
     void slotAudioFileChanged(const QString &url);
     void startPlayback();
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    void slotPlaybackFinished(QMediaPlayer::State state);
-#else
     void slotPlaybackFinished(QMediaPlayer::PlaybackState state);
-#endif
     void startRecordAudio();
     void downloadWebserviceAudio();
     void handleDownloadWebserviceFinished();

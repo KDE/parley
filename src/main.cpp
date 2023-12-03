@@ -13,9 +13,6 @@
 #include <KAboutData>
 #include <KCrash>
 #include <KLocalizedString>
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <Kdelibs4ConfigMigrator>
-#endif
 #include <QApplication>
 #include <QCommandLineParser>
 
@@ -24,15 +21,6 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     KLocalizedString::setApplicationDomain("parley");
-
-    /* for migration*/
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QStringList configFiles;
-    configFiles << QStringLiteral("parleyrc");
-    Kdelibs4ConfigMigrator migrator(QStringLiteral("parley"));
-    migrator.setConfigFiles(configFiles);
-    migrator.migrate();
-#endif
 
     KAboutData aboutData(QStringLiteral("parley"), ki18n("Parley").toString(), PARLEY_VERSION_STRING);
     aboutData.setShortDescription(ki18n("Vocabulary Trainer").toString());
@@ -78,9 +66,6 @@ int main(int argc, char *argv[])
     aboutData.addCredit(ki18n("Ramona Knapp").toString(), ki18n("Conceived the name Parley").toString());
 
     KAboutData::setApplicationData(aboutData);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-#endif
     QApplication::setApplicationName(QStringLiteral("parley"));
     QApplication::setApplicationVersion(PARLEY_VERSION_STRING);
     QApplication::setOrganizationDomain(QStringLiteral("kde.org"));

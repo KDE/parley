@@ -532,11 +532,7 @@ void ParleyDocument::slotGHNS(const QList<KNSCore::Entry> &entries)
     QString fileName;
     int numberInstalled = 0;
     for (const auto &entry : entries) {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        if (entry.status() != KNS3::Entry::Installed) {
-#else
         if (entry.status() != KNSCore::Entry::Installed) {
-#endif
             continue;
         }
         ++numberInstalled;
