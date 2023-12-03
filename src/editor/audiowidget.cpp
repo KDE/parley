@@ -7,7 +7,9 @@
 #include "audiowidget.h"
 #include <KEduVocDocument>
 #include <KEduVocExpression>
+#include <QAudioOutput>
 #include <QDebug>
+#include <QRegularExpression>
 
 using namespace Editor;
 
@@ -20,7 +22,11 @@ AudioWidget::AudioWidget(QWidget *parent)
     connect(playButton, &QPushButton::clicked, this, &AudioWidget::startPlayback);
     connect(recordButton, &QPushButton::clicked, this, &AudioWidget::startRecordAudio);
     connect(downloadButton, &QPushButton::clicked, this, &AudioWidget::downloadWebserviceAudio);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     connect(&m_player, &QMediaPlayer::stateChanged, this, &AudioWidget::slotPlaybackFinished);
+#else
+    connect(&m_player, &QMediaPlayer::playbackStateChanged, this, &AudioWidget::slotPlaybackFinished);
+#endif
     connect(&m_webserviceDownloadWatcher, &QFutureWatcher<bool>::finished, this, &AudioWidget::handleDownloadWebserviceFinished);
 
     playButton->setEnabled(false);
@@ -30,6 +36,10 @@ AudioWidget::AudioWidget(QWidget *parent)
     downloadButton->setEnabled(m_translateShell.isTranslateShellAvailable());
 
     audioUrlRequester->setEnabled(false);
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    m_player.setAudioOutput(new QAudioOutput);
+#endif
 }
 
 void AudioWidget::setDocument(KEduVocDocument *doc)
@@ -59,7 +69,11 @@ void AudioWidget::setTranslation(KEduVocExpression *entry, int translation)
         recordButton->setEnabled(false);
         audioUrlRequester->setEnabled(false);
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         if (m_player.state() == QMediaPlayer::PlayingState) {
+#else
+        if (m_player.playbackState() == QMediaPlayer::PlayingState) {
+#endif
             playButton->setEnabled(true);
         } else {
             playButton->setEnabled(false);
@@ -80,11 +94,17 @@ void AudioWidget::slotAudioFileChanged(const QString &url)
 void AudioWidget::startPlayback()
 {
     QUrl soundFile = m_entry->translation(m_currentTranslation)->soundUrl();
-
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     if (m_player.state() == QMediaPlayer::PlayingState) {
         m_player.stop();
     }
     m_player.setMedia(soundFile);
+#else
+    if (m_player.playbackState() == QMediaPlayer::PlayingState) {
+        m_player.stop();
+    }
+    m_player.setSource(soundFile);
+#endif
     m_player.play();
 }
 
@@ -93,7 +113,11 @@ void AudioWidget::startRecordAudio()
     /// FIXME: When Phonon gains the ability to record sound, implement me :)
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 void AudioWidget::slotPlaybackFinished(QMediaPlayer::State state)
+#else
+void AudioWidget::slotPlaybackFinished(QMediaPlayer::PlaybackState state)
+#endif
 {
     switch (state) {
     case QMediaPlayer::StoppedState:
@@ -126,7 +150,7 @@ void AudioWidget::downloadWebserviceAudio()
 
     QString soundFileName = m_entry->translation(m_currentTranslation)->soundUrl().toLocalFile();
     if (soundFileName.isEmpty()) {
-        const QString fileName = m_entry->translation(m_currentTranslation)->text().replace(QRegExp("[^a-zA-Z\\s]"), QString());
+        const QString fileName = m_entry->translation(m_currentTranslation)->text().replace(QRegularExpression("[^a-zA-Z\\s]"), QString());
         int index{0};
         do {
             soundFileName = dir.path() + '/' + fileName + '_' + QString::number(index) + ".ts";

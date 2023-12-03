@@ -13,6 +13,7 @@
 #include <QMargins>
 #include <QPainter>
 #include <QPalette>
+#include <QRegularExpression>
 #include <QtConcurrentRun>
 
 using namespace Practice;
@@ -62,7 +63,7 @@ void ThemedBackgroundRenderer::clearRects()
 
 void ThemedBackgroundRenderer::addRect(const QString &name, const QRect &rect)
 {
-    m_rects.append(qMakePair<QString, QRect>(name, rect));
+    m_rects.append(QPair<QString, QRect>(name, rect));
     if (!m_rectMappings.contains(name)) {
         QString mapped = m_theme->property("X-Parley-" + name);
         m_rectMappings[name] = mapped.isEmpty() ? name : mapped;
@@ -87,7 +88,9 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
     }
 
     QFutureWatcher<QImage> watcher;
-    m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground, true);
+    m_future = QtConcurrent::run([this]() {
+        return renderBackground(true);
+    });
     watcher.setFuture(m_future);
     watcher.waitForFinished();
 
@@ -100,8 +103,8 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
 QColor ThemedBackgroundRenderer::fontColor(const QString &context, const QColor &fallback)
 {
     QString text = m_theme->property("X-Parley-Font-Color-" + context).toLower();
-    if (text.length() == 6 && text.contains(QRegExp(QStringLiteral("[0-9a-f]{6}")))) {
-        return QColor(text.midRef(0, 2).toInt(nullptr, 16), text.midRef(2, 2).toInt(nullptr, 16), text.midRef(4, 2).toInt(nullptr, 16));
+    if (text.length() == 6 && text.contains(QRegularExpression(QStringLiteral("[0-9a-f]{6}")))) {
+        return QColor(text.mid(0, 2).toInt(nullptr, 16), text.mid(2, 2).toInt(nullptr, 16), text.mid(4, 2).toInt(nullptr, 16));
     }
 
     return fallback;
@@ -126,7 +129,9 @@ void ThemedBackgroundRenderer::updateBackgroundTimeout()
         // we already renderered an image with that exact sizing, no need to waste resources on it again
         return;
     }
-    m_future = QtConcurrent::run(this, &ThemedBackgroundRenderer::renderBackground, fastScale);
+    m_future = QtConcurrent::run([this, fastScale]() {
+        return renderBackground(fastScale);
+    });
     m_watcher.setFuture(m_future);
     m_lastFullRenderRects = m_rects;
 }

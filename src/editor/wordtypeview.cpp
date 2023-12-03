@@ -15,6 +15,7 @@
 
 #include <KEduVocExpression>
 #include <KEduVocWordtype>
+#include <kmessagebox.h>
 
 #include "containermodel.h"
 #include "editor/editor.h"
@@ -214,11 +215,14 @@ void WordTypeView::slotDeleteWordType()
     int count = WordType->entryCount();
 
     if (count == 0
-        || KMessageBox::warningYesNo(this,
-                                     i18np("There is a word left with this word type. It will lose its type. Continue?",
-                                           "There are %1 words left with this word type. They will lose their word type. Continue?",
-                                           count))
-            == KMessageBox::Yes) {
+        || KMessageBox::warningTwoActions(this,
+                                          i18np("There is a word left with this word type. It will lose its type. Continue?",
+                                                "There are %1 words left with this word type. They will lose their word type. Continue?",
+                                                count),
+                                          QString(),
+                                          KStandardGuiItem::ok(),
+                                          KStandardGuiItem::cancel())
+            == KMessageBox::PrimaryAction) {
         m_model->deleteContainer(selectedIndex);
     }
 }

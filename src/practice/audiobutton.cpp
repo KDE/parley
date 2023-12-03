@@ -6,6 +6,7 @@
 #include "audiobutton.h"
 
 #include <KLocalizedString>
+#include <QAudioOutput>
 
 using namespace Practice;
 
@@ -31,6 +32,7 @@ void AudioButton::playAudio()
 {
     if (!m_player) {
         m_player = new QMediaPlayer(this);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         connect(m_player, &QMediaPlayer::stateChanged, this, &AudioButton::playerStateChanged);
     } else {
         if (m_player->state() == QMediaPlayer::PlayingState) {
@@ -39,17 +41,36 @@ void AudioButton::playAudio()
     }
     m_player->setMedia(m_url);
     m_player->setVolume(50);
+#else
+        connect(m_player, &QMediaPlayer::playbackStateChanged, this, &AudioButton::playerStateChanged);
+        m_player->setAudioOutput(new QAudioOutput);
+    } else {
+        if (m_player->playbackState() == QMediaPlayer::PlayingState) {
+            m_player->stop();
+        }
+    }
+    m_player->setSource(m_url);
+    m_player->audioOutput()->setVolume(50);
+#endif
     m_player->play();
 }
 
 void AudioButton::stopAudio()
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     if (m_player && m_player->state() == QMediaPlayer::PlayingState) {
+#else
+    if (m_player && m_player->playbackState() == QMediaPlayer::PlayingState) {
+#endif
         m_player->stop();
     }
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 void AudioButton::playerStateChanged(QMediaPlayer::State newState)
+#else
+void AudioButton::playerStateChanged(QMediaPlayer::PlaybackState newState)
+#endif
 {
     switch (newState) {
     case QMediaPlayer::PlayingState:

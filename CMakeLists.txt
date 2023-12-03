@@ -38,7 +38,7 @@ find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED
   WebEngineWidgets
 )
 
-find_package(KF5 ${KF5_MIN_VERSION} MODULE REQUIRED COMPONENTS
+find_package(KF${QT_MAJOR_VERSION} ${KF5_MIN_VERSION} MODULE REQUIRED COMPONENTS
   DocTools  #to produce the docbook
   CoreAddons
   Config
@@ -126,7 +126,7 @@ if(HAVE_LIBXSLT)
 endif(HAVE_LIBXSLT)
 
 ki18n_install(po)
-if (KF5DocTools_FOUND)
+if (KF${QT_MAJOR_VERSION}DocTools_FOUND)
     kdoctools_install(po)
 endif()
 install(FILES org.kde.parley.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})

@@ -9,6 +9,7 @@
 
 #include <KEduVocTranslation>
 #include <QDebug>
+#include <QRegularExpression>
 
 /// temporary namespace for string manipulation functions
 /// could move into KStringHandler eventually
@@ -170,7 +171,8 @@ bool WrittenPracticeValidator::isPunctuationMistake(const QString &original, con
 {
     QString ans = answer;
     QString orig = original;
-    if (ans.remove(QRegExp(QStringLiteral("[^a-zA-ZƒŠŒŽšœžŸÀ-ÿ\\s]"))) == orig.remove(QRegExp(QStringLiteral("[^a-zA-ZƒŠŒŽšœžŸÀ-ÿ\\s]")))) {
+    if (ans.remove(QRegularExpression(QStringLiteral("[^a-zA-ZƒŠŒŽšœžŸÀ-ÿ\\s]")))
+        == orig.remove(QRegularExpression(QStringLiteral("[^a-zA-ZƒŠŒŽšœžŸÀ-ÿ\\s]")))) {
         qDebug() << "PunctuationMistake: " << original << " answer: " << answer;
         m_error |= TestEntry::PunctuationMistake;
         m_correctedAnswer = answer;

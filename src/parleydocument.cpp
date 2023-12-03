@@ -18,15 +18,15 @@
 #include <KEduVocLesson>
 #include <KEduVocWordtype>
 
+#include <KEMailSettings>
+#include <KMessageBox>
+#include <KProcess>
 #include <KRecentFilesAction>
 #include <QFileDialog>
 #include <QMimeDatabase>
 #include <QStandardPaths>
-#include <knewstuff_version.h>
-#include <KEMailSettings>
-#include <KMessageBox>
-#include <KProcess>
 #include <QTemporaryDir>
+#include <knewstuff_version.h>
 
 #include <QDialog>
 #include <QDialogButtonBox>
@@ -196,11 +196,14 @@ bool ParleyDocument::open(const QUrl &url)
         isSuccess = true;
         break;
     case KEduVocDocument::FileLocked: {
-        int exit = KMessageBox::warningYesNo(m_parleyApp,
-                                             i18n("The vocabulary collection is locked by another process.  You can open the file if you take over the lock, "
-                                                  "but you will lose any changes from the other process.\n\nDo you want to take over the lock?\n"),
-                                             i18n("Take Over Lock"));
-        if (exit == KMessageBox::Yes) { // attempt to steal lock
+        int exit =
+            KMessageBox::warningTwoActions(m_parleyApp,
+                                           i18n("The vocabulary collection is locked by another process.  You can open the file if you take over the lock, "
+                                                "but you will lose any changes from the other process.\n\nDo you want to take over the lock?\n"),
+                                           i18n("Take Over Lock"),
+                                           KStandardGuiItem::open(),
+                                           KStandardGuiItem::cancel());
+        if (exit == KMessageBox::PrimaryAction) { // attempt to steal lock
 
             ret = m_doc->open(url, KEduVocDocument::FileIgnoreLock);
             if (ret == KEduVocDocument::NoError) {
@@ -256,16 +259,16 @@ bool ParleyDocument::queryClose()
     bool canSave = Prefs::autoSave(); // save without asking
 
     if (!canSave) {
-        int exit = KMessageBox::warningYesNoCancel(m_parleyApp,
-                                                   i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
-                                                   QLatin1String(""),
-                                                   KStandardGuiItem::save(),
-                                                   KStandardGuiItem::discard());
+        int exit = KMessageBox::warningTwoActionsCancel(m_parleyApp,
+                                                        i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
+                                                        QString(),
+                                                        KStandardGuiItem::save(),
+                                                        KStandardGuiItem::discard());
         switch (exit) {
-        case KMessageBox::Yes:
+        case KMessageBox::PrimaryAction:
             canSave = true; // save and exit
             break;
-        case KMessageBox::No:
+        case KMessageBox::SecondaryAction:
             canSave = false; // don't save but exit
             break;
         case KMessageBox::Continue:
@@ -327,12 +330,15 @@ void ParleyDocument::save()
         isSuccess = true;
         break;
     case KEduVocDocument::FileLocked: {
-        int exit = KMessageBox::warningYesNo(m_parleyApp,
-                                             i18n("File \"%1\" is locked by another process.  You can save to the file if you take over the lock, but you will "
-                                                  "lose any changes from the other process.\n\nDo you want to take over the lock?\n",
-                                                  m_doc->url().url()),
-                                             QLatin1String(""));
-        if (exit == KMessageBox::Yes) {
+        int exit =
+            KMessageBox::warningTwoActions(m_parleyApp,
+                                           i18n("File \"%1\" is locked by another process.  You can save to the file if you take over the lock, but you will "
+                                                "lose any changes from the other process.\n\nDo you want to take over the lock?\n",
+                                                m_doc->url().url()),
+                                           QString(),
+                                           KStandardGuiItem::save(),
+                                           KStandardGuiItem::cancel());
+        if (exit == KMessageBox::PrimaryAction) {
             m_doc->setGenerator(newgenerator);
             ret = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
 
@@ -412,12 +418,15 @@ void ParleyDocument::saveAs(QUrl url)
         isSuccess = true;
         break;
     case KEduVocDocument::FileLocked: {
-        int exit = KMessageBox::warningYesNo(m_parleyApp,
-                                             i18n("File \"%1\" is locked by another process.  You can save to the file if you take over the lock, but you will "
-                                                  "lose any changes from the other process.\n\nDo you want to take over the lock?\n",
-                                                  m_doc->url().url()),
-                                             QLatin1String(""));
-        if (exit == KMessageBox::Yes) { // attempt lock steal
+        int exit =
+            KMessageBox::warningTwoActions(m_parleyApp,
+                                           i18n("File \"%1\" is locked by another process.  You can save to the file if you take over the lock, but you will "
+                                                "lose any changes from the other process.\n\nDo you want to take over the lock?\n",
+                                                m_doc->url().url()),
+                                           QString(),
+                                           KStandardGuiItem::save(),
+                                           KStandardGuiItem::cancel());
+        if (exit == KMessageBox::PrimaryAction) { // attempt lock steal
             m_doc->setGenerator(QLatin1String("Parley ") + PARLEY_VERSION_STRING);
             ret = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
 
@@ -523,7 +532,11 @@ void ParleyDocument::slotGHNS(const QList<KNSCore::Entry> &entries)
     QString fileName;
     int numberInstalled = 0;
     for (const auto &entry : entries) {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         if (entry.status() != KNS3::Entry::Installed) {
+#else
+        if (entry.status() != KNSCore::Entry::Installed) {
+#endif
             continue;
         }
         ++numberInstalled;

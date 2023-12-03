@@ -279,26 +279,26 @@ endif()
 
 target_link_libraries(parley_LIB
     LibKEduVocDocumentImport__KEduVocDocument
-    KF5::I18n
-    KF5::NewStuffWidgets
-    KF5::SonnetCore
-    KF5::SonnetUi
-    KF5::XmlGui
-    KF5::Completion
-    KF5::ConfigWidgets
-    KF5::ConfigGui
-    KF5::WidgetsAddons
-    KF5::TextWidgets
-    KF5::KIOWidgets
-    KF5::Notifications
-    KF5::Crash
-    KF5::CoreAddons
-    Qt5::Core
-    Qt5::Svg
-    Qt5::Widgets
-    Qt5::Concurrent
-    Qt5::Multimedia
-    Qt5::WebEngineWidgets
+    KF${QT_MAJOR_VERSION}::I18n
+    KF${QT_MAJOR_VERSION}::NewStuffWidgets
+    KF${QT_MAJOR_VERSION}::SonnetCore
+    KF${QT_MAJOR_VERSION}::SonnetUi
+    KF${QT_MAJOR_VERSION}::XmlGui
+    KF${QT_MAJOR_VERSION}::Completion
+    KF${QT_MAJOR_VERSION}::ConfigWidgets
+    KF${QT_MAJOR_VERSION}::ConfigGui
+    KF${QT_MAJOR_VERSION}::WidgetsAddons
+    KF${QT_MAJOR_VERSION}::TextWidgets
+    KF${QT_MAJOR_VERSION}::KIOWidgets
+    KF${QT_MAJOR_VERSION}::Notifications
+    KF${QT_MAJOR_VERSION}::Crash
+    KF${QT_MAJOR_VERSION}::CoreAddons
+    Qt${QT_MAJOR_VERSION}::Core
+    Qt${QT_MAJOR_VERSION}::Svg
+    Qt${QT_MAJOR_VERSION}::Widgets
+    Qt${QT_MAJOR_VERSION}::Concurrent
+    Qt${QT_MAJOR_VERSION}::Multimedia
+    Qt${QT_MAJOR_VERSION}::WebEngineWidgets
 )
 
 add_executable(parley

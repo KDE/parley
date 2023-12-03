@@ -42,7 +42,7 @@ void StatusToggleButton::mouseReleaseEvent(QMouseEvent *e)
     this->setFadingEnabled(true);
 }
 
-void StatusToggleButton::enterEvent(QEvent *)
+void StatusToggleButton::enterEvent(QEnterEvent *)
 {
     m_current = 1;
     setPixmap(m_hoverPixmap);

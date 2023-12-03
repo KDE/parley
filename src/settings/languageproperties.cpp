@@ -84,8 +84,12 @@ void LanguageProperties::accept()
         } else {
             // page is disabled, delete the language
             if (index < doc->identifierCount()) {
-                if (KMessageBox::warningYesNo(this, i18n("Really delete language: %1?", doc->identifier(index - deleted).name()), i18n("Remove Language"))
-                    == KMessageBox::Yes) {
+                if (KMessageBox::warningTwoActions(this,
+                                                   i18n("Really delete language: %1?", doc->identifier(index - deleted).name()),
+                                                   i18n("Remove Language"),
+                                                   KStandardGuiItem::del(),
+                                                   KStandardGuiItem::cancel())
+                    == KMessageBox::PrimaryAction) {
                     doc->removeIdentifier(index - deleted);
                     deleted++;
                 }

@@ -16,6 +16,7 @@
 
 #include <KEduVocExpression>
 #include <KEduVocLesson>
+#include <kmessagebox.h>
 
 #include "editor/editor.h"
 #include "prefs.h"
@@ -195,11 +196,14 @@ void LessonView::slotDeleteLesson()
     int count = lesson->entryCount(KEduVocLesson::Recursive);
 
     if (count == 0
-        || KMessageBox::warningYesNo(this,
-                                     i18np("There is %1 word left in this unit. Do you want to delete it?",
-                                           "There are %1 words left in this unit. Do you want to delete them?",
-                                           count))
-            == KMessageBox::Yes) {
+        || KMessageBox::warningTwoActions(this,
+                                          i18np("There is %1 word left in this unit. Do you want to delete it?",
+                                                "There are %1 words left in this unit. Do you want to delete them?",
+                                                count),
+                                          QString(),
+                                          KStandardGuiItem::del(),
+                                          KStandardGuiItem::cancel())
+            == KMessageBox::PrimaryAction) {
         m_model->deleteContainer(selectedIndex);
     }
 }

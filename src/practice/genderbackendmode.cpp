@@ -9,6 +9,7 @@
 
 #include <KEduVocDocument>
 #include <KEduVocWordtype>
+#include <QRegularExpression>
 
 using namespace Practice;
 
@@ -67,7 +68,7 @@ void GenderBackendMode::prepareChoices(TestEntry *entry)
 #if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     QStringList qsl = noun.split(QRegExp(QStringLiteral("\\s")), QString::SkipEmptyParts);
 #else
-    QStringList qsl = noun.split(QRegExp(QStringLiteral("\\s")), Qt::SkipEmptyParts);
+    QStringList qsl = noun.split(QRegularExpression(QStringLiteral("\\s")), Qt::SkipEmptyParts);
 #endif
     QMutableStringListIterator qsli(qsl);
     while (qsli.hasNext())

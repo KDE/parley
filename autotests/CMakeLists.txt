@@ -27,7 +27,7 @@ macro(PARLEY_GUI_UNITTESTS)
      ecm_add_test( ${_testname} ${parley_unittest_helpers}
        LINK_LIBRARIES
             parley_LIB
-            Qt5::Test
+            Qt${QT_MAJOR_VERSION}::Test
        TEST_NAME ${_name}
        GUI)
    endforeach()
@@ -39,7 +39,7 @@ macro(PARLEY_NON_GUI_UNITTESTS)
      ecm_add_test( ${_testname} ${parley_unittest_helpers}
        LINK_LIBRARIES
             parley_LIB
-            Qt5::Test
+            Qt${QT_MAJOR_VERSION}::Test
        TEST_NAME ${_name}
        )
    endforeach()

@@ -261,7 +261,7 @@ void EditorWindow::initDockWidgets()
     QDockWidget *charSelectDock = new QDockWidget(i18n("Phonetic Symbols"), this);
     charSelectDock->setObjectName(QStringLiteral("IPADock"));
     KCharSelect *charSelectWidget = new KCharSelect(this, nullptr, KCharSelect::SearchLine | KCharSelect::BlockCombos | KCharSelect::CharacterTable);
-    charSelectWidget->setCurrentChar(0x0250);
+    charSelectWidget->setCurrentChar(QChar(0x0250));
     QScrollArea *charSelectScrollArea = new QScrollArea(this);
     charSelectScrollArea->setWidgetResizable(true);
     charSelectScrollArea->setWidget(charSelectWidget);
