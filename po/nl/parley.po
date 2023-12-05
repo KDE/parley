@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:24+0000\n"
+"POT-Creation-Date: 2023-12-05 01:33+0000\n"
 "PO-Revision-Date: 2022-10-28 11:04+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -300,7 +300,7 @@ msgid "Are you sure you want to remove this collection?"
 msgstr "Wilt u werkelijk deze verzameling verwijderen?"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
-#: src/dashboard/dashboard.ui:14 src/main.cpp:37
+#: src/dashboard/dashboard.ui:14 src/main.cpp:25
 #, kde-format
 msgid "Parley"
 msgstr "Parley"
@@ -332,9 +332,9 @@ msgstr "<h1>Parley</h1>"
 #. i18n: ectx: property (text), widget (QPushButton, playButton)
 #. i18n: ectx: property (text), widget (Practice::AudioButton, solutionSoundButton)
 #. i18n: ectx: property (text), widget (Practice::AudioButton, questionSoundButton)
-#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:18
-#: src/practice/audiobutton.cpp:19 src/practice/audiobutton.cpp:63
-#: src/practice/audiobutton.cpp:64 src/practice/practice_widget_flashcard.ui:48
+#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:19
+#: src/practice/audiobutton.cpp:20 src/practice/audiobutton.cpp:65
+#: src/practice/audiobutton.cpp:66 src/practice/practice_widget_flashcard.ui:48
 #: src/practice/practice_widget_flashcard.ui:103
 #, kde-format
 msgid "Play"
@@ -415,14 +415,14 @@ msgstr "Overtreffende trap:"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:95 src/parleydocument.cpp:477
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:486
 #, kde-format
 msgid "Adjective"
 msgstr "Bijvoeglijk naamwoord"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
-#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:103
-#: src/parleydocument.cpp:481
+#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
+#: src/parleydocument.cpp:490
 #, kde-format
 msgid "Adverb"
 msgstr "Bijwoord"
@@ -537,21 +537,21 @@ msgstr "Meervoud"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:463
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:472
 #, kde-format
 msgid "Masculine"
 msgstr "Mannelijk"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:466
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:475
 #, kde-format
 msgid "Feminine"
 msgstr "Vrouwelijk"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:469
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:478
 #, kde-format
 msgid "Neuter"
 msgstr "Onzijdig"
@@ -845,14 +845,14 @@ msgstr "dd.MM.jjjj"
 msgid "&Reset Confidence Levels"
 msgstr "&Beoordelingen opnieuw"
 
-#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:111
-#: src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
+#: src/parleydocument.cpp:482
 #, kde-format
 msgid "Verb"
 msgstr "Werkwoord"
 
-#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:63
-#: src/parleydocument.cpp:459
+#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
+#: src/parleydocument.cpp:468
 #, kde-format
 msgid "Noun"
 msgstr "Zelfstandig naamwoord"
@@ -882,7 +882,7 @@ msgstr "LateX-code:"
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/editor/latexwidget.ui:37
-#: src/settings/kgametheme/kgamethemeselector.ui:55
+#: src/settings/kgametheme/kgamethemeselector.ui:52
 #, kde-format
 msgid "Preview"
 msgstr "Voorbeeld"
@@ -893,97 +893,97 @@ msgstr "Voorbeeld"
 msgid "Math mode"
 msgstr "Wiskundemodus"
 
-#: src/editor/lessonview.cpp:31
+#: src/editor/lessonview.cpp:32
 #, kde-format
 msgid "New Unit"
 msgstr "Nieuwe eenheid"
 
-#: src/editor/lessonview.cpp:33
+#: src/editor/lessonview.cpp:34
 #, kde-format
 msgid "Add a new unit to your document"
 msgstr "Een nieuwe eenheid aan uw document toevoegen"
 
-#: src/editor/lessonview.cpp:39
+#: src/editor/lessonview.cpp:40
 #, kde-format
 msgid "Rename Unit"
 msgstr "Les hernoemen"
 
-#: src/editor/lessonview.cpp:47
+#: src/editor/lessonview.cpp:48
 #, kde-format
 msgid "Delete Unit"
 msgstr "Les verwijderen"
 
-#: src/editor/lessonview.cpp:49
+#: src/editor/lessonview.cpp:50
 #, kde-format
 msgid "Delete the selected unit."
 msgstr "De geselecteerde eenheid verwijderen."
 
-#: src/editor/lessonview.cpp:55
+#: src/editor/lessonview.cpp:56
 #, kde-format
 msgid "Split Unit into Smaller Units"
 msgstr "Lessen in kleinere eenheden opdelen"
 
-#: src/editor/lessonview.cpp:57
+#: src/editor/lessonview.cpp:58
 #, kde-format
 msgid "Make multiple smaller units out of one big unit."
 msgstr "Maak meerdere kleine eenheden uit een grote eenheid."
 
-#: src/editor/lessonview.cpp:63
+#: src/editor/lessonview.cpp:64
 #, kde-format
 msgid "Move to new lesson"
 msgstr "Naar een nieuwe eenheid gaan"
 
-#: src/editor/lessonview.cpp:65
+#: src/editor/lessonview.cpp:66
 #, kde-format
 msgid "Moves the selected vocabulary to a new lesson"
 msgstr "Verplaatst de gekozen woordenlijst naar een nieuwe eenheid"
 
-#: src/editor/lessonview.cpp:71 src/parleyactions.cpp:151
+#: src/editor/lessonview.cpp:72 src/parleyactions.cpp:150
 #, kde-format
 msgid "Remove Confidence Levels"
 msgstr "Beoordelingen wissen"
 
-#: src/editor/lessonview.cpp:73
+#: src/editor/lessonview.cpp:74
 #, kde-format
 msgid "Remove confidence levels from this unit."
 msgstr "Beoordelingen van deze eenheid wissen"
 
-#: src/editor/lessonview.cpp:79
+#: src/editor/lessonview.cpp:80
 #, kde-format
 msgid "Remove Confidence Levels From This Unit And All Subunits"
 msgstr "Beoordelingen wissen van deze eenheid en alle subeenheden"
 
-#: src/editor/lessonview.cpp:81
+#: src/editor/lessonview.cpp:82
 #, kde-format
 msgid "Remove confidence levels from this unit and all subunits."
 msgstr "Beoordelingen wissen van deze eenheid en alle subeenheden."
 
-#: src/editor/lessonview.cpp:87
+#: src/editor/lessonview.cpp:88
 #, kde-format
 msgid "Expand Units and Subunits"
 msgstr "Alle eenheden en subeenheden uitklappen"
 
-#: src/editor/lessonview.cpp:89
+#: src/editor/lessonview.cpp:90
 #, kde-format
 msgid "Expand all units and subunits."
 msgstr "Alle eenheden en subeenheden uitklappen."
 
-#: src/editor/lessonview.cpp:95
+#: src/editor/lessonview.cpp:96
 #, kde-format
 msgid "Collapse All Units And Subunits"
 msgstr "Alle eenheden en subeenheden inklappen"
 
-#: src/editor/lessonview.cpp:97
+#: src/editor/lessonview.cpp:98
 #, kde-format
 msgid "Collapse all units and subunits."
 msgstr "Alle eenheden en subeenheden inklappen."
 
-#: src/editor/lessonview.cpp:189
+#: src/editor/lessonview.cpp:190
 #, kde-format
 msgid "The root lesson cannot be deleted."
 msgstr "De basiseenheid kan niet worden verwijderd."
 
-#: src/editor/lessonview.cpp:199
+#: src/editor/lessonview.cpp:200
 #, kde-format
 msgid "There is %1 word left in this unit. Do you want to delete it?"
 msgid_plural ""
@@ -993,12 +993,12 @@ msgstr[0] ""
 msgstr[1] ""
 "Er zijn %1 woorden over in deze eenheid. Wilt u dat die verwijderd worden?"
 
-#: src/editor/lessonview.cpp:217
+#: src/editor/lessonview.cpp:221
 #, kde-format
 msgid "Entries per Unit"
 msgstr "Regels per eenheid"
 
-#: src/editor/lessonview.cpp:218
+#: src/editor/lessonview.cpp:222
 #, kde-format
 msgid ""
 "The unit will be split into smaller unit. How many entries in each unit do "
@@ -1007,7 +1007,7 @@ msgstr ""
 "De eenheden worden in kleinere eenheden opgedeeld. Hoeveel regels moeten er "
 "in iedere eenheid zijn?"
 
-#: src/editor/lessonview.cpp:241
+#: src/editor/lessonview.cpp:245
 #, kde-format
 msgid "New Lesson"
 msgstr "Nieuwe eenheid"
@@ -1203,18 +1203,18 @@ msgstr[1] "Wilt u werkelijk de %1 geselecteerde regels wissen?"
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: src/editor/vocabularyview.cpp:362
+#: src/editor/vocabularyview.cpp:358
 #, kde-format
 msgid "Nothing to spell check."
 msgstr "Niets om de spelling van te controleren"
 
-#: src/editor/vocabularyview.cpp:387
+#: src/editor/vocabularyview.cpp:383
 #, kde-format
 msgctxt "@title of a popup"
 msgid "No Spell Checker Available"
 msgstr "Geen spellingcontrole beschikbaar"
 
-#: src/editor/vocabularyview.cpp:388
+#: src/editor/vocabularyview.cpp:384
 #, kde-format
 msgctxt "@popupmessage"
 msgid ""
@@ -1224,37 +1224,37 @@ msgstr ""
 "De taal is onjuist ingesteld, of er is geen spellingcontrole geïnstalleerd "
 "voor deze taal: %1."
 
-#: src/editor/wordtypeview.cpp:30
+#: src/editor/wordtypeview.cpp:31
 #, kde-format
 msgid "New"
 msgstr "Nieuw"
 
-#: src/editor/wordtypeview.cpp:32
+#: src/editor/wordtypeview.cpp:33
 #, kde-format
 msgid "Add a new word type to your document"
 msgstr "Een nieuw woordtype aan uw document toevoegen"
 
-#: src/editor/wordtypeview.cpp:38
+#: src/editor/wordtypeview.cpp:39
 #, kde-format
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: src/editor/wordtypeview.cpp:40
+#: src/editor/wordtypeview.cpp:41
 #, kde-format
 msgid "Rename the selected word type"
 msgstr "Het geselecteerde woordtype hernoemen"
 
-#: src/editor/wordtypeview.cpp:46
+#: src/editor/wordtypeview.cpp:47
 #, kde-format
 msgid "Delete Word Type"
 msgstr "Woordtype verwijderen"
 
-#: src/editor/wordtypeview.cpp:48
+#: src/editor/wordtypeview.cpp:49
 #, kde-format
 msgid "Delete the selected word type."
 msgstr "Het geselecteerde woordtype verwijderen."
 
-#: src/editor/wordtypeview.cpp:55
+#: src/editor/wordtypeview.cpp:56
 #, kde-format
 msgctxt ""
 "Let the user select what grammatical meaning is connected to a word type "
@@ -1262,87 +1262,87 @@ msgctxt ""
 msgid "Grammar"
 msgstr "Grammatica"
 
-#: src/editor/wordtypeview.cpp:57
+#: src/editor/wordtypeview.cpp:58
 #, kde-format
 msgid "To let Parley know the grammatical meaning of a word type."
 msgstr "Parley de grammatische betekenis van een woordtype leren."
 
-#: src/editor/wordtypeview.cpp:65
+#: src/editor/wordtypeview.cpp:66
 #, kde-format
 msgid "This word type folder contains nouns."
 msgstr "Deze map met woordtypen bevat zelfstandige naamwoorden."
 
-#: src/editor/wordtypeview.cpp:71
+#: src/editor/wordtypeview.cpp:72
 #, kde-format
 msgid "Masculine Noun"
 msgstr "Mannelijk zelfstandig naamwoord"
 
-#: src/editor/wordtypeview.cpp:73
+#: src/editor/wordtypeview.cpp:74
 #, kde-format
 msgid "This word type folder contains masculine nouns."
 msgstr "Deze map met woordtypen bevat mannelijke zelfstandige naamwoorden."
 
-#: src/editor/wordtypeview.cpp:79
+#: src/editor/wordtypeview.cpp:80
 #, kde-format
 msgid "Feminine Noun"
 msgstr "Vrouwelijk zelfstandig naamwoord"
 
-#: src/editor/wordtypeview.cpp:81
+#: src/editor/wordtypeview.cpp:82
 #, kde-format
 msgid "This word type folder contains feminine nouns."
 msgstr "Deze map met woordtypen bevat vrouwelijke zelfstandige naamwoorden."
 
-#: src/editor/wordtypeview.cpp:87
+#: src/editor/wordtypeview.cpp:88
 #, kde-format
 msgid "Neuter Noun"
 msgstr "Onzijdig zelfstandig naamwoord"
 
-#: src/editor/wordtypeview.cpp:89
+#: src/editor/wordtypeview.cpp:90
 #, kde-format
 msgid "This word type folder contains neuter nouns."
 msgstr "Deze map met woordtypen bevat onzijdige zelfstandige naamwoorden."
 
-#: src/editor/wordtypeview.cpp:97
+#: src/editor/wordtypeview.cpp:98
 #, kde-format
 msgid "This word type folder contains adjectives."
 msgstr "Deze map met woordtypen bevat bijvoeglijke naamwoorden."
 
-#: src/editor/wordtypeview.cpp:105
+#: src/editor/wordtypeview.cpp:106
 #, kde-format
 msgid "This word type folder contains adverbs."
 msgstr "Deze map met woordtypen bevat bijwoorden."
 
-#: src/editor/wordtypeview.cpp:113
+#: src/editor/wordtypeview.cpp:114
 #, kde-format
 msgid "This word type folder contains verbs."
 msgstr "Deze map met woordtypen bevat werkwoorden."
 
-#: src/editor/wordtypeview.cpp:119 src/parleydocument.cpp:485
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:494
 #, kde-format
 msgid "Conjunction"
 msgstr "Voegwoord"
 
-#: src/editor/wordtypeview.cpp:121
+#: src/editor/wordtypeview.cpp:122
 #, kde-format
 msgid "This word type folder contains conjunctions."
 msgstr "Deze map met woordtypen bevat voegwoorden."
 
-#: src/editor/wordtypeview.cpp:127
+#: src/editor/wordtypeview.cpp:128
 #, kde-format
 msgid "No Special Type"
 msgstr "Geen speciaal woordtype"
 
-#: src/editor/wordtypeview.cpp:130
+#: src/editor/wordtypeview.cpp:131
 #, kde-format
 msgid "This word type folder contains no word type with special meaning."
 msgstr "Deze map met woordtypen bevat geen speciale woordsoorten."
 
-#: src/editor/wordtypeview.cpp:208
+#: src/editor/wordtypeview.cpp:209
 #, kde-format
 msgid "The root word type cannot be deleted."
 msgstr "Het hoofdwoordtype kan niet worden verwijderd."
 
-#: src/editor/wordtypeview.cpp:218
+#: src/editor/wordtypeview.cpp:219
 #, kde-format
 msgid ""
 "There is a word left with this word type. It will lose its type. Continue?"
@@ -1408,12 +1408,12 @@ msgstr ""
 msgid "Comma separated values (CSV)"
 msgstr "Door komma gescheiden waarden (CSV, is comma separated values)"
 
-#: src/main.cpp:38
+#: src/main.cpp:26
 #, kde-format
 msgid "Vocabulary Trainer"
 msgstr "Woordjes oefenen"
 
-#: src/main.cpp:40
+#: src/main.cpp:28
 #, kde-format
 msgid ""
 "© 1999-2002\tEwald Arnold\n"
@@ -1426,307 +1426,307 @@ msgstr ""
 "© 2004-2007\tPeter Hedlund\n"
 "© 2007-2010\tFrederik Gladhorn\n"
 
-#: src/main.cpp:45
+#: src/main.cpp:33
 #, kde-format
 msgid "Helps you train your vocabulary"
 msgstr "Helpt bij het leren van woordjes"
 
-#: src/main.cpp:49
+#: src/main.cpp:37
 #, kde-format
 msgid "Inge Wallin"
 msgstr "Inge Wallin"
 
-#: src/main.cpp:49 src/main.cpp:51
+#: src/main.cpp:37 src/main.cpp:39
 #, kde-format
 msgid "Developer and Co-maintainer"
 msgstr "Ontwikkelaar en mede-onderhouder"
 
-#: src/main.cpp:51
+#: src/main.cpp:39
 #, kde-format
 msgid "Amarvir Singh"
 msgstr "Amarvir Singh"
 
-#: src/main.cpp:53
+#: src/main.cpp:41
 #, kde-format
 msgid "Frederik Gladhorn"
 msgstr "Frederik Gladhorn"
 
-#: src/main.cpp:53
+#: src/main.cpp:41
 #, kde-format
 msgid "Developer, former maintainer"
 msgstr "Ontwikkelaar en vroeger onderhouder"
 
-#: src/main.cpp:55
+#: src/main.cpp:43
 #, kde-format
 msgid "Daniel Laidig"
 msgstr "Daniel Laidig"
 
-#: src/main.cpp:55
+#: src/main.cpp:43
 #, kde-format
 msgid "Developer"
 msgstr "Ontwikkelaar"
 
-#: src/main.cpp:57
+#: src/main.cpp:45
 #, kde-format
 msgid "David Capel"
 msgstr "David Capel"
 
-#: src/main.cpp:57
+#: src/main.cpp:45
 #, kde-format
 msgid "Practice Dialogs"
 msgstr "Oefeningdialogen"
 
-#: src/main.cpp:59
+#: src/main.cpp:47
 #, kde-format
 msgid "Avgoustinos Kadis"
 msgstr "Avgoustinos Kadis"
 
-#: src/main.cpp:59
+#: src/main.cpp:47
 #, kde-format
 msgid "Scripting"
 msgstr "Scripts maken"
 
-#: src/main.cpp:61
+#: src/main.cpp:49
 #, kde-format
 msgid "Peter Hedlund"
 msgstr "Peter Hedlund"
 
-#: src/main.cpp:62
+#: src/main.cpp:50
 #, kde-format
 msgid "Countless fixes, former maintainer, port to KDE4"
 msgstr "Ontelbare verbeteringen, vorige onderhouder, overzetten naar KDE4"
 
-#: src/main.cpp:65
+#: src/main.cpp:53
 #, kde-format
 msgid "Ewald Arnold"
 msgstr "Ewald Arnold"
 
-#: src/main.cpp:66
+#: src/main.cpp:54
 #, kde-format
 msgid "Original Author"
 msgstr "Oorspronkelijke auteur"
 
-#: src/main.cpp:70
+#: src/main.cpp:58
 #, kde-format
 msgid "Lee Olson"
 msgstr "Lee Olson"
 
-#: src/main.cpp:70
+#: src/main.cpp:58
 #, kde-format
 msgid "Artwork and Oxygen Icons"
 msgstr "Uiterlijk en Oxygen-pictogrammen"
 
-#: src/main.cpp:72
+#: src/main.cpp:60
 #, kde-format
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
-#: src/main.cpp:72
+#: src/main.cpp:60
 #, kde-format
 msgid "Port to KConfig XT"
 msgstr "Overdracht naar KConfig XT"
 
-#: src/main.cpp:74
+#: src/main.cpp:62
 #, kde-format
 msgid "Jeremy Whiting"
 msgstr "Jeremy Whiting"
 
-#: src/main.cpp:74
+#: src/main.cpp:62
 #, kde-format
 msgid "Rewriting the kvtml library for KDE4"
 msgstr "De kvtml-bibliotheek herschreven voor KDE4"
 
-#: src/main.cpp:76
+#: src/main.cpp:64
 #, kde-format
 msgid "Markus Büchele"
 msgstr "Markus Büchele"
 
-#: src/main.cpp:76
+#: src/main.cpp:64
 #, kde-format
 msgid "Bug reports and testing on the way to KDE4"
 msgstr "Bugrapporten en testen bij overbrengen naar KDE4"
 
-#: src/main.cpp:78
+#: src/main.cpp:66
 #, kde-format
 msgid "Ramona Knapp"
 msgstr "Ramona Knapp"
 
-#: src/main.cpp:78
+#: src/main.cpp:66
 #, kde-format
 msgid "Conceived the name Parley"
 msgstr "Bedacht de naam Parley"
 
-#: src/main.cpp:91
+#: src/main.cpp:76
 #, kde-format
 msgid "[file]"
 msgstr "[bestand]"
 
-#: src/main.cpp:91
+#: src/main.cpp:76
 #, kde-format
 msgid "Document file to open"
 msgstr "Te openen document"
 
-#: src/parleyactions.cpp:72
+#: src/parleyactions.cpp:71
 #, kde-format
 msgid "Creates a new vocabulary collection"
 msgstr "Maakt een nieuwe woordenlijstverzameling aan"
 
-#: src/parleyactions.cpp:77
+#: src/parleyactions.cpp:76
 #, kde-format
 msgid "Opens an existing vocabulary collection"
 msgstr "Opent een bestaande woordenlijstverzameling"
 
-#: src/parleyactions.cpp:85
+#: src/parleyactions.cpp:84
 #, kde-format
 msgid "Open &Downloaded Vocabularies..."
 msgstr "Ge&downloade woordenlijstverzamelingen openen..."
 
-#: src/parleyactions.cpp:86
+#: src/parleyactions.cpp:85
 #, kde-format
 msgid "Open downloaded vocabulary collections"
 msgstr "Gedownloade woordenlijstverzamelingen openen"
 
-#: src/parleyactions.cpp:91
+#: src/parleyactions.cpp:90
 #, kde-format
 msgid "Save the active vocabulary collection"
 msgstr "De actieve woordenlijstverzameling opslaan"
 
-#: src/parleyactions.cpp:98
+#: src/parleyactions.cpp:97
 #, kde-format
 msgid "Save the active vocabulary collection with a different name"
 msgstr "De actieve woordenlijstverzameling met een andere naam opslaan"
 
-#: src/parleyactions.cpp:105
+#: src/parleyactions.cpp:104
 #, kde-format
 msgid "&Export..."
 msgstr "&Exporteren..."
 
-#: src/parleyactions.cpp:106
+#: src/parleyactions.cpp:105
 #, kde-format
 msgid "Export to HTML or CSV"
 msgstr "Naar HTML of CSV exporteren"
 
-#: src/parleyactions.cpp:114
+#: src/parleyactions.cpp:113
 #, kde-format
 msgid "&Properties..."
 msgstr "&Eigenschappen..."
 
-#: src/parleyactions.cpp:115
+#: src/parleyactions.cpp:114
 #, kde-format
 msgid "Edit document properties"
 msgstr "Documenteigenschappen bewerken"
 
-#: src/parleyactions.cpp:123
+#: src/parleyactions.cpp:122
 #, kde-format
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/parleyactions.cpp:124
+#: src/parleyactions.cpp:123
 #, kde-format
 msgid "Close the current vocabulary collection and show the dashboard"
 msgstr "De huidige woordenlijstverzameling afsluiten en het dashboard tonen"
 
-#: src/parleyactions.cpp:130
+#: src/parleyactions.cpp:129
 #, kde-format
 msgid "Quit Parley"
 msgstr "Parley afsluiten"
 
-#: src/parleyactions.cpp:135
+#: src/parleyactions.cpp:134
 #, kde-format
 msgid "Show the configuration dialog"
 msgstr "Configuratiedialoog openen"
 
-#: src/parleyactions.cpp:142
+#: src/parleyactions.cpp:141
 #, kde-format
 msgid "&Languages..."
 msgstr "&Talen..."
 
-#: src/parleyactions.cpp:143
+#: src/parleyactions.cpp:142
 #, kde-format
 msgid ""
 "Edit which languages are in the collection and their grammar properties."
 msgstr ""
 "Bewerk welke talen in de verzameling zijn, en hun grammaticale eigenschappen."
 
-#: src/parleyactions.cpp:152
+#: src/parleyactions.cpp:151
 #, kde-format
 msgid "Remove all confidence levels from the current document"
 msgstr "Alle beheersingen uit het huidige document wissen"
 
-#: src/parleyactions.cpp:163
+#: src/parleyactions.cpp:162
 #, kde-format
 msgid "Show Entries from Child Units"
 msgstr "Regels uit subeenheden tonen"
 
-#: src/parleyactions.cpp:164
+#: src/parleyactions.cpp:163
 #, kde-format
 msgid "Enable to also see the entries of child units in each unit."
 msgstr ""
 "Schakel dit in om in elke eenheid ook de regels van de subeenheden  te laten "
 "weergeven."
 
-#: src/parleyactions.cpp:174
+#: src/parleyactions.cpp:173
 #, kde-format
 msgid "Automatic Translation"
 msgstr "Automatische vertaling"
 
 #. i18n: ectx: label, entry (AutomaticTranslation), group (General)
-#: src/parleyactions.cpp:175 src/settings/parley.kcfg:50
+#: src/parleyactions.cpp:174 src/settings/parley.kcfg:50
 #, kde-format
 msgid "Enable automatic translation of the unit entries."
 msgstr "Automatische vertaling van de regels in de eenheid activeren."
 
-#: src/parleyactions.cpp:185
+#: src/parleyactions.cpp:184
 #, kde-format
 msgid "Start Practice..."
 msgstr "Oefening starten..."
 
-#: src/parleyactions.cpp:186
+#: src/parleyactions.cpp:185
 #, kde-format
 msgid "Start practicing"
 msgstr "Oefening starten"
 
-#: src/parleyactions.cpp:194
+#: src/parleyactions.cpp:193
 #, kde-format
 msgid "Configure Practice..."
 msgstr "Oefening instellen..."
 
-#: src/parleyactions.cpp:195
+#: src/parleyactions.cpp:194
 #, kde-format
 msgid "Change practice settings"
 msgstr "Instellingen oefening wijzigen"
 
-#: src/parleyactions.cpp:203
+#: src/parleyactions.cpp:202
 #, kde-format
 msgid "Export Results..."
 msgstr "Resultaten exporteren..."
 
-#: src/parleyactions.cpp:204
+#: src/parleyactions.cpp:203
 #, kde-format
 msgid "Write a file with the results of the practice"
 msgstr "Een bestand schrijven met de oefenresultaten"
 
-#: src/parleyactions.cpp:212
+#: src/parleyactions.cpp:211
 #, kde-format
 msgid "Editor"
 msgstr "Bewerker"
 
-#: src/parleyactions.cpp:213
+#: src/parleyactions.cpp:212
 #, kde-format
 msgid "Switch to vocabulary editor"
 msgstr "De woordenlijstbewerker inschakelen"
 
-#: src/parleyactions.cpp:221
+#: src/parleyactions.cpp:220
 #, kde-format
 msgid "Show Se&arch"
 msgstr "Zo&eken tonen"
 
-#: src/parleyactions.cpp:222
+#: src/parleyactions.cpp:221
 #, kde-format
 msgid "Toggle display of the search bar"
 msgstr "Zoekbalk aan- of uitzetten"
 
-#: src/parleydocument.cpp:121 src/parleydocument.cpp:568
+#: src/parleydocument.cpp:121 src/parleydocument.cpp:577
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
@@ -1743,7 +1743,7 @@ msgstr "Woordenlijstverzameling openen"
 msgid "Open in practice &mode"
 msgstr "Openen in oefen&modus"
 
-#: src/parleydocument.cpp:200
+#: src/parleydocument.cpp:201
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1757,23 +1757,23 @@ msgstr ""
 "eventuele wijzigingen dan verloren.\n"
 "Wilt u de blokkering overnemen?\n"
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:203
 #, kde-format
 msgid "Take Over Lock"
 msgstr "Blokkering overnemen"
 
-#: src/parleydocument.cpp:231
+#: src/parleydocument.cpp:234
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "Verzameling \"%1\" openen geeft fout: %2"
 
-#: src/parleydocument.cpp:232
+#: src/parleydocument.cpp:235
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Verzameling openen"
 
-#: src/parleydocument.cpp:260
+#: src/parleydocument.cpp:263
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1784,13 +1784,13 @@ msgstr ""
 "\n"
 "Bestand voor het afsluiten opslaan?\n"
 
-#: src/parleydocument.cpp:293
+#: src/parleydocument.cpp:296
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Opgehaalde woordenlijstverzameling openen"
 
-#: src/parleydocument.cpp:331 src/parleydocument.cpp:416
+#: src/parleydocument.cpp:335 src/parleydocument.cpp:423
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1803,38 +1803,38 @@ msgstr ""
 "eventuele wijzigingen dan verloren.\n"
 "Wilt u de blokkering overnemen?\n"
 
-#: src/parleydocument.cpp:360 src/parleydocument.cpp:450
+#: src/parleydocument.cpp:366 src/parleydocument.cpp:459
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "Schrijven bestand \"%1\"geeft fout: %2"
 
-#: src/parleydocument.cpp:361 src/parleydocument.cpp:451
+#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "Bestand opslaan"
 
-#: src/parleydocument.cpp:376
+#: src/parleydocument.cpp:382
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Woordenlijst opslaan als"
 
-#: src/parleydocument.cpp:388
+#: src/parleydocument.cpp:394
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr ""
 "<qt>Het bestand <p><b>%1</b></p>bestaat al. Wilt u het overschrijven?</qt>"
 
-#: src/parleydocument.cpp:396
+#: src/parleydocument.cpp:402
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "%1 wordt opgeslagen"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:497 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:506 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr "Publiek domein"
@@ -1842,24 +1842,24 @@ msgstr "Publiek domein"
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:498 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "Talen"
 
-#: src/parleydocument.cpp:506
+#: src/parleydocument.cpp:515
 #, kde-format
 msgid "A Second Language"
 msgstr "Een tweede taal"
 
-#: src/parleydocument.cpp:509
+#: src/parleydocument.cpp:518
 #, kde-format
 msgid "Lesson 1"
 msgstr "Les 1"
 
-#: src/parleydocument.cpp:551
+#: src/parleydocument.cpp:560
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Kon woordenlijstverzameling \"%1\" niet openen"
@@ -1919,7 +1919,7 @@ msgstr "Statistiekwerkbalk"
 msgid "Practice Summary Toolbar"
 msgstr "Werkbalk samenvatting oefening"
 
-#: src/practice/audiobutton.cpp:57 src/practice/audiobutton.cpp:58
+#: src/practice/audiobutton.cpp:59 src/practice/audiobutton.cpp:60
 #, kde-format
 msgid "Stop"
 msgstr "Stoppen"
@@ -2465,24 +2465,24 @@ msgstr[1] "%1 vervoegingsvormen zijn goed beantwoord"
 msgid "Enter all conjugation forms."
 msgstr "Voer alle vervoegingsvormen in."
 
-#: src/practice/genderbackendmode.cpp:61
+#: src/practice/genderbackendmode.cpp:62
 #, kde-format
 msgid "Choose the right article for \"%1\""
 msgstr "Kies het juiste lidwoord voor \"%1\""
 
-#: src/practice/genderbackendmode.cpp:85
+#: src/practice/genderbackendmode.cpp:82
 #, kde-format
 msgctxt "@label the gender of the word: masculine"
 msgid "%1 is masculine"
 msgstr "%1 is mannelijk"
 
-#: src/practice/genderbackendmode.cpp:90
+#: src/practice/genderbackendmode.cpp:87
 #, kde-format
 msgctxt "@label the gender of the word: feminine"
 msgid "%1 is feminine"
 msgstr "%1 is vrouwelijk"
 
-#: src/practice/genderbackendmode.cpp:95
+#: src/practice/genderbackendmode.cpp:92
 #, kde-format
 msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
@@ -3280,31 +3280,31 @@ msgid "&Append new rows automatically when editing"
 msgstr "&Voeg nieuwe regels automatisch achteraan toe bij het bewerken"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
-#: src/settings/kgametheme/kgamethemeselector.ui:40
+#: src/settings/kgametheme/kgamethemeselector.ui:37
 #, kde-format
 msgid "&Get New Themes..."
 msgstr "Nieuwe thema's op&halen..."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/settings/kgametheme/kgamethemeselector.ui:97
+#: src/settings/kgametheme/kgamethemeselector.ui:94
 #, kde-format
 msgid "Theme Details"
 msgstr "Details thema"
 
 #. i18n: ectx: property (text), widget (QLabel, labelContact)
-#: src/settings/kgametheme/kgamethemeselector.ui:131
+#: src/settings/kgametheme/kgamethemeselector.ui:128
 #, kde-format
 msgid "Contact:"
 msgstr "Contact:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelDescription)
-#: src/settings/kgametheme/kgamethemeselector.ui:166
+#: src/settings/kgametheme/kgamethemeselector.ui:163
 #, kde-format
 msgid "Description:"
 msgstr "Omschrijving:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelAuthor)
-#: src/settings/kgametheme/kgamethemeselector.ui:201
+#: src/settings/kgametheme/kgamethemeselector.ui:198
 #, kde-format
 msgid "Author:"
 msgstr "Auteur:"
@@ -3336,12 +3336,12 @@ msgctxt "Edit language properties"
 msgid "Properties for %1"
 msgstr "Eigenschappen voor %1"
 
-#: src/settings/languageproperties.cpp:87
+#: src/settings/languageproperties.cpp:88
 #, kde-format
 msgid "Really delete language: %1?"
 msgstr "De taal: %1 werkelijk verwijderen?"
 
-#: src/settings/languageproperties.cpp:87
+#: src/settings/languageproperties.cpp:89
 #, kde-format
 msgid "Remove Language"
 msgstr "Taal verwijderen"
@@ -3967,7 +3967,7 @@ msgstr "Gebruikte kleur voor tonen eerdere beheersing"
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:190
+#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:184
 #, kde-format
 msgid "Color used to display invalid units"
 msgstr "Gebruikte kleur voor tonen onjuiste eenheden"
@@ -4231,7 +4231,7 @@ msgid "..."
 msgstr "..."
 
 #. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
-#: src/settings/viewoptionsbase.ui:47
+#: src/settings/viewoptionsbase.ui:41
 #, kde-format
 msgid ""
 "Specify which font to use for displaying pronunciations using phonetic "
@@ -4241,25 +4241,25 @@ msgstr ""
 "symbolen."
 
 #. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
-#: src/settings/viewoptionsbase.ui:54
+#: src/settings/viewoptionsbase.ui:48
 #, kde-format
 msgid "&Pronunciation symbols font:"
 msgstr "Lettertype voor &uitspraaktekens:"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
-#: src/settings/viewoptionsbase.ui:83
+#: src/settings/viewoptionsbase.ui:77
 #, kde-format
 msgid "Base color for displaying grades:"
 msgstr "Basiskleur voor de beheersingen:"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:102
+#: src/settings/viewoptionsbase.ui:96
 #, kde-format
 msgid "Color used to display the progress"
 msgstr "Gebruikte kleur voor tonen vordering"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:105
+#: src/settings/viewoptionsbase.ui:99
 #, kde-format
 msgid "Click here to change the color used to display the progress."
 msgstr "Wijzig hier de kleur voor tonen van de vorderingen."
@@ -4267,56 +4267,56 @@ msgstr "Wijzig hier de kleur voor tonen van de vorderingen."
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:108 src/settings/viewoptionsbase.ui:152
-#: src/settings/viewoptionsbase.ui:196
+#: src/settings/viewoptionsbase.ui:102 src/settings/viewoptionsbase.ui:146
+#: src/settings/viewoptionsbase.ui:190
 #, kde-format
 msgid "&Base"
 msgstr "&Basis"
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:111
+#: src/settings/viewoptionsbase.ui:105
 #, kde-format
 msgid "Alt+0"
 msgstr "Alt+0"
 
 #. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
-#: src/settings/viewoptionsbase.ui:127
+#: src/settings/viewoptionsbase.ui:121
 #, kde-format
 msgid "Color for displaying early progress:"
 msgstr "Kleur voor tonen van eerdere vorderingen:"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:146
+#: src/settings/viewoptionsbase.ui:140
 #, kde-format
 msgid "Color used to display the early progress"
 msgstr "Gebruikte kleur voor tonen van eerdere vorderingen"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:149
+#: src/settings/viewoptionsbase.ui:143
 #, kde-format
 msgid "Click here to change the color used to display the early progress."
 msgstr "Wijzig hier de kleur voor tonen van eerdere vorderingen."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:155
+#: src/settings/viewoptionsbase.ui:149
 #, kde-format
 msgid "Alt+1"
 msgstr "Alt+1"
 
 #. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
-#: src/settings/viewoptionsbase.ui:171
+#: src/settings/viewoptionsbase.ui:165
 #, kde-format
 msgid "Color used to display the grades:"
 msgstr "Gebruikte kleur tonen vorderingen:"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:193
+#: src/settings/viewoptionsbase.ui:187
 #, kde-format
 msgid "Click here to change the color used to display invalid units."
 msgstr "Wijzig hier de kleur voor tonen onjuiste eenheden."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:199
+#: src/settings/viewoptionsbase.ui:193
 #, kde-format
 msgid "Alt+2"
 msgstr "Alt+2"

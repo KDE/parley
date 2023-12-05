@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:24+0000\n"
+"POT-Creation-Date: 2023-12-05 01:33+0000\n"
 "PO-Revision-Date: 2007-12-31 19:25+0545\n"
 "Last-Translator: Shyam Krishna Bal <balshyam24@yahoo.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -329,7 +329,7 @@ msgid "Are you sure you want to remove this collection?"
 msgstr "तपाईँ साँच्चिकै चयन गरिएको प्रविष्टि मेट्न चाहनुहुन्छ ?"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
-#: src/dashboard/dashboard.ui:14 src/main.cpp:37
+#: src/dashboard/dashboard.ui:14 src/main.cpp:25
 #, kde-format
 msgid "Parley"
 msgstr "पार्ले"
@@ -364,9 +364,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, playButton)
 #. i18n: ectx: property (text), widget (Practice::AudioButton, solutionSoundButton)
 #. i18n: ectx: property (text), widget (Practice::AudioButton, questionSoundButton)
-#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:18
-#: src/practice/audiobutton.cpp:19 src/practice/audiobutton.cpp:63
-#: src/practice/audiobutton.cpp:64 src/practice/practice_widget_flashcard.ui:48
+#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:19
+#: src/practice/audiobutton.cpp:20 src/practice/audiobutton.cpp:65
+#: src/practice/audiobutton.cpp:66 src/practice/practice_widget_flashcard.ui:48
 #: src/practice/practice_widget_flashcard.ui:103
 #, kde-format
 msgid "Play"
@@ -454,7 +454,7 @@ msgstr "सर्वोत्कृष्ट"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:95 src/parleydocument.cpp:477
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:486
 #, fuzzy, kde-format
 #| msgctxt "state of a row"
 #| msgid "Active"
@@ -462,8 +462,8 @@ msgid "Adjective"
 msgstr "सक्रिय पार्नुहोस्"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
-#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:103
-#: src/parleydocument.cpp:481
+#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
+#: src/parleydocument.cpp:490
 #, kde-format
 msgid "Adverb"
 msgstr ""
@@ -579,7 +579,7 @@ msgstr "बहुवचन"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:463
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:472
 #, fuzzy, kde-format
 #| msgid "&Male:"
 msgid "Masculine"
@@ -587,7 +587,7 @@ msgstr "पुरुष:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:466
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:475
 #, fuzzy, kde-format
 #| msgid "Definite"
 msgid "Feminine"
@@ -595,7 +595,7 @@ msgstr "निश्चित"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:469
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:478
 #, fuzzy, kde-format
 #| msgid "Neu&ter:"
 msgid "Neuter"
@@ -922,15 +922,15 @@ msgstr "dd.MM.yyyy"
 msgid "&Reset Confidence Levels"
 msgstr ""
 
-#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:111
-#: src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
+#: src/parleydocument.cpp:482
 #, fuzzy, kde-format
 #| msgid "Verb:"
 msgid "Verb"
 msgstr "क्रिया:"
 
-#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:63
-#: src/parleydocument.cpp:459
+#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
+#: src/parleydocument.cpp:468
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "@item:inlistbox selection for word types with special meaning in the "
@@ -968,7 +968,7 @@ msgstr "यहाँ खोजी सर्तहरू प्रविष्ट
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/editor/latexwidget.ui:37
-#: src/settings/kgametheme/kgamethemeselector.ui:55
+#: src/settings/kgametheme/kgamethemeselector.ui:52
 #, kde-format
 msgid "Preview"
 msgstr ""
@@ -979,112 +979,112 @@ msgstr ""
 msgid "Math mode"
 msgstr ""
 
-#: src/editor/lessonview.cpp:31
+#: src/editor/lessonview.cpp:32
 #, fuzzy, kde-format
 #| msgid "New type"
 msgid "New Unit"
 msgstr "नयाँ प्रकार"
 
-#: src/editor/lessonview.cpp:33
+#: src/editor/lessonview.cpp:34
 #, fuzzy, kde-format
 #| msgid "Add a new lesson to your document"
 msgid "Add a new unit to your document"
 msgstr "तपाईँको कागजातमा नयाँ पाठ थप्नुहोस्"
 
-#: src/editor/lessonview.cpp:39
+#: src/editor/lessonview.cpp:40
 #, fuzzy, kde-format
 #| msgid "&Rename"
 msgid "Rename Unit"
 msgstr "पुन: नामकरण गर्नुहोस्"
 
-#: src/editor/lessonview.cpp:47
+#: src/editor/lessonview.cpp:48
 #, fuzzy, kde-format
 #| msgid "&Delete Entry"
 msgid "Delete Unit"
 msgstr "प्रविष्टि मेट्नुहोस्"
 
-#: src/editor/lessonview.cpp:49
+#: src/editor/lessonview.cpp:50
 #, fuzzy, kde-format
 #| msgid "Delete the selected lesson."
 msgid "Delete the selected unit."
 msgstr "चयन गरिएका पाठ मेट्नुहोस् ।"
 
-#: src/editor/lessonview.cpp:55
+#: src/editor/lessonview.cpp:56
 #, fuzzy, kde-format
 #| msgid "Split Lesson into Smaller Lessons"
 msgid "Split Unit into Smaller Units"
 msgstr "पाठलाई स-साना पाठमा विभाजन गर्नुहोस्"
 
-#: src/editor/lessonview.cpp:57
+#: src/editor/lessonview.cpp:58
 #, fuzzy, kde-format
 #| msgid "Make multiple smaller lessons out of one big lesson."
 msgid "Make multiple smaller units out of one big unit."
 msgstr "एउटा ठूलो पाठ मध्यबाट बहुँविध साना पाठहरू बनाउँनुहोस् ।"
 
-#: src/editor/lessonview.cpp:63
+#: src/editor/lessonview.cpp:64
 #, kde-format
 msgid "Move to new lesson"
 msgstr ""
 
-#: src/editor/lessonview.cpp:65
+#: src/editor/lessonview.cpp:66
 #, fuzzy, kde-format
 #| msgid "Save the active vocabulary document"
 msgid "Moves the selected vocabulary to a new lesson"
 msgstr "सक्रिय शब्द सूची कागजात बचत गर्नुहोस्"
 
-#: src/editor/lessonview.cpp:71 src/parleyactions.cpp:151
+#: src/editor/lessonview.cpp:72 src/parleyactions.cpp:150
 #, kde-format
 msgid "Remove Confidence Levels"
 msgstr ""
 
-#: src/editor/lessonview.cpp:73
+#: src/editor/lessonview.cpp:74
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Remove confidence levels from this unit."
 msgstr "परीक्षणबाट सबै पाठहरू हटाउनुहोस् ।"
 
-#: src/editor/lessonview.cpp:79
+#: src/editor/lessonview.cpp:80
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Remove Confidence Levels From This Unit And All Subunits"
 msgstr "परीक्षणबाट सबै पाठहरू हटाउनुहोस् ।"
 
-#: src/editor/lessonview.cpp:81
+#: src/editor/lessonview.cpp:82
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Remove confidence levels from this unit and all subunits."
 msgstr "परीक्षणबाट सबै पाठहरू हटाउनुहोस् ।"
 
-#: src/editor/lessonview.cpp:87
+#: src/editor/lessonview.cpp:88
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Expand Units and Subunits"
 msgstr "परीक्षणबाट सबै पाठहरू हटाउनुहोस् ।"
 
-#: src/editor/lessonview.cpp:89
+#: src/editor/lessonview.cpp:90
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Expand all units and subunits."
 msgstr "परीक्षणबाट सबै पाठहरू हटाउनुहोस् ।"
 
-#: src/editor/lessonview.cpp:95
+#: src/editor/lessonview.cpp:96
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Collapse All Units And Subunits"
 msgstr "परीक्षणबाट सबै पाठहरू हटाउनुहोस् ।"
 
-#: src/editor/lessonview.cpp:97
+#: src/editor/lessonview.cpp:98
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Collapse all units and subunits."
 msgstr "परीक्षणबाट सबै पाठहरू हटाउनुहोस् ।"
 
-#: src/editor/lessonview.cpp:189
+#: src/editor/lessonview.cpp:190
 #, kde-format
 msgid "The root lesson cannot be deleted."
 msgstr ""
 
-#: src/editor/lessonview.cpp:199
+#: src/editor/lessonview.cpp:200
 #, fuzzy, kde-format
 #| msgid ""
 #| "There are vocabularies left in this lesson. Do you want to delete them? "
@@ -1099,13 +1099,13 @@ msgstr[1] ""
 "त्यहाँ यो पाठमा शब्दसूचीहरू बाँकी छन् । तपाईँ तिनीहरूलाई मेट्न चाहनुहुन्छ ? तपाईँले आप्नो "
 "प्रविष्टिहरू हराउनेछ! तपाईँलाई चेतावनी दिएको छ!"
 
-#: src/editor/lessonview.cpp:217
+#: src/editor/lessonview.cpp:221
 #, fuzzy, kde-format
 #| msgid "Entries per Lesson"
 msgid "Entries per Unit"
 msgstr "प्रति पाठ प्रविष्टि"
 
-#: src/editor/lessonview.cpp:218
+#: src/editor/lessonview.cpp:222
 #, fuzzy, kde-format
 #| msgid ""
 #| "The lesson will be split into smaller lessons. The order will be "
@@ -1118,7 +1118,7 @@ msgstr ""
 "पाठ साना पाठहरूमा विभाजन गरिनेछ । क्रम अनियमति गरिनेछ ।\n"
 "तपाईँ हरेक पाठमा कति प्रविष्टिहरू चाहनुहुन्छ ?"
 
-#: src/editor/lessonview.cpp:241
+#: src/editor/lessonview.cpp:245
 #, kde-format
 msgid "New Lesson"
 msgstr "नयाँ पाठ"
@@ -1332,18 +1332,18 @@ msgstr[1] "तपाईँ साँच्चिकै चयन गरिएक
 msgid "Delete"
 msgstr "मेट्नुहोस्"
 
-#: src/editor/vocabularyview.cpp:362
+#: src/editor/vocabularyview.cpp:358
 #, kde-format
 msgid "Nothing to spell check."
 msgstr ""
 
-#: src/editor/vocabularyview.cpp:387
+#: src/editor/vocabularyview.cpp:383
 #, kde-format
 msgctxt "@title of a popup"
 msgid "No Spell Checker Available"
 msgstr ""
 
-#: src/editor/vocabularyview.cpp:388
+#: src/editor/vocabularyview.cpp:384
 #, kde-format
 msgctxt "@popupmessage"
 msgid ""
@@ -1351,43 +1351,43 @@ msgid ""
 "this locale: %1."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:30
+#: src/editor/wordtypeview.cpp:31
 #, fuzzy, kde-format
 #| msgid "&New..."
 msgid "New"
 msgstr "नयाँ..."
 
-#: src/editor/wordtypeview.cpp:32
+#: src/editor/wordtypeview.cpp:33
 #, fuzzy, kde-format
 #| msgid "Add a new lesson to your document"
 msgid "Add a new word type to your document"
 msgstr "तपाईँको कागजातमा नयाँ पाठ थप्नुहोस्"
 
-#: src/editor/wordtypeview.cpp:38
+#: src/editor/wordtypeview.cpp:39
 #, fuzzy, kde-format
 #| msgid "&Rename"
 msgid "Rename"
 msgstr "पुन: नामकरण गर्नुहोस्"
 
-#: src/editor/wordtypeview.cpp:40
+#: src/editor/wordtypeview.cpp:41
 #, fuzzy, kde-format
 #| msgid "Rename the selected lesson"
 msgid "Rename the selected word type"
 msgstr "चयन गरिएका पाठ पुन: नामकरण गर्नुहोस्"
 
-#: src/editor/wordtypeview.cpp:46
+#: src/editor/wordtypeview.cpp:47
 #, fuzzy, kde-format
 #| msgid "Word Types"
 msgid "Delete Word Type"
 msgstr "शब्द प्रकार"
 
-#: src/editor/wordtypeview.cpp:48
+#: src/editor/wordtypeview.cpp:49
 #, fuzzy, kde-format
 #| msgid "Delete the selected rows"
 msgid "Delete the selected word type."
 msgstr "चयन गरिएका पङ्क्ति मेट्नुहोस्"
 
-#: src/editor/wordtypeview.cpp:55
+#: src/editor/wordtypeview.cpp:56
 #, fuzzy, kde-format
 #| msgid "&Grammar..."
 msgctxt ""
@@ -1396,92 +1396,92 @@ msgctxt ""
 msgid "Grammar"
 msgstr "व्याकरण..."
 
-#: src/editor/wordtypeview.cpp:57
+#: src/editor/wordtypeview.cpp:58
 #, kde-format
 msgid "To let Parley know the grammatical meaning of a word type."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:65
+#: src/editor/wordtypeview.cpp:66
 #, kde-format
 msgid "This word type folder contains nouns."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:71
+#: src/editor/wordtypeview.cpp:72
 #, fuzzy, kde-format
 #| msgid "Enable Sound"
 msgid "Masculine Noun"
 msgstr "ध्वनि सक्षम पार्नुहोस्"
 
-#: src/editor/wordtypeview.cpp:73
+#: src/editor/wordtypeview.cpp:74
 #, kde-format
 msgid "This word type folder contains masculine nouns."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:79
+#: src/editor/wordtypeview.cpp:80
 #, fuzzy, kde-format
 #| msgid "&Female:"
 msgid "Feminine Noun"
 msgstr "महिला:"
 
-#: src/editor/wordtypeview.cpp:81
+#: src/editor/wordtypeview.cpp:82
 #, kde-format
 msgid "This word type folder contains feminine nouns."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:87
+#: src/editor/wordtypeview.cpp:88
 #, fuzzy, kde-format
 #| msgid "&Neutral:"
 msgid "Neuter Noun"
 msgstr "तटस्थ:"
 
-#: src/editor/wordtypeview.cpp:89
+#: src/editor/wordtypeview.cpp:90
 #, kde-format
 msgid "This word type folder contains neuter nouns."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:97
+#: src/editor/wordtypeview.cpp:98
 #, kde-format
 msgid "This word type folder contains adjectives."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:105
+#: src/editor/wordtypeview.cpp:106
 #, kde-format
 msgid "This word type folder contains adverbs."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:113
+#: src/editor/wordtypeview.cpp:114
 #, kde-format
 msgid "This word type folder contains verbs."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:119 src/parleydocument.cpp:485
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:494
 #, fuzzy, kde-format
 #| msgid "Conjugation"
 msgid "Conjunction"
 msgstr "संयोजन"
 
-#: src/editor/wordtypeview.cpp:121
+#: src/editor/wordtypeview.cpp:122
 #, kde-format
 msgid "This word type folder contains conjunctions."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:127
+#: src/editor/wordtypeview.cpp:128
 #, fuzzy, kde-format
 #| msgid "%1 is not a special type."
 msgid "No Special Type"
 msgstr "%1 विशेष प्रकार होइन ।"
 
-#: src/editor/wordtypeview.cpp:130
+#: src/editor/wordtypeview.cpp:131
 #, kde-format
 msgid "This word type folder contains no word type with special meaning."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:208
+#: src/editor/wordtypeview.cpp:209
 #, kde-format
 msgid "The root word type cannot be deleted."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:218
+#: src/editor/wordtypeview.cpp:219
 #, fuzzy, kde-format
 #| msgid ""
 #| "There are vocabularies left in this lesson. Do you want to delete them? "
@@ -1551,12 +1551,12 @@ msgstr ""
 msgid "Comma separated values (CSV)"
 msgstr ""
 
-#: src/main.cpp:38
+#: src/main.cpp:26
 #, kde-format
 msgid "Vocabulary Trainer"
 msgstr "शब्द सूची प्रशिक्षक"
 
-#: src/main.cpp:40
+#: src/main.cpp:28
 #, fuzzy, kde-format
 #| msgid ""
 #| "© 1999-2002\tEwald Arnold\n"
@@ -1574,322 +1574,322 @@ msgstr ""
 "© 2004-2007\tपिटर हेडलुन्ड\n"
 "© 2007\tफ्रेड्रिक ग्लाडहर्न\n"
 
-#: src/main.cpp:45
+#: src/main.cpp:33
 #, kde-format
 msgid "Helps you train your vocabulary"
 msgstr "तपाईँलाई तपाईँको शब्द सूची प्रशिक्षण गर्न मद्दत गर्दछ"
 
-#: src/main.cpp:49
+#: src/main.cpp:37
 #, kde-format
 msgid "Inge Wallin"
 msgstr ""
 
-#: src/main.cpp:49 src/main.cpp:51
+#: src/main.cpp:37 src/main.cpp:39
 #, kde-format
 msgid "Developer and Co-maintainer"
 msgstr ""
 
-#: src/main.cpp:51
+#: src/main.cpp:39
 #, kde-format
 msgid "Amarvir Singh"
 msgstr ""
 
-#: src/main.cpp:53
+#: src/main.cpp:41
 #, kde-format
 msgid "Frederik Gladhorn"
 msgstr "फ्रेड्रिक ग्लाडहोर्न"
 
-#: src/main.cpp:53
+#: src/main.cpp:41
 #, kde-format
 msgid "Developer, former maintainer"
 msgstr ""
 
-#: src/main.cpp:55
+#: src/main.cpp:43
 #, kde-format
 msgid "Daniel Laidig"
 msgstr ""
 
-#: src/main.cpp:55
+#: src/main.cpp:43
 #, kde-format
 msgid "Developer"
 msgstr ""
 
-#: src/main.cpp:57
+#: src/main.cpp:45
 #, kde-format
 msgid "David Capel"
 msgstr ""
 
-#: src/main.cpp:57
+#: src/main.cpp:45
 #, fuzzy, kde-format
 #| msgid "Practice options"
 msgid "Practice Dialogs"
 msgstr "अभ्यास विकल्प"
 
-#: src/main.cpp:59
+#: src/main.cpp:47
 #, kde-format
 msgid "Avgoustinos Kadis"
 msgstr ""
 
-#: src/main.cpp:59
+#: src/main.cpp:47
 #, fuzzy, kde-format
 #| msgid "Editing"
 msgid "Scripting"
 msgstr "सम्पादन गर्दै"
 
-#: src/main.cpp:61
+#: src/main.cpp:49
 #, kde-format
 msgid "Peter Hedlund"
 msgstr "पिटर हेडलुन्ड"
 
-#: src/main.cpp:62
+#: src/main.cpp:50
 #, kde-format
 msgid "Countless fixes, former maintainer, port to KDE4"
 msgstr "गणनाविहिन स्थिरता, अघिल्ला सम्भारकर्ता, KDE4 मा पोर्ट"
 
-#: src/main.cpp:65
+#: src/main.cpp:53
 #, kde-format
 msgid "Ewald Arnold"
 msgstr "इवाल्ड अर्नोल्ड"
 
-#: src/main.cpp:66
+#: src/main.cpp:54
 #, kde-format
 msgid "Original Author"
 msgstr "मौलिक लेखक"
 
-#: src/main.cpp:70
+#: src/main.cpp:58
 #, kde-format
 msgid "Lee Olson"
 msgstr "ली ओल्सन"
 
-#: src/main.cpp:70
+#: src/main.cpp:58
 #, fuzzy, kde-format
 #| msgid "Oxygen icons"
 msgid "Artwork and Oxygen Icons"
 msgstr "अक्सिजन प्रतिमा"
 
-#: src/main.cpp:72
+#: src/main.cpp:60
 #, kde-format
 msgid "Anne-Marie Mahfouf"
 msgstr "एन्ने-म्यारी महफउफ"
 
-#: src/main.cpp:72
+#: src/main.cpp:60
 #, kde-format
 msgid "Port to KConfig XT"
 msgstr "KConfig XT मा पोर्ट"
 
-#: src/main.cpp:74
+#: src/main.cpp:62
 #, kde-format
 msgid "Jeremy Whiting"
 msgstr "जेरेमी वाइटिङ"
 
-#: src/main.cpp:74
+#: src/main.cpp:62
 #, kde-format
 msgid "Rewriting the kvtml library for KDE4"
 msgstr "KDE4 का लागि kvtml लाइब्रेरी पुन: लेखन गर्दै"
 
-#: src/main.cpp:76
+#: src/main.cpp:64
 #, kde-format
 msgid "Markus Büchele"
 msgstr "मार्कस बुचेले"
 
-#: src/main.cpp:76
+#: src/main.cpp:64
 #, kde-format
 msgid "Bug reports and testing on the way to KDE4"
 msgstr "KDE4 को मार्गमा बग प्रतिवेदनहरू र परीक्षण"
 
-#: src/main.cpp:78
+#: src/main.cpp:66
 #, kde-format
 msgid "Ramona Knapp"
 msgstr "रामोना कन्या"
 
-#: src/main.cpp:78
+#: src/main.cpp:66
 #, kde-format
 msgid "Conceived the name Parley"
 msgstr "पार्ले नाम विचार गरियो"
 
-#: src/main.cpp:91
+#: src/main.cpp:76
 #, fuzzy, kde-format
 #| msgid "+[file]"
 msgid "[file]"
 msgstr "+[file]"
 
-#: src/main.cpp:91
+#: src/main.cpp:76
 #, kde-format
 msgid "Document file to open"
 msgstr "खोल्नका लागि कागजात फाइल"
 
-#: src/parleyactions.cpp:72
+#: src/parleyactions.cpp:71
 #, fuzzy, kde-format
 #| msgid "Creates a new blank vocabulary document"
 msgid "Creates a new vocabulary collection"
 msgstr "नयाँ खाली शब्द सूची कागजात सिर्जना गर्दछ"
 
-#: src/parleyactions.cpp:77
+#: src/parleyactions.cpp:76
 #, fuzzy, kde-format
 #| msgid "Opens an existing vocabulary document"
 msgid "Opens an existing vocabulary collection"
 msgstr "एउटा पुरानो शब्द सूची कागजात खोल्दछ"
 
-#: src/parleyactions.cpp:85
+#: src/parleyactions.cpp:84
 #, fuzzy, kde-format
 #| msgid "Downloads new vocabularies"
 msgid "Open &Downloaded Vocabularies..."
 msgstr "नयाँ शब्द सूची डाउनलोड गर्दछ"
 
-#: src/parleyactions.cpp:86
+#: src/parleyactions.cpp:85
 #, fuzzy, kde-format
 #| msgid "Downloads new vocabularies"
 msgid "Open downloaded vocabulary collections"
 msgstr "नयाँ शब्द सूची डाउनलोड गर्दछ"
 
-#: src/parleyactions.cpp:91
+#: src/parleyactions.cpp:90
 #, fuzzy, kde-format
 #| msgid "Save the active vocabulary document"
 msgid "Save the active vocabulary collection"
 msgstr "सक्रिय शब्द सूची कागजात बचत गर्नुहोस्"
 
-#: src/parleyactions.cpp:98
+#: src/parleyactions.cpp:97
 #, fuzzy, kde-format
 #| msgid "Save the active vocabulary document with a different name"
 msgid "Save the active vocabulary collection with a different name"
 msgstr "विभिन्न नामसँग सक्रिय शब्द सूची कागजात बचत गर्नुहोस्"
 
-#: src/parleyactions.cpp:105
+#: src/parleyactions.cpp:104
 #, kde-format
 msgid "&Export..."
 msgstr ""
 
-#: src/parleyactions.cpp:106
+#: src/parleyactions.cpp:105
 #, kde-format
 msgid "Export to HTML or CSV"
 msgstr ""
 
-#: src/parleyactions.cpp:114
+#: src/parleyactions.cpp:113
 #, kde-format
 msgid "&Properties..."
 msgstr "गुण..."
 
-#: src/parleyactions.cpp:115
+#: src/parleyactions.cpp:114
 #, kde-format
 msgid "Edit document properties"
 msgstr "कागजात गुण सम्पादन गर्नुहोस्"
 
-#: src/parleyactions.cpp:123
+#: src/parleyactions.cpp:122
 #, kde-format
 msgid "Dashboard"
 msgstr ""
 
-#: src/parleyactions.cpp:124
+#: src/parleyactions.cpp:123
 #, fuzzy, kde-format
 #| msgid "Save the active vocabulary document with a different name"
 msgid "Close the current vocabulary collection and show the dashboard"
 msgstr "विभिन्न नामसँग सक्रिय शब्द सूची कागजात बचत गर्नुहोस्"
 
-#: src/parleyactions.cpp:130
+#: src/parleyactions.cpp:129
 #, kde-format
 msgid "Quit Parley"
 msgstr "पार्ले अन्त्य गर्नुहोस्"
 
-#: src/parleyactions.cpp:135
+#: src/parleyactions.cpp:134
 #, kde-format
 msgid "Show the configuration dialog"
 msgstr "कन्फिगरेसन संवाद देखाउनुहोस्"
 
-#: src/parleyactions.cpp:142
+#: src/parleyactions.cpp:141
 #, kde-format
 msgid "&Languages..."
 msgstr "भाषा..."
 
-#: src/parleyactions.cpp:143
+#: src/parleyactions.cpp:142
 #, kde-format
 msgid ""
 "Edit which languages are in the collection and their grammar properties."
 msgstr ""
 
-#: src/parleyactions.cpp:152
+#: src/parleyactions.cpp:151
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Remove all confidence levels from the current document"
 msgstr "परीक्षणबाट सबै पाठहरू हटाउनुहोस् ।"
 
-#: src/parleyactions.cpp:163
+#: src/parleyactions.cpp:162
 #, fuzzy, kde-format
 #| msgid "No Entries in Selected Lessons"
 msgid "Show Entries from Child Units"
 msgstr "चयन गरिएका पाठहरूमा प्रविष्टिहरू छैन"
 
-#: src/parleyactions.cpp:164
+#: src/parleyactions.cpp:163
 #, kde-format
 msgid "Enable to also see the entries of child units in each unit."
 msgstr ""
 
-#: src/parleyactions.cpp:174
+#: src/parleyactions.cpp:173
 #, kde-format
 msgid "Automatic Translation"
 msgstr ""
 
 #. i18n: ectx: label, entry (AutomaticTranslation), group (General)
-#: src/parleyactions.cpp:175 src/settings/parley.kcfg:50
+#: src/parleyactions.cpp:174 src/settings/parley.kcfg:50
 #, kde-format
 msgid "Enable automatic translation of the unit entries."
 msgstr ""
 
-#: src/parleyactions.cpp:185
+#: src/parleyactions.cpp:184
 #, kde-format
 msgid "Start Practice..."
 msgstr "अभ्यास सुरु गर्नुहोस्..."
 
-#: src/parleyactions.cpp:186
+#: src/parleyactions.cpp:185
 #, fuzzy, kde-format
 #| msgid "Start Practice..."
 msgid "Start practicing"
 msgstr "अभ्यास सुरु गर्नुहोस्..."
 
-#: src/parleyactions.cpp:194
+#: src/parleyactions.cpp:193
 #, kde-format
 msgid "Configure Practice..."
 msgstr "अभ्यास कन्फिगर गर्नुहोस्..."
 
-#: src/parleyactions.cpp:195
+#: src/parleyactions.cpp:194
 #, fuzzy, kde-format
 #| msgctxt "Configure advanced settings for practicing vocabulary."
 #| msgid "Advanced Practice Settings"
 msgid "Change practice settings"
 msgstr "उन्नत अभ्यास सेटिङ"
 
-#: src/parleyactions.cpp:203
+#: src/parleyactions.cpp:202
 #, kde-format
 msgid "Export Results..."
 msgstr ""
 
-#: src/parleyactions.cpp:204
+#: src/parleyactions.cpp:203
 #, kde-format
 msgid "Write a file with the results of the practice"
 msgstr ""
 
-#: src/parleyactions.cpp:212
+#: src/parleyactions.cpp:211
 #, fuzzy, kde-format
 #| msgid "Editing"
 msgid "Editor"
 msgstr "सम्पादन गर्दै"
 
-#: src/parleyactions.cpp:213
+#: src/parleyactions.cpp:212
 #, fuzzy, kde-format
 #| msgid "Save the active vocabulary document"
 msgid "Switch to vocabulary editor"
 msgstr "सक्रिय शब्द सूची कागजात बचत गर्नुहोस्"
 
-#: src/parleyactions.cpp:221
+#: src/parleyactions.cpp:220
 #, kde-format
 msgid "Show Se&arch"
 msgstr "खोजी देखाउनुहोस्"
 
-#: src/parleyactions.cpp:222
+#: src/parleyactions.cpp:221
 #, kde-format
 msgid "Toggle display of the search bar"
 msgstr "खोजीपट्टीको प्रदर्शन टगल गर्नुहोस्"
 
-#: src/parleydocument.cpp:121 src/parleydocument.cpp:568
+#: src/parleydocument.cpp:121 src/parleydocument.cpp:577
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
@@ -1908,7 +1908,7 @@ msgstr "शब्द सूची कागजात खोल्नुहोस
 msgid "Open in practice &mode"
 msgstr "अन्तिम अभ्यास गरियो"
 
-#: src/parleydocument.cpp:200
+#: src/parleydocument.cpp:201
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1918,25 +1918,25 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:203
 #, kde-format
 msgid "Take Over Lock"
 msgstr ""
 
-#: src/parleydocument.cpp:231
+#: src/parleydocument.cpp:234
 #, fuzzy, kde-format
 #| msgid "Writing file \"%1\" resulted in an error: %2"
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "लेखिएको फाइल \"%1\" को नतिजामा एउटा त्रुटि देखायो: %2"
 
-#: src/parleydocument.cpp:232
+#: src/parleydocument.cpp:235
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Document"
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "शब्द सूची कागजात खोल्नुहोस्"
 
-#: src/parleydocument.cpp:260
+#: src/parleydocument.cpp:263
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1947,14 +1947,14 @@ msgstr ""
 "\n"
 "अन्त्य गर्नु अघि फाइल बचत गर्नुहुन्छ ?\n"
 
-#: src/parleydocument.cpp:293
+#: src/parleydocument.cpp:296
 #, fuzzy, kde-format
 #| msgid "Downloads new vocabularies"
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "नयाँ शब्द सूची डाउनलोड गर्दछ"
 
-#: src/parleydocument.cpp:331 src/parleydocument.cpp:416
+#: src/parleydocument.cpp:335 src/parleydocument.cpp:423
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1963,26 +1963,26 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:360 src/parleydocument.cpp:450
+#: src/parleydocument.cpp:366 src/parleydocument.cpp:459
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "लेखिएको फाइल \"%1\" को नतिजामा एउटा त्रुटि देखायो: %2"
 
-#: src/parleydocument.cpp:361 src/parleydocument.cpp:451
+#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
 #, fuzzy, kde-format
 #| msgid "Save File"
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "फाइल बचत गर्नुहोस्"
 
-#: src/parleydocument.cpp:376
+#: src/parleydocument.cpp:382
 #, fuzzy, kde-format
 #| msgid "Save Vocabulary As"
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "यस रूपमा शब्द सूची बचत गर्नुहोस्"
 
-#: src/parleydocument.cpp:388
+#: src/parleydocument.cpp:394
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
@@ -1990,14 +1990,14 @@ msgstr ""
 "<qt>फाइल<br /><b>%1</b><br />पहिल्यै अवस्थित छ । तपाईँ यसलाई अधिलेखन गर्न चाहनुहुन्छ?"
 "</qt>"
 
-#: src/parleydocument.cpp:396
+#: src/parleydocument.cpp:402
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "%1 बचत गर्दै"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:497 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:506 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr ""
@@ -2005,25 +2005,25 @@ msgstr ""
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:498 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "भाषा"
 
-#: src/parleydocument.cpp:506
+#: src/parleydocument.cpp:515
 #, kde-format
 msgid "A Second Language"
 msgstr "दोस्रो भाषा"
 
-#: src/parleydocument.cpp:509
+#: src/parleydocument.cpp:518
 #, fuzzy, kde-format
 #| msgid "Lesson %1"
 msgid "Lesson 1"
 msgstr "पाठ %1"
 
-#: src/parleydocument.cpp:551
+#: src/parleydocument.cpp:560
 #, fuzzy, kde-format
 #| msgid "Open an example vocabulary document"
 msgid "Could not open vocabulary collection \"%1\""
@@ -2090,7 +2090,7 @@ msgstr "मुख्य उपकरणपट्टी"
 msgid "Practice Summary Toolbar"
 msgstr "अभ्यास सारांश"
 
-#: src/practice/audiobutton.cpp:57 src/practice/audiobutton.cpp:58
+#: src/practice/audiobutton.cpp:59 src/practice/audiobutton.cpp:60
 #, kde-format
 msgid "Stop"
 msgstr ""
@@ -2655,26 +2655,26 @@ msgstr[1] "एउटा तटस्थ संयोजन फाराम अ�
 msgid "Enter all conjugation forms."
 msgstr "सही संयोजन फाराम प्रविष्ट गर्नुहोस् ।"
 
-#: src/practice/genderbackendmode.cpp:61
+#: src/practice/genderbackendmode.cpp:62
 #, kde-format
 msgid "Choose the right article for \"%1\""
 msgstr ""
 
-#: src/practice/genderbackendmode.cpp:85
+#: src/practice/genderbackendmode.cpp:82
 #, fuzzy, kde-format
 #| msgid "&male"
 msgctxt "@label the gender of the word: masculine"
 msgid "%1 is masculine"
 msgstr "पुरुष"
 
-#: src/practice/genderbackendmode.cpp:90
+#: src/practice/genderbackendmode.cpp:87
 #, fuzzy, kde-format
 #| msgid "&female"
 msgctxt "@label the gender of the word: feminine"
 msgid "%1 is feminine"
 msgstr "महिला"
 
-#: src/practice/genderbackendmode.cpp:95
+#: src/practice/genderbackendmode.cpp:92
 #, fuzzy, kde-format
 #| msgid "&neutral"
 msgctxt "@label the gender of the word: neuter"
@@ -3511,33 +3511,33 @@ msgid "&Append new rows automatically when editing"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
-#: src/settings/kgametheme/kgamethemeselector.ui:40
+#: src/settings/kgametheme/kgamethemeselector.ui:37
 #, kde-format
 msgid "&Get New Themes..."
 msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/settings/kgametheme/kgamethemeselector.ui:97
+#: src/settings/kgametheme/kgamethemeselector.ui:94
 #, kde-format
 msgid "Theme Details"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, labelContact)
-#: src/settings/kgametheme/kgamethemeselector.ui:131
+#: src/settings/kgametheme/kgamethemeselector.ui:128
 #, fuzzy, kde-format
 #| msgid "Count:"
 msgid "Contact:"
 msgstr "गणना गर्नुहोस्:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelDescription)
-#: src/settings/kgametheme/kgamethemeselector.ui:166
+#: src/settings/kgametheme/kgamethemeselector.ui:163
 #, fuzzy, kde-format
 #| msgid "Tense Description"
 msgid "Description:"
 msgstr "काल वर्णन"
 
 #. i18n: ectx: property (text), widget (QLabel, labelAuthor)
-#: src/settings/kgametheme/kgamethemeselector.ui:201
+#: src/settings/kgametheme/kgamethemeselector.ui:198
 #, kde-format
 msgid "Author:"
 msgstr "लेखक:"
@@ -3571,12 +3571,12 @@ msgctxt "Edit language properties"
 msgid "Properties for %1"
 msgstr "%1 का लागि गुण"
 
-#: src/settings/languageproperties.cpp:87
+#: src/settings/languageproperties.cpp:88
 #, kde-format
 msgid "Really delete language: %1?"
 msgstr "साँच्चिकै भाषा मेट्न चाहनुहुन्छ: %1?"
 
-#: src/settings/languageproperties.cpp:87
+#: src/settings/languageproperties.cpp:89
 #, kde-format
 msgid "Remove Language"
 msgstr "भाषा हटाउनुहोस्"
@@ -4195,7 +4195,7 @@ msgstr "श्रेणी ७ का लागि रङ"
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:190
+#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:184
 #, fuzzy, kde-format
 #| msgid "Color for the grade 7"
 msgid "Color used to display invalid units"
@@ -4453,7 +4453,7 @@ msgid "..."
 msgstr "नयाँ..."
 
 #. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
-#: src/settings/viewoptionsbase.ui:47
+#: src/settings/viewoptionsbase.ui:41
 #, kde-format
 msgid ""
 "Specify which font to use for displaying pronunciations using phonetic "
@@ -4463,27 +4463,27 @@ msgstr ""
 "गर्नुहोस् ।"
 
 #. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
-#: src/settings/viewoptionsbase.ui:54
+#: src/settings/viewoptionsbase.ui:48
 #, fuzzy, kde-format
 #| msgid "Pronunciation: %1"
 msgid "&Pronunciation symbols font:"
 msgstr "उच्चारण: %1"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
-#: src/settings/viewoptionsbase.ui:83
+#: src/settings/viewoptionsbase.ui:77
 #, kde-format
 msgid "Base color for displaying grades:"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:102
+#: src/settings/viewoptionsbase.ui:96
 #, fuzzy, kde-format
 #| msgid "Color for the grade 7"
 msgid "Color used to display the progress"
 msgstr "श्रेणी ७ का लागि रङ"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:105
+#: src/settings/viewoptionsbase.ui:99
 #, fuzzy, kde-format
 #| msgid "Click here to change the color for grade 7."
 msgid "Click here to change the color used to display the progress."
@@ -4492,62 +4492,62 @@ msgstr "श्रेणी ७ का लागि रङ परिवर्त�
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:108 src/settings/viewoptionsbase.ui:152
-#: src/settings/viewoptionsbase.ui:196
+#: src/settings/viewoptionsbase.ui:102 src/settings/viewoptionsbase.ui:146
+#: src/settings/viewoptionsbase.ui:190
 #, kde-format
 msgid "&Base"
 msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:111
+#: src/settings/viewoptionsbase.ui:105
 #, fuzzy, kde-format
 #| msgid "Alt+7"
 msgid "Alt+0"
 msgstr "Alt+7"
 
 #. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
-#: src/settings/viewoptionsbase.ui:127
+#: src/settings/viewoptionsbase.ui:121
 #, fuzzy, kde-format
 #| msgid "Color for the grade 7"
 msgid "Color for displaying early progress:"
 msgstr "श्रेणी ७ का लागि रङ"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:146
+#: src/settings/viewoptionsbase.ui:140
 #, fuzzy, kde-format
 #| msgid "Color for the grade 7"
 msgid "Color used to display the early progress"
 msgstr "श्रेणी ७ का लागि रङ"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:149
+#: src/settings/viewoptionsbase.ui:143
 #, fuzzy, kde-format
 #| msgid "Click here to change the color for grade 7."
 msgid "Click here to change the color used to display the early progress."
 msgstr "श्रेणी ७ का लागि रङ परिवर्तन गर्न यहाँ क्लिक गर्नुहोस् ।"
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:155
+#: src/settings/viewoptionsbase.ui:149
 #, kde-format
 msgid "Alt+1"
 msgstr "Alt+1"
 
 #. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
-#: src/settings/viewoptionsbase.ui:171
+#: src/settings/viewoptionsbase.ui:165
 #, fuzzy, kde-format
 #| msgid "Color for the grade 7"
 msgid "Color used to display the grades:"
 msgstr "श्रेणी ७ का लागि रङ"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:193
+#: src/settings/viewoptionsbase.ui:187
 #, fuzzy, kde-format
 #| msgid "Click here to change the color for grade 7."
 msgid "Click here to change the color used to display invalid units."
 msgstr "श्रेणी ७ का लागि रङ परिवर्तन गर्न यहाँ क्लिक गर्नुहोस् ।"
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:199
+#: src/settings/viewoptionsbase.ui:193
 #, kde-format
 msgid "Alt+2"
 msgstr "Alt+2"

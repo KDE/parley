@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeedu/kvoctrain.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:24+0000\n"
+"POT-Creation-Date: 2023-12-05 01:33+0000\n"
 "PO-Revision-Date: 2004-12-03 14:52-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -309,7 +309,7 @@ msgid "Are you sure you want to remove this collection?"
 msgstr "An bhfuil tú cinnte gur mian leat an iontráil roghnaithe a scriosadh?"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
-#: src/dashboard/dashboard.ui:14 src/main.cpp:37
+#: src/dashboard/dashboard.ui:14 src/main.cpp:25
 #, kde-format
 msgid "Parley"
 msgstr "Parley"
@@ -344,9 +344,9 @@ msgstr "<h1>Parley</h1>"
 #. i18n: ectx: property (text), widget (QPushButton, playButton)
 #. i18n: ectx: property (text), widget (Practice::AudioButton, solutionSoundButton)
 #. i18n: ectx: property (text), widget (Practice::AudioButton, questionSoundButton)
-#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:18
-#: src/practice/audiobutton.cpp:19 src/practice/audiobutton.cpp:63
-#: src/practice/audiobutton.cpp:64 src/practice/practice_widget_flashcard.ui:48
+#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:19
+#: src/practice/audiobutton.cpp:20 src/practice/audiobutton.cpp:65
+#: src/practice/audiobutton.cpp:66 src/practice/practice_widget_flashcard.ui:48
 #: src/practice/practice_widget_flashcard.ui:103
 #, kde-format
 msgid "Play"
@@ -428,14 +428,14 @@ msgstr "Sárchéimneach:"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:95 src/parleydocument.cpp:477
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:486
 #, kde-format
 msgid "Adjective"
 msgstr "Aidiacht"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
-#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:103
-#: src/parleydocument.cpp:481
+#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
+#: src/parleydocument.cpp:490
 #, kde-format
 msgid "Adverb"
 msgstr "Dobhriathar"
@@ -550,21 +550,21 @@ msgstr "Iolra"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:463
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:472
 #, kde-format
 msgid "Masculine"
 msgstr "Firinscneach"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:466
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:475
 #, kde-format
 msgid "Feminine"
 msgstr "Baininscneach"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:469
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:478
 #, kde-format
 msgid "Neuter"
 msgstr "Neamhinscneach"
@@ -874,14 +874,14 @@ msgstr "MM.dd.yyyy"
 msgid "&Reset Confidence Levels"
 msgstr ""
 
-#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:111
-#: src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
+#: src/parleydocument.cpp:482
 #, kde-format
 msgid "Verb"
 msgstr "Briathar"
 
-#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:63
-#: src/parleydocument.cpp:459
+#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
+#: src/parleydocument.cpp:468
 #, kde-format
 msgid "Noun"
 msgstr "Ainmfhocal"
@@ -913,7 +913,7 @@ msgstr "Cód LaTeX"
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/editor/latexwidget.ui:37
-#: src/settings/kgametheme/kgamethemeselector.ui:55
+#: src/settings/kgametheme/kgamethemeselector.ui:52
 #, kde-format
 msgid "Preview"
 msgstr "Réamhamharc"
@@ -924,110 +924,110 @@ msgstr "Réamhamharc"
 msgid "Math mode"
 msgstr "Mód Matamaiticiúil"
 
-#: src/editor/lessonview.cpp:31
+#: src/editor/lessonview.cpp:32
 #, fuzzy, kde-format
 #| msgid "New type"
 msgid "New Unit"
 msgstr "Cineál nua"
 
-#: src/editor/lessonview.cpp:33
+#: src/editor/lessonview.cpp:34
 #, fuzzy, kde-format
 #| msgid "Add a new lesson to your document"
 msgid "Add a new unit to your document"
 msgstr "Cuir ceacht nua le do cháipéis"
 
-#: src/editor/lessonview.cpp:39
+#: src/editor/lessonview.cpp:40
 #, fuzzy, kde-format
 #| msgid "Rename"
 msgid "Rename Unit"
 msgstr "Athainmnigh"
 
-#: src/editor/lessonview.cpp:47
+#: src/editor/lessonview.cpp:48
 #, fuzzy, kde-format
 #| msgid "&Delete Entry"
 msgid "Delete Unit"
 msgstr "&Scrios Iontráil"
 
-#: src/editor/lessonview.cpp:49
+#: src/editor/lessonview.cpp:50
 #, fuzzy, kde-format
 #| msgid "Delete the selected lesson."
 msgid "Delete the selected unit."
 msgstr "Scrios an ceacht roghnaithe."
 
-#: src/editor/lessonview.cpp:55
+#: src/editor/lessonview.cpp:56
 #, kde-format
 msgid "Split Unit into Smaller Units"
 msgstr ""
 
-#: src/editor/lessonview.cpp:57
+#: src/editor/lessonview.cpp:58
 #, kde-format
 msgid "Make multiple smaller units out of one big unit."
 msgstr ""
 
-#: src/editor/lessonview.cpp:63
+#: src/editor/lessonview.cpp:64
 #, fuzzy, kde-format
 #| msgid "New lesson"
 msgid "Move to new lesson"
 msgstr "Ceacht nua"
 
-#: src/editor/lessonview.cpp:65
+#: src/editor/lessonview.cpp:66
 #, kde-format
 msgid "Moves the selected vocabulary to a new lesson"
 msgstr ""
 
-#: src/editor/lessonview.cpp:71 src/parleyactions.cpp:151
+#: src/editor/lessonview.cpp:72 src/parleyactions.cpp:150
 #, kde-format
 msgid "Remove Confidence Levels"
 msgstr ""
 
-#: src/editor/lessonview.cpp:73
+#: src/editor/lessonview.cpp:74
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Remove confidence levels from this unit."
 msgstr "Bain gach grád ón cheacht seo"
 
-#: src/editor/lessonview.cpp:79
+#: src/editor/lessonview.cpp:80
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Remove Confidence Levels From This Unit And All Subunits"
 msgstr "Bain gach grád ón cheacht seo"
 
-#: src/editor/lessonview.cpp:81
+#: src/editor/lessonview.cpp:82
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Remove confidence levels from this unit and all subunits."
 msgstr "Bain gach grád ón cheacht seo"
 
-#: src/editor/lessonview.cpp:87
+#: src/editor/lessonview.cpp:88
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Expand Units and Subunits"
 msgstr "Bain gach grád ón cheacht seo"
 
-#: src/editor/lessonview.cpp:89
+#: src/editor/lessonview.cpp:90
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Expand all units and subunits."
 msgstr "Bain gach grád ón cheacht seo"
 
-#: src/editor/lessonview.cpp:95
+#: src/editor/lessonview.cpp:96
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Collapse All Units And Subunits"
 msgstr "Bain gach grád ón cheacht seo"
 
-#: src/editor/lessonview.cpp:97
+#: src/editor/lessonview.cpp:98
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Collapse all units and subunits."
 msgstr "Bain gach grád ón cheacht seo"
 
-#: src/editor/lessonview.cpp:189
+#: src/editor/lessonview.cpp:190
 #, kde-format
 msgid "The root lesson cannot be deleted."
 msgstr ""
 
-#: src/editor/lessonview.cpp:199
+#: src/editor/lessonview.cpp:200
 #, fuzzy, kde-format
 #| msgid "There is %1 word left in this lesson. Do you want to delete it?"
 #| msgid_plural ""
@@ -1046,20 +1046,20 @@ msgstr[3] ""
 msgstr[4] ""
 "Tá %1 focal fágtha sa cheacht seo. An bhfuil fonn ort iad a scriosadh?"
 
-#: src/editor/lessonview.cpp:217
+#: src/editor/lessonview.cpp:221
 #, fuzzy, kde-format
 #| msgid "Entries per Lesson"
 msgid "Entries per Unit"
 msgstr "Iontrálacha sa Cheacht"
 
-#: src/editor/lessonview.cpp:218
+#: src/editor/lessonview.cpp:222
 #, kde-format
 msgid ""
 "The unit will be split into smaller unit. How many entries in each unit do "
 "you want?"
 msgstr ""
 
-#: src/editor/lessonview.cpp:241
+#: src/editor/lessonview.cpp:245
 #, kde-format
 msgid "New Lesson"
 msgstr "Ceacht Nua"
@@ -1271,18 +1271,18 @@ msgstr[4] ""
 msgid "Delete"
 msgstr "Scrios"
 
-#: src/editor/vocabularyview.cpp:362
+#: src/editor/vocabularyview.cpp:358
 #, kde-format
 msgid "Nothing to spell check."
 msgstr "Faic le seiceáil."
 
-#: src/editor/vocabularyview.cpp:387
+#: src/editor/vocabularyview.cpp:383
 #, kde-format
 msgctxt "@title of a popup"
 msgid "No Spell Checker Available"
 msgstr ""
 
-#: src/editor/vocabularyview.cpp:388
+#: src/editor/vocabularyview.cpp:384
 #, kde-format
 msgctxt "@popupmessage"
 msgid ""
@@ -1290,37 +1290,37 @@ msgid ""
 "this locale: %1."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:30
+#: src/editor/wordtypeview.cpp:31
 #, kde-format
 msgid "New"
 msgstr "Nua"
 
-#: src/editor/wordtypeview.cpp:32
+#: src/editor/wordtypeview.cpp:33
 #, kde-format
 msgid "Add a new word type to your document"
 msgstr "Cuir cineál nua focail le do cháipéis"
 
-#: src/editor/wordtypeview.cpp:38
+#: src/editor/wordtypeview.cpp:39
 #, kde-format
 msgid "Rename"
 msgstr "Athainmnigh"
 
-#: src/editor/wordtypeview.cpp:40
+#: src/editor/wordtypeview.cpp:41
 #, kde-format
 msgid "Rename the selected word type"
 msgstr "Athainmnigh an cineál roghnaithe focail"
 
-#: src/editor/wordtypeview.cpp:46
+#: src/editor/wordtypeview.cpp:47
 #, kde-format
 msgid "Delete Word Type"
 msgstr "Scrios Cineál Focail"
 
-#: src/editor/wordtypeview.cpp:48
+#: src/editor/wordtypeview.cpp:49
 #, kde-format
 msgid "Delete the selected word type."
 msgstr "Scrios an cineál roghnaithe focail."
 
-#: src/editor/wordtypeview.cpp:55
+#: src/editor/wordtypeview.cpp:56
 #, kde-format
 msgctxt ""
 "Let the user select what grammatical meaning is connected to a word type "
@@ -1328,87 +1328,87 @@ msgctxt ""
 msgid "Grammar"
 msgstr "Gramadach"
 
-#: src/editor/wordtypeview.cpp:57
+#: src/editor/wordtypeview.cpp:58
 #, kde-format
 msgid "To let Parley know the grammatical meaning of a word type."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:65
+#: src/editor/wordtypeview.cpp:66
 #, kde-format
 msgid "This word type folder contains nouns."
 msgstr "Tá ainmfhocail san fhillteán seo."
 
-#: src/editor/wordtypeview.cpp:71
+#: src/editor/wordtypeview.cpp:72
 #, kde-format
 msgid "Masculine Noun"
 msgstr "Ainmfhocal Firinscneach"
 
-#: src/editor/wordtypeview.cpp:73
+#: src/editor/wordtypeview.cpp:74
 #, kde-format
 msgid "This word type folder contains masculine nouns."
 msgstr "Tá ainmfhocail fhirinscneacha san fhillteán seo."
 
-#: src/editor/wordtypeview.cpp:79
+#: src/editor/wordtypeview.cpp:80
 #, kde-format
 msgid "Feminine Noun"
 msgstr "Ainmfhocal Baininscneach"
 
-#: src/editor/wordtypeview.cpp:81
+#: src/editor/wordtypeview.cpp:82
 #, kde-format
 msgid "This word type folder contains feminine nouns."
 msgstr "Tá ainmfhocail bhaininscneacha san fhillteán seo."
 
-#: src/editor/wordtypeview.cpp:87
+#: src/editor/wordtypeview.cpp:88
 #, kde-format
 msgid "Neuter Noun"
 msgstr "Ainmfhocal Neamhinscneach"
 
-#: src/editor/wordtypeview.cpp:89
+#: src/editor/wordtypeview.cpp:90
 #, kde-format
 msgid "This word type folder contains neuter nouns."
 msgstr "Tá ainmfhocail neamhinscneacha san fhillteán seo."
 
-#: src/editor/wordtypeview.cpp:97
+#: src/editor/wordtypeview.cpp:98
 #, kde-format
 msgid "This word type folder contains adjectives."
 msgstr "Tá aidiachtaí san fhillteán seo."
 
-#: src/editor/wordtypeview.cpp:105
+#: src/editor/wordtypeview.cpp:106
 #, kde-format
 msgid "This word type folder contains adverbs."
 msgstr "Tá dobhriathra san fhillteán seo."
 
-#: src/editor/wordtypeview.cpp:113
+#: src/editor/wordtypeview.cpp:114
 #, kde-format
 msgid "This word type folder contains verbs."
 msgstr "Tá briathra san fhillteán seo."
 
-#: src/editor/wordtypeview.cpp:119 src/parleydocument.cpp:485
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:494
 #, kde-format
 msgid "Conjunction"
 msgstr "Cónasc"
 
-#: src/editor/wordtypeview.cpp:121
+#: src/editor/wordtypeview.cpp:122
 #, kde-format
 msgid "This word type folder contains conjunctions."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:127
+#: src/editor/wordtypeview.cpp:128
 #, kde-format
 msgid "No Special Type"
 msgstr "Gan Cineál Speisialta"
 
-#: src/editor/wordtypeview.cpp:130
+#: src/editor/wordtypeview.cpp:131
 #, kde-format
 msgid "This word type folder contains no word type with special meaning."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:208
+#: src/editor/wordtypeview.cpp:209
 #, kde-format
 msgid "The root word type cannot be deleted."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:218
+#: src/editor/wordtypeview.cpp:219
 #, kde-format
 msgid ""
 "There is a word left with this word type. It will lose its type. Continue?"
@@ -1483,12 +1483,12 @@ msgstr ""
 msgid "Comma separated values (CSV)"
 msgstr ""
 
-#: src/main.cpp:38
+#: src/main.cpp:26
 #, kde-format
 msgid "Vocabulary Trainer"
 msgstr "Traenálaí Stóir Focal"
 
-#: src/main.cpp:40
+#: src/main.cpp:28
 #, kde-format
 msgid ""
 "© 1999-2002\tEwald Arnold\n"
@@ -1501,310 +1501,310 @@ msgstr ""
 "© 2004-2007\tPeter Hedlund\n"
 "© 2007-2010\tFrederik Gladhorn\n"
 
-#: src/main.cpp:45
+#: src/main.cpp:33
 #, kde-format
 msgid "Helps you train your vocabulary"
 msgstr "Feabhsaigh do stór focal"
 
-#: src/main.cpp:49
+#: src/main.cpp:37
 #, kde-format
 msgid "Inge Wallin"
 msgstr ""
 
-#: src/main.cpp:49 src/main.cpp:51
+#: src/main.cpp:37 src/main.cpp:39
 #, fuzzy, kde-format
 #| msgid "Developer and maintainer"
 msgid "Developer and Co-maintainer"
 msgstr "Forbróir agus cothaitheoir"
 
-#: src/main.cpp:51
+#: src/main.cpp:39
 #, kde-format
 msgid "Amarvir Singh"
 msgstr ""
 
-#: src/main.cpp:53
+#: src/main.cpp:41
 #, kde-format
 msgid "Frederik Gladhorn"
 msgstr "Frederik Gladhorn"
 
-#: src/main.cpp:53
+#: src/main.cpp:41
 #, fuzzy, kde-format
 #| msgid "Developer and maintainer"
 msgid "Developer, former maintainer"
 msgstr "Forbróir agus cothaitheoir"
 
-#: src/main.cpp:55
+#: src/main.cpp:43
 #, kde-format
 msgid "Daniel Laidig"
 msgstr "Daniel Laidig"
 
-#: src/main.cpp:55
+#: src/main.cpp:43
 #, kde-format
 msgid "Developer"
 msgstr "Forbróir"
 
-#: src/main.cpp:57
+#: src/main.cpp:45
 #, kde-format
 msgid "David Capel"
 msgstr "David Capel"
 
-#: src/main.cpp:57
+#: src/main.cpp:45
 #, kde-format
 msgid "Practice Dialogs"
 msgstr "Dialóga Cleachta"
 
-#: src/main.cpp:59
+#: src/main.cpp:47
 #, kde-format
 msgid "Avgoustinos Kadis"
 msgstr "Avgoustinos Kadis"
 
-#: src/main.cpp:59
+#: src/main.cpp:47
 #, kde-format
 msgid "Scripting"
 msgstr "Scriptiú"
 
-#: src/main.cpp:61
+#: src/main.cpp:49
 #, kde-format
 msgid "Peter Hedlund"
 msgstr "Peter Hedlund"
 
-#: src/main.cpp:62
+#: src/main.cpp:50
 #, kde-format
 msgid "Countless fixes, former maintainer, port to KDE4"
 msgstr "Ceartúcháin gan áireamh, iar-chothaitheoir, leagan KDE4"
 
-#: src/main.cpp:65
+#: src/main.cpp:53
 #, kde-format
 msgid "Ewald Arnold"
 msgstr "Ewald Arnold"
 
-#: src/main.cpp:66
+#: src/main.cpp:54
 #, kde-format
 msgid "Original Author"
 msgstr "An Chéad Údar"
 
-#: src/main.cpp:70
+#: src/main.cpp:58
 #, kde-format
 msgid "Lee Olson"
 msgstr "Lee Olson"
 
-#: src/main.cpp:70
+#: src/main.cpp:58
 #, kde-format
 msgid "Artwork and Oxygen Icons"
 msgstr "Maisíocht agus Deilbhíní Oxygen"
 
-#: src/main.cpp:72
+#: src/main.cpp:60
 #, kde-format
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
-#: src/main.cpp:72
+#: src/main.cpp:60
 #, kde-format
 msgid "Port to KConfig XT"
 msgstr "Leagan KConfig XT"
 
-#: src/main.cpp:74
+#: src/main.cpp:62
 #, kde-format
 msgid "Jeremy Whiting"
 msgstr "Jeremy Whiting"
 
-#: src/main.cpp:74
+#: src/main.cpp:62
 #, kde-format
 msgid "Rewriting the kvtml library for KDE4"
 msgstr ""
 
-#: src/main.cpp:76
+#: src/main.cpp:64
 #, kde-format
 msgid "Markus Büchele"
 msgstr "Markus Büchele"
 
-#: src/main.cpp:76
+#: src/main.cpp:64
 #, kde-format
 msgid "Bug reports and testing on the way to KDE4"
 msgstr ""
 
-#: src/main.cpp:78
+#: src/main.cpp:66
 #, kde-format
 msgid "Ramona Knapp"
 msgstr "Ramona Knapp"
 
-#: src/main.cpp:78
+#: src/main.cpp:66
 #, kde-format
 msgid "Conceived the name Parley"
 msgstr "Cheap sí an t-ainm Parley"
 
-#: src/main.cpp:91
+#: src/main.cpp:76
 #, fuzzy, kde-format
 #| msgid "+[file]"
 msgid "[file]"
 msgstr "+[comhad]"
 
-#: src/main.cpp:91
+#: src/main.cpp:76
 #, kde-format
 msgid "Document file to open"
 msgstr "Comhad cáipéise le hoscailt"
 
-#: src/parleyactions.cpp:72
+#: src/parleyactions.cpp:71
 #, kde-format
 msgid "Creates a new vocabulary collection"
 msgstr ""
 
-#: src/parleyactions.cpp:77
+#: src/parleyactions.cpp:76
 #, kde-format
 msgid "Opens an existing vocabulary collection"
 msgstr "Oscail bailiúchán stór focal atá ann"
 
-#: src/parleyactions.cpp:85
+#: src/parleyactions.cpp:84
 #, kde-format
 msgid "Open &Downloaded Vocabularies..."
 msgstr "Oscail &Stóir Fhocal Íosluchtaithe..."
 
-#: src/parleyactions.cpp:86
+#: src/parleyactions.cpp:85
 #, kde-format
 msgid "Open downloaded vocabulary collections"
 msgstr ""
 
-#: src/parleyactions.cpp:91
+#: src/parleyactions.cpp:90
 #, kde-format
 msgid "Save the active vocabulary collection"
 msgstr ""
 
-#: src/parleyactions.cpp:98
+#: src/parleyactions.cpp:97
 #, kde-format
 msgid "Save the active vocabulary collection with a different name"
 msgstr ""
 
-#: src/parleyactions.cpp:105
+#: src/parleyactions.cpp:104
 #, kde-format
 msgid "&Export..."
 msgstr "&Easpórtáil..."
 
-#: src/parleyactions.cpp:106
+#: src/parleyactions.cpp:105
 #, kde-format
 msgid "Export to HTML or CSV"
 msgstr "Easpórtáil mar HTML nó CSV"
 
-#: src/parleyactions.cpp:114
+#: src/parleyactions.cpp:113
 #, kde-format
 msgid "&Properties..."
 msgstr "A&iríonna..."
 
-#: src/parleyactions.cpp:115
+#: src/parleyactions.cpp:114
 #, kde-format
 msgid "Edit document properties"
 msgstr "Cuir airíonna na cáipéise in eagar"
 
-#: src/parleyactions.cpp:123
+#: src/parleyactions.cpp:122
 #, kde-format
 msgid "Dashboard"
 msgstr ""
 
-#: src/parleyactions.cpp:124
+#: src/parleyactions.cpp:123
 #, fuzzy, kde-format
 #| msgid "Close the current vocabulary collection and show the start page"
 msgid "Close the current vocabulary collection and show the dashboard"
 msgstr "Dún an bailiúchán reatha agus taispeáin an leathanach tosaigh"
 
-#: src/parleyactions.cpp:130
+#: src/parleyactions.cpp:129
 #, kde-format
 msgid "Quit Parley"
 msgstr "Scoir Parley"
 
-#: src/parleyactions.cpp:135
+#: src/parleyactions.cpp:134
 #, kde-format
 msgid "Show the configuration dialog"
 msgstr "Taispeáin an dialóg chumraíochta"
 
-#: src/parleyactions.cpp:142
+#: src/parleyactions.cpp:141
 #, kde-format
 msgid "&Languages..."
 msgstr "&Teangacha..."
 
-#: src/parleyactions.cpp:143
+#: src/parleyactions.cpp:142
 #, kde-format
 msgid ""
 "Edit which languages are in the collection and their grammar properties."
 msgstr ""
 
-#: src/parleyactions.cpp:152
+#: src/parleyactions.cpp:151
 #, fuzzy, kde-format
 #| msgid "Remove all grades from the current document"
 msgid "Remove all confidence levels from the current document"
 msgstr "Bain gach grád ón cháipéis reatha"
 
-#: src/parleyactions.cpp:163
+#: src/parleyactions.cpp:162
 #, kde-format
 msgid "Show Entries from Child Units"
 msgstr ""
 
-#: src/parleyactions.cpp:164
+#: src/parleyactions.cpp:163
 #, kde-format
 msgid "Enable to also see the entries of child units in each unit."
 msgstr ""
 
-#: src/parleyactions.cpp:174
+#: src/parleyactions.cpp:173
 #, kde-format
 msgid "Automatic Translation"
 msgstr "Aistriúchán Uathoibríoch"
 
 #. i18n: ectx: label, entry (AutomaticTranslation), group (General)
-#: src/parleyactions.cpp:175 src/settings/parley.kcfg:50
+#: src/parleyactions.cpp:174 src/settings/parley.kcfg:50
 #, kde-format
 msgid "Enable automatic translation of the unit entries."
 msgstr ""
 
-#: src/parleyactions.cpp:185
+#: src/parleyactions.cpp:184
 #, kde-format
 msgid "Start Practice..."
 msgstr "Tosaigh Cleachtadh..."
 
-#: src/parleyactions.cpp:186
+#: src/parleyactions.cpp:185
 #, kde-format
 msgid "Start practicing"
 msgstr "Tosaigh cleachtadh"
 
-#: src/parleyactions.cpp:194
+#: src/parleyactions.cpp:193
 #, kde-format
 msgid "Configure Practice..."
 msgstr "Cumraigh Cleachtadh..."
 
-#: src/parleyactions.cpp:195
+#: src/parleyactions.cpp:194
 #, kde-format
 msgid "Change practice settings"
 msgstr "Athraigh roghanna cleachta"
 
-#: src/parleyactions.cpp:203
+#: src/parleyactions.cpp:202
 #, fuzzy, kde-format
 #| msgid "&Export..."
 msgid "Export Results..."
 msgstr "&Easpórtáil..."
 
-#: src/parleyactions.cpp:204
+#: src/parleyactions.cpp:203
 #, kde-format
 msgid "Write a file with the results of the practice"
 msgstr ""
 
-#: src/parleyactions.cpp:212
+#: src/parleyactions.cpp:211
 #, kde-format
 msgid "Editor"
 msgstr "Eagarthóir"
 
-#: src/parleyactions.cpp:213
+#: src/parleyactions.cpp:212
 #, kde-format
 msgid "Switch to vocabulary editor"
 msgstr ""
 
-#: src/parleyactions.cpp:221
+#: src/parleyactions.cpp:220
 #, kde-format
 msgid "Show Se&arch"
 msgstr ""
 
-#: src/parleyactions.cpp:222
+#: src/parleyactions.cpp:221
 #, kde-format
 msgid "Toggle display of the search bar"
 msgstr ""
 
-#: src/parleydocument.cpp:121 src/parleydocument.cpp:568
+#: src/parleydocument.cpp:121 src/parleydocument.cpp:577
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
@@ -1822,7 +1822,7 @@ msgstr "Bailiúchán stór focal:"
 msgid "Open in practice &mode"
 msgstr ""
 
-#: src/parleydocument.cpp:200
+#: src/parleydocument.cpp:201
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1832,24 +1832,24 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:203
 #, kde-format
 msgid "Take Over Lock"
 msgstr ""
 
-#: src/parleydocument.cpp:231
+#: src/parleydocument.cpp:234
 #, fuzzy, kde-format
 #| msgid "Writing file \"%1\" resulted in an error: %2"
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "Tharla earráid agus comhad \"%1\" á scríobh: %2"
 
-#: src/parleydocument.cpp:232
+#: src/parleydocument.cpp:235
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Oscail Bailiúchán"
 
-#: src/parleydocument.cpp:260
+#: src/parleydocument.cpp:263
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1860,14 +1860,14 @@ msgstr ""
 "\n"
 "Sábháil an comhad roimh scor?\n"
 
-#: src/parleydocument.cpp:293
+#: src/parleydocument.cpp:296
 #, fuzzy, kde-format
 #| msgid "Open &Downloaded Vocabularies..."
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Oscail &Stóir Fhocal Íosluchtaithe..."
 
-#: src/parleydocument.cpp:331 src/parleydocument.cpp:416
+#: src/parleydocument.cpp:335 src/parleydocument.cpp:423
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1876,25 +1876,25 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:360 src/parleydocument.cpp:450
+#: src/parleydocument.cpp:366 src/parleydocument.cpp:459
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "Tharla earráid agus comhad \"%1\" á scríobh: %2"
 
-#: src/parleydocument.cpp:361 src/parleydocument.cpp:451
+#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "Sábháil Comhad"
 
-#: src/parleydocument.cpp:376
+#: src/parleydocument.cpp:382
 #, fuzzy, kde-format
 #| msgid "Save Vocabulary As"
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Sábháil an Stór Focal Mar"
 
-#: src/parleydocument.cpp:388
+#: src/parleydocument.cpp:394
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
@@ -1902,14 +1902,14 @@ msgstr ""
 "<qt>Tá comhad <p><b>%1</b></p> ann cheana. An bhfuil tú cinnte gur mian leat "
 "scríobh air?</qt>"
 
-#: src/parleydocument.cpp:396
+#: src/parleydocument.cpp:402
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "%1 á shábháil"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:497 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:506 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr "Fearann Poiblí"
@@ -1917,24 +1917,24 @@ msgstr "Fearann Poiblí"
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:498 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "Teangacha"
 
-#: src/parleydocument.cpp:506
+#: src/parleydocument.cpp:515
 #, kde-format
 msgid "A Second Language"
 msgstr "An Dara Teanga"
 
-#: src/parleydocument.cpp:509
+#: src/parleydocument.cpp:518
 #, kde-format
 msgid "Lesson 1"
 msgstr "Ceacht 1"
 
-#: src/parleydocument.cpp:551
+#: src/parleydocument.cpp:560
 #, fuzzy, kde-format
 #| msgid "Could not read collection from \"%1\""
 msgid "Could not open vocabulary collection \"%1\""
@@ -1996,7 +1996,7 @@ msgstr "Barra Uirlisí Staitisticí"
 msgid "Practice Summary Toolbar"
 msgstr "Barra Uirlisí Cleachta"
 
-#: src/practice/audiobutton.cpp:57 src/practice/audiobutton.cpp:58
+#: src/practice/audiobutton.cpp:59 src/practice/audiobutton.cpp:60
 #, kde-format
 msgid "Stop"
 msgstr "Stad"
@@ -2554,24 +2554,24 @@ msgstr[4] ""
 msgid "Enter all conjugation forms."
 msgstr "Iontráil gach foirm réimnithe."
 
-#: src/practice/genderbackendmode.cpp:61
+#: src/practice/genderbackendmode.cpp:62
 #, kde-format
 msgid "Choose the right article for \"%1\""
 msgstr ""
 
-#: src/practice/genderbackendmode.cpp:85
+#: src/practice/genderbackendmode.cpp:82
 #, kde-format
 msgctxt "@label the gender of the word: masculine"
 msgid "%1 is masculine"
 msgstr "Is focal firinscneach é %1"
 
-#: src/practice/genderbackendmode.cpp:90
+#: src/practice/genderbackendmode.cpp:87
 #, kde-format
 msgctxt "@label the gender of the word: feminine"
 msgid "%1 is feminine"
 msgstr "Is focal baininscneach é %1"
 
-#: src/practice/genderbackendmode.cpp:95
+#: src/practice/genderbackendmode.cpp:92
 #, kde-format
 msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
@@ -3364,31 +3364,31 @@ msgid "&Append new rows automatically when editing"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
-#: src/settings/kgametheme/kgamethemeselector.ui:40
+#: src/settings/kgametheme/kgamethemeselector.ui:37
 #, kde-format
 msgid "&Get New Themes..."
 msgstr "&Faigh Téamaí Nua..."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/settings/kgametheme/kgamethemeselector.ui:97
+#: src/settings/kgametheme/kgamethemeselector.ui:94
 #, kde-format
 msgid "Theme Details"
 msgstr "Mionsonraí an Téama"
 
 #. i18n: ectx: property (text), widget (QLabel, labelContact)
-#: src/settings/kgametheme/kgamethemeselector.ui:131
+#: src/settings/kgametheme/kgamethemeselector.ui:128
 #, kde-format
 msgid "Contact:"
 msgstr "Teagmháil:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelDescription)
-#: src/settings/kgametheme/kgamethemeselector.ui:166
+#: src/settings/kgametheme/kgamethemeselector.ui:163
 #, kde-format
 msgid "Description:"
 msgstr "Cur Síos:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelAuthor)
-#: src/settings/kgametheme/kgamethemeselector.ui:201
+#: src/settings/kgametheme/kgamethemeselector.ui:198
 #, kde-format
 msgid "Author:"
 msgstr "Údar:"
@@ -3421,12 +3421,12 @@ msgctxt "Edit language properties"
 msgid "Properties for %1"
 msgstr "Airíonna %1"
 
-#: src/settings/languageproperties.cpp:87
+#: src/settings/languageproperties.cpp:88
 #, kde-format
 msgid "Really delete language: %1?"
 msgstr "Scrios teanga %1 i ndáiríre?"
 
-#: src/settings/languageproperties.cpp:87
+#: src/settings/languageproperties.cpp:89
 #, kde-format
 msgid "Remove Language"
 msgstr "Bain Teanga"
@@ -4030,7 +4030,7 @@ msgstr "Dath gráid 7"
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:190
+#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:184
 #, fuzzy, kde-format
 #| msgid "Color for the grade 7"
 msgid "Color used to display invalid units"
@@ -4283,7 +4283,7 @@ msgid "..."
 msgstr "..."
 
 #. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
-#: src/settings/viewoptionsbase.ui:47
+#: src/settings/viewoptionsbase.ui:41
 #, kde-format
 msgid ""
 "Specify which font to use for displaying pronunciations using phonetic "
@@ -4291,27 +4291,27 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
-#: src/settings/viewoptionsbase.ui:54
+#: src/settings/viewoptionsbase.ui:48
 #, fuzzy, kde-format
 #| msgid "Pronunciation"
 msgid "&Pronunciation symbols font:"
 msgstr "Fuaimniú"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
-#: src/settings/viewoptionsbase.ui:83
+#: src/settings/viewoptionsbase.ui:77
 #, kde-format
 msgid "Base color for displaying grades:"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:102
+#: src/settings/viewoptionsbase.ui:96
 #, fuzzy, kde-format
 #| msgid "Color for the grade 7"
 msgid "Color used to display the progress"
 msgstr "Dath gráid 7"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:105
+#: src/settings/viewoptionsbase.ui:99
 #, fuzzy, kde-format
 #| msgid "Click here to change the color for grade 7."
 msgid "Click here to change the color used to display the progress."
@@ -4320,62 +4320,62 @@ msgstr "Cliceáil anseo chun dath gráid 7 a athrú."
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:108 src/settings/viewoptionsbase.ui:152
-#: src/settings/viewoptionsbase.ui:196
+#: src/settings/viewoptionsbase.ui:102 src/settings/viewoptionsbase.ui:146
+#: src/settings/viewoptionsbase.ui:190
 #, kde-format
 msgid "&Base"
 msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:111
+#: src/settings/viewoptionsbase.ui:105
 #, fuzzy, kde-format
 #| msgid "Alt+7"
 msgid "Alt+0"
 msgstr "Alt+7"
 
 #. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
-#: src/settings/viewoptionsbase.ui:127
+#: src/settings/viewoptionsbase.ui:121
 #, fuzzy, kde-format
 #| msgid "Color for the grade 7"
 msgid "Color for displaying early progress:"
 msgstr "Dath gráid 7"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:146
+#: src/settings/viewoptionsbase.ui:140
 #, fuzzy, kde-format
 #| msgid "Color for the grade 7"
 msgid "Color used to display the early progress"
 msgstr "Dath gráid 7"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:149
+#: src/settings/viewoptionsbase.ui:143
 #, fuzzy, kde-format
 #| msgid "Click here to change the color for grade 7."
 msgid "Click here to change the color used to display the early progress."
 msgstr "Cliceáil anseo chun dath gráid 7 a athrú."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:155
+#: src/settings/viewoptionsbase.ui:149
 #, kde-format
 msgid "Alt+1"
 msgstr "Alt+1"
 
 #. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
-#: src/settings/viewoptionsbase.ui:171
+#: src/settings/viewoptionsbase.ui:165
 #, fuzzy, kde-format
 #| msgid "Color for the grade 7"
 msgid "Color used to display the grades:"
 msgstr "Dath gráid 7"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:193
+#: src/settings/viewoptionsbase.ui:187
 #, fuzzy, kde-format
 #| msgid "Click here to change the color for grade 7."
 msgid "Click here to change the color used to display invalid units."
 msgstr "Cliceáil anseo chun dath gráid 7 a athrú."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:199
+#: src/settings/viewoptionsbase.ui:193
 #, kde-format
 msgid "Alt+2"
 msgstr "Alt+2"

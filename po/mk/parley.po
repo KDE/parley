@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:24+0000\n"
+"POT-Creation-Date: 2023-12-05 01:33+0000\n"
 "PO-Revision-Date: 2007-02-26 21:36+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -316,7 +316,7 @@ msgid "Are you sure you want to remove this collection?"
 msgstr "Дали навистина сакате да го избришете избраниот елемент?\n"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
-#: src/dashboard/dashboard.ui:14 src/main.cpp:37
+#: src/dashboard/dashboard.ui:14 src/main.cpp:25
 #, fuzzy, kde-format
 #| msgid "Malay"
 msgid "Parley"
@@ -349,9 +349,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, playButton)
 #. i18n: ectx: property (text), widget (Practice::AudioButton, solutionSoundButton)
 #. i18n: ectx: property (text), widget (Practice::AudioButton, questionSoundButton)
-#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:18
-#: src/practice/audiobutton.cpp:19 src/practice/audiobutton.cpp:63
-#: src/practice/audiobutton.cpp:64 src/practice/practice_widget_flashcard.ui:48
+#: src/editor/audiowidget.ui:19 src/practice/audiobutton.cpp:19
+#: src/practice/audiobutton.cpp:20 src/practice/audiobutton.cpp:65
+#: src/practice/audiobutton.cpp:66 src/practice/practice_widget_flashcard.ui:48
 #: src/practice/practice_widget_flashcard.ui:103
 #, fuzzy, kde-format
 #| msgid "Malay"
@@ -435,15 +435,15 @@ msgstr "&Членови"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:95 src/parleydocument.cpp:477
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:486
 #, fuzzy, kde-format
 #| msgid "Acti&ve"
 msgid "Adjective"
 msgstr "А&ктивен"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
-#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:103
-#: src/parleydocument.cpp:481
+#: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
+#: src/parleydocument.cpp:490
 #, kde-format
 msgid "Adverb"
 msgstr "Прилог"
@@ -565,7 +565,7 @@ msgstr "Множина"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:463
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:472
 #, fuzzy, kde-format
 #| msgid "&Male:"
 msgid "Masculine"
@@ -573,7 +573,7 @@ msgstr "&Машки:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:466
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:475
 #, fuzzy, kde-format
 #| msgid "Definite"
 msgid "Feminine"
@@ -581,7 +581,7 @@ msgstr "Свршено"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:469
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:478
 #, fuzzy, kde-format
 #| msgid "Neu&tral:"
 msgid "Neuter"
@@ -899,15 +899,15 @@ msgstr ""
 msgid "&Reset Confidence Levels"
 msgstr ""
 
-#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:111
-#: src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
+#: src/parleydocument.cpp:482
 #, fuzzy, kde-format
 #| msgid "Verb"
 msgid "Verb"
 msgstr "Глагол"
 
-#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:63
-#: src/parleydocument.cpp:459
+#: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
+#: src/parleydocument.cpp:468
 #, kde-format
 msgid "Noun"
 msgstr "Именка"
@@ -939,7 +939,7 @@ msgstr "&Код на јазикот:"
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/editor/latexwidget.ui:37
-#: src/settings/kgametheme/kgamethemeselector.ui:55
+#: src/settings/kgametheme/kgamethemeselector.ui:52
 #, kde-format
 msgid "Preview"
 msgstr ""
@@ -950,98 +950,98 @@ msgstr ""
 msgid "Math mode"
 msgstr ""
 
-#: src/editor/lessonview.cpp:31
+#: src/editor/lessonview.cpp:32
 #, kde-format
 msgid "New Unit"
 msgstr ""
 
-#: src/editor/lessonview.cpp:33
+#: src/editor/lessonview.cpp:34
 #, fuzzy, kde-format
 msgid "Add a new unit to your document"
 msgstr "Креира нов документ"
 
-#: src/editor/lessonview.cpp:39
+#: src/editor/lessonview.cpp:40
 #, fuzzy, kde-format
 #| msgid "Filename:"
 msgid "Rename Unit"
 msgstr "Име на датотека:"
 
-#: src/editor/lessonview.cpp:47
+#: src/editor/lessonview.cpp:48
 #, fuzzy, kde-format
 msgid "Delete Unit"
 msgstr "Дод&ај нов запис"
 
-#: src/editor/lessonview.cpp:49
+#: src/editor/lessonview.cpp:50
 #, fuzzy, kde-format
 msgid "Delete the selected unit."
 msgstr "Дали навистина сакате да го избришете избраниот јазик?"
 
-#: src/editor/lessonview.cpp:55
+#: src/editor/lessonview.cpp:56
 #, kde-format
 msgid "Split Unit into Smaller Units"
 msgstr ""
 
-#: src/editor/lessonview.cpp:57
+#: src/editor/lessonview.cpp:58
 #, kde-format
 msgid "Make multiple smaller units out of one big unit."
 msgstr ""
 
-#: src/editor/lessonview.cpp:63
+#: src/editor/lessonview.cpp:64
 #, fuzzy, kde-format
 msgid "Move to new lesson"
 msgstr "Создава лекции"
 
-#: src/editor/lessonview.cpp:65
+#: src/editor/lessonview.cpp:66
 #, fuzzy, kde-format
 msgid "Moves the selected vocabulary to a new lesson"
 msgstr "Го зачувува тековниот документ"
 
-#: src/editor/lessonview.cpp:71 src/parleyactions.cpp:151
+#: src/editor/lessonview.cpp:72 src/parleyactions.cpp:150
 #, kde-format
 msgid "Remove Confidence Levels"
 msgstr ""
 
-#: src/editor/lessonview.cpp:73
+#: src/editor/lessonview.cpp:74
 #, fuzzy, kde-format
 msgid "Remove confidence levels from this unit."
 msgstr "Ги отстранува елементите со иста содржина од речникот"
 
-#: src/editor/lessonview.cpp:79
+#: src/editor/lessonview.cpp:80
 #, fuzzy, kde-format
 msgid "Remove Confidence Levels From This Unit And All Subunits"
 msgstr "Ги отстранува елементите со иста содржина од речникот"
 
-#: src/editor/lessonview.cpp:81
+#: src/editor/lessonview.cpp:82
 #, fuzzy, kde-format
 msgid "Remove confidence levels from this unit and all subunits."
 msgstr "Ги отстранува елементите со иста содржина од речникот"
 
-#: src/editor/lessonview.cpp:87
+#: src/editor/lessonview.cpp:88
 #, fuzzy, kde-format
 msgid "Expand Units and Subunits"
 msgstr "Ги отстранува елементите со иста содржина од речникот"
 
-#: src/editor/lessonview.cpp:89
+#: src/editor/lessonview.cpp:90
 #, fuzzy, kde-format
 msgid "Expand all units and subunits."
 msgstr "Ги отстранува елементите со иста содржина од речникот"
 
-#: src/editor/lessonview.cpp:95
+#: src/editor/lessonview.cpp:96
 #, fuzzy, kde-format
 msgid "Collapse All Units And Subunits"
 msgstr "Ги отстранува елементите со иста содржина од речникот"
 
-#: src/editor/lessonview.cpp:97
+#: src/editor/lessonview.cpp:98
 #, fuzzy, kde-format
 msgid "Collapse all units and subunits."
 msgstr "Ги отстранува елементите со иста содржина од речникот"
 
-#: src/editor/lessonview.cpp:189
+#: src/editor/lessonview.cpp:190
 #, kde-format
 msgid "The root lesson cannot be deleted."
 msgstr ""
 
-#: src/editor/lessonview.cpp:199
+#: src/editor/lessonview.cpp:200
 #, kde-format
 msgid "There is %1 word left in this unit. Do you want to delete it?"
 msgid_plural ""
@@ -1050,19 +1050,19 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/editor/lessonview.cpp:217
+#: src/editor/lessonview.cpp:221
 #, fuzzy, kde-format
 msgid "Entries per Unit"
 msgstr "Елементи во лекција"
 
-#: src/editor/lessonview.cpp:218
+#: src/editor/lessonview.cpp:222
 #, kde-format
 msgid ""
 "The unit will be split into smaller unit. How many entries in each unit do "
 "you want?"
 msgstr ""
 
-#: src/editor/lessonview.cpp:241
+#: src/editor/lessonview.cpp:245
 #, fuzzy, kde-format
 msgid "New Lesson"
 msgstr "Создава лекции"
@@ -1273,18 +1273,18 @@ msgstr[2] "Дали навистина сакате да го избришете
 msgid "Delete"
 msgstr "&Ресетирај"
 
-#: src/editor/vocabularyview.cpp:362
+#: src/editor/vocabularyview.cpp:358
 #, kde-format
 msgid "Nothing to spell check."
 msgstr ""
 
-#: src/editor/vocabularyview.cpp:387
+#: src/editor/vocabularyview.cpp:383
 #, kde-format
 msgctxt "@title of a popup"
 msgid "No Spell Checker Available"
 msgstr ""
 
-#: src/editor/vocabularyview.cpp:388
+#: src/editor/vocabularyview.cpp:384
 #, kde-format
 msgctxt "@popupmessage"
 msgid ""
@@ -1292,40 +1292,40 @@ msgid ""
 "this locale: %1."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:30
+#: src/editor/wordtypeview.cpp:31
 #, fuzzy, kde-format
 #| msgid "&New"
 msgid "New"
 msgstr "&Нов"
 
-#: src/editor/wordtypeview.cpp:32
+#: src/editor/wordtypeview.cpp:33
 #, fuzzy, kde-format
 msgid "Add a new word type to your document"
 msgstr "Креира нов документ"
 
-#: src/editor/wordtypeview.cpp:38
+#: src/editor/wordtypeview.cpp:39
 #, fuzzy, kde-format
 #| msgid "Filename:"
 msgid "Rename"
 msgstr "Име на датотека:"
 
-#: src/editor/wordtypeview.cpp:40
+#: src/editor/wordtypeview.cpp:41
 #, fuzzy, kde-format
 msgid "Rename the selected word type"
 msgstr "Дали навистина сакате да го избришете избраниот јазик?"
 
-#: src/editor/wordtypeview.cpp:46
+#: src/editor/wordtypeview.cpp:47
 #, fuzzy, kde-format
 #| msgid "Word t&ype:"
 msgid "Delete Word Type"
 msgstr "&Тип на збор:"
 
-#: src/editor/wordtypeview.cpp:48
+#: src/editor/wordtypeview.cpp:49
 #, fuzzy, kde-format
 msgid "Delete the selected word type."
 msgstr "Дали навистина сакате да го избришете избраниот јазик?"
 
-#: src/editor/wordtypeview.cpp:55
+#: src/editor/wordtypeview.cpp:56
 #, fuzzy, kde-format
 #| msgid "German"
 msgctxt ""
@@ -1334,91 +1334,91 @@ msgctxt ""
 msgid "Grammar"
 msgstr "Германски"
 
-#: src/editor/wordtypeview.cpp:57
+#: src/editor/wordtypeview.cpp:58
 #, kde-format
 msgid "To let Parley know the grammatical meaning of a word type."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:65
+#: src/editor/wordtypeview.cpp:66
 #, kde-format
 msgid "This word type folder contains nouns."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:71
+#: src/editor/wordtypeview.cpp:72
 #, fuzzy, kde-format
 #| msgid "Noun"
 msgid "Masculine Noun"
 msgstr "Именка"
 
-#: src/editor/wordtypeview.cpp:73
+#: src/editor/wordtypeview.cpp:74
 #, kde-format
 msgid "This word type folder contains masculine nouns."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:79
+#: src/editor/wordtypeview.cpp:80
 #, fuzzy, kde-format
 #| msgid "&Female:"
 msgid "Feminine Noun"
 msgstr "&Женски:"
 
-#: src/editor/wordtypeview.cpp:81
+#: src/editor/wordtypeview.cpp:82
 #, kde-format
 msgid "This word type folder contains feminine nouns."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:87
+#: src/editor/wordtypeview.cpp:88
 #, fuzzy, kde-format
 #| msgid "&neutral"
 msgid "Neuter Noun"
 msgstr "&неутрален"
 
-#: src/editor/wordtypeview.cpp:89
+#: src/editor/wordtypeview.cpp:90
 #, kde-format
 msgid "This word type folder contains neuter nouns."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:97
+#: src/editor/wordtypeview.cpp:98
 #, kde-format
 msgid "This word type folder contains adjectives."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:105
+#: src/editor/wordtypeview.cpp:106
 #, kde-format
 msgid "This word type folder contains adverbs."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:113
+#: src/editor/wordtypeview.cpp:114
 #, kde-format
 msgid "This word type folder contains verbs."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:119 src/parleydocument.cpp:485
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:494
 #, fuzzy, kde-format
 #| msgid "Conjugation"
 msgid "Conjunction"
 msgstr "Конјугација"
 
-#: src/editor/wordtypeview.cpp:121
+#: src/editor/wordtypeview.cpp:122
 #, kde-format
 msgid "This word type folder contains conjunctions."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:127
+#: src/editor/wordtypeview.cpp:128
 #, kde-format
 msgid "No Special Type"
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:130
+#: src/editor/wordtypeview.cpp:131
 #, kde-format
 msgid "This word type folder contains no word type with special meaning."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:208
+#: src/editor/wordtypeview.cpp:209
 #, kde-format
 msgid "The root word type cannot be deleted."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:218
+#: src/editor/wordtypeview.cpp:219
 #, kde-format
 msgid ""
 "There is a word left with this word type. It will lose its type. Continue?"
@@ -1482,12 +1482,12 @@ msgstr ""
 msgid "Comma separated values (CSV)"
 msgstr ""
 
-#: src/main.cpp:38
+#: src/main.cpp:26
 #, kde-format
 msgid "Vocabulary Trainer"
 msgstr "Вежбање на речник"
 
-#: src/main.cpp:40
+#: src/main.cpp:28
 #, fuzzy, kde-format
 msgid ""
 "© 1999-2002\tEwald Arnold\n"
@@ -1498,311 +1498,311 @@ msgstr ""
 "(c) 1999-2002\tEwald Arnold\n"
 "(c) 2001-2002\tТимот на KDE\n"
 
-#: src/main.cpp:45
+#: src/main.cpp:33
 #, kde-format
 msgid "Helps you train your vocabulary"
 msgstr "Ви помага да го извежбате вашиот речник на зборови"
 
-#: src/main.cpp:49
+#: src/main.cpp:37
 #, kde-format
 msgid "Inge Wallin"
 msgstr ""
 
-#: src/main.cpp:49 src/main.cpp:51
+#: src/main.cpp:37 src/main.cpp:39
 #, kde-format
 msgid "Developer and Co-maintainer"
 msgstr ""
 
-#: src/main.cpp:51
+#: src/main.cpp:39
 #, kde-format
 msgid "Amarvir Singh"
 msgstr ""
 
-#: src/main.cpp:53
+#: src/main.cpp:41
 #, kde-format
 msgid "Frederik Gladhorn"
 msgstr ""
 
-#: src/main.cpp:53
+#: src/main.cpp:41
 #, kde-format
 msgid "Developer, former maintainer"
 msgstr ""
 
-#: src/main.cpp:55
+#: src/main.cpp:43
 #, kde-format
 msgid "Daniel Laidig"
 msgstr ""
 
-#: src/main.cpp:55
+#: src/main.cpp:43
 #, kde-format
 msgid "Developer"
 msgstr ""
 
-#: src/main.cpp:57
+#: src/main.cpp:45
 #, kde-format
 msgid "David Capel"
 msgstr ""
 
-#: src/main.cpp:57
+#: src/main.cpp:45
 #, fuzzy, kde-format
 msgid "Practice Dialogs"
 msgstr "Опции за преглед"
 
-#: src/main.cpp:59
+#: src/main.cpp:47
 #, kde-format
 msgid "Avgoustinos Kadis"
 msgstr ""
 
-#: src/main.cpp:59
+#: src/main.cpp:47
 #, fuzzy, kde-format
 msgid "Scripting"
 msgstr "&Истекување"
 
-#: src/main.cpp:61
+#: src/main.cpp:49
 #, kde-format
 msgid "Peter Hedlund"
 msgstr ""
 
-#: src/main.cpp:62
+#: src/main.cpp:50
 #, kde-format
 msgid "Countless fixes, former maintainer, port to KDE4"
 msgstr ""
 
-#: src/main.cpp:65
+#: src/main.cpp:53
 #, kde-format
 msgid "Ewald Arnold"
 msgstr ""
 
-#: src/main.cpp:66
+#: src/main.cpp:54
 #, fuzzy, kde-format
 msgid "Original Author"
 msgstr "Оригинал"
 
-#: src/main.cpp:70
+#: src/main.cpp:58
 #, fuzzy, kde-format
 #| msgid "Lesson"
 msgid "Lee Olson"
 msgstr "Лекција"
 
-#: src/main.cpp:70
+#: src/main.cpp:58
 #, kde-format
 msgid "Artwork and Oxygen Icons"
 msgstr ""
 
-#: src/main.cpp:72
+#: src/main.cpp:60
 #, kde-format
 msgid "Anne-Marie Mahfouf"
 msgstr ""
 
-#: src/main.cpp:72
+#: src/main.cpp:60
 #, kde-format
 msgid "Port to KConfig XT"
 msgstr ""
 
-#: src/main.cpp:74
+#: src/main.cpp:62
 #, kde-format
 msgid "Jeremy Whiting"
 msgstr ""
 
-#: src/main.cpp:74
+#: src/main.cpp:62
 #, kde-format
 msgid "Rewriting the kvtml library for KDE4"
 msgstr ""
 
-#: src/main.cpp:76
+#: src/main.cpp:64
 #, kde-format
 msgid "Markus Büchele"
 msgstr ""
 
-#: src/main.cpp:76
+#: src/main.cpp:64
 #, kde-format
 msgid "Bug reports and testing on the way to KDE4"
 msgstr ""
 
-#: src/main.cpp:78
+#: src/main.cpp:66
 #, kde-format
 msgid "Ramona Knapp"
 msgstr ""
 
-#: src/main.cpp:78
+#: src/main.cpp:66
 #, kde-format
 msgid "Conceived the name Parley"
 msgstr ""
 
-#: src/main.cpp:91
+#: src/main.cpp:76
 #, fuzzy, kde-format
 #| msgid "+[file]"
 msgid "[file]"
 msgstr "+[датотека]"
 
-#: src/main.cpp:91
+#: src/main.cpp:76
 #, fuzzy, kde-format
 msgid "Document file to open"
 msgstr "Датотека на документ за отворање."
 
-#: src/parleyactions.cpp:72
+#: src/parleyactions.cpp:71
 #, fuzzy, kde-format
 msgid "Creates a new vocabulary collection"
 msgstr "Креира нов документ"
 
-#: src/parleyactions.cpp:77
+#: src/parleyactions.cpp:76
 #, fuzzy, kde-format
 msgid "Opens an existing vocabulary collection"
 msgstr "Отвора постоечки документ"
 
-#: src/parleyactions.cpp:85
+#: src/parleyactions.cpp:84
 #, fuzzy, kde-format
 msgid "Open &Downloaded Vocabularies..."
 msgstr "Спојување на датотека за речник"
 
-#: src/parleyactions.cpp:86
+#: src/parleyactions.cpp:85
 #, fuzzy, kde-format
 msgid "Open downloaded vocabulary collections"
 msgstr "Спојување на датотека за речник"
 
-#: src/parleyactions.cpp:91
+#: src/parleyactions.cpp:90
 #, fuzzy, kde-format
 msgid "Save the active vocabulary collection"
 msgstr "Го зачувува тековниот документ"
 
-#: src/parleyactions.cpp:98
+#: src/parleyactions.cpp:97
 #, fuzzy, kde-format
 msgid "Save the active vocabulary collection with a different name"
 msgstr "Го зачувува тековниот документ"
 
-#: src/parleyactions.cpp:105
+#: src/parleyactions.cpp:104
 #, kde-format
 msgid "&Export..."
 msgstr ""
 
-#: src/parleyactions.cpp:106
+#: src/parleyactions.cpp:105
 #, kde-format
 msgid "Export to HTML or CSV"
 msgstr ""
 
-#: src/parleyactions.cpp:114
+#: src/parleyactions.cpp:113
 #, fuzzy, kde-format
 msgid "&Properties..."
 msgstr "&Својства на документот"
 
-#: src/parleyactions.cpp:115
+#: src/parleyactions.cpp:114
 #, fuzzy, kde-format
 #| msgid "Document Properties"
 msgid "Edit document properties"
 msgstr "Својства на документот"
 
-#: src/parleyactions.cpp:123
+#: src/parleyactions.cpp:122
 #, kde-format
 msgid "Dashboard"
 msgstr ""
 
-#: src/parleyactions.cpp:124
+#: src/parleyactions.cpp:123
 #, fuzzy, kde-format
 msgid "Close the current vocabulary collection and show the dashboard"
 msgstr "Го зачувува тековниот документ"
 
-#: src/parleyactions.cpp:130
+#: src/parleyactions.cpp:129
 #, fuzzy, kde-format
 #| msgid "Malay"
 msgid "Quit Parley"
 msgstr "Малајски"
 
-#: src/parleyactions.cpp:135
+#: src/parleyactions.cpp:134
 #, fuzzy, kde-format
 msgid "Show the configuration dialog"
 msgstr "Го прикажува дијалогот за општите опции"
 
-#: src/parleyactions.cpp:142
+#: src/parleyactions.cpp:141
 #, fuzzy, kde-format
 msgid "&Languages..."
 msgstr "Друг јазик..."
 
-#: src/parleyactions.cpp:143
+#: src/parleyactions.cpp:142
 #, kde-format
 msgid ""
 "Edit which languages are in the collection and their grammar properties."
 msgstr ""
 
-#: src/parleyactions.cpp:152
+#: src/parleyactions.cpp:151
 #, fuzzy, kde-format
 msgid "Remove all confidence levels from the current document"
 msgstr "Ги отстранува елементите со иста содржина од речникот"
 
-#: src/parleyactions.cpp:163
+#: src/parleyactions.cpp:162
 #, fuzzy, kde-format
 msgid "Show Entries from Child Units"
 msgstr "Елементи во лекција"
 
-#: src/parleyactions.cpp:164
+#: src/parleyactions.cpp:163
 #, kde-format
 msgid "Enable to also see the entries of child units in each unit."
 msgstr ""
 
-#: src/parleyactions.cpp:174
+#: src/parleyactions.cpp:173
 #, fuzzy, kde-format
 msgid "Automatic Translation"
 msgstr "&Превод"
 
 #. i18n: ectx: label, entry (AutomaticTranslation), group (General)
-#: src/parleyactions.cpp:175 src/settings/parley.kcfg:50
+#: src/parleyactions.cpp:174 src/settings/parley.kcfg:50
 #, kde-format
 msgid "Enable automatic translation of the unit entries."
 msgstr ""
 
-#: src/parleyactions.cpp:185
+#: src/parleyactions.cpp:184
 #, fuzzy, kde-format
 #| msgid "Starting special query..."
 msgid "Start Practice..."
 msgstr "Отпочнувам со специјално пребарување..."
 
-#: src/parleyactions.cpp:186
+#: src/parleyactions.cpp:185
 #, fuzzy, kde-format
 #| msgid "Starting special query..."
 msgid "Start practicing"
 msgstr "Отпочнувам со специјално пребарување..."
 
-#: src/parleyactions.cpp:194
+#: src/parleyactions.cpp:193
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Configure Practice..."
 msgstr "Член"
 
-#: src/parleyactions.cpp:195
+#: src/parleyactions.cpp:194
 #, fuzzy, kde-format
 msgid "Change practice settings"
 msgstr "Опции за преглед"
 
-#: src/parleyactions.cpp:203
+#: src/parleyactions.cpp:202
 #, kde-format
 msgid "Export Results..."
 msgstr ""
 
-#: src/parleyactions.cpp:204
+#: src/parleyactions.cpp:203
 #, kde-format
 msgid "Write a file with the results of the practice"
 msgstr ""
 
-#: src/parleyactions.cpp:212
+#: src/parleyactions.cpp:211
 #, fuzzy, kde-format
 msgid "Editor"
 msgstr "&Истекување"
 
-#: src/parleyactions.cpp:213
+#: src/parleyactions.cpp:212
 #, fuzzy, kde-format
 msgid "Switch to vocabulary editor"
 msgstr "Го зачувува тековниот документ"
 
-#: src/parleyactions.cpp:221
+#: src/parleyactions.cpp:220
 #, fuzzy, kde-format
 msgid "Show Se&arch"
 msgstr "Мудро пребарување"
 
-#: src/parleyactions.cpp:222
+#: src/parleyactions.cpp:221
 #, kde-format
 msgid "Toggle display of the search bar"
 msgstr ""
 
-#: src/parleydocument.cpp:121 src/parleydocument.cpp:568
+#: src/parleydocument.cpp:121 src/parleydocument.cpp:577
 #, fuzzy, kde-format
 #| msgid "Edit Properties for Original"
 msgctxt "@title:window document properties"
@@ -1821,7 +1821,7 @@ msgstr "Отвори датотека на речник"
 msgid "Open in practice &mode"
 msgstr "Член"
 
-#: src/parleydocument.cpp:200
+#: src/parleydocument.cpp:201
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1831,23 +1831,23 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:203
 #, kde-format
 msgid "Take Over Lock"
 msgstr ""
 
-#: src/parleydocument.cpp:231
+#: src/parleydocument.cpp:234
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr ""
 
-#: src/parleydocument.cpp:232
+#: src/parleydocument.cpp:235
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Отвори датотека на речник"
 
-#: src/parleydocument.cpp:260
+#: src/parleydocument.cpp:263
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1858,13 +1858,13 @@ msgstr ""
 "\n"
 "Да ја зачувам датотеката пред да излезам?\n"
 
-#: src/parleydocument.cpp:293
+#: src/parleydocument.cpp:296
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Спојување на датотека за речник"
 
-#: src/parleydocument.cpp:331 src/parleydocument.cpp:416
+#: src/parleydocument.cpp:335 src/parleydocument.cpp:423
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1873,31 +1873,31 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:360 src/parleydocument.cpp:450
+#: src/parleydocument.cpp:366 src/parleydocument.cpp:459
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr ""
 
-#: src/parleydocument.cpp:361 src/parleydocument.cpp:451
+#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr ""
 
-#: src/parleydocument.cpp:376
+#: src/parleydocument.cpp:382
 #, fuzzy, kde-format
 #| msgid "Save Vocabulary As"
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Зачувај речник како..."
 
-#: src/parleydocument.cpp:388
+#: src/parleydocument.cpp:394
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr ""
 
-#: src/parleydocument.cpp:396
+#: src/parleydocument.cpp:402
 #, fuzzy, kde-format
 #| msgid "Saving %1"
 msgctxt "@info:status saving a file"
@@ -1905,7 +1905,7 @@ msgid "Saving %1"
 msgstr "Зачувување на %1"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:497 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:506 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr ""
@@ -1913,25 +1913,25 @@ msgstr ""
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:498 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, fuzzy, kde-format
 msgid "Languages"
 msgstr "Ја&зик"
 
-#: src/parleydocument.cpp:506
+#: src/parleydocument.cpp:515
 #, fuzzy, kde-format
 #| msgid "&Append Language"
 msgid "A Second Language"
 msgstr "&Додај јазик"
 
-#: src/parleydocument.cpp:509
+#: src/parleydocument.cpp:518
 #, fuzzy, kde-format
 msgid "Lesson 1"
 msgstr "Создава лекции"
 
-#: src/parleydocument.cpp:551
+#: src/parleydocument.cpp:560
 #, fuzzy, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Отвори датотека на речник"
@@ -1991,7 +1991,7 @@ msgstr "Прикажи с&татистика"
 msgid "Practice Summary Toolbar"
 msgstr "Член"
 
-#: src/practice/audiobutton.cpp:57 src/practice/audiobutton.cpp:58
+#: src/practice/audiobutton.cpp:59 src/practice/audiobutton.cpp:60
 #, kde-format
 msgid "Stop"
 msgstr ""
@@ -2553,26 +2553,26 @@ msgstr[2] "Внесете ги точните форми на конјугаци
 msgid "Enter all conjugation forms."
 msgstr "Внесете ги точните форми на конјугација."
 
-#: src/practice/genderbackendmode.cpp:61
+#: src/practice/genderbackendmode.cpp:62
 #, kde-format
 msgid "Choose the right article for \"%1\""
 msgstr ""
 
-#: src/practice/genderbackendmode.cpp:85
+#: src/practice/genderbackendmode.cpp:82
 #, fuzzy, kde-format
 #| msgid "&male"
 msgctxt "@label the gender of the word: masculine"
 msgid "%1 is masculine"
 msgstr "&машки"
 
-#: src/practice/genderbackendmode.cpp:90
+#: src/practice/genderbackendmode.cpp:87
 #, fuzzy, kde-format
 #| msgid "&female"
 msgctxt "@label the gender of the word: feminine"
 msgid "%1 is feminine"
 msgstr "&женски"
 
-#: src/practice/genderbackendmode.cpp:95
+#: src/practice/genderbackendmode.cpp:92
 #, fuzzy, kde-format
 #| msgid "&neutral"
 msgctxt "@label the gender of the word: neuter"
@@ -3397,33 +3397,33 @@ msgid "&Append new rows automatically when editing"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
-#: src/settings/kgametheme/kgamethemeselector.ui:40
+#: src/settings/kgametheme/kgamethemeselector.ui:37
 #, kde-format
 msgid "&Get New Themes..."
 msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/settings/kgametheme/kgamethemeselector.ui:97
+#: src/settings/kgametheme/kgamethemeselector.ui:94
 #, kde-format
 msgid "Theme Details"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, labelContact)
-#: src/settings/kgametheme/kgamethemeselector.ui:131
+#: src/settings/kgametheme/kgamethemeselector.ui:128
 #, fuzzy, kde-format
 #| msgid "Count:"
 msgid "Contact:"
 msgstr "Број:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelDescription)
-#: src/settings/kgametheme/kgamethemeselector.ui:166
+#: src/settings/kgametheme/kgamethemeselector.ui:163
 #, fuzzy, kde-format
 #| msgid "Type Description"
 msgid "Description:"
 msgstr "Опис на типот"
 
 #. i18n: ectx: property (text), widget (QLabel, labelAuthor)
-#: src/settings/kgametheme/kgamethemeselector.ui:201
+#: src/settings/kgametheme/kgamethemeselector.ui:198
 #, kde-format
 msgid "Author:"
 msgstr "Автор:"
@@ -3459,13 +3459,13 @@ msgctxt "Edit language properties"
 msgid "Properties for %1"
 msgstr "Уреди својства за оригиналот"
 
-#: src/settings/languageproperties.cpp:87
+#: src/settings/languageproperties.cpp:88
 #, fuzzy, kde-format
 #| msgid "&Append Language"
 msgid "Really delete language: %1?"
 msgstr "&Додај јазик"
 
-#: src/settings/languageproperties.cpp:87
+#: src/settings/languageproperties.cpp:89
 #, fuzzy, kde-format
 #| msgid "&Remove Language"
 msgid "Remove Language"
@@ -4073,7 +4073,7 @@ msgstr "Не можам да прочитам "
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:190
+#: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:184
 #, fuzzy, kde-format
 msgid "Color used to display invalid units"
 msgstr "Не можам да прочитам "
@@ -4329,7 +4329,7 @@ msgid "..."
 msgstr "&Нов..."
 
 #. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
-#: src/settings/viewoptionsbase.ui:47
+#: src/settings/viewoptionsbase.ui:41
 #, kde-format
 msgid ""
 "Specify which font to use for displaying pronunciations using phonetic "
@@ -4337,26 +4337,26 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
-#: src/settings/viewoptionsbase.ui:54
+#: src/settings/viewoptionsbase.ui:48
 #, fuzzy, kde-format
 #| msgid "&Pronunciation:"
 msgid "&Pronunciation symbols font:"
 msgstr "Из&говарање:"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
-#: src/settings/viewoptionsbase.ui:83
+#: src/settings/viewoptionsbase.ui:77
 #, kde-format
 msgid "Base color for displaying grades:"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:102
+#: src/settings/viewoptionsbase.ui:96
 #, fuzzy, kde-format
 msgid "Color used to display the progress"
 msgstr "Не можам да прочитам "
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:105
+#: src/settings/viewoptionsbase.ui:99
 #, fuzzy, kde-format
 msgid "Click here to change the color used to display the progress."
 msgstr "Избери ја тековната лекција"
@@ -4364,56 +4364,56 @@ msgstr "Избери ја тековната лекција"
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:108 src/settings/viewoptionsbase.ui:152
-#: src/settings/viewoptionsbase.ui:196
+#: src/settings/viewoptionsbase.ui:102 src/settings/viewoptionsbase.ui:146
+#: src/settings/viewoptionsbase.ui:190
 #, kde-format
 msgid "&Base"
 msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
-#: src/settings/viewoptionsbase.ui:111
+#: src/settings/viewoptionsbase.ui:105
 #, kde-format
 msgid "Alt+0"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
-#: src/settings/viewoptionsbase.ui:127
+#: src/settings/viewoptionsbase.ui:121
 #, fuzzy, kde-format
 msgid "Color for displaying early progress:"
 msgstr "Не можам да прочитам "
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:146
+#: src/settings/viewoptionsbase.ui:140
 #, fuzzy, kde-format
 msgid "Color used to display the early progress"
 msgstr "Не можам да прочитам "
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:149
+#: src/settings/viewoptionsbase.ui:143
 #, fuzzy, kde-format
 msgid "Click here to change the color used to display the early progress."
 msgstr "Избери ја тековната лекција"
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
-#: src/settings/viewoptionsbase.ui:155
+#: src/settings/viewoptionsbase.ui:149
 #, kde-format
 msgid "Alt+1"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
-#: src/settings/viewoptionsbase.ui:171
+#: src/settings/viewoptionsbase.ui:165
 #, fuzzy, kde-format
 msgid "Color used to display the grades:"
 msgstr "Не можам да прочитам "
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:193
+#: src/settings/viewoptionsbase.ui:187
 #, fuzzy, kde-format
 msgid "Click here to change the color used to display invalid units."
 msgstr "Избери ја тековната лекција"
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
-#: src/settings/viewoptionsbase.ui:199
+#: src/settings/viewoptionsbase.ui:193
 #, kde-format
 msgid "Alt+2"
 msgstr ""
