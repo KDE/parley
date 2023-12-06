@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-05 01:33+0000\n"
-"PO-Revision-Date: 2023-06-17 13:50+0200\n"
+"PO-Revision-Date: 2023-12-05 13:15+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -3424,13 +3424,13 @@ msgstr "Idioma:"
 #: src/settings/languagepropertiespage.ui:117
 #, kde-format
 msgid "Font (practice):"
-msgstr "Tipus de lletra (exercici):"
+msgstr "Lletra (exercici):"
 
 #. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
 #: src/settings/languagepropertiespage.ui:127
 #, kde-format
 msgid "Font (editor):"
-msgstr "Tipus de lletra (editor):"
+msgstr "Lletra (editor):"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
 #: src/settings/languagepropertiespage.ui:141
@@ -3581,13 +3581,13 @@ msgstr "Corrector ortogràfic per a este idioma"
 #: src/settings/languagesettings.kcfg:32
 #, kde-format
 msgid "The font used during practice"
-msgstr "El tipus de lletra emprat durant l'exercici"
+msgstr "La lletra emprada durant l'exercici"
 
 #. i18n: ectx: label, entry (EditorFont), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:36
 #, kde-format
 msgid "The font used in the editor"
-msgstr "El tipus de lletra emprat en l'editor"
+msgstr "La lletra emprada en l'editor"
 
 #. i18n: ectx: property (text), widget (QPushButton, cleanUpButton)
 #: src/settings/optionlistform.ui:124
@@ -3942,13 +3942,13 @@ msgstr "Com està dividida la finestra principal."
 #: src/settings/parley.kcfg:235
 #, kde-format
 msgid "The font used in the vocabulary table"
-msgstr "El tipus de lletra emprat a la taula de vocabulari"
+msgstr "La lletra emprada en la taula de vocabulari"
 
 #. i18n: ectx: label, entry (IPAFont), group (Appearance)
 #: src/settings/parley.kcfg:239
 #, kde-format
 msgid "The font used for phonetics"
-msgstr "El tipus de lletra emprat per als símbols fonètics"
+msgstr "La lletra emprada per als símbols fonètics"
 
 #. i18n: ectx: label, entry (CurrentCol), group (Appearance)
 #: src/settings/parley.kcfg:243
@@ -4253,14 +4253,14 @@ msgid ""
 "Specify which font to use for displaying pronunciations using phonetic "
 "symbols."
 msgstr ""
-"Especifiqueu quin tipus de lletra s'ha d'emprar per a mostrar les "
-"pronunciacions utilitzant símbols fonètics."
+"Especifiqueu quina lletra s'ha d'emprar per a mostrar les pronunciacions "
+"utilitzant símbols fonètics."
 
 #. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
 #: src/settings/viewoptionsbase.ui:48
 #, kde-format
 msgid "&Pronunciation symbols font:"
-msgstr "Tipus de lletra dels símbols de &pronunciació:"
+msgstr "Lletra dels símbols de &pronunciació:"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
 #: src/settings/viewoptionsbase.ui:77
