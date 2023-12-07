@@ -121,7 +121,7 @@
 >. Realitza un seguiment automàtic del vostre progrés durant l'aprenentatge. Amb el &parley; podreu arreglar el vostre vocabulari com vulgueu, crear les vostres pròpies lliçons, segons sigui necessari. Però a diferència de les fitxes ràpides reals, podreu utilitzar mètodes d'aprenentatge diferents. </para>
 
 <para
->Les fitxes ràpides contenen expressions en l'anvers i la seva traducció en el revers. Comenceu amb una pila de targetes. Si coneixeu la traducció d'una targeta, podreu posar-la en una segona pila de fitxes. Si no la recordeu, manteniu-la en la primera pila per tornar-ho a intentar més tard. </para>
+>Les fitxes ràpides contenen expressions en l'anvers i la seva traducció en el revers. Comenceu amb una pila de targetes. Si coneixeu la traducció d'una targeta, podreu posar-la en una segona pila de fitxes. Si no la recordeu, manteniu-la en la primera pila per a tornar-ho a intentar més tard. </para>
 
 <para
 >L'objectiu principal del &parley; no és ensenyar-vos la gramàtica. Tanmateix, hi ha algunes formes d'exercici que us poden ajudar en aquesta matèria. </para>
@@ -162,9 +162,7 @@
 
 <tip
 ><para
->Igual que en totes les aplicacions, intenteu utilitzar el clic dret si esteu explorant les característiques i funcionalitats en el &parley;. El clic amb el &BDR; mostra un <quote
->menú contextual</quote
-> que us indicarà el que podeu fer amb la situació actual. Intenteu fer clic dret sobre les unitats i les paraules per a trobar algunes opcions.</para
+>Igual que en totes les aplicacions, intenteu utilitzar el clic dret si esteu explorant les característiques i funcionalitats en el &parley;. El clic amb el &BDR; mostra un «menú contextual» que us indicarà el que podeu fer amb la situació actual. Intenteu fer clic dret sobre les unitats i les paraules per a trobar algunes opcions.</para
 ></tip>
 </chapter>
 
@@ -197,7 +195,7 @@
 >Una col·lecció de vocabulari és un fitxer que conté paraules i les seves traduccions a altres idiomes o altres parells de paraules i frases que desitgeu memoritzar. Les paraules s'organitzen en unitats. </para>
 
 <para
->Per <emphasis
+>Per a <emphasis
 >començar a practicar</emphasis
 >, feu clic amb el &BDR; sobre el quadre <guilabel
 >Exercita de tota manera</guilabel
@@ -536,9 +534,7 @@
 >Inicia l'exercici...</guiicon
 > a la barra d'eines es mostrarà la pantalla següent. El mode d'entrenament <guilabel
 >Fitxes ràpides</guilabel
-> funciona com si ho féssiu amb fitxes ràpides <quote
->reals</quote
->. Us imagineu el resultat i si voleu una mica d'ajuda, podeu prémer el botó <guibutton
+> funciona com si ho féssiu amb fitxes ràpides «reals». Us imagineu el resultat i si voleu una mica d'ajuda, podeu prémer el botó <guibutton
 >Pista</guibutton
 >, el qual començarà a donar una lletra del resultat cada vegada. </para>
 
@@ -639,7 +635,7 @@
 <para
 >Si la vostra resposta ha estat correcta, el &parley; us ho dirà i podreu prémer &Intro; o el botó <guibutton
 >Continua</guibutton
-> per a seguir endavant amb la pregunta següent. </para>
+> per a continuar amb la pregunta següent. </para>
 
 <screenshot>
   <screeninfo
@@ -671,7 +667,7 @@
 <para
 >Si no coneixeu la resposta, premeu el botó <guibutton
 >Continua</guibutton
-> per segona vegada. A continuació es mostrarà la solució. Seguiu endavant amb <guibutton
+> per segona vegada. A continuació es mostrarà la solució. Avanceu amb <guibutton
 >Continua</guibutton
 >. </para>
 
@@ -720,7 +716,7 @@
 </screenshot>
 
 <para
->Un cop feta la vostra elecció, feu clic sobre la que creieu que és correcta o escriviu el número al davant de l'elecció, el &parley; mostrarà sota la pantalla si la resposta és correcta. Seguiu endavant amb la pregunta següent prement el botó <guibutton
+>Un cop feta la vostra elecció, feu clic sobre la que creieu que és correcta o escriviu el número al davant de l'elecció, el &parley; mostrarà sota la pantalla si la resposta és correcta. Continueu amb la pregunta següent prement el botó <guibutton
 >Continua</guibutton
 >. </para>
 
@@ -867,7 +863,7 @@
 </screenshot>
 
 <para
->Seguiu endavant amb l'exercici prement el botó <guibutton
+>Continueu l'exercici prement el botó <guibutton
 >Continua</guibutton
 > o atureu-lo prement el botó <guibutton
 >Atura l'exercici</guibutton
@@ -964,7 +960,7 @@
 > a la barra d'eines. </para>
 
 <para
->En el cas següent s'utilitza l'alemany com a idioma per a aprendre, així que hi ha tres gèneres per triar: masculí, femení i neutre. En prémer el botó <guibutton
+>En el cas següent s'utilitza l'alemany com a idioma per a aprendre, així que hi ha tres gèneres per a triar: masculí, femení i neutre. En prémer el botó <guibutton
 >Pista</guibutton
 > s'exclourà una de les respostes errònies. Per descomptat, també podreu optar per <guibutton
 >Respondré més tard</guibutton
@@ -1064,7 +1060,7 @@
 >absoluta, comparativa</emphasis
 > i <emphasis
 >superlativa</emphasis
->. Per a seguir endavant amb l'exercici senzillament premeu el botó <guibutton
+>. Per a continuar amb l'exercici senzillament premeu el botó <guibutton
 >Continua</guibutton
 >. </para>
 
@@ -1217,9 +1213,7 @@
 
 <screenshot>
   <screeninfo
->Propietats per al diàleg <quote
->nom_fitxer.kvtml</quote
-></screeninfo>
+>Propietats per al diàleg «nom_fitxer.kvtml»</screeninfo>
   <mediaobject>
     <imageobject
 ><imagedata fileref="document_properties.png" format="PNG"/></imageobject>
@@ -1281,9 +1275,7 @@
 >. </para>
 
 <para
->Per a la conjugació s'hauran d'omplir els pronoms personals. La majoria dels idiomes no tenen formes de conjugació diferents per a <quote
->he/she/it</quote
->, en aquest cas, <emphasis
+>Per a la conjugació s'hauran d'omplir els pronoms personals. La majoria dels idiomes no tenen formes de conjugació diferents per a «he/she/it», en aquest cas, <emphasis
 >no</emphasis
 > haureu de marcar <guilabel
 >El masculí i el femení tenen conjugacions diferents</guilabel
@@ -1407,7 +1399,7 @@
 <para
 >La pestanya <guilabel
 >Pronoms personals</guilabel
-> té múltiples formes per a la 3a persona del singular i la 1a, 2a i 3a persones del plural. Per a mantenir la coherència, les possibilitats s'han d'introduir amb un signe <guilabel
+> té múltiples formes per a la 3a persona del singular i la 1a, 2a i 3a persona del plural. Per a mantenir la coherència, les possibilitats s'han d'introduir amb un signe <guilabel
 >/</guilabel
 > entre les dues formes. </para>
 
@@ -1526,7 +1518,7 @@
 >Subunitat</emphasis
 > de la <guilabel
 >Col·lecció: Les meves lliçons de castellà</guilabel
->, aquesta és exactament la que s'ha de seleccionar abans de seguir endavant amb <guiicon
+>, aquesta és exactament la que s'ha de seleccionar abans de continuar amb <guiicon
 >Unitat nova</guiicon
 >. </para>
 </sect2>
@@ -1626,7 +1618,7 @@
 >Si voleu substituir una paraula, seleccioneu la seva entrada i comenceu a escriure. Una altra manera per a canviar la paraula, feu doble clic sobre l'entrada i podreu canviar el contingut de la cel·la sense perdre la paraula antiga. </para>
 
 <para
->Premeu la tecla &Tab; per anar a la paraula següent mentre esteu en el mode d'edició. Amb la tecla &Intro; sortireu d'aquest mode. Podeu utilitzar les tecles de fletxa per a moure-us. </para>
+>Premeu la tecla &Tab; per a anar a la paraula següent mentre esteu en el mode d'edició. Amb la tecla &Intro; sortireu d'aquest mode. Podeu utilitzar les tecles de fletxa per a moure-us. </para>
 </sect2>
 </sect1>
 
@@ -1646,7 +1638,7 @@
 > <guimenuitem
 >Sinònims</guimenuitem
 ></menuchoice
-> per a veure l'eina sinònims.</para
+> per a veure l'eina de sinònims.</para
 ></listitem>
 
   <listitem
@@ -1656,14 +1648,14 @@
 
   <listitem
 ><para
->El botó en l'eina sinònims canviarà el text a <guibutton
+>El botó en l'eina de sinònims canviarà el text a <guibutton
 >A i B són sinònims</guibutton
 >.</para
 ></listitem>
 </itemizedlist>
 
 <para
->Les paraules ara es mostraran com a connectades en l'eina sinònims i podran ser reconegudes com a sinònims durant l'exercici. </para>
+>Les paraules ara es mostraran com a connectades en l'eina de sinònims i podran ser reconegudes com a sinònims durant l'exercici. </para>
 </sect1>
 
 <sect1 id="adding-images"
@@ -1671,7 +1663,7 @@
 >Afegir imatges</title>
 
 <para
->En primer lloc cal mostrar l'eina imatge, seleccioneu la casella de selecció <menuchoice
+>En primer lloc, cal mostrar l'eina imatge, seleccioneu la casella de selecció <menuchoice
 ><guimenu
 >Visualitza</guimenu
 > <guimenuitem
@@ -1682,7 +1674,7 @@
 > al costat dret de la pantalla del &parley;. </para>
 
 <para
->Per afegir una imatge a una paraula, assegureu-vos que la paraula està ressaltada. Al costat dret de la secció <guilabel
+>Per a afegir una imatge a una paraula, assegureu-vos que la paraula està ressaltada. Al costat dret de la secció <guilabel
 >Imatge</guilabel
 > feu clic sobre la icona de <inlinemediaobject
 ><imageobject
@@ -1763,7 +1755,7 @@
 >Afegir so</title>
 
 <para
->En primer lloc cal mostrar l'eina so, seleccioneu la casella de selecció <menuchoice
+>En primer lloc, cal mostrar l'eina so, seleccioneu la casella de selecció <menuchoice
 ><guimenu
 >Visualitza</guimenu
 > <guimenuitem
@@ -1963,7 +1955,7 @@
 >Col·lecció nova: Vocabulari anglès-alemany</title>
 
 <para
->En aquesta secció es descriu com podreu crear un fitxer d'entrenament del vocabulari incloent-hi imatges i sons. En una segona etapa també hi afegirem adjectius i verbs. Aquest és un exemple molt complet i per tant molt llarg. Finalment no seran necessaris tots els punts per al vostre projecte. </para>
+>En aquesta secció es descriu com podreu crear un fitxer d'entrenament del vocabulari incloent-hi imatges i sons. En una segona etapa també hi afegirem adjectius i verbs. Aquest és un exemple molt complet i, per tant, molt llarg. Finalment, no seran necessaris tots els punts per al vostre projecte. </para>
 
 <para
 >Ja que volem afegir fitxers de so i imatges, ens haurem d'assegurar que aquests estaran en una carpeta que per comoditat s'anomena <emphasis
@@ -2024,7 +2016,7 @@
 <para
 >Després premeu el botó <guibutton
 >D'acord</guibutton
->. La pantalla següent us demanarà que establiu els detalls de l'idioma. Aquí no volem canviar res i per tant, senzillament premeu a <guibutton
+>. La pantalla següent us demanarà que establiu els detalls de l'idioma. Aquí no volem canviar res i, per tant, senzillament premeu a <guibutton
 >D'acord</guibutton
 >. </para>
 
@@ -2074,7 +2066,7 @@
 <para
 >Donem una breu ullada a les paraules que volem afegir: <emphasis
 >«apple», «bird», «cat», «cherry», «cow», «orange», «pear», «snake», «strawberry»</emphasis
->&nbsp;. Tenim animals i fruits, i per tant ens decidirem a crear dues unitats anomenades: <guilabel
+>&nbsp;. Tenim animals i fruits i, per tant, ens decidirem a crear dues unitats anomenades: <guilabel
 >Animals</guilabel
 > i <guilabel
 >Fruits</guilabel
@@ -2123,7 +2115,7 @@
 >En el nostre cas només volem 4 entrades en la unitat dels animals. Hi haurà moltes línies en blanc que s'hauran d'eliminar. Per a fer-ho, primer feu clic sobre el camp buit, i manteniu premuda la tecla &Maj; mentre feu clic a l'últim camp buit. Totes les línies a esborrar seran ressaltades. A continuació, premeu la tecla &Del;. </para>
 
 <para
->Afegirem la terminologia de la fruita. Senzillament feu clic sobre el nom de la unitat <guilabel
+>Afegirem la terminologia de la fruita. Senzillament, feu clic sobre el nom de la unitat <guilabel
 >Fruits</guilabel
 >. Aquesta segona unitat està completament buida. Com que tenim cinc termes de fruita caldrà que afegim cinc línies. Per tant, premeu la tecla &Ins; cinc vegades i, a continuació, com abans, hi afegirem la nostra terminologia. </para>
 
@@ -2147,7 +2139,7 @@
 </screenshot>
 
 <para
->Ara és el moment d'afegir sons i imatges. En primer lloc activarem les vistes <guilabel
+>Ara és el moment d'afegir sons i imatges. En primer lloc, activarem les vistes <guilabel
 >Imatge</guilabel
 > i <guilabel
 >So</guilabel
@@ -2228,7 +2220,7 @@
 </screenshot>
 
 <para
->Senzillament haureu de continuar igual per a tots els termes. </para>
+>Senzillament, haureu de continuar igual per a tots els termes. </para>
 
 <para
 >És hora d'afegir adjectius i verbs com a unitats al nostre projecte. De manera que haureu de fer com abans amb la unitat <emphasis
@@ -2314,7 +2306,7 @@
 </screenshot>
 
 <para
->Una vegada especificats tots els tipus de paraula, en primer lloc examinarem els <emphasis
+>Una vegada especificats tots els tipus de paraula, en primer lloc, examinarem els <emphasis
 >Adjectius</emphasis
 >, afegint <guilabel
 >Formes comparatives</guilabel
@@ -2626,7 +2618,7 @@
 <para
 >Quan us trobeu en el <guilabel
 >Tauler</guilabel
-> disposareu de la possibilitat d'instal·lar col·leccions directament des del servidor, sempre que esteu connectats. Senzillament premeu el botó <guibutton
+> disposareu de la possibilitat d'instal·lar col·leccions directament des del servidor, sempre que esteu connectats. Senzillament, premeu el botó <guibutton
 >Baixa col·leccions noves...</guibutton
 >. </para>
 
@@ -2759,7 +2751,7 @@
 >Desa els vocabularis automàticament en tancar i sortir</guilabel
 >, la qual és molt útil per a no respondre sempre la mateixa pregunta i si s'han de desar o no els canvis (incloent-hi els resultats de l'aprenentatge). L'opció <guilabel
 >Crea una còpia de seguretat cada «...» minuts</guilabel
-> pot ser molt útil per ajudar-vos a desar el vostre treball amb freqüència. Una cosa menys en què pensar. </para>
+> pot ser molt útil per a ajudar-vos a desar el vostre treball amb freqüència. Una cosa menys en què pensar. </para>
 
 <para
 >De vegades, la importació i/o exportació dels fitxers de text (CSV) pot ser molt útil i necessitareu el separador apropiat per a elaborar les dades o ser capaç de llegir les que rebeu des d'un altre lloc. El &parley; permet escollir entre diversos separadors per a assegurar-vos que podreu tornar-les a utilitzar. </para>
@@ -2792,7 +2784,7 @@
 <para
 >La pàgina <guilabel
 >Visualitza</guilabel
-> permet canviar el tipus de lletra i la mida per als símbols de pronunciació, i podreu escollir el <guilabel
+> permet canviar la lletra i la mida dels símbols de pronunciació, i podreu escollir el <guilabel
 >Color base per a mostrar les qualificacions:</guilabel
 > que més us agradi. </para>
 
