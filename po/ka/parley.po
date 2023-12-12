@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
-"PO-Revision-Date: 2023-01-24 09:04+0100\n"
+"PO-Revision-Date: 2023-12-11 23:43+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -36,7 +36,7 @@ msgstr "განყოფილება"
 #: src/collection/containermodel.cpp:158
 #, kde-format
 msgid "Number of entries in this lesson."
-msgstr ""
+msgstr "ჩანაწერების რაოდენობა ამ გაკვეთილში."
 
 #: src/collection/entryfilter.cpp:113
 #, kde-format
@@ -44,12 +44,14 @@ msgid ""
 "The vocabulary document contains no entries that can be used for the chosen "
 "type of practice."
 msgstr ""
+"ლექსიკონის დოკუმენტი არ შეიცავს ჩანაწერებს, რომელიც არჩეული ტიპის "
+"ვარჯიშისთვის შეგიძლიათ, გამოიყენოთ."
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, EntryFilterDialog)
 #: src/collection/entryfilterdialog.ui:14
 #, kde-format
 msgid "Start Practice"
-msgstr ""
+msgstr "ვარჯიშის დაწყება"
 
 #. i18n: ectx: property (text), widget (QLabel, headerLabel)
 #: src/collection/entryfilterdialog.ui:20
@@ -59,54 +61,57 @@ msgid ""
 "can choose to ignore some of your configuration settings to start a practice "
 "anyway.</p>"
 msgstr ""
+"<p>თქვენს მიერ არჩეული სავარჯიშო ლექსიკონი ცარიელია.</p><p>ქვემოთ შეგიძლიათ "
+"აირჩიოთ, რომ გამოტოვოთ ზოგიერთი თქვენი კონფიგურაციის პარამეტრი, რომ მაინც "
+"დაიწყოთ ვარჯიში.</p>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
 #: src/collection/entryfilterdialog.ui:30
 #, kde-format
 msgid "Ignore Configuration for:"
-msgstr ""
+msgstr "ფილტრის იგნორი:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, lessonCheckBox)
 #: src/collection/entryfilterdialog.ui:36
 #, kde-format
 msgid "Ignore Lessons"
-msgstr ""
+msgstr "გაკვეთილების გამოტოვება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, wordTypeCheckBox)
 #: src/collection/entryfilterdialog.ui:56
 #, kde-format
 msgid "Ignore Word Types"
-msgstr ""
+msgstr "სიტყვის ტიპების გამოტოვება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, blockedCheckBox)
 #: src/collection/entryfilterdialog.ui:76
 #, kde-format
 msgid "Ignore Blocked"
-msgstr ""
+msgstr "დაბლოკილების გამოტოვება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, timesWrongCheckBox)
 #: src/collection/entryfilterdialog.ui:96
 #, kde-format
 msgid "Ignore Times Answered Incorrectly"
-msgstr ""
+msgstr "არასწორი პასუხებით"
 
 #. i18n: ectx: property (text), widget (QCheckBox, timesPracticedCheckBox)
 #: src/collection/entryfilterdialog.ui:116
 #, kde-format
 msgid "Ignore Times Practiced"
-msgstr ""
+msgstr "დასმული კითხვების რაოდენობით"
 
 #. i18n: ectx: property (text), widget (QCheckBox, minMaxGradeCheckBox)
 #: src/collection/entryfilterdialog.ui:136
 #, kde-format
 msgid "Ignore Minimum/Maximum Grade"
-msgstr ""
+msgstr "ცოდნის მიხედვით"
 
 #. i18n: ectx: property (text), widget (QLabel, numberAffectedWordsLabel)
 #: src/collection/entryfilterdialog.ui:156
 #, kde-format
 msgid "Number of Affected Words"
-msgstr ""
+msgstr "შესაბამისი სიტყვების რაოდენობით"
 
 #. i18n: ectx: property (text), widget (QLabel, documentTotalDescriptionLabel)
 #: src/collection/entryfilterdialog.ui:171
@@ -118,7 +123,7 @@ msgstr "ჩანაწერების ჯამური რაოდენ�
 #: src/collection/entryfilterdialog.ui:192
 #, kde-format
 msgid "Resulting number of words to practice:"
-msgstr ""
+msgstr "სავარჯიშო სიტყვები სულ:"
 
 #: src/collection/lessonmodel.cpp:47
 #, kde-format
@@ -134,17 +139,17 @@ msgstr "არაფერი"
 #: src/collection/vocabularymodel.cpp:185
 #, kde-format
 msgid "You can drag and drop words onto their word type."
-msgstr ""
+msgstr "სიტყვები შეგიძლიათ გადაათრიოთ და დაყაროთ მათი სიტყვის ტიპზე."
 
 #: src/collection/vocabularymodel.cpp:187
 #, kde-format
 msgid "Enable the synonym view to edit synonyms."
-msgstr ""
+msgstr "სინონიმების ხედის ჩვენება მათ ჩასასწორებლად."
 
 #: src/collection/vocabularymodel.cpp:189
 #, kde-format
 msgid "Enable the antonym view to edit antonyms."
-msgstr ""
+msgstr "ანტონიმების ხედის ჩვენება მათ ჩასასწორებლად."
 
 #: src/collection/vocabularymodel.cpp:281
 #, kde-format
@@ -220,73 +225,73 @@ msgstr "პარაფრაზი"
 #: src/collection/vocabularymodel.cpp:312
 #, kde-format
 msgid "Please use Edit -> Languages to set up your document."
-msgstr ""
+msgstr "გამოიყენეთ ჩასწორება -> ენები, რათა თქვენი დოკუმენტი მოირგოთ."
 
 #: src/collection/vocabularymodel.cpp:312
 #, kde-format
 msgid "No Languages Defined"
-msgstr ""
+msgstr "ენები აღწერილი არაა"
 
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
 msgid "Select a unit before adding vocabulary."
-msgstr ""
+msgstr "აირჩიეთ სექცია, ლექსიკონის დამატებამდე."
 
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
 msgid "No Unit Selected"
-msgstr ""
+msgstr "სექცია არჩეული არაა"
 
 #: src/dashboard/barwidget.cpp:120
 #, kde-format
 msgid "%1 word due"
 msgid_plural "%1 words due"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "სასწავლი გაქვთ %1 სიტყვა"
+msgstr[1] "სასწავლი გაქვთ %1 სიტყვა"
 
 #: src/dashboard/barwidget.cpp:122
 #, kde-format
 msgid "Fully learned"
-msgstr ""
+msgstr "სრულად ნასწავლი"
 
 #: src/dashboard/buttondelegate.cpp:32
 #, kde-format
 msgid "Open this vocabulary collection in the editor"
-msgstr ""
+msgstr "ამ ლექსიკონის კოლექციის რედაქტორში გახსნა"
 
 #: src/dashboard/collectionwidget.cpp:96
 #, kde-format
 msgid "Practice Anyway"
-msgstr ""
+msgstr "მაინც ვარჯიში"
 
 #: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
 #: src/editor/editor.cpp:368
 #, kde-format
 msgid "Practice"
-msgstr ""
+msgstr "ვარჯიში"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
 #: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
 #, kde-format
 msgid "Active Collections"
-msgstr ""
+msgstr "აქტიური კოლექციები"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
 #: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
 #, kde-format
 msgid "Completed Collections"
-msgstr ""
+msgstr "დასრულებული კოლექციები"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
 #: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
 #, kde-format
 msgid "Remove"
-msgstr ""
+msgstr "წაშლა"
 
 #: src/dashboard/dashboard.cpp:284
 #, kde-format
 msgid "Are you sure you want to remove this collection?"
-msgstr ""
+msgstr "დარწმუნებული ბრძანდებით, რომ გნებავთ, წაშალოთ ეს კოლექცია?"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
 #: src/dashboard/dashboard.ui:14 src/main.cpp:37
@@ -298,25 +303,25 @@ msgstr "Parley"
 #: src/dashboard/dashboard.ui:120
 #, kde-format
 msgid "Create a New Collection..."
-msgstr ""
+msgstr "ახალი კოლექციის შექმნა..."
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
 #, kde-format
 msgid "Open an Existing Collection..."
-msgstr ""
+msgstr "არსებული კოლექციის გახსნა..."
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
 #, kde-format
 msgid "Download New Collections..."
-msgstr ""
+msgstr "ახალი კოლექციების გადმოწერა..."
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
 #, kde-format
 msgid "<h1>Parley</h1>"
-msgstr ""
+msgstr "<h1>Parley</h1>"
 
 #. i18n: ectx: property (text), widget (QPushButton, playButton)
 #. i18n: ectx: property (text), widget (Practice::AudioButton, solutionSoundButton)
@@ -339,7 +344,7 @@ msgstr "ჩაწერა"
 #: src/editor/audiowidget.ui:33
 #, kde-format
 msgid "Download audio file with webservice"
-msgstr ""
+msgstr "აუდიოფაილის გადმოწერა ვებსერვისით"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:36
@@ -351,23 +356,23 @@ msgstr "ჩამოტვირთვა"
 #: src/editor/browserwidget.ui:18
 #, kde-format
 msgid "Lookup Current"
-msgstr ""
+msgstr "მიმდინარეს მოძებნა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, followTableCheckBox)
 #: src/editor/browserwidget.ui:33
 #, kde-format
 msgid "Follow Table"
-msgstr ""
+msgstr "ცხრილის მიყოლა"
 
 #: src/editor/comparisonwidget.cpp:76
 #, kde-format
 msgid "Could not determine word type of adjectives"
-msgstr ""
+msgstr "ზედსართავი სახელების სიტყვის ტიპის დადგენა შეუძლებელია"
 
 #: src/editor/comparisonwidget.cpp:95
 #, kde-format
 msgid "Could not determine word type of adverbs"
-msgstr ""
+msgstr "ზმნიზედების სიტყვის ტიპის დადგენა შეუძლებელია"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, absoluteLabel)
 #. i18n: ectx: property (toolTip), widget (QLabel, comparativeLabel)
@@ -375,30 +380,32 @@ msgstr ""
 #, kde-format
 msgid "The comparative is used to compare nouns or verbs (faster)"
 msgstr ""
+"არსებითი სახელების ან ზმნების შესადარებლად შედარებითი ხარისხის გამოყენება "
+"(უფრო სწრაფია)"
 
 #. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
 #: src/editor/comparisonwidget.ui:27
 #, kde-format
 msgid "Absolute:"
-msgstr ""
+msgstr "აბსოლუტური:"
 
 #. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
 #: src/editor/comparisonwidget.ui:59
 #, kde-format
 msgid "Comparative:"
-msgstr ""
+msgstr "შედარებითი:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, superlativeLabel)
 #: src/editor/comparisonwidget.ui:88
 #, kde-format
 msgid "The superlative (fastest)"
-msgstr ""
+msgstr "აღმატებითი ხარისხი (უსწრაფესი)"
 
 #. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
 #: src/editor/comparisonwidget.ui:91
 #, kde-format
 msgid "Superlative:"
-msgstr ""
+msgstr "აღმატებითი ხარისხი:"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
@@ -430,7 +437,7 @@ msgstr "-"
 #: src/editor/conjugationwidget.ui:32
 #, kde-format
 msgid "Conjugation Forms"
-msgstr ""
+msgstr "უღლების ფორმები"
 
 #. i18n: ectx: property (text), widget (QLabel, singularFirstPersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualFirstPersonLabel)
@@ -457,7 +464,7 @@ msgstr "წამი"
 #: src/editor/conjugationwidget.ui:241
 #, kde-format
 msgid "Third Male"
-msgstr ""
+msgstr "მესამე მამრობითი"
 
 #. i18n: ectx: property (text), widget (QLabel, singularThirdFemalePersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualThirdFemalePersonLabel)
@@ -466,7 +473,7 @@ msgstr ""
 #: src/editor/conjugationwidget.ui:260
 #, kde-format
 msgid "Third Female"
-msgstr ""
+msgstr "მესამე მდედრობითი"
 
 #. i18n: ectx: property (text), widget (QLabel, singularThirdNeutralPersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualThirdNeutralPersonLabel)
@@ -475,7 +482,7 @@ msgstr ""
 #: src/editor/conjugationwidget.ui:279
 #, kde-format
 msgid "Third Neutral"
-msgstr ""
+msgstr "მესამე ნეიტრალური"
 
 #. i18n: ectx: property (text), widget (QPushButton, nextTenseButton)
 #: src/editor/conjugationwidget.ui:317
@@ -487,7 +494,7 @@ msgstr "&შემდეგი"
 #: src/editor/conjugationwidget.ui:330
 #, kde-format
 msgid "&Tense:"
-msgstr ""
+msgstr "&დრო:"
 
 #. i18n: ectx: property (text), widget (QLabel, male_label_3)
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4_2_2)
@@ -527,7 +534,7 @@ msgstr "მრავლობითი"
 #: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:463
 #, kde-format
 msgid "Masculine"
-msgstr ""
+msgstr "მამრობითი"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
@@ -541,62 +548,62 @@ msgstr "ქალური"
 #: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:469
 #, kde-format
 msgid "Neuter"
-msgstr ""
+msgstr "საშუალო"
 
 #. i18n: ectx: property (title), widget (QGroupBox, declensionGroupBox)
 #: src/editor/declensionwidget.ui:38
 #, kde-format
 msgid "Declension Forms"
-msgstr ""
+msgstr "ბრუნვები"
 
 #. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
 #: src/editor/declensionwidget.ui:52
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
-msgstr ""
+msgstr "სახელობითი:"
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
-msgstr ""
+msgstr "ნათესაობითი:"
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
-msgstr ""
+msgstr "მიცემითი:"
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr ""
+msgstr "ბრალდებითი:"
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
-msgstr ""
+msgstr "მოქმედებითი:"
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
-msgstr ""
+msgstr "ადგილობრივი:"
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
-msgstr ""
+msgstr "წოდებითი:"
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #: src/editor/declensionwidget.ui:445
@@ -622,6 +629,9 @@ msgid ""
 "With the checkboxes you can select which units you want to practice. \n"
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
+"მარჯვენა წკაპი სექციების დასამატებლად, წასაშლელად ან სახელის გადასარქმევად.\n"
+"თოლიებით შეგიძლიათ მონიშნოთ, რომელი სექციები გნებავთ, ივარჯიშოთ.\n"
+"ვარჯიშისას, მხოლოდ, ჩართული [x] სექციებიდან გკითხავთ!"
 
 #: src/editor/editor.cpp:156
 #, kde-format
@@ -631,13 +641,13 @@ msgstr "სიტყვს ტიპები"
 #: src/editor/editor.cpp:176
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
-msgstr ""
+msgstr "უღლება (ზმნები, ზედსართავი სახელები, არსებითი სახელები)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
 #: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
 #, kde-format
 msgid "Comparison Forms"
-msgstr ""
+msgstr "შედარების ფორმები"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: src/editor/editor.cpp:205
@@ -704,7 +714,7 @@ msgstr "შეიყვანეთ საძებნი სტრიქონ�
 #: src/editor/editor.cpp:413
 #, kde-format
 msgid "Search your vocabulary"
-msgstr ""
+msgstr "ლექსიკონში ძებნა"
 
 #: src/editor/editor.cpp:415
 #, kde-format
@@ -753,25 +763,25 @@ msgstr "ხელსაწყოთა ზოლი"
 #: src/editor/FromToEntryPageForm.ui:26
 #, kde-format
 msgid "Properties From Original"
-msgstr ""
+msgstr "თვისებები ორიგინალიდან"
 
 #. i18n: ectx: property (text), widget (QLabel, grade_label)
 #: src/editor/FromToEntryPageForm.ui:72
 #, kde-format
 msgid "&Confidence Level:"
-msgstr ""
+msgstr "&ცოდნის დონე:"
 
 #. i18n: ectx: property (text), widget (QLabel, fauxami_label)
 #: src/editor/FromToEntryPageForm.ui:95
 #, kde-format
 msgid "&False friend:"
-msgstr ""
+msgstr "&ომონიმი:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, GroupBox3)
 #: src/editor/FromToEntryPageForm.ui:110
 #, kde-format
 msgid "Practice &Counts"
-msgstr ""
+msgstr "&ვარჯიშების რაოდენობა"
 
 #. i18n: ectx: property (text), widget (QLabel, bcount_label)
 #: src/editor/FromToEntryPageForm.ui:142
@@ -789,7 +799,7 @@ msgstr "&ჯამში:"
 #: src/editor/FromToEntryPageForm.ui:171
 #, kde-format
 msgid "&Last Practiced"
-msgstr ""
+msgstr "&ბოლო ვარჯიში"
 
 #. i18n: ectx: property (text), widget (QPushButton, never)
 #: src/editor/FromToEntryPageForm.ui:183
@@ -807,7 +817,7 @@ msgstr "&დღეს"
 #: src/editor/FromToEntryPageForm.ui:206
 #, kde-format
 msgid "The date this expression was last practiced"
-msgstr ""
+msgstr "თარიღი, როცა ეს გამოხატულება იმეცადინეთ"
 
 #. i18n: ectx: property (specialValueText), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:209
@@ -819,13 +829,13 @@ msgstr "ჯერ არ გივარჯიშიათ"
 #: src/editor/FromToEntryPageForm.ui:229
 #, kde-format
 msgid "dd.MM.yyyy"
-msgstr ""
+msgstr "დდ.თთ.წწწწ"
 
 #. i18n: ectx: property (text), widget (QPushButton, resetGradesButton)
 #: src/editor/FromToEntryPageForm.ui:260
 #, kde-format
 msgid "&Reset Confidence Levels"
-msgstr ""
+msgstr "&ცოდნის დონეების ჩამოყრა"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:111
 #: src/parleydocument.cpp:473
@@ -842,24 +852,24 @@ msgstr "ნუნი"
 #: src/editor/inflectionwidget.cpp:81
 #, kde-format
 msgid "\"%1\" is a:"
-msgstr ""
+msgstr "\"%1\" წარმოადგენს:"
 
 #: src/editor/inflectionwidget.cpp:124
 #, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
-msgstr ""
+msgstr "არსებითი სახელის სქესი"
 
 #: src/editor/latexwidget.cpp:22
 #, kde-format
 msgid "Enter LaTeX code here."
-msgstr ""
+msgstr "შეიყვანეთ LaTeX-ის კოდი აქ."
 
 #. i18n: ectx: property (text), widget (QLabel, texLabel)
 #: src/editor/latexwidget.ui:17
 #, kde-format
 msgid "LaTeX code:"
-msgstr ""
+msgstr "LaTeX-ის კოდი:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -873,7 +883,7 @@ msgstr "ესკიზი"
 #: src/editor/latexwidget.ui:57
 #, kde-format
 msgid "Math mode"
-msgstr ""
+msgstr "მათემატიკის რეჟიმი"
 
 #: src/editor/lessonview.cpp:31
 #, kde-format
@@ -883,100 +893,100 @@ msgstr "ახალი ერთეული"
 #: src/editor/lessonview.cpp:33
 #, kde-format
 msgid "Add a new unit to your document"
-msgstr ""
+msgstr "თქვენი დოკუმენტისთვის ახალი სექციის დამატება"
 
 #: src/editor/lessonview.cpp:39
 #, kde-format
 msgid "Rename Unit"
-msgstr ""
+msgstr "სექციის სახელის გადარქმევა"
 
 #: src/editor/lessonview.cpp:47
 #, kde-format
 msgid "Delete Unit"
-msgstr ""
+msgstr "სექციის წაშლა"
 
 #: src/editor/lessonview.cpp:49
 #, kde-format
 msgid "Delete the selected unit."
-msgstr ""
+msgstr "მონიშნული სექციის წაშლა."
 
 #: src/editor/lessonview.cpp:55
 #, kde-format
 msgid "Split Unit into Smaller Units"
-msgstr ""
+msgstr "უფრო პატარა სექციებად დახლეჩა"
 
 #: src/editor/lessonview.cpp:57
 #, kde-format
 msgid "Make multiple smaller units out of one big unit."
-msgstr ""
+msgstr "ბევრი პატარა სექციის გაერთიანება დიდ სექციაში."
 
 #: src/editor/lessonview.cpp:63
 #, kde-format
 msgid "Move to new lesson"
-msgstr ""
+msgstr "ახალ გაკვეთილზე გადასვლა"
 
 #: src/editor/lessonview.cpp:65
 #, kde-format
 msgid "Moves the selected vocabulary to a new lesson"
-msgstr ""
+msgstr "გადაიტანს არჩეულ ლექსიკონს ახალ გაკვეთილში"
 
 #: src/editor/lessonview.cpp:71 src/parleyactions.cpp:151
 #, kde-format
 msgid "Remove Confidence Levels"
-msgstr ""
+msgstr "ცოდნის დონეების წაშლა"
 
 #: src/editor/lessonview.cpp:73
 #, kde-format
 msgid "Remove confidence levels from this unit."
-msgstr ""
+msgstr "ამ სექციის ცოდნის დონეების წაშლა."
 
 #: src/editor/lessonview.cpp:79
 #, kde-format
 msgid "Remove Confidence Levels From This Unit And All Subunits"
-msgstr ""
+msgstr "ამ და ყველა ქვესექციის ცოდნის დონეების წაშლა"
 
 #: src/editor/lessonview.cpp:81
 #, kde-format
 msgid "Remove confidence levels from this unit and all subunits."
-msgstr ""
+msgstr "ამ და ყველა ქვესექციის ცოდნის დონეების წაშლა."
 
 #: src/editor/lessonview.cpp:87
 #, kde-format
 msgid "Expand Units and Subunits"
-msgstr ""
+msgstr "სექციებისა და ქვესექციების გაშლა"
 
 #: src/editor/lessonview.cpp:89
 #, kde-format
 msgid "Expand all units and subunits."
-msgstr ""
+msgstr "ყველა სექციისა და ქვესექციის გაშლა."
 
 #: src/editor/lessonview.cpp:95
 #, kde-format
 msgid "Collapse All Units And Subunits"
-msgstr ""
+msgstr "ყველა სექციისა და ქვესექციის აკეცვა"
 
 #: src/editor/lessonview.cpp:97
 #, kde-format
 msgid "Collapse all units and subunits."
-msgstr ""
+msgstr "ყველა სექციისა და ქვესექციის აკეცვა."
 
 #: src/editor/lessonview.cpp:189
 #, kde-format
 msgid "The root lesson cannot be deleted."
-msgstr ""
+msgstr "ძირითად გაკვეთილს ვერ წაშლით."
 
 #: src/editor/lessonview.cpp:199
 #, kde-format
 msgid "There is %1 word left in this unit. Do you want to delete it?"
 msgid_plural ""
 "There are %1 words left in this unit. Do you want to delete them?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ამ სექციაში დარჩენილია %1 სიტყვა. გნებავთ, წაშალოთ ის?"
+msgstr[1] "ამ სექციაში დარჩენილია %1 სიტყვა. გნებავთ, წაშალოთ ისინი?"
 
 #: src/editor/lessonview.cpp:217
 #, kde-format
 msgid "Entries per Unit"
-msgstr ""
+msgstr "ჩანაწერები თითოეულ სექციაში"
 
 #: src/editor/lessonview.cpp:218
 #, kde-format
@@ -984,6 +994,8 @@ msgid ""
 "The unit will be split into smaller unit. How many entries in each unit do "
 "you want?"
 msgstr ""
+"სექცია პატარა სექციებად დაიხლიჩება. რამდენი ჩანაწერი გნებავთ თითოეულ "
+"სექციაში?"
 
 #: src/editor/lessonview.cpp:241
 #, kde-format
@@ -1046,44 +1058,44 @@ msgstr "სინონიმების არჩევა"
 #: src/editor/synonymwidget.cpp:65
 #, kde-format
 msgid "%1 and %2 are not Synonyms"
-msgstr ""
+msgstr "%1 და %2 სინონიმები არაა"
 
 #: src/editor/synonymwidget.cpp:67
 #, kde-format
 msgid "%1 and %2 are Synonyms"
-msgstr ""
+msgstr "%1 და %2 სინონიმებია"
 
 #: src/editor/synonymwidget.cpp:72
 #, kde-format
 msgid "%1 and %2 are not Antonyms"
-msgstr ""
+msgstr "%1 და %2 ანტონიმები არაა"
 
 #: src/editor/synonymwidget.cpp:74
 #, kde-format
 msgid "%1 and %2 are Antonyms"
-msgstr ""
+msgstr "%1 და %2 ანტონიმებია"
 
 #: src/editor/synonymwidget.cpp:79
 #, kde-format
 msgid "%1 and %2 are not False Friends"
-msgstr ""
+msgstr "%1 და %2 ომონიმები არაა"
 
 #: src/editor/synonymwidget.cpp:81
 #, kde-format
 msgid "%1 and %2 are False Friends"
-msgstr ""
+msgstr "%1 და %2 ომონიმებია"
 
 #: src/editor/synonymwidget.cpp:90
 #, kde-format
 msgctxt "Title for a list of synonyms for a word"
 msgid "Synonyms of %1:"
-msgstr ""
+msgstr "%1-ის სინონიმები:"
 
 #: src/editor/synonymwidget.cpp:93
 #, kde-format
 msgctxt "Title for a list of antonyms (opposites) for a word"
 msgid "Antonyms of %1:"
-msgstr ""
+msgstr "%1-ის ანტონიმები:"
 
 #: src/editor/synonymwidget.cpp:97
 #, kde-format
@@ -1091,38 +1103,38 @@ msgctxt ""
 "Title for a list of false friend (things that sound similar but have "
 "different meanings) for a word"
 msgid "False Friends of %1:"
-msgstr ""
+msgstr "%1-ის ომონიმები:"
 
 #: src/editor/vocabularycolumnsdialog.cpp:43
 #, kde-format
 msgctxt "@title:window"
 msgid "Vocabulary Columns"
-msgstr ""
+msgstr "ლექსიკონის სვეტები"
 
 #: src/editor/vocabularycolumnsdialog.cpp:58
 #, kde-format
 msgid "Enable/Disable the columns for each language"
-msgstr ""
+msgstr "ჩართეთ/გამორთეთ სვეტები თითოეული ენისთვის"
 
 #: src/editor/vocabularydelegate.cpp:145
 #, kde-format
 msgid "Sound file selected: %1"
-msgstr ""
+msgstr "არჩეული ხმის ფაილი: %1"
 
 #: src/editor/vocabularydelegate.cpp:147
 #, kde-format
 msgid "Image file selected: %1"
-msgstr ""
+msgstr "არჩეული გამოსახულების ფაილი: %1"
 
 #: src/editor/vocabularyview.cpp:79
 #, kde-format
 msgid "&Add New Entry"
-msgstr ""
+msgstr "&ახალი ჩანაწერის დამატება"
 
 #: src/editor/vocabularyview.cpp:82
 #, kde-format
 msgid "Append a new row to the vocabulary"
-msgstr ""
+msgstr "ლექსიკონის ბოლოში ახალი მწკრივის მიწერა"
 
 #: src/editor/vocabularyview.cpp:91
 #, kde-format
@@ -1132,7 +1144,7 @@ msgstr "&ჩანაწერის წაშლა"
 #: src/editor/vocabularyview.cpp:94
 #, kde-format
 msgid "Delete the selected rows"
-msgstr ""
+msgstr "მონიშნული მწკრივების წაშლა"
 
 #: src/editor/vocabularyview.cpp:105
 #, kde-format
@@ -1157,24 +1169,24 @@ msgstr "ყველა მწკრივის მონიშვნა"
 #: src/editor/vocabularyview.cpp:132
 #, kde-format
 msgid "Deselect all rows"
-msgstr ""
+msgstr "მწკრივების მონიშვნის მოხსნა"
 
 #: src/editor/vocabularyview.cpp:140
 #, kde-format
 msgid "Vocabulary Columns..."
-msgstr ""
+msgstr "ლექსიკონის სვეტები..."
 
 #: src/editor/vocabularyview.cpp:141
 #, kde-format
 msgid "Toggle display of individual vocabulary columns"
-msgstr ""
+msgstr "ინდივიდუალური ლექსიკონის სვეტების ჩვენების გადართვა"
 
 #: src/editor/vocabularyview.cpp:253
 #, kde-format
 msgid "Do you really want to delete the selected entry?"
 msgid_plural "Do you really want to delete the selected %1 entries?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "მართლა გნებავთ მონიშნული ჩანაწერის წაშლა?"
+msgstr[1] "მართლა გნებავთ მონიშნული %1 ჩანაწერის წაშლა?"
 
 #: src/editor/vocabularyview.cpp:254
 #, kde-format
@@ -1190,7 +1202,7 @@ msgstr "შესამოწმებელი არაფერია."
 #, kde-format
 msgctxt "@title of a popup"
 msgid "No Spell Checker Available"
-msgstr ""
+msgstr "მართლწერის შემმოწმებელი ხელმისაწვდომი არაა"
 
 #: src/editor/vocabularyview.cpp:388
 #, kde-format
@@ -1199,6 +1211,8 @@ msgid ""
 "Either the language set up is incorrect or no spellchecker was installed for "
 "this locale: %1."
 msgstr ""
+"ან ენა არასწორადაა მორგებული, ან ვერ ვიპოვე მართლწერის შემმოწმებელი "
+"ლოკალისთვის: %1."
 
 #: src/editor/wordtypeview.cpp:30
 #, kde-format
@@ -1208,7 +1222,7 @@ msgstr "ახალი"
 #: src/editor/wordtypeview.cpp:32
 #, kde-format
 msgid "Add a new word type to your document"
-msgstr ""
+msgstr "დაამატეთ ახალ სიტყვის ტიპი თქვენს დოკუმენტში"
 
 #: src/editor/wordtypeview.cpp:38
 #, kde-format
@@ -1218,17 +1232,17 @@ msgstr "ვიეტნამური"
 #: src/editor/wordtypeview.cpp:40
 #, kde-format
 msgid "Rename the selected word type"
-msgstr ""
+msgstr "მონიშნული სიტყვის ტიპის სახელის გადარქმევა"
 
 #: src/editor/wordtypeview.cpp:46
 #, kde-format
 msgid "Delete Word Type"
-msgstr ""
+msgstr "სიტყვის ტიპის წაშლა"
 
 #: src/editor/wordtypeview.cpp:48
 #, kde-format
 msgid "Delete the selected word type."
-msgstr ""
+msgstr "მონიშნული სიტყვის ტიპის წაშლა."
 
 #: src/editor/wordtypeview.cpp:55
 #, kde-format
@@ -1241,57 +1255,57 @@ msgstr "გრამატიკა"
 #: src/editor/wordtypeview.cpp:57
 #, kde-format
 msgid "To let Parley know the grammatical meaning of a word type."
-msgstr ""
+msgstr "სიტყვის ტიპის გრამატიკული მნიშვნელობა Parsley-სთვის."
 
 #: src/editor/wordtypeview.cpp:65
 #, kde-format
 msgid "This word type folder contains nouns."
-msgstr ""
+msgstr "ეს სიტყვის ტიპის საქაღალდე არსებით სახელებს შეიცავს."
 
 #: src/editor/wordtypeview.cpp:71
 #, kde-format
 msgid "Masculine Noun"
-msgstr ""
+msgstr "მამრობითი სქესის არსებითი სახელი"
 
 #: src/editor/wordtypeview.cpp:73
 #, kde-format
 msgid "This word type folder contains masculine nouns."
-msgstr ""
+msgstr "ეს სიტყვის ტიპის საქაღალდე მამრობითი სექსის არსებით სახელებს შეიცავს."
 
 #: src/editor/wordtypeview.cpp:79
 #, kde-format
 msgid "Feminine Noun"
-msgstr ""
+msgstr "მდედრობითი სქესის არსებითი სახელი"
 
 #: src/editor/wordtypeview.cpp:81
 #, kde-format
 msgid "This word type folder contains feminine nouns."
-msgstr ""
+msgstr "ეს სიტყვის ტიპის საქაღალდე მდედრობითი სექსის არსებით სახელებს შეიცავს."
 
 #: src/editor/wordtypeview.cpp:87
 #, kde-format
 msgid "Neuter Noun"
-msgstr ""
+msgstr "საშუალო სქესის არსებითი სახელი"
 
 #: src/editor/wordtypeview.cpp:89
 #, kde-format
 msgid "This word type folder contains neuter nouns."
-msgstr ""
+msgstr "ეს სიტყვის ტიპის საქაღალდე საშუალო სექსის არსებით სახელებს შეიცავს."
 
 #: src/editor/wordtypeview.cpp:97
 #, kde-format
 msgid "This word type folder contains adjectives."
-msgstr ""
+msgstr "ეს სიტყვის ტიპის საქაღალდე ზედსართავ სახელებს შეიცავს."
 
 #: src/editor/wordtypeview.cpp:105
 #, kde-format
 msgid "This word type folder contains adverbs."
-msgstr ""
+msgstr "ეს სიტყვის ტიპის საქაღალდე ზმნიზედებს შეიცავს."
 
 #: src/editor/wordtypeview.cpp:113
 #, kde-format
 msgid "This word type folder contains verbs."
-msgstr ""
+msgstr "ეს სიტყვის ტიპის საქაღალდე ზმნებს შეიცავს."
 
 #: src/editor/wordtypeview.cpp:119 src/parleydocument.cpp:485
 #, kde-format
@@ -1301,22 +1315,24 @@ msgstr "შეერთება"
 #: src/editor/wordtypeview.cpp:121
 #, kde-format
 msgid "This word type folder contains conjunctions."
-msgstr ""
+msgstr "ეს სიტყვის ტიპის საქაღალდე კავშირებს შეიცავს."
 
 #: src/editor/wordtypeview.cpp:127
 #, kde-format
 msgid "No Special Type"
-msgstr ""
+msgstr "სპეციალური ტიპის  გარეშე"
 
 #: src/editor/wordtypeview.cpp:130
 #, kde-format
 msgid "This word type folder contains no word type with special meaning."
 msgstr ""
+"ეს სიტყვის ტიპის საქაღალდე სპეციალური მნიშვნელობის მქონე სიტყვების ტიპს არ "
+"შეიცავს."
 
 #: src/editor/wordtypeview.cpp:208
 #, kde-format
 msgid "The root word type cannot be deleted."
-msgstr ""
+msgstr "ძირითადი სიტყვის ტიპს ვერ წაშლით."
 
 #: src/editor/wordtypeview.cpp:218
 #, kde-format
@@ -1325,24 +1341,25 @@ msgid ""
 msgid_plural ""
 "There are %1 words left with this word type. They will lose their word type. "
 "Continue?"
-msgstr[0] ""
+msgstr[0] "დარჩა სიტყვა ამ სიტყვის ტიპით. ის თავის ტიპს დაკარგავს. გავაგრძელო?"
 msgstr[1] ""
+"დარჩა %1 სიტყვა ამ სიტყვის ტიპით. ისინი თავის ტიპს დაკარგავენ. გავაგრძელო?"
 
 #: src/exportdialog.cpp:53
 #, kde-format
 msgctxt "@title:window"
 msgid "Export"
-msgstr ""
+msgstr "გატანა"
 
 #: src/exportdialog.cpp:79
 #, kde-format
 msgid "HTML document"
-msgstr ""
+msgstr "HTML დოკუმენტი"
 
 #: src/exportdialog.cpp:102
 #, kde-format
 msgid "Could not write to file \"%1\""
-msgstr ""
+msgstr "ვერ ჩავწერე ფაილში \"%1\""
 
 #: src/exportdialog.cpp:119
 #, kde-format
@@ -1364,19 +1381,20 @@ msgstr "გატანა"
 #: src/exportdialog.ui:20
 #, kde-format
 msgid "Flash Cards - to print learning cards (HTML)"
-msgstr ""
+msgstr "ბარათები - სასწავლო ბარათების დასაბეჭდად (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
 #: src/exportdialog.ui:30
 #, kde-format
 msgid "A vocabulary list that works in a web-browser and can be printed (HTML)"
 msgstr ""
+"ლექსიკონების სია, რომელიც ბრაუზერში მუშაობს და შეგიძლიათ, დაბეჭდოთ (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, csvRadio)
 #: src/exportdialog.ui:40
 #, kde-format
 msgid "Comma separated values (CSV)"
-msgstr ""
+msgstr "მძიმით გამოყოფილი მნიშვნელობები (CSV)"
 
 #: src/main.cpp:38
 #, kde-format
@@ -1391,11 +1409,15 @@ msgid ""
 "© 2004-2007\tPeter Hedlund\n"
 "© 2007-2010\tFrederik Gladhorn\n"
 msgstr ""
+"© 1999-2002\tEwald Arnold\n"
+"© 2001-2002\tThe KDE team\n"
+"© 2004-2007\tPeter Hedlund\n"
+"© 2007-2010\tFrederik Gladhorn\n"
 
 #: src/main.cpp:45
 #, kde-format
 msgid "Helps you train your vocabulary"
-msgstr ""
+msgstr "გეხმარებათ, ივარჯიშოთ თქვენს ლექსიკონში"
 
 #: src/main.cpp:49
 #, kde-format
@@ -1405,7 +1427,7 @@ msgstr "Inge Wallin"
 #: src/main.cpp:49 src/main.cpp:51
 #, kde-format
 msgid "Developer and Co-maintainer"
-msgstr ""
+msgstr "პროგრამისტი და თანალიდერი"
 
 #: src/main.cpp:51
 #, kde-format
@@ -1420,7 +1442,7 @@ msgstr "Frederik Gladhorn"
 #: src/main.cpp:53
 #, kde-format
 msgid "Developer, former maintainer"
-msgstr ""
+msgstr "პროგრამისტი, ყოფილი ლიდერი"
 
 #: src/main.cpp:55
 #, kde-format
@@ -1440,7 +1462,7 @@ msgstr "David Capel"
 #: src/main.cpp:57
 #, kde-format
 msgid "Practice Dialogs"
-msgstr ""
+msgstr "ვარჯიშის დიალოგები"
 
 #: src/main.cpp:59
 #, kde-format
@@ -1460,7 +1482,7 @@ msgstr "Peter Hedlund"
 #: src/main.cpp:62
 #, kde-format
 msgid "Countless fixes, former maintainer, port to KDE4"
-msgstr ""
+msgstr "უამრავი შეცდომის გასწორება, ყოფილი ლიდერი, გადატანა KDE4-ზე"
 
 #: src/main.cpp:65
 #, kde-format
@@ -1480,7 +1502,7 @@ msgstr "Lee Olson"
 #: src/main.cpp:70
 #, kde-format
 msgid "Artwork and Oxygen Icons"
-msgstr ""
+msgstr "ნახატები და Oxygen-ის ხატულები"
 
 #: src/main.cpp:72
 #, kde-format
@@ -1490,7 +1512,7 @@ msgstr "Anne-Marie Mahfouf"
 #: src/main.cpp:72
 #, kde-format
 msgid "Port to KConfig XT"
-msgstr ""
+msgstr "KConfig XT-ზე პორტი"
 
 #: src/main.cpp:74
 #, kde-format
@@ -1500,7 +1522,7 @@ msgstr "Jeremy Whiting"
 #: src/main.cpp:74
 #, kde-format
 msgid "Rewriting the kvtml library for KDE4"
-msgstr ""
+msgstr "გადაწერა kvtml ბიბლიოთეკა KDE4-სთვის"
 
 #: src/main.cpp:76
 #, kde-format
@@ -1510,7 +1532,7 @@ msgstr "Markus Büchele"
 #: src/main.cpp:76
 #, kde-format
 msgid "Bug reports and testing on the way to KDE4"
-msgstr ""
+msgstr "შეცდომების ანგარიშები და ტესტირება KDE4-ზე გადატანისას"
 
 #: src/main.cpp:78
 #, kde-format
@@ -1520,57 +1542,57 @@ msgstr "Ramona Knapp"
 #: src/main.cpp:78
 #, kde-format
 msgid "Conceived the name Parley"
-msgstr ""
+msgstr "მოიფიქრა სახელი Parley"
 
 #: src/main.cpp:91
 #, kde-format
 msgid "[file]"
-msgstr ""
+msgstr "[ფაილი]"
 
 #: src/main.cpp:91
 #, kde-format
 msgid "Document file to open"
-msgstr ""
+msgstr "გასახსნელი დოკუმენტის ფაილი"
 
 #: src/parleyactions.cpp:72
 #, kde-format
 msgid "Creates a new vocabulary collection"
-msgstr ""
+msgstr "ახალი ლექსიკონის კოლექციის შექმნა"
 
 #: src/parleyactions.cpp:77
 #, kde-format
 msgid "Opens an existing vocabulary collection"
-msgstr ""
+msgstr "არსებული ლექსიკონის კოლექციის გახსნა"
 
 #: src/parleyactions.cpp:85
 #, kde-format
 msgid "Open &Downloaded Vocabularies..."
-msgstr ""
+msgstr "&გადმოწერილი ლექსიკონების გახსნა..."
 
 #: src/parleyactions.cpp:86
 #, kde-format
 msgid "Open downloaded vocabulary collections"
-msgstr ""
+msgstr "გადმოწერილი ლექსიკონის კოლექციების გახსნა"
 
 #: src/parleyactions.cpp:91
 #, kde-format
 msgid "Save the active vocabulary collection"
-msgstr ""
+msgstr "აქტიური ლექსიკონის კოლექციის შენახვა"
 
 #: src/parleyactions.cpp:98
 #, kde-format
 msgid "Save the active vocabulary collection with a different name"
-msgstr ""
+msgstr "აქტიური ლექსიკონის კოლექციის შენახვა სხვა სახელი"
 
 #: src/parleyactions.cpp:105
 #, kde-format
 msgid "&Export..."
-msgstr ""
+msgstr "&გატანა..."
 
 #: src/parleyactions.cpp:106
 #, kde-format
 msgid "Export to HTML or CSV"
-msgstr ""
+msgstr "გატანა HTML-ში ან CSV-ში"
 
 #: src/parleyactions.cpp:114
 #, kde-format
@@ -1580,7 +1602,7 @@ msgstr "&თვისებები..."
 #: src/parleyactions.cpp:115
 #, kde-format
 msgid "Edit document properties"
-msgstr ""
+msgstr "დოკუმენტის თვისებების ჩასწორება"
 
 #: src/parleyactions.cpp:123
 #, kde-format
@@ -1590,17 +1612,17 @@ msgstr "სამუშაო დაფა"
 #: src/parleyactions.cpp:124
 #, kde-format
 msgid "Close the current vocabulary collection and show the dashboard"
-msgstr ""
+msgstr "მიმდინარე ლექსიკონის კოლექციის დახურვა და სამუშაო დაფის ჩვენება"
 
 #: src/parleyactions.cpp:130
 #, kde-format
 msgid "Quit Parley"
-msgstr ""
+msgstr "Parley-დან გასვლა"
 
 #: src/parleyactions.cpp:135
 #, kde-format
 msgid "Show the configuration dialog"
-msgstr ""
+msgstr "მორგების ფანჯრის ჩვენება"
 
 #: src/parleyactions.cpp:142
 #, kde-format
@@ -1611,63 +1633,63 @@ msgstr "&ენები..."
 #, kde-format
 msgid ""
 "Edit which languages are in the collection and their grammar properties."
-msgstr ""
+msgstr "ჩაასწორეთ, რომელი ენებია კოლექციაში და მათი გრამატიკული თვისებები."
 
 #: src/parleyactions.cpp:152
 #, kde-format
 msgid "Remove all confidence levels from the current document"
-msgstr ""
+msgstr "მიმდინარე დოკუმენტიდან ყველა ცოდნის დონის წაშლა"
 
 #: src/parleyactions.cpp:163
 #, kde-format
 msgid "Show Entries from Child Units"
-msgstr ""
+msgstr "შვილი სექციების ჩანაწერების ჩვენება"
 
 #: src/parleyactions.cpp:164
 #, kde-format
 msgid "Enable to also see the entries of child units in each unit."
-msgstr ""
+msgstr "ჩართეთ, რომ დაინახოთ თითოეული სექციის შვილი სექციის ჩანაწერებიც."
 
 #: src/parleyactions.cpp:174
 #, kde-format
 msgid "Automatic Translation"
-msgstr ""
+msgstr "ავტომატური თარგმანი"
 
 #. i18n: ectx: label, entry (AutomaticTranslation), group (General)
 #: src/parleyactions.cpp:175 src/settings/parley.kcfg:50
 #, kde-format
 msgid "Enable automatic translation of the unit entries."
-msgstr ""
+msgstr "სექციის ჩანაწერების ავტომატური თარგმანის ჩართვა."
 
 #: src/parleyactions.cpp:185
 #, kde-format
 msgid "Start Practice..."
-msgstr ""
+msgstr "ვარჯიშის დაწყება..."
 
 #: src/parleyactions.cpp:186
 #, kde-format
 msgid "Start practicing"
-msgstr ""
+msgstr "ვარჯიშის დაწყება"
 
 #: src/parleyactions.cpp:194
 #, kde-format
 msgid "Configure Practice..."
-msgstr ""
+msgstr "ვარჯიშის მორგება..."
 
 #: src/parleyactions.cpp:195
 #, kde-format
 msgid "Change practice settings"
-msgstr ""
+msgstr "ვარჯიშის პარამეტრების შეცვლა"
 
 #: src/parleyactions.cpp:203
 #, kde-format
 msgid "Export Results..."
-msgstr ""
+msgstr "შედეგების გატანა..."
 
 #: src/parleyactions.cpp:204
 #, kde-format
 msgid "Write a file with the results of the practice"
-msgstr ""
+msgstr "ვარჯიშის შედეგების შემცველი ფაილის ჩაწერა"
 
 #: src/parleyactions.cpp:212
 #, kde-format
@@ -1677,7 +1699,7 @@ msgstr "რედაქტორი"
 #: src/parleyactions.cpp:213
 #, kde-format
 msgid "Switch to vocabulary editor"
-msgstr ""
+msgstr "ლექსიკონის რედაქტორზე გადართვა"
 
 #: src/parleyactions.cpp:221
 #, kde-format
@@ -1699,12 +1721,12 @@ msgstr "%1-ის თვისებები"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
-msgstr ""
+msgstr "ლექსიკონების კოლექციის გახსნა"
 
 #: src/parleydocument.cpp:159
 #, kde-format
 msgid "Open in practice &mode"
-msgstr ""
+msgstr "&გახსნა ვარჯიშის რეჟიმში"
 
 #: src/parleydocument.cpp:200
 #, kde-format
@@ -1715,16 +1737,20 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
+"ლექსიკონის კოლექცია დაბლოკილია სხვა პროცესის მიერ.  შეგიძლიათ, გახსნათ ეს "
+"ფაილი, თუ ბლოკს გადაფარავთ, მაგრამ დაკარგავთ ცვლილებებს სხვა პროცესიდან.\n"
+"\n"
+"გნებავთ ბლოკის გადაფარვა?\n"
 
 #: src/parleydocument.cpp:202
 #, kde-format
 msgid "Take Over Lock"
-msgstr ""
+msgstr "ბლოკირების გადაფარვა"
 
 #: src/parleydocument.cpp:231
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
-msgstr ""
+msgstr "კოლექციის \"%1\" გახსნა დასრულდა შეცდომით: %2"
 
 #: src/parleydocument.cpp:232
 #, kde-format
@@ -1739,12 +1765,15 @@ msgid ""
 "\n"
 "Save file before exit?\n"
 msgstr ""
+"ლექსიკონი შეიცვალა.\n"
+"\n"
+"შევინახო ფაილი გასვლამდე?\n"
 
 #: src/parleydocument.cpp:293
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
-msgstr ""
+msgstr "გადმოწერილი ლექსიკონის კოლექციის გახსნა"
 
 #: src/parleydocument.cpp:331 src/parleydocument.cpp:416
 #, kde-format
@@ -1754,11 +1783,15 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
+"ფაილი \"%1\" სხვა პროცესის მიერ.  შეგიძლიათ, გახსნათ ეს ფაილი, თუ ბლოკს "
+"გადაფარავთ, მაგრამ დაკარგავთ ცვლილებებს სხვა პროცესიდან.\n"
+"\n"
+"გნებავთ ბლოკის გადაფარვა?\n"
 
 #: src/parleydocument.cpp:360 src/parleydocument.cpp:450
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
-msgstr ""
+msgstr "ჩაწერის ოპერაცია ფაილზე \"%1\" დასრულდა შეცდომით: %2"
 
 #: src/parleydocument.cpp:361 src/parleydocument.cpp:451
 #, kde-format
@@ -1770,19 +1803,20 @@ msgstr "ფაილის შენახვა"
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
-msgstr ""
+msgstr "ლექსიკონის შენახვა, როგორც"
 
 #: src/parleydocument.cpp:388
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr ""
+"<qt>ფაილი<p><b>%1</b></p>უკვე არსებობს. გნებავთ, თავზე გადააწეროთ?</qt>"
 
 #: src/parleydocument.cpp:396
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
-msgstr ""
+msgstr "%1-ის შენახვა"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/parleydocument.cpp:497 src/settings/documentproperties.ui:234
@@ -1808,12 +1842,12 @@ msgstr "მეორე ენა"
 #: src/parleydocument.cpp:509
 #, kde-format
 msgid "Lesson 1"
-msgstr ""
+msgstr "გაკვეთილი 1"
 
 #: src/parleydocument.cpp:551
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
-msgstr ""
+msgstr "ვერ გავხსენი ლექსიკონების კოლექცია \"%1\"."
 
 #: src/parleymainwindow.cpp:133
 #, kde-format
@@ -1821,19 +1855,19 @@ msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
 "when document is modified"
 msgid "%1 [*]"
-msgstr ""
+msgstr "%1 [*]"
 
 #: src/parleymainwindow.cpp:173
 #, kde-format
 msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
-msgstr ""
+msgstr "არ შეგიძლიათ, დაიწყოთ ვარჯიში, როცა ცნობილი ენა იგივეა, რაც სასწავლი."
 
 #: src/parleymainwindow.cpp:173
 #, kde-format
 msgid "Select languages"
-msgstr ""
+msgstr "აირჩიეთ ენები"
 
 #: src/parleymainwindow.cpp:211
 #, kde-format
@@ -1843,7 +1877,7 @@ msgstr "ახალი ლექსიკონების გადმოწ�
 #: src/parleymainwindow.cpp:217
 #, kde-format
 msgid "Downloads new vocabulary collections"
-msgstr ""
+msgstr "გადმოწერს ახალი ლექსიკონის კოლექციებს"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/parleyui.rc:21
@@ -1855,19 +1889,19 @@ msgstr "ხელსაწყოთა მთავარი ზოლი"
 #: src/parleyui.rc:29 src/practice/practiceui.rc:18
 #, kde-format
 msgid "Practice Toolbar"
-msgstr ""
+msgstr "ვარჯიშის პანელი"
 
 #. i18n: ectx: ToolBar (statisticsToolBar)
 #: src/parleyui.rc:33 src/statistics/statisticsui.rc:19
 #, kde-format
 msgid "Statistics Toolbar"
-msgstr ""
+msgstr "სტატისტიკის პანელი"
 
 #. i18n: ectx: ToolBar (practiceSummaryToolBar)
 #: src/parleyui.rc:40 src/practice/practicesummaryui.rc:20
 #, kde-format
 msgid "Practice Summary Toolbar"
-msgstr ""
+msgstr "ვარჯიშის შეჯამების პანელი"
 
 #: src/practice/audiobutton.cpp:57 src/practice/audiobutton.cpp:58
 #, kde-format
@@ -1877,7 +1911,7 @@ msgstr "შეჩერება"
 #: src/practice/comparisonbackendmode.cpp:59
 #, kde-format
 msgid "All comparison forms were right."
-msgstr ""
+msgstr "ყველა შედარების ფორმა სწორი იყო."
 
 #: src/practice/comparisonbackendmode.cpp:65
 #, kde-format
@@ -1885,7 +1919,7 @@ msgctxt ""
 "the user entered the wrong absolute form when practicing comparison forms of "
 "adjectives (the base form of the adjective is wrong)"
 msgid "\"%1\" is the wrong word."
-msgstr ""
+msgstr "\"%1\" არასწორი სიტყვაა."
 
 #: src/practice/comparisonbackendmode.cpp:70
 #, kde-format
@@ -1893,7 +1927,7 @@ msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (good, better, best)"
 msgid "Both comparison forms (comparative and superlative) are wrong."
-msgstr ""
+msgstr "ორივე შედარების დონე (შედარებითი და აღმატებითი) არასწორია."
 
 #: src/practice/comparisonbackendmode.cpp:74
 #, kde-format
@@ -1901,7 +1935,7 @@ msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (second form wrong - better)"
 msgid "The comparative is wrong."
-msgstr ""
+msgstr "შედარებითი ხარისხი არასწორია."
 
 #: src/practice/comparisonbackendmode.cpp:78
 #, kde-format
@@ -1909,12 +1943,12 @@ msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (third form wrong - best)"
 msgid "The superlative is wrong."
-msgstr ""
+msgstr "აღმატებითი ხარისხი არასწორია."
 
 #: src/practice/comparisonmodewidget.cpp:65
 #, kde-format
 msgid "Enter the comparison forms."
-msgstr ""
+msgstr "შეიყვანეთ შედარების ფორმებით."
 
 #: src/practice/configure/blockoptions.cpp:22
 msgid "Do not Care"
@@ -2023,13 +2057,13 @@ msgstr "12 თვე"
 #: src/practice/configure/blockoptions.cpp:220
 #, kde-format
 msgid "Illogical blocking times.\n"
-msgstr ""
+msgstr "ბლოკირებისა არალოგიკური დრო.\n"
 
 #: src/practice/configure/blockoptions.cpp:222
 #: src/practice/configure/blockoptions.cpp:235
 #, kde-format
 msgid "The time for level %1 should be lower than the time for level %2.\n"
-msgstr ""
+msgstr "დრო დონისთვის %1 არ უნდა იყოს უფრო დაბალი, ვიდრე დრო დონისთვის %2.\n"
 
 #: src/practice/configure/blockoptions.cpp:233
 #, kde-format
@@ -2037,6 +2071,8 @@ msgid ""
 "\n"
 "Illogical expiration times.\n"
 msgstr ""
+"\n"
+"არალოგიკური დასრულების დრო.\n"
 
 #: src/practice/configure/blockoptions.cpp:247
 #, kde-format
@@ -2044,17 +2080,20 @@ msgid ""
 "\n"
 "Illogical blocking vs. expiration times.\n"
 msgstr ""
+"\n"
+"არალოგიკური ბლოკირების vs. ამოწურვის დრო.\n"
 
 #: src/practice/configure/blockoptions.cpp:249
 #, kde-format
 msgid ""
 "The blocking time at level %1 should be lower than the expiration time.\n"
 msgstr ""
+"ბლოკირების დრო დონეზე %1 უფრო დაბალი უნდა იყოს, ვიდრე ვადის ამოწურვის დრო.\n"
 
 #: src/practice/configure/blockoptions.cpp:255
 #, kde-format
 msgid "Illogical Values"
-msgstr ""
+msgstr "არალოგიკური მნიშვნელობები"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev2)
 #: src/practice/configure/blockoptions.ui:40
@@ -2078,13 +2117,13 @@ msgstr "დონე &6:"
 #: src/practice/configure/blockoptions.ui:79
 #, kde-format
 msgid "E&xpiring"
-msgstr ""
+msgstr "&ცოდნის დაკარგვა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Block)
 #: src/practice/configure/blockoptions.ui:95
 #, kde-format
 msgid "Bl&ocking"
-msgstr ""
+msgstr "&დაბლოკვა"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev4)
 #: src/practice/configure/blockoptions.ui:118
@@ -2114,31 +2153,31 @@ msgstr "დონე &3:"
 #: src/practice/configure/blockoptions.ui:218
 #, kde-format
 msgid "Do not practice vocabulary that has been asked within:"
-msgstr ""
+msgstr "არ ვივარჯიშოთ ლექსიკონში, რომელიც ვიკითხეთ დროის შუალედში:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/blockoptions.ui:228
 #, kde-format
 msgid "Vocabulary drops one grade after this much time:"
-msgstr ""
+msgstr "ლექსიკონი იკლებს ერთ ქულას ამდენი დროის შემდეგ:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdjective)
 #: src/practice/configure/comparisonoptionswidget.ui:16
 #, kde-format
 msgid "Include Adjectives"
-msgstr ""
+msgstr "ზედსართავი სახელების ჩასმა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdverb)
 #: src/practice/configure/comparisonoptionswidget.ui:23
 #, kde-format
 msgid "Include Adverbs"
-msgstr ""
+msgstr "ზმნიზედების ჩასმა"
 
 #: src/practice/configure/configurepracticedialog.cpp:23
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Practice"
-msgstr ""
+msgstr "ვარჯიშის მორგება"
 
 #: src/practice/configure/configurepracticedialog.cpp:28
 #, kde-format
@@ -2152,7 +2191,7 @@ msgstr "ძირითადი"
 #, kde-format
 msgctxt "Configure general settings for practicing vocabulary."
 msgid "General Practice Settings"
-msgstr ""
+msgstr "ზოგადი ვარჯიშის პარამეტრები"
 
 #: src/practice/configure/configurepracticedialog.cpp:35
 #, kde-format
@@ -2164,19 +2203,19 @@ msgstr "ბლოკირება"
 #: src/practice/configure/configurepracticedialog.cpp:37
 #, kde-format
 msgid "Blocking Settings"
-msgstr ""
+msgstr "დაბლოკვის მორგება"
 
 #: src/practice/configure/configurepracticedialog.cpp:42
 #, kde-format
 msgctxt ""
 "@title:group ignore vocabulary based on some properties like word type"
 msgid "Thresholds"
-msgstr ""
+msgstr "შეზღუდვები"
 
 #: src/practice/configure/configurepracticedialog.cpp:44
 #, kde-format
 msgid "Threshold Settings"
-msgstr ""
+msgstr "შეზღუდვების მორგება"
 
 #: src/practice/configure/configurepracticedialog.cpp:49
 #, kde-format
@@ -2184,55 +2223,55 @@ msgctxt ""
 "@title:group Configure specific settings for practicing vocabulary, short "
 "title in config dialog."
 msgid "Specific"
-msgstr ""
+msgstr "მითითებული"
 
 #: src/practice/configure/configurepracticedialog.cpp:51
 #, kde-format
 msgctxt "Configure specific settings for practicing vocabulary."
 msgid "Specific Practice Settings"
-msgstr ""
+msgstr "მითითებული ვარჯიშის მორგება"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: src/practice/configure/generalpracticeoptions.ui:17
 #, kde-format
 msgid "Correction"
-msgstr ""
+msgstr "კორექცია"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:23
 #, kde-format
 msgid "Answers with wrong accents are still counted as correct."
-msgstr ""
+msgstr "პასუხები არასწორი მახვილით მაინც სწორად ჩაითვლება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:26
 #, kde-format
 msgid "Ignore accents"
-msgstr ""
+msgstr "მახვილების გამოტოვება"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:36
 #, kde-format
 msgid "Any captitalization in the answer is counted as correct."
-msgstr ""
+msgstr "პასუხში სიმბოლოების ნებისმიერი რეგისტრი სწორად ითვლება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:39
 #, kde-format
 msgid "Ignore capitalization"
-msgstr ""
+msgstr "სიმბოლოების რეგისტრის გამოტოვება"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:49
 #, kde-format
 msgid "Any punctuation mistake in the answer is counted as correct."
-msgstr ""
+msgstr "პასუხში ნებისმიერი პუნქტუაციის შეცდომა ჩაითვლება, როგორც სწორი."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:52
 #, kde-format
 msgid "Ignore punctuation"
-msgstr ""
+msgstr "პუნქტუაციის გამოტოვება"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:62
@@ -2240,60 +2279,62 @@ msgstr ""
 msgid ""
 "During the practice you can use the hint button to see parts of the solution."
 msgstr ""
+"ვარჯიშის მიმდინარეობისას შეგეძლებათ ისარგებლოთ მინიშნების ღილაკით, რომ "
+"ამოხსნის ნაწილი დაინახოთ."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:65
 #, kde-format
 msgid "Enable hints"
-msgstr ""
+msgstr "მინიშნებების ჩართვა"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
 #: src/practice/configure/generalpracticeoptions.ui:91
 #, kde-format
 msgid "Images and Sound"
-msgstr ""
+msgstr "სურათების და ხმა"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:97
 #, kde-format
 msgid "During the practice, images are shown for the question."
-msgstr ""
+msgstr "ვარჯიშისას კითხვის გამოსახულებები გამოჩნდება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:100
 #, kde-format
 msgid "Image for question"
-msgstr ""
+msgstr "კითხვის სურათი"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:110
 #, kde-format
 msgid "During the practice, images are shown for the solution."
-msgstr ""
+msgstr "ვარჯიშისას, პასუხის გამოსახულებები გამოჩნდება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:113
 #, kde-format
 msgid "Image for solution"
-msgstr ""
+msgstr "პასუხის სურათი"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:123
 #, kde-format
 msgid "Allow using images instead of words in flashcards."
-msgstr ""
+msgstr "ბარათებში სიტყვების მაგიერ გამოსახულებების გამოყენების დაშვება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:126
 #, kde-format
 msgid "Allow images instead of words"
-msgstr ""
+msgstr "სიტყვების მაგიერ გამოსახულებების დაშვება"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PracticeSoundEnabled)
 #: src/practice/configure/generalpracticeoptions.ui:136
 #, kde-format
 msgid "Enable playing of pronunciation sound files during the practice."
-msgstr ""
+msgstr "ვარჯიშისას გამოთქმის ხმის ფაილების დაკვრის დაშვება."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/generalpracticeoptions.ui:158
@@ -2303,12 +2344,15 @@ msgid ""
 "associated directly with the current word. With this option enabled any "
 "synonym is accepted."
 msgstr ""
+"ნაგულისხმევად, გთხოვთ შეიყვანოთ სინონიმები მანამდე, სანამ არ შეიყვანთ ერთ-"
+"ერთს, რომელიც მიმდინარე სიტყვასთან პირდაპირ ასოცირდება. თუ ეს პარამეტრი "
+"ჩართულია, ყველა სინონიმი მისაღები იქნება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
 #, kde-format
 msgid "Accept any synonym"
-msgstr ""
+msgstr "ნებისმიერი სინონიმის მიღება"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: src/practice/configure/generalpracticeoptions.ui:191
@@ -2320,13 +2364,13 @@ msgstr "სესიები"
 #: src/practice/configure/generalpracticeoptions.ui:202
 #, kde-format
 msgid "Max session size:"
-msgstr ""
+msgstr "მაქს. სესიის ზომა:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
 #, kde-format
 msgid "Max number of new words:"
-msgstr ""
+msgstr "ახალი სიტყვების მაქს. რაოდენობა:"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:23
@@ -2335,24 +2379,26 @@ msgid ""
 "When creating multiple choice practices, try to show answers of the same "
 "word type."
 msgstr ""
+"მრავალარჩევნიანი ვარჯიშების შექმნისას ცდა, რომ იგივე სიტყვის ტიპის პასუხები "
+"იყოს ნაჩვენები."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:26
 #, kde-format
 msgid "Use choices of the same word type"
-msgstr ""
+msgstr "იგივე სიტყვის ტიპის არჩევნების გამოყენება"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/specificpracticeoptions.ui:41
 #, kde-format
 msgid "Number of choices:"
-msgstr ""
+msgstr "ვარიანტების რაოდენობა:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
 #: src/practice/configure/thresholdoptions.ui:17
 #, kde-format
 msgid "Only practice vocabulary that fulfills the following conditions:"
-msgstr ""
+msgstr "ვარჯიში ლექსიკონებისა, რომლებიც აკმაყოფილებენ შემდეგ პირობებს:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/thresholdoptions.ui:26
@@ -2376,65 +2422,65 @@ msgstr "დონე:"
 #: src/practice/configure/thresholdoptions.ui:53
 #, kde-format
 msgid "Times practiced:"
-msgstr ""
+msgstr "ვარჯიშების რაოდენობა:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
 #, kde-format
 msgid "Answered incorrectly:"
-msgstr ""
+msgstr "არასწორი პასუხებით:"
 
 #: src/practice/conjugationbackendmode.cpp:93
 #, kde-format
 msgid "All conjugation forms were right."
-msgstr ""
+msgstr "ყველა უღლების ფორმა სწორი იყო."
 
 #: src/practice/conjugationbackendmode.cpp:97
 #, kde-format
 msgctxt "You did not get the conjugation forms right."
 msgid "You answered %1 conjugation form correctly."
 msgid_plural "You answered %1 conjugation forms correctly."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "თქვენ სწორად უპასუხეთ %1 უღლების ფორმას."
+msgstr[1] "თქვენ სწორად უპასუხეთ %1 უღლების ფორმას."
 
 #: src/practice/conjugationmodewidget.cpp:111
 #, kde-format
 msgid "Enter all conjugation forms."
-msgstr ""
+msgstr "შეიყვანეთ ყველა უღლების ფორმა."
 
 #: src/practice/genderbackendmode.cpp:61
 #, kde-format
 msgid "Choose the right article for \"%1\""
-msgstr ""
+msgstr "აირჩიეთ სწორი სტატია \"%1\"-სთვის"
 
 #: src/practice/genderbackendmode.cpp:85
 #, kde-format
 msgctxt "@label the gender of the word: masculine"
 msgid "%1 is masculine"
-msgstr ""
+msgstr "%1 მამრობითი სქესისაა"
 
 #: src/practice/genderbackendmode.cpp:90
 #, kde-format
 msgctxt "@label the gender of the word: feminine"
 msgid "%1 is feminine"
-msgstr ""
+msgstr "%1 მდედრობითი სქესისაა"
 
 #: src/practice/genderbackendmode.cpp:95
 #, kde-format
 msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
-msgstr ""
+msgstr "%1 საშუალო სქესისაა"
 
 #: src/practice/guifrontend.cpp:123
 #, kde-format
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
-msgstr ""
+msgstr "სექცია: %1"
 
 #: src/practice/guifrontend.cpp:129
 #, kde-format
 msgid "New word"
-msgstr ""
+msgstr "ახალი სიტყვა"
 
 #: src/practice/guifrontend.cpp:132
 #, kde-format
@@ -2442,17 +2488,17 @@ msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
 "initial or long term"
 msgid "%1, confidence %2"
-msgstr ""
+msgstr "%1, ცოდნის დონე %2"
 
 #: src/practice/guifrontend.cpp:133
 #, kde-format
 msgid "initial"
-msgstr ""
+msgstr "საწყისი"
 
 #: src/practice/guifrontend.cpp:133
 #, kde-format
 msgid "long term"
-msgstr ""
+msgstr "გრძელვადიანი"
 
 #: src/practice/guifrontend.cpp:199
 #, kde-format
@@ -2463,35 +2509,39 @@ msgid_plural ""
 "You answered correctly %2 of a total of %1 words.\n"
 "You are %3% done."
 msgstr[0] ""
+"სწორად უპასუხეთ %2 სიტყვას %1-დან.\n"
+"%3% მზადაა."
 msgstr[1] ""
+"სწორად უპასუხეთ %2 სიტყვას %1-დან.\n"
+"%3% მზადაა."
 
 #: src/practice/latexrenderer.cpp:46
 #, kde-format
 msgid "Rendering..."
-msgstr ""
+msgstr "რენდერი..."
 
 #: src/practice/latexrenderer.cpp:135
 #, kde-format
 msgid "LaTeX error."
-msgstr ""
+msgstr "LaTeX-ის შეცდომა."
 
 #: src/practice/multiplechoicebackendmode.cpp:103
 #: src/practice/writtenbackendmode.cpp:145
 #, kde-format
 msgid "You revealed the answer by using too many hints."
-msgstr ""
+msgstr "პასუხი მეტისმეტად ბევრი მინიშნების გამოყენებით გამოიცანით."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, answerLaterButton)
 #: src/practice/practice_mainwindow.ui:128
 #, kde-format
 msgid "Skip this word for now and ask again later"
-msgstr ""
+msgstr "ახლა ეს სიტყვა გამოტოვე და მოგვიანებით მკითხე"
 
 #. i18n: ectx: property (text), widget (QPushButton, answerLaterButton)
 #: src/practice/practice_mainwindow.ui:131
 #, kde-format
 msgid "Answer Later"
-msgstr ""
+msgstr "მოგვიანებით პასუხი"
 
 #. i18n: ectx: property (text), widget (QPushButton, hintButton)
 #: src/practice/practice_mainwindow.ui:141
@@ -2509,13 +2559,13 @@ msgstr "გაგრძელება"
 #: src/practice/practice_mainwindow.ui:219
 #, kde-format
 msgid "I Did not Know it"
-msgstr ""
+msgstr "არ ვიცი"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
 #: src/practice/practice_mainwindow.ui:226
 #, kde-format
 msgid "I Knew it"
-msgstr ""
+msgstr "ვიცოდი"
 
 #. i18n: ectx: property (format), widget (QProgressBar, totalProgress)
 #: src/practice/practice_mainwindow.ui:300
@@ -2533,28 +2583,28 @@ msgstr "აბსოლუტური"
 #: src/practice/practice_widget_comparison.ui:80
 #, kde-format
 msgid "comparative"
-msgstr ""
+msgstr "შედარებითი ხარისხი"
 
 #. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
 #: src/practice/practice_widget_comparison.ui:125
 #, kde-format
 msgid "superlative"
-msgstr ""
+msgstr "აღმატებითი ხარისხი"
 
 #: src/practice/practicemainwindow.cpp:68
 #, kde-format
 msgid "Stop Practice"
-msgstr ""
+msgstr "ვარჯიშის გაჩერება"
 
 #: src/practice/practicemainwindow.cpp:70
 #, kde-format
 msgid "Stop practicing"
-msgstr ""
+msgstr "ვარჯიშის გაჩერება"
 
 #: src/practice/practicemainwindow.cpp:77
 #, kde-format
 msgid "Change answer to right/wrong"
-msgstr ""
+msgstr "პასუხის სისწორე/არასწორობის ნიშანი"
 
 #: src/practice/practicemainwindow.cpp:79
 #, kde-format
@@ -2562,19 +2612,21 @@ msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
 "This shortcut changes how the answer is counted."
 msgstr ""
+"როცა უპასუხებთ, Parley აჩვენებს, სწორი იყო პასუხი, თუ არა.\n"
+"ეს მალსახმობი აჩვენებს, როგორ ითვლება პასუხები."
 
 #: src/practice/practicesummarycomponent.cpp:62
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
-msgstr ""
+msgstr "ივარჯიშეთ %1 %2:%3-ში."
 
 #: src/practice/practicesummarycomponent.cpp:63
 #, kde-format
 msgid "one word"
 msgid_plural "%1 words"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ერთი სიტყვა"
+msgstr[1] "%1 სიტყვა"
 
 #: src/practice/practicesummarycomponent.cpp:64
 #, kde-format
@@ -2587,18 +2639,18 @@ msgstr[1] "%1 წუთი"
 #, kde-format
 msgid "one second"
 msgid_plural "%1 seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ერთი წამი"
+msgstr[1] "%1 წამი"
 
 #: src/practice/practicesummarycomponent.cpp:82
 #, kde-format
 msgid "Practice Overview"
-msgstr ""
+msgstr "ვარჯიშის მიმოხილვა"
 
 #: src/practice/practicesummarycomponent.cpp:83
 #, kde-format
 msgid "Switch to the Practice Overview page"
-msgstr ""
+msgstr "გადართვა ვარჯიშის მიმოხილვის გვერდზე"
 
 #: src/practice/practicesummarycomponent.cpp:150
 #, kde-format
@@ -2608,47 +2660,47 @@ msgstr "HTML ფაილები"
 #: src/practice/practicesummarycomponent.cpp:150
 #, kde-format
 msgid "OpenDocument text files"
-msgstr ""
+msgstr "OpenDocument-ის ტექსტური ფაილები"
 
 #: src/practice/practicesummarycomponent.cpp:160
 #, kde-format
 msgid "Practice results"
-msgstr ""
+msgstr "ვარჯიშის შედეგები"
 
 #: src/practice/practicesummarycomponent.cpp:165
 #, kde-format
 msgid "Answered questions: %1\n"
-msgstr ""
+msgstr "პასუხგაცემული კითხვები: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:166
 #, kde-format
 msgid "Correct answers: %1\n"
-msgstr ""
+msgstr "სწორი პასუხები: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:167
 #, kde-format
 msgid "Wrong answers: %1\n"
-msgstr ""
+msgstr "არასწორი პასუხები: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:174
 #, kde-format
 msgid "<b>Attempts</b>"
-msgstr ""
+msgstr "<b>მცდელობები</b>"
 
 #: src/practice/practicesummarycomponent.cpp:175
 #, kde-format
 msgid "<b>Question</b>"
-msgstr ""
+msgstr "<b>კითხვა</b>"
 
 #: src/practice/practicesummarycomponent.cpp:176
 #, kde-format
 msgid "<b>Correct answer</b>"
-msgstr ""
+msgstr "<b>სწორი პასუხი</b>"
 
 #: src/practice/practicesummarycomponent.cpp:177
 #, kde-format
 msgid "<b>Your errors</b>"
-msgstr ""
+msgstr "<b>თქვენი შეცდომები</b>"
 
 #: src/practice/practicesummarycomponent.cpp:192
 #, kde-format
@@ -2658,7 +2710,7 @@ msgstr "%1-ში ჩაწერის შეცდომა"
 #: src/practice/practicesummarycomponent.cpp:192
 #, kde-format
 msgid "Could not write file"
-msgstr ""
+msgstr "ფაილში ჩაწერის შეცდომა"
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #: src/practice/practicesummarywidget.ui:28
@@ -2687,12 +2739,12 @@ msgstr "თქვენი პასუხი"
 #: src/practice/sessionmanagerbase.cpp:53
 #, kde-format
 msgid "The vocabulary collection contains fewer than two languages."
-msgstr ""
+msgstr "ლექსიკონის კოლექცია ორზე ნაკლებ ენას შეიცავს."
 
 #: src/practice/sessionmanagerbase.cpp:53
 #, kde-format
 msgid "Could not start practice"
-msgstr ""
+msgstr "ვარჯიშის დაწყება შეუძლებელია"
 
 #: src/practice/statustoggle.cpp:77
 #, kde-format
@@ -2701,11 +2753,13 @@ msgid ""
 "Words will only be counted as correct if they are answered correctly on the "
 "first attempt."
 msgstr ""
+"ეს პასუხი სწორად ჩაითვლება.\n"
+"სიტყვები, მხოლოდ, მაშინ ითვლება სწორად, თუ მათზე პასუხს პირველ ცდაზე გასცემთ."
 
 #: src/practice/statustoggle.cpp:78
 #, kde-format
 msgid "Count this answer as wrong"
-msgstr ""
+msgstr "ამ პასუხის არასწორად ჩათვლა"
 
 #: src/practice/statustoggle.cpp:81
 #, kde-format
@@ -2714,81 +2768,83 @@ msgid ""
 "Words will only be counted as correct if they are answered correctly on the "
 "first attempt."
 msgstr ""
+"ეს პასუხი არასწორად ჩაითვლება.\n"
+"სიტყვები, მხოლოდ, მაშინ ითვლება სწორად, თუ მათზე პასუხს პირველ ცდაზე გასცემთ."
 
 #: src/practice/statustoggle.cpp:82
 #, kde-format
 msgid "Count this answer as correct"
-msgstr ""
+msgstr "ამ პასუხის სწორად ჩათვლა"
 
 #: src/practice/summarybarwidget.cpp:78
 #, kde-format
 msgctxt "test results"
 msgid "%1 % correct"
-msgstr ""
+msgstr "%1 % სწორია"
 
 #: src/practice/summarybarwidget.cpp:80
 #, kde-format
 msgctxt "test results"
 msgid "%1 % wrong"
-msgstr ""
+msgstr "%1 % არასწორია"
 
 #: src/practice/summarybarwidget.cpp:82
 #, kde-format
 msgctxt "test results"
 msgid "%1 % not answered"
-msgstr ""
+msgstr "%1 % პასუხგაუცემელია"
 
 #: src/practice/summarybarwidget.cpp:140
 #, kde-format
 msgid "Answered correctly on the first attempt: %1 of %2 (%3 %)"
-msgstr ""
+msgstr "სწორი პასუხი პირველივე ცდაზე: %1 %2-დან (%3 %)"
 
 #: src/practice/summarybarwidget.cpp:147
 #, kde-format
 msgid "Answered wrong on the first attempt: %1 of %2 (%3 %)"
-msgstr ""
+msgstr "არასწორი პასუხი პირველ ცდაზე: %1 %2-დან (%3 %)"
 
 #: src/practice/summarybarwidget.cpp:154
 #, kde-format
 msgid "Not answered during this practice: %1 of %2 (%3 %)"
-msgstr ""
+msgstr "არ უპასუხეთ ამ ვარჯიშის დროს: %1 %2-დან (%3 %)"
 
 #: src/practice/writtenbackendmode.cpp:70
 #, kde-format
 msgid "Your answer was wrong."
-msgstr ""
+msgstr "თქვენი პასუხი არასწორია."
 
 #: src/practice/writtenbackendmode.cpp:84
 #, kde-format
 msgid ""
 "Your answer was a synonym. Please enter another word with the same "
 "translation."
-msgstr ""
+msgstr "თქვენი პასუხი სინონიმი იყო. შეიყვანეთ სხვა სიტყვა იგივე თარგმანით."
 
 #: src/practice/writtenbackendmode.cpp:88
 #, kde-format
 msgid "Your answer was an already entered synonym."
-msgstr ""
+msgstr "თქვენი პასუხი უკვე შეყვანილი სინონიმია."
 
 #: src/practice/writtenbackendmode.cpp:91
 #, kde-format
 msgid "Your answer was a synonym and your punctuation was wrong."
-msgstr ""
+msgstr "თქვენი პასუხი სინონიმია და პუნქტუაცია არასწორი იყო."
 
 #: src/practice/writtenbackendmode.cpp:93
 #, kde-format
 msgid "Your answer was a synonym and your capitalization was wrong."
-msgstr ""
+msgstr "თქვენი პასუხი სინონიმია და სიმბოლოების რეგისტრი არასწორი იყო."
 
 #: src/practice/writtenbackendmode.cpp:95
 #, kde-format
 msgid "Your answer was a synonym and accents were wrong."
-msgstr ""
+msgstr "თქვენი პასუხი სინონიმია და მახვილები არასწორი იყო."
 
 #: src/practice/writtenbackendmode.cpp:97
 #, kde-format
 msgid "Your answer was a synonym."
-msgstr ""
+msgstr "თქვენი პასუხი სინონიმი იყო."
 
 #: src/practice/writtenbackendmode.cpp:105
 #, kde-format
@@ -2796,6 +2852,8 @@ msgid ""
 "Your answer was wrong as punctuation mistakes are not accepted. Please try "
 "again."
 msgstr ""
+"თქვენი პასუხი არასწორია, რადგან პუნქტუაციის შეცდომები მიუღებელია. კიდევ "
+"სცადეთ."
 
 #: src/practice/writtenbackendmode.cpp:107
 #, kde-format
@@ -2803,37 +2861,40 @@ msgid ""
 "Your answer was wrong as capitalization mistakes are not accepted. Please "
 "try again."
 msgstr ""
+"თქვენი პასუხი არასწორია, რადგან სიმბოლოების რეგისტრის შეცდომები მიუღებელია. "
+"კიდევ სცადეთ."
 
 #: src/practice/writtenbackendmode.cpp:109
 #, kde-format
 msgid ""
 "Your answer was wrong as accent mistakes are not accepted. Please try again."
 msgstr ""
+"თქვენი პასუხი არასწორია, რადგან მახვილის შეცდომები მიუღებელია. კიდევ სცადეთ."
 
 #: src/practice/writtenbackendmode.cpp:111
 #, kde-format
 msgid "Your answer was wrong. Please try again."
-msgstr ""
+msgstr "თქვენი პასუხი არასწორი იყო. თავიდან სცადეთ."
 
 #: src/practice/writtenbackendmode.cpp:118
 #, kde-format
 msgid "Your answer was right, but your punctuation was wrong."
-msgstr ""
+msgstr "თქვენი პასუხი სწორი იყო, პუნქტუაცია კი - არა."
 
 #: src/practice/writtenbackendmode.cpp:120
 #, kde-format
 msgid "Your answer was right, but your capitalization was wrong."
-msgstr ""
+msgstr "თქვენი პასუხი სწორი იყო, სიმბოლოების რეგისტრი კი - არა."
 
 #: src/practice/writtenbackendmode.cpp:122
 #, kde-format
 msgid "Your answer was right, but accents were wrong."
-msgstr ""
+msgstr "თქვენი პასუხი სწორი იყო, მახვილები კი - არა."
 
 #: src/practice/writtenbackendmode.cpp:124
 #, kde-format
 msgid "Your answer was right."
-msgstr ""
+msgstr "თქვენი პასუხი სწორია."
 
 #: src/practice/writtenbackendmode.cpp:128
 #, kde-format
@@ -2841,6 +2902,7 @@ msgid ""
 "Your answer was right... but not on the first try and your punctuation was "
 "wrong."
 msgstr ""
+"თქვენი პასუხი სწორი იყო, ოღონდ არა პირველი ცდიდან, პუნქტუაცია კი - არა."
 
 #: src/practice/writtenbackendmode.cpp:130
 #, kde-format
@@ -2848,33 +2910,35 @@ msgid ""
 "Your answer was right... but not on the first try and your capitalization "
 "was wrong."
 msgstr ""
+"თქვენი პასუხი სწორი იყო, ოღონდ არა პირველი ცდიდან, სიმბოლოების რეგისტრი კი - "
+"არა."
 
 #: src/practice/writtenbackendmode.cpp:132
 #, kde-format
 msgid ""
 "Your answer was right... but not on the first try and accents were wrong."
-msgstr ""
+msgstr "თქვენი პასუხი სწორი იყო, ოღონდ არა პირველი ცდიდან, მახვილები კი - არა."
 
 #: src/practice/writtenbackendmode.cpp:134
 #, kde-format
 msgid "Your answer was right... but not on the first try."
-msgstr ""
+msgstr "თქვენი პასუხი სწორი იყო, ოღონდ არა პირველი ცდიდან."
 
 #: src/practice/writtenbackendmode.cpp:154
 #, kde-format
 msgid "The solution starts with: %1"
-msgstr ""
+msgstr "პასუხი იწყება: %1"
 
 #: src/practice/writtenpracticewidget.cpp:130
 #, kde-format
 msgid "Synonym: "
-msgstr ""
+msgstr "სინონიმი: "
 
 #. i18n: ectx: property (title), widget (QGroupBox, tiltle_group)
 #: src/settings/documentproperties.ui:38
 #, kde-format
 msgid "General Document Properties"
-msgstr ""
+msgstr "ზოგადი დოკუმენტის თვისებები"
 
 #. i18n: ectx: property (text), widget (QLabel, label_title)
 #: src/settings/documentproperties.ui:50
@@ -2887,7 +2951,7 @@ msgstr "&სათაური:"
 #: src/settings/documentproperties.ui:69 src/settings/documentproperties.ui:95
 #, kde-format
 msgid "A title for your document."
-msgstr ""
+msgstr "სათაური თქვენი დოკუმენტისთვის."
 
 #. i18n: ectx: property (text), widget (QLabel, label_author)
 #: src/settings/documentproperties.ui:76
@@ -2905,7 +2969,7 @@ msgstr "&ელფოსტა:"
 #: src/settings/documentproperties.ui:121
 #, kde-format
 msgid "A way to contact you (email or a webpage)."
-msgstr ""
+msgstr "როგორ დაგიკავშირდეთ (ელფოსტა ან ვებგვერდი)."
 
 #. i18n: ectx: property (text), widget (QLabel, label_remark)
 #: src/settings/documentproperties.ui:128
@@ -2917,7 +2981,7 @@ msgstr "&კომენტარი:"
 #: src/settings/documentproperties.ui:147
 #, kde-format
 msgid "Any additional information."
-msgstr ""
+msgstr "ნებისმიერი დამატებითი ინფორმაცია."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/settings/documentproperties.ui:160
@@ -2929,7 +2993,7 @@ msgstr "&კატეგორია:"
 #: src/settings/documentproperties.ui:173
 #, kde-format
 msgid "A general category into which your document belongs."
-msgstr ""
+msgstr "ზოგადი კატეგორია, რომელსაც თქვენი დოკუმენტი ეკუთვნის."
 
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:185
@@ -2947,7 +3011,7 @@ msgstr "გეოგრაფია"
 #: src/settings/documentproperties.ui:195
 #, kde-format
 msgid "Anatomy"
-msgstr ""
+msgstr "ანატომია"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:200
@@ -2959,7 +3023,7 @@ msgstr "ისტორია"
 #: src/settings/documentproperties.ui:205
 #, kde-format
 msgid "Test Preparation"
-msgstr ""
+msgstr "ტესტის მომზადება"
 
 #. i18n: ectx: property (text), widget (QLabel, label_license)
 #: src/settings/documentproperties.ui:213
@@ -2975,37 +3039,40 @@ msgid ""
 "If you consider contributing your file to KDE in the future, an appropriate "
 "license is required."
 msgstr ""
+"ლიცენზია, რომლის ქვეშაც თქვენი დოკუმენტი იქნება.\n"
+"თუ აპირებთ, თქვენი ფაილები, მომავალში, KDE-ს შესწიროთ, შესაბამისი ლიცენზია "
+"დაგჭირდებათ."
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/settings/documentproperties.ui:239
 #, kde-format
 msgid "GPLv2+ (GNU General Public License version 2 or later)"
-msgstr ""
+msgstr "GPLv2+ (GNU General Public License version 2 ან უფრო ახალი)"
 
 #. i18n: ectx: property (text), widget (QLabel, label_language_1)
 #: src/settings/documentproperties.ui:256
 #, kde-format
 msgid "&First language:"
-msgstr ""
+msgstr "&პირველი ენა:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_language_2)
 #: src/settings/documentproperties.ui:282
 #, kde-format
 msgid "&Second language:"
-msgstr ""
+msgstr "&მეორე ენა:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
 #: src/settings/documentproperties.ui:311
 #, kde-format
 msgid "&Setup grammar details"
-msgstr ""
+msgstr "გრამატიკის დეტალების &მორგება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
 #, kde-format
 msgctxt "Attept to download grammar properties for the selected languages"
 msgid "Download grammar"
-msgstr ""
+msgstr "გრამატიკის გადმოწერა"
 
 #. i18n: ectx: label, entry (ConjugationTenses), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Document $(fileurl))
@@ -3015,7 +3082,7 @@ msgstr ""
 #: src/settings/languagesettings.kcfg:23 src/settings/languagesettings.kcfg:24
 #, kde-format
 msgid "Selected tenses for conjugation practice."
-msgstr ""
+msgstr "არჩეული დროები უღლების სავარჯიშოებისთვის."
 
 #. i18n: ectx: label, entry (VisibleColumns), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (VisibleColumns), group (Document $(fileurl))
@@ -3025,44 +3092,44 @@ msgstr ""
 #: src/settings/languagesettings.kcfg:28 src/settings/languagesettings.kcfg:29
 #, kde-format
 msgid "Visible columns in the main editor window."
-msgstr ""
+msgstr "მთავარი რედაქტორის ფანჯარაში ნაჩვენები სვეტები."
 
 #. i18n: ectx: label, entry (CollapsedStatisticsViewItems), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (CollapsedStatisticsViewItems), group (Document $(fileurl))
 #: src/settings/documentsettings.kcfg:20 src/settings/documentsettings.kcfg:21
 #, kde-format
 msgid "Collapsed tree view items of statistics view window."
-msgstr ""
+msgstr "ხის ხედის ელემენტების აკეცილი ხედი სტატისტიკის ფანჯარაში."
 
 #: src/settings/generaloptions.cpp:41
 #, kde-format
 msgctxt "CSV separator"
 msgid ";"
-msgstr ""
+msgstr ";"
 
 #: src/settings/generaloptions.cpp:42
 #, kde-format
 msgctxt "CSV separator"
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: src/settings/generaloptions.cpp:43
 #, kde-format
 msgctxt "CSV separator"
 msgid "!"
-msgstr ""
+msgstr "!"
 
 #: src/settings/generaloptions.cpp:44
 #, kde-format
 msgctxt "CSV separator"
 msgid "|"
-msgstr ""
+msgstr "|"
 
 #: src/settings/generaloptions.cpp:45
 #, kde-format
 msgctxt "CSV separator"
 msgid ","
-msgstr ""
+msgstr ","
 
 #: src/settings/generaloptions.cpp:46
 #, kde-format
@@ -3080,13 +3147,13 @@ msgstr ">= 2 გამოტოვება"
 #, kde-format
 msgctxt "CSV separator"
 msgid " : "
-msgstr ""
+msgstr " : "
 
 #: src/settings/generaloptions.cpp:49
 #, kde-format
 msgctxt "CSV separator"
 msgid " :: "
-msgstr ""
+msgstr " :: "
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/generaloptionsbase.ui:17
@@ -3099,6 +3166,8 @@ msgstr "გახსნა/შენახვა"
 #, kde-format
 msgid "Always open the collection that was active when quitting Parley"
 msgstr ""
+"ყოველთვის გაიხსნება კოლექცია, რომელიც აქტიური იყო მაშინ, როცა Parley ბოლოს "
+"დახურეთ"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoOpenLast)
 #: src/settings/generaloptionsbase.ui:26
@@ -3107,38 +3176,40 @@ msgid ""
 "When this option is checked, the last active collection will be loaded "
 "automatically when starting Parley instead of showing the welcome screen."
 msgstr ""
+"როცა ეს პარამეტრი ჩართულია, ბოლო აქტიური კოლექცია ავტომატურად ჩაიტვირთება "
+"Parley-ს გაშვებისას, მისალმების ეკრანის ჩვენების მაგიერ."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoOpenLast)
 #: src/settings/generaloptionsbase.ui:29
 #, kde-format
 msgid "Always load the last opened collection on start"
-msgstr ""
+msgstr "გაშვებისას ბოლოს გახსნილი კოლექციის, ყოველთვის, ჩატვირთვა"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoSave)
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:39 src/settings/generaloptionsbase.ui:60
 #, kde-format
 msgid "Allow automatic saving of your work"
-msgstr ""
+msgstr "თქვენი სამუშაოს ავტომატური შენახვის დაშვება"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoSave)
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:42 src/settings/generaloptionsbase.ui:63
 #, kde-format
 msgid "Your work will be automatically saved if you check this option"
-msgstr ""
+msgstr "თქვენი ნამუშევარი ავტომატურად შეინახება, თუ ამ პარამეტრს ჩართავთ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoSave)
 #: src/settings/generaloptionsbase.ui:45
 #, kde-format
 msgid "&Save vocabularies automatically on close and quit"
-msgstr ""
+msgstr "&დახურვისას და გასვლისას ლექსიკონები ავტომატურად შეინახება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:66
 #, kde-format
 msgid "&Create a backup every"
-msgstr ""
+msgstr "&მარქაფის შექმნა ყოველ"
 
 #. i18n: ectx: property (text), widget (QLabel, lblBackupInterva)
 #: src/settings/generaloptionsbase.ui:89
@@ -3150,7 +3221,7 @@ msgstr "წუთი"
 #: src/settings/generaloptionsbase.ui:100
 #, kde-format
 msgid "Sep&arator for text file import/export (CSV):"
-msgstr ""
+msgstr "&გამყოფი ტექსტური ფაილის შემოტანა/გატანისთვის (CSV):"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, kcfg_SeparatorCombo)
 #: src/settings/generaloptionsbase.ui:116
@@ -3159,6 +3230,8 @@ msgid ""
 "Choose which separator you want to use to separate your data when importing "
 "and exporting text."
 msgstr ""
+"აირჩიეთ, რომელი სიმბოლო გნებავთ გამოიყენოთ მონაცემების გაყოფისას, როცა ის "
+"ტექსტით გაგაქვთ ან შემოგაქვთ."
 
 #. i18n: ectx: property (whatsThis), widget (KComboBox, kcfg_SeparatorCombo)
 #: src/settings/generaloptionsbase.ui:119
@@ -3167,6 +3240,8 @@ msgid ""
 "Choose the separator to use to divide the parts of an expression when "
 "importing or exporting data as text."
 msgstr ""
+"აირჩიეთ გამყოფი, რომელიც მონაცემების ტექსტური სახით გატანის ან შემოტანისას "
+"ნაწილების გასაყოფად იქნება გამოყენებული."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: src/settings/generaloptionsbase.ui:144
@@ -3178,7 +3253,7 @@ msgstr "ჩასწორება"
 #: src/settings/generaloptionsbase.ui:162
 #, kde-format
 msgid "&Append new rows automatically when editing"
-msgstr ""
+msgstr "ჩასწორებისას ახალი მწკრივების ბოლოში &ავტომატურად მიწერა"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
 #: src/settings/kgametheme/kgamethemeselector.ui:40
@@ -3202,7 +3277,7 @@ msgstr "კონტაქტი:"
 #: src/settings/kgametheme/kgamethemeselector.ui:166
 #, kde-format
 msgid "Description:"
-msgstr ""
+msgstr "აღწერა:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelAuthor)
 #: src/settings/kgametheme/kgamethemeselector.ui:201
@@ -3240,7 +3315,7 @@ msgstr "%1-ის თვისებები"
 #: src/settings/languageproperties.cpp:87
 #, kde-format
 msgid "Really delete language: %1?"
-msgstr ""
+msgstr "მართლა წავშალო ენა: %1?"
 
 #: src/settings/languageproperties.cpp:87
 #, kde-format
@@ -3250,19 +3325,19 @@ msgstr "ენის წაშლა"
 #: src/settings/languagepropertiespage.cpp:83
 #, kde-format
 msgid "No KDE keyboard selector found."
-msgstr ""
+msgstr "KDE-ის კლავიატურის ამრჩევი ვერ ვიპოვე."
 
 #: src/settings/languagepropertiespage.cpp:346
 #: src/settings/languagepropertiespage.cpp:368
 #, kde-format
 msgid "Tense Name"
-msgstr ""
+msgstr "დროის სახელი"
 
 #: src/settings/languagepropertiespage.cpp:346
 #: src/settings/languagepropertiespage.cpp:368
 #, kde-format
 msgid "Enter name of tense:"
-msgstr ""
+msgstr "შეიყვანეთ დროის სახელი:"
 
 #: src/settings/languagepropertiespage.cpp:398
 #, kde-format
@@ -3270,11 +3345,13 @@ msgid ""
 "The selected user defined tense could not be deleted\n"
 "because it is in use."
 msgstr ""
+"მონიშნული მომხმარებლის მიერ აღწერილი დროის წაშლა შეუძლებელია,\n"
+"რადგან ის გამოიყენება."
 
 #: src/settings/languagepropertiespage.cpp:399
 #, kde-format
 msgid "Deleting Tense Description"
-msgstr ""
+msgstr "დროის აღწერის წაშლა"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab)
 #: src/settings/languagepropertiespage.ui:21
@@ -3286,7 +3363,7 @@ msgstr "ძირითადი"
 #: src/settings/languagepropertiespage.ui:30
 #, kde-format
 msgid "Name:"
-msgstr ""
+msgstr "სახელი:"
 
 #. i18n: ectx: property (text), widget (QLabel, keyboardLayoutLabel)
 #: src/settings/languagepropertiespage.ui:46
@@ -3304,7 +3381,7 @@ msgstr "გრამატიკის გადმოწერა"
 #: src/settings/languagepropertiespage.ui:88
 #, kde-format
 msgid "Spell checker:"
-msgstr ""
+msgstr "მართლწერის შემოწმება:"
 
 #. i18n: ectx: property (text), widget (QLabel, localeSelectionLabel)
 #: src/settings/languagepropertiespage.ui:101
@@ -3316,13 +3393,13 @@ msgstr "ენა:"
 #: src/settings/languagepropertiespage.ui:117
 #, kde-format
 msgid "Font (practice):"
-msgstr ""
+msgstr "ფონტი (ვარჯიში):"
 
 #. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
 #: src/settings/languagepropertiespage.ui:127
 #, kde-format
 msgid "Font (editor):"
-msgstr ""
+msgstr "ფონტი (რედაქტორი):"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
 #: src/settings/languagepropertiespage.ui:141
@@ -3374,68 +3451,68 @@ msgstr "&ნეიტრალური:"
 #: src/settings/languagepropertiespage.ui:451
 #, kde-format
 msgid "Personal Pronouns"
-msgstr ""
+msgstr "პირადი გამოთქმები"
 
 #. i18n: ectx: property (text), widget (QLabel, pers1_label)
 #: src/settings/languagepropertiespage.ui:507
 #, kde-format
 msgid "&1. Person:"
-msgstr ""
+msgstr "&1. პიროვნება:"
 
 #. i18n: ectx: property (text), widget (QLabel, pers2_label)
 #: src/settings/languagepropertiespage.ui:543
 #, kde-format
 msgid "&2. Person:"
-msgstr ""
+msgstr "&2. პიროვნება:"
 
 #. i18n: ectx: property (text), widget (QLabel, pers3_label)
 #: src/settings/languagepropertiespage.ui:579
 #, kde-format
 msgid "3. Person:"
-msgstr ""
+msgstr "3. პიროვნება:"
 
 #. i18n: ectx: property (text), widget (QLabel, male_c_label)
 #: src/settings/languagepropertiespage.ui:589
 #, kde-format
 msgid "M&ale:"
-msgstr ""
+msgstr "&მამრობითი სექსი:"
 
 #. i18n: ectx: property (text), widget (QLabel, female_c_label)
 #: src/settings/languagepropertiespage.ui:625
 #, kde-format
 msgid "F&emale:"
-msgstr ""
+msgstr "მდედრობითი &სქესი:"
 
 #. i18n: ectx: property (text), widget (QLabel, natural_c_label)
 #: src/settings/languagepropertiespage.ui:661
 #, kde-format
 msgid "Neu&ter:"
-msgstr ""
+msgstr "ს&აშუალო სექსი:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, dualCheckBox)
 #: src/settings/languagepropertiespage.ui:697
 #, kde-format
 msgid "Dual conjugations"
-msgstr ""
+msgstr "ორმაგი უღლებები"
 
 #. i18n: ectx: property (text), widget (QCheckBox, neutralCheckBox)
 #: src/settings/languagepropertiespage.ui:704
 #, kde-format
 msgid "A neutral conjugation form exists"
-msgstr ""
+msgstr "არსებობს საშუალო სქესის უღლების ფორმა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maleFemaleDifferCheckBox)
 #: src/settings/languagepropertiespage.ui:717
 #, kde-format
 msgid "Male/female have different conjugations"
-msgstr ""
+msgstr "მდედრობითი და მამრობითი სქესი სხვადასხვანაირად იუღლება"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_4)
 #: src/settings/languagepropertiespage.ui:725
 #: src/statistics/conjugationoptions.cpp:24
 #, kde-format
 msgid "Tenses"
-msgstr ""
+msgstr "დროები"
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/settings/languagepropertiespage.ui:752 src/settings/optionlistform.ui:63
@@ -3453,33 +3530,33 @@ msgstr "&ჩასწორება..."
 #: src/settings/languagepropertiespage.ui:778 src/settings/optionlistform.ui:93
 #, kde-format
 msgid "&Delete"
-msgstr ""
+msgstr "&წაშლა"
 
 #. i18n: ectx: label, entry (KeyboardLayout), group (Locale $(locale))
 #. i18n: ectx: whatsthis, entry (KeyboardLayout), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:12 src/settings/languagesettings.kcfg:13
 #, kde-format
 msgid "Keyboard layout for this locale"
-msgstr ""
+msgstr "კლავიატურის განლაგება ამ ლოკალისთვის"
 
 #. i18n: ectx: label, entry (SpellChecker), group (Locale $(locale))
 #. i18n: ectx: whatsthis, entry (SpellChecker), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:17 src/settings/languagesettings.kcfg:18
 #, kde-format
 msgid "Spell checker for this language"
-msgstr ""
+msgstr "მართლწერის შემმოწმებელი ამ ენისთვის"
 
 #. i18n: ectx: label, entry (PracticeFont), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:32
 #, kde-format
 msgid "The font used during practice"
-msgstr ""
+msgstr "ვარჯიშისას გამოყენებული ფონტი"
 
 #. i18n: ectx: label, entry (EditorFont), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:36
 #, kde-format
 msgid "The font used in the editor"
-msgstr ""
+msgstr "რედაქტორში გამოყენებული ფონტი"
 
 #. i18n: ectx: property (text), widget (QPushButton, cleanUpButton)
 #: src/settings/optionlistform.ui:124
@@ -3491,13 +3568,13 @@ msgstr "&გასუფთავება"
 #: src/settings/parley.kcfg:11
 #, kde-format
 msgid "Theme to use for practice and welcome screen"
-msgstr ""
+msgstr "ვარჯიშისა და მისალმების ეკრანის თენა"
 
 #. i18n: ectx: label, entry (NumPreSetting), group (General)
 #: src/settings/parley.kcfg:15
 #, kde-format
 msgid "Number of stored setting profiles"
-msgstr ""
+msgstr "დამახსოვრებული მორგების პროფილების რაოდენობა"
 
 #. i18n: ectx: label, entry (SmartAppend), group (General)
 #: src/settings/parley.kcfg:19
@@ -3505,60 +3582,67 @@ msgstr ""
 msgid ""
 "If true, when using the entry dialog, new rows will be appended as needed"
 msgstr ""
+"თუ ჭეშმარიტია, ჩანაწერის დიალოგის გამოყენებისას ახალი მწკრივები "
+"საჭიროებისამებრ დაემატება"
 
 #. i18n: ectx: label, entry (Separator), group (General)
 #: src/settings/parley.kcfg:23
 #, kde-format
 msgid "This sets the separator used when copying/pasting text, default is Tab"
 msgstr ""
+"ეს აყენებს გამყოფს, რომელიც ტექსტის კოპირება/ჩასმისას გამოიყენება. "
+"ნაგულისხმევად - Tab"
 
 #. i18n: ectx: label, entry (EntriesPerLesson), group (General)
 #: src/settings/parley.kcfg:27
 #, kde-format
 msgid "The number of entries per unit"
-msgstr ""
+msgstr "ჩანაწერები თითოეულ სექციაში"
 
 #. i18n: ectx: label, entry (AutoOpenLast), group (General)
 #: src/settings/parley.kcfg:31
 #, kde-format
 msgid "If true, on each application start the last opened file will be loaded"
 msgstr ""
+"თუ ჭეშმარიტია, აპლიკაციის ყველა გაშვებისას ბოლოს გახსნილი ფაილი ჩაიტვირთება"
 
 #. i18n: ectx: label, entry (AutoSave), group (General)
 #: src/settings/parley.kcfg:35
 #, kde-format
 msgid "If true, vocabularies are automatically saved on close and exit"
 msgstr ""
+"თუ ჭეშმარიტია, დახურვისას და გასვლისას ლექსიკონების შენახვა ავტომატურად "
+"მოხდება"
 
 #. i18n: ectx: label, entry (AutoBackup), group (General)
 #: src/settings/parley.kcfg:42
 #, kde-format
 msgid "If true, a backup is saved every BackupTime minutes"
-msgstr ""
+msgstr "თუ ჩართულია, მარქაფი ყოველ მითითებულ რაოდენობა წუთში გაკეთდება"
 
 #. i18n: ectx: label, entry (BackupTime), group (General)
 #: src/settings/parley.kcfg:46
 #, kde-format
 msgid "Time interval between two automatic backups"
-msgstr ""
+msgstr "დროის ინტერვალი ორ ავტომატურ მარქაფს შორის"
 
 #. i18n: ectx: label, entry (FlashcardsFrontImage), group (PracticeOptions)
 #: src/settings/parley.kcfg:57
 #, kde-format
 msgid "Show images on the front of the flashcard."
-msgstr ""
+msgstr "გამოსახულებების ჩვენება ბარათის წინა მხარეს."
 
 #. i18n: ectx: label, entry (FlashcardsBackImage), group (PracticeOptions)
 #: src/settings/parley.kcfg:61
 #, kde-format
 msgid "Show images on the back of the flashcard."
-msgstr ""
+msgstr "გამოსახულებების ჩვენება ბარათის უკანა მხარეს."
 
 #. i18n: ectx: label, entry (Block), group (PracticeOptions)
 #: src/settings/parley.kcfg:65
 #, kde-format
 msgid "In Blocking Query Tab Dialog, if checked then the Query is blocked"
-msgstr ""
+msgstr "თუ ჩართულია დაბლოკვის მოთხოვნის დიალოგში, მოთხოვნა დაიბლოკება"
 
 #. i18n: ectx: label, entry (Expire), group (PracticeOptions)
 #: src/settings/parley.kcfg:69
@@ -3567,6 +3651,7 @@ msgid ""
 "In Blocking Query Tab Dialog, if checked then the Query accepts an expiring "
 "time"
 msgstr ""
+"თუ ჩართულია დაბლოკვის მოთხოვნის დიალოგში, მოთხოვნა დასრულების დროს იღებს"
 
 #. i18n: ectx: label, entry (TestOrderLesson), group (PracticeOptions)
 #: src/settings/parley.kcfg:73
@@ -3575,6 +3660,8 @@ msgid ""
 "Append new vocabulary in a collection in order of their units. Note that "
 "this will not be a hard transition, but a slow mix from one unit to the next."
 msgstr ""
+"კოლექციაში მისი სექციების მიმდევრობით ახალი ლექსიკონის დამატება. "
+"დაიმახსოვრეთ, რომ მკვეთრის მაგიერ რბილი შერევით გადასვლა იქნება."
 
 #. i18n: ectx: label, entry (TestNumberOfEntries), group (PracticeOptions)
 #: src/settings/parley.kcfg:77
@@ -3583,18 +3670,20 @@ msgid ""
 "The number of entries that are practiced at the same time. If one of these "
 "is answered correctly another entry will be appended."
 msgstr ""
+"ჩანაწერების რაოდენობა, რომელსაც ერთდროულად იმეცადინებთ. თუ ერთ-ერთს სწორად "
+"უპასუხებთ, მის მაგიერ სხვა ჩანაწერი გამოჩნდება."
 
 #. i18n: ectx: label, entry (SwapDirection), group (PracticeOptions)
 #: src/settings/parley.kcfg:81
 #, kde-format
 msgid "Swap direction randomly"
-msgstr ""
+msgstr "მიმართულების შემთხვევითი შეცვლა"
 
 #. i18n: ectx: label, entry (PracticeTimeout), group (PracticeOptions)
 #: src/settings/parley.kcfg:86
 #, kde-format
 msgid "Limit the time for the user to answer in a test."
-msgstr ""
+msgstr "შეზღუდეთ დრო, რომელშიც მომხმარებელმა ტესტს უნდა უპასუხოს."
 
 #. i18n: ectx: label, entry (PracticeTimeoutMode), group (PracticeOptions)
 #: src/settings/parley.kcfg:90
@@ -3603,72 +3692,74 @@ msgid ""
 "Show - show the solution after the given time; Continue - go to the next "
 "question after the given time."
 msgstr ""
+"ჩვენება - ამოხსნის ჩვენება მითითებული დროის შემდეგ. გაგრძელება - შემდეგ "
+"კითხვაზე გადასვლა მითითებული დროის შემდეგ."
 
 #. i18n: ectx: label, entry (PracticeTimeoutTimePerAnswer), group (PracticeOptions)
 #: src/settings/parley.kcfg:98
 #, kde-format
 msgid "Maximum time allowed to answer."
-msgstr ""
+msgstr "პასუხისთვის დაშვებული მაქსიმალური დრო."
 
 #. i18n: ectx: label, entry (Suggestions), group (PracticeOptions)
 #: src/settings/parley.kcfg:103
 #, kde-format
 msgid "Enable suggestion lists in written practice."
-msgstr ""
+msgstr "მინიშნებების სიების ჩართვა წერილობით ვარჯიშში."
 
 #. i18n: ectx: label, entry (ShowHints), group (PracticeOptions)
 #: src/settings/parley.kcfg:107
 #, kde-format
 msgid "Enable the showing of hints."
-msgstr ""
+msgstr "მინიშნებების ჩვენების დაშვება."
 
 #. i18n: ectx: label, entry (IgnoreAccentMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:111
 #, kde-format
 msgid "Count answers as right when only the accentuation is wrong."
-msgstr ""
+msgstr "პასუხის სწორად ჩათვლა, როცა, მხოლოდ, მახვილებია არასწორი."
 
 #. i18n: ectx: label, entry (IgnoreCapitalizationMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:115
 #, kde-format
 msgid "Count answers as right when only the capitalization is wrong."
-msgstr ""
+msgstr "პასუხის სწორად ჩათვლა, როცა, მხოლოდ, სიმბოლოს რეგისტრებია არასწორი."
 
 #. i18n: ectx: label, entry (IgnorePunctuationMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:119
 #, kde-format
 msgid "Count answers as right when only the punctuation is wrong."
-msgstr ""
+msgstr "პასუხის სწორად ჩათვლა, როცა, მხოლოდ, პუნქტუაციაა არასწორი."
 
 #. i18n: ectx: label, entry (SplitTranslations), group (PracticeOptions)
 #: src/settings/parley.kcfg:124
 #, kde-format
 msgid "Split translations in written practice."
-msgstr ""
+msgstr "თარგმანების გახლეჩა წერილობით ვარჯიშში."
 
 #. i18n: ectx: label, entry (Periods), group (PracticeOptions)
 #: src/settings/parley.kcfg:128
 #, kde-format
 msgid "Split translations at periods."
-msgstr ""
+msgstr "თარგმანების დახლეჩა წერტილებთან."
 
 #. i18n: ectx: label, entry (Colons), group (PracticeOptions)
 #: src/settings/parley.kcfg:132
 #, kde-format
 msgid "Split translations at colons."
-msgstr ""
+msgstr "თარგმანების დახლეჩა ორწერტილებთან."
 
 #. i18n: ectx: label, entry (Semicolons), group (PracticeOptions)
 #: src/settings/parley.kcfg:136
 #, kde-format
 msgid "Split translations at semicolons."
-msgstr ""
+msgstr "თარგმანების დახლეჩა წერტილმძიმეებთან."
 
 #. i18n: ectx: label, entry (Commas), group (PracticeOptions)
 #: src/settings/parley.kcfg:140
 #, kde-format
 msgid "Split translations at commas."
-msgstr ""
+msgstr "თარგმანების დახლეჩა მძიმეებთან."
 
 #. i18n: ectx: label, entry (ShowMore), group (PracticeOptions)
 #: src/settings/parley.kcfg:146
@@ -3681,26 +3772,26 @@ msgstr ""
 #: src/settings/parley.kcfg:150
 #, kde-format
 msgid "Enable Skip (I Know It) button in written practice."
-msgstr ""
+msgstr "გამოტოვების (ეს ვიცი) ღილაკის ჩართვა წერითი ვარჯიშისას."
 
 #. i18n: ectx: label, entry (CountSynonymsAsCorrect), group (PracticeOptions)
 #: src/settings/parley.kcfg:154
 #, kde-format
 msgid ""
 "When the synonym instead of the word was entered, does it count as correct?"
-msgstr ""
+msgstr "როცა სიტყვის მაგიერ შეყვანილია სინონიმი, ითვლება ეს სწორად?"
 
 #. i18n: ectx: label, entry (PracticeImagesEnabled), group (PracticeOptions)
 #: src/settings/parley.kcfg:158
 #, kde-format
 msgid "Enable image display in the practice dialogs."
-msgstr ""
+msgstr "ვარჯიშის დიალოგებში გამოსახულებების ჩვენების ჩართვა."
 
 #. i18n: ectx: label, entry (PracticeSoundEnabled), group (PracticeOptions)
 #: src/settings/parley.kcfg:162
 #, kde-format
 msgid "Enable sound playback in the practice dialogs."
-msgstr ""
+msgstr "ვარჯიშის დიალოგებში ხმის დაკვრის ჩართვა."
 
 #. i18n: ectx: label, entry (AllowImageInsteadOfWord), group (PracticeOptions)
 #: src/settings/parley.kcfg:166
@@ -3709,6 +3800,8 @@ msgid ""
 "Allow using images instead of words in flashcards. This will only be done if "
 "there is no word in the entry."
 msgstr ""
+"სიტყვების მაგიერ ბარათებზე გამოსახულებების გამოყენება. ეს, მხოლოდ, მაშინ "
+"მოხდება, თუ ჩანაწერში სიტყვა არაა."
 
 #. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
 #: src/settings/parley.kcfg:172
@@ -3716,6 +3809,7 @@ msgstr ""
 msgid ""
 "The maximum number of words that will be practiced in a training session."
 msgstr ""
+"მაქსიმალური რაოდენობა სიტყვებისა, რომელსაც ვარჯიშის სესიის დროს იმეცადინებთ."
 
 #. i18n: ectx: label, entry (SessionMaxNewWords), group (PracticeOptions)
 #: src/settings/parley.kcfg:176
@@ -3724,12 +3818,14 @@ msgid ""
 "The maximum number of new (untrained) words that will be used in a training "
 "session."
 msgstr ""
+"მაქსიმალური რაოდენობა ახალი (რომლებიც არ გივარჯიშიათ) სიტყვებისა, რომელსაც "
+"ვარჯიშის სესიისას იმეცადინებთ."
 
 #. i18n: ectx: label, entry (SessionLimitWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:180
 #, kde-format
 msgid "Limit the number of words in the initial phase."
-msgstr ""
+msgstr "სიტყვების რაოდენობის შეზღუდვა საწყის ფაზაში."
 
 #. i18n: ectx: label, entry (SessionMaxWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:184
@@ -3738,6 +3834,8 @@ msgid ""
 "The maximum number of words in the initial phase. If this limit is exceeded, "
 "no new words will be introduced."
 msgstr ""
+"საწყისი ბაზის სიტყვების მაქსიმალური რაოდენობა. თუ ამ ზღვარს გადააჭარბებთ, "
+"ახალ სიტყვებს აღარ შემოგთავაზებთ."
 
 #. i18n: ectx: label, entry (MultipleChoiceWordTypeConsistancy), group (PracticeOptions)
 #: src/settings/parley.kcfg:190
@@ -3746,6 +3844,8 @@ msgid ""
 "Use the same word type as the solution for the incorrect answers in a "
 "multiple choice practice."
 msgstr ""
+"მრავალარჩევნიანი ვარჯიშისას ამოხნის და არასწორი პასუხის სიტყვის ტიპები ერთი "
+"და იგივე იქნება."
 
 #. i18n: ectx: label, entry (NumberMultipleChoiceAnswers), group (PracticeOptions)
 #: src/settings/parley.kcfg:194
@@ -3753,7 +3853,7 @@ msgstr ""
 msgid ""
 "How many answers are provided for a multiple choice question, including the "
 "correct answer."
-msgstr ""
+msgstr "რამდენი პასუხი აქვს მრავალარჩევნიან კითხვებს, სწორი პასუხის ჩათვლით."
 
 #. i18n: ectx: label, entry (ShowSearch), group (Appearance)
 #: src/settings/parley.kcfg:201
@@ -3765,25 +3865,25 @@ msgstr "ძებნის ზოლის ჩვენების გადა
 #: src/settings/parley.kcfg:206
 #, kde-format
 msgid "When enabled a unit also shows entries from its subunits."
-msgstr ""
+msgstr "როცა ჩართულია, სექცია თავისი ქვესექციებს ჩანაწერებსაც აჩვენებს."
 
 #. i18n: ectx: label, entry (TableLessonColumnVisible), group (Appearance)
 #: src/settings/parley.kcfg:211
 #, kde-format
 msgid "Show/hide the unit column."
-msgstr ""
+msgstr "სექციის სვეტის ჩვენება/დამალვა."
 
 #. i18n: ectx: label, entry (TableActiveColumnVisible), group (Appearance)
 #: src/settings/parley.kcfg:216
 #, kde-format
 msgid "Show/hide the active column."
-msgstr ""
+msgstr "აქტიური სვეტის ჩვენება/დამალვა."
 
 #. i18n: ectx: label, entry (LessonEditingSelection), group (Appearance)
 #: src/settings/parley.kcfg:221
 #, kde-format
 msgid "Select which units are displayed for editing"
-msgstr ""
+msgstr "აირჩიეთ, რომელი სექციებია ნაჩვენები ჩასასწორებლად"
 
 #. i18n: ectx: label, entry (MainWindowSplitter), group (Appearance)
 #: src/settings/parley.kcfg:231
@@ -3795,44 +3895,44 @@ msgstr "როგორ იყოფა მთავარი ფანჯარ
 #: src/settings/parley.kcfg:235
 #, kde-format
 msgid "The font used in the vocabulary table"
-msgstr ""
+msgstr "ლექსიკონის ცხრილში გამოყენებული ფონტი"
 
 #. i18n: ectx: label, entry (IPAFont), group (Appearance)
 #: src/settings/parley.kcfg:239
 #, kde-format
 msgid "The font used for phonetics"
-msgstr ""
+msgstr "ფონეტიკისთვის გამოყენებული ფონტი"
 
 #. i18n: ectx: label, entry (CurrentCol), group (Appearance)
 #: src/settings/parley.kcfg:243
 #, kde-format
 msgid "Currently selected column"
-msgstr ""
+msgstr "ამჟამად მონიშნული სვეტი"
 
 #. i18n: ectx: label, entry (CurrentRow), group (Appearance)
 #: src/settings/parley.kcfg:247
 #, kde-format
 msgid "Currently selected row"
-msgstr ""
+msgstr "ამჟამად მონიშნული მწკრივი"
 
 #. i18n: ectx: label, entry (GradeColor), group (Appearance)
 #: src/settings/parley.kcfg:251
 #, kde-format
 msgid "Color used to display the confidence levels"
-msgstr ""
+msgstr "ფერი, რომელიც ცოდნის დონეების საჩვენებლად გამოიყენება"
 
 #. i18n: ectx: label, entry (PreGradeColor), group (Appearance)
 #: src/settings/parley.kcfg:255
 #, kde-format
 msgid "Color used to display the early confidence levels"
-msgstr ""
+msgstr "ფერი, რომელიც ადრეული ცოდნის დონეების საჩვენებლად გამოიყენება"
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:190
 #, kde-format
 msgid "Color used to display invalid units"
-msgstr ""
+msgstr "ფერი, რომელიც არასწორი სექციების საჩვენებლად გამოიყენება"
 
 #. i18n: ectx: label, entry (PracticeMinimumTimesAsked), group (Thresholds)
 #: src/settings/parley.kcfg:267
@@ -3840,7 +3940,7 @@ msgstr ""
 msgid ""
 "The entry must have been asked at least this often to be included in the "
 "practice."
-msgstr ""
+msgstr "ჩანაწერი სულ ცოტა ამდენჯერ უნდა გკითხით, რომ ვარჯიშში ჩაითვალოს."
 
 #. i18n: ectx: label, entry (PracticeMaximumTimesAsked), group (Thresholds)
 #: src/settings/parley.kcfg:271
@@ -3848,7 +3948,7 @@ msgstr ""
 msgid ""
 "The entry must have been asked at most this often to be included in the "
 "practice."
-msgstr ""
+msgstr "ეს ჩანაწერი სულ ცოტა ასე ხშირად უნდა გკითხოთ, რომ ვარჯიშში ჩაითვალოს."
 
 #. i18n: ectx: label, entry (PracticeMinimumWrongCount), group (Thresholds)
 #: src/settings/parley.kcfg:276
@@ -3857,6 +3957,7 @@ msgid ""
 "The entry must have been answered incorrectly at least this often to be "
 "included in the practice."
 msgstr ""
+"ჩანაწერს არასწორი პასუხი ამდენჯერ მაინც უნდა გასცეთ, რომ ვარჯიშში ჩაითვალოს."
 
 #. i18n: ectx: label, entry (PracticeMaximumWrongCount), group (Thresholds)
 #: src/settings/parley.kcfg:280
@@ -3865,6 +3966,8 @@ msgid ""
 "The entry must have been answered incorrectly at most this often to be "
 "included in the practice."
 msgstr ""
+"ჩანაწერს არასწორი პასუხი მაქსიმუმ ასე ხშირად უნდა გასცეთ, რომ ვარჯიშში "
+"ჩაითვალოს."
 
 #. i18n: ectx: label, entry (PracticeMinimumGrade), group (Thresholds)
 #: src/settings/parley.kcfg:285
@@ -3873,6 +3976,7 @@ msgid ""
 "The entry must have at least this confidence level to be included in the "
 "practice (0..7)."
 msgstr ""
+"ჩანაწერს სულ ცოტა ეს ცოდნის დონე უნდა ჰქონდეს, რომ ვარჯიშში ჩაითვალოს (0..7)."
 
 #. i18n: ectx: label, entry (PracticeMaximumGrade), group (Thresholds)
 #: src/settings/parley.kcfg:289
@@ -3881,86 +3985,92 @@ msgid ""
 "The entry must have at most this confidence level to be included in the "
 "practice (0..7)."
 msgstr ""
+"ჩანაწერს მაქსიმუმ ეს ცოდნის დონე უნდა ჰქონდეს, რომ ვარჯიშში ჩაითვალოს (0..7)."
 
 #. i18n: ectx: label, entry (WordTypesInPracticeEnabled), group (Thresholds)
 #: src/settings/parley.kcfg:293
 #, kde-format
 msgid "Only selected word types will be included in practice."
-msgstr ""
+msgstr "ვარჯიშში, მხოლოდ, არჩეული სიტყვის ტიპები ჩაისმება."
 
 #. i18n: ectx: label, entry (WordTypesInPractice), group (Thresholds)
 #. i18n: ectx: whatsthis, entry (WordTypesInPractice), group (Thresholds)
 #: src/settings/parley.kcfg:297 src/settings/parley.kcfg:298
 #, kde-format
 msgid "Selected word types for practices."
-msgstr ""
+msgstr "არჩეული სიტყვის ტიპები ვარჯიშებისთვის."
 
 #. i18n: ectx: label, entry (SubWordTypesInPractice), group (Thresholds)
 #. i18n: ectx: whatsthis, entry (SubWordTypesInPractice), group (Thresholds)
 #: src/settings/parley.kcfg:301 src/settings/parley.kcfg:302
 #, kde-format
 msgid "Selected sub word types for practices."
-msgstr ""
+msgstr "არჩეული ქვე სიტყვის ტიპები ვარჯიშებისთვის."
 
 #. i18n: ectx: label, entry (LearningLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:309
 #, kde-format
 msgid "The language that you are learning."
-msgstr ""
+msgstr "ენა, რომელსაც სწავლობთ."
 
 #. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:313
 #, kde-format
 msgid "The language that you know already."
-msgstr ""
+msgstr "ენა, რომელიც უკვე იცით."
 
 #. i18n: ectx: label, entry (ShowSolutionAfterAnswer), group (PracticeManager)
 #: src/settings/parley.kcfg:318
 #, kde-format
 msgid "Show the solution after an answer was given."
-msgstr ""
+msgstr "ამოხსნის ჩვენება პასუხის გაცემის შემდეგ."
 
 #. i18n: ectx: label, entry (ShowSolutionAfterAnswerTime), group (PracticeManager)
 #: src/settings/parley.kcfg:322
 #, kde-format
 msgid "The time the solution is shown (seconds). 0 is unlimited."
-msgstr ""
+msgstr "დრო, რამდენი ხანია ამოხსნა ნაჩვენები (წამებში). 0 - განუსაზღვრელი."
 
 #. i18n: ectx: label, entry (PracticeMode), group (PracticeManager)
 #: src/settings/parley.kcfg:337
 #, kde-format
 msgid "The practice method that is currently selected."
-msgstr ""
+msgstr "ამჟამად არჩეული ვარჯიშის მეთოდი."
 
 #. i18n: ectx: label, entry (PracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:348
 #, kde-format
 msgid "The practice mode that is currently selected."
-msgstr ""
+msgstr "ამჟამად არჩეული ვარჯიშის რეჟიმი."
 
 #. i18n: ectx: label, entry (BlockItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:354
 #, kde-format
 msgid "Amount of time different confidence levels should be blocked"
-msgstr ""
+msgstr "დროის ხანგრძლივობა, როცა სხვადასხვა ცოდნის დონეები დაბლოკილი უნდა იყოს"
 
 #. i18n: ectx: label, entry (ExpireItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:365
 #, kde-format
 msgid "Amount of time after which different confidence levels should expire"
 msgstr ""
+"დროის ხანგრძლივობა, რომლის შემდეგაც სხვადასხვა ცოდნის დონეებს ვადა "
+"ამოეწურებათ"
 
 #. i18n: ectx: label, entry (RememberPracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:375
 #, kde-format
 msgid "If true, the practice direction for each practice mode is stored."
 msgstr ""
+"თუ ჭეშმარიტია, დამახსოვრებული იქნება ვარჯიშის მიმართულება თითოეული ვარჯიშის "
+"მეთოდისთვის."
 
 #. i18n: ectx: whatsthis, entry (RememberPracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:376
 #, kde-format
 msgid "Should the practice direction for each practice mode be stored?"
 msgstr ""
+"უნდა დავიმახსოვრო თუ არა ვარჯიშის მიმართულება თითოეული ვარჯიშის რეჟიმისთვის?"
 
 #. i18n: ectx: label, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
 #. i18n: ectx: whatsthis, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
@@ -3968,12 +4078,14 @@ msgstr ""
 #, kde-format
 msgid "Stored values of practice direction for each practice mode."
 msgstr ""
+"ვარჯიშის მიმართულების დამახსოვრებული მნიშვნელობები თითოეული ვარჯიშის "
+"რეჟიმისთვის."
 
 #. i18n: ectx: label, entry (ProvidersUrl), group (KNewStuff)
 #: src/settings/parley.kcfg:387
 #, kde-format
 msgid "The Providers path for Parley"
-msgstr ""
+msgstr "მომწოდებლის ბილიკი Parley-სთვის"
 
 #. i18n: ectx: label, entry (InstallationCommand), group (KNewStuff)
 #: src/settings/parley.kcfg:391
@@ -3985,7 +4097,7 @@ msgstr "ბრძანება გადმოწერილი ლექს�
 #: src/settings/parley.kcfg:395
 #, kde-format
 msgid "The folder where downloaded vocabularies are saved by default"
-msgstr ""
+msgstr "საქაღალდე, სადაც გადმოწერილი ლექსიკონები ნაგულისხმევად ინახება"
 
 #: src/settings/parleyprefs.cpp:24
 #, kde-format
@@ -4016,22 +4128,22 @@ msgstr "ხედის მორგება"
 #: src/settings/parleyprefs.cpp:33
 #, kde-format
 msgid "Online Translations"
-msgstr ""
+msgstr "ონლაინთარგმანები"
 
 #: src/settings/parleyprefs.cpp:33
 #, kde-format
 msgid "Online Translation Services"
-msgstr ""
+msgstr "ონლაინთარგმანის სერვისები"
 
 #: src/settings/translationshelloptions.cpp:20
 #, kde-format
 msgid "translate-shell is available."
-msgstr ""
+msgstr "translate-shell ხელმისაწვდომია."
 
 #: src/settings/translationshelloptions.cpp:23
 #, kde-format
 msgid "translate-shell executable could not be found."
-msgstr ""
+msgstr "გამშვები ფაილი translate-shell ვერ ვიპოვე."
 
 #: src/settings/translationshelloptions.cpp:38
 #, kde-format
@@ -4042,13 +4154,13 @@ msgstr "შეცდომა"
 #: src/settings/translationshellpage.ui:18
 #, kde-format
 msgid "Translation Shell Integration"
-msgstr ""
+msgstr "ინტეგრაცია Translation Shell-თან"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
 #, kde-format
 msgid "Run Interactive Functionality Test"
-msgstr ""
+msgstr "შესაძლებლობების შემოწმების ინტერაქტიური ტექსტის გაშვება"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/settings/translationshellpage.ui:58
@@ -4057,12 +4169,14 @@ msgid ""
 "The interaction test request translation of English word \"parley\" into "
 "German."
 msgstr ""
+"თარგმანის ტესტი ინგლისური სიტყვის \"parley\" გერმანულად თარგმნის მცდელობას "
+"წარმოადგენს."
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
 #: src/settings/translationshellpage.ui:68
 #, kde-format
 msgid "Start online test"
-msgstr ""
+msgstr "ონლაინ-ტესტის დაწყება"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/settings/translationshellpage.ui:88
@@ -4083,30 +4197,33 @@ msgid ""
 "Specify which font to use for displaying pronunciations using phonetic "
 "symbols."
 msgstr ""
+"მიუთითეთ, რომელი ფონტი გნებავთ გამოვიყენო გამოთქმის ფონეტიკური სიმბოლოებით "
+"ჩვენებისას."
 
 #. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
 #: src/settings/viewoptionsbase.ui:54
 #, kde-format
 msgid "&Pronunciation symbols font:"
-msgstr ""
+msgstr "&ტრანსკრიფციის ფონტი:"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
 #: src/settings/viewoptionsbase.ui:83
 #, kde-format
 msgid "Base color for displaying grades:"
-msgstr ""
+msgstr "ძირითადი ფერი ქულების საჩვენებლად:"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:102
 #, kde-format
 msgid "Color used to display the progress"
-msgstr ""
+msgstr "მიმდინარეობის საჩვენებლად გამოყენებული ფერი"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:105
 #, kde-format
 msgid "Click here to change the color used to display the progress."
 msgstr ""
+"დააწკაპუნეთ, რომ შეცვალოთ ფერი, რომელიც პროგრესის საჩვენებლად გამოიყენება."
 
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
@@ -4115,7 +4232,7 @@ msgstr ""
 #: src/settings/viewoptionsbase.ui:196
 #, kde-format
 msgid "&Base"
-msgstr ""
+msgstr "&ძირითადი"
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:111
@@ -4127,19 +4244,21 @@ msgstr "Alt+0"
 #: src/settings/viewoptionsbase.ui:127
 #, kde-format
 msgid "Color for displaying early progress:"
-msgstr ""
+msgstr "საწყისი პროგრესის საჩვენებლად გამოყენებული ფერი:"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:146
 #, kde-format
 msgid "Color used to display the early progress"
-msgstr ""
+msgstr "ფერი, რომელიც ადრეული პროგრესის საჩვენებლად გამოიყენება"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:149
 #, kde-format
 msgid "Click here to change the color used to display the early progress."
 msgstr ""
+"დააწკაპუნეთ, რომ შეცვალოთ ფერი, რომელიც ადრეული პროგრესის საჩვენებლად "
+"გამოიყენება."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:155
@@ -4151,13 +4270,15 @@ msgstr "Alt+1"
 #: src/settings/viewoptionsbase.ui:171
 #, kde-format
 msgid "Color used to display the grades:"
-msgstr ""
+msgstr "ქულების საჩვენებელი ფერი:"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:193
 #, kde-format
 msgid "Click here to change the color used to display invalid units."
 msgstr ""
+"დააწკაპუნეთ აქ, რომ შეცვალოთ ფერი, რომელიც არასწორი სექციების საჩვენებლად "
+"გამოიყენება."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:199
@@ -4169,139 +4290,139 @@ msgstr "Alt+2"
 #: src/statistics/lessonstatisticsview.cpp:76
 #, kde-format
 msgid "Remove confidence levels from this unit"
-msgstr ""
+msgstr "ამ სექციიდან ცოდნის დონეების წაშლა"
 
 #: src/statistics/lessonstatisticsview.cpp:84
 #, kde-format
 msgid "Remove confidence levels from this unit and all sub-units"
-msgstr ""
+msgstr "ცოდნის დონეების წაშლა ამ სექციიდან და ყველა ქვესექციიდან"
 
 #: src/statistics/lessonstatisticsview.cpp:86
 #, kde-format
 msgid "Remove confidence level from this unit and all sub-units"
-msgstr ""
+msgstr "ცოდნის დონის წაშლა ამ სექციიდან და ყველა ქვესექციიდან"
 
 #: src/statistics/statisticslegendwidget.cpp:27
 #, kde-format
 msgid "Progress gradients"
-msgstr ""
+msgstr "პროგრესის გრადიენტები"
 
 #: src/statistics/statisticslegendwidget.cpp:28
 #, kde-format
 msgid "Early progress"
-msgstr ""
+msgstr "საწყისი პროგრესი"
 
 #: src/statistics/statisticslegendwidget.cpp:29
 #, kde-format
 msgid "Not Practiced"
-msgstr ""
+msgstr "არ გივარჯიშიათ"
 
 #: src/statistics/statisticslegendwidget.cpp:30
 #, kde-format
 msgid "Invalid Entries"
-msgstr ""
+msgstr "არასწორი ჩანაწერები"
 
 #: src/statistics/statisticslegendwidget.cpp:46
 #, kde-format
 msgctxt "adjective, The word has been properly and fully learned by the user"
 msgid "Fully learned"
-msgstr ""
+msgstr "სრულად ნასწავლი"
 
 #: src/statistics/statisticslegendwidget.cpp:47
 #, kde-format
 msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
-msgstr ""
+msgstr "შესწავლილი არაა"
 
 #: src/statistics/statisticsmainwindow.cpp:193
 #, kde-format
 msgid "Known to Learning"
-msgstr ""
+msgstr "ცნობილიდან სასწავლამდე"
 
 #: src/statistics/statisticsmainwindow.cpp:194
 #, kde-format
 msgid "Learning to Known"
-msgstr ""
+msgstr "სასწავლიდან ცნობილამდე"
 
 #: src/statistics/statisticsmainwindow.cpp:195
 #, kde-format
 msgid "Mixed Directions"
-msgstr ""
+msgstr "შერეული მიმართულებები"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/statistics/statisticsmainwindow.ui:29
 #, kde-format
 msgid "Language to Learn"
-msgstr ""
+msgstr "სასწავლი ენა"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/statistics/statisticsmainwindow.ui:39
 #, kde-format
 msgid "Known Language"
-msgstr ""
+msgstr "ცნობილი ენა"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeMode)
 #: src/statistics/statisticsmainwindow.ui:75
 #, kde-format
 msgid "Practice Mode"
-msgstr ""
+msgstr "ვარჯიშის რეჟიმი"
 
 #. i18n: ectx: property (text), widget (QRadioButton, flashCard)
 #: src/statistics/statisticsmainwindow.ui:81
 #, kde-format
 msgid "Flash Cards"
-msgstr ""
+msgstr "ბარათები"
 
 #. i18n: ectx: property (text), widget (QRadioButton, mixedLetters)
 #: src/statistics/statisticsmainwindow.ui:91
 #, kde-format
 msgid "Mixed &Letters"
-msgstr ""
+msgstr "შერეული &სიმბოლოები"
 
 #. i18n: ectx: property (text), widget (QRadioButton, multipleChoice)
 #: src/statistics/statisticsmainwindow.ui:98
 #, kde-format
 msgid "M&ultiple Choice"
-msgstr ""
+msgstr "მრავალპასუხიანი &ტესტები"
 
 #. i18n: ectx: property (text), widget (QRadioButton, written)
 #: src/statistics/statisticsmainwindow.ui:105
 #, kde-format
 msgid "Wri&tten"
-msgstr ""
+msgstr "&წერილობითი დავალება"
 
 #. i18n: ectx: property (text), widget (QRadioButton, exampleSentence)
 #: src/statistics/statisticsmainwindow.ui:115
 #, kde-format
 msgid "E&xample Sentences"
-msgstr ""
+msgstr "&მაგალითი წინადადებები"
 
 #. i18n: ectx: property (text), widget (QRadioButton, gender)
 #: src/statistics/statisticsmainwindow.ui:125
 #, kde-format
 msgid "&Gender of Nouns"
-msgstr ""
+msgstr "&არსებითი სახელის სქესი"
 
 #. i18n: ectx: property (text), widget (QRadioButton, conjugations)
 #: src/statistics/statisticsmainwindow.ui:145
 #, kde-format
 msgid "Co&njugations"
-msgstr ""
+msgstr "&უღლება"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeDirection)
 #: src/statistics/statisticsmainwindow.ui:191
 #, kde-format
 msgid "Practice Direction"
-msgstr ""
+msgstr "ვარჯიშის მიმართულება"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rememberPracticeDirection)
 #: src/statistics/statisticsmainwindow.ui:200
 #, kde-format
 msgid "Remember for each Practice Mode"
-msgstr ""
+msgstr "დამახსოვრება თითოეული ვარჯიშის რეჟიმისთვის"
 
 #: src/statistics/statisticsmodel.cpp:26
 #, kde-format
 msgctxt "Confidence level in language, table header"
 msgid "Confidence (%1)"
-msgstr ""
+msgstr "ცოდნის დონე (%1)"
