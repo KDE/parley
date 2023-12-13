@@ -245,6 +245,8 @@ msgid "%1 word due"
 msgid_plural "%1 words due"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/dashboard/barwidget.cpp:122
 #, kde-format
@@ -974,6 +976,8 @@ msgid_plural ""
 "There are %1 words left in this unit. Do you want to delete them?"
 msgstr[0] "הקובץ %1 כבר קיים. האם ברצונך לשכתב אותו?"
 msgstr[1] "הקובץ %1 כבר קיים. האם ברצונך לשכתב אותו?"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/editor/lessonview.cpp:221
 #, fuzzy, kde-format
@@ -1177,6 +1181,8 @@ msgid "Do you really want to delete the selected entry?"
 msgid_plural "Do you really want to delete the selected %1 entries?"
 msgstr[0] "האם אתה בטוח שברצונך למחוק את הרשומה המסומנת?\n"
 msgstr[1] "האם אתה בטוח שברצונך למחוק את הרשומה המסומנת?\n"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/editor/vocabularyview.cpp:254
 #, fuzzy, kde-format
@@ -1329,6 +1335,8 @@ msgid_plural ""
 "Continue?"
 msgstr[0] "הקובץ %1 כבר קיים. האם ברצונך לשכתב אותו?"
 msgstr[1] "הקובץ %1 כבר קיים. האם ברצונך לשכתב אותו?"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/exportdialog.cpp:53
 #, kde-format
@@ -2409,6 +2417,8 @@ msgid "You answered %1 conjugation form correctly."
 msgid_plural "You answered %1 conjugation forms correctly."
 msgstr[0] "נטיית פעלים"
 msgstr[1] "נטיית פעלים"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/practice/conjugationmodewidget.cpp:111
 #, fuzzy, kde-format
@@ -2477,6 +2487,8 @@ msgid_plural ""
 "You are %3% done."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/practice/latexrenderer.cpp:46
 #, fuzzy, kde-format
@@ -2588,6 +2600,8 @@ msgid "one word"
 msgid_plural "%1 words"
 msgstr[0] "כתוב את המילה:"
 msgstr[1] "כתוב את המילה:"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/practice/practicesummarycomponent.cpp:64
 #, fuzzy, kde-format
@@ -2595,6 +2609,8 @@ msgid "one minute"
 msgid_plural "%1 minutes"
 msgstr[0] "דקות"
 msgstr[1] "דקות"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/practice/practicesummarycomponent.cpp:65
 #, fuzzy, kde-format
@@ -2602,6 +2618,8 @@ msgid "one second"
 msgid_plural "%1 seconds"
 msgstr[0] "&הוסף שפה"
 msgstr[1] "&הוסף שפה"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/practice/practicesummarycomponent.cpp:82
 #, fuzzy, kde-format

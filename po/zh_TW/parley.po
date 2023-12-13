@@ -8,19 +8,20 @@
 # pan93412 <pan93412@gmail.com>, 2018, 2020.
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2006, 2008, 2009, 2010.
 # Franklin Weng <franklin at goodhorse dot idv dot tw>, 2007, 2008.
+# SPDX-FileCopyrightText: 2023 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-05 01:33+0000\n"
-"PO-Revision-Date: 2020-01-05 15:50+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2023-12-12 18:56+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.12.0\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -302,22 +303,19 @@ msgstr "Parley"
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/dashboard/dashboard.ui:120
-#, fuzzy, kde-format
-#| msgid "Create a New Collection"
+#, kde-format
 msgid "Create a New Collection..."
-msgstr "建立新的收藏"
+msgstr "建立新的收藏..."
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
-#, fuzzy, kde-format
-#| msgid "Open an Existing Collection"
+#, kde-format
 msgid "Open an Existing Collection..."
-msgstr "開啟已有的收藏"
+msgstr "開啟已有的收藏..."
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
-#, fuzzy, kde-format
-#| msgid "Download New Collections"
+#, kde-format
 msgid "Download New Collections..."
 msgstr "下載新收藏..."
 
@@ -348,15 +346,13 @@ msgstr "紀錄"
 #: src/editor/audiowidget.ui:33
 #, kde-format
 msgid "Download audio file with webservice"
-msgstr ""
+msgstr "用網路服務下載音效檔"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:36
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgid "Download"
-msgstr "下載文法"
+msgstr "下載"
 
 #. i18n: ectx: property (text), widget (QPushButton, showCurrentButton)
 #: src/editor/browserwidget.ui:18
@@ -562,66 +558,52 @@ msgstr "詞尾變化形"
 
 #. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
 #: src/editor/declensionwidget.ui:52
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Nominative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
-msgstr "主格"
+msgstr "主格："
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Genitive"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
-msgstr "屬格"
+msgstr "屬格："
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Dative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
-msgstr "與格"
+msgstr "與格："
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Accusative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr "賓格"
+msgstr "賓格："
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Ablative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
-msgstr "奪格"
+msgstr "奪格："
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Locative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
-msgstr "位置格"
+msgstr "位置格："
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Vocative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
-msgstr "呼格"
+msgstr "呼格："
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #: src/editor/declensionwidget.ui:445
@@ -873,11 +855,10 @@ msgid "\"%1\" is a:"
 msgstr "%1 是一個："
 
 #: src/editor/inflectionwidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Please select the noun's gender"
+#, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
-msgstr "請選擇名詞的性別："
+msgstr "請選擇名詞的性別"
 
 #: src/editor/latexwidget.cpp:22
 #, kde-format
@@ -886,10 +867,9 @@ msgstr "在此輸入 LaTeX 碼。"
 
 #. i18n: ectx: property (text), widget (QLabel, texLabel)
 #: src/editor/latexwidget.ui:17
-#, fuzzy, kde-format
-#| msgid "LaTeX code"
+#, kde-format
 msgid "LaTeX code:"
-msgstr "LaTeX 碼"
+msgstr "LaTeX 碼："
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -1039,38 +1019,33 @@ msgstr "課程"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/editor/summarywordwidget.ui:42
-#, fuzzy, kde-format
-#| msgid "Word type"
+#, kde-format
 msgid "Word type:"
-msgstr "單字型態"
+msgstr "單字型態："
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
-#, fuzzy, kde-format
-#| msgid "Pronunciation"
+#, kde-format
 msgid "Pronunciation:"
-msgstr "發音"
+msgstr "發音："
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/summarywordwidget.ui:71
-#, fuzzy, kde-format
-#| msgid "Example"
+#, kde-format
 msgid "Example:"
-msgstr "範例"
+msgstr "範例："
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/summarywordwidget.ui:87
-#, fuzzy, kde-format
-#| msgid "Paraphrase"
+#, kde-format
 msgid "Paraphrase:"
-msgstr "解釋"
+msgstr "解釋："
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
-#, fuzzy, kde-format
-#| msgid "&Comment:"
+#, kde-format
 msgid "Comment:"
-msgstr "註解(&C)："
+msgstr "註解："
 
 #: src/editor/synonymwidget.cpp:59
 #, kde-format
@@ -1128,8 +1103,7 @@ msgid "False Friends of %1:"
 msgstr "%1 的虛假友詞："
 
 #: src/editor/vocabularycolumnsdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Vocabulary Columns"
+#, kde-format
 msgctxt "@title:window"
 msgid "Vocabulary Columns"
 msgstr "字彙欄位"
@@ -1362,8 +1336,7 @@ msgid_plural ""
 msgstr[0] "此單字型態還剩 %1 個單字。這單字會喪失它的單字型態。要繼續嗎？"
 
 #: src/exportdialog.cpp:53
-#, fuzzy, kde-format
-#| msgid "Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr "匯出"
@@ -1698,8 +1671,7 @@ msgid "Change practice settings"
 msgstr "變更練習設定"
 
 #: src/parleyactions.cpp:202
-#, fuzzy, kde-format
-#| msgid "Export results..."
+#, kde-format
 msgid "Export Results..."
 msgstr "匯出結果..."
 
@@ -1735,8 +1707,7 @@ msgid "Properties for %1"
 msgstr "%1 的屬性"
 
 #: src/parleydocument.cpp:158
-#, fuzzy, kde-format
-#| msgid "Open Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "開啟字彙收藏"
@@ -1788,8 +1759,7 @@ msgstr ""
 "退出前要儲存檔案嗎？\n"
 
 #: src/parleydocument.cpp:296
-#, fuzzy, kde-format
-#| msgid "Open Downloaded Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "開啟下載好的字彙收藏"
@@ -1819,8 +1789,7 @@ msgid "Save File"
 msgstr "儲存檔案"
 
 #: src/parleydocument.cpp:382
-#, fuzzy, kde-format
-#| msgid "Save Vocabulary As"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "字彙另存為"
@@ -2263,8 +2232,7 @@ msgstr "即使重音錯誤也仍然視為正確答案"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:26
-#, fuzzy, kde-format
-#| msgid "Ignore Accents"
+#, kde-format
 msgid "Ignore accents"
 msgstr "忽略重音"
 
@@ -2276,8 +2244,7 @@ msgstr "即使大小寫弄錯也視為正確答案"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:39
-#, fuzzy, kde-format
-#| msgid "Ignore Capitalization"
+#, kde-format
 msgid "Ignore capitalization"
 msgstr "忽略大小寫"
 
@@ -2289,8 +2256,7 @@ msgstr "即使標點弄錯也視為正確答案"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:52
-#, fuzzy, kde-format
-#| msgid "Ignore Punctuation"
+#, kde-format
 msgid "Ignore punctuation"
 msgstr "忽略標點"
 
@@ -2303,8 +2269,7 @@ msgstr "練習期間您可以用「提示」按鍵來看部份的答案。"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:65
-#, fuzzy, kde-format
-#| msgid "Enable Hints"
+#, kde-format
 msgid "Enable hints"
 msgstr "開啟提示"
 
@@ -2322,8 +2287,7 @@ msgstr "練習期間，問題中會顯示影像"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:100
-#, fuzzy, kde-format
-#| msgid "Image for Question"
+#, kde-format
 msgid "Image for question"
 msgstr "問題影像"
 
@@ -2335,8 +2299,7 @@ msgstr "練習期間，解答會顯示影像"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:113
-#, fuzzy, kde-format
-#| msgid "Image for Solution"
+#, kde-format
 msgid "Image for solution"
 msgstr "解答影像"
 
@@ -2371,8 +2334,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
-#, fuzzy, kde-format
-#| msgid "Accept any Synonym"
+#, kde-format
 msgid "Accept any synonym"
 msgstr "接受任何同義字"
 
@@ -2384,17 +2346,15 @@ msgstr "工作階段"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/generalpracticeoptions.ui:202
-#, fuzzy, kde-format
-#| msgid "Max session size"
+#, kde-format
 msgid "Max session size:"
-msgstr "最大工作階段大小"
+msgstr "最大工作階段大小："
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
-#, fuzzy, kde-format
-#| msgid "Max number of new words"
+#, kde-format
 msgid "Max number of new words:"
-msgstr "最大新單字數量"
+msgstr "最大新單字數量："
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:23
@@ -2436,24 +2396,21 @@ msgstr "最多"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/thresholdoptions.ui:43
-#, fuzzy, kde-format
-#| msgid "Grade"
+#, kde-format
 msgid "Grade:"
-msgstr "等級"
+msgstr "等級："
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/thresholdoptions.ui:53
-#, fuzzy, kde-format
-#| msgid "Times practiced"
+#, kde-format
 msgid "Times practiced:"
-msgstr "練習次數"
+msgstr "練習次數："
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
-#, fuzzy, kde-format
-#| msgid "Answered incorrectly"
+#, kde-format
 msgid "Answered incorrectly:"
-msgstr "答錯了"
+msgstr "答錯了："
 
 #: src/practice/conjugationbackendmode.cpp:93
 #, kde-format
@@ -2578,15 +2535,13 @@ msgstr "繼續"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
 #: src/practice/practice_mainwindow.ui:219
-#, fuzzy, kde-format
-#| msgid "I did not know it"
+#, kde-format
 msgid "I Did not Know it"
 msgstr "我不知道"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
 #: src/practice/practice_mainwindow.ui:226
-#, fuzzy, kde-format
-#| msgid "I knew it"
+#, kde-format
 msgid "I Knew it"
 msgstr "我知道"
 
@@ -2997,8 +2952,7 @@ msgstr "任何附加屬性。"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/settings/documentproperties.ui:160
-#, fuzzy, kde-format
-#| msgid "Cate&gory"
+#, kde-format
 msgid "Cate&gory:"
 msgstr "類別(&G)："
 
@@ -3075,16 +3029,13 @@ msgstr "第二語言(&S)："
 
 #. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
 #: src/settings/documentproperties.ui:311
-#, fuzzy, kde-format
-#| msgid "&Setup Grammar Details"
+#, kde-format
 msgid "&Setup grammar details"
 msgstr "設定文法詳情(&S)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgctxt "Attept to download grammar properties for the selected languages"
 msgid "Download grammar"
 msgstr "下載文法"
@@ -3294,8 +3245,7 @@ msgid "Author:"
 msgstr "作者："
 
 #: src/settings/languageproperties.cpp:23
-#, fuzzy, kde-format
-#| msgid "Edit Languages"
+#, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
 msgstr "編輯語言"
@@ -3382,8 +3332,7 @@ msgstr "鍵盤佈局："
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
-#, fuzzy, kde-format
-#| msgid "&Download Grammar"
+#, kde-format
 msgid "&Download grammar"
 msgstr "下載文法(&D)"
 
@@ -4102,43 +4051,41 @@ msgid "View Settings"
 msgstr "檢視設定"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Automatic Translation"
+#, kde-format
 msgid "Online Translations"
-msgstr "自動翻譯"
+msgstr "線上翻譯"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Split translations at periods."
+#, kde-format
 msgid "Online Translation Services"
-msgstr "依句點分離翻譯。"
+msgstr "線上翻譯服務"
 
 #: src/settings/translationshelloptions.cpp:20
 #, kde-format
 msgid "translate-shell is available."
-msgstr ""
+msgstr "translate-shell 可用。"
 
 #: src/settings/translationshelloptions.cpp:23
 #, kde-format
 msgid "translate-shell executable could not be found."
-msgstr ""
+msgstr "找不到 translate-shell 執行檔。"
 
 #: src/settings/translationshelloptions.cpp:38
 #, kde-format
 msgid "Error"
-msgstr ""
+msgstr "錯誤"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxInstalledStatus)
 #: src/settings/translationshellpage.ui:18
 #, kde-format
 msgid "Translation Shell Integration"
-msgstr ""
+msgstr "翻譯殼層 (Translation Shell) 整合"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
 #, kde-format
 msgid "Run Interactive Functionality Test"
-msgstr ""
+msgstr "執行互動式功能測試"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/settings/translationshellpage.ui:58
@@ -4146,26 +4093,25 @@ msgstr ""
 msgid ""
 "The interaction test request translation of English word \"parley\" into "
 "German."
-msgstr ""
+msgstr "互動測試會要求翻譯英文單字 \"parley\" 成德文。"
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
 #: src/settings/translationshellpage.ui:68
 #, kde-format
 msgid "Start online test"
-msgstr ""
+msgstr "開始線上測試"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/settings/translationshellpage.ui:88
 #, kde-format
 msgid "Result:"
-msgstr ""
+msgstr "結果："
 
 #. i18n: ectx: property (text), widget (QLabel, labelResultArea)
 #: src/settings/translationshellpage.ui:101
-#, fuzzy, kde-format
-#| msgid "&New..."
+#, kde-format
 msgid "..."
-msgstr "新增(&N)..."
+msgstr "..."
 
 #. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
 #: src/settings/viewoptionsbase.ui:41
