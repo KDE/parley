@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-05 01:33+0000\n"
-"PO-Revision-Date: 2023-12-09 09:25\n"
+"PO-Revision-Date: 2023-12-17 11:26\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -3162,7 +3162,7 @@ msgstr "分钟"
 #: src/settings/generaloptionsbase.ui:100
 #, kde-format
 msgid "Sep&arator for text file import/export (CSV):"
-msgstr "文本文件导入/导出时用的分隔符(CSV)(&A)"
+msgstr "文本文件导入/导出时用的分隔符 (CSV) (&A)"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, kcfg_SeparatorCombo)
 #: src/settings/generaloptionsbase.ui:116
