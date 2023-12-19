@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-05 01:33+0000\n"
-"PO-Revision-Date: 2023-12-15 22:50+0200\n"
+"PO-Revision-Date: 2023-12-17 00:21+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -142,12 +142,12 @@ msgstr ""
 #: src/collection/vocabularymodel.cpp:187
 #, kde-format
 msgid "Enable the synonym view to edit synonyms."
-msgstr ""
+msgstr "יש להפעיל את תצוגת המילים הנרדפות כדי לערוך מילים נרדפות."
 
 #: src/collection/vocabularymodel.cpp:189
 #, kde-format
 msgid "Enable the antonym view to edit antonyms."
-msgstr ""
+msgstr "יש להפעיל את תצוגת ההפכים כדי לערוך הפכים."
 
 #: src/collection/vocabularymodel.cpp:281
 #, kde-format
@@ -213,17 +213,17 @@ msgstr "הערה"
 #: src/collection/vocabularymodel.cpp:293
 #, kde-format
 msgid "Paraphrase (%1)"
-msgstr ""
+msgstr "ניסוח מחדש (%1)"
 
 #: src/collection/vocabularymodel.cpp:293
 #, kde-format
 msgid "Paraphrase"
-msgstr ""
+msgstr "ניסוח מחדש"
 
 #: src/collection/vocabularymodel.cpp:312
 #, kde-format
 msgid "Please use Edit -> Languages to set up your document."
-msgstr ""
+msgstr "נא להשתמש בעריכה -> שפות כדי להגדיר את המסמך שלך."
 
 #: src/collection/vocabularymodel.cpp:312
 #, kde-format
@@ -356,13 +356,13 @@ msgstr "הורדה"
 #: src/editor/browserwidget.ui:18
 #, kde-format
 msgid "Lookup Current"
-msgstr ""
+msgstr "חיפוש הנוכחי"
 
 #. i18n: ectx: property (text), widget (QCheckBox, followTableCheckBox)
 #: src/editor/browserwidget.ui:33
-#, kde-format
+#, fuzzy, kde-format
 msgid "Follow Table"
-msgstr ""
+msgstr "טבלת מעקב"
 
 #: src/editor/comparisonwidget.cpp:76
 #, kde-format
@@ -667,12 +667,12 @@ msgstr "הפכים"
 #: src/editor/editor.cpp:246
 #, kde-format
 msgid "False Friends"
-msgstr ""
+msgstr "ידידי כזב"
 
 #: src/editor/editor.cpp:261
 #, kde-format
 msgid "Phonetic Symbols"
-msgstr ""
+msgstr "סימנים פונטיים"
 
 #: src/editor/editor.cpp:276
 #, kde-format
@@ -1037,7 +1037,7 @@ msgstr "דוגמה:"
 #: src/editor/summarywordwidget.ui:87
 #, kde-format
 msgid "Paraphrase:"
-msgstr ""
+msgstr "ניסוח מחדש:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
@@ -1221,24 +1221,24 @@ msgid "Add a new word type to your document"
 msgstr "הוספת סוג מילים חדש למסמך שלך"
 
 #: src/editor/wordtypeview.cpp:39
-#, fuzzy, kde-format
+#, kde-format
 msgid "Rename"
-msgstr "שם הקובץ:"
+msgstr "שינוי שם"
 
 #: src/editor/wordtypeview.cpp:41
-#, fuzzy, kde-format
+#, kde-format
 msgid "Rename the selected word type"
-msgstr "מחק את השורות שנבחרו"
+msgstr "שינוי שם סוג המילים הנבחר"
 
 #: src/editor/wordtypeview.cpp:47
-#, fuzzy, kde-format
+#, kde-format
 msgid "Delete Word Type"
-msgstr "&סוג מילים:"
+msgstr "מחיקת סוג מילים"
 
 #: src/editor/wordtypeview.cpp:49
-#, fuzzy, kde-format
+#, kde-format
 msgid "Delete the selected word type."
-msgstr "מחק את השורות שנבחרו"
+msgstr "מחיקת סוג המילים הנבחר."
 
 #: src/editor/wordtypeview.cpp:56
 #, kde-format
@@ -1712,15 +1712,15 @@ msgid "Properties for %1"
 msgstr "ערוך את מאפייני המקור"
 
 #: src/parleydocument.cpp:158
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
-msgstr "פתח מסמך אוצר מילים"
+msgstr "פתיחת אוסף אוצרות מילים"
 
 #: src/parleydocument.cpp:159
-#, fuzzy, kde-format
+#, kde-format
 msgid "Open in practice &mode"
-msgstr "תווית"
+msgstr "פתיחה במצב &תרגול"
 
 #: src/parleydocument.cpp:201
 #, kde-format
@@ -2501,9 +2501,9 @@ msgstr[2] ""
 msgstr[3] ""
 
 #: src/practice/latexrenderer.cpp:46
-#, fuzzy, kde-format
+#, kde-format
 msgid "Rendering..."
-msgstr "מדפיס..."
+msgstr "מתבצע עיבוד…"
 
 #: src/practice/latexrenderer.cpp:135
 #, kde-format
@@ -2536,9 +2536,9 @@ msgstr "רמז"
 
 #. i18n: ectx: property (text), widget (QPushButton, continueButton)
 #: src/practice/practice_mainwindow.ui:202
-#, fuzzy, kde-format
+#, kde-format
 msgid "Continue"
-msgstr "נכלל ב־"
+msgstr "להמשיך"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
 #: src/practice/practice_mainwindow.ui:219
@@ -2560,15 +2560,15 @@ msgstr "%v/%m"
 
 #. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
 #: src/practice/practice_widget_comparison.ui:35
-#, fuzzy, kde-format
+#, kde-format
 msgid "absolute"
-msgstr "ביטוי"
+msgstr "מוחלט"
 
 #. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
 #: src/practice/practice_widget_comparison.ui:80
-#, fuzzy, kde-format
+#, kde-format
 msgid "comparative"
-msgstr "השוו&אה"
+msgstr "השוואתי"
 
 #. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
 #: src/practice/practice_widget_comparison.ui:125
@@ -2726,14 +2726,14 @@ msgid "Your Answer"
 msgstr "התשובה שלך"
 
 #: src/practice/sessionmanagerbase.cpp:53
-#, fuzzy, kde-format
+#, kde-format
 msgid "The vocabulary collection contains fewer than two languages."
-msgstr "פתח מסמך אוצר מילים"
+msgstr "אוסף אוצרות המילים מכיל פחות משתי שפות."
 
 #: src/practice/sessionmanagerbase.cpp:53
-#, fuzzy, kde-format
+#, kde-format
 msgid "Could not start practice"
-msgstr "לא ניתן לכתוב"
+msgstr "אי אפשר להתחיל תרגול"
 
 #: src/practice/statustoggle.cpp:77
 #, kde-format
@@ -2744,9 +2744,9 @@ msgid ""
 msgstr ""
 
 #: src/practice/statustoggle.cpp:78
-#, fuzzy, kde-format
+#, kde-format
 msgid "Count this answer as wrong"
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "להחשיב את התשובה הזאת כשגויה"
 
 #: src/practice/statustoggle.cpp:81
 #, kde-format
@@ -2757,15 +2757,15 @@ msgid ""
 msgstr ""
 
 #: src/practice/statustoggle.cpp:82
-#, fuzzy, kde-format
+#, kde-format
 msgid "Count this answer as correct"
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "להחשיב את התשובה הזאת כנכונה"
 
 #: src/practice/summarybarwidget.cpp:78
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "test results"
 msgid "%1 % correct"
-msgstr "תרגילים:"
+msgstr "%1 % נכון"
 
 #: src/practice/summarybarwidget.cpp:80
 #, kde-format
@@ -2774,10 +2774,10 @@ msgid "%1 % wrong"
 msgstr "%1 % שגיאה"
 
 #: src/practice/summarybarwidget.cpp:82
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "test results"
 msgid "%1 % not answered"
-msgstr "&לא בשאילתה:"
+msgstr "%1 % לא נענו"
 
 #: src/practice/summarybarwidget.cpp:140
 #, kde-format
@@ -2795,106 +2795,112 @@ msgid "Not answered during this practice: %1 of %2 (%3 %)"
 msgstr ""
 
 #: src/practice/writtenbackendmode.cpp:70
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה שגויה."
 
 #: src/practice/writtenbackendmode.cpp:84
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Your answer was a synonym. Please enter another word with the same "
 "translation."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה מילה נרדפת. נא למלא מילה אחרת עם אותו התרגום."
 
 #: src/practice/writtenbackendmode.cpp:88
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was an already entered synonym."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה מילה נרדפת שכבר מולאה."
 
 #: src/practice/writtenbackendmode.cpp:91
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was a synonym and your punctuation was wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה מילה נרדפת והפיסוק שלך היה שגוי."
 
 #: src/practice/writtenbackendmode.cpp:93
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was a synonym and your capitalization was wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה מילה נרדפת ובחירת הרישיות שלך הייתה שגויה."
 
 #: src/practice/writtenbackendmode.cpp:95
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was a synonym and accents were wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה מילה נרדפת והסימנים הדיאקריטיים היו שגויים."
 
 #: src/practice/writtenbackendmode.cpp:97
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was a synonym."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה מילה נרדפת."
 
 #: src/practice/writtenbackendmode.cpp:105
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Your answer was wrong as punctuation mistakes are not accepted. Please try "
 "again."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה שגויה כיוון שטעויות פיסוק אינן מאושרות. נא לנסות שוב."
 
 #: src/practice/writtenbackendmode.cpp:107
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Your answer was wrong as capitalization mistakes are not accepted. Please "
 "try again."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr ""
+"התשובה שלך הייתה שגויה כיוון שטעויות בבחירת הרישיות אינן מאושרות. נא לנסות "
+"שוב."
 
 #: src/practice/writtenbackendmode.cpp:109
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Your answer was wrong as accent mistakes are not accepted. Please try again."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr ""
+"התשובה שלך הייתה שגויה כיוון שטעויות בסימנים דיאקריטיים אינן מאושרות. נא "
+"לנסות שוב."
 
 #: src/practice/writtenbackendmode.cpp:111
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was wrong. Please try again."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה שגויה. נא לנסות שוב."
 
 #: src/practice/writtenbackendmode.cpp:118
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was right, but your punctuation was wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה נכונה אבל הפיסוק שלך היה שגוי."
 
 #: src/practice/writtenbackendmode.cpp:120
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was right, but your capitalization was wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה נכונה אבל בחירת הרישיות שלך הייתה שגויה."
 
 #: src/practice/writtenbackendmode.cpp:122
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was right, but accents were wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה נכונה אך הסימנים הדיאקריטיים היו שגויים."
 
 #: src/practice/writtenbackendmode.cpp:124
-#, fuzzy, kde-format
+#, kde-format
 msgid "Your answer was right."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה נכונה."
 
 #: src/practice/writtenbackendmode.cpp:128
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Your answer was right... but not on the first try and your punctuation was "
 "wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "התשובה שלך הייתה נכונה… אך לא בניסיון הראשון והפיסוק שלך היה שגוי."
 
 #: src/practice/writtenbackendmode.cpp:130
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Your answer was right... but not on the first try and your capitalization "
 "was wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr ""
+"התשובה הייתה נכונה… אך לא בניסיון הראשון ובחירת הרישיות שלך הייתה שגויה."
 
 #: src/practice/writtenbackendmode.cpp:132
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Your answer was right... but not on the first try and accents were wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr ""
+"התשובה שלך הייתה נכונה… אך לא בניסיון הראשון והסימנים הדיאקריטיים היו שגויים."
 
 #: src/practice/writtenbackendmode.cpp:134
 #, kde-format
@@ -2909,7 +2915,7 @@ msgstr "הפתרון נפתח ב־: %1"
 #: src/practice/writtenpracticewidget.cpp:130
 #, kde-format
 msgid "Synonym: "
-msgstr "מילים נרדפות:"
+msgstr "מילה נרדפת: "
 
 #. i18n: ectx: property (title), widget (QGroupBox, tiltle_group)
 #: src/settings/documentproperties.ui:38
@@ -2950,9 +2956,9 @@ msgstr "דרך ליצור איתך קשר (דוא״ל או כתובת)."
 
 #. i18n: ectx: property (text), widget (QLabel, label_remark)
 #: src/settings/documentproperties.ui:128
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Comment:"
-msgstr "תרגילים:"
+msgstr "ה&ערה:"
 
 #. i18n: ectx: property (toolTip), widget (KTextEdit, commentTextEdit)
 #: src/settings/documentproperties.ui:147
@@ -3056,7 +3062,7 @@ msgstr "הורדת דקדוד"
 #: src/settings/languagesettings.kcfg:23 src/settings/languagesettings.kcfg:24
 #, kde-format
 msgid "Selected tenses for conjugation practice."
-msgstr "זמנים נבחרים לתרגול נטיות"
+msgstr "זמנים נבחרים לתרגול נטיות."
 
 #. i18n: ectx: label, entry (VisibleColumns), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (VisibleColumns), group (Document $(fileurl))
@@ -3106,7 +3112,7 @@ msgid ","
 msgstr ","
 
 #: src/settings/generaloptions.cpp:46
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "CSV separator: tabulator"
 msgid "TAB"
 msgstr "טאב"
@@ -3197,25 +3203,25 @@ msgstr "מ&פריד לייבוא/ייצוא קובץ טקסט (CSV):"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, kcfg_SeparatorCombo)
 #: src/settings/generaloptionsbase.ui:116
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Choose which separator you want to use to separate your data when importing "
 "and exporting text."
-msgstr "בחר איזה תו אתה מעוניין שיפריד בין הנתונים שלך."
+msgstr "נא לבחור איזה תו יפריד בין שדות המידע בעת ייבוא וייצוא טקסט."
 
 #. i18n: ectx: property (whatsThis), widget (KComboBox, kcfg_SeparatorCombo)
 #: src/settings/generaloptionsbase.ui:119
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Choose the separator to use to divide the parts of an expression when "
 "importing or exporting data as text."
-msgstr "בחר איזה תו אתה מעוניין שיפריד בין הנתונים שלך."
+msgstr "נא לבחור איזה תו יפריד בין חלקי ביטוי בעת ייבוא וייצוא נתונים כטקסט."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: src/settings/generaloptionsbase.ui:144
-#, fuzzy, kde-format
+#, kde-format
 msgid "Editing"
-msgstr "&פקיעה"
+msgstr "עריכה"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_SmartAppend)
 #: src/settings/generaloptionsbase.ui:162
@@ -3237,15 +3243,15 @@ msgstr "פרטי ערכת העיצוב"
 
 #. i18n: ectx: property (text), widget (QLabel, labelContact)
 #: src/settings/kgametheme/kgamethemeselector.ui:128
-#, fuzzy, kde-format
+#, kde-format
 msgid "Contact:"
-msgstr "תרגילים:"
+msgstr "פרטי קשר:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelDescription)
 #: src/settings/kgametheme/kgamethemeselector.ui:163
-#, fuzzy, kde-format
+#, kde-format
 msgid "Description:"
-msgstr "תיאור סוג"
+msgstr "תיאור:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelAuthor)
 #: src/settings/kgametheme/kgamethemeselector.ui:198
@@ -3254,41 +3260,41 @@ msgid "Author:"
 msgstr "יוצר:"
 
 #: src/settings/languageproperties.cpp:23
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
-msgstr "שפות"
+msgstr "עריכת שפות"
 
 #: src/settings/languageproperties.cpp:27
-#, fuzzy, kde-format
+#, kde-format
 msgid "Add language"
-msgstr "Gai Shaked"
+msgstr "הוספת שפה"
 
 #: src/settings/languageproperties.cpp:30
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove language"
-msgstr "&הסר שפה"
+msgstr "הסרת שפה"
 
 #: src/settings/languageproperties.cpp:45
-#, fuzzy, kde-format
+#, kde-format
 msgid "New Language"
-msgstr "שפות"
+msgstr "שפה חדשה"
 
 #: src/settings/languageproperties.cpp:58
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Edit language properties"
 msgid "Properties for %1"
-msgstr "ערוך את מאפייני המקור"
+msgstr "מאפיינים עבור %1"
 
 #: src/settings/languageproperties.cpp:88
-#, fuzzy, kde-format
+#, kde-format
 msgid "Really delete language: %1?"
-msgstr "&הוסף שפה"
+msgstr "באמת למחוק את השפה: %1?"
 
 #: src/settings/languageproperties.cpp:89
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove Language"
-msgstr "&הסר שפה"
+msgstr "הסרת שפה"
 
 #: src/settings/languagepropertiespage.cpp:83
 #, kde-format
@@ -3297,9 +3303,9 @@ msgstr "לא נמצא בורר מקלדת KDE."
 
 #: src/settings/languagepropertiespage.cpp:346
 #: src/settings/languagepropertiespage.cpp:368
-#, fuzzy, kde-format
+#, kde-format
 msgid "Tense Name"
-msgstr "שם"
+msgstr "שם הזמן"
 
 #: src/settings/languagepropertiespage.cpp:346
 #: src/settings/languagepropertiespage.cpp:368
@@ -3329,9 +3335,9 @@ msgstr "כללי"
 
 #. i18n: ectx: property (text), widget (QLabel, nameLabel)
 #: src/settings/languagepropertiespage.ui:30
-#, fuzzy, kde-format
+#, kde-format
 msgid "Name:"
-msgstr "&שם:"
+msgstr "שם:"
 
 #. i18n: ectx: property (text), widget (QLabel, keyboardLayoutLabel)
 #: src/settings/languagepropertiespage.ui:46
@@ -3341,9 +3347,9 @@ msgstr "פריסת מקלדת:"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Download grammar"
-msgstr "גרמנית"
+msgstr "הורדת &דקדוק"
 
 #. i18n: ectx: property (text), widget (QLabel, spellcheckerLabel)
 #: src/settings/languagepropertiespage.ui:88
@@ -3353,21 +3359,21 @@ msgstr "בודק איות:"
 
 #. i18n: ectx: property (text), widget (QLabel, localeSelectionLabel)
 #: src/settings/languagepropertiespage.ui:101
-#, fuzzy, kde-format
+#, kde-format
 msgid "Language:"
-msgstr "שפות"
+msgstr "שפה:"
 
 #. i18n: ectx: property (text), widget (QLabel, fontLabel_2)
 #: src/settings/languagepropertiespage.ui:117
-#, fuzzy, kde-format
+#, kde-format
 msgid "Font (practice):"
-msgstr "לא בשאילתה"
+msgstr "גופן (תרגול):"
 
 #. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
 #: src/settings/languagepropertiespage.ui:127
-#, fuzzy, kde-format
+#, kde-format
 msgid "Font (editor):"
-msgstr "לא בשאילתה"
+msgstr "גופן (עורך):"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
 #: src/settings/languagepropertiespage.ui:141
@@ -3411,9 +3417,9 @@ msgstr "&נקבה:"
 #. i18n: ectx: property (text), widget (QLabel, natural_label_2)
 #: src/settings/languagepropertiespage.ui:223
 #: src/settings/languagepropertiespage.ui:339
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Neutral:"
-msgstr "&נייטרלי"
+msgstr "&סתמי:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_3)
 #: src/settings/languagepropertiespage.ui:451
@@ -3453,15 +3459,15 @@ msgstr "נ&קבה:"
 
 #. i18n: ectx: property (text), widget (QLabel, natural_c_label)
 #: src/settings/languagepropertiespage.ui:661
-#, fuzzy, kde-format
+#, kde-format
 msgid "Neu&ter:"
-msgstr "נ&ייטרלי:"
+msgstr "ס&תמי:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, dualCheckBox)
 #: src/settings/languagepropertiespage.ui:697
-#, fuzzy, kde-format
+#, kde-format
 msgid "Dual conjugations"
-msgstr "נטיית פעלים"
+msgstr "נטיות כפולות"
 
 #. i18n: ectx: property (text), widget (QCheckBox, neutralCheckBox)
 #: src/settings/languagepropertiespage.ui:704
@@ -3478,9 +3484,9 @@ msgstr "לזכר/נקבה יש נטיות פעלים שונות"
 #. i18n: ectx: attribute (title), widget (QWidget, tab_4)
 #: src/settings/languagepropertiespage.ui:725
 #: src/statistics/conjugationoptions.cpp:24
-#, fuzzy, kde-format
+#, kde-format
 msgid "Tenses"
-msgstr "&זמנים"
+msgstr "זמנים"
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/settings/languagepropertiespage.ui:752 src/settings/optionlistform.ui:63
@@ -3496,23 +3502,23 @@ msgstr "&עריכה…"
 
 #. i18n: ectx: property (text), widget (QPushButton, deleteButton)
 #: src/settings/languagepropertiespage.ui:778 src/settings/optionlistform.ui:93
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Delete"
-msgstr "&איפוס"
+msgstr "מ&חיקה"
 
 #. i18n: ectx: label, entry (KeyboardLayout), group (Locale $(locale))
 #. i18n: ectx: whatsthis, entry (KeyboardLayout), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:12 src/settings/languagesettings.kcfg:13
-#, fuzzy, kde-format
+#, kde-format
 msgid "Keyboard layout for this locale"
-msgstr "פריסת מקלדת:"
+msgstr "פריסת מקלדת להגדרות האזוריות האלה"
 
 #. i18n: ectx: label, entry (SpellChecker), group (Locale $(locale))
 #. i18n: ectx: whatsthis, entry (SpellChecker), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:17 src/settings/languagesettings.kcfg:18
-#, fuzzy, kde-format
+#, kde-format
 msgid "Spell checker for this language"
-msgstr "קבע תמונה עבור השפה"
+msgstr "בדיקת איות בשפה הזאת"
 
 #. i18n: ectx: label, entry (PracticeFont), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:32
@@ -3540,9 +3546,9 @@ msgstr "ערכת העיצוב לשימוש לתרגול ולמסך קבלת הפ
 
 #. i18n: ectx: label, entry (NumPreSetting), group (General)
 #: src/settings/parley.kcfg:15
-#, fuzzy, kde-format
+#, kde-format
 msgid "Number of stored setting profiles"
-msgstr "הכנס את מספר הרשומות בשיעור:"
+msgstr "מספר הפרופילים של ההגדרות המאוסנים"
 
 #. i18n: ectx: label, entry (SmartAppend), group (General)
 #: src/settings/parley.kcfg:19
@@ -3559,9 +3565,9 @@ msgstr "מגדיר את המפריד שנעשה בו שימוש להעתקת/ה�
 
 #. i18n: ectx: label, entry (EntriesPerLesson), group (General)
 #: src/settings/parley.kcfg:27
-#, fuzzy, kde-format
+#, kde-format
 msgid "The number of entries per unit"
-msgstr "הכנס את מספר הרשומות בשיעור:"
+msgstr "מספר הרשומות ליחידה"
 
 #. i18n: ectx: label, entry (AutoOpenLast), group (General)
 #: src/settings/parley.kcfg:31
@@ -3631,9 +3637,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (SwapDirection), group (PracticeOptions)
 #: src/settings/parley.kcfg:81
-#, fuzzy, kde-format
+#, kde-format
 msgid "Swap direction randomly"
-msgstr "&החלף כיוונים באופן אקראי"
+msgstr "החלפת כיוונים באקראי"
 
 #. i18n: ectx: label, entry (PracticeTimeout), group (PracticeOptions)
 #: src/settings/parley.kcfg:86
@@ -3653,7 +3659,7 @@ msgstr ""
 #: src/settings/parley.kcfg:98
 #, kde-format
 msgid "Maximum time allowed to answer."
-msgstr ""
+msgstr "הזמן המרבי שמותר לענות תשובה."
 
 #. i18n: ectx: label, entry (Suggestions), group (PracticeOptions)
 #: src/settings/parley.kcfg:103
@@ -3665,7 +3671,7 @@ msgstr "&אפשר רשימת הצעות"
 #: src/settings/parley.kcfg:107
 #, kde-format
 msgid "Enable the showing of hints."
-msgstr ""
+msgstr "הפעלת הצגת רמזים."
 
 #. i18n: ectx: label, entry (IgnoreAccentMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:111
@@ -3687,33 +3693,33 @@ msgstr "תשובתך שגויה. %1% הושלמו."
 
 #. i18n: ectx: label, entry (SplitTranslations), group (PracticeOptions)
 #: src/settings/parley.kcfg:124
-#, fuzzy, kde-format
+#, kde-format
 msgid "Split translations in written practice."
-msgstr "מפעיל שאילתה אקראית..."
+msgstr "פיצול תרגומים בתרגול כתוב."
 
 #. i18n: ectx: label, entry (Periods), group (PracticeOptions)
 #: src/settings/parley.kcfg:128
-#, fuzzy, kde-format
+#, kde-format
 msgid "Split translations at periods."
-msgstr "פצל תרגומים על פי נקודות"
+msgstr "פיצול תרגומים לפי נקודות."
 
 #. i18n: ectx: label, entry (Colons), group (PracticeOptions)
 #: src/settings/parley.kcfg:132
-#, fuzzy, kde-format
+#, kde-format
 msgid "Split translations at colons."
-msgstr "פצל תרגומים על פי נקודותיים"
+msgstr "פיצול תרגומים לפי נקודתיים."
 
 #. i18n: ectx: label, entry (Semicolons), group (PracticeOptions)
 #: src/settings/parley.kcfg:136
-#, fuzzy, kde-format
+#, kde-format
 msgid "Split translations at semicolons."
-msgstr "פצל תרגומים על פי נקודה פסיק"
+msgstr "פיצול תרגומים לפי נקודה פסיק."
 
 #. i18n: ectx: label, entry (Commas), group (PracticeOptions)
 #: src/settings/parley.kcfg:140
-#, fuzzy, kde-format
+#, kde-format
 msgid "Split translations at commas."
-msgstr "פצל תרגומים על פי פסיקים"
+msgstr "פיצול תרגומים לפי פסיקים."
 
 #. i18n: ectx: label, entry (ShowMore), group (PracticeOptions)
 #: src/settings/parley.kcfg:146
@@ -3936,16 +3942,16 @@ msgstr ""
 #. i18n: ectx: label, entry (WordTypesInPractice), group (Thresholds)
 #. i18n: ectx: whatsthis, entry (WordTypesInPractice), group (Thresholds)
 #: src/settings/parley.kcfg:297 src/settings/parley.kcfg:298
-#, fuzzy, kde-format
+#, kde-format
 msgid "Selected word types for practices."
-msgstr "בחר את התרגום הנכון:"
+msgstr "סוגי מילים נבחרים לתרגולים."
 
 #. i18n: ectx: label, entry (SubWordTypesInPractice), group (Thresholds)
 #. i18n: ectx: whatsthis, entry (SubWordTypesInPractice), group (Thresholds)
 #: src/settings/parley.kcfg:301 src/settings/parley.kcfg:302
-#, fuzzy, kde-format
+#, kde-format
 msgid "Selected sub word types for practices."
-msgstr "בחר את התרגום הנכון:"
+msgstr "סוגי תת־מילים נבחרים לתרגולים."
 
 #. i18n: ectx: label, entry (LearningLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:309
@@ -3955,15 +3961,15 @@ msgstr ""
 
 #. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:313
-#, fuzzy, kde-format
+#, kde-format
 msgid "The language that you know already."
-msgstr "הקלד את קוד השפה אם אתה יודע אותו."
+msgstr "השפה שכבר יש לך בקיאות בה."
 
 #. i18n: ectx: label, entry (ShowSolutionAfterAnswer), group (PracticeManager)
 #: src/settings/parley.kcfg:318
-#, fuzzy, kde-format
+#, kde-format
 msgid "Show the solution after an answer was given."
-msgstr "&הצג פתרון"
+msgstr "להציג את הפתרון לאחר מילוי התשובה."
 
 #. i18n: ectx: label, entry (ShowSolutionAfterAnswerTime), group (PracticeManager)
 #: src/settings/parley.kcfg:322
@@ -4131,9 +4137,9 @@ msgstr "נא לציין באיזה גופן להשתמש להצגת הגייה �
 
 #. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
 #: src/settings/viewoptionsbase.ui:48
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Pronunciation symbols font:"
-msgstr "&הגייה:"
+msgstr "גופן סימני ה&גייה:"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
 #: src/settings/viewoptionsbase.ui:77
@@ -4143,9 +4149,9 @@ msgstr "צבע בסיסי להצגת דרגות:"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:96
-#, fuzzy, kde-format
+#, kde-format
 msgid "Color used to display the progress"
-msgstr "צבע לציון 7"
+msgstr "הצבע המשתמש להצגת התהליך"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:99
@@ -4164,9 +4170,9 @@ msgstr "&בסיס"
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:105
-#, fuzzy, kde-format
+#, kde-format
 msgid "Alt+0"
-msgstr "Alt+7"
+msgstr "Alt+0"
 
 #. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
 #: src/settings/viewoptionsbase.ui:121
@@ -4287,9 +4293,9 @@ msgstr "שפות"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeMode)
 #: src/statistics/statisticsmainwindow.ui:75
-#, fuzzy, kde-format
+#, kde-format
 msgid "Practice Mode"
-msgstr "תווית"
+msgstr "מצב תרגול"
 
 #. i18n: ectx: property (text), widget (QRadioButton, flashCard)
 #: src/statistics/statisticsmainwindow.ui:81
@@ -4299,21 +4305,21 @@ msgstr "כרטיסיות זיכרון"
 
 #. i18n: ectx: property (text), widget (QRadioButton, mixedLetters)
 #: src/statistics/statisticsmainwindow.ui:91
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mixed &Letters"
-msgstr "תווית"
+msgstr "אותיות מ&עורבבות"
 
 #. i18n: ectx: property (text), widget (QRadioButton, multipleChoice)
 #: src/statistics/statisticsmainwindow.ui:98
-#, fuzzy, kde-format
+#, kde-format
 msgid "M&ultiple Choice"
-msgstr "שאלות אמריקאיות"
+msgstr "שאלון אמ&ריקאי"
 
 #. i18n: ectx: property (text), widget (QRadioButton, written)
 #: src/statistics/statisticsmainwindow.ui:105
-#, fuzzy, kde-format
+#, kde-format
 msgid "Wri&tten"
-msgstr "תווית"
+msgstr "&כתוב"
 
 #. i18n: ectx: property (text), widget (QRadioButton, exampleSentence)
 #: src/statistics/statisticsmainwindow.ui:115
