@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-05 01:33+0000\n"
-"PO-Revision-Date: 2023-12-17 00:21+0200\n"
+"PO-Revision-Date: 2023-12-20 09:37+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -62,6 +62,8 @@ msgid ""
 "can choose to ignore some of your configuration settings to start a practice "
 "anyway.</p>"
 msgstr ""
+"<p>בחירת אוצר המילים לתרגול .</p><p>להלן ניתן לבחור להתעלם מחלק מהגדרות "
+"התצורה שלך כדי להתחיל לתרגל בכל זאת.</p>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
 #: src/collection/entryfilterdialog.ui:30
@@ -103,7 +105,7 @@ msgstr "התעלמות מזמן התרגול"
 #: src/collection/entryfilterdialog.ui:136
 #, kde-format
 msgid "Ignore Minimum/Maximum Grade"
-msgstr ""
+msgstr "התעלמות מציון מזערי/מרבי"
 
 #. i18n: ectx: property (text), widget (QLabel, numberAffectedWordsLabel)
 #: src/collection/entryfilterdialog.ui:156
@@ -137,7 +139,7 @@ msgstr "ללא"
 #: src/collection/vocabularymodel.cpp:185
 #, kde-format
 msgid "You can drag and drop words onto their word type."
-msgstr ""
+msgstr "אפשר לגרור ולהשליך מילים לסוג המילים שלהן."
 
 #: src/collection/vocabularymodel.cpp:187
 #, kde-format
@@ -344,7 +346,7 @@ msgstr "הקלטה"
 #: src/editor/audiowidget.ui:33
 #, kde-format
 msgid "Download audio file with webservice"
-msgstr ""
+msgstr "הורדת קובצי שמע משירות מקוון"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:36
@@ -367,19 +369,19 @@ msgstr "טבלת מעקב"
 #: src/editor/comparisonwidget.cpp:76
 #, kde-format
 msgid "Could not determine word type of adjectives"
-msgstr ""
+msgstr "לא ניתן לקבוע סוג מילים של שמות תואר"
 
 #: src/editor/comparisonwidget.cpp:95
 #, kde-format
 msgid "Could not determine word type of adverbs"
-msgstr ""
+msgstr "לא ניתן לקבוע סוג מילים של תוארי פועל"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, absoluteLabel)
 #. i18n: ectx: property (toolTip), widget (QLabel, comparativeLabel)
 #: src/editor/comparisonwidget.ui:24 src/editor/comparisonwidget.ui:56
 #, kde-format
 msgid "The comparative is used to compare nouns or verbs (faster)"
-msgstr ""
+msgstr "ההשוואתיות המשמשת להשוואת שמות עצם או פעלים (מהר יותר)"
 
 #. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
 #: src/editor/comparisonwidget.ui:27
@@ -847,7 +849,7 @@ msgstr "שם עצם"
 #: src/editor/inflectionwidget.cpp:81
 #, kde-format
 msgid "\"%1\" is a:"
-msgstr ""
+msgstr "„%1” היא:"
 
 #: src/editor/inflectionwidget.cpp:124
 #, kde-format
@@ -990,7 +992,7 @@ msgstr "רשומות ליחידה"
 msgid ""
 "The unit will be split into smaller unit. How many entries in each unit do "
 "you want?"
-msgstr ""
+msgstr "היחידה תפוצל ליחידות קטנות יותר. כמה רשומות בכל יחידה דרושות לך?"
 
 #: src/editor/lessonview.cpp:245
 #, kde-format
@@ -1266,7 +1268,7 @@ msgstr "שם עצם בזכר"
 #: src/editor/wordtypeview.cpp:74
 #, kde-format
 msgid "This word type folder contains masculine nouns."
-msgstr ""
+msgstr "תיקיית סוג מילים זאת מכילה שמות עצם בזכר."
 
 #: src/editor/wordtypeview.cpp:80
 #, kde-format
@@ -1276,7 +1278,7 @@ msgstr "שם עצם בנקבה"
 #: src/editor/wordtypeview.cpp:82
 #, kde-format
 msgid "This word type folder contains feminine nouns."
-msgstr ""
+msgstr "תיקיית סוג מילים זאת מכילה שמות עצם בנקבה."
 
 #: src/editor/wordtypeview.cpp:88
 #, kde-format
@@ -1286,22 +1288,22 @@ msgstr "שם עצם סתמי"
 #: src/editor/wordtypeview.cpp:90
 #, kde-format
 msgid "This word type folder contains neuter nouns."
-msgstr ""
+msgstr "תיקיית סוג מילים זאת מכילה שמות עצם סתמיים."
 
 #: src/editor/wordtypeview.cpp:98
 #, kde-format
 msgid "This word type folder contains adjectives."
-msgstr ""
+msgstr "תיקיית סוג מילים זאת מכילה שמות תואר."
 
 #: src/editor/wordtypeview.cpp:106
 #, kde-format
 msgid "This word type folder contains adverbs."
-msgstr ""
+msgstr "תיקיית סוג מילים זאת מכילה תוארי פועל."
 
 #: src/editor/wordtypeview.cpp:114
 #, kde-format
 msgid "This word type folder contains verbs."
-msgstr ""
+msgstr "תיקיית סוג מילים זאת מכילה פעלים."
 
 #: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:494
 #, kde-format
@@ -1311,7 +1313,7 @@ msgstr "מילת קישור"
 #: src/editor/wordtypeview.cpp:122
 #, kde-format
 msgid "This word type folder contains conjunctions."
-msgstr ""
+msgstr "תיקיית סוג מילים זאת מכילה מילות תיאום."
 
 #: src/editor/wordtypeview.cpp:128
 #, kde-format
@@ -1321,22 +1323,22 @@ msgstr "אין סוג מיוחד"
 #: src/editor/wordtypeview.cpp:131
 #, kde-format
 msgid "This word type folder contains no word type with special meaning."
-msgstr ""
+msgstr "תיקיית סוג מילים זאת לא מכילה סוגי מילים עם משמעות מיוחדת."
 
 #: src/editor/wordtypeview.cpp:209
 #, kde-format
 msgid "The root word type cannot be deleted."
-msgstr ""
+msgstr "אי אפשר למחוק את מקור סוג המילה."
 
 #: src/editor/wordtypeview.cpp:219
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "There is a word left with this word type. It will lose its type. Continue?"
 msgid_plural ""
 "There are %1 words left with this word type. They will lose their word type. "
 "Continue?"
-msgstr[0] "הקובץ %1 כבר קיים. האם ברצונך לשכתב אותו?"
-msgstr[1] "הקובץ %1 כבר קיים. האם ברצונך לשכתב אותו?"
+msgstr[0] ""
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
@@ -1706,10 +1708,10 @@ msgid "Toggle display of the search bar"
 msgstr "החלף את תצוגת סרגלי הכלים"
 
 #: src/parleydocument.cpp:121 src/parleydocument.cpp:577
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
-msgstr "ערוך את מאפייני המקור"
+msgstr "מאפיינים עבור %1"
 
 #: src/parleydocument.cpp:158
 #, kde-format
@@ -2421,12 +2423,12 @@ msgid "All conjugation forms were right."
 msgstr "כל צורות הנטייה היו נכונות."
 
 #: src/practice/conjugationbackendmode.cpp:97
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "You did not get the conjugation forms right."
 msgid "You answered %1 conjugation form correctly."
 msgid_plural "You answered %1 conjugation forms correctly."
-msgstr[0] "נטיית פעלים"
-msgstr[1] "נטיית פעלים"
+msgstr[0] ""
+msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
@@ -2639,7 +2641,7 @@ msgstr "סקירת תרגול"
 #: src/practice/practicesummarycomponent.cpp:83
 #, kde-format
 msgid "Switch to the Practice Overview page"
-msgstr ""
+msgstr "מעבר לעמוד סקירת תרגול"
 
 #: src/practice/practicesummarycomponent.cpp:150
 #, kde-format
@@ -2742,6 +2744,8 @@ msgid ""
 "Words will only be counted as correct if they are answered correctly on the "
 "first attempt."
 msgstr ""
+"התשובה הזאת תיחשב לנכונה.\n"
+"מילים תיחשבנה כנכונות רק אם ענית עליהן נכון בניסיון הראשון."
 
 #: src/practice/statustoggle.cpp:78
 #, kde-format
@@ -2755,6 +2759,8 @@ msgid ""
 "Words will only be counted as correct if they are answered correctly on the "
 "first attempt."
 msgstr ""
+"התשובה הזאת תיחשב לשגויה.\n"
+"מילים תיחשבנה כנכונות רק אם ענית עליהן נכון בניסיון הראשון."
 
 #: src/practice/statustoggle.cpp:82
 #, kde-format
@@ -2787,12 +2793,12 @@ msgstr "תשובה נכונה בניסיון הראשון: %1 מתוך %2 (%3 %)
 #: src/practice/summarybarwidget.cpp:147
 #, kde-format
 msgid "Answered wrong on the first attempt: %1 of %2 (%3 %)"
-msgstr ""
+msgstr "תשובה שגויה בניסיון הראשון: %1 מתוך %2 (%3 %)"
 
 #: src/practice/summarybarwidget.cpp:154
 #, kde-format
 msgid "Not answered during this practice: %1 of %2 (%3 %)"
-msgstr ""
+msgstr "לא נענו במהלך התרגול: %1 מתוך %2 (%3 %)"
 
 #: src/practice/writtenbackendmode.cpp:70
 #, kde-format
@@ -2905,7 +2911,7 @@ msgstr ""
 #: src/practice/writtenbackendmode.cpp:134
 #, kde-format
 msgid "Your answer was right... but not on the first try."
-msgstr ""
+msgstr "התשובה שלך הייתה נכונה… אך לא בניסיון הראשון."
 
 #: src/practice/writtenbackendmode.cpp:154
 #, kde-format
@@ -3022,6 +3028,8 @@ msgid ""
 "If you consider contributing your file to KDE in the future, an appropriate "
 "license is required."
 msgstr ""
+"הרישיון שהמסמך שלך יהיה כפוף לו.\n"
+"אם שקלת לתרום את הקובץ שלך ל־KDE בעתיד, חשוב לבחור רישיון מתאים."
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/settings/documentproperties.ui:239
@@ -3471,9 +3479,9 @@ msgstr "נטיות כפולות"
 
 #. i18n: ectx: property (text), widget (QCheckBox, neutralCheckBox)
 #: src/settings/languagepropertiespage.ui:704
-#, fuzzy, kde-format
+#, kde-format
 msgid "A neutral conjugation form exists"
-msgstr "נטיית פעלים"
+msgstr "קיימת צורת נטייה סתמית"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maleFemaleDifferCheckBox)
 #: src/settings/languagepropertiespage.ui:717
@@ -3634,6 +3642,8 @@ msgid ""
 "The number of entries that are practiced at the same time. If one of these "
 "is answered correctly another entry will be appended."
 msgstr ""
+"מספר הרשומות שמתורגלות בו־זמנית. אם ענית על אחת מהן נכון תתווסף רשומה נוספת "
+"בסוף."
 
 #. i18n: ectx: label, entry (SwapDirection), group (PracticeOptions)
 #: src/settings/parley.kcfg:81
@@ -3645,7 +3655,7 @@ msgstr "החלפת כיוונים באקראי"
 #: src/settings/parley.kcfg:86
 #, kde-format
 msgid "Limit the time for the user to answer in a test."
-msgstr ""
+msgstr "להגביל את הזמן שמשתמש יכול לענות על מבחן."
 
 #. i18n: ectx: label, entry (PracticeTimeoutMode), group (PracticeOptions)
 #: src/settings/parley.kcfg:90
@@ -3654,6 +3664,8 @@ msgid ""
 "Show - show the solution after the given time; Continue - go to the next "
 "question after the given time."
 msgstr ""
+"הצגה - להציג את הפתרון אחרי הזמן הנתון, להמשיך - מעבר לשאלה הבאה אחרי הזמן "
+"הנתון."
 
 #. i18n: ectx: label, entry (PracticeTimeoutTimePerAnswer), group (PracticeOptions)
 #: src/settings/parley.kcfg:98
@@ -3663,9 +3675,9 @@ msgstr "הזמן המרבי שמותר לענות תשובה."
 
 #. i18n: ectx: label, entry (Suggestions), group (PracticeOptions)
 #: src/settings/parley.kcfg:103
-#, fuzzy, kde-format
+#, kde-format
 msgid "Enable suggestion lists in written practice."
-msgstr "&אפשר רשימת הצעות"
+msgstr "הפעלת רשימות הצעה בתרגול בכתב."
 
 #. i18n: ectx: label, entry (ShowHints), group (PracticeOptions)
 #: src/settings/parley.kcfg:107
@@ -3675,9 +3687,9 @@ msgstr "הפעלת הצגת רמזים."
 
 #. i18n: ectx: label, entry (IgnoreAccentMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:111
-#, fuzzy, kde-format
+#, kde-format
 msgid "Count answers as right when only the accentuation is wrong."
-msgstr "תשובתך שגויה. %1% הושלמו."
+msgstr "להחשיב את התשובות כנכונות כאשר יש הבדל בהטעמה (סימנים דיאקריטיים)."
 
 #. i18n: ectx: label, entry (IgnoreCapitalizationMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:115
@@ -3739,7 +3751,7 @@ msgstr "אפשר את כפתור &אני יודע"
 #, kde-format
 msgid ""
 "When the synonym instead of the word was entered, does it count as correct?"
-msgstr ""
+msgstr "כאשר סופקה מילה נרדפת במקום המילה, זה נחשב נכון?"
 
 #. i18n: ectx: label, entry (PracticeImagesEnabled), group (PracticeOptions)
 #: src/settings/parley.kcfg:158
@@ -3760,13 +3772,15 @@ msgid ""
 "Allow using images instead of words in flashcards. This will only be done if "
 "there is no word in the entry."
 msgstr ""
+"לאפשר שימוש בתמונות במקום במילים בכרטיסיות זיכרון. יבוצע רק אם אין מילה "
+"ברשומה."
 
 #. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
 #: src/settings/parley.kcfg:172
 #, kde-format
 msgid ""
 "The maximum number of words that will be practiced in a training session."
-msgstr ""
+msgstr "מספר המילים המרבי לתרגול באימון אחד."
 
 #. i18n: ectx: label, entry (SessionMaxNewWords), group (PracticeOptions)
 #: src/settings/parley.kcfg:176
@@ -3774,13 +3788,13 @@ msgstr ""
 msgid ""
 "The maximum number of new (untrained) words that will be used in a training "
 "session."
-msgstr ""
+msgstr "מספר המילים המרבי של מילים חדשות (לפני תרגול) שתשמשנה בהפעלת תרגול."
 
 #. i18n: ectx: label, entry (SessionLimitWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:180
 #, kde-format
 msgid "Limit the number of words in the initial phase."
-msgstr ""
+msgstr "הגבלת מספר המילים בשלב הראשוני."
 
 #. i18n: ectx: label, entry (SessionMaxWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:184
@@ -3789,6 +3803,8 @@ msgid ""
 "The maximum number of words in the initial phase. If this limit is exceeded, "
 "no new words will be introduced."
 msgstr ""
+"מספר המילים הראשוני בשלב הראשוני. אם חרגת מהמגבלה הזאת, לא תוצגנה מילים "
+"חדשות."
 
 #. i18n: ectx: label, entry (MultipleChoiceWordTypeConsistancy), group (PracticeOptions)
 #: src/settings/parley.kcfg:190
@@ -3797,6 +3813,7 @@ msgid ""
 "Use the same word type as the solution for the incorrect answers in a "
 "multiple choice practice."
 msgstr ""
+"להשתמש באותו סוג המילים כמו הפתרון לתשובות השגויות בתרגול שאלות אמריקאיות."
 
 #. i18n: ectx: label, entry (NumberMultipleChoiceAnswers), group (PracticeOptions)
 #: src/settings/parley.kcfg:194
@@ -3804,7 +3821,7 @@ msgstr ""
 msgid ""
 "How many answers are provided for a multiple choice question, including the "
 "correct answer."
-msgstr ""
+msgstr "כמה תשובות תסופקנה לשאלה אמריקאית, כולל התשובה הנכונה."
 
 #. i18n: ectx: label, entry (ShowSearch), group (Appearance)
 #: src/settings/parley.kcfg:201
@@ -3816,7 +3833,7 @@ msgstr "החלף את תצוגת סרגלי הכלים"
 #: src/settings/parley.kcfg:206
 #, kde-format
 msgid "When enabled a unit also shows entries from its subunits."
-msgstr ""
+msgstr "כשהאפשרות פעילה יחידה תציג גם רשומות מתת־היחידות שלה."
 
 #. i18n: ectx: label, entry (TableLessonColumnVisible), group (Appearance)
 #: src/settings/parley.kcfg:211
@@ -3834,13 +3851,13 @@ msgstr "תיאור שיעור"
 #: src/settings/parley.kcfg:221
 #, kde-format
 msgid "Select which units are displayed for editing"
-msgstr ""
+msgstr "נא לבחור אילו יחידות תופענה לעריכה"
 
 #. i18n: ectx: label, entry (MainWindowSplitter), group (Appearance)
 #: src/settings/parley.kcfg:231
 #, kde-format
 msgid "How the main window is divided."
-msgstr ""
+msgstr "איך החלון הראשי מחולק."
 
 #. i18n: ectx: label, entry (PracticeFont), group (Appearance)
 #: src/settings/parley.kcfg:235
@@ -3874,16 +3891,16 @@ msgstr "צבע לציון 7"
 
 #. i18n: ectx: label, entry (PreGradeColor), group (Appearance)
 #: src/settings/parley.kcfg:255
-#, fuzzy, kde-format
+#, kde-format
 msgid "Color used to display the early confidence levels"
-msgstr "צבע לציון 7"
+msgstr "צבע שמשמש להצגת דרגות הסמך המוקדמות"
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:184
-#, fuzzy, kde-format
+#, kde-format
 msgid "Color used to display invalid units"
-msgstr "צבע לציון 7"
+msgstr "צבע שמשמש להצגת יחידות שגויות"
 
 #. i18n: ectx: label, entry (PracticeMinimumTimesAsked), group (Thresholds)
 #: src/settings/parley.kcfg:267
@@ -3957,7 +3974,7 @@ msgstr "סוגי תת־מילים נבחרים לתרגולים."
 #: src/settings/parley.kcfg:309
 #, kde-format
 msgid "The language that you are learning."
-msgstr ""
+msgstr "השפה הנלמדת."
 
 #. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:313
@@ -3975,19 +3992,19 @@ msgstr "להציג את הפתרון לאחר מילוי התשובה."
 #: src/settings/parley.kcfg:322
 #, kde-format
 msgid "The time the solution is shown (seconds). 0 is unlimited."
-msgstr ""
+msgstr "משך הזמן להצגת הפתרון (שניות). 0 משמעו ללא הגבלת זמן."
 
 #. i18n: ectx: label, entry (PracticeMode), group (PracticeManager)
 #: src/settings/parley.kcfg:337
 #, kde-format
 msgid "The practice method that is currently selected."
-msgstr ""
+msgstr "שיטת התרגול שנבחרה נכון לעכשיו."
 
 #. i18n: ectx: label, entry (PracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:348
 #, kde-format
 msgid "The practice mode that is currently selected."
-msgstr ""
+msgstr "מצב התרגול שנבחר נכון לעכשיו."
 
 #. i18n: ectx: label, entry (BlockItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:354
@@ -4005,13 +4022,13 @@ msgstr ""
 #: src/settings/parley.kcfg:375
 #, kde-format
 msgid "If true, the practice direction for each practice mode is stored."
-msgstr ""
+msgstr "אם אמת, כיוון התרגול לכל תרגול נשמר."
 
 #. i18n: ectx: whatsthis, entry (RememberPracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:376
 #, kde-format
 msgid "Should the practice direction for each practice mode be stored?"
-msgstr ""
+msgstr "האם לאחסן את כיוון התרגול לכל מצב תרגול?"
 
 #. i18n: ectx: label, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
 #. i18n: ectx: whatsthis, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
@@ -4030,13 +4047,13 @@ msgstr "נתיב הספקים ל־Parley"
 #: src/settings/parley.kcfg:391
 #, kde-format
 msgid "The command used to start a downloaded vocabulary"
-msgstr ""
+msgstr "הפקודה שמשמשת להתחלת אוצר מילים שהורד"
 
 #. i18n: ectx: label, entry (InstallPath), group (KNewStuff)
 #: src/settings/parley.kcfg:395
 #, kde-format
 msgid "The folder where downloaded vocabularies are saved by default"
-msgstr ""
+msgstr "התיקייה בה יישמרו אוצרות מילים שהורדו כברירת מחדל"
 
 #: src/settings/parleyprefs.cpp:24
 #, kde-format
@@ -4155,9 +4172,9 @@ msgstr "הצבע המשתמש להצגת התהליך"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:99
-#, fuzzy, kde-format
+#, kde-format
 msgid "Click here to change the color used to display the progress."
-msgstr "לחץ כאן כדי לשנות את הצבע לציון 7."
+msgstr "נא ללחוץ כאן כדי לשנות את הצבע שמשמש להצגת התהליך."
 
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
@@ -4176,21 +4193,21 @@ msgstr "Alt+0"
 
 #. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
 #: src/settings/viewoptionsbase.ui:121
-#, fuzzy, kde-format
+#, kde-format
 msgid "Color for displaying early progress:"
-msgstr "צבע לציון 7"
+msgstr "צבע להצגת תהליך מוקדם:"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:140
-#, fuzzy, kde-format
+#, kde-format
 msgid "Color used to display the early progress"
-msgstr "צבע לציון 7"
+msgstr "צבע שמשמש להצגת התהליך המוקדם"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:143
-#, fuzzy, kde-format
+#, kde-format
 msgid "Click here to change the color used to display the early progress."
-msgstr "לחץ כאן כדי לשנות את הצבע לציון 7."
+msgstr "נא ללחוץ כאן כדי לשנות את הצבע שמשמש להצגת התהליך המוקדם."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:149
@@ -4206,9 +4223,9 @@ msgstr "צבע שמשמש להצגת הציונים:"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:187
-#, fuzzy, kde-format
+#, kde-format
 msgid "Click here to change the color used to display invalid units."
-msgstr "לחץ כאן כדי לשנות את הצבע לציון 7."
+msgstr "נא ללחוץ כאן כדי לשנות את הצבע שמשמש להצגת יחידות שגויות."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:193
@@ -4287,9 +4304,9 @@ msgstr "שפה ללמידה"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/statistics/statisticsmainwindow.ui:39
-#, fuzzy, kde-format
+#, kde-format
 msgid "Known Language"
-msgstr "שפות"
+msgstr "שפה מוכרת"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeMode)
 #: src/statistics/statisticsmainwindow.ui:75
