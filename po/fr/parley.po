@@ -12,10 +12,10 @@
 # Matthieu Robin <matthieu@macolu.org>, 2005.
 # Bruno Patri <bruno.patri@gmail.com>, 2007, 2008, 2009, 2010, 2012, 2013.
 # Anne-Marie Mahfouf <annma@kde.org>, 2012.
-# xavier <xavier.besnard@neuf.fr>, 2013, 2020, 2021.
+# Xavier Besnard <xavier.besnard@kde.org>, 2013, 2020, 2021.
 # Simon Depiets <sdepiets@gmail.com>, 2020.
 # Johnny Jazeix <jazeix@gmail.com>, 2020.
-# Xavier BESNARD <xavier.besnard@neuf.fr>, 2023.
+# Xavier Besnard <xavier.besnard@kde.org>, 2023.
 #
 msgid ""
 msgstr ""
@@ -23,7 +23,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-06 00:41+0000\n"
 "PO-Revision-Date: 2023-01-27 19:03+0100\n"
-"Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 "ines@delafond.org, nicolas.ternisien@gmail.com, bruno.patri@gmail.com, "
-"xavier.besnard@neuf.fr"
+"xavier.besnard@kde.org"
 
 #: src/collection/containermodel.cpp:150
 #, kde-format
