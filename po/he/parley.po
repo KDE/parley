@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-05 01:33+0000\n"
-"PO-Revision-Date: 2023-12-21 09:33+0200\n"
+"PO-Revision-Date: 2023-12-24 15:08+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -246,10 +246,10 @@ msgstr "לא נבחרה יחידה"
 #, kde-format
 msgid "%1 word due"
 msgid_plural "%1 words due"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "מילה פגת תוקף"
+msgstr[1] "שתי מילים פגות תוקף"
+msgstr[2] "%1 מילים פגות תוקף"
+msgstr[3] "%1 מילים פגות תוקף"
 
 #: src/dashboard/barwidget.cpp:122
 #, kde-format
@@ -362,9 +362,9 @@ msgstr "חיפוש הנוכחי"
 
 #. i18n: ectx: property (text), widget (QCheckBox, followTableCheckBox)
 #: src/editor/browserwidget.ui:33
-#, fuzzy, kde-format
+#, kde-format
 msgid "Follow Table"
-msgstr "טבלת מעקב"
+msgstr "להיצמד לטבלה"
 
 #: src/editor/comparisonwidget.cpp:76
 #, kde-format
@@ -769,7 +769,7 @@ msgstr "העתקת מאפיינים מהמקור"
 #: src/editor/FromToEntryPageForm.ui:72
 #, kde-format
 msgid "&Confidence Level:"
-msgstr "דרגת &סמך:"
+msgstr "רמת &ביטחון:"
 
 #. i18n: ectx: property (text), widget (QLabel, fauxami_label)
 #: src/editor/FromToEntryPageForm.ui:95
@@ -835,7 +835,7 @@ msgstr "dd.MM.yyyy"
 #: src/editor/FromToEntryPageForm.ui:260
 #, kde-format
 msgid "&Reset Confidence Levels"
-msgstr "&איפוס דרגות סמך"
+msgstr "&איפוס רמות ביטחון"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
 #: src/parleydocument.cpp:482
@@ -933,22 +933,22 @@ msgstr "מעביר את אוצר המילים הנבחר לשיעור חדש"
 #: src/editor/lessonview.cpp:72 src/parleyactions.cpp:150
 #, kde-format
 msgid "Remove Confidence Levels"
-msgstr "הסרת דרגות סמך"
+msgstr "הסרת רמות ביטחון"
 
 #: src/editor/lessonview.cpp:74
 #, kde-format
 msgid "Remove confidence levels from this unit."
-msgstr "הסרת דרגות הסמך מהיחידה הזאת."
+msgstr "הסרת רמות ביטחון מהיחידה הזאת."
 
 #: src/editor/lessonview.cpp:80
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove Confidence Levels From This Unit And All Subunits"
-msgstr "הסר רשומות בעלות תוכן זהה מאוצר המילים"
+msgstr "הסרת רמת ביטחון מהיחידה הזאת על תת־יחידותיה"
 
 #: src/editor/lessonview.cpp:82
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove confidence levels from this unit and all subunits."
-msgstr "הסר רשומות בעלות תוכן זהה מאוצר המילים"
+msgstr "הסרת רמות ביטחון מהיחידה הזאת על כל תת־יחידותיה."
 
 #: src/editor/lessonview.cpp:88
 #, kde-format
@@ -1635,9 +1635,9 @@ msgid ""
 msgstr "לערוך אילו שפות תהיינה באוסף ואת מאפייני הדקדוק שלהן."
 
 #: src/parleyactions.cpp:151
-#, fuzzy, kde-format
+#, kde-format
 msgid "Remove all confidence levels from the current document"
-msgstr "הסר רשומות בעלות תוכן זהה מאוצר המילים"
+msgstr "הסרת כל רמות הביטחון מהמסמך הנוכחי"
 
 #: src/parleyactions.cpp:162
 #, kde-format
@@ -2483,7 +2483,7 @@ msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
 "initial or long term"
 msgid "%1, confidence %2"
-msgstr "%1, סמך %2"
+msgstr "%1, ביטחון %2"
 
 #: src/practice/guifrontend.cpp:133
 #, kde-format
@@ -2504,9 +2504,17 @@ msgid_plural ""
 "You answered correctly %2 of a total of %1 words.\n"
 "You are %3% done."
 msgstr[0] ""
+"ענית נכון על %2 מתוך מילה.\n"
+"השלמת %3%."
 msgstr[1] ""
+"ענית נכון על %2 מתוך שתי מילים.\n"
+"השלמת %3%."
 msgstr[2] ""
+"ענית נכון על %2 מתוך %1 מילים.\n"
+"השלמת %3%."
 msgstr[3] ""
+"ענית נכון על %2 מתוך %1 מילים.\n"
+"השלמת %3%."
 
 #: src/practice/latexrenderer.cpp:46
 #, kde-format
@@ -3447,19 +3455,19 @@ msgstr "כינויי גוף אישיים"
 #: src/settings/languagepropertiespage.ui:507
 #, kde-format
 msgid "&1. Person:"
-msgstr ""
+msgstr "&1. אדם:"
 
 #. i18n: ectx: property (text), widget (QLabel, pers2_label)
 #: src/settings/languagepropertiespage.ui:543
 #, kde-format
 msgid "&2. Person:"
-msgstr ""
+msgstr "&2. אדם:"
 
 #. i18n: ectx: property (text), widget (QLabel, pers3_label)
 #: src/settings/languagepropertiespage.ui:579
 #, kde-format
 msgid "3. Person:"
-msgstr ""
+msgstr "3. אדם:"
 
 #. i18n: ectx: property (text), widget (QLabel, male_c_label)
 #: src/settings/languagepropertiespage.ui:589
@@ -3625,7 +3633,7 @@ msgstr "הצגת תמונות על גב כרטיסיית הזיכרון."
 #: src/settings/parley.kcfg:65
 #, kde-format
 msgid "In Blocking Query Tab Dialog, if checked then the Query is blocked"
-msgstr ""
+msgstr "בחלונית לשונית שאילתה חוסמת, אם מסומן השאילתה חסומה."
 
 #. i18n: ectx: label, entry (Expire), group (PracticeOptions)
 #: src/settings/parley.kcfg:69
@@ -3633,7 +3641,7 @@ msgstr ""
 msgid ""
 "In Blocking Query Tab Dialog, if checked then the Query accepts an expiring "
 "time"
-msgstr ""
+msgstr "בחלונית לשונית שאילתה חוסמת, אם מסומן השאילתה מקבלת זמן קצוב"
 
 #. i18n: ectx: label, entry (TestOrderLesson), group (PracticeOptions)
 #: src/settings/parley.kcfg:73
@@ -3642,6 +3650,8 @@ msgid ""
 "Append new vocabulary in a collection in order of their units. Note that "
 "this will not be a hard transition, but a slow mix from one unit to the next."
 msgstr ""
+"הוספת אוצר מילים חדש לאוסף בסדר היחידות. נא לשים לב שזה לא יהיה מעבר קשיח אם "
+"כי ערבוב איטי מיחידה אחת לאחרת. "
 
 #. i18n: ectx: label, entry (TestNumberOfEntries), group (PracticeOptions)
 #: src/settings/parley.kcfg:77
@@ -3895,13 +3905,13 @@ msgstr "השורה הנבחרת הנוכחית"
 #: src/settings/parley.kcfg:251
 #, kde-format
 msgid "Color used to display the confidence levels"
-msgstr "הצבע שמשמש להצגת דרגות הסמך"
+msgstr "הצבע שמשמש להצגת רמות הביטחון"
 
 #. i18n: ectx: label, entry (PreGradeColor), group (Appearance)
 #: src/settings/parley.kcfg:255
 #, kde-format
 msgid "Color used to display the early confidence levels"
-msgstr "צבע שמשמש להצגת דרגות הסמך המוקדמות"
+msgstr "צבע שמשמש להצגת רמות הביטחון המוקדמות"
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
@@ -3950,7 +3960,7 @@ msgstr ""
 msgid ""
 "The entry must have at least this confidence level to be included in the "
 "practice (0..7)."
-msgstr ""
+msgstr "לרשומה חייבת להיות רמת הביטחון הזאת לפחות כדי שתיכלל בתרגול (0..7)"
 
 #. i18n: ectx: label, entry (PracticeMaximumGrade), group (Thresholds)
 #: src/settings/parley.kcfg:289
@@ -3958,7 +3968,7 @@ msgstr ""
 msgid ""
 "The entry must have at most this confidence level to be included in the "
 "practice (0..7)."
-msgstr ""
+msgstr "לרשומה חייבת להיות רמת הביטחון הזאת לכל היותר כדי שתיכלל בתרגול (0..7)"
 
 #. i18n: ectx: label, entry (WordTypesInPracticeEnabled), group (Thresholds)
 #: src/settings/parley.kcfg:293
@@ -4020,13 +4030,13 @@ msgstr "מצב התרגול שנבחר נכון לעכשיו."
 #: src/settings/parley.kcfg:354
 #, kde-format
 msgid "Amount of time different confidence levels should be blocked"
-msgstr ""
+msgstr "כמות הזמן שרמות ביטחון שונות צריכות להיות חסומות"
 
 #. i18n: ectx: label, entry (ExpireItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:365
 #, kde-format
 msgid "Amount of time after which different confidence levels should expire"
-msgstr ""
+msgstr "כמות הזמן שלאחריה תוקף רמות הביטחון אמור לפוג"
 
 #. i18n: ectx: label, entry (RememberPracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:375
@@ -4247,22 +4257,22 @@ msgstr "Alt+2"
 #: src/statistics/lessonstatisticsview.cpp:76
 #, kde-format
 msgid "Remove confidence levels from this unit"
-msgstr "הסרת דרגות סמך מהיחידה הזאת"
+msgstr "הסרת רמות ביטחון מהיחידה הזאת"
 
 #: src/statistics/lessonstatisticsview.cpp:84
 #, kde-format
 msgid "Remove confidence levels from this unit and all sub-units"
-msgstr "הסרת דרגות סמך מהיחידה הזאת ומכל תת־היחידות שלה"
+msgstr "הסרת רמות ביטחון מהיחידה הזאת ומכל תת־היחידות שלה"
 
 #: src/statistics/lessonstatisticsview.cpp:86
 #, kde-format
 msgid "Remove confidence level from this unit and all sub-units"
-msgstr "הסרת דרגת סמך מהיחידה הזאת ומכל תת־היחידות שלה"
+msgstr "הסרת רמת ביטחון מהיחידה הזאת ומכל תת־היחידות שלה"
 
 #: src/statistics/statisticslegendwidget.cpp:27
-#, fuzzy, kde-format
+#, kde-format
 msgid "Progress gradients"
-msgstr "התקדמות"
+msgstr "מדרגי התקדמות"
 
 #: src/statistics/statisticslegendwidget.cpp:28
 #, kde-format
@@ -4382,7 +4392,7 @@ msgstr "לזכור לכל מצב תרגול"
 #, kde-format
 msgctxt "Confidence level in language, table header"
 msgid "Confidence (%1)"
-msgstr "סמך (%1)"
+msgstr "ביטחון (%1)"
 
 #, fuzzy
 #~ msgid "Confidence Levels from %1 to %2"
