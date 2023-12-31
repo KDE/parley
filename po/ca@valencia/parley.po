@@ -719,7 +719,7 @@ msgstr "Introduïu ací els termes que s'han de buscar"
 #: src/editor/editor.cpp:413
 #, kde-format
 msgid "Search your vocabulary"
-msgstr "Busca al vostre vocabulari"
+msgstr "Busca en el vostre vocabulari"
 
 #: src/editor/editor.cpp:415
 #, kde-format
