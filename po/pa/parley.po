@@ -2,21 +2,21 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# A S Alam <aalam@users.sf.net>, 2007, 2009, 2012, 2021.
+# SPDX-FileCopyrightText: 2007, 2009, 2012, 2021, 2024 A S Alam <aalam@users.sf.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-05 01:33+0000\n"
-"PO-Revision-Date: 2021-01-23 14:57-0800\n"
-"Last-Translator: A S Alam <aalam.yellow@gmail.com>\n"
-"Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
+"PO-Revision-Date: 2024-01-01 12:15-0600\n"
+"Last-Translator: A S Alam <aalam@punlinux.org>\n"
+"Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.08.1\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -26,18 +26,17 @@ msgstr "ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ"
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "aalam@users.sf.net"
+msgstr "aalam@punlinux.org"
 
 #: src/collection/containermodel.cpp:150
 #, kde-format
 msgid "Unit"
-msgstr ""
+msgstr "ਇਕਾਈ"
 
 #: src/collection/containermodel.cpp:158
-#, fuzzy, kde-format
-#| msgid "Entries per Lesson"
+#, kde-format
 msgid "Number of entries in this lesson."
-msgstr "ਪ੍ਰਤੀ ਕਾਂਡ ਇੰਦਰਾਜ਼"
+msgstr "ਇਸ ਭਾਗ ਵਿੱਚ ਐਂਟਰੀਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
 
 #: src/collection/entryfilter.cpp:113
 #, kde-format
@@ -48,10 +47,9 @@ msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, EntryFilterDialog)
 #: src/collection/entryfilterdialog.ui:14
-#, fuzzy, kde-format
-#| msgid "&Statistics..."
+#, kde-format
 msgid "Start Practice"
-msgstr "ਅੰਕੜੇ(&S)..."
+msgstr "ਅਭਿਆਸ ਸ਼ੁਰੂ ਕਰੋ"
 
 #. i18n: ectx: property (text), widget (QLabel, headerLabel)
 #: src/collection/entryfilterdialog.ui:20
@@ -71,24 +69,21 @@ msgstr "ਸੰਰਚਨਾ ਡਾਈਲਾਗ ਵੇਖਾਓ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, lessonCheckBox)
 #: src/collection/entryfilterdialog.ui:36
-#, fuzzy, kde-format
-#| msgid "Loading %1"
+#, kde-format
 msgid "Ignore Lessons"
-msgstr "%1 ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+msgstr "ਭਾਗ ਅਣਡਿੱਠੇ ਕਰੋ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, wordTypeCheckBox)
 #: src/collection/entryfilterdialog.ui:56
-#, fuzzy, kde-format
-#| msgid "T&ype"
+#, kde-format
 msgid "Ignore Word Types"
-msgstr "ਕਿਸਮ(&y)"
+msgstr "ਸ਼ਬਦ ਕਿਸਮਾਂ ਨੂੰ ਅਣਡਿੱਠਾ ਕਰੋ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, blockedCheckBox)
 #: src/collection/entryfilterdialog.ui:76
-#, fuzzy, kde-format
-#| msgid "Loading %1"
+#, kde-format
 msgid "Ignore Blocked"
-msgstr "%1 ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+msgstr "ਪਾਬੰਦੀ ਲਾਏ ਅਣਡਿੱਠੇ ਕਰੋ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, timesWrongCheckBox)
 #: src/collection/entryfilterdialog.ui:96
@@ -99,10 +94,9 @@ msgstr "ਤੁਹਾਡਾ ਜਵਾਬ ਗਲਤ ਹੈ। %1% ਮੁਕੰਮ�
 
 #. i18n: ectx: property (text), widget (QCheckBox, timesPracticedCheckBox)
 #: src/collection/entryfilterdialog.ui:116
-#, fuzzy, kde-format
-#| msgid "Article"
+#, kde-format
 msgid "Ignore Times Practiced"
-msgstr "ਲੇਖ"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, minMaxGradeCheckBox)
 #: src/collection/entryfilterdialog.ui:136
@@ -119,10 +113,9 @@ msgstr "ਪ੍ਰਤੀ ਕਾਂਡ ਇੰਦਰਾਜ਼"
 
 #. i18n: ectx: property (text), widget (QLabel, documentTotalDescriptionLabel)
 #: src/collection/entryfilterdialog.ui:171
-#, fuzzy, kde-format
-#| msgid "Entries per Lesson"
+#, kde-format
 msgid "Total number of entries:"
-msgstr "ਪ੍ਰਤੀ ਕਾਂਡ ਇੰਦਰਾਜ਼"
+msgstr "ਐਂਟਰੀਆਂ ਦੀ ਕੁੱਲ ਗਿਣਤੀ:"
 
 #. i18n: ectx: property (text), widget (QLabel, totalDescriptionLabel)
 #: src/collection/entryfilterdialog.ui:192
@@ -132,17 +125,15 @@ msgid "Resulting number of words to practice:"
 msgstr "ਹਟਾਓ(&D)"
 
 #: src/collection/lessonmodel.cpp:47
-#, fuzzy, kde-format
-#| msgid "&Delete"
+#, kde-format
 msgctxt "display of the name of the vocabulary collection"
 msgid "Collection: %1"
-msgstr "ਹਟਾਓ(&D)"
+msgstr "ਭੰਡਾਰ: %1"
 
 #: src/collection/readonlycontainermodel.cpp:131
-#, fuzzy, kde-format
-#| msgid "Noun"
+#, kde-format
 msgid "None"
-msgstr "ਨਾਮ"
+msgstr "ਕੋਈ ਨਹੀਂ"
 
 #: src/collection/vocabularymodel.cpp:185
 #, kde-format
@@ -160,28 +151,24 @@ msgid "Enable the antonym view to edit antonyms."
 msgstr ""
 
 #: src/collection/vocabularymodel.cpp:281
-#, fuzzy, kde-format
-#| msgid "Introduction"
+#, kde-format
 msgid "Pronunciation (%1)"
-msgstr "ਜਾਣ ਪਛਾਣ"
+msgstr "ਉਚਾਰਨ (%1)"
 
 #: src/collection/vocabularymodel.cpp:281
-#, fuzzy, kde-format
-#| msgid "Introduction"
+#, kde-format
 msgid "Pronunciation"
-msgstr "ਜਾਣ ਪਛਾਣ"
+msgstr "ਉਚਾਰਨ"
 
 #: src/collection/vocabularymodel.cpp:283
-#, fuzzy, kde-format
-#| msgid "T&ype"
+#, kde-format
 msgid "Word Type (%1)"
-msgstr "ਕਿਸਮ(&y)"
+msgstr "ਸ਼ਬਦ ਦੀ ਕਿਸਮ (%1)"
 
 #: src/collection/vocabularymodel.cpp:283
-#, fuzzy, kde-format
-#| msgid "T&ype"
+#, kde-format
 msgid "Word Type"
-msgstr "ਕਿਸਮ(&y)"
+msgstr "ਸ਼ਬਦ ਦੀ ਕਿਸਮ"
 
 #. i18n: ectx: property (text), widget (QPushButton, synonymButton)
 #: src/collection/vocabularymodel.cpp:285 src/editor/synonymwidget.ui:26
@@ -206,34 +193,29 @@ msgid "Antonym"
 msgstr ""
 
 #: src/collection/vocabularymodel.cpp:289
-#, fuzzy, kde-format
-#| msgid "E&xamples"
+#, kde-format
 msgid "Example (%1)"
-msgstr "ਉਦਾਹਰਨ(&x)"
+msgstr "ਮਿਸਾਲ (%1)"
 
 #: src/collection/vocabularymodel.cpp:289
-#, fuzzy, kde-format
-#| msgid "E&xamples"
+#, kde-format
 msgid "Example"
-msgstr "ਉਦਾਹਰਨ(&x)"
+msgstr "ਮਿਸਾਲ"
 
 #: src/collection/vocabularymodel.cpp:291
-#, fuzzy, kde-format
-#| msgid "Count:"
+#, kde-format
 msgid "Comment (%1)"
-msgstr "ਗਿਣਤੀ:"
+msgstr "ਟਿੱਪਣੀ (%1)"
 
 #: src/collection/vocabularymodel.cpp:291
-#, fuzzy, kde-format
-#| msgid "Count:"
+#, kde-format
 msgid "Comment"
-msgstr "ਗਿਣਤੀ:"
+msgstr "ਟਿੱਪਣੀ"
 
 #: src/collection/vocabularymodel.cpp:293
-#, fuzzy, kde-format
-#| msgid "Paraphrase"
+#, kde-format
 msgid "Paraphrase (%1)"
-msgstr "ਪ੍ਹੈਰਾ"
+msgstr "ਪ੍ਹੈਰਾ (%1)"
 
 #: src/collection/vocabularymodel.cpp:293
 #, kde-format
@@ -260,7 +242,7 @@ msgstr "ਦੂਜੀ ਭਾਸ਼ਾ: "
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
 msgid "No Unit Selected"
-msgstr ""
+msgstr "ਕੋਈ ਇਕਾਈ ਨਹੀਂ ਚੁਣੀ"
 
 #: src/dashboard/barwidget.cpp:120
 #, kde-format
@@ -280,17 +262,15 @@ msgid "Open this vocabulary collection in the editor"
 msgstr ""
 
 #: src/dashboard/collectionwidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "View Settings"
+#, kde-format
 msgid "Practice Anyway"
-msgstr "ਵੇਖਣ ਸੈਟਿੰਗ"
+msgstr "ਕਿਵੇਂ ਵੀ ਅਭਿਆਸ ਕਰੋ"
 
 #: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
 #: src/editor/editor.cpp:368
-#, fuzzy, kde-format
-#| msgid "Article"
+#, kde-format
 msgid "Practice"
-msgstr "ਲੇਖ"
+msgstr "ਅਭਿਆਸ"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
 #: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
@@ -308,16 +288,14 @@ msgstr "ਹਟਾਓ(&D)"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
 #: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
-#, fuzzy, kde-format
-#| msgid "Filename:"
+#, kde-format
 msgid "Remove"
-msgstr "ਫਾਇਲ ਨਾਂ:"
+msgstr "ਹਟਾਓ"
 
 #: src/dashboard/dashboard.cpp:284
-#, fuzzy, kde-format
-#| msgid "Do you really want to delete the selected entries?"
+#, kde-format
 msgid "Are you sure you want to remove this collection?"
-msgstr "ਕੀ ਤੁਸੀਂ ਚੁਣੇ ਇੰਦਰਾਜ਼ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
+msgstr "ਕੀ ਤੁਸੀਂ ਇਸ ਭੰਡਾਰ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
 #: src/dashboard/dashboard.ui:14 src/main.cpp:25
@@ -327,30 +305,27 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/dashboard/dashboard.ui:120
-#, fuzzy, kde-format
-#| msgid "&Delete"
+#, kde-format
 msgid "Create a New Collection..."
-msgstr "ਹਟਾਓ(&D)"
+msgstr "ਨਵਾਂ ਭੰਡਾਰ ਬਣਾਓ..."
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
-#, fuzzy, kde-format
-#| msgid "&Delete"
+#, kde-format
 msgid "Open an Existing Collection..."
-msgstr "ਹਟਾਓ(&D)"
+msgstr "ਮੌਜੂਦਾ ਭੰਡਾਰ ਨੂੰ ਹਟਾਓ..."
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
-#, fuzzy, kde-format
-#| msgid "&Delete"
+#, kde-format
 msgid "Download New Collections..."
-msgstr "ਹਟਾਓ(&D)"
+msgstr "ਨਵੇਂ ਭੰਡਾਰ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ..."
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
 #, kde-format
 msgid "<h1>Parley</h1>"
-msgstr ""
+msgstr "<h1>ਪਰਲੇ</h1>"
 
 #. i18n: ectx: property (text), widget (QPushButton, playButton)
 #. i18n: ectx: property (text), widget (Practice::AudioButton, solutionSoundButton)
@@ -361,14 +336,13 @@ msgstr ""
 #: src/practice/practice_widget_flashcard.ui:103
 #, kde-format
 msgid "Play"
-msgstr ""
+msgstr "ਚਲਾਓ"
 
 #. i18n: ectx: property (text), widget (QPushButton, recordButton)
 #: src/editor/audiowidget.ui:26
-#, fuzzy, kde-format
-#| msgid "Second language: "
+#, kde-format
 msgid "Record"
-msgstr "ਦੂਜੀ ਭਾਸ਼ਾ: "
+msgstr "ਰਿਕਾਰਡ ਕਰੋ"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:33
@@ -378,10 +352,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:36
-#, fuzzy, kde-format
-#| msgid "&Properties..."
+#, kde-format
 msgid "Download"
-msgstr "ਵਿਸ਼ੇਸ਼ਤਾ(&P)..."
+msgstr "ਡਾਊਨਲੋਡ"
 
 #. i18n: ectx: property (text), widget (QPushButton, showCurrentButton)
 #: src/editor/browserwidget.ui:18
@@ -414,10 +387,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
 #: src/editor/comparisonwidget.ui:27
-#, fuzzy, kde-format
-#| msgid "Paste"
+#, kde-format
 msgid "Absolute:"
-msgstr "ਚੇਪੋ"
+msgstr "ਅਸਲ:"
 
 #. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
 #: src/editor/comparisonwidget.ui:59
@@ -481,17 +453,16 @@ msgstr "ਗਿਣਤੀ:"
 #: src/editor/conjugationwidget.ui:209
 #, kde-format
 msgid "First"
-msgstr ""
+msgstr "ਪਹਿਲਾਂ"
 
 #. i18n: ectx: property (text), widget (QLabel, singularSecondPersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualSecondPersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, pluralSecondPersonLabel)
 #: src/editor/conjugationwidget.ui:61 src/editor/conjugationwidget.ui:148
 #: src/editor/conjugationwidget.ui:225
-#, fuzzy, kde-format
-#| msgid "Second language: "
+#, kde-format
 msgid "Second"
-msgstr "ਦੂਜੀ ਭਾਸ਼ਾ: "
+msgstr "ਦੂਜਾ"
 
 #. i18n: ectx: property (text), widget (QLabel, singularThirdMalePersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualThirdMalePersonLabel)
@@ -500,7 +471,7 @@ msgstr "ਦੂਜੀ ਭਾਸ਼ਾ: "
 #: src/editor/conjugationwidget.ui:241
 #, kde-format
 msgid "Third Male"
-msgstr ""
+msgstr "ਤੀਜਾ ਮਰਦ"
 
 #. i18n: ectx: property (text), widget (QLabel, singularThirdFemalePersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualThirdFemalePersonLabel)
@@ -509,17 +480,16 @@ msgstr ""
 #: src/editor/conjugationwidget.ui:260
 #, kde-format
 msgid "Third Female"
-msgstr ""
+msgstr "ਤੀਜੀ ਔਰਤ"
 
 #. i18n: ectx: property (text), widget (QLabel, singularThirdNeutralPersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualThirdNeutralPersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, pluralThirdNeutralPersonLabel)
 #: src/editor/conjugationwidget.ui:116 src/editor/conjugationwidget.ui:193
 #: src/editor/conjugationwidget.ui:279
-#, fuzzy, kde-format
-#| msgid "&General"
+#, kde-format
 msgid "Third Neutral"
-msgstr "ਸਧਾਰਨ(&G)"
+msgstr "ਤੀਜਾ ਕੁਦਰਤੀ"
 
 #. i18n: ectx: property (text), widget (QPushButton, nextTenseButton)
 #: src/editor/conjugationwidget.ui:317
@@ -569,18 +539,16 @@ msgstr "ਬਹੁਵਚਨ"
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
 #: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:472
-#, fuzzy, kde-format
-#| msgid "&male"
+#, kde-format
 msgid "Masculine"
-msgstr "ਨਰ(&m)"
+msgstr "ਮਰਦ"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
 #: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:475
-#, fuzzy, kde-format
-#| msgid "Finished"
+#, kde-format
 msgid "Feminine"
-msgstr "ਮੁਕੰਮਲ"
+msgstr "ਔਰਤ"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
@@ -660,19 +628,18 @@ msgstr "ਐਕਟਿਵ(&v)"
 #: src/editor/declensionwidget.ui:445
 #, kde-format
 msgid "Number:"
-msgstr ""
+msgstr "ਗਿਣਤੀ:"
 
 #. i18n: ectx: property (text), widget (QPushButton, nextButton)
 #: src/editor/declensionwidget.ui:477
-#, fuzzy, kde-format
-#| msgid "Ne&xt"
+#, kde-format
 msgid "Next"
-msgstr "ਅੱਗੇ(&x)"
+msgstr "ਅੱਗੇ"
 
 #: src/editor/editor.cpp:134
 #, kde-format
 msgid "Units"
-msgstr ""
+msgstr "ਇਕਾਈਆਂ"
 
 #: src/editor/editor.cpp:145
 #, kde-format
@@ -685,7 +652,7 @@ msgstr ""
 #: src/editor/editor.cpp:156
 #, kde-format
 msgid "Word Types"
-msgstr "ਸ਼ਬਦ ਕਿਸਮ"
+msgstr "ਸ਼ਬਦਾਂ ਦੀ ਕਿਸਮ"
 
 #: src/editor/editor.cpp:176
 #, kde-format
@@ -774,45 +741,40 @@ msgstr "ਖੋਜ(&e):"
 #. i18n: ectx: Menu (file)
 #: src/editor/editorui.rc:7 src/practice/practicesummaryui.rc:7
 #: src/practice/practiceui.rc:7 src/statistics/statisticsui.rc:7
-#, fuzzy, kde-format
-#| msgid "&Title:"
+#, kde-format
 msgid "&File"
-msgstr "ਟਾਇਟਲ(&T):"
+msgstr "ਫਾਇਲ(&F)"
 
 #. i18n: ectx: Menu (edit)
 #: src/editor/editorui.rc:12
-#, fuzzy, kde-format
-#| msgid "Editing"
+#, kde-format
 msgid "&Edit"
-msgstr "ਸੰਪਾਦਨ"
+msgstr "ਸੋਧੋ(&E)"
 
 #. i18n: ectx: Menu (view)
 #: src/editor/editorui.rc:25 src/practice/practiceui.rc:12
-#, fuzzy, kde-format
-#| msgid "View"
+#, kde-format
 msgid "&View"
-msgstr "ਵੇਖੋ"
+msgstr "ਵੇਖੋ(&V)"
 
 #. i18n: ectx: Menu (lesson)
 #: src/editor/editorui.rc:51
 #, kde-format
 msgid "&Unit"
-msgstr ""
+msgstr "ਇਕਾਈ(&U)"
 
 #. i18n: ectx: Menu (learning)
 #: src/editor/editorui.rc:65 src/practice/practicesummaryui.rc:12
 #: src/statistics/statisticsui.rc:12
-#, fuzzy, kde-format
-#| msgid "&Articles"
+#, kde-format
 msgid "&Practice"
-msgstr "ਲੇਖ(&A)"
+msgstr "ਅਭਿਆਸ(&P)"
 
 #. i18n: ectx: ToolBar (editorToolBar)
 #: src/editor/editorui.rc:72 src/parleyui.rc:24
-#, fuzzy, kde-format
-#| msgid "Main Toolbar"
+#, kde-format
 msgid "Editor Toolbar"
-msgstr "ਮੁੱਖ ਸੰਦ-ਪੱਟੀ"
+msgstr "ਟੂਲਬਾਰ ਨੂੰ ਸੋਧੋ"
 
 #. i18n: ectx: property (title), widget (QGroupBox, direc_label)
 #: src/editor/FromToEntryPageForm.ui:26
@@ -826,7 +788,7 @@ msgstr "%1 ਲਈ ਵਿਸ਼ੇਸ਼ਤਾ"
 #: src/editor/FromToEntryPageForm.ui:72
 #, kde-format
 msgid "&Confidence Level:"
-msgstr ""
+msgstr "ਭਰੋਸੇ ਦਾ ਪੱਧਰ(&C):"
 
 #. i18n: ectx: property (text), widget (QLabel, fauxami_label)
 #: src/editor/FromToEntryPageForm.ui:95
@@ -836,10 +798,9 @@ msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, GroupBox3)
 #: src/editor/FromToEntryPageForm.ui:110
-#, fuzzy, kde-format
-#| msgid "Article"
+#, kde-format
 msgid "Practice &Counts"
-msgstr "ਲੇਖ"
+msgstr "ਅਭਿਆਸ ਗਿਣਤੀ(&C)"
 
 #. i18n: ectx: property (text), widget (QLabel, bcount_label)
 #: src/editor/FromToEntryPageForm.ui:142
@@ -890,7 +851,7 @@ msgstr "ਲੇਖ"
 #: src/editor/FromToEntryPageForm.ui:229
 #, kde-format
 msgid "dd.MM.yyyy"
-msgstr ""
+msgstr "dd.MM.yyyy"
 
 #. i18n: ectx: property (text), widget (QPushButton, resetGradesButton)
 #: src/editor/FromToEntryPageForm.ui:260
@@ -929,10 +890,9 @@ msgstr "ਖੋਜ ਸ਼ਬਦ ਏਥੇ ਦਿਓ"
 
 #. i18n: ectx: property (text), widget (QLabel, texLabel)
 #: src/editor/latexwidget.ui:17
-#, fuzzy, kde-format
-#| msgid "LaTeX"
+#, kde-format
 msgid "LaTeX code:"
-msgstr "LaTeX"
+msgstr "LaTeX ਕੋਡ:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -940,7 +900,7 @@ msgstr "LaTeX"
 #: src/settings/kgametheme/kgamethemeselector.ui:52
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "ਝਲਕ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, mathModeCheckBox)
 #: src/editor/latexwidget.ui:57
@@ -951,7 +911,7 @@ msgstr ""
 #: src/editor/lessonview.cpp:32
 #, kde-format
 msgid "New Unit"
-msgstr ""
+msgstr "ਨਵੀਂ ਇਕਾਈ"
 
 #: src/editor/lessonview.cpp:34
 #, kde-format
@@ -959,16 +919,14 @@ msgid "Add a new unit to your document"
 msgstr ""
 
 #: src/editor/lessonview.cpp:40
-#, fuzzy, kde-format
-#| msgid "Filename:"
+#, kde-format
 msgid "Rename Unit"
-msgstr "ਫਾਇਲ ਨਾਂ:"
+msgstr "ਇਕਾਈ ਦਾ ਨਾਂ ਬਦਲੋ"
 
 #: src/editor/lessonview.cpp:48
-#, fuzzy, kde-format
-#| msgid "&Delete"
+#, kde-format
 msgid "Delete Unit"
-msgstr "ਹਟਾਓ(&D)"
+msgstr "ਇਕਾਈ ਨੂੰ ਹਟਾਓ"
 
 #: src/editor/lessonview.cpp:50
 #, fuzzy, kde-format
@@ -1076,17 +1034,15 @@ msgstr "ਨਵਾਂ ਪਾਠ"
 
 #. i18n: ectx: property (text), widget (QPushButton, addChoiceButton)
 #: src/editor/multiplechoicewidget.ui:21
-#, fuzzy, kde-format
-#| msgid "&Add"
+#, kde-format
 msgid "Add"
-msgstr "ਸ਼ਾਮਲ(&A)"
+msgstr "ਜੋੜੋ"
 
 #. i18n: ectx: property (text), widget (QLabel, languageLabel)
 #: src/editor/summarywordwidget.ui:16
-#, fuzzy, kde-format
-#| msgid "Languages"
+#, kde-format
 msgid "Language"
-msgstr "ਭਾਸ਼ਾਵਾਂ"
+msgstr "ਭਾਸ਼ਾ"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/editor/summarywordwidget.ui:32
@@ -1096,38 +1052,33 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/editor/summarywordwidget.ui:42
-#, fuzzy, kde-format
-#| msgid "T&ype"
+#, kde-format
 msgid "Word type:"
-msgstr "ਕਿਸਮ(&y)"
+msgstr "ਸ਼ਬਦ ਦੀ ਕਿਸਮ:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
-#, fuzzy, kde-format
-#| msgid "Introduction"
+#, kde-format
 msgid "Pronunciation:"
-msgstr "ਜਾਣ ਪਛਾਣ"
+msgstr "ਉਚਾਰਨ:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/summarywordwidget.ui:71
-#, fuzzy, kde-format
-#| msgid "E&xamples"
+#, kde-format
 msgid "Example:"
-msgstr "ਉਦਾਹਰਨ(&x)"
+msgstr "ਮਿਸਾਲ:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/summarywordwidget.ui:87
-#, fuzzy, kde-format
-#| msgid "Paraphrase"
+#, kde-format
 msgid "Paraphrase:"
-msgstr "ਪ੍ਹੈਰਾ"
+msgstr "ਪ੍ਹੈਰਾ:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
-#, fuzzy, kde-format
-#| msgid "Count:"
+#, kde-format
 msgid "Comment:"
-msgstr "ਗਿਣਤੀ:"
+msgstr "ਟਿੱਪਣੀ:"
 
 #: src/editor/synonymwidget.cpp:59
 #, fuzzy, kde-format
