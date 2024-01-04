@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-05 01:33+0000\n"
-"PO-Revision-Date: 2023-06-11 19:10+0100\n"
+"PO-Revision-Date: 2024-01-03 14:17+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -3371,7 +3371,7 @@ msgstr "Forigante tempan priskribon"
 #: src/settings/languagepropertiespage.ui:21
 #, kde-format
 msgid "General"
-msgstr "Ĝeneralo"
+msgstr "Ĝenerala"
 
 #. i18n: ectx: property (text), widget (QLabel, nameLabel)
 #: src/settings/languagepropertiespage.ui:30
@@ -4128,7 +4128,7 @@ msgstr "Etoso"
 #, kde-format
 msgctxt "title:window general settings"
 msgid "General"
-msgstr "Ĝeneralo"
+msgstr "Ĝenerala"
 
 #: src/settings/parleyprefs.cpp:27
 #, kde-format
