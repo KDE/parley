@@ -2,35 +2,36 @@
 # Tamas Szanto <tszanto@interware.hu>, 2001.
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2011, 2012.
 # Balázs Úr <urbalazs@gmail.com>, 2012, 2013, 2014.
+# SPDX-FileCopyrightText: 2024 Kristof Kiszel <ulysses@fsf.hu>
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-05 01:33+0000\n"
-"PO-Revision-Date: 2014-07-09 00:26+0200\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"PO-Revision-Date: 2024-01-06 21:23+0100\n"
+"Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Szántó Tamás,Bojtos Péter"
+msgstr "Kiszel Kristóf,Szántó Tamás,Bojtos Péter"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "tszanto@interware.hu,ptr@ulx.hu"
+msgstr "ulysses@fsf.hu,tszanto@interware.hu,ptr@ulx.hu"
 
 #: src/collection/containermodel.cpp:150
 #, kde-format
 msgid "Unit"
-msgstr ""
+msgstr "Egység"
 
 #: src/collection/containermodel.cpp:158
 #, kde-format
@@ -151,10 +152,9 @@ msgid "Enable the antonym view to edit antonyms."
 msgstr "Antonima nézet engedélyezése antonimák szerkesztéséhez."
 
 #: src/collection/vocabularymodel.cpp:281
-#, fuzzy, kde-format
-#| msgid "Pronunciation: %1"
+#, kde-format
 msgid "Pronunciation (%1)"
-msgstr "Kiejtés: %1"
+msgstr "Kiejtés (%1)"
 
 #: src/collection/vocabularymodel.cpp:281
 #, kde-format
@@ -162,10 +162,9 @@ msgid "Pronunciation"
 msgstr "Kiejtés"
 
 #: src/collection/vocabularymodel.cpp:283
-#, fuzzy, kde-format
-#| msgid "Word Type"
+#, kde-format
 msgid "Word Type (%1)"
-msgstr "Szótípus"
+msgstr "Szótípus (%1)"
 
 #: src/collection/vocabularymodel.cpp:283
 #, kde-format
@@ -179,17 +178,14 @@ msgid "Synonym"
 msgstr "Szinonima"
 
 #: src/collection/vocabularymodel.cpp:285
-#, fuzzy, kde-format
-#| msgid "Synonym: "
+#, kde-format
 msgid "Synonym (%1)"
-msgstr "Szinonima: "
+msgstr "Szinonima (%1)"
 
 #: src/collection/vocabularymodel.cpp:287
-#, fuzzy, kde-format
-#| msgctxt "Title for a list of antonyms (opposites) for a word"
-#| msgid "Antonyms of %1:"
+#, kde-format
 msgid "Antonym (%1)"
-msgstr "%1 antonimái:"
+msgstr "Antonima (%1)"
 
 #: src/collection/vocabularymodel.cpp:287
 #, kde-format
@@ -197,10 +193,9 @@ msgid "Antonym"
 msgstr "Antonima"
 
 #: src/collection/vocabularymodel.cpp:289
-#, fuzzy, kde-format
-#| msgid "Example"
+#, kde-format
 msgid "Example (%1)"
-msgstr "Példa"
+msgstr "Példa (%1)"
 
 #: src/collection/vocabularymodel.cpp:289
 #, kde-format
@@ -208,10 +203,9 @@ msgid "Example"
 msgstr "Példa"
 
 #: src/collection/vocabularymodel.cpp:291
-#, fuzzy, kde-format
-#| msgid "Comment"
+#, kde-format
 msgid "Comment (%1)"
-msgstr "Megjegyzés"
+msgstr "Megjegyzés (%1)"
 
 #: src/collection/vocabularymodel.cpp:291
 #, kde-format
@@ -219,10 +213,9 @@ msgid "Comment"
 msgstr "Megjegyzés"
 
 #: src/collection/vocabularymodel.cpp:293
-#, fuzzy, kde-format
-#| msgid "Paraphrase"
+#, kde-format
 msgid "Paraphrase (%1)"
-msgstr "Körülírás"
+msgstr "Körülírás (%1)"
 
 #: src/collection/vocabularymodel.cpp:293
 #, kde-format
@@ -242,29 +235,24 @@ msgid "No Languages Defined"
 msgstr "Nincs meghatározott nyelv"
 
 #: src/collection/vocabularymodel.cpp:317
-#, fuzzy, kde-format
-#| msgid "Select a lesson before adding vocabulary."
+#, kde-format
 msgid "Select a unit before adding vocabulary."
-msgstr "Válasszon ki egy leckét, mielőtt szókészletet adna hozzá."
+msgstr "Válasszon ki egy egységet, mielőtt szókészletet adna hozzá."
 
 #: src/collection/vocabularymodel.cpp:317
-#, fuzzy, kde-format
-#| msgid "No Lesson Selected"
+#, kde-format
 msgid "No Unit Selected"
-msgstr "Nincs kiválasztott lecke"
+msgstr "Nincs kiválasztott egység"
 
 #: src/dashboard/barwidget.cpp:120
 #, kde-format
 msgid "%1 word due"
 msgid_plural "%1 words due"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 szó van hátra"
+msgstr[1] "%1 szó van hátra"
 
 #: src/dashboard/barwidget.cpp:122
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "adjective, The word has been properly and fully learned by the user"
-#| msgid "Fully learned"
+#, kde-format
 msgid "Fully learned"
 msgstr "Teljesen megtanulva"
 
@@ -274,10 +262,9 @@ msgid "Open this vocabulary collection in the editor"
 msgstr "Kinyitja ezt a szókészletgyűjteményt a szerkesztőben"
 
 #: src/dashboard/collectionwidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "Practice Again"
+#, kde-format
 msgid "Practice Anyway"
-msgstr "Gyakorlat újra"
+msgstr "Gyakorlás mindenképp"
 
 #: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
 #: src/editor/editor.cpp:368
@@ -287,18 +274,15 @@ msgstr "Gyakorlás"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
 #: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Open Collection"
+#, kde-format
 msgid "Active Collections"
-msgstr "Gyűjtemény megnyitása"
+msgstr "Aktív gyűjtemények"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
 #: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
-#, fuzzy, kde-format
-#| msgid "Last Opened Collections"
+#, kde-format
 msgid "Completed Collections"
-msgstr "Az utoljára megnyitott gyűjtemények"
+msgstr "Befejezett gyűjtemények"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
 #: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
@@ -307,11 +291,9 @@ msgid "Remove"
 msgstr "Eltávolítás"
 
 #: src/dashboard/dashboard.cpp:284
-#, fuzzy, kde-format
-#| msgid "Do you really want to delete the selected entry?"
-#| msgid_plural "Do you really want to delete the selected %1 entries?"
+#, kde-format
 msgid "Are you sure you want to remove this collection?"
-msgstr "Biztosan törölni szeretné a kijelölt bejegyzést?"
+msgstr "Biztosan törölni szeretné ezt a gyűjteményt?"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
 #: src/dashboard/dashboard.ui:14 src/main.cpp:25
@@ -321,24 +303,21 @@ msgstr "Parley"
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/dashboard/dashboard.ui:120
-#, fuzzy, kde-format
-#| msgid "Create a New Collection"
+#, kde-format
 msgid "Create a New Collection..."
-msgstr "Új gyűjtemény létrehozása"
+msgstr "Új gyűjtemény létrehozása…"
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
-#, fuzzy, kde-format
-#| msgid "Open an Existing Collection"
+#, kde-format
 msgid "Open an Existing Collection..."
-msgstr "Létező gyűjtemény megnyitása"
+msgstr "Létező gyűjtemény megnyitása…"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
-#, fuzzy, kde-format
-#| msgid "Download New Collections"
+#, kde-format
 msgid "Download New Collections..."
-msgstr "Új gyűjtemények letöltése"
+msgstr "Új gyűjtemények letöltése…"
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
@@ -367,15 +346,13 @@ msgstr "Felvétel"
 #: src/editor/audiowidget.ui:33
 #, kde-format
 msgid "Download audio file with webservice"
-msgstr ""
+msgstr "Hangfájlok letöltése webszolgáltatással"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:36
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgid "Download"
-msgstr "Nyelvtan letöltése"
+msgstr "Letöltés"
 
 #. i18n: ectx: property (text), widget (QPushButton, showCurrentButton)
 #: src/editor/browserwidget.ui:18
@@ -581,66 +558,52 @@ msgstr "Főnévragozási alakok"
 
 #. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
 #: src/editor/declensionwidget.ui:52
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Nominative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
-msgstr "Alanyeset"
+msgstr "Alanyeset:"
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Genitive"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
-msgstr "Birtokos eset"
+msgstr "Birtokos eset:"
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Dative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
-msgstr "Részeshatározó"
+msgstr "Részeshatározó:"
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Accusative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr "Tárgyeset"
+msgstr "Tárgyeset:"
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Ablative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
-msgstr "Ablativus"
+msgstr "Ablativus:"
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Locative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
-msgstr "Helyhatározói eset"
+msgstr "Helyhatározói eset:"
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Vocative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
-msgstr "Vokativusz"
+msgstr "Vokativusz:"
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #: src/editor/declensionwidget.ui:445
@@ -655,25 +618,20 @@ msgid "Next"
 msgstr "Következő"
 
 #: src/editor/editor.cpp:134
-#, fuzzy, kde-format
-#| msgid "&Unit"
+#, kde-format
 msgid "Units"
-msgstr "&Egység"
+msgstr "Egységek"
 
 #: src/editor/editor.cpp:145
-#, fuzzy, kde-format
-#| msgid ""
-#| "Right click to add, delete, or rename lessons. \n"
-#| "With the checkboxes you can select which lessons you want to practice. \n"
-#| "Only checked lessons [x] will be asked in the tests!"
+#, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
 "With the checkboxes you can select which units you want to practice. \n"
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
-"Jobb kattintással lehet leckét hozzáadni, törölni vagy átnevezni. \n"
-"A jelölőnégyzetekben lehet megadni, mely leckéket szeretné gyakorolni. \n"
-"A tesztben csak a bejelölt leckékből szerepelnek majd kérdések."
+"Jobb kattintással lehet egységeket hozzáadni, törölni vagy átnevezni. \n"
+"A jelölőnégyzetekben lehet megadni, mely egységeket szeretné gyakorolni. \n"
+"A tesztben csak a bejelölt egységekből szerepelnek majd kérdések."
 
 #: src/editor/editor.cpp:156
 #, kde-format
@@ -754,10 +712,9 @@ msgid "Enter search terms here"
 msgstr "Írja be a keresési kifejezéseket ide"
 
 #: src/editor/editor.cpp:413
-#, fuzzy, kde-format
-#| msgid "Helps you train your vocabulary"
+#, kde-format
 msgid "Search your vocabulary"
-msgstr "Segít a szavak memorizálásában"
+msgstr "Keresés a szókincsben"
 
 #: src/editor/editor.cpp:415
 #, kde-format
@@ -812,7 +769,7 @@ msgstr "Tulajdonságok az eredetiből"
 #: src/editor/FromToEntryPageForm.ui:72
 #, kde-format
 msgid "&Confidence Level:"
-msgstr ""
+msgstr "&Magabiztossági szint:"
 
 #. i18n: ectx: property (text), widget (QLabel, fauxami_label)
 #: src/editor/FromToEntryPageForm.ui:95
@@ -878,7 +835,7 @@ msgstr "yyyy. MM. dd."
 #: src/editor/FromToEntryPageForm.ui:260
 #, kde-format
 msgid "&Reset Confidence Levels"
-msgstr ""
+msgstr "Magabiztossági szintek viss&zaállítása"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
 #: src/parleydocument.cpp:482
@@ -898,8 +855,7 @@ msgid "\"%1\" is a:"
 msgstr "„%1” egy:"
 
 #: src/editor/inflectionwidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Please select the noun's gender"
+#, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
 msgstr "Válassza ki a főnév nemét"
@@ -911,10 +867,9 @@ msgstr "Itt adja meg a LaTeX kódot."
 
 #. i18n: ectx: property (text), widget (QLabel, texLabel)
 #: src/editor/latexwidget.ui:17
-#, fuzzy, kde-format
-#| msgid "LaTeX code"
+#, kde-format
 msgid "LaTeX code:"
-msgstr "LaTeX kód"
+msgstr "LaTeX kód:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -931,46 +886,39 @@ msgid "Math mode"
 msgstr "Matematikai mód"
 
 #: src/editor/lessonview.cpp:32
-#, fuzzy, kde-format
-#| msgid "New type"
+#, kde-format
 msgid "New Unit"
-msgstr "Új típus"
+msgstr "Új egység"
 
 #: src/editor/lessonview.cpp:34
-#, fuzzy, kde-format
-#| msgid "Add a new lesson to your document"
+#, kde-format
 msgid "Add a new unit to your document"
-msgstr "Új lecke felvétele a dokumentumba"
+msgstr "Új egység felvétele a dokumentumba"
 
 #: src/editor/lessonview.cpp:40
-#, fuzzy, kde-format
-#| msgid "Rename"
+#, kde-format
 msgid "Rename Unit"
-msgstr "Átnevezés"
+msgstr "Egység átnevezése"
 
 #: src/editor/lessonview.cpp:48
-#, fuzzy, kde-format
-#| msgid "&Delete Entry"
+#, kde-format
 msgid "Delete Unit"
-msgstr "Bejegyzés &törlése"
+msgstr "Egység törlése"
 
 #: src/editor/lessonview.cpp:50
-#, fuzzy, kde-format
-#| msgid "Delete the selected lesson."
+#, kde-format
 msgid "Delete the selected unit."
-msgstr "A kijelölt lecke törlése."
+msgstr "A kijelölt egység törlése."
 
 #: src/editor/lessonview.cpp:56
-#, fuzzy, kde-format
-#| msgid "Split Lesson into Smaller Lessons"
+#, kde-format
 msgid "Split Unit into Smaller Units"
-msgstr "Lecke felosztása kisebb leckékre"
+msgstr "Egység felosztása kisebb egységekre"
 
 #: src/editor/lessonview.cpp:58
-#, fuzzy, kde-format
-#| msgid "Make multiple smaller lessons out of one big lesson."
+#, kde-format
 msgid "Make multiple smaller units out of one big unit."
-msgstr "Egy leckét több kisebb leckére bont."
+msgstr "Egy egységet több kisebb egységre bont."
 
 #: src/editor/lessonview.cpp:64
 #, kde-format
@@ -985,13 +933,12 @@ msgstr "Áthelyezi a kijelölt szógyűjteményt egy új leckébe"
 #: src/editor/lessonview.cpp:72 src/parleyactions.cpp:150
 #, kde-format
 msgid "Remove Confidence Levels"
-msgstr ""
+msgstr "Magabiztossági szintek eltávolítása"
 
 #: src/editor/lessonview.cpp:74
-#, fuzzy, kde-format
-#| msgid "Remove grades from this lesson."
+#, kde-format
 msgid "Remove confidence levels from this unit."
-msgstr "Szintek eltávolítása ebből a leckéből."
+msgstr "Magabiztossági szintek eltávolítása ebből az egységből."
 
 #: src/editor/lessonview.cpp:80
 #, fuzzy, kde-format
