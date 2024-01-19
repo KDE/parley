@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
     QApplication::setApplicationName(QStringLiteral("parley"));
     QApplication::setApplicationVersion(PARLEY_VERSION_STRING);
     QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("parley")));
 
     KCrash::initialize();
 
