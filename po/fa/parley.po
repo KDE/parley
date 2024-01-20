@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-01-20 00:35+0000\n"
 "PO-Revision-Date: 2007-09-02 17:53+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -1586,13 +1586,13 @@ msgstr ""
 msgid "Conceived the name Parley"
 msgstr ""
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, fuzzy, kde-format
 #| msgid "+[file]"
 msgid "[file]"
 msgstr "+]پرونده["
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, kde-format
 msgid "Document file to open"
 msgstr "پرونده سند برای باز کردن"

@@ -2,7 +2,7 @@
 # translation of parley3.po to
 # translation of parley.po to
 # translation of kvoctrain.po to
-# Version: $Revision: 1666566 $
+# Version: $Revision: 1670377 $
 # Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 #
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2003, 2004.
@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-01-20 00:35+0000\n"
 "PO-Revision-Date: 2021-11-14 08:51+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1568,12 +1568,12 @@ msgstr "Ramona Knapp"
 msgid "Conceived the name Parley"
 msgstr "Stworzenie nazwy Parley"
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, kde-format
 msgid "[file]"
 msgstr "[plik]"
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, kde-format
 msgid "Document file to open"
 msgstr "Dokument do otwarcia"

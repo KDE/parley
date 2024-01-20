@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-01-20 00:35+0000\n"
 "PO-Revision-Date: 2007-12-31 19:25+0545\n"
 "Last-Translator: Shyam Krishna Bal <balshyam24@yahoo.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -1707,13 +1707,13 @@ msgstr "रामोना कन्या"
 msgid "Conceived the name Parley"
 msgstr "पार्ले नाम विचार गरियो"
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, fuzzy, kde-format
 #| msgid "+[file]"
 msgid "[file]"
 msgstr "+[file]"
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, kde-format
 msgid "Document file to open"
 msgstr "खोल्नका लागि कागजात फाइल"

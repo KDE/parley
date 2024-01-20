@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-01-20 00:35+0000\n"
 "PO-Revision-Date: 2013-03-05 17:01+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -1527,12 +1527,12 @@ msgstr ""
 msgid "Conceived the name Parley"
 msgstr ""
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, fuzzy, kde-format
 msgid "[file]"
 msgstr "फाईल"
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, kde-format
 msgid "Document file to open"
 msgstr ""

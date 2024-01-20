@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-01-20 00:35+0000\n"
 "PO-Revision-Date: 2021-11-08 18:03+0000\n"
 "Last-Translator: José Nuno Pires <zepires@gmail.com>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -1573,12 +1573,12 @@ msgstr "Ramona Knapp"
 msgid "Conceived the name Parley"
 msgstr "Concepção do nome Parley"
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, kde-format
 msgid "[file]"
 msgstr "[ficheiro]"
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, kde-format
 msgid "Document file to open"
 msgstr "Ficheiro do documento a abrir"

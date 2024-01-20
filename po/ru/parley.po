@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-01-20 00:35+0000\n"
 "PO-Revision-Date: 2023-03-03 11:07+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -1568,12 +1568,12 @@ msgstr "Ramona Knapp"
 msgid "Conceived the name Parley"
 msgstr "Придумал название «Parley»"
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, kde-format
 msgid "[file]"
 msgstr "[файл]"
 
-#: src/main.cpp:76
+#: src/main.cpp:77
 #, kde-format
 msgid "Document file to open"
 msgstr "Открываемый документ"
