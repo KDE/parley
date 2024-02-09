@@ -5,9 +5,9 @@
 
 #include "exportdialog.h"
 
+#include "parleydocument.h"
 #include <KEduVocDocument>
 #include <KEduVocKVTML2Writer>
-#include <parleydocument.h>
 
 #include <KLocalizedString>
 #include <KMessageBox>

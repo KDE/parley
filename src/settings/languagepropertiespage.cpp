@@ -23,7 +23,7 @@
 #include <KEduVocExpression>
 #include <KEduVocLesson>
 
-#include <parleydocument.h>
+#include "parleydocument.h"
 
 #define TENSE_TAG ". "
 
