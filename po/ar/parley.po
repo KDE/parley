@@ -5,13 +5,13 @@
 # Ahmad M. Zawawi <zawawi@arabeyes.org>, 2004.
 # Ammar Tabba <atabba@kacst.edu.sa>, 2004.
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
-# Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2022.
+# SPDX-FileCopyrightText: 2022, 2024 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-20 00:35+0000\n"
-"PO-Revision-Date: 2022-01-29 20:55+0400\n"
+"PO-Revision-Date: 2024-02-10 21:59+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Lokalize 21.07.70\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -774,7 +774,7 @@ msgstr ""
 #: src/editor/FromToEntryPageForm.ui:95
 #, fuzzy, kde-format
 msgid "&False friend:"
-msgstr "أشباه النظائر"
+msgstr "شبيه نظير"
 
 #. i18n: ectx: property (title), widget (QGroupBox, GroupBox3)
 #: src/editor/FromToEntryPageForm.ui:110
@@ -826,9 +826,9 @@ msgstr "لم تمارس بعد"
 
 #. i18n: ectx: property (displayFormat), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:229
-#, fuzzy, kde-format
+#, kde-format
 msgid "dd.MM.yyyy"
-msgstr "MM"
+msgstr "dd.MM.yyyy"
 
 #. i18n: ectx: property (text), widget (QPushButton, resetGradesButton)
 #: src/editor/FromToEntryPageForm.ui:260
@@ -1194,14 +1194,14 @@ msgstr[4] "أتريد حقًّا حذف المُدخلات المحدّدة؟"
 msgstr[5] "أتريد حقًّا حذف المُدخلات المحدّدة؟"
 
 #: src/editor/vocabularyview.cpp:254
-#, fuzzy, kde-format
+#, kde-format
 msgid "Delete"
 msgstr "احذف"
 
 #: src/editor/vocabularyview.cpp:358
 #, fuzzy, kde-format
 msgid "Nothing to spell check."
-msgstr "لا يوجد شيء للتدقيق الإملائي"
+msgstr "لا شيء لتدقيق إملائه."
 
 #: src/editor/vocabularyview.cpp:383
 #, kde-format
@@ -1494,9 +1494,9 @@ msgid "Original Author"
 msgstr "المؤلف الأصلي"
 
 #: src/main.cpp:58
-#, fuzzy, kde-format
+#, kde-format
 msgid "Lee Olson"
-msgstr "الدرس"
+msgstr "لي ولسون"
 
 #: src/main.cpp:58
 #, kde-format
@@ -1803,7 +1803,7 @@ msgstr "الملفّ %1 موجود بالفعل. أتريد الكتابة فو�
 #, fuzzy, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
-msgstr "جاري الحفظ..."
+msgstr "يحفظ"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/parleydocument.cpp:506 src/settings/documentproperties.ui:234
@@ -2216,9 +2216,9 @@ msgstr "متقدم الممارسة إعدادات"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: src/practice/configure/generalpracticeoptions.ui:17
-#, fuzzy, kde-format
+#, kde-format
 msgid "Correction"
-msgstr "انتقِ الكل الدروس"
+msgstr "تصحيح"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:23
@@ -2230,7 +2230,7 @@ msgstr ""
 #: src/practice/configure/generalpracticeoptions.ui:26
 #, fuzzy, kde-format
 msgid "Ignore accents"
-msgstr "الدروس:"
+msgstr "تجاهل علامات التشكيل"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:36
@@ -2468,7 +2468,7 @@ msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
 "initial or long term"
 msgid "%1, confidence %2"
-msgstr "ثقة"
+msgstr "‏%1 (بثقة %2٪)"
 
 #: src/practice/guifrontend.cpp:133
 #, fuzzy, kde-format
@@ -2604,11 +2604,11 @@ msgstr ""
 msgid "one word"
 msgid_plural "%1 words"
 msgstr[0] "إدخال كلمة:"
-msgstr[1] "الكلمات"
-msgstr[2] "الكلمات"
-msgstr[3] "الكلمات"
-msgstr[4] "الكلمات"
-msgstr[5] "الكلمات"
+msgstr[1] "كلمة واحدة"
+msgstr[2] "كلمتان"
+msgstr[3] "$1 كلمات"
+msgstr[4] "$1 كلمة"
+msgstr[5] "$1 كلمة"
 
 #: src/practice/practicesummarycomponent.cpp:64
 #, fuzzy, kde-format
@@ -2643,9 +2643,9 @@ msgid "Switch to the Practice Overview page"
 msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:150
-#, fuzzy, kde-format
+#, kde-format
 msgid "HTML Files"
-msgstr "ملفّات HTML"
+msgstr "ملفات HTML"
 
 #: src/practice/practicesummarycomponent.cpp:150
 #, fuzzy, kde-format
@@ -2685,7 +2685,7 @@ msgstr "<b>سؤال</b>"
 #: src/practice/practicesummarycomponent.cpp:176
 #, fuzzy, kde-format
 msgid "<b>Correct answer</b>"
-msgstr "<b>الإجابة الصحيحة</b>"
+msgstr "الإجابة الصحيحة"
 
 #: src/practice/practicesummarycomponent.cpp:177
 #, kde-format
@@ -3116,7 +3116,7 @@ msgstr "TAB"
 #, fuzzy, kde-format
 msgctxt "CSV separator"
 msgid ">= 2 SPACES"
-msgstr "الفضاءات"
+msgstr "الم&سافات"
 
 #: src/settings/generaloptions.cpp:48
 #, kde-format
@@ -4157,7 +4157,7 @@ msgstr "نقر إلى تغيير اللّون لـ."
 #: src/settings/viewoptionsbase.ui:190
 #, fuzzy, kde-format
 msgid "&Base"
-msgstr "Base64"
+msgstr "الأساس"
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:105
@@ -4346,7 +4346,7 @@ msgstr ""
 #, fuzzy, kde-format
 msgctxt "Confidence level in language, table header"
 msgid "Confidence (%1)"
-msgstr "ثقة"
+msgstr "‏%1 (بثقة %2٪)"
 
 #, fuzzy
 #~ msgid "Confidence Levels from %1 to %2"
