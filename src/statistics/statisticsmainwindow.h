@@ -8,9 +8,9 @@
 #ifndef STATISTICSMAINWINDOW_H
 #define STATISTICSMAINWINDOW_H
 
+#include <KXMLGUIClient>
+#include <QWidget>
 #include <memory>
-
-#include <KXmlGuiWindow>
 
 class ConjugationOptions;
 class StatisticsModel;
@@ -21,7 +21,7 @@ namespace Ui
 class StatisticsMainWindow;
 }
 
-class StatisticsMainWindow : public KXmlGuiWindow
+class StatisticsMainWindow : public QWidget, public KXMLGUIClient
 {
     Q_OBJECT
 public:
