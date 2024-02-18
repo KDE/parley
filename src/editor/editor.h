@@ -10,7 +10,9 @@
 #define EDITOR_H
 
 #include "parleydocument.h"
-#include <KXmlGuiWindow>
+#include <KXMLGUIClient>
+#include <QDockWidget>
+#include <QWidget>
 
 class QLineEdit;
 
@@ -34,7 +36,7 @@ class SummaryWordWidget;
 class LatexWidget;
 class SynonymWidget;
 
-class EditorWindow : public KXmlGuiWindow
+class EditorWindow : public QWidget, public KXMLGUIClient
 {
     Q_OBJECT
 
