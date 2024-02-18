@@ -9,17 +9,16 @@
 #include "practice/sessionmanagerbase.h"
 
 #include "ui_practicesummarywidget.h"
-#include <KXmlGuiWindow>
+#include <KXMLGUIClient>
 
 namespace Practice
 {
-class PracticeSummaryComponent : public KXmlGuiWindow, Ui::PracticeSummaryWidget
+class PracticeSummaryComponent : public QWidget, public KXMLGUIClient, Ui::PracticeSummaryWidget
 {
     Q_OBJECT
 
 public:
     PracticeSummaryComponent(SessionManagerBase *sessionManager, QWidget *parent);
-    ~PracticeSummaryComponent() override;
 
 public Q_SLOTS:
     void exportResults();
