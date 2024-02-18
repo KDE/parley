@@ -30,13 +30,17 @@ add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 add_definitions(-DQT_NO_FOREACH)
 add_definitions(-DKNEWSTUFFWIDGETS_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055A00)
 
+option(BUILD_BROWSERINTEGRATION "Build integration for accessing the Internet (requires QtWebengine)" ON)
+
 find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED
   Core
   Svg
   Concurrent
   Multimedia
-  WebEngineWidgets
 )
+if (BUILD_BROWSERINTEGRATION)
+    find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED WebEngineWidgets)
+endif()
 
 find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} MODULE REQUIRED COMPONENTS
   DocTools  #to produce the docbook

@@ -4,6 +4,8 @@ add_subdirectory( settings )
 # This library is used both by parley itself and the unit tests.
 add_library(parley_LIB STATIC)
 
+configure_file(browserintegration.h.in browserintegration.h @ONLY)
+
 target_sources(parley_LIB PRIVATE
     collection/collection.cpp
     collection/collection.h
@@ -43,8 +45,6 @@ target_sources(parley_LIB PRIVATE
     dashboard/gradereferencewidget.h
     editor/audiowidget.cpp
     editor/audiowidget.h
-    editor/browserwidget.cpp
-    editor/browserwidget.h
     editor/comparisonwidget.cpp
     editor/comparisonwidget.h
     editor/conjugationwidget.cpp
@@ -194,6 +194,12 @@ target_sources(parley_LIB PRIVATE
     utils.cpp
     utils.h
 )
+if (BUILD_BROWSERINTEGRATION)
+    target_sources(parley_LIB PRIVATE
+        editor/browserwidget.cpp
+        editor/browserwidget.h
+    )
+endif()
 
 ki18n_wrap_ui(parley_LIB
     collection/entryfilterdialog.ui
@@ -204,7 +210,6 @@ ki18n_wrap_ui(parley_LIB
     editor/imagechooserwidget.ui
     editor/audiowidget.ui
     editor/synonymwidget.ui
-    editor/browserwidget.ui
     editor/summarywordwidget.ui
     editor/latexwidget.ui
     practice/practicesummarywidget.ui
@@ -228,6 +233,11 @@ ki18n_wrap_ui(parley_LIB
     statistics/statisticsmainwindow.ui
     dashboard/dashboard.ui
 )
+if (BUILD_BROWSERINTEGRATION)
+    ki18n_wrap_ui(parley_LIB
+        editor/browserwidget.ui
+    )
+endif()
 
 kconfig_add_kcfg_files(parley_LIB
     settings/prefs.kcfgc
@@ -298,8 +308,12 @@ target_link_libraries(parley_LIB
     Qt${QT_MAJOR_VERSION}::Widgets
     Qt${QT_MAJOR_VERSION}::Concurrent
     Qt${QT_MAJOR_VERSION}::Multimedia
-    Qt${QT_MAJOR_VERSION}::WebEngineWidgets
 )
+if (BUILD_BROWSERINTEGRATION)
+    target_link_libraries(parley_LIB
+       Qt${QT_MAJOR_VERSION}::WebEngineWidgets
+    )
+endif()
 
 add_executable(parley
     main.cpp
