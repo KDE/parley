@@ -116,7 +116,7 @@ void PracticeMainWindow::resizeEvent(QResizeEvent *)
 bool PracticeMainWindow::event(QEvent *event)
 {
     if (event->type() == QEvent::HoverMove && m_fullScreenAction->isChecked()) {
-        QPoint pos = static_cast<QHoverEvent *>(event)->pos();
+        QPointF pos = static_cast<QHoverEvent *>(event)->position();
         if (m_animation->direction() == QAbstractAnimation::Backward && pos.y() <= m_floatingToolBar->height()) {
             m_animation->setDirection(QAbstractAnimation::Forward);
             m_animation->start();
