@@ -4,8 +4,6 @@
 */
 
 #include "practicesummarycomponent.h"
-#include "prefs.h"
-
 #include "parleyactions.h"
 
 #include <KActionCollection>
@@ -36,17 +34,14 @@ class PracticeSummaryComponent::SortedAttemptTableWidgetItem : public QTableWidg
 };
 
 PracticeSummaryComponent::PracticeSummaryComponent(SessionManagerBase *sessionManager, QWidget *parent)
-    : KXmlGuiWindow(parent)
+    : QWidget(parent)
     , m_sessionManager(sessionManager)
 {
     // KXmlGui
     setXMLFile(QStringLiteral("practicesummaryui.rc"));
     setObjectName(QStringLiteral("Statistics"));
 
-    QWidget *mainWidget = new QWidget(this);
-    setupUi(mainWidget);
-    setCentralWidget(mainWidget);
-
+    setupUi(this);
     initActions(parent);
 
     setupDetailsTable();
@@ -63,15 +58,6 @@ PracticeSummaryComponent::PracticeSummaryComponent(SessionManagerBase *sessionMa
                                     i18np("one word", "%1 words", total),
                                     i18np("one minute", "%1 minutes", minutes),
                                     i18np("one second", "%1 seconds", seconds)));
-
-    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
-    applyMainWindowSettings(cfg);
-}
-
-PracticeSummaryComponent::~PracticeSummaryComponent()
-{
-    KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
-    saveMainWindowSettings(cfg);
 }
 
 void PracticeSummaryComponent::initActions(QWidget *parleyMainWindow)
