@@ -5,10 +5,6 @@
 
 #include "practicemainwindow.h"
 
-#include <QHBoxLayout>
-#include <QPropertyAnimation>
-#include <QToolButton>
-
 #include <KActionCollection>
 #include <KConfig>
 #include <KConfigGroup>
@@ -16,7 +12,10 @@
 #include <KToggleFullScreenAction>
 #include <KToolBar>
 #include <QAction>
+#include <QHBoxLayout>
 #include <QMenuBar>
+#include <QPropertyAnimation>
+#include <QToolButton>
 
 #include "guifrontend.h"
 #include "parleymainwindow.h"
@@ -26,15 +25,17 @@
 using namespace Practice;
 
 PracticeMainWindow::PracticeMainWindow(SessionManagerBase *sessionManager, ParleyMainWindow *mainWindow)
-    : KXmlGuiWindow(mainWindow)
+    : QWidget(mainWindow)
+    , KXMLGUIClient(mainWindow)
     , m_mainWindow(mainWindow)
 {
     // KXmlGui
     setXMLFile(QStringLiteral("practiceui.rc"));
     setObjectName(QStringLiteral("Practice"));
 
+    setLayout(new QHBoxLayout(this));
     m_guiFrontend = new GuiFrontend(this);
-    setCentralWidget(m_guiFrontend->widget());
+    layout()->addWidget(m_guiFrontend->widget());
 
     m_stateMachine = new PracticeStateMachine(m_guiFrontend, mainWindow->parleyDocument(), sessionManager, this);
 
@@ -48,7 +49,7 @@ PracticeMainWindow::PracticeMainWindow(SessionManagerBase *sessionManager, Parle
     connect(m_stateMachine, &PracticeStateMachine::practiceFinished, this, &PracticeMainWindow::practiceFinished);
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
-    applyMainWindowSettings(cfg);
+    m_mainWindow->applyMainWindowSettings(cfg);
 }
 
 PracticeMainWindow::~PracticeMainWindow()
@@ -59,7 +60,8 @@ PracticeMainWindow::~PracticeMainWindow()
     toggleFullScreenMode(false);
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
-    saveMainWindowSettings(cfg);
+    m_mainWindow->saveMainWindowSettings(cfg);
+    m_guiFrontend->deleteLater();
 }
 
 void PracticeMainWindow::initActions()
@@ -82,8 +84,8 @@ void PracticeMainWindow::initActions()
     connect(toggleAnswerState, &QAction::triggered, m_guiFrontend, &GuiFrontend::toggleResultState);
 
     // m_floatingToolBar now a child of m_mainWindow and will be deleted with its parent
-    m_floatingToolBar = new QWidget(m_mainWindow);
-    QHBoxLayout *layout = new QHBoxLayout();
+    m_floatingToolBar = new QWidget(this);
+    QHBoxLayout *layout = new QHBoxLayout(this);
     m_floatingToolBar->setLayout(layout);
     m_floatingToolBar->setAutoFillBackground(true);
     QToolButton *fullScreenButton = new QToolButton(m_floatingToolBar);
@@ -126,7 +128,14 @@ bool PracticeMainWindow::event(QEvent *event)
             m_animation->start();
         }
     }
-    return KXmlGuiWindow::event(event);
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        if (keyEvent->key() == Qt::Key_Escape) {
+            toggleFullScreenMode(false);
+            return true;
+        }
+    }
+    return QWidget::event(event);
 }
 
 void PracticeMainWindow::toggleFullScreenMode(bool fullScreen)

@@ -7,8 +7,9 @@
 #define PRACTICE_MAINWINDOW_H
 
 #include "sessionmanagerbase.h"
-#include <KXmlGuiWindow>
+#include <KXMLGUIClient>
 #include <QKeyEvent>
+#include <QWidget>
 
 class ParleyMainWindow;
 class KToggleFullScreenAction;
@@ -20,7 +21,7 @@ namespace Practice
 class PracticeStateMachine;
 class GuiFrontend;
 
-class PracticeMainWindow : public KXmlGuiWindow
+class PracticeMainWindow : public QWidget, public KXMLGUIClient
 {
     Q_OBJECT
 public:

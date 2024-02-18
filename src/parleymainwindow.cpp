@@ -13,6 +13,7 @@
 #include "parleyactions.h"
 #include "practice/configure/configurepracticedialog.h"
 #include "practice/guifrontend.h"
+#include "practice/practicemainwindow.h"
 #include "practice/practicesummarycomponent.h"
 #include "prefs.h"
 #include "settings/parleyprefs.h"
