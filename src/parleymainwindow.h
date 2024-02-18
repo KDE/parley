@@ -11,8 +11,6 @@
 #define PARLEYMAINWINDOW_H
 
 #include "parleydocument.h"
-
-#include "practice/sessionmanagercontinuous.h"
 #include "practice/sessionmanagerfixed.h"
 #include <KXmlGuiWindow>
 
@@ -117,7 +115,8 @@ private:
     static ParleyMainWindow *s_instance;
 
     Component m_currentComponent;
-    KXmlGuiWindow *m_currentComponentWindow{nullptr};
+    QWidget *m_currentCentralWidget{nullptr};
+    KXMLGUIClient *m_currentGuiClient{nullptr};
 
     KRecentFilesAction *m_recentFilesAction{nullptr};
 

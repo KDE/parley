@@ -83,9 +83,9 @@ ParleyMainWindow::ParleyMainWindow(const QUrl &filename)
 
 ParleyMainWindow::~ParleyMainWindow()
 {
-    guiFactory()->removeClient(m_currentComponentWindow);
-    centralWidget()->layout()->removeWidget(m_currentComponentWindow);
-    delete m_currentComponentWindow;
+    guiFactory()->removeClient(m_currentGuiClient);
+    centralWidget()->layout()->removeWidget(m_currentCentralWidget);
+    delete m_currentCentralWidget;
 
     // Prevent calling this slot with already deleted m_document as it is no longer needed anyway
     if (m_document->document()) {
@@ -263,7 +263,7 @@ void ParleyMainWindow::showPracticeSummary()
 void ParleyMainWindow::switchComponent(Component component)
 {
     if (component == PracticeComponent) {
-        StatisticsMainWindow *statisticsWidget = qobject_cast<StatisticsMainWindow *>(m_currentComponentWindow);
+        StatisticsMainWindow *statisticsWidget = qobject_cast<StatisticsMainWindow *>(m_currentCentralWidget);
         if (statisticsWidget) {
             statisticsWidget->syncConfig();
         }
@@ -277,29 +277,34 @@ void ParleyMainWindow::switchComponent(Component component)
     }
 
     // Remove and delete the old component window if there is one active.
-    if (m_currentComponentWindow) {
-        guiFactory()->removeClient(m_currentComponentWindow);
-        centralWidget()->layout()->removeWidget(m_currentComponentWindow);
-        m_currentComponentWindow->deleteLater();
+    if (m_currentCentralWidget) {
+        Q_ASSERT(m_currentGuiClient); // gui client and central widget are same object
+        guiFactory()->removeClient(m_currentGuiClient);
+        centralWidget()->layout()->removeWidget(m_currentCentralWidget);
+        delete m_currentCentralWidget;
+        m_currentCentralWidget = nullptr;
     }
 
     switch (component) {
     case DashboardComponent: {
         Dashboard *dashboard = new Dashboard(this);
-        m_currentComponentWindow = dashboard;
+        m_currentCentralWidget = dashboard;
+        m_currentGuiClient = dashboard;
         showDocumentActions(true, false);
         // dashboard->updateRecentFilesModel();
         break;
     }
     case ConfigurePracticeComponent: {
         StatisticsMainWindow *statisticsWidget = new StatisticsMainWindow(m_document->document(), this);
-        m_currentComponentWindow = statisticsWidget;
+        m_currentCentralWidget = statisticsWidget;
+        m_currentGuiClient = statisticsWidget;
         showDocumentActions(true, true);
         break;
     }
     case EditorComponent: {
         EditorWindow *editor = new EditorWindow(this);
-        m_currentComponentWindow = editor;
+        m_currentCentralWidget = editor;
+        m_currentGuiClient = editor;
         showDocumentActions(true, true);
         editor->updateDocument(m_document->document());
         break;
@@ -309,7 +314,8 @@ void ParleyMainWindow::switchComponent(Component component)
         m_document->document()->setModified(true);
         Practice::PracticeMainWindow *practiceWindow = new Practice::PracticeMainWindow(&m_sessionManager, this);
         connect(practiceWindow, &Practice::PracticeMainWindow::stopPractice, this, &ParleyMainWindow::showPracticeSummary);
-        m_currentComponentWindow = practiceWindow;
+        m_currentCentralWidget = practiceWindow;
+        m_currentGuiClient = practiceWindow;
         qDebug() << " Practice Slotted up";
         showDocumentActions(false, false);
         practiceWindow->startPractice();
@@ -318,18 +324,18 @@ void ParleyMainWindow::switchComponent(Component component)
     }
     case PracticeSummary: {
         Practice::PracticeSummaryComponent *summary = new Practice::PracticeSummaryComponent(&m_sessionManager, this);
-        m_currentComponentWindow = summary;
+        m_currentCentralWidget = summary;
+        m_currentGuiClient = summary;
         showDocumentActions(true, true);
         break;
     }
     default:
         break;
     }
-    // qDebug() << "new component" << m_currentComponentWindow;
 
-    guiFactory()->addClient(m_currentComponentWindow);
-    centralWidget()->layout()->addWidget(m_currentComponentWindow);
-    m_currentComponentWindow->show();
+    guiFactory()->addClient(m_currentGuiClient);
+    centralWidget()->layout()->addWidget(m_currentCentralWidget);
+    m_currentCentralWidget->show();
     switch (component) {
     case DashboardComponent: {
         setVisibleToolbar(QString());
