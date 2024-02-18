@@ -26,7 +26,8 @@
 #include "ui_statisticsmainwindow.h"
 
 StatisticsMainWindow::StatisticsMainWindow(const std::shared_ptr<KEduVocDocument> &doc, ParleyMainWindow *parent)
-    : KXmlGuiWindow(parent)
+    : QWidget(parent)
+    , KXMLGUIClient(parent)
     , m_mainWindow(parent)
     , m_doc(doc)
     , m_ui(new Ui::StatisticsMainWindow)
@@ -35,9 +36,7 @@ StatisticsMainWindow::StatisticsMainWindow(const std::shared_ptr<KEduVocDocument
     setXMLFile(QStringLiteral("statisticsui.rc"));
     setObjectName(QStringLiteral("Statistics"));
 
-    QWidget *mainWidget = new QWidget(this);
-    setCentralWidget(mainWidget);
-    m_ui->setupUi(mainWidget);
+    m_ui->setupUi(this);
     // m_ui->caption->setText(i18nc("caption for an overview of the confidence levels for a document"
     //                             "Statistics for \"%1\"", m_doc->title()));
     m_statisticsModel = new StatisticsModel(this);
@@ -49,7 +48,7 @@ StatisticsMainWindow::StatisticsMainWindow(const std::shared_ptr<KEduVocDocument
     initPracticeMode();
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
-    applyMainWindowSettings(cfg);
+    m_mainWindow->applyMainWindowSettings(cfg);
 }
 
 StatisticsMainWindow::~StatisticsMainWindow()
@@ -58,7 +57,7 @@ StatisticsMainWindow::~StatisticsMainWindow()
         m_conjugationOptions->updateSettings();
     }
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
-    saveMainWindowSettings(cfg);
+    m_mainWindow->saveMainWindowSettings(cfg);
     delete m_ui;
 }
 
