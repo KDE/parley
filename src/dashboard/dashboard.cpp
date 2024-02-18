@@ -11,17 +11,13 @@
 #include <QStandardItemModel>
 #include <QTimer>
 
-//#include <KMimeType>
 #include <KActionCollection>
 #include <KNSWidgets/Button>
 
 #include "../utils.h"
-#include "buttondelegate.h"
 #include "parleydocument.h"
 #include "parleymainwindow.h"
-#include "practice/imagewidget.h"
 #include "practice/themedbackgroundrenderer.h"
-#include "statistics/statisticsmodel.h"
 
 #include "collection.h"
 #include "collectionwidget.h"
@@ -33,21 +29,19 @@
 int ROWSIZE = 4; // Number of collection widgets (+ 1 initial spacerItem) per row
 
 Dashboard::Dashboard(ParleyMainWindow *parent)
-    : KXmlGuiWindow(parent)
+    : Practice::ImageWidget(parent)
+    , KXMLGUIClient(parent)
     , m_mainWindow(parent)
 {
     // KXmlGui
     setXMLFile(QStringLiteral("dashboardui.rc"));
     setObjectName(QStringLiteral("Dashboard"));
 
-    m_widget = new Practice::ImageWidget(this);
+    setScalingEnabled(false, false);
+    setKeepAspectRatio(Qt::IgnoreAspectRatio);
+    setFadingEnabled(false);
 
-    m_widget->setScalingEnabled(false, false);
-    m_widget->setKeepAspectRatio(Qt::IgnoreAspectRatio);
-    m_widget->setFadingEnabled(false);
-
-    m_ui.setupUi(m_widget);
-    setCentralWidget(m_widget);
+    m_ui.setupUi(this);
 
     QFont font = m_ui.recentLabel->font();
     font.setBold(true);
@@ -61,7 +55,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     m_ui.ghnsButton->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
 
     GradeReferenceWidget *gradeReferenceWidget = new GradeReferenceWidget();
-    gradeReferenceWidget->setMinimumSize(m_widget->width(), 50);
+    gradeReferenceWidget->setMinimumSize(width(), 50);
     m_ui.gridLayout->addWidget(gradeReferenceWidget, 1, 0, 1, ROWSIZE, Qt::AlignCenter);
 
     m_subGridLayout = new QGridLayout();
@@ -85,7 +79,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     m_ui.ghnsButton->setConfigFile("parley.knsrc");
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
-    applyMainWindowSettings(cfg);
+    m_mainWindow->applyMainWindowSettings(cfg);
 
     m_themedBackgroundRenderer = new Practice::ThemedBackgroundRenderer(this, QStringLiteral("startpagethemecache.bin"));
 
@@ -94,7 +88,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     setTheme();
 
     connect(m_themedBackgroundRenderer, &Practice::ThemedBackgroundRenderer::backgroundChanged, this, &Dashboard::backgroundChanged);
-    connect(m_widget, &Practice::ImageWidget::sizeChanged, this, &Dashboard::updateBackground);
+    connect(this, &Practice::ImageWidget::sizeChanged, this, &Dashboard::updateBackground);
 
     QAction *updateAction = new QAction(this);
     updateAction->connect(updateAction, &QAction::triggered, this, &Dashboard::updateWidgets);
@@ -105,7 +99,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
 Dashboard::~Dashboard()
 {
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
-    saveMainWindowSettings(cfg);
+    m_mainWindow->saveMainWindowSettings(cfg);
 }
 
 void Dashboard::clearGrid()
@@ -310,7 +304,7 @@ void Dashboard::slotPracticeUrl(const QUrl &url)
 
 void Dashboard::backgroundChanged(const QPixmap &pixmap)
 {
-    m_widget->setPixmap(pixmap);
+    setPixmap(pixmap);
 }
 
 void Dashboard::setTheme()
@@ -318,7 +312,7 @@ void Dashboard::setTheme()
     m_themedBackgroundRenderer->setTheme(Prefs::theme());
     updateFontColors();
     updateBackground();
-    m_widget->setContentsMargins(m_themedBackgroundRenderer->contentMargins());
+    setContentsMargins(m_themedBackgroundRenderer->contentMargins());
 }
 
 void Dashboard::updateWidgets()
@@ -334,16 +328,16 @@ void Dashboard::updateFontColors()
     p.setColor(QPalette::Base, Qt::transparent);
     p.setColor(QPalette::Text, c);
     p.setColor(QPalette::WindowText, c);
-    m_widget->setPalette(p);
+    setPalette(p);
 }
 
 void Dashboard::updateBackground()
 {
     m_themedBackgroundRenderer->clearRects();
-    m_themedBackgroundRenderer->addRect(QStringLiteral("startbackground"), QRect(QPoint(), m_widget->size()));
+    m_themedBackgroundRenderer->addRect(QStringLiteral("startbackground"), QRect(QPoint(), size()));
     QPixmap pixmap = m_themedBackgroundRenderer->getScaledBackground();
     if (!pixmap.isNull()) {
-        m_widget->setPixmap(pixmap);
+        setPixmap(pixmap);
     }
     m_themedBackgroundRenderer->updateBackground();
 }
