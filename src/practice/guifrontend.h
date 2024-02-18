@@ -8,11 +8,7 @@
 
 #include "abstractfrontend.h"
 #include "abstractwidget.h"
-
-#include <KXmlGuiWindow>
 #include <QUrl>
-
-#include "practicemainwindow.h"
 
 ///@brief classes generated from the .ui XML files
 namespace Ui

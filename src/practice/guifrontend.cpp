@@ -5,11 +5,10 @@
 
 #include "guifrontend.h"
 
-#include <QTimer>
-
 #include <KColorScheme>
 #include <KLocalizedString>
 #include <QDebug>
+#include <QTimer>
 
 #include "ui_practice_mainwindow.h"
 
@@ -18,7 +17,7 @@
 #include "flashcardmodewidget.h"
 #include "mixedlettersmodewidget.h"
 #include "multiplechoicemodewidget.h"
-#include "settings/kgametheme/kgametheme.h"
+#include "prefs.h"
 #include "themedbackgroundrenderer.h"
 #include "writtenpracticewidget.h"
 
@@ -37,7 +36,7 @@ GuiFrontend::GuiFrontend(QWidget *parent)
     m_widget->setFadingEnabled(false);
 
     m_ui->setupUi(m_widget);
-    m_ui->centralPracticeWidget->setLayout(new QHBoxLayout());
+    m_ui->centralPracticeWidget->setLayout(new QHBoxLayout(m_widget));
 
     connect(Prefs::self(), &Prefs::configChanged, this, &GuiFrontend::setTheme);
     setTheme();
