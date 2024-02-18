@@ -7,6 +7,7 @@
 */
 
 #include "editor.h"
+#include "browserintegration.h"
 
 #include <config-parley.h>
 
@@ -24,7 +25,9 @@
 #include "wordtypeview.h"
 
 #include "audiowidget.h"
+#ifdef BUILD_BROWSERINTEGRATION
 #include "browserwidget.h"
+#endif
 #include "comparisonwidget.h"
 #include "imagechooserwidget.h"
 #include "inflectionwidget.h"
@@ -317,6 +320,7 @@ void EditorWindow::initDockWidgets()
     tabifyDockWidget(imageDock, audioDock);
 
     // browser
+#ifdef BUILD_BROWSERINTEGRATION
     QDockWidget *browserDock = new QDockWidget(i18n("Internet"), this);
     browserDock->setObjectName(QStringLiteral("BrowserDock"));
     BrowserWidget *htmlPart = new BrowserWidget(browserDock);
@@ -330,6 +334,7 @@ void EditorWindow::initDockWidgets()
     browserDock->setVisible(false);
     connect(m_vocabularyView, &VocabularyView::translationChanged, htmlPart, &BrowserWidget::setTranslation);
     tabifyDockWidget(summaryDock, browserDock);
+#endif
 
     // LaTeX
     QDockWidget *latexDock = new QDockWidget(i18n("LaTeX"), this);
