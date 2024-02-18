@@ -6,10 +6,10 @@
 #ifndef DASHBOARD_H
 #define DASHBOARD_H
 
+#include "practice/imagewidget.h"
 #include "statistics/statisticsmainwindow.h"
 #include "ui_dashboard.h"
-
-#include <KXmlGuiWindow>
+#include <KXMLGUIClient>
 #include <QUrl>
 
 static const int N = 50;
@@ -19,13 +19,12 @@ class ParleyMainWindow;
 namespace Practice
 {
 class ThemedBackgroundRenderer;
-class ImageWidget;
 }
 
 class CollectionWidget;
 class RemoveButton;
 
-class Dashboard : public KXmlGuiWindow
+class Dashboard : public Practice::ImageWidget, public KXMLGUIClient
 {
     Q_OBJECT
 public:
@@ -59,7 +58,6 @@ private:
     ParleyMainWindow *m_mainWindow;
     StatisticsMainWindow *m_statisticsWidget;
     Practice::ThemedBackgroundRenderer *m_themedBackgroundRenderer;
-    Practice::ImageWidget *m_widget;
 
     QMap<QString, QString> m_recentFilesMap; // url, name
     QUrl m_openUrl;
