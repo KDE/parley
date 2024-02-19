@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-02-19 02:26+0000\n"
 "PO-Revision-Date: 2002-10-29 16:25SAST\n"
 "Last-Translator: Lwandle Mgidlana <lwandle@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -282,32 +282,32 @@ msgstr "Igcina uxwebhu lwangoku"
 msgid "Practice Anyway"
 msgstr "Iinketho eziboniselayo"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
-#: src/editor/editor.cpp:368
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
+#: src/editor/editor.cpp:372
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Practice"
 msgstr "Amanqaku"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
-#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#: src/dashboard/dashboard.cpp:225 src/dashboard/dashboard.ui:38
 #, fuzzy, kde-format
 msgid "Active Collections"
 msgstr "Vula Ifayile Yomzekelo Wolwazi-Sigama"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
-#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#: src/dashboard/dashboard.cpp:230 src/dashboard/dashboard.ui:77
 #, fuzzy, kde-format
 msgid "Completed Collections"
 msgstr "Vula Ifayile Yomzekelo Wolwazi-Sigama"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
-#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#: src/dashboard/dashboard.cpp:278 src/editor/multiplechoicewidget.ui:28
 #, fuzzy, kde-format
 msgid "Remove"
 msgstr "Igama lefayile:"
 
-#: src/dashboard/dashboard.cpp:284
+#: src/dashboard/dashboard.cpp:278
 #, fuzzy, kde-format
 msgid "Are you sure you want to remove this collection?"
 msgstr "Ufuna ngenene ukucima ungeniso olukhethiweyo?\n"
@@ -659,12 +659,12 @@ msgstr "Novemba"
 msgid "Next"
 msgstr "El&andelayo"
 
-#: src/editor/editor.cpp:134
+#: src/editor/editor.cpp:138
 #, fuzzy, kde-format
 msgid "Units"
 msgstr "R:"
 
-#: src/editor/editor.cpp:145
+#: src/editor/editor.cpp:149
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -672,26 +672,26 @@ msgid ""
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
 
-#: src/editor/editor.cpp:156
+#: src/editor/editor.cpp:160
 #, fuzzy, kde-format
 #| msgid "Word t&ype:"
 msgid "Word Types"
 msgstr "U&didi lwegama:"
 
-#: src/editor/editor.cpp:176
+#: src/editor/editor.cpp:180
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
 #, fuzzy, kde-format
 #| msgid "&Comparison Forms"
 msgid "Comparison Forms"
 msgstr "&Iindlela Zokuthelekisa"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:205
+#: src/editor/editor.cpp:209
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -699,44 +699,44 @@ msgstr "Ukhetho oluninzi"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, fuzzy, kde-format
 #| msgid "&Synonyms"
 msgid "Synonyms"
 msgstr "&Izifaniso"
 
-#: src/editor/editor.cpp:232
+#: src/editor/editor.cpp:236
 #, fuzzy, kde-format
 #| msgid "&Antonyms"
 msgid "Antonyms"
 msgstr "&Izichasi"
 
-#: src/editor/editor.cpp:246
+#: src/editor/editor.cpp:250
 #, fuzzy, kde-format
 #| msgid "&False friend:"
 msgid "False Friends"
 msgstr "&Umhlobo wobuxoki:"
 
-#: src/editor/editor.cpp:261
+#: src/editor/editor.cpp:265
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr ""
 
-#: src/editor/editor.cpp:276
+#: src/editor/editor.cpp:280
 #, fuzzy, kde-format
 #| msgid "&male:\t"
 msgid "Image"
 msgstr "&ubudoda:\t"
 
-#: src/editor/editor.cpp:291
+#: src/editor/editor.cpp:295
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Summary"
 msgstr "Amanqaku"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:305
+#: src/editor/editor.cpp:309
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, fuzzy, kde-format
 #| msgctxt "Describing the sound of the character"
@@ -744,29 +744,29 @@ msgstr "Amanqaku"
 msgid "Sound"
 msgstr "Isan"
 
-#: src/editor/editor.cpp:320
+#: src/editor/editor.cpp:324
 #, fuzzy, kde-format
 #| msgid "Interlingue"
 msgid "Internet"
 msgstr "isi-Interlingue"
 
-#: src/editor/editor.cpp:335
+#: src/editor/editor.cpp:339
 #, kde-format
 msgid "LaTeX"
 msgstr ""
 
-#: src/editor/editor.cpp:412
+#: src/editor/editor.cpp:414
 #, kde-format
 msgid "Enter search terms here"
 msgstr ""
 
-#: src/editor/editor.cpp:413
+#: src/editor/editor.cpp:415
 #, fuzzy, kde-format
 #| msgid "Helps you train your vocabulary"
 msgid "Search your vocabulary"
 msgstr "Ikunceda uqeqeshe kulwazi-sigama lwakho"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:417
 #, fuzzy, kde-format
 msgid "S&earch:"
 msgstr "&Intetho:"
@@ -1440,7 +1440,7 @@ msgstr "Ayinakufunda "
 msgid "Export As"
 msgstr ""
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
 #, fuzzy, kde-format
 msgid "Untitled"
 msgstr "iwonga"
@@ -1923,7 +1923,7 @@ msgstr "Yenza isifundo"
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Vula Ifayile Yomzekelo Wolwazi-Sigama"
 
-#: src/parleymainwindow.cpp:133
+#: src/parleymainwindow.cpp:134
 #, kde-format
 msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
@@ -1931,24 +1931,24 @@ msgctxt ""
 msgid "%1 [*]"
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, fuzzy, kde-format
 msgid "Select languages"
 msgstr "U&lwimi"
 
-#: src/parleymainwindow.cpp:211
+#: src/parleymainwindow.cpp:212
 #, fuzzy, kde-format
 msgid "Download New Vocabularies..."
 msgstr "Vula Ifayile Yolwazi-Sigama"
 
-#: src/parleymainwindow.cpp:217
+#: src/parleymainwindow.cpp:218
 #, fuzzy, kde-format
 msgid "Downloads new vocabulary collections"
 msgstr "Vula Ifayile Yolwazi-Sigama"
@@ -2567,19 +2567,19 @@ msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
 msgstr "&ezimeleyo"
 
-#: src/practice/guifrontend.cpp:123
+#: src/practice/guifrontend.cpp:122
 #, fuzzy, kde-format
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
 msgstr "R:"
 
-#: src/practice/guifrontend.cpp:129
+#: src/practice/guifrontend.cpp:128
 #, fuzzy, kde-format
 #| msgid "Enter the word:"
 msgid "New word"
 msgstr "Ngenisa igama:"
 
-#: src/practice/guifrontend.cpp:132
+#: src/practice/guifrontend.cpp:131
 #, kde-format
 msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
@@ -2587,17 +2587,17 @@ msgctxt ""
 msgid "%1, confidence %2"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "initial"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "long term"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:199
+#: src/practice/guifrontend.cpp:198
 #, kde-format
 msgid ""
 "You answered correctly %2 of a total of %1 word.\n"
@@ -2689,37 +2689,37 @@ msgstr "Uthe&lekiso"
 msgid "superlative"
 msgstr "&Amanqaku"
 
-#: src/practice/practicemainwindow.cpp:68
+#: src/practice/practicemainwindow.cpp:70
 #, fuzzy, kde-format
 #| msgid "&Articles"
 msgid "Stop Practice"
 msgstr "&Amanqaku"
 
-#: src/practice/practicemainwindow.cpp:70
+#: src/practice/practicemainwindow.cpp:72
 #, fuzzy, kde-format
 #| msgid "&Articles"
 msgid "Stop practicing"
 msgstr "&Amanqaku"
 
-#: src/practice/practicemainwindow.cpp:77
+#: src/practice/practicemainwindow.cpp:79
 #, kde-format
 msgid "Change answer to right/wrong"
 msgstr ""
 
-#: src/practice/practicemainwindow.cpp:79
+#: src/practice/practicemainwindow.cpp:81
 #, kde-format
 msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
 "This shortcut changes how the answer is counted."
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:62
+#: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:63
+#: src/practice/practicesummarycomponent.cpp:58
 #, fuzzy, kde-format
 #| msgid "Enter the word:"
 msgid "one word"
@@ -2727,7 +2727,7 @@ msgid_plural "%1 words"
 msgstr[0] "Ngenisa igama:"
 msgstr[1] "Ngenisa igama:"
 
-#: src/practice/practicesummarycomponent.cpp:64
+#: src/practice/practicesummarycomponent.cpp:59
 #, fuzzy, kde-format
 #| msgid "Contained In"
 msgid "one minute"
@@ -2735,7 +2735,7 @@ msgid_plural "%1 minutes"
 msgstr[0] "Iqulathwe Kwi"
 msgstr[1] "Iqulathwe Kwi"
 
-#: src/practice/practicesummarycomponent.cpp:65
+#: src/practice/practicesummarycomponent.cpp:60
 #, fuzzy, kde-format
 #| msgid "&Append Language"
 msgid "one second"
@@ -2743,79 +2743,79 @@ msgid_plural "%1 seconds"
 msgstr[0] "&Fakela Ulwimi"
 msgstr[1] "&Fakela Ulwimi"
 
-#: src/practice/practicesummarycomponent.cpp:82
+#: src/practice/practicesummarycomponent.cpp:68
 #, fuzzy, kde-format
 #| msgid "Not Queried Yet"
 msgid "Practice Overview"
 msgstr "Ayikhalazelwanga"
 
-#: src/practice/practicesummarycomponent.cpp:83
+#: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "HTML Files"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, fuzzy, kde-format
 #| msgid "Document Properties"
 msgid "OpenDocument text files"
 msgstr "Iimpahla zoxwebhu"
 
-#: src/practice/practicesummarycomponent.cpp:160
+#: src/practice/practicesummarycomponent.cpp:146
 #, fuzzy, kde-format
 #| msgid "Not Queried Yet"
 msgid "Practice results"
 msgstr "Ayikhalazelwanga"
 
-#: src/practice/practicesummarycomponent.cpp:165
+#: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
 msgid "Answered questions: %1\n"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:166
+#: src/practice/practicesummarycomponent.cpp:152
 #, fuzzy, kde-format
 #| msgid "Current tense is: %1."
 msgid "Correct answers: %1\n"
 msgstr "Isigaba sentetha sangoku yi: %1."
 
-#: src/practice/practicesummarycomponent.cpp:167
+#: src/practice/practicesummarycomponent.cpp:153
 #, fuzzy, kde-format
 #| msgid "&Wrong:"
 msgid "Wrong answers: %1\n"
 msgstr "&Ayilunganga:"
 
-#: src/practice/practicesummarycomponent.cpp:174
+#: src/practice/practicesummarycomponent.cpp:160
 #, kde-format
 msgid "<b>Attempts</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:175
+#: src/practice/practicesummarycomponent.cpp:161
 #, fuzzy, kde-format
 #| msgid "Question"
 msgid "<b>Question</b>"
 msgstr "Umbuzo"
 
-#: src/practice/practicesummarycomponent.cpp:176
+#: src/practice/practicesummarycomponent.cpp:162
 #, kde-format
 msgid "<b>Correct answer</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:177
+#: src/practice/practicesummarycomponent.cpp:163
 #, kde-format
 msgid "<b>Your errors</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, fuzzy, kde-format
 #| msgid "Could not read "
 msgid "Could not write to %1"
 msgstr "Ayinakufunda "
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, fuzzy, kde-format
 #| msgid "Could not read "
 msgid "Could not write file"
@@ -4458,19 +4458,19 @@ msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
 msgstr "Ayikhalazelwanga"
 
-#: src/statistics/statisticsmainwindow.cpp:193
+#: src/statistics/statisticsmainwindow.cpp:192
 #, fuzzy, kde-format
 #| msgid "&Learning"
 msgid "Known to Learning"
 msgstr "&Iyafunda"
 
-#: src/statistics/statisticsmainwindow.cpp:194
+#: src/statistics/statisticsmainwindow.cpp:193
 #, fuzzy, kde-format
 #| msgid "&Learning"
 msgid "Learning to Known"
 msgstr "&Iyafunda"
 
-#: src/statistics/statisticsmainwindow.cpp:195
+#: src/statistics/statisticsmainwindow.cpp:194
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Mixed Directions"

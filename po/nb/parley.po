@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-02-19 02:26+0000\n"
 "PO-Revision-Date: 2013-11-26 10:47+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -267,31 +267,31 @@ msgstr "Åpne denne ordlistesamlinga i redigeringen"
 msgid "Practice Anyway"
 msgstr ""
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
-#: src/editor/editor.cpp:368
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
+#: src/editor/editor.cpp:372
 #, kde-format
 msgid "Practice"
 msgstr "Øvelse"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
-#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#: src/dashboard/dashboard.cpp:225 src/dashboard/dashboard.ui:38
 #, kde-format
 msgid "Active Collections"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
-#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#: src/dashboard/dashboard.cpp:230 src/dashboard/dashboard.ui:77
 #, kde-format
 msgid "Completed Collections"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
-#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#: src/dashboard/dashboard.cpp:278 src/editor/multiplechoicewidget.ui:28
 #, kde-format
 msgid "Remove"
 msgstr "Fjern"
 
-#: src/dashboard/dashboard.cpp:284
+#: src/dashboard/dashboard.cpp:278
 #, kde-format
 msgid "Are you sure you want to remove this collection?"
 msgstr ""
@@ -619,12 +619,12 @@ msgstr "Tall:"
 msgid "Next"
 msgstr "Neste"
 
-#: src/editor/editor.cpp:134
+#: src/editor/editor.cpp:138
 #, kde-format
 msgid "Units"
 msgstr ""
 
-#: src/editor/editor.cpp:145
+#: src/editor/editor.cpp:149
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -632,24 +632,24 @@ msgid ""
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
 
-#: src/editor/editor.cpp:156
+#: src/editor/editor.cpp:160
 #, kde-format
 msgid "Word Types"
 msgstr "Ordklasser"
 
-#: src/editor/editor.cpp:176
+#: src/editor/editor.cpp:180
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr "Bøyning (verb, adjektiver, substantiver)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
 #, kde-format
 msgid "Comparison Forms"
 msgstr "Komparativformer"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:205
+#: src/editor/editor.cpp:209
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -657,65 +657,65 @@ msgstr "Flere valg"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, kde-format
 msgid "Synonyms"
 msgstr "Synonymer"
 
-#: src/editor/editor.cpp:232
+#: src/editor/editor.cpp:236
 #, kde-format
 msgid "Antonyms"
 msgstr "Antonymer"
 
-#: src/editor/editor.cpp:246
+#: src/editor/editor.cpp:250
 #, kde-format
 msgid "False Friends"
 msgstr "Utro venner"
 
-#: src/editor/editor.cpp:261
+#: src/editor/editor.cpp:265
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr "Fonetiske symboler"
 
-#: src/editor/editor.cpp:276
+#: src/editor/editor.cpp:280
 #, kde-format
 msgid "Image"
 msgstr "Bilde"
 
-#: src/editor/editor.cpp:291
+#: src/editor/editor.cpp:295
 #, kde-format
 msgid "Summary"
 msgstr "Sammendrag"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:305
+#: src/editor/editor.cpp:309
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, kde-format
 msgid "Sound"
 msgstr "Lyd"
 
-#: src/editor/editor.cpp:320
+#: src/editor/editor.cpp:324
 #, kde-format
 msgid "Internet"
 msgstr "Internett"
 
-#: src/editor/editor.cpp:335
+#: src/editor/editor.cpp:339
 #, kde-format
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: src/editor/editor.cpp:412
+#: src/editor/editor.cpp:414
 #, kde-format
 msgid "Enter search terms here"
 msgstr "Oppgi søkebegreper her"
 
-#: src/editor/editor.cpp:413
+#: src/editor/editor.cpp:415
 #, kde-format
 msgid "Search your vocabulary"
 msgstr ""
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:417
 #, kde-format
 msgid "S&earch:"
 msgstr "&Søk:"
@@ -1365,7 +1365,7 @@ msgstr "Klarte ikke skrive til fila «%1»"
 msgid "Export As"
 msgstr "Eksporter som"
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "Uten tittel"
@@ -1838,7 +1838,7 @@ msgstr "Øvelse 1"
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Klarte ikke å åpne ordlistesamlinga «%1»"
 
-#: src/parleymainwindow.cpp:133
+#: src/parleymainwindow.cpp:134
 #, kde-format
 msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
@@ -1846,24 +1846,24 @@ msgctxt ""
 msgid "%1 [*]"
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid "Select languages"
 msgstr ""
 
-#: src/parleymainwindow.cpp:211
+#: src/parleymainwindow.cpp:212
 #, kde-format
 msgid "Download New Vocabularies..."
 msgstr "Last ned nye ordlister …"
 
-#: src/parleymainwindow.cpp:217
+#: src/parleymainwindow.cpp:218
 #, kde-format
 msgid "Downloads new vocabulary collections"
 msgstr "Laster ned nye ordlistesamlinger"
@@ -2456,18 +2456,18 @@ msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
 msgstr "%1 er nøytrum"
 
-#: src/practice/guifrontend.cpp:123
+#: src/practice/guifrontend.cpp:122
 #, kde-format
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:129
+#: src/practice/guifrontend.cpp:128
 #, kde-format
 msgid "New word"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:132
+#: src/practice/guifrontend.cpp:131
 #, kde-format
 msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
@@ -2475,17 +2475,17 @@ msgctxt ""
 msgid "%1, confidence %2"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "initial"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "long term"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:199
+#: src/practice/guifrontend.cpp:198
 #, kde-format
 msgid ""
 "You answered correctly %2 of a total of %1 word.\n"
@@ -2572,22 +2572,22 @@ msgstr "komparativ"
 msgid "superlative"
 msgstr "superlativ"
 
-#: src/practice/practicemainwindow.cpp:68
+#: src/practice/practicemainwindow.cpp:70
 #, kde-format
 msgid "Stop Practice"
 msgstr "Stopp øvelsen"
 
-#: src/practice/practicemainwindow.cpp:70
+#: src/practice/practicemainwindow.cpp:72
 #, kde-format
 msgid "Stop practicing"
 msgstr "Stopp øvelsen"
 
-#: src/practice/practicemainwindow.cpp:77
+#: src/practice/practicemainwindow.cpp:79
 #, kde-format
 msgid "Change answer to right/wrong"
 msgstr "Endre svar til rett/feil"
 
-#: src/practice/practicemainwindow.cpp:79
+#: src/practice/practicemainwindow.cpp:81
 #, kde-format
 msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
@@ -2596,99 +2596,99 @@ msgstr ""
 "Når du svarer vil Parley vise om svaret var riktig eller galt.\n"
 "Denne snarveien endrer hvordan svaret telles."
 
-#: src/practice/practicesummarycomponent.cpp:62
+#: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
 msgstr "Du øvet %1 i %2 og %3."
 
-#: src/practice/practicesummarycomponent.cpp:63
+#: src/practice/practicesummarycomponent.cpp:58
 #, kde-format
 msgid "one word"
 msgid_plural "%1 words"
 msgstr[0] "ett ord"
 msgstr[1] "%1 ord"
 
-#: src/practice/practicesummarycomponent.cpp:64
+#: src/practice/practicesummarycomponent.cpp:59
 #, kde-format
 msgid "one minute"
 msgid_plural "%1 minutes"
 msgstr[0] "ett minutt"
 msgstr[1] "%1 minutter"
 
-#: src/practice/practicesummarycomponent.cpp:65
+#: src/practice/practicesummarycomponent.cpp:60
 #, kde-format
 msgid "one second"
 msgid_plural "%1 seconds"
 msgstr[0] "ett sekund"
 msgstr[1] "%1 sekunder"
 
-#: src/practice/practicesummarycomponent.cpp:82
+#: src/practice/practicesummarycomponent.cpp:68
 #, kde-format
 msgid "Practice Overview"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:83
+#: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "HTML Files"
 msgstr "HTML-filer"
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "OpenDocument text files"
 msgstr "OpenDocument tekstfiler"
 
-#: src/practice/practicesummarycomponent.cpp:160
+#: src/practice/practicesummarycomponent.cpp:146
 #, kde-format
 msgid "Practice results"
 msgstr "Øvelsesresultater"
 
-#: src/practice/practicesummarycomponent.cpp:165
+#: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
 msgid "Answered questions: %1\n"
 msgstr "Besvarte spørsmål: %1\n"
 
-#: src/practice/practicesummarycomponent.cpp:166
+#: src/practice/practicesummarycomponent.cpp:152
 #, kde-format
 msgid "Correct answers: %1\n"
 msgstr "Riktige svar: %1\n"
 
-#: src/practice/practicesummarycomponent.cpp:167
+#: src/practice/practicesummarycomponent.cpp:153
 #, kde-format
 msgid "Wrong answers: %1\n"
 msgstr "Feil svar: %1\n"
 
-#: src/practice/practicesummarycomponent.cpp:174
+#: src/practice/practicesummarycomponent.cpp:160
 #, kde-format
 msgid "<b>Attempts</b>"
 msgstr "<b>Forsøk</b>"
 
-#: src/practice/practicesummarycomponent.cpp:175
+#: src/practice/practicesummarycomponent.cpp:161
 #, kde-format
 msgid "<b>Question</b>"
 msgstr "<b>Spørsmål</b>"
 
-#: src/practice/practicesummarycomponent.cpp:176
+#: src/practice/practicesummarycomponent.cpp:162
 #, kde-format
 msgid "<b>Correct answer</b>"
 msgstr "<b>Riktig svar</b>"
 
-#: src/practice/practicesummarycomponent.cpp:177
+#: src/practice/practicesummarycomponent.cpp:163
 #, kde-format
 msgid "<b>Your errors</b>"
 msgstr "<b>Dine feil</b>"
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, kde-format
 msgid "Could not write to %1"
 msgstr "Klarte ikke å skrive til %1"
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, kde-format
 msgid "Could not write file"
 msgstr "Klarte ikke skrive til fila"
@@ -4289,17 +4289,17 @@ msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
 msgstr ""
 
-#: src/statistics/statisticsmainwindow.cpp:193
+#: src/statistics/statisticsmainwindow.cpp:192
 #, kde-format
 msgid "Known to Learning"
 msgstr ""
 
-#: src/statistics/statisticsmainwindow.cpp:194
+#: src/statistics/statisticsmainwindow.cpp:193
 #, kde-format
 msgid "Learning to Known"
 msgstr ""
 
-#: src/statistics/statisticsmainwindow.cpp:195
+#: src/statistics/statisticsmainwindow.cpp:194
 #, kde-format
 msgid "Mixed Directions"
 msgstr ""

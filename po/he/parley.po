@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-02-19 02:26+0000\n"
 "PO-Revision-Date: 2023-12-24 15:08+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -266,31 +266,31 @@ msgstr "לפתוח את אוסף אוצרות המילים הזה בעורך"
 msgid "Practice Anyway"
 msgstr "לתרגל בכל זאת"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
-#: src/editor/editor.cpp:368
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
+#: src/editor/editor.cpp:372
 #, kde-format
 msgid "Practice"
 msgstr "לתרגל"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
-#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#: src/dashboard/dashboard.cpp:225 src/dashboard/dashboard.ui:38
 #, kde-format
 msgid "Active Collections"
 msgstr "אוספים פעילים"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
-#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#: src/dashboard/dashboard.cpp:230 src/dashboard/dashboard.ui:77
 #, kde-format
 msgid "Completed Collections"
 msgstr "אוספים שהושלמו"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
-#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#: src/dashboard/dashboard.cpp:278 src/editor/multiplechoicewidget.ui:28
 #, kde-format
 msgid "Remove"
 msgstr "הסרה"
 
-#: src/dashboard/dashboard.cpp:284
+#: src/dashboard/dashboard.cpp:278
 #, kde-format
 msgid "Are you sure you want to remove this collection?"
 msgstr "להסיר את האוסף הזה?"
@@ -617,12 +617,12 @@ msgstr "מספר:"
 msgid "Next"
 msgstr "הבא"
 
-#: src/editor/editor.cpp:134
+#: src/editor/editor.cpp:138
 #, kde-format
 msgid "Units"
 msgstr "יחידות"
 
-#: src/editor/editor.cpp:145
+#: src/editor/editor.cpp:149
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -633,24 +633,24 @@ msgstr ""
 "עם תיבות הסימון אפשר לבחור אילו יחידות לתרגל.\n"
 "רק יחידות מסומנות [x] תישאלנה בתרגול!"
 
-#: src/editor/editor.cpp:156
+#: src/editor/editor.cpp:160
 #, kde-format
 msgid "Word Types"
 msgstr "סוגי מילים"
 
-#: src/editor/editor.cpp:176
+#: src/editor/editor.cpp:180
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr "נטיות (פעלים, שמות תואר, שמות עצם)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
 #, kde-format
 msgid "Comparison Forms"
 msgstr "צורות השוואתיות"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:205
+#: src/editor/editor.cpp:209
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -658,65 +658,65 @@ msgstr "שאלות אמריקאיות"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, kde-format
 msgid "Synonyms"
 msgstr "מילים נרדפות"
 
-#: src/editor/editor.cpp:232
+#: src/editor/editor.cpp:236
 #, kde-format
 msgid "Antonyms"
 msgstr "הפכים"
 
-#: src/editor/editor.cpp:246
+#: src/editor/editor.cpp:250
 #, kde-format
 msgid "False Friends"
 msgstr "ידידי כזב"
 
-#: src/editor/editor.cpp:261
+#: src/editor/editor.cpp:265
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr "סימנים פונטיים"
 
-#: src/editor/editor.cpp:276
+#: src/editor/editor.cpp:280
 #, kde-format
 msgid "Image"
 msgstr "תמונה"
 
-#: src/editor/editor.cpp:291
+#: src/editor/editor.cpp:295
 #, kde-format
 msgid "Summary"
 msgstr "תקציר"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:305
+#: src/editor/editor.cpp:309
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, kde-format
 msgid "Sound"
 msgstr "צליל"
 
-#: src/editor/editor.cpp:320
+#: src/editor/editor.cpp:324
 #, kde-format
 msgid "Internet"
 msgstr "אינטרנט"
 
-#: src/editor/editor.cpp:335
+#: src/editor/editor.cpp:339
 #, kde-format
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: src/editor/editor.cpp:412
+#: src/editor/editor.cpp:414
 #, kde-format
 msgid "Enter search terms here"
 msgstr "נא למלא כאן ביטויים לחיפוש"
 
-#: src/editor/editor.cpp:413
+#: src/editor/editor.cpp:415
 #, kde-format
 msgid "Search your vocabulary"
 msgstr "חיפוש באוצר המילים שלך"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:417
 #, kde-format
 msgid "S&earch:"
 msgstr "&חיפוש:"
@@ -1366,7 +1366,7 @@ msgstr "לא ניתן לכתוב לקובץ „%1”"
 msgid "Export As"
 msgstr "ייצוא בשם"
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "ללא שם"
@@ -1847,7 +1847,7 @@ msgstr "שיעור 1"
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "לא ניתן לפתוח את אוסף אוצרות המילים „%1”"
 
-#: src/parleymainwindow.cpp:133
+#: src/parleymainwindow.cpp:134
 #, kde-format
 msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
@@ -1855,24 +1855,24 @@ msgctxt ""
 msgid "%1 [*]"
 msgstr "%1 [*]"
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr "אי אפשר להתחיל בתרגול כשהשפה הידועה זהה לשפת הלימוד."
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid "Select languages"
 msgstr "נא לבחור שפות"
 
-#: src/parleymainwindow.cpp:211
+#: src/parleymainwindow.cpp:212
 #, kde-format
 msgid "Download New Vocabularies..."
 msgstr "הורדת אוצרות מילים חדשים…"
 
-#: src/parleymainwindow.cpp:217
+#: src/parleymainwindow.cpp:218
 #, kde-format
 msgid "Downloads new vocabulary collections"
 msgstr "מוריד אוספי אוצרות מילים חדשים"
@@ -2466,18 +2466,18 @@ msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
 msgstr "%1 סתמי"
 
-#: src/practice/guifrontend.cpp:123
+#: src/practice/guifrontend.cpp:122
 #, kde-format
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
 msgstr "יחידה: %1"
 
-#: src/practice/guifrontend.cpp:129
+#: src/practice/guifrontend.cpp:128
 #, kde-format
 msgid "New word"
 msgstr "מילה חדש"
 
-#: src/practice/guifrontend.cpp:132
+#: src/practice/guifrontend.cpp:131
 #, kde-format
 msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
@@ -2485,17 +2485,17 @@ msgctxt ""
 msgid "%1, confidence %2"
 msgstr "%1, ביטחון %2"
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "initial"
 msgstr "ראשוני"
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "long term"
 msgstr "ביטוי ארוך"
 
-#: src/practice/guifrontend.cpp:199
+#: src/practice/guifrontend.cpp:198
 #, kde-format
 msgid ""
 "You answered correctly %2 of a total of %1 word.\n"
@@ -2592,22 +2592,22 @@ msgstr "השוואתי"
 msgid "superlative"
 msgstr "סופרלטיב"
 
-#: src/practice/practicemainwindow.cpp:68
+#: src/practice/practicemainwindow.cpp:70
 #, kde-format
 msgid "Stop Practice"
 msgstr "עצירת תרגול"
 
-#: src/practice/practicemainwindow.cpp:70
+#: src/practice/practicemainwindow.cpp:72
 #, kde-format
 msgid "Stop practicing"
 msgstr "עצירת תרגול"
 
-#: src/practice/practicemainwindow.cpp:77
+#: src/practice/practicemainwindow.cpp:79
 #, kde-format
 msgid "Change answer to right/wrong"
 msgstr "להחליף את התשובה לנכונה/שגויה"
 
-#: src/practice/practicemainwindow.cpp:79
+#: src/practice/practicemainwindow.cpp:81
 #, kde-format
 msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
@@ -2616,13 +2616,13 @@ msgstr ""
 "לאחר המענה, יוצג על ידי Parley שהתשובה הייתה נכונה או שגויה.\n"
 "קיצור הדרך הזה משנה איך התשובה נספרת."
 
-#: src/practice/practicesummarycomponent.cpp:62
+#: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
 msgstr "תרגלת %1 תוך %2 ו־%3."
 
-#: src/practice/practicesummarycomponent.cpp:63
+#: src/practice/practicesummarycomponent.cpp:58
 #, kde-format
 msgid "one word"
 msgid_plural "%1 words"
@@ -2631,7 +2631,7 @@ msgstr[1] "שתי מילים"
 msgstr[2] "%1 מילים"
 msgstr[3] "%1 מילים"
 
-#: src/practice/practicesummarycomponent.cpp:64
+#: src/practice/practicesummarycomponent.cpp:59
 #, kde-format
 msgid "one minute"
 msgid_plural "%1 minutes"
@@ -2640,7 +2640,7 @@ msgstr[1] "שתי דקות"
 msgstr[2] "%1 דקות"
 msgstr[3] "%1 דקות"
 
-#: src/practice/practicesummarycomponent.cpp:65
+#: src/practice/practicesummarycomponent.cpp:60
 #, kde-format
 msgid "one second"
 msgid_plural "%1 seconds"
@@ -2649,72 +2649,72 @@ msgstr[1] "שתי שניות"
 msgstr[2] "%1 שניות"
 msgstr[3] "%1 שניות"
 
-#: src/practice/practicesummarycomponent.cpp:82
+#: src/practice/practicesummarycomponent.cpp:68
 #, kde-format
 msgid "Practice Overview"
 msgstr "סקירת תרגול"
 
-#: src/practice/practicesummarycomponent.cpp:83
+#: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
 msgstr "מעבר לעמוד סקירת תרגול"
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "HTML Files"
 msgstr "קובצי HTML"
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "OpenDocument text files"
 msgstr "קובצי טקסט מסוג OpenDocument"
 
-#: src/practice/practicesummarycomponent.cpp:160
+#: src/practice/practicesummarycomponent.cpp:146
 #, kde-format
 msgid "Practice results"
 msgstr "תוצאות תרגול"
 
-#: src/practice/practicesummarycomponent.cpp:165
+#: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
 msgid "Answered questions: %1\n"
 msgstr "תשובות שנענו: %1\n"
 
-#: src/practice/practicesummarycomponent.cpp:166
+#: src/practice/practicesummarycomponent.cpp:152
 #, kde-format
 msgid "Correct answers: %1\n"
 msgstr "תשובות נכונות: %1\n"
 
-#: src/practice/practicesummarycomponent.cpp:167
+#: src/practice/practicesummarycomponent.cpp:153
 #, kde-format
 msgid "Wrong answers: %1\n"
 msgstr "תשובות שגויות: %1\n"
 
-#: src/practice/practicesummarycomponent.cpp:174
+#: src/practice/practicesummarycomponent.cpp:160
 #, kde-format
 msgid "<b>Attempts</b>"
 msgstr "<b>ניסיונות</b>"
 
-#: src/practice/practicesummarycomponent.cpp:175
+#: src/practice/practicesummarycomponent.cpp:161
 #, kde-format
 msgid "<b>Question</b>"
 msgstr "<b>שאלה</b>"
 
-#: src/practice/practicesummarycomponent.cpp:176
+#: src/practice/practicesummarycomponent.cpp:162
 #, kde-format
 msgid "<b>Correct answer</b>"
 msgstr "<b>תשובה נכונה</b>"
 
-#: src/practice/practicesummarycomponent.cpp:177
+#: src/practice/practicesummarycomponent.cpp:163
 #, kde-format
 msgid "<b>Your errors</b>"
 msgstr "<b>השגיאות שלך</b>"
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, kde-format
 msgid "Could not write to %1"
 msgstr "לא ניתן לכתוב אל %1"
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, kde-format
 msgid "Could not write file"
 msgstr "לא ניתן לכתוב קובץ"
@@ -4301,17 +4301,17 @@ msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
 msgstr "לא תורגלו"
 
-#: src/statistics/statisticsmainwindow.cpp:193
+#: src/statistics/statisticsmainwindow.cpp:192
 #, kde-format
 msgid "Known to Learning"
 msgstr "מוכרים עד לימוד"
 
-#: src/statistics/statisticsmainwindow.cpp:194
+#: src/statistics/statisticsmainwindow.cpp:193
 #, kde-format
 msgid "Learning to Known"
 msgstr "לימוד עד מוכרים"
 
-#: src/statistics/statisticsmainwindow.cpp:195
+#: src/statistics/statisticsmainwindow.cpp:194
 #, kde-format
 msgid "Mixed Directions"
 msgstr "כיוונים מעורבים"

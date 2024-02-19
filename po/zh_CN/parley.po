@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-02-19 02:26+0000\n"
 "PO-Revision-Date: 2024-01-06 03:32\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -259,31 +259,31 @@ msgstr "在编辑器中打开此词汇表"
 msgid "Practice Anyway"
 msgstr "仍然联系"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
-#: src/editor/editor.cpp:368
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
+#: src/editor/editor.cpp:372
 #, kde-format
 msgid "Practice"
 msgstr "练习"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
-#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#: src/dashboard/dashboard.cpp:225 src/dashboard/dashboard.ui:38
 #, kde-format
 msgid "Active Collections"
 msgstr "活动词汇表"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
-#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#: src/dashboard/dashboard.cpp:230 src/dashboard/dashboard.ui:77
 #, kde-format
 msgid "Completed Collections"
 msgstr "完成的词汇表"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
-#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#: src/dashboard/dashboard.cpp:278 src/editor/multiplechoicewidget.ui:28
 #, kde-format
 msgid "Remove"
 msgstr "删除"
 
-#: src/dashboard/dashboard.cpp:284
+#: src/dashboard/dashboard.cpp:278
 #, kde-format
 msgid "Are you sure you want to remove this collection?"
 msgstr "您真的要删除这个词汇表吗？"
@@ -610,12 +610,12 @@ msgstr "号码："
 msgid "Next"
 msgstr "下一个"
 
-#: src/editor/editor.cpp:134
+#: src/editor/editor.cpp:138
 #, kde-format
 msgid "Units"
 msgstr "单元"
 
-#: src/editor/editor.cpp:145
+#: src/editor/editor.cpp:149
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -626,24 +626,24 @@ msgstr ""
 "您也可以在复选框加点选您要练习的课程。\n"
 "只有选中的课程才会在测验中问到！"
 
-#: src/editor/editor.cpp:156
+#: src/editor/editor.cpp:160
 #, kde-format
 msgid "Word Types"
 msgstr "词性"
 
-#: src/editor/editor.cpp:176
+#: src/editor/editor.cpp:180
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr "词形变化 (动词、形容词、名词)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
 #, kde-format
 msgid "Comparison Forms"
 msgstr "比较级"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:205
+#: src/editor/editor.cpp:209
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -651,65 +651,65 @@ msgstr "多项选择"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, kde-format
 msgid "Synonyms"
 msgstr "同义词"
 
-#: src/editor/editor.cpp:232
+#: src/editor/editor.cpp:236
 #, kde-format
 msgid "Antonyms"
 msgstr "反义词"
 
-#: src/editor/editor.cpp:246
+#: src/editor/editor.cpp:250
 #, kde-format
 msgid "False Friends"
 msgstr "易混淆词"
 
-#: src/editor/editor.cpp:261
+#: src/editor/editor.cpp:265
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr "音标"
 
-#: src/editor/editor.cpp:276
+#: src/editor/editor.cpp:280
 #, kde-format
 msgid "Image"
 msgstr "图像"
 
-#: src/editor/editor.cpp:291
+#: src/editor/editor.cpp:295
 #, kde-format
 msgid "Summary"
 msgstr "摘要"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:305
+#: src/editor/editor.cpp:309
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, kde-format
 msgid "Sound"
 msgstr "声音"
 
-#: src/editor/editor.cpp:320
+#: src/editor/editor.cpp:324
 #, kde-format
 msgid "Internet"
 msgstr "互联网"
 
-#: src/editor/editor.cpp:335
+#: src/editor/editor.cpp:339
 #, kde-format
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: src/editor/editor.cpp:412
+#: src/editor/editor.cpp:414
 #, kde-format
 msgid "Enter search terms here"
 msgstr "在此输入查找条件"
 
-#: src/editor/editor.cpp:413
+#: src/editor/editor.cpp:415
 #, kde-format
 msgid "Search your vocabulary"
 msgstr "搜索您的词汇表"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:417
 #, kde-format
 msgid "S&earch:"
 msgstr "搜索(&E)："
@@ -1349,7 +1349,7 @@ msgstr "无法写入文件“%1”"
 msgid "Export As"
 msgstr "导出为"
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "无标题"
@@ -1824,7 +1824,7 @@ msgstr "课程 1"
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "无法打开词汇表“%1%”"
 
-#: src/parleymainwindow.cpp:133
+#: src/parleymainwindow.cpp:134
 #, kde-format
 msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
@@ -1832,24 +1832,24 @@ msgctxt ""
 msgid "%1 [*]"
 msgstr "%1 [*]"
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid "Select languages"
 msgstr "选择语言"
 
-#: src/parleymainwindow.cpp:211
+#: src/parleymainwindow.cpp:212
 #, kde-format
 msgid "Download New Vocabularies..."
 msgstr "下载新的词汇表..."
 
-#: src/parleymainwindow.cpp:217
+#: src/parleymainwindow.cpp:218
 #, kde-format
 msgid "Downloads new vocabulary collections"
 msgstr "下载新的词汇表"
@@ -2437,18 +2437,18 @@ msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
 msgstr "%1 是中性词"
 
-#: src/practice/guifrontend.cpp:123
+#: src/practice/guifrontend.cpp:122
 #, kde-format
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:129
+#: src/practice/guifrontend.cpp:128
 #, kde-format
 msgid "New word"
 msgstr "新单词"
 
-#: src/practice/guifrontend.cpp:132
+#: src/practice/guifrontend.cpp:131
 #, kde-format
 msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
@@ -2456,17 +2456,17 @@ msgctxt ""
 msgid "%1, confidence %2"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "initial"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "long term"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:199
+#: src/practice/guifrontend.cpp:198
 #, kde-format
 msgid ""
 "You answered correctly %2 of a total of %1 word.\n"
@@ -2554,118 +2554,118 @@ msgstr "比较级"
 msgid "superlative"
 msgstr "最高级"
 
-#: src/practice/practicemainwindow.cpp:68
+#: src/practice/practicemainwindow.cpp:70
 #, kde-format
 msgid "Stop Practice"
 msgstr "停止练习"
 
-#: src/practice/practicemainwindow.cpp:70
+#: src/practice/practicemainwindow.cpp:72
 #, kde-format
 msgid "Stop practicing"
 msgstr "停止练习"
 
-#: src/practice/practicemainwindow.cpp:77
+#: src/practice/practicemainwindow.cpp:79
 #, kde-format
 msgid "Change answer to right/wrong"
 msgstr ""
 
-#: src/practice/practicemainwindow.cpp:79
+#: src/practice/practicemainwindow.cpp:81
 #, kde-format
 msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
 "This shortcut changes how the answer is counted."
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:62
+#: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
 msgstr "您在 %2分%3秒内练习了 %1 个单词。"
 
-#: src/practice/practicesummarycomponent.cpp:63
+#: src/practice/practicesummarycomponent.cpp:58
 #, kde-format
 msgid "one word"
 msgid_plural "%1 words"
 msgstr[0] "%1 个单词"
 
-#: src/practice/practicesummarycomponent.cpp:64
+#: src/practice/practicesummarycomponent.cpp:59
 #, kde-format
 msgid "one minute"
 msgid_plural "%1 minutes"
 msgstr[0] "%1 分钟"
 
-#: src/practice/practicesummarycomponent.cpp:65
+#: src/practice/practicesummarycomponent.cpp:60
 #, kde-format
 msgid "one second"
 msgid_plural "%1 seconds"
 msgstr[0] "%1 秒"
 
-#: src/practice/practicesummarycomponent.cpp:82
+#: src/practice/practicesummarycomponent.cpp:68
 #, kde-format
 msgid "Practice Overview"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:83
+#: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "HTML Files"
 msgstr "HTML 文件"
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "OpenDocument text files"
 msgstr "OpenDocument 文本文件"
 
-#: src/practice/practicesummarycomponent.cpp:160
+#: src/practice/practicesummarycomponent.cpp:146
 #, kde-format
 msgid "Practice results"
 msgstr "练习结果"
 
-#: src/practice/practicesummarycomponent.cpp:165
+#: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
 msgid "Answered questions: %1\n"
 msgstr "答过的问题数：%1\n"
 
-#: src/practice/practicesummarycomponent.cpp:166
+#: src/practice/practicesummarycomponent.cpp:152
 #, kde-format
 msgid "Correct answers: %1\n"
 msgstr "正确答案数：%1\n"
 
-#: src/practice/practicesummarycomponent.cpp:167
+#: src/practice/practicesummarycomponent.cpp:153
 #, kde-format
 msgid "Wrong answers: %1\n"
 msgstr "错误答案数：%1\n"
 
-#: src/practice/practicesummarycomponent.cpp:174
+#: src/practice/practicesummarycomponent.cpp:160
 #, kde-format
 msgid "<b>Attempts</b>"
 msgstr "<b>尝试</b>"
 
-#: src/practice/practicesummarycomponent.cpp:175
+#: src/practice/practicesummarycomponent.cpp:161
 #, kde-format
 msgid "<b>Question</b>"
 msgstr "<b>问题</b>"
 
-#: src/practice/practicesummarycomponent.cpp:176
+#: src/practice/practicesummarycomponent.cpp:162
 #, kde-format
 msgid "<b>Correct answer</b>"
 msgstr "<b>正确答案</b>"
 
-#: src/practice/practicesummarycomponent.cpp:177
+#: src/practice/practicesummarycomponent.cpp:163
 #, kde-format
 msgid "<b>Your errors</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, kde-format
 msgid "Could not write to %1"
 msgstr "无法写入 %1"
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, kde-format
 msgid "Could not write file"
 msgstr "无法写入文件"
@@ -4227,17 +4227,17 @@ msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
 msgstr "尚未练习"
 
-#: src/statistics/statisticsmainwindow.cpp:193
+#: src/statistics/statisticsmainwindow.cpp:192
 #, kde-format
 msgid "Known to Learning"
 msgstr ""
 
-#: src/statistics/statisticsmainwindow.cpp:194
+#: src/statistics/statisticsmainwindow.cpp:193
 #, kde-format
 msgid "Learning to Known"
 msgstr ""
 
-#: src/statistics/statisticsmainwindow.cpp:195
+#: src/statistics/statisticsmainwindow.cpp:194
 #, kde-format
 msgid "Mixed Directions"
 msgstr "混合方向"

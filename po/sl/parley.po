@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-05 01:33+0000\n"
+"POT-Creation-Date: 2024-02-19 02:26+0000\n"
 "PO-Revision-Date: 2021-11-02 08:16+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -273,31 +273,31 @@ msgstr "Odpri to zbirko besedišč v urejevalniku"
 msgid "Practice Anyway"
 msgstr "Vseeno vadi"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
-#: src/editor/editor.cpp:368
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
+#: src/editor/editor.cpp:372
 #, kde-format
 msgid "Practice"
 msgstr "Vadba"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
-#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#: src/dashboard/dashboard.cpp:225 src/dashboard/dashboard.ui:38
 #, kde-format
 msgid "Active Collections"
 msgstr "Dejavne zbirke"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
-#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#: src/dashboard/dashboard.cpp:230 src/dashboard/dashboard.ui:77
 #, kde-format
 msgid "Completed Collections"
 msgstr "Zaključene zbirke"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
-#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#: src/dashboard/dashboard.cpp:278 src/editor/multiplechoicewidget.ui:28
 #, kde-format
 msgid "Remove"
 msgstr "Odstrani"
 
-#: src/dashboard/dashboard.cpp:284
+#: src/dashboard/dashboard.cpp:278
 #, kde-format
 msgid "Are you sure you want to remove this collection?"
 msgstr "Ali zares želite odstraniti to zbirko?"
@@ -626,12 +626,12 @@ msgstr "Število:"
 msgid "Next"
 msgstr "Naslednja"
 
-#: src/editor/editor.cpp:134
+#: src/editor/editor.cpp:138
 #, kde-format
 msgid "Units"
 msgstr "Enote"
 
-#: src/editor/editor.cpp:145
+#: src/editor/editor.cpp:149
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -642,24 +642,24 @@ msgstr ""
 "Z označnimi polji lahko izberete katere enote bi radi vadili. \n"
 "V preizkusih bodo uporabljene samo označene enote ([x]) !"
 
-#: src/editor/editor.cpp:156
+#: src/editor/editor.cpp:160
 #, kde-format
 msgid "Word Types"
 msgstr "Besedne vrste"
 
-#: src/editor/editor.cpp:176
+#: src/editor/editor.cpp:180
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr "Demodulacija (glagoli, pridevniki, samostalniki)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
 #, kde-format
 msgid "Comparison Forms"
 msgstr "Primerjalne oblike"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:205
+#: src/editor/editor.cpp:209
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -667,65 +667,65 @@ msgstr "Več možnosti"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, kde-format
 msgid "Synonyms"
 msgstr "Sopomenke"
 
-#: src/editor/editor.cpp:232
+#: src/editor/editor.cpp:236
 #, kde-format
 msgid "Antonyms"
 msgstr "Protipomenke"
 
-#: src/editor/editor.cpp:246
+#: src/editor/editor.cpp:250
 #, kde-format
 msgid "False Friends"
 msgstr "Lažni prijatelji"
 
-#: src/editor/editor.cpp:261
+#: src/editor/editor.cpp:265
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr "Fonetični simboli"
 
-#: src/editor/editor.cpp:276
+#: src/editor/editor.cpp:280
 #, kde-format
 msgid "Image"
 msgstr "Slika"
 
-#: src/editor/editor.cpp:291
+#: src/editor/editor.cpp:295
 #, kde-format
 msgid "Summary"
 msgstr "Povzetek"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:305
+#: src/editor/editor.cpp:309
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, kde-format
 msgid "Sound"
 msgstr "Zvok"
 
-#: src/editor/editor.cpp:320
+#: src/editor/editor.cpp:324
 #, kde-format
 msgid "Internet"
 msgstr "Internet"
 
-#: src/editor/editor.cpp:335
+#: src/editor/editor.cpp:339
 #, kde-format
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: src/editor/editor.cpp:412
+#: src/editor/editor.cpp:414
 #, kde-format
 msgid "Enter search terms here"
 msgstr "Sem vnesite iskalne pojme"
 
-#: src/editor/editor.cpp:413
+#: src/editor/editor.cpp:415
 #, kde-format
 msgid "Search your vocabulary"
 msgstr "Preiščite vaše besedišče"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:417
 #, kde-format
 msgid "S&earch:"
 msgstr "Poišči:"
@@ -1386,7 +1386,7 @@ msgstr "Ni bilo mogoče pisati v datoteko \"%1\""
 msgid "Export As"
 msgstr "Izvozi kot"
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "Brez naslova"
@@ -1871,7 +1871,7 @@ msgstr "Lekcija 1"
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Ni bilo mogoče odpreti zbirke besedišč \"%1\""
 
-#: src/parleymainwindow.cpp:133
+#: src/parleymainwindow.cpp:134
 #, kde-format
 msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
@@ -1879,7 +1879,7 @@ msgctxt ""
 msgid "%1 [*]"
 msgstr "%1 [*]"
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid ""
 "You cannot start to practice when the known language is the same as the "
@@ -1888,17 +1888,17 @@ msgstr ""
 "Ne morete začeti vadbe, če je poznan jezik enak kot tisti, ki se bi ga radi "
 "naučili."
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid "Select languages"
 msgstr "Izberite jezike"
 
-#: src/parleymainwindow.cpp:211
+#: src/parleymainwindow.cpp:212
 #, kde-format
 msgid "Download New Vocabularies..."
 msgstr "Prejmi nova besedišča..."
 
-#: src/parleymainwindow.cpp:217
+#: src/parleymainwindow.cpp:218
 #, kde-format
 msgid "Downloads new vocabulary collections"
 msgstr "Prejme nove zbirke besedišč"
@@ -2494,18 +2494,18 @@ msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
 msgstr "%1 je srednji"
 
-#: src/practice/guifrontend.cpp:123
+#: src/practice/guifrontend.cpp:122
 #, kde-format
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
 msgstr "Enota: %1"
 
-#: src/practice/guifrontend.cpp:129
+#: src/practice/guifrontend.cpp:128
 #, kde-format
 msgid "New word"
 msgstr "Nova beseda"
 
-#: src/practice/guifrontend.cpp:132
+#: src/practice/guifrontend.cpp:131
 #, kde-format
 msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
@@ -2513,17 +2513,17 @@ msgctxt ""
 msgid "%1, confidence %2"
 msgstr "%1, zaupanje %2"
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "initial"
 msgstr "začetnica"
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "long term"
 msgstr "dolg termin"
 
-#: src/practice/guifrontend.cpp:199
+#: src/practice/guifrontend.cpp:198
 #, kde-format
 msgid ""
 "You answered correctly %2 of a total of %1 word.\n"
@@ -2620,22 +2620,22 @@ msgstr "primerjalnik"
 msgid "superlative"
 msgstr "presežnik"
 
-#: src/practice/practicemainwindow.cpp:68
+#: src/practice/practicemainwindow.cpp:70
 #, kde-format
 msgid "Stop Practice"
 msgstr "Zaustavi vadbo"
 
-#: src/practice/practicemainwindow.cpp:70
+#: src/practice/practicemainwindow.cpp:72
 #, kde-format
 msgid "Stop practicing"
 msgstr "Zaustavi vadbo"
 
-#: src/practice/practicemainwindow.cpp:77
+#: src/practice/practicemainwindow.cpp:79
 #, kde-format
 msgid "Change answer to right/wrong"
 msgstr "Spremeni odgovor na pravilen/napačen"
 
-#: src/practice/practicemainwindow.cpp:79
+#: src/practice/practicemainwindow.cpp:81
 #, kde-format
 msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
@@ -2644,13 +2644,13 @@ msgstr ""
 "Ko odgovorite, Parley prikaže ali je bil odgovor pravilen ali napačen.\n"
 "Ta bližnjica spremeni kako se odgovor šteje."
 
-#: src/practice/practicesummarycomponent.cpp:62
+#: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
 msgstr "Vadili ste %1 besed v %2 min in %3 sek."
 
-#: src/practice/practicesummarycomponent.cpp:63
+#: src/practice/practicesummarycomponent.cpp:58
 #, kde-format
 msgid "one word"
 msgid_plural "%1 words"
@@ -2659,7 +2659,7 @@ msgstr[1] "%1 besedi"
 msgstr[2] "%1 besede"
 msgstr[3] "%1 besed"
 
-#: src/practice/practicesummarycomponent.cpp:64
+#: src/practice/practicesummarycomponent.cpp:59
 #, kde-format
 msgid "one minute"
 msgid_plural "%1 minutes"
@@ -2668,7 +2668,7 @@ msgstr[1] "%1 minuti"
 msgstr[2] "%1 minute"
 msgstr[3] "%1 minut"
 
-#: src/practice/practicesummarycomponent.cpp:65
+#: src/practice/practicesummarycomponent.cpp:60
 #, kde-format
 msgid "one second"
 msgid_plural "%1 seconds"
@@ -2677,72 +2677,72 @@ msgstr[1] "%1 sekundi"
 msgstr[2] "%1 sekunde"
 msgstr[3] "%1 sekund"
 
-#: src/practice/practicesummarycomponent.cpp:82
+#: src/practice/practicesummarycomponent.cpp:68
 #, kde-format
 msgid "Practice Overview"
 msgstr "Pregled vadbe"
 
-#: src/practice/practicesummarycomponent.cpp:83
+#: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
 msgstr "Preklopi na stran s pregledom vadbe"
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "HTML Files"
 msgstr "Datoteke HTML"
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "OpenDocument text files"
 msgstr "Datoteke OpenDocument"
 
-#: src/practice/practicesummarycomponent.cpp:160
+#: src/practice/practicesummarycomponent.cpp:146
 #, kde-format
 msgid "Practice results"
 msgstr "Rezultati vadbe"
 
-#: src/practice/practicesummarycomponent.cpp:165
+#: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
 msgid "Answered questions: %1\n"
 msgstr "Odgovorjena vprašanja: %1\n"
 
-#: src/practice/practicesummarycomponent.cpp:166
+#: src/practice/practicesummarycomponent.cpp:152
 #, kde-format
 msgid "Correct answers: %1\n"
 msgstr "Pravilni odgovori: %1\n"
 
-#: src/practice/practicesummarycomponent.cpp:167
+#: src/practice/practicesummarycomponent.cpp:153
 #, kde-format
 msgid "Wrong answers: %1\n"
 msgstr "Napačni odgovori: %1\n"
 
-#: src/practice/practicesummarycomponent.cpp:174
+#: src/practice/practicesummarycomponent.cpp:160
 #, kde-format
 msgid "<b>Attempts</b>"
 msgstr "<b>Poskusi</b>"
 
-#: src/practice/practicesummarycomponent.cpp:175
+#: src/practice/practicesummarycomponent.cpp:161
 #, kde-format
 msgid "<b>Question</b>"
 msgstr "<b>Vprašanje</b>"
 
-#: src/practice/practicesummarycomponent.cpp:176
+#: src/practice/practicesummarycomponent.cpp:162
 #, kde-format
 msgid "<b>Correct answer</b>"
 msgstr "<b>Pravilen odgovor</b>"
 
-#: src/practice/practicesummarycomponent.cpp:177
+#: src/practice/practicesummarycomponent.cpp:163
 #, kde-format
 msgid "<b>Your errors</b>"
 msgstr "<b>Vaše napake</b>"
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, kde-format
 msgid "Could not write to %1"
 msgstr "Ni bilo mogoče pisati v %1"
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, kde-format
 msgid "Could not write file"
 msgstr "Ni bilo mogoče zapisati datoteke"
@@ -4358,17 +4358,17 @@ msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
 msgstr "Še niste vadili"
 
-#: src/statistics/statisticsmainwindow.cpp:193
+#: src/statistics/statisticsmainwindow.cpp:192
 #, kde-format
 msgid "Known to Learning"
 msgstr "Znano v učeno"
 
-#: src/statistics/statisticsmainwindow.cpp:194
+#: src/statistics/statisticsmainwindow.cpp:193
 #, kde-format
 msgid "Learning to Known"
 msgstr "Učeno v znano"
 
-#: src/statistics/statisticsmainwindow.cpp:195
+#: src/statistics/statisticsmainwindow.cpp:194
 #, kde-format
 msgid "Mixed Directions"
 msgstr "Mešana smer"
