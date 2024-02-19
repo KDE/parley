@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-20 00:35+0000\n"
+"POT-Creation-Date: 2024-02-19 00:35+0000\n"
 "PO-Revision-Date: 2012-07-23 15:02+0700\n"
 "Last-Translator: Sok Sophea <sophea@khmeros.info>\n"
 "Language-Team: Khmer <>\n"
@@ -287,32 +287,32 @@ msgstr "រក្សា​ទុក"
 msgid "Practice Anyway"
 msgstr "ការ​កំណត់​ទិដ្ឋភាព"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
-#: src/editor/editor.cpp:368
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
+#: src/editor/editor.cpp:377
 #, kde-format
 msgid "Practice"
 msgstr "អនុវត្ត"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
-#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#: src/dashboard/dashboard.cpp:225 src/dashboard/dashboard.ui:38
 #, fuzzy, kde-format
 msgid "Active Collections"
 msgstr "បើក​ឯកសារ​វាក្យសព្ទ"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
-#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#: src/dashboard/dashboard.cpp:230 src/dashboard/dashboard.ui:77
 #, fuzzy, kde-format
 msgid "Completed Collections"
 msgstr "បើក​ឯកសារ​វាក្យសព្ទ"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
-#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#: src/dashboard/dashboard.cpp:278 src/editor/multiplechoicewidget.ui:28
 #, fuzzy, kde-format
 #| msgid "Filename:"
 msgid "Remove"
 msgstr "យក​ចេញ"
 
-#: src/dashboard/dashboard.cpp:284
+#: src/dashboard/dashboard.cpp:278
 #, kde-format
 msgid "Are you sure you want to remove this collection?"
 msgstr ""
@@ -665,12 +665,12 @@ msgstr ""
 msgid "Next"
 msgstr "បន្ទាប់"
 
-#: src/editor/editor.cpp:134
+#: src/editor/editor.cpp:141
 #, kde-format
 msgid "Units"
 msgstr ""
 
-#: src/editor/editor.cpp:145
+#: src/editor/editor.cpp:152
 #, fuzzy, kde-format
 #| msgid ""
 #| "Right click to add, delete, or rename lessons. \n"
@@ -685,25 +685,25 @@ msgstr ""
 "ជាមួយ​ប្រអប់​ធីក អ្នក​អាច​ជ្រើស​មេរៀន​ណា​ដែល​អ្នក​ចង់​អនុវត្ត ។ \n"
 "មានតែ​មេរៀន​ដែល​បាន​ធីក​ប៉ុណ្ណោះ [x] ដែល​នឹង​ត្រូវ​បាន​សួរ​នៅ​ក្នុង​ការ​ធ្វើតេស្ត !"
 
-#: src/editor/editor.cpp:156
+#: src/editor/editor.cpp:163
 #, kde-format
 msgid "Word Types"
 msgstr "ប្រភេទ​ពាក្យ"
 
-#: src/editor/editor.cpp:176
+#: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr "ការ​ផ្លាស់ប្ដូរ​ទ្រង់ទ្រាយ (កិរិយាសព្ទ គុណនាម នាម)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
 #, fuzzy, kde-format
 #| msgid "Comparison forms"
 msgid "Comparison Forms"
 msgstr "ទម្រង់​ប្រៀបធៀប"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:205
+#: src/editor/editor.cpp:212
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -711,66 +711,66 @@ msgstr "ពហុ​ជ្រើសរើស"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, kde-format
 msgid "Synonyms"
 msgstr "វេវចនសព្ទ"
 
-#: src/editor/editor.cpp:232
+#: src/editor/editor.cpp:239
 #, kde-format
 msgid "Antonyms"
 msgstr "អវេវចនៈ​សព្ទ"
 
-#: src/editor/editor.cpp:246
+#: src/editor/editor.cpp:253
 #, kde-format
 msgid "False Friends"
 msgstr "មិត្ត​ភក្ដិ​ក្លែងក្លាយ"
 
-#: src/editor/editor.cpp:261
+#: src/editor/editor.cpp:268
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr "និមិត្តសញ្ញា​នៃ​សូរសព្ទ"
 
-#: src/editor/editor.cpp:276
+#: src/editor/editor.cpp:283
 #, kde-format
 msgid "Image"
 msgstr "រូបភាព"
 
-#: src/editor/editor.cpp:291
+#: src/editor/editor.cpp:298
 #, kde-format
 msgid "Summary"
 msgstr "សេចក្ដីសង្ខេប"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:305
+#: src/editor/editor.cpp:312
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, kde-format
 msgid "Sound"
 msgstr "សំឡេង"
 
-#: src/editor/editor.cpp:320
+#: src/editor/editor.cpp:328
 #, kde-format
 msgid "Internet"
 msgstr "អ៊ីនធឺណិត"
 
-#: src/editor/editor.cpp:335
+#: src/editor/editor.cpp:344
 #, kde-format
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: src/editor/editor.cpp:412
+#: src/editor/editor.cpp:419
 #, kde-format
 msgid "Enter search terms here"
 msgstr "បញ្ចូល​ពាក្យ​ស្វែងរក​នៅ​ទីនេះ"
 
-#: src/editor/editor.cpp:413
+#: src/editor/editor.cpp:420
 #, fuzzy, kde-format
 #| msgid "Helps you train your vocabulary"
 msgid "Search your vocabulary"
 msgstr "ជួយ​បង្ហាត់​វាក្យសព្ទ​ដល់​អ្នក"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:422
 #, kde-format
 msgid "S&earch:"
 msgstr "ស្វែងរក ៖"
@@ -1448,7 +1448,7 @@ msgstr "កំពុង​ចាប់ផ្ដើម​សំណួរ​ពិ
 msgid "Export As"
 msgstr "នាំចេញ​ជា"
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "គ្មាន​ចំណងជើង"
@@ -1947,7 +1947,7 @@ msgstr "មេរៀន"
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "ទាញ​យក​វាក្យសព្ទ​ថ្មី"
 
-#: src/parleymainwindow.cpp:133
+#: src/parleymainwindow.cpp:134
 #, kde-format
 msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
@@ -1955,25 +1955,25 @@ msgctxt ""
 msgid "%1 [*]"
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, fuzzy, kde-format
 #| msgid "&Append Language"
 msgid "Select languages"
 msgstr "បន្ថែម​ភាសា​នៅ​ខាង​ចុង​"
 
-#: src/parleymainwindow.cpp:211
+#: src/parleymainwindow.cpp:212
 #, kde-format
 msgid "Download New Vocabularies..."
 msgstr "ទាញយក​វាក្យសព្ទ​ថ្មី..."
 
-#: src/parleymainwindow.cpp:217
+#: src/parleymainwindow.cpp:218
 #, fuzzy, kde-format
 #| msgid "Downloads new vocabularies"
 msgid "Downloads new vocabulary collections"
@@ -2592,19 +2592,19 @@ msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
 msgstr "អភេទ"
 
-#: src/practice/guifrontend.cpp:123
+#: src/practice/guifrontend.cpp:122
 #, kde-format
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:129
+#: src/practice/guifrontend.cpp:128
 #, fuzzy, kde-format
 #| msgid "Enter the word:"
 msgid "New word"
 msgstr "បញ្ចូល​ពាក្យ​ ៖ "
 
-#: src/practice/guifrontend.cpp:132
+#: src/practice/guifrontend.cpp:131
 #, kde-format
 msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
@@ -2612,17 +2612,17 @@ msgctxt ""
 msgid "%1, confidence %2"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "initial"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "long term"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:199
+#: src/practice/guifrontend.cpp:198
 #, kde-format
 msgid ""
 "You answered correctly %2 of a total of %1 word.\n"
@@ -2713,128 +2713,128 @@ msgstr "ការ​ប្រៀបធៀប"
 msgid "superlative"
 msgstr "ពាក្យ​នាំ​មុខ​នាម"
 
-#: src/practice/practicemainwindow.cpp:68
+#: src/practice/practicemainwindow.cpp:70
 #, fuzzy, kde-format
 #| msgid "&Articles"
 msgid "Stop Practice"
 msgstr "ពាក្យ​នាំ​មុខ​នាម"
 
-#: src/practice/practicemainwindow.cpp:70
+#: src/practice/practicemainwindow.cpp:72
 #, fuzzy, kde-format
 #| msgid "&Articles"
 msgid "Stop practicing"
 msgstr "ពាក្យ​នាំ​មុខ​នាម"
 
-#: src/practice/practicemainwindow.cpp:77
+#: src/practice/practicemainwindow.cpp:79
 #, kde-format
 msgid "Change answer to right/wrong"
 msgstr ""
 
-#: src/practice/practicemainwindow.cpp:79
+#: src/practice/practicemainwindow.cpp:81
 #, kde-format
 msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
 "This shortcut changes how the answer is counted."
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:62
+#: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:63
+#: src/practice/practicesummarycomponent.cpp:58
 #, fuzzy, kde-format
 #| msgid "Enter the word:"
 msgid "one word"
 msgid_plural "%1 words"
 msgstr[0] "បញ្ចូល​ពាក្យ​ ៖ "
 
-#: src/practice/practicesummarycomponent.cpp:64
+#: src/practice/practicesummarycomponent.cpp:59
 #, fuzzy, kde-format
 #| msgid "minutes"
 msgid "one minute"
 msgid_plural "%1 minutes"
 msgstr[0] "នាទី​"
 
-#: src/practice/practicesummarycomponent.cpp:65
+#: src/practice/practicesummarycomponent.cpp:60
 #, fuzzy, kde-format
 #| msgid "&Append Language"
 msgid "one second"
 msgid_plural "%1 seconds"
 msgstr[0] "វិនាទី"
 
-#: src/practice/practicesummarycomponent.cpp:82
+#: src/practice/practicesummarycomponent.cpp:68
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Practice Overview"
 msgstr "ពាក្យ​នាំ​មុខ​នាម​"
 
-#: src/practice/practicesummarycomponent.cpp:83
+#: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "HTML Files"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, fuzzy, kde-format
 #| msgid "General Document Properties"
 msgid "OpenDocument text files"
 msgstr "លក្ខណៈ​សម្បត្តិ​ឯកសារ​ទូទៅ​"
 
-#: src/practice/practicesummarycomponent.cpp:160
+#: src/practice/practicesummarycomponent.cpp:146
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Practice results"
 msgstr "ពាក្យ​នាំ​មុខ​នាម​"
 
-#: src/practice/practicesummarycomponent.cpp:165
+#: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
 msgid "Answered questions: %1\n"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:166
+#: src/practice/practicesummarycomponent.cpp:152
 #, kde-format
 msgid "Correct answers: %1\n"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:167
+#: src/practice/practicesummarycomponent.cpp:153
 #, kde-format
 msgid "Wrong answers: %1\n"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:174
+#: src/practice/practicesummarycomponent.cpp:160
 #, kde-format
 msgid "<b>Attempts</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:175
+#: src/practice/practicesummarycomponent.cpp:161
 #, fuzzy, kde-format
 #| msgid "&Show solution"
 msgid "<b>Question</b>"
 msgstr "បង្ហាញ​ដំណោះ​ស្រាយ"
 
-#: src/practice/practicesummarycomponent.cpp:176
+#: src/practice/practicesummarycomponent.cpp:162
 #, kde-format
 msgid "<b>Correct answer</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:177
+#: src/practice/practicesummarycomponent.cpp:163
 #, kde-format
 msgid "<b>Your errors</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, fuzzy, kde-format
 #| msgid "Starting special query..."
 msgid "Could not write to %1"
 msgstr "កំពុង​ចាប់ផ្ដើម​សំណួរ​ពិសេស..."
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, fuzzy, kde-format
 #| msgid "Starting special query..."
 msgid "Could not write file"
@@ -4505,17 +4505,17 @@ msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
 msgstr "មិន​ទាន់​បាន​សួរ​នៅ​ឡើយ​"
 
-#: src/statistics/statisticsmainwindow.cpp:193
+#: src/statistics/statisticsmainwindow.cpp:192
 #, kde-format
 msgid "Known to Learning"
 msgstr ""
 
-#: src/statistics/statisticsmainwindow.cpp:194
+#: src/statistics/statisticsmainwindow.cpp:193
 #, kde-format
 msgid "Learning to Known"
 msgstr ""
 
-#: src/statistics/statisticsmainwindow.cpp:195
+#: src/statistics/statisticsmainwindow.cpp:194
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Mixed Directions"

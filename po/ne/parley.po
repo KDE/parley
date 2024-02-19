@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-20 00:35+0000\n"
+"POT-Creation-Date: 2024-02-19 00:35+0000\n"
 "PO-Revision-Date: 2007-12-31 19:25+0545\n"
 "Last-Translator: Shyam Krishna Bal <balshyam24@yahoo.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -293,8 +293,8 @@ msgstr "विभिन्न नामसँग सक्रिय शब्द
 msgid "Practice Anyway"
 msgstr "अभ्यास विकल्प"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
-#: src/editor/editor.cpp:368
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
+#: src/editor/editor.cpp:377
 #, fuzzy, kde-format
 #| msgctxt "@title:group"
 #| msgid "Practice"
@@ -302,27 +302,27 @@ msgid "Practice"
 msgstr "अभ्यास"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
-#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#: src/dashboard/dashboard.cpp:225 src/dashboard/dashboard.ui:38
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Document"
 msgid "Active Collections"
 msgstr "शब्द सूची कागजात खोल्नुहोस्"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
-#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#: src/dashboard/dashboard.cpp:230 src/dashboard/dashboard.ui:77
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Document"
 msgid "Completed Collections"
 msgstr "शब्द सूची कागजात खोल्नुहोस्"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
-#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#: src/dashboard/dashboard.cpp:278 src/editor/multiplechoicewidget.ui:28
 #, fuzzy, kde-format
 #| msgid "&Rename"
 msgid "Remove"
 msgstr "पुन: नामकरण गर्नुहोस्"
 
-#: src/dashboard/dashboard.cpp:284
+#: src/dashboard/dashboard.cpp:278
 #, fuzzy, kde-format
 #| msgid "Do you really want to delete the selected entry?"
 msgid "Are you sure you want to remove this collection?"
@@ -684,13 +684,13 @@ msgstr ""
 msgid "Next"
 msgstr "पछिल्लो"
 
-#: src/editor/editor.cpp:134
+#: src/editor/editor.cpp:141
 #, fuzzy, kde-format
 #| msgid "New type"
 msgid "Units"
 msgstr "नयाँ प्रकार"
 
-#: src/editor/editor.cpp:145
+#: src/editor/editor.cpp:152
 #, fuzzy, kde-format
 #| msgid ""
 #| "Right click to add, delete, or rename lessons. \n"
@@ -705,25 +705,25 @@ msgstr ""
 "जाँच बाकसहरूसँग तपाईँ कुन पाठ अभ्यास गर्ने चयन गर्न सक्नुहुन्छ ।\n"
 "जाँच गरिएका पाठहरू मात्र [x] परीक्षामा सोधिनेछ!"
 
-#: src/editor/editor.cpp:156
+#: src/editor/editor.cpp:163
 #, kde-format
 msgid "Word Types"
 msgstr "शब्द प्रकार"
 
-#: src/editor/editor.cpp:176
+#: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
 #, fuzzy, kde-format
 #| msgid "Comparison"
 msgid "Comparison Forms"
 msgstr "तुलना"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:205
+#: src/editor/editor.cpp:212
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -731,44 +731,44 @@ msgstr "बहुँविध छनौट"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, fuzzy, kde-format
 #| msgid "Synonym"
 msgid "Synonyms"
 msgstr "पर्यायवाची शब्द"
 
-#: src/editor/editor.cpp:232
+#: src/editor/editor.cpp:239
 #, fuzzy, kde-format
 #| msgid "Antonym"
 msgid "Antonyms"
 msgstr "विपरीतार्थ शब्द"
 
-#: src/editor/editor.cpp:246
+#: src/editor/editor.cpp:253
 #, fuzzy, kde-format
 #| msgid "&False friend:"
 msgid "False Friends"
 msgstr "गलत साथी:"
 
-#: src/editor/editor.cpp:261
+#: src/editor/editor.cpp:268
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr ""
 
-#: src/editor/editor.cpp:276
+#: src/editor/editor.cpp:283
 #, fuzzy, kde-format
 #| msgid "Image:"
 msgid "Image"
 msgstr "छवि:"
 
-#: src/editor/editor.cpp:291
+#: src/editor/editor.cpp:298
 #, fuzzy, kde-format
 #| msgid "Practice Summary"
 msgid "Summary"
 msgstr "अभ्यास सारांश"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:305
+#: src/editor/editor.cpp:312
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, fuzzy, kde-format
 #| msgctxt "Describing the sound of the character"
@@ -776,28 +776,28 @@ msgstr "अभ्यास सारांश"
 msgid "Sound"
 msgstr "ध्वनि: "
 
-#: src/editor/editor.cpp:320
+#: src/editor/editor.cpp:328
 #, kde-format
 msgid "Internet"
 msgstr ""
 
-#: src/editor/editor.cpp:335
+#: src/editor/editor.cpp:344
 #, kde-format
 msgid "LaTeX"
 msgstr ""
 
-#: src/editor/editor.cpp:412
+#: src/editor/editor.cpp:419
 #, kde-format
 msgid "Enter search terms here"
 msgstr "यहाँ खोजी सर्तहरू प्रविष्ट गर्नुहोस्"
 
-#: src/editor/editor.cpp:413
+#: src/editor/editor.cpp:420
 #, fuzzy, kde-format
 #| msgid "Helps you train your vocabulary"
 msgid "Search your vocabulary"
 msgstr "तपाईँलाई तपाईँको शब्द सूची प्रशिक्षण गर्न मद्दत गर्दछ"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:422
 #, kde-format
 msgid "S&earch:"
 msgstr "खोजी:"
@@ -1522,7 +1522,7 @@ msgstr "अभ्यास सुरु गर्नुहोस्..."
 msgid "Export As"
 msgstr ""
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "शीर्षकविहिन"
@@ -2029,7 +2029,7 @@ msgstr "पाठ %1"
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "एउटा उदाहरण शब्दसूची कागजात खोल्नुहोस्"
 
-#: src/parleymainwindow.cpp:133
+#: src/parleymainwindow.cpp:134
 #, kde-format
 msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
@@ -2037,26 +2037,26 @@ msgctxt ""
 msgid "%1 [*]"
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, fuzzy, kde-format
 #| msgid "A Second Language"
 msgid "Select languages"
 msgstr "दोस्रो भाषा"
 
-#: src/parleymainwindow.cpp:211
+#: src/parleymainwindow.cpp:212
 #, fuzzy, kde-format
 #| msgid "Downloads new vocabularies"
 msgid "Download New Vocabularies..."
 msgstr "नयाँ शब्द सूची डाउनलोड गर्दछ"
 
-#: src/parleymainwindow.cpp:217
+#: src/parleymainwindow.cpp:218
 #, fuzzy, kde-format
 #| msgid "Downloads new vocabularies"
 msgid "Downloads new vocabulary collections"
@@ -2681,20 +2681,20 @@ msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
 msgstr "तटस्थ"
 
-#: src/practice/guifrontend.cpp:123
+#: src/practice/guifrontend.cpp:122
 #, fuzzy, kde-format
 #| msgid "Comment: %1"
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
 msgstr "टिप्पणी: %1"
 
-#: src/practice/guifrontend.cpp:129
+#: src/practice/guifrontend.cpp:128
 #, fuzzy, kde-format
 #| msgid "Enter the word:"
 msgid "New word"
 msgstr "शब्द प्रविष्ट गर्नुहोस्:"
 
-#: src/practice/guifrontend.cpp:132
+#: src/practice/guifrontend.cpp:131
 #, kde-format
 msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
@@ -2702,17 +2702,17 @@ msgctxt ""
 msgid "%1, confidence %2"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "initial"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "long term"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:199
+#: src/practice/guifrontend.cpp:198
 #, kde-format
 msgid ""
 "You answered correctly %2 of a total of %1 word.\n"
@@ -2811,37 +2811,37 @@ msgstr "तुलनात्मक"
 msgid "superlative"
 msgstr "सर्वोत्कृष्ट"
 
-#: src/practice/practicemainwindow.cpp:68
+#: src/practice/practicemainwindow.cpp:70
 #, fuzzy, kde-format
 #| msgid "&Stop Practice"
 msgid "Stop Practice"
 msgstr "अभ्यास रोक्नुहोस्"
 
-#: src/practice/practicemainwindow.cpp:70
+#: src/practice/practicemainwindow.cpp:72
 #, fuzzy, kde-format
 #| msgid "&Stop Practice"
 msgid "Stop practicing"
 msgstr "अभ्यास रोक्नुहोस्"
 
-#: src/practice/practicemainwindow.cpp:77
+#: src/practice/practicemainwindow.cpp:79
 #, kde-format
 msgid "Change answer to right/wrong"
 msgstr ""
 
-#: src/practice/practicemainwindow.cpp:79
+#: src/practice/practicemainwindow.cpp:81
 #, kde-format
 msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
 "This shortcut changes how the answer is counted."
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:62
+#: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:63
+#: src/practice/practicesummarycomponent.cpp:58
 #, fuzzy, kde-format
 #| msgid "Enter the word:"
 msgid "one word"
@@ -2849,7 +2849,7 @@ msgid_plural "%1 words"
 msgstr[0] "शब्द प्रविष्ट गर्नुहोस्:"
 msgstr[1] "शब्द प्रविष्ट गर्नुहोस्:"
 
-#: src/practice/practicesummarycomponent.cpp:64
+#: src/practice/practicesummarycomponent.cpp:59
 #, fuzzy, kde-format
 #| msgid "minutes"
 msgid "one minute"
@@ -2857,7 +2857,7 @@ msgid_plural "%1 minutes"
 msgstr[0] "मिनेट"
 msgstr[1] "मिनेट"
 
-#: src/practice/practicesummarycomponent.cpp:65
+#: src/practice/practicesummarycomponent.cpp:60
 #, fuzzy, kde-format
 #| msgid "Second"
 msgid "one second"
@@ -2865,79 +2865,79 @@ msgid_plural "%1 seconds"
 msgstr[0] "दोस्रो"
 msgstr[1] "दोस्रो"
 
-#: src/practice/practicesummarycomponent.cpp:82
+#: src/practice/practicesummarycomponent.cpp:68
 #, fuzzy, kde-format
 #| msgid "Not Practiced Yet"
 msgid "Practice Overview"
 msgstr "अहिले सम्म अभ्यास गरिएको छैन"
 
-#: src/practice/practicesummarycomponent.cpp:83
+#: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "HTML Files"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, fuzzy, kde-format
 #| msgid "General Document Properties"
 msgid "OpenDocument text files"
 msgstr "सामन्य कागजात गुण"
 
-#: src/practice/practicesummarycomponent.cpp:160
+#: src/practice/practicesummarycomponent.cpp:146
 #, fuzzy, kde-format
 #| msgid "Not Practiced Yet"
 msgid "Practice results"
 msgstr "अहिले सम्म अभ्यास गरिएको छैन"
 
-#: src/practice/practicesummarycomponent.cpp:165
+#: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
 msgid "Answered questions: %1\n"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:166
+#: src/practice/practicesummarycomponent.cpp:152
 #, fuzzy, kde-format
 #| msgid "Current tense is: %1"
 msgid "Correct answers: %1\n"
 msgstr "हालको काल: %1"
 
-#: src/practice/practicesummarycomponent.cpp:167
+#: src/practice/practicesummarycomponent.cpp:153
 #, fuzzy, kde-format
 #| msgid "Wrong answer:"
 msgid "Wrong answers: %1\n"
 msgstr "गलत जवाफ:"
 
-#: src/practice/practicesummarycomponent.cpp:174
+#: src/practice/practicesummarycomponent.cpp:160
 #, kde-format
 msgid "<b>Attempts</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:175
+#: src/practice/practicesummarycomponent.cpp:161
 #, fuzzy, kde-format
 #| msgid "Show &Solution"
 msgid "<b>Question</b>"
 msgstr "समाधान देखाउनुहोस्"
 
-#: src/practice/practicesummarycomponent.cpp:176
+#: src/practice/practicesummarycomponent.cpp:162
 #, kde-format
 msgid "<b>Correct answer</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:177
+#: src/practice/practicesummarycomponent.cpp:163
 #, kde-format
 msgid "<b>Your errors</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, fuzzy, kde-format
 #| msgid "Start Practice..."
 msgid "Could not write to %1"
 msgstr "अभ्यास सुरु गर्नुहोस्..."
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, fuzzy, kde-format
 #| msgid "Start Practice..."
 msgid "Could not write file"
@@ -4608,17 +4608,17 @@ msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
 msgstr "अभ्यास गरिएको छैन:"
 
-#: src/statistics/statisticsmainwindow.cpp:193
+#: src/statistics/statisticsmainwindow.cpp:192
 #, kde-format
 msgid "Known to Learning"
 msgstr ""
 
-#: src/statistics/statisticsmainwindow.cpp:194
+#: src/statistics/statisticsmainwindow.cpp:193
 #, kde-format
 msgid "Learning to Known"
 msgstr ""
 
-#: src/statistics/statisticsmainwindow.cpp:195
+#: src/statistics/statisticsmainwindow.cpp:194
 #, fuzzy, kde-format
 #| msgid "Mixed Letters"
 msgid "Mixed Directions"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-20 00:35+0000\n"
+"POT-Creation-Date: 2024-02-19 00:35+0000\n"
 "PO-Revision-Date: 2004-05-10 17:51+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: Brezhoneg <Suav.Icb@wanadoo.fr>\n"
@@ -281,35 +281,35 @@ msgstr "Enrollañ an teul geriaoueg bev"
 msgid "Practice Anyway"
 msgstr "Sell ouzh an dibarzhoù"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:367
-#: src/editor/editor.cpp:368
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
+#: src/editor/editor.cpp:377
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Practice"
 msgstr "Pennad"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
-#: src/dashboard/dashboard.cpp:231 src/dashboard/dashboard.ui:38
+#: src/dashboard/dashboard.cpp:225 src/dashboard/dashboard.ui:38
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Document"
 msgid "Active Collections"
 msgstr "Digeriñ teul ar geriaoueg"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
-#: src/dashboard/dashboard.cpp:236 src/dashboard/dashboard.ui:77
+#: src/dashboard/dashboard.cpp:230 src/dashboard/dashboard.ui:77
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Document"
 msgid "Completed Collections"
 msgstr "Digeriñ teul ar geriaoueg"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
-#: src/dashboard/dashboard.cpp:284 src/editor/multiplechoicewidget.ui:28
+#: src/dashboard/dashboard.cpp:278 src/editor/multiplechoicewidget.ui:28
 #, fuzzy, kde-format
 #| msgid "Filename:"
 msgid "Remove"
 msgstr "Anv ar restr :"
 
-#: src/dashboard/dashboard.cpp:284
+#: src/dashboard/dashboard.cpp:278
 #, fuzzy, kde-format
 msgid "Are you sure you want to remove this collection?"
 msgstr "Ha fellout a ra deoc'h da vat lemel ar bouetadur dibabet ?\n"
@@ -668,13 +668,13 @@ msgstr "Du"
 msgid "Next"
 msgstr "A &heul"
 
-#: src/editor/editor.cpp:134
+#: src/editor/editor.cpp:141
 #, fuzzy, kde-format
 #| msgid "Comment: %1"
 msgid "Units"
 msgstr "Askelenn : %1"
 
-#: src/editor/editor.cpp:145
+#: src/editor/editor.cpp:152
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -682,25 +682,25 @@ msgid ""
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
 
-#: src/editor/editor.cpp:156
+#: src/editor/editor.cpp:163
 #, fuzzy, kde-format
 #| msgid "Word t&ype:"
 msgid "Word Types"
 msgstr "R&izh ar ger :"
 
-#: src/editor/editor.cpp:176
+#: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:190 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
 #, fuzzy, kde-format
 msgid "Comparison Forms"
 msgstr "&Boutin"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:205
+#: src/editor/editor.cpp:212
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -708,43 +708,43 @@ msgstr "Lies choazh"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:219 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, fuzzy, kde-format
 #| msgid "&Synonyms"
 msgid "Synonyms"
 msgstr "&Heñvelsteroù"
 
-#: src/editor/editor.cpp:232
+#: src/editor/editor.cpp:239
 #, fuzzy, kde-format
 #| msgid "astronomy"
 msgid "Antonyms"
 msgstr "steredoniezh"
 
-#: src/editor/editor.cpp:246
+#: src/editor/editor.cpp:253
 #, kde-format
 msgid "False Friends"
 msgstr ""
 
-#: src/editor/editor.cpp:261
+#: src/editor/editor.cpp:268
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr ""
 
-#: src/editor/editor.cpp:276
+#: src/editor/editor.cpp:283
 #, fuzzy, kde-format
 #| msgid "&male:\t"
 msgid "Image"
 msgstr "&paotr :\t"
 
-#: src/editor/editor.cpp:291
+#: src/editor/editor.cpp:298
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Summary"
 msgstr "Pennad"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:305
+#: src/editor/editor.cpp:312
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, fuzzy, kde-format
 #| msgctxt "Describing the sound of the character"
@@ -752,29 +752,29 @@ msgstr "Pennad"
 msgid "Sound"
 msgstr "Son :"
 
-#: src/editor/editor.cpp:320
+#: src/editor/editor.cpp:328
 #, fuzzy, kde-format
 #| msgid "Interlingue"
 msgid "Internet"
 msgstr "Interlingeg"
 
-#: src/editor/editor.cpp:335
+#: src/editor/editor.cpp:344
 #, kde-format
 msgid "LaTeX"
 msgstr ""
 
-#: src/editor/editor.cpp:412
+#: src/editor/editor.cpp:419
 #, kde-format
 msgid "Enter search terms here"
 msgstr ""
 
-#: src/editor/editor.cpp:413
+#: src/editor/editor.cpp:420
 #, fuzzy, kde-format
 #| msgid "Save the active vocabulary document"
 msgid "Search your vocabulary"
 msgstr "Enrollañ an teul geriaoueg bev"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:422
 #, kde-format
 msgid "S&earch:"
 msgstr "K&aslk :"
@@ -1464,7 +1464,7 @@ msgstr "N'em eus ket gallet lenn "
 msgid "Export As"
 msgstr ""
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:136
+#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "Diditl"
@@ -1962,7 +1962,7 @@ msgstr "<kentel ebet>"
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Digeriñ un teul geriaoueg"
 
-#: src/parleymainwindow.cpp:133
+#: src/parleymainwindow.cpp:134
 #, kde-format
 msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
@@ -1970,25 +1970,25 @@ msgctxt ""
 msgid "%1 [*]"
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, kde-format
 msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr ""
 
-#: src/parleymainwindow.cpp:173
+#: src/parleymainwindow.cpp:174
 #, fuzzy, kde-format
 #| msgid "Languages"
 msgid "Select languages"
 msgstr "Yezhoù"
 
-#: src/parleymainwindow.cpp:211
+#: src/parleymainwindow.cpp:212
 #, fuzzy, kde-format
 msgid "Download New Vocabularies..."
 msgstr "Dastum restr ar geriaoueg"
 
-#: src/parleymainwindow.cpp:217
+#: src/parleymainwindow.cpp:218
 #, fuzzy, kde-format
 msgid "Downloads new vocabulary collections"
 msgstr "Dastum restr ar geriaoueg"
@@ -2604,20 +2604,20 @@ msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
 msgstr "&Gwech ebet"
 
-#: src/practice/guifrontend.cpp:123
+#: src/practice/guifrontend.cpp:122
 #, fuzzy, kde-format
 #| msgid "Comment: %1"
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
 msgstr "Askelenn : %1"
 
-#: src/practice/guifrontend.cpp:129
+#: src/practice/guifrontend.cpp:128
 #, fuzzy, kde-format
 #| msgid "Enter the word:"
 msgid "New word"
 msgstr "Roit ar ger :"
 
-#: src/practice/guifrontend.cpp:132
+#: src/practice/guifrontend.cpp:131
 #, kde-format
 msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
@@ -2625,17 +2625,17 @@ msgctxt ""
 msgid "%1, confidence %2"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "initial"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:133
+#: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "long term"
 msgstr ""
 
-#: src/practice/guifrontend.cpp:199
+#: src/practice/guifrontend.cpp:198
 #, kde-format
 msgid ""
 "You answered correctly %2 of a total of %1 word.\n"
@@ -2729,37 +2729,37 @@ msgstr "&Boutin"
 msgid "superlative"
 msgstr "&Pennadoù"
 
-#: src/practice/practicemainwindow.cpp:68
+#: src/practice/practicemainwindow.cpp:70
 #, fuzzy, kde-format
 #| msgid "&Articles"
 msgid "Stop Practice"
 msgstr "&Pennadoù"
 
-#: src/practice/practicemainwindow.cpp:70
+#: src/practice/practicemainwindow.cpp:72
 #, fuzzy, kde-format
 #| msgid "&Articles"
 msgid "Stop practicing"
 msgstr "&Pennadoù"
 
-#: src/practice/practicemainwindow.cpp:77
+#: src/practice/practicemainwindow.cpp:79
 #, kde-format
 msgid "Change answer to right/wrong"
 msgstr ""
 
-#: src/practice/practicemainwindow.cpp:79
+#: src/practice/practicemainwindow.cpp:81
 #, kde-format
 msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
 "This shortcut changes how the answer is counted."
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:62
+#: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:63
+#: src/practice/practicesummarycomponent.cpp:58
 #, fuzzy, kde-format
 #| msgid "Enter the word:"
 msgid "one word"
@@ -2767,7 +2767,7 @@ msgid_plural "%1 words"
 msgstr[0] "Roit ar ger :"
 msgstr[1] ""
 
-#: src/practice/practicesummarycomponent.cpp:64
+#: src/practice/practicesummarycomponent.cpp:59
 #, fuzzy, kde-format
 #| msgid "minutes"
 msgid "one minute"
@@ -2775,7 +2775,7 @@ msgid_plural "%1 minutes"
 msgstr[0] "munutoù"
 msgstr[1] ""
 
-#: src/practice/practicesummarycomponent.cpp:65
+#: src/practice/practicesummarycomponent.cpp:60
 #, fuzzy, kde-format
 #| msgid "Second"
 msgid "one second"
@@ -2783,79 +2783,79 @@ msgid_plural "%1 seconds"
 msgstr[0] "Eilenn"
 msgstr[1] ""
 
-#: src/practice/practicesummarycomponent.cpp:82
+#: src/practice/practicesummarycomponent.cpp:68
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Practice Overview"
 msgstr "Pennad"
 
-#: src/practice/practicesummarycomponent.cpp:83
+#: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "HTML Files"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:150
+#: src/practice/practicesummarycomponent.cpp:136
 #, fuzzy, kde-format
 #| msgid "Document Properties"
 msgid "OpenDocument text files"
 msgstr "Dibarzhoù an teul"
 
-#: src/practice/practicesummarycomponent.cpp:160
+#: src/practice/practicesummarycomponent.cpp:146
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Practice results"
 msgstr "Pennad"
 
-#: src/practice/practicesummarycomponent.cpp:165
+#: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
 msgid "Answered questions: %1\n"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:166
+#: src/practice/practicesummarycomponent.cpp:152
 #, fuzzy, kde-format
 #| msgid "Current tense is %1."
 msgid "Correct answers: %1\n"
 msgstr "%1 eo an amzer red."
 
-#: src/practice/practicesummarycomponent.cpp:167
+#: src/practice/practicesummarycomponent.cpp:153
 #, fuzzy, kde-format
 #| msgid "&Wrong:"
 msgid "Wrong answers: %1\n"
 msgstr "&Fall :"
 
-#: src/practice/practicesummarycomponent.cpp:174
+#: src/practice/practicesummarycomponent.cpp:160
 #, kde-format
 msgid "<b>Attempts</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:175
+#: src/practice/practicesummarycomponent.cpp:161
 #, fuzzy, kde-format
 #| msgid "Question"
 msgid "<b>Question</b>"
 msgstr "Goulenn"
 
-#: src/practice/practicesummarycomponent.cpp:176
+#: src/practice/practicesummarycomponent.cpp:162
 #, kde-format
 msgid "<b>Correct answer</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:177
+#: src/practice/practicesummarycomponent.cpp:163
 #, kde-format
 msgid "<b>Your errors</b>"
 msgstr ""
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, fuzzy, kde-format
 #| msgid "Could not read "
 msgid "Could not write to %1"
 msgstr "N'em eus ket gallet lenn "
 
-#: src/practice/practicesummarycomponent.cpp:192
+#: src/practice/practicesummarycomponent.cpp:178
 #, fuzzy, kde-format
 #| msgid "Could not read "
 msgid "Could not write file"
@@ -4518,19 +4518,19 @@ msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
 msgstr "Pennad"
 
-#: src/statistics/statisticsmainwindow.cpp:193
+#: src/statistics/statisticsmainwindow.cpp:192
 #, fuzzy, kde-format
 #| msgid "&Learning"
 msgid "Known to Learning"
 msgstr "&Deskiñ"
 
-#: src/statistics/statisticsmainwindow.cpp:194
+#: src/statistics/statisticsmainwindow.cpp:193
 #, fuzzy, kde-format
 #| msgid "&Learning"
 msgid "Learning to Known"
 msgstr "&Deskiñ"
 
-#: src/statistics/statisticsmainwindow.cpp:195
+#: src/statistics/statisticsmainwindow.cpp:194
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Mixed Directions"
