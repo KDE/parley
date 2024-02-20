@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: KDE 4.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-19 00:35+0000\n"
-"PO-Revision-Date: 2024-01-12 22:26+0100\n"
+"PO-Revision-Date: 2024-02-19 21:32+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2528,7 +2528,7 @@ msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
 "initial or long term"
 msgid "%1, confidence %2"
-msgstr ""
+msgstr "%1, magabiztosság %2"
 
 #: src/practice/guifrontend.cpp:132
 #, kde-format
@@ -2597,15 +2597,13 @@ msgstr "Folytatás"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
 #: src/practice/practice_mainwindow.ui:219
-#, fuzzy, kde-format
-#| msgid "I did not know it"
+#, kde-format
 msgid "I Did not Know it"
 msgstr "Nem tudtam"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
 #: src/practice/practice_mainwindow.ui:226
-#, fuzzy, kde-format
-#| msgid "I knew it"
+#, kde-format
 msgid "I Knew it"
 msgstr "Tudtam"
 
@@ -3017,10 +3015,9 @@ msgstr "&Szerző:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_author_2)
 #: src/settings/documentproperties.ui:102
-#, fuzzy, kde-format
-#| msgid "&Email:"
+#, kde-format
 msgid "E&mail:"
-msgstr "&E-mail:"
+msgstr "E-&mail:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, contactLineEdit)
 #: src/settings/documentproperties.ui:121
@@ -3042,10 +3039,9 @@ msgstr "Egyéb megjegyzések."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/settings/documentproperties.ui:160
-#, fuzzy, kde-format
-#| msgid "Cat&egory"
+#, kde-format
 msgid "Cate&gory:"
-msgstr "&Kategória"
+msgstr "Kate&gória:"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:173
@@ -3347,8 +3343,7 @@ msgid "Author:"
 msgstr "Szerző:"
 
 #: src/settings/languageproperties.cpp:23
-#, fuzzy, kde-format
-#| msgid "Edit Languages"
+#, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
 msgstr "Nyelvszerkesztő"
@@ -3435,8 +3430,7 @@ msgstr "Billentyűzetkiosztás:"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
-#, fuzzy, kde-format
-#| msgid "&Download Grammar"
+#, kde-format
 msgid "&Download grammar"
 msgstr "&Nyelvtan letöltése"
 
@@ -3658,10 +3652,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (EntriesPerLesson), group (General)
 #: src/settings/parley.kcfg:27
-#, fuzzy, kde-format
-#| msgid "The number of entries per lesson"
+#, kde-format
 msgid "The number of entries per unit"
-msgstr "A bejegyzések száma leckénként"
+msgstr "A bejegyzések száma egységenként"
 
 #. i18n: ectx: label, entry (AutoOpenLast), group (General)
 #: src/settings/parley.kcfg:31
@@ -4099,10 +4092,9 @@ msgstr "A gyakorlatokért kiválasztott szótípus alcsoport."
 
 #. i18n: ectx: label, entry (LearningLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:309
-#, fuzzy, kde-format
-#| msgid "The language that is displayed in a test."
+#, kde-format
 msgid "The language that you are learning."
-msgstr "A tesztben kijelzett nyelv."
+msgstr "A nyelv amit tanul."
 
 #. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:313
@@ -4216,16 +4208,14 @@ msgid "View Settings"
 msgstr "A beállítások megtekintése"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Enter the correct translation:"
+#, kde-format
 msgid "Online Translations"
-msgstr "Adja meg a helyes fordítást:"
+msgstr "Online fordítások"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Split translations at periods."
+#, kde-format
 msgid "Online Translation Services"
-msgstr "A fordítások feldarabolása a mondatoknál."
+msgstr "Online fordítószolgáltatások"
 
 #: src/settings/translationshelloptions.cpp:20
 #, kde-format
@@ -4264,10 +4254,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
 #: src/settings/translationshellpage.ui:68
-#, fuzzy, kde-format
-#| msgid "Start Practice..."
+#, kde-format
 msgid "Start online test"
-msgstr "Gyakorlás indítása..."
+msgstr "Online teszt indítása"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/settings/translationshellpage.ui:88
@@ -4277,10 +4266,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, labelResultArea)
 #: src/settings/translationshellpage.ui:101
-#, fuzzy, kde-format
-#| msgid "&New..."
+#, kde-format
 msgid "..."
-msgstr "Ú&j..."
+msgstr "…"
 
 #. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
 #: src/settings/viewoptionsbase.ui:41
@@ -4384,22 +4372,22 @@ msgstr "Alt+2"
 
 #: src/statistics/lessonstatisticsview.cpp:74
 #: src/statistics/lessonstatisticsview.cpp:76
-#, fuzzy, kde-format
-#| msgid "Remove grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit"
-msgstr "Szintek eltávolítása ebből a leckéből"
+msgstr "Magabiztossági szintek eltávolítása ebből az egységből"
 
 #: src/statistics/lessonstatisticsview.cpp:84
-#, fuzzy, kde-format
-#| msgid "Remove grades from this lesson and all sub-lessons"
+#, kde-format
 msgid "Remove confidence levels from this unit and all sub-units"
-msgstr "Szintek eltávolítása ebből a leckéből és minden részleckéből"
+msgstr ""
+"Magabiztossági szintek eltávolítása ebből az egységből és minden "
+"részegységből"
 
 #: src/statistics/lessonstatisticsview.cpp:86
-#, fuzzy, kde-format
-#| msgid "Remove grades from this lesson and all sub-lessons"
+#, kde-format
 msgid "Remove confidence level from this unit and all sub-units"
-msgstr "Szintek eltávolítása ebből a leckéből és minden részleckéből"
+msgstr ""
+"Magabiztossági szint eltávolítása ebből az egységből és minden részegységből"
 
 #: src/statistics/statisticslegendwidget.cpp:27
 #, fuzzy, kde-format
@@ -4414,17 +4402,14 @@ msgid "Early progress"
 msgstr "Állapotjelző"
 
 #: src/statistics/statisticslegendwidget.cpp:29
-#, fuzzy, kde-format
-#| msgctxt "adjective, The word has not even been practiced once by the user"
-#| msgid "Not practiced"
+#, kde-format
 msgid "Not Practiced"
 msgstr "Nem gyakorolt"
 
 #: src/statistics/statisticslegendwidget.cpp:30
-#, fuzzy, kde-format
-#| msgid "Entries"
+#, kde-format
 msgid "Invalid Entries"
-msgstr "Bejegyzések"
+msgstr "Érvénytelen bejegyzések"
 
 #: src/statistics/statisticslegendwidget.cpp:46
 #, kde-format
@@ -4441,39 +4426,35 @@ msgstr "Nem gyakorolt"
 #: src/statistics/statisticsmainwindow.cpp:192
 #, kde-format
 msgid "Known to Learning"
-msgstr ""
+msgstr "Ismerttől a tanulásig"
 
 #: src/statistics/statisticsmainwindow.cpp:193
 #, kde-format
 msgid "Learning to Known"
-msgstr ""
+msgstr "Tanulástól az ismertig"
 
 #: src/statistics/statisticsmainwindow.cpp:194
-#, fuzzy, kde-format
-#| msgid "Mixed Letters"
+#, kde-format
 msgid "Mixed Directions"
-msgstr "Kevert betűk"
+msgstr "Kevert irányok"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/statistics/statisticsmainwindow.ui:29
-#, fuzzy, kde-format
-#| msgid "Language Selection"
+#, kde-format
 msgid "Language to Learn"
-msgstr "Nyelvválasztás"
+msgstr "Megtanulandó nyelv"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/statistics/statisticsmainwindow.ui:39
-#, fuzzy, kde-format
-#| msgid "New Language"
+#, kde-format
 msgid "Known Language"
-msgstr "Új nyelv felvétele"
+msgstr "Ismert nyelv"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeMode)
 #: src/statistics/statisticsmainwindow.ui:75
-#, fuzzy, kde-format
-#| msgid "Practice Mode:"
+#, kde-format
 msgid "Practice Mode"
-msgstr "Gyakorló mód:"
+msgstr "Gyakorló mód"
 
 #. i18n: ectx: property (text), widget (QRadioButton, flashCard)
 #: src/statistics/statisticsmainwindow.ui:81
@@ -4483,64 +4464,57 @@ msgstr "Tanulókártyák"
 
 #. i18n: ectx: property (text), widget (QRadioButton, mixedLetters)
 #: src/statistics/statisticsmainwindow.ui:91
-#, fuzzy, kde-format
-#| msgid "Mixed Letters"
+#, kde-format
 msgid "Mixed &Letters"
-msgstr "Kevert betűk"
+msgstr "&Kevert betűk"
 
 #. i18n: ectx: property (text), widget (QRadioButton, multipleChoice)
 #: src/statistics/statisticsmainwindow.ui:98
-#, fuzzy, kde-format
-#| msgid "Multiple Choice"
+#, kde-format
 msgid "M&ultiple Choice"
-msgstr "Többszörös választás"
+msgstr "&Többszörös választás"
 
 #. i18n: ectx: property (text), widget (QRadioButton, written)
 #: src/statistics/statisticsmainwindow.ui:105
-#, fuzzy, kde-format
-#| msgid "Written"
+#, kde-format
 msgid "Wri&tten"
-msgstr "Írott"
+msgstr "Íro&tt"
 
 #. i18n: ectx: property (text), widget (QRadioButton, exampleSentence)
 #: src/statistics/statisticsmainwindow.ui:115
-#, fuzzy, kde-format
-#| msgid "Example Sentences"
+#, kde-format
 msgid "E&xample Sentences"
-msgstr "Példamondatok"
+msgstr "&Példamondatok"
 
 #. i18n: ectx: property (text), widget (QRadioButton, gender)
 #: src/statistics/statisticsmainwindow.ui:125
-#, fuzzy, kde-format
-#| msgid "Gender of Nouns"
+#, kde-format
 msgid "&Gender of Nouns"
-msgstr "A főnevek neme"
+msgstr "A főnevek &neme"
 
 #. i18n: ectx: property (text), widget (QRadioButton, conjugations)
 #: src/statistics/statisticsmainwindow.ui:145
-#, fuzzy, kde-format
-#| msgid "Conjugations"
+#, kde-format
 msgid "Co&njugations"
-msgstr "Ragozások"
+msgstr "&Ragozások"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeDirection)
 #: src/statistics/statisticsmainwindow.ui:191
-#, fuzzy, kde-format
-#| msgid "Practice options"
+#, kde-format
 msgid "Practice Direction"
-msgstr "Gyakorlási beállítások"
+msgstr "Gyakorlás iránya"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rememberPracticeDirection)
 #: src/statistics/statisticsmainwindow.ui:200
 #, kde-format
 msgid "Remember for each Practice Mode"
-msgstr ""
+msgstr "Megjegyzés minden gyakorló módhoz"
 
 #: src/statistics/statisticsmodel.cpp:26
 #, kde-format
 msgctxt "Confidence level in language, table header"
 msgid "Confidence (%1)"
-msgstr ""
+msgstr "Magabiztosság (%1)"
 
 #, fuzzy
 #~| msgid "Grades from %1 to %2"
