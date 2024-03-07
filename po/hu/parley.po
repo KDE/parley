@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: KDE 4.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-19 02:26+0000\n"
-"PO-Revision-Date: 2024-02-19 21:32+0100\n"
+"PO-Revision-Date: 2024-03-06 22:40+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -36,7 +36,7 @@ msgstr "Egység"
 #: src/collection/containermodel.cpp:158
 #, kde-format
 msgid "Number of entries in this lesson."
-msgstr "Ebben a leckében található cikkek száma."
+msgstr "A leckében szereplő bejegyzések száma."
 
 #: src/collection/entryfilter.cpp:113
 #, kde-format
@@ -44,8 +44,8 @@ msgid ""
 "The vocabulary document contains no entries that can be used for the chosen "
 "type of practice."
 msgstr ""
-"A szókészlet dokumentum nem tartalmaz bejegyzéseket amit a választott "
-"gyakorlat típus használna."
+"A szószedet nem tartalmaz a kiválasztott gyakorlattípushoz használható "
+"bejegyzéseket."
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, EntryFilterDialog)
 #: src/collection/entryfilterdialog.ui:14
@@ -61,51 +61,50 @@ msgid ""
 "can choose to ignore some of your configuration settings to start a practice "
 "anyway.</p>"
 msgstr ""
-"<p>Az általad a gyakorlatra választott szókészletlista üres.</p><p>Lent úgy "
-"tudsz választani, hogy figyelmen kívül hagysz a konfigurációbeállításaid "
-"közül néhányat, és így is el tudsz indítani egy gyakorlatot.</p>"
+"<p>A gyakorlásra kiválasztott szószedet üres.</p><p>Lent kiválaszthatja a "
+"mellőzni kívánt beállításokat, hogy mindenképp elkezdhesse a gyakorlást.</p>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
 #: src/collection/entryfilterdialog.ui:30
 #, kde-format
 msgid "Ignore Configuration for:"
-msgstr "Konfiguráció figyelmen kívül hagyása ehhez:"
+msgstr "A következők beállításainak mellőzése:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, lessonCheckBox)
 #: src/collection/entryfilterdialog.ui:36
 #, kde-format
 msgid "Ignore Lessons"
-msgstr "Leckék figyelmen kívül hagyása"
+msgstr "Leckék"
 
 #. i18n: ectx: property (text), widget (QCheckBox, wordTypeCheckBox)
 #: src/collection/entryfilterdialog.ui:56
 #, kde-format
 msgid "Ignore Word Types"
-msgstr "Szótípusok figyelmen kívül hagyása"
+msgstr "Szótípusok"
 
 #. i18n: ectx: property (text), widget (QCheckBox, blockedCheckBox)
 #: src/collection/entryfilterdialog.ui:76
 #, kde-format
 msgid "Ignore Blocked"
-msgstr "Zároltak figyelmen kívül hagyása"
+msgstr "Tiltottak"
 
 #. i18n: ectx: property (text), widget (QCheckBox, timesWrongCheckBox)
 #: src/collection/entryfilterdialog.ui:96
 #, kde-format
 msgid "Ignore Times Answered Incorrectly"
-msgstr "Hibás válaszidők figyelmen kívül hagyása"
+msgstr "Hibás válaszok száma"
 
 #. i18n: ectx: property (text), widget (QCheckBox, timesPracticedCheckBox)
 #: src/collection/entryfilterdialog.ui:116
 #, kde-format
 msgid "Ignore Times Practiced"
-msgstr "Gyakorlási idők figyelmen kívül hagyása"
+msgstr "Gyakorlásszám"
 
 #. i18n: ectx: property (text), widget (QCheckBox, minMaxGradeCheckBox)
 #: src/collection/entryfilterdialog.ui:136
 #, kde-format
 msgid "Ignore Minimum/Maximum Grade"
-msgstr "Figyelmen kívül hagyja a minimum/maximum szintet"
+msgstr "Minimális/Maximális fokozat"
 
 #. i18n: ectx: property (text), widget (QLabel, numberAffectedWordsLabel)
 #: src/collection/entryfilterdialog.ui:156
@@ -117,13 +116,13 @@ msgstr "Érintett szavak száma"
 #: src/collection/entryfilterdialog.ui:171
 #, kde-format
 msgid "Total number of entries:"
-msgstr "Bejegyzések összesen:"
+msgstr "Bejegyzések száma:"
 
 #. i18n: ectx: property (text), widget (QLabel, totalDescriptionLabel)
 #: src/collection/entryfilterdialog.ui:192
 #, kde-format
 msgid "Resulting number of words to practice:"
-msgstr "Szavak számának eredménye a gyakorlatban:"
+msgstr "Gyakorlandó szavak száma:"
 
 #: src/collection/lessonmodel.cpp:47
 #, kde-format
@@ -139,17 +138,17 @@ msgstr "Nincs"
 #: src/collection/vocabularymodel.cpp:185
 #, kde-format
 msgid "You can drag and drop words onto their word type."
-msgstr "Szavakat foghat meg és rakhat be a szótípusokra."
+msgstr "A szavakat megfoghatja és ráejtheti a szótípusukra."
 
 #: src/collection/vocabularymodel.cpp:187
 #, kde-format
 msgid "Enable the synonym view to edit synonyms."
-msgstr "Szinonima nézet engedélyezése szinonimák szerkesztéséhez."
+msgstr "Szinonima nézet bekapcsolása a szinonimák szerkesztéséhez."
 
 #: src/collection/vocabularymodel.cpp:189
 #, kde-format
 msgid "Enable the antonym view to edit antonyms."
-msgstr "Antonima nézet engedélyezése antonimák szerkesztéséhez."
+msgstr "Antonima nézet bekapcsolása az antonimák szerkesztéséhez."
 
 #: src/collection/vocabularymodel.cpp:281
 #, kde-format
@@ -226,23 +225,23 @@ msgstr "Körülírás"
 #, kde-format
 msgid "Please use Edit -> Languages to set up your document."
 msgstr ""
-"Kérem használja a Szerkesztés menü -> Nyelvek pontját a dokumentuma "
+"Kérjük, használja a Szerkesztés -> Nyelvek menüpontot a dokumentum "
 "beállításához."
 
 #: src/collection/vocabularymodel.cpp:312
 #, kde-format
 msgid "No Languages Defined"
-msgstr "Nincs meghatározott nyelv"
+msgstr "Nincsenek megadva nyelvek"
 
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
 msgid "Select a unit before adding vocabulary."
-msgstr "Válasszon ki egy egységet, mielőtt szókészletet adna hozzá."
+msgstr "Válasszon ki egy egységet szószedet hozzáadása előtt."
 
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
 msgid "No Unit Selected"
-msgstr "Nincs kiválasztott egység"
+msgstr "Nincs kiválasztva egység"
 
 #: src/dashboard/barwidget.cpp:120
 #, kde-format
@@ -259,7 +258,7 @@ msgstr "Teljesen megtanulva"
 #: src/dashboard/buttondelegate.cpp:32
 #, kde-format
 msgid "Open this vocabulary collection in the editor"
-msgstr "Kinyitja ezt a szókészletgyűjteményt a szerkesztőben"
+msgstr "Szószedetgyűjtemény megnyitása a szerkesztőben"
 
 #: src/dashboard/collectionwidget.cpp:96
 #, kde-format
@@ -293,7 +292,7 @@ msgstr "Eltávolítás"
 #: src/dashboard/dashboard.cpp:278
 #, kde-format
 msgid "Are you sure you want to remove this collection?"
-msgstr "Biztosan törölni szeretné ezt a gyűjteményt?"
+msgstr "Biztosan el szeretné távolítani ezt a gyűjteményt?"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
 #: src/dashboard/dashboard.ui:14 src/main.cpp:25
@@ -364,12 +363,12 @@ msgstr "Jelenlegi keresése"
 #: src/editor/browserwidget.ui:33
 #, kde-format
 msgid "Follow Table"
-msgstr "Kövesse a táblát"
+msgstr "Követési táblázat"
 
 #: src/editor/comparisonwidget.cpp:76
 #, kde-format
 msgid "Could not determine word type of adjectives"
-msgstr "Nem sikerült meghatározni a melléknév szótípusát"
+msgstr "Nem sikerült meghatározni a melléknevek szótípusás"
 
 #: src/editor/comparisonwidget.cpp:95
 #, kde-format
@@ -437,7 +436,7 @@ msgstr "-"
 #: src/editor/conjugationwidget.ui:32
 #, kde-format
 msgid "Conjugation Forms"
-msgstr "Ragozás alakok"
+msgstr "Ragozási alakok"
 
 #. i18n: ectx: property (text), widget (QLabel, singularFirstPersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualFirstPersonLabel)
@@ -464,7 +463,7 @@ msgstr "Második személy"
 #: src/editor/conjugationwidget.ui:241
 #, kde-format
 msgid "Third Male"
-msgstr "Egyes szám harmadik személy (hímnem)"
+msgstr "Harmadik személy (hímnem)"
 
 #. i18n: ectx: property (text), widget (QLabel, singularThirdFemalePersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualThirdFemalePersonLabel)
@@ -473,7 +472,7 @@ msgstr "Egyes szám harmadik személy (hímnem)"
 #: src/editor/conjugationwidget.ui:260
 #, kde-format
 msgid "Third Female"
-msgstr "Egyes szám harmadik személy (nőnem)"
+msgstr "Harmadik személy (nőnem)"
 
 #. i18n: ectx: property (text), widget (QLabel, singularThirdNeutralPersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualThirdNeutralPersonLabel)
@@ -482,7 +481,7 @@ msgstr "Egyes szám harmadik személy (nőnem)"
 #: src/editor/conjugationwidget.ui:279
 #, kde-format
 msgid "Third Neutral"
-msgstr "Egyes szám harmadik személy (semleges nemű)"
+msgstr "Harmadik személy (semleges nemű)"
 
 #. i18n: ectx: property (text), widget (QPushButton, nextTenseButton)
 #: src/editor/conjugationwidget.ui:317
@@ -629,9 +628,10 @@ msgid ""
 "With the checkboxes you can select which units you want to practice. \n"
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
-"Jobb kattintással lehet egységeket hozzáadni, törölni vagy átnevezni. \n"
-"A jelölőnégyzetekben lehet megadni, mely egységeket szeretné gyakorolni. \n"
-"A tesztben csak a bejelölt egységekből szerepelnek majd kérdések."
+"Kattintson jobb gombbal egységek hozzáadásához, törléséhez vagy "
+"átnevezéséhez. \n"
+"A jelölőnégyzetekkel kiválaszthatja a gyakorolni kívánt egységeket. \n"
+"Csak a bejelölt egységek lesznek kikérdezve."
 
 #: src/editor/editor.cpp:160
 #, kde-format
@@ -672,7 +672,7 @@ msgstr "Antonimák"
 #: src/editor/editor.cpp:250
 #, kde-format
 msgid "False Friends"
-msgstr "Valótlan barátok"
+msgstr "Hamis barátok"
 
 #: src/editor/editor.cpp:265
 #, kde-format
@@ -714,7 +714,7 @@ msgstr "Írja be a keresési kifejezéseket ide"
 #: src/editor/editor.cpp:415
 #, kde-format
 msgid "Search your vocabulary"
-msgstr "Keresés a szókincsben"
+msgstr "Keresés a szószedetben"
 
 #: src/editor/editor.cpp:417
 #, kde-format
@@ -775,7 +775,7 @@ msgstr "&Magabiztossági szint:"
 #: src/editor/FromToEntryPageForm.ui:95
 #, kde-format
 msgid "&False friend:"
-msgstr "H&ibás:"
+msgstr "&Hamis barát:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, GroupBox3)
 #: src/editor/FromToEntryPageForm.ui:110
@@ -893,7 +893,7 @@ msgstr "Új egység"
 #: src/editor/lessonview.cpp:34
 #, kde-format
 msgid "Add a new unit to your document"
-msgstr "Új egység felvétele a dokumentumba"
+msgstr "Új egység hozzáadása a dokumentumhoz"
 
 #: src/editor/lessonview.cpp:40
 #, kde-format
@@ -928,7 +928,7 @@ msgstr "Áthelyezés új leckébe"
 #: src/editor/lessonview.cpp:66
 #, kde-format
 msgid "Moves the selected vocabulary to a new lesson"
-msgstr "Áthelyezi a kijelölt szógyűjteményt egy új leckébe"
+msgstr "Áthelyezi a kijelölt szószedet egy új leckébe"
 
 #: src/editor/lessonview.cpp:72 src/parleyactions.cpp:150
 #, kde-format
@@ -941,73 +941,65 @@ msgid "Remove confidence levels from this unit."
 msgstr "Magabiztossági szintek eltávolítása ebből az egységből."
 
 #: src/editor/lessonview.cpp:80
-#, fuzzy, kde-format
-#| msgid "Remove Grades from this Lesson and all Sub-Lessons"
+#, kde-format
 msgid "Remove Confidence Levels From This Unit And All Subunits"
-msgstr "Szintek eltávolítása ebből a leckéből és minden részleckéből"
+msgstr ""
+"Magabiztossági szintek eltávolítása ebből az egységből és minden "
+"részegységből"
 
 #: src/editor/lessonview.cpp:82
-#, fuzzy, kde-format
-#| msgid "Remove grades from this lesson and all sub-lessons."
+#, kde-format
 msgid "Remove confidence levels from this unit and all subunits."
-msgstr "Szintek eltávolítása ebből a leckéből és minden részleckéből."
+msgstr ""
+"Magabiztosági szintek eltávolítása ebből az egységből és minden "
+"részegységből."
 
 #: src/editor/lessonview.cpp:88
-#, fuzzy, kde-format
-#| msgid "Remove grades from this lesson and all sub-lessons"
+#, kde-format
 msgid "Expand Units and Subunits"
-msgstr "Szintek eltávolítása ebből a leckéből és minden részleckéből"
+msgstr "Egységek és részegységek kibontása"
 
 #: src/editor/lessonview.cpp:90
-#, fuzzy, kde-format
-#| msgid "Remove grades from this lesson and all sub-lessons."
+#, kde-format
 msgid "Expand all units and subunits."
-msgstr "Szintek eltávolítása ebből a leckéből és minden részleckéből."
+msgstr "Összes egység és részegység kibontása."
 
 #: src/editor/lessonview.cpp:96
-#, fuzzy, kde-format
-#| msgid "Remove grades from this lesson and all sub-lessons"
+#, kde-format
 msgid "Collapse All Units And Subunits"
-msgstr "Szintek eltávolítása ebből a leckéből és minden részleckéből"
+msgstr "Összes egység és részegység összecsukása"
 
 #: src/editor/lessonview.cpp:98
-#, fuzzy, kde-format
-#| msgid "Remove grades from this lesson and all sub-lessons."
+#, kde-format
 msgid "Collapse all units and subunits."
-msgstr "Szintek eltávolítása ebből a leckéből és minden részleckéből."
+msgstr "Összes egység és részegység összecsukása."
 
 #: src/editor/lessonview.cpp:190
 #, kde-format
 msgid "The root lesson cannot be deleted."
-msgstr "A forrás lecke nem törölhető."
+msgstr "Az alaplecke nem törölhető."
 
 #: src/editor/lessonview.cpp:200
-#, fuzzy, kde-format
-#| msgid "There is %1 word left in this lesson. Do you want to delete it?"
-#| msgid_plural ""
-#| "There are %1 words left in this lesson. Do you want to delete them?"
+#, kde-format
 msgid "There is %1 word left in this unit. Do you want to delete it?"
 msgid_plural ""
 "There are %1 words left in this unit. Do you want to delete them?"
-msgstr[0] "Még %1 szó maradt a leckéből. Szeretné törölni?"
-msgstr[1] "Még %1 szó maradt a leckéből. Szeretné törölni őket?"
+msgstr[0] "Még %1 szó maradt az egységből. Szeretné törölni?"
+msgstr[1] "Még %1 szó maradt az egységből. Szeretné törölni ezeket?"
 
 #: src/editor/lessonview.cpp:221
-#, fuzzy, kde-format
-#| msgid "Entries per Lesson"
+#, kde-format
 msgid "Entries per Unit"
-msgstr "A bejegyzések száma egy leckében"
+msgstr "Bejegyzések egységenként"
 
 #: src/editor/lessonview.cpp:222
-#, fuzzy, kde-format
-#| msgid ""
-#| "The lesson will be split into smaller lessons. How many entries in each "
-#| "lesson do you want?"
+#, kde-format
 msgid ""
 "The unit will be split into smaller unit. How many entries in each unit do "
 "you want?"
 msgstr ""
-"A lecke több kisebb leckére lesz bontva. Hány bejegyzést akar minden leckébe?"
+"Az egység több kisebb egységre lesz bontva. Hány bejegyzést akar az egyes "
+"egységekbe?"
 
 #: src/editor/lessonview.cpp:245
 #, kde-format
@@ -1034,38 +1026,33 @@ msgstr "Lecke"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/editor/summarywordwidget.ui:42
-#, fuzzy, kde-format
-#| msgid "Word type"
+#, kde-format
 msgid "Word type:"
-msgstr "Szótípus"
+msgstr "Szótípus:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
-#, fuzzy, kde-format
-#| msgid "Pronunciation"
+#, kde-format
 msgid "Pronunciation:"
-msgstr "Kiejtés"
+msgstr "Kiejtés:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/summarywordwidget.ui:71
-#, fuzzy, kde-format
-#| msgid "Example"
+#, kde-format
 msgid "Example:"
-msgstr "Példa"
+msgstr "Példa:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/summarywordwidget.ui:87
-#, fuzzy, kde-format
-#| msgid "&Paraphrase:"
+#, kde-format
 msgid "Paraphrase:"
-msgstr "&Körülírás:"
+msgstr "Körülírás:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
-#, fuzzy, kde-format
-#| msgid "&Comment:"
+#, kde-format
 msgid "Comment:"
-msgstr "Megj&egyzés:"
+msgstr "Megjegyzés:"
 
 #: src/editor/synonymwidget.cpp:59
 #, kde-format
@@ -1095,18 +1082,18 @@ msgstr "%1 és %2 antonimák"
 #: src/editor/synonymwidget.cpp:79
 #, kde-format
 msgid "%1 and %2 are not False Friends"
-msgstr "%1 és %2 nem Hamis barátok"
+msgstr "%1 és %2 nem hamis barátok"
 
 #: src/editor/synonymwidget.cpp:81
 #, kde-format
 msgid "%1 and %2 are False Friends"
-msgstr "%1 és %2 Hamis barátok"
+msgstr "%1 és %2 hamis barátok"
 
 #: src/editor/synonymwidget.cpp:90
 #, kde-format
 msgctxt "Title for a list of synonyms for a word"
 msgid "Synonyms of %1:"
-msgstr "%1 szinonimája:"
+msgstr "%1 szinonimái:"
 
 #: src/editor/synonymwidget.cpp:93
 #, kde-format
@@ -1123,11 +1110,10 @@ msgid "False Friends of %1:"
 msgstr "%1 hamis barátai:"
 
 #: src/editor/vocabularycolumnsdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Vocabulary Columns"
+#, kde-format
 msgctxt "@title:window"
 msgid "Vocabulary Columns"
-msgstr "Szókészlet oszlopok"
+msgstr "Szószedet oszlopai"
 
 #: src/editor/vocabularycolumnsdialog.cpp:58
 #, kde-format
@@ -1152,7 +1138,7 @@ msgstr "Új bejegyzés &hozzáadása"
 #: src/editor/vocabularyview.cpp:82
 #, kde-format
 msgid "Append a new row to the vocabulary"
-msgstr "Új sor hozzáfűzése a szótárhoz"
+msgstr "Új sor hozzáfűzése a szószedethoz"
 
 #: src/editor/vocabularyview.cpp:91
 #, kde-format
@@ -1182,7 +1168,7 @@ msgstr "Beillesztés"
 #: src/editor/vocabularyview.cpp:126
 #, kde-format
 msgid "Select all rows"
-msgstr "Kijelöli az összes sort"
+msgstr "Összes sor kijelölése"
 
 #: src/editor/vocabularyview.cpp:132
 #, kde-format
@@ -1192,19 +1178,19 @@ msgstr "A sorok kijelölésének megszüntetése"
 #: src/editor/vocabularyview.cpp:140
 #, kde-format
 msgid "Vocabulary Columns..."
-msgstr "Szókészlet oszlopok..."
+msgstr "Szószedet oszlopai..."
 
 #: src/editor/vocabularyview.cpp:141
 #, kde-format
 msgid "Toggle display of individual vocabulary columns"
-msgstr "Az egyéni szókészletoszlopok kijelző kapcsolója"
+msgstr "Egyedi szószedetoszlopok megjelenítésének kapcsolása"
 
 #: src/editor/vocabularyview.cpp:253
 #, kde-format
 msgid "Do you really want to delete the selected entry?"
 msgid_plural "Do you really want to delete the selected %1 entries?"
 msgstr[0] "Biztosan törölni szeretné a kijelölt bejegyzést?"
-msgstr[1] "Biztosan törölni szeretne %1 kijelölt bejegyzést?"
+msgstr[1] "Biztosan törölni szeretné a(z) %1 kijelölt bejegyzést?"
 
 #: src/editor/vocabularyview.cpp:254
 #, kde-format
@@ -1229,8 +1215,8 @@ msgid ""
 "Either the language set up is incorrect or no spellchecker was installed for "
 "this locale: %1."
 msgstr ""
-"Vagy a nyelv, amit beállítottak helytelen, vagy nincs feltelepítve "
-"helyesírás ellenőrző ezen a helyen: %1."
+"Vagy a nyelvi beállítás helytelen, vagy nincs telepítve helyesírás-ellenőrző "
+"ehhez a területi beállításhoz: %1"
 
 #: src/editor/wordtypeview.cpp:31
 #, kde-format
@@ -1240,7 +1226,7 @@ msgstr "Új"
 #: src/editor/wordtypeview.cpp:33
 #, kde-format
 msgid "Add a new word type to your document"
-msgstr "Hozzáad egy új szótípust a dokumentumodhoz"
+msgstr "Új szótípus hozzáadása a dokumentumhoz"
 
 #: src/editor/wordtypeview.cpp:39
 #, kde-format
@@ -1343,12 +1329,12 @@ msgstr "Nincs különleges típus"
 #: src/editor/wordtypeview.cpp:131
 #, kde-format
 msgid "This word type folder contains no word type with special meaning."
-msgstr "Ez a szótípus dosszié nem tartalmaz különleges jelentésű szótípusokat."
+msgstr "Ez a szótípus mappa nem tartalmaz különleges jelentésű szótípusokat."
 
 #: src/editor/wordtypeview.cpp:209
 #, kde-format
 msgid "The root word type cannot be deleted."
-msgstr "A szótípus gyökere nem törölhető."
+msgstr "Az alap szótípus nem törölhető."
 
 #: src/editor/wordtypeview.cpp:219
 #, kde-format
@@ -1363,8 +1349,7 @@ msgstr[1] ""
 "Még %1 ilyen típusú szó maradt. El fogják veszíteni a típusukat. Folytatja?"
 
 #: src/exportdialog.cpp:53
-#, fuzzy, kde-format
-#| msgid "Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Exportálás"
@@ -1382,7 +1367,7 @@ msgstr "Nem sikerült írni a(z) „%1” fájlba"
 #: src/exportdialog.cpp:119
 #, kde-format
 msgid "Export As"
-msgstr "Exportálás mint"
+msgstr "Exportálás másként"
 
 #: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
 #, kde-format
@@ -1399,15 +1384,15 @@ msgstr "Exportálás"
 #: src/exportdialog.ui:20
 #, kde-format
 msgid "Flash Cards - to print learning cards (HTML)"
-msgstr "Flash Kártyák - nyomtatás ismeret kártyákra (HTML)"
+msgstr "Tanulókártyák nyomtatása (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
 #: src/exportdialog.ui:30
 #, kde-format
 msgid "A vocabulary list that works in a web-browser and can be printed (HTML)"
 msgstr ""
-"Egy olyan szókészletlista, ami működik a webböngészőben és ki lehet "
-"nyomtatni (HTML)"
+"Egy olyan szószedetlista, ami működik a webböngészőben és ki lehet nyomtatni "
+"(HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, csvRadio)
 #: src/exportdialog.ui:40
@@ -1436,7 +1421,7 @@ msgstr ""
 #: src/main.cpp:33
 #, kde-format
 msgid "Helps you train your vocabulary"
-msgstr "Segít a szavak memorizálásában"
+msgstr "Segít a szókincse fejlesztésében"
 
 #: src/main.cpp:37
 #, kde-format
@@ -1531,7 +1516,7 @@ msgstr "Anne-Marie Mahfouf"
 #: src/main.cpp:60
 #, kde-format
 msgid "Port to KConfig XT"
-msgstr "Átvitel a KConfig XT-re"
+msgstr "Portolás a KConfig XT-re"
 
 #: src/main.cpp:62
 #, kde-format
@@ -1564,10 +1549,9 @@ msgid "Conceived the name Parley"
 msgstr "A program névadója"
 
 #: src/main.cpp:76
-#, fuzzy, kde-format
-#| msgid "+[file]"
+#, kde-format
 msgid "[file]"
-msgstr "+[fájl]"
+msgstr "[fájl]"
 
 #: src/main.cpp:76
 #, kde-format
@@ -1577,32 +1561,32 @@ msgstr "A megnyitandó dokumentum"
 #: src/parleyactions.cpp:71
 #, kde-format
 msgid "Creates a new vocabulary collection"
-msgstr "Új szógyűjtemény létrehozása"
+msgstr "Létrehoz egy új szószedetgyűjteményt"
 
 #: src/parleyactions.cpp:76
 #, kde-format
 msgid "Opens an existing vocabulary collection"
-msgstr "Megnyit egy már létező szógyűjteményt"
+msgstr "Megnyit egy már létező szószedetgyűjteményt"
 
 #: src/parleyactions.cpp:84
 #, kde-format
 msgid "Open &Downloaded Vocabularies..."
-msgstr "&Letöltött szógyűjtemények megnyitása…"
+msgstr "&Letöltött szószedetek megnyitása…"
 
 #: src/parleyactions.cpp:85
 #, kde-format
 msgid "Open downloaded vocabulary collections"
-msgstr "Letöltött szógyűjtemények megnyitása"
+msgstr "Letöltött szószedetgyűjtemények megnyitása"
 
 #: src/parleyactions.cpp:90
 #, kde-format
 msgid "Save the active vocabulary collection"
-msgstr "Az aktív szógyűjtemény mentése"
+msgstr "Az aktív szószedetgyűjtemény mentése"
 
 #: src/parleyactions.cpp:97
 #, kde-format
 msgid "Save the active vocabulary collection with a different name"
-msgstr "Az aktív szógyűjtemény mentése más néven"
+msgstr "Az aktív szószedetgyűjtemény mentése más néven"
 
 #: src/parleyactions.cpp:104
 #, kde-format
@@ -1622,7 +1606,7 @@ msgstr "&Tulajdonságok…"
 #: src/parleyactions.cpp:114
 #, kde-format
 msgid "Edit document properties"
-msgstr "A dokumentumjellemzők szerkesztése"
+msgstr "Dokumentumjellemzők szerkesztése"
 
 #: src/parleyactions.cpp:122
 #, kde-format
@@ -1632,12 +1616,12 @@ msgstr "Áttekintő"
 #: src/parleyactions.cpp:123
 #, kde-format
 msgid "Close the current vocabulary collection and show the dashboard"
-msgstr "Az aktuális szógyűjtemény bezárása és az áttekintő megjelenítése"
+msgstr "Az aktuális szószedetgyűjtemény bezárása és az áttekintő megjelenítése"
 
 #: src/parleyactions.cpp:129
 #, kde-format
 msgid "Quit Parley"
-msgstr "Bezárja a programot"
+msgstr "Kilépés a Parleyból"
 
 #: src/parleyactions.cpp:134
 #, kde-format
@@ -1647,34 +1631,31 @@ msgstr "A beállítóablak megjelenítése"
 #: src/parleyactions.cpp:141
 #, kde-format
 msgid "&Languages..."
-msgstr "Nye&lvek..."
+msgstr "Nye&lvek…"
 
 #: src/parleyactions.cpp:142
 #, kde-format
 msgid ""
 "Edit which languages are in the collection and their grammar properties."
 msgstr ""
-"Szerkeszd meg, a gyűjteményben milyen nyelvek vannak és a nyelvtani "
-"tulajdonságokat."
+"Szerkesztheti a gyűjteményben szereplő nyelveket és azok nyelvtani "
+"tulajdonságait."
 
 #: src/parleyactions.cpp:151
-#, fuzzy, kde-format
-#| msgid "Remove all grades from the current document"
+#, kde-format
 msgid "Remove all confidence levels from the current document"
-msgstr "Minden szint eltávolítása az aktuális dokumentumból"
+msgstr "Összes magabiztossági szint eltávolítása a jelenlegi dokumentumból"
 
 #: src/parleyactions.cpp:162
-#, fuzzy, kde-format
-#| msgid "Show Entries from Child Lessons"
+#, kde-format
 msgid "Show Entries from Child Units"
-msgstr "Mutatja a bejegyzéseket a gyerek leckékből"
+msgstr "Gyermekegységek bejegyzéseinek megjelenítése"
 
 #: src/parleyactions.cpp:163
-#, fuzzy, kde-format
-#| msgid "Enable to also see the entries of child lessons in each lesson."
+#, kde-format
 msgid "Enable to also see the entries of child units in each unit."
 msgstr ""
-"Engedélyezi, hogy minden leckénél láthatóak legyenek a gyerekleckék is."
+"Engedélyezi, hogy minden egységnél láthatóak legyenek a gyermekegységek is."
 
 #: src/parleyactions.cpp:173
 #, kde-format
@@ -1683,15 +1664,14 @@ msgstr "Automatikus fordítás"
 
 #. i18n: ectx: label, entry (AutomaticTranslation), group (General)
 #: src/parleyactions.cpp:174 src/settings/parley.kcfg:50
-#, fuzzy, kde-format
-#| msgid "Enable automatic translation of the lesson entries."
+#, kde-format
 msgid "Enable automatic translation of the unit entries."
-msgstr "Engedélyezi a lecke-elemek automatikus fordítását."
+msgstr "Engedélyezi az egységek bejegyzéseinek automatikus fordítását."
 
 #: src/parleyactions.cpp:184
 #, kde-format
 msgid "Start Practice..."
-msgstr "Gyakorlás indítása..."
+msgstr "Gyakorlat indítása…"
 
 #: src/parleyactions.cpp:185
 #, kde-format
@@ -1701,16 +1681,15 @@ msgstr "Gyakorlás indítása"
 #: src/parleyactions.cpp:193
 #, kde-format
 msgid "Configure Practice..."
-msgstr "Gyakorlási beállítások..."
+msgstr "Gyakorlat beállítása…"
 
 #: src/parleyactions.cpp:194
 #, kde-format
 msgid "Change practice settings"
-msgstr "Gyakorlási beállítások megváltoztatása"
+msgstr "Gyakorlatbeállítások módosítása"
 
 #: src/parleyactions.cpp:202
-#, fuzzy, kde-format
-#| msgid "Export results..."
+#, kde-format
 msgid "Export Results..."
 msgstr "Eredmények exportálása…"
 
@@ -1727,12 +1706,12 @@ msgstr "Szerkesztő"
 #: src/parleyactions.cpp:212
 #, kde-format
 msgid "Switch to vocabulary editor"
-msgstr "Váltás a szótár-szerkesztőre"
+msgstr "Váltás a szószedet-szerkesztőre"
 
 #: src/parleyactions.cpp:220
 #, kde-format
 msgid "Show Se&arch"
-msgstr "K&eresés"
+msgstr "K&ereső megjelenítése"
 
 #: src/parleyactions.cpp:221
 #, kde-format
@@ -1746,16 +1725,15 @@ msgid "Properties for %1"
 msgstr "Tulajdonságok: %1"
 
 #: src/parleydocument.cpp:158
-#, fuzzy, kde-format
-#| msgid "Open Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
-msgstr "Szókészlet gyűjtemény megnyitása"
+msgstr "Szószedetgyűjtemény megnyitása"
 
 #: src/parleydocument.cpp:159
 #, kde-format
 msgid "Open in practice &mode"
-msgstr "Gyakorló mód megnyitása"
+msgstr "Megnyitás gyakorló &módban"
 
 #: src/parleydocument.cpp:201
 #, kde-format
@@ -1766,17 +1744,21 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
+"A szószedetgyűjteményt egy másik folyamat zárolta. Megnyithatja a fájlt, ha "
+"átveszi a zárolást, de elveszíti a másik folyamat által eszközölt "
+"változtatásokat.\n"
+"\n"
+"Szeretné átvenni a zárolást?\n"
 
 #: src/parleydocument.cpp:203
 #, kde-format
 msgid "Take Over Lock"
-msgstr ""
+msgstr "Zárolás átvétele"
 
 #: src/parleydocument.cpp:234
-#, fuzzy, kde-format
-#| msgid "Writing file \"%1\" resulted in an error: %2"
+#, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
-msgstr "Hiba történt a következő fájl írásakor: \"%1\". %2"
+msgstr "Hiba történt a(z) „%1” gyűjtemény megnyitásakor: %2"
 
 #: src/parleydocument.cpp:235
 #, kde-format
@@ -1791,16 +1773,15 @@ msgid ""
 "\n"
 "Save file before exit?\n"
 msgstr ""
-"A szótár megváltozott.\n"
+"A szószedet megváltozott.\n"
 "\n"
 "El szeretné menteni a fájlt kilépés előtt?\n"
 
 #: src/parleydocument.cpp:296
-#, fuzzy, kde-format
-#| msgid "Open Downloaded Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
-msgstr "Letöltött szógyűjtemények megnyitása"
+msgstr "Letöltött szószedetgyűjtemények megnyitása"
 
 #: src/parleydocument.cpp:335 src/parleydocument.cpp:423
 #, kde-format
@@ -1810,11 +1791,15 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
+"A(z) „%1” fájlt egy másik folyamat zárolta. Mentheti a fájlt, ha átveszi a "
+"zárolást, de elveszíti a másik folyamat által eszközölt változtatásokat.\n"
+"\n"
+"Szeretné átvenni a zárolást?\n"
 
 #: src/parleydocument.cpp:366 src/parleydocument.cpp:459
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
-msgstr "Hiba történt a következő fájl írásakor: \"%1\". %2"
+msgstr "Hiba történt a(z) „%1” fájl írásakor: %2"
 
 #: src/parleydocument.cpp:367 src/parleydocument.cpp:460
 #, kde-format
@@ -1823,11 +1808,10 @@ msgid "Save File"
 msgstr "Fájl mentése"
 
 #: src/parleydocument.cpp:382
-#, fuzzy, kde-format
-#| msgid "Save Vocabulary As"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
-msgstr "A szótár mentése mint"
+msgstr "Szószedet mentése másként"
 
 #: src/parleydocument.cpp:394
 #, kde-format
@@ -1870,7 +1854,7 @@ msgstr "1. lecke"
 #: src/parleydocument.cpp:560
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
-msgstr "Nem sikerült megnyitni a(z) „%1” szókészlet gyűjteményt"
+msgstr "Nem sikerült megnyitni a(z) „%1” szószedetgyűjteményt"
 
 #: src/parleymainwindow.cpp:134
 #, kde-format
@@ -1878,7 +1862,7 @@ msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
 "when document is modified"
 msgid "%1 [*]"
-msgstr ""
+msgstr "%1 [*]"
 
 #: src/parleymainwindow.cpp:174
 #, kde-format
@@ -1886,22 +1870,23 @@ msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr ""
+"A gyakorlat nem indítható el, ha az ismert nyelv és a tanulni kívánt nyelv "
+"ugyanaz."
 
 #: src/parleymainwindow.cpp:174
-#, fuzzy, kde-format
-#| msgid "&Second language:"
+#, kde-format
 msgid "Select languages"
-msgstr "&Második nyelv:"
+msgstr "Nyelvek kiválasztása"
 
 #: src/parleymainwindow.cpp:212
 #, kde-format
 msgid "Download New Vocabularies..."
-msgstr "Új szótárak letöltése…"
+msgstr "Új szószedetek letöltése…"
 
 #: src/parleymainwindow.cpp:218
 #, kde-format
 msgid "Downloads new vocabulary collections"
-msgstr "Új szókészletek letöltése"
+msgstr "Új szószedetkészletek letöltése"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/parleyui.rc:21
@@ -2098,7 +2083,7 @@ msgid ""
 "Illogical expiration times.\n"
 msgstr ""
 "\n"
-"Irreális lejárási idők.\n"
+"Irreális lejárati idők.\n"
 
 #: src/practice/configure/blockoptions.cpp:247
 #, kde-format
@@ -2107,14 +2092,14 @@ msgid ""
 "Illogical blocking vs. expiration times.\n"
 msgstr ""
 "\n"
-"Irreális blokkolási ill. lejárási idők.\n"
+"Irreális blokkolási ill. lejárati idők.\n"
 
 #: src/practice/configure/blockoptions.cpp:249
 #, kde-format
 msgid ""
 "The blocking time at level %1 should be lower than the expiration time.\n"
 msgstr ""
-"A(z) %1. szinten a blokkolási időnek rövidebbnek kellene lennie a lejárási "
+"A(z) %1. szinten a blokkolási időnek rövidebbnek kellene lennie a lejárati "
 "időnél.\n"
 
 #: src/practice/configure/blockoptions.cpp:255
@@ -2144,7 +2129,7 @@ msgstr "&6. szint:"
 #: src/practice/configure/blockoptions.ui:79
 #, kde-format
 msgid "E&xpiring"
-msgstr "Le&járás"
+msgstr "Le&járat"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Block)
 #: src/practice/configure/blockoptions.ui:95
@@ -2186,7 +2171,7 @@ msgstr "Ne kerüljön elő kétszer ugyanaz a bejegyzés ennyi időn belül:"
 #: src/practice/configure/blockoptions.ui:228
 #, kde-format
 msgid "Vocabulary drops one grade after this much time:"
-msgstr "A szógyűjtemény egy fokozattal lejjebb vált ennyi idő után:"
+msgstr "A szószedet egy fokozattal lejjebb vált ennyi idő után:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ComparisonIncludeAdjective)
 #: src/practice/configure/comparisonoptionswidget.ui:16
@@ -2218,7 +2203,7 @@ msgstr "Általános"
 #, kde-format
 msgctxt "Configure general settings for practicing vocabulary."
 msgid "General Practice Settings"
-msgstr "Speciális gyakorlási beállítások"
+msgstr "Általános gyakorlási beállítások"
 
 #: src/practice/configure/configurepracticedialog.cpp:35
 #, kde-format
@@ -2268,41 +2253,37 @@ msgstr "Javítás"
 #: src/practice/configure/generalpracticeoptions.ui:23
 #, kde-format
 msgid "Answers with wrong accents are still counted as correct."
-msgstr "A válasz hibás ékezettel is helyesnek számít."
+msgstr "A hibás ékezeteket tartalmazó válaszok is helyesnek számítanak."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:26
-#, fuzzy, kde-format
-#| msgid "Ignore Accents"
+#, kde-format
 msgid "Ignore accents"
-msgstr "Az ékezetek figyelmen kívül hagyása"
+msgstr "Ékezetek figyelmen kívül hagyása"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:36
 #, kde-format
 msgid "Any captitalization in the answer is counted as correct."
-msgstr "Bármilyen nagybetűhasználat a válaszban helyesnek számít."
+msgstr "A válaszban szereplő bármilyen nagybetűs írásmód helyesnek számít."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:39
-#, fuzzy, kde-format
-#| msgid "Ignore Capitalization"
+#, kde-format
 msgid "Ignore capitalization"
-msgstr "A nagybetűhasználat figyelmen kívül hagyása"
+msgstr "Nagybetűhasználat figyelmen kívül hagyása"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:49
-#, fuzzy, kde-format
-#| msgid "Any captitalization in the answer is counted as correct."
+#, kde-format
 msgid "Any punctuation mistake in the answer is counted as correct."
-msgstr "Bármilyen nagybetűhasználat a válaszban helyesnek számít."
+msgstr "Bármilyen központozási hiba a válaszban helyesnek számít."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:52
-#, fuzzy, kde-format
-#| msgid "Ignore Capitalization"
+#, kde-format
 msgid "Ignore punctuation"
-msgstr "A nagybetűhasználat figyelmen kívül hagyása"
+msgstr "Központozás figyelmen kívül hagyása"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:62
@@ -2315,8 +2296,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:65
-#, fuzzy, kde-format
-#| msgid "Enable Hints"
+#, kde-format
 msgid "Enable hints"
 msgstr "Tippek engedélyezése"
 
@@ -2330,27 +2310,25 @@ msgstr "Képek és hangok"
 #: src/practice/configure/generalpracticeoptions.ui:97
 #, kde-format
 msgid "During the practice, images are shown for the question."
-msgstr "A gyakorlat alatt képek jelennek meg a kérdésért."
+msgstr "A gyakorlat alatt képek jelennek meg a kérdéshez."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:100
-#, fuzzy, kde-format
-#| msgid "Image for Question"
+#, kde-format
 msgid "Image for question"
-msgstr "Kép a kérdésért"
+msgstr "Kép a kérdéshez"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:110
 #, kde-format
 msgid "During the practice, images are shown for the solution."
-msgstr "A gyakorlat alatt képek jelennek meg a megoldásért."
+msgstr "A gyakorlat alatt képek jelennek meg a megoldáshoz."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:113
-#, fuzzy, kde-format
-#| msgid "Image for Solution"
+#, kde-format
 msgid "Image for solution"
-msgstr "Kép a megfejtésért"
+msgstr "Kép a megoldáshoz"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:123
@@ -2368,7 +2346,7 @@ msgstr "Képek engedélyezése szavak helyett"
 #: src/practice/configure/generalpracticeoptions.ui:136
 #, kde-format
 msgid "Enable playing of pronunciation sound files during the practice."
-msgstr "Engedélyezi a kiejtéshang fájlok lejátszását a gyakorlat alatt."
+msgstr "A kiejtési hangfájlok lejátszásának engedélyezése a gyakorlás során."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/generalpracticeoptions.ui:158
