@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 02:26+0000\n"
+"POT-Creation-Date: 2024-03-08 02:19+0000\n"
 "PO-Revision-Date: 2023-12-12 19:29+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -270,8 +270,8 @@ msgstr "Otvoriť túto kolekciu slovnej zásoby v editore"
 msgid "Practice Anyway"
 msgstr "Precvičovať aj tak"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
-#: src/editor/editor.cpp:372
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
+#: src/editor/editor.cpp:377
 #, kde-format
 msgid "Practice"
 msgstr "Tréning"
@@ -639,12 +639,12 @@ msgstr "Číslo:"
 msgid "Next"
 msgstr "Nasledujúci"
 
-#: src/editor/editor.cpp:138
+#: src/editor/editor.cpp:141
 #, kde-format
 msgid "Units"
 msgstr "Jednotky"
 
-#: src/editor/editor.cpp:149
+#: src/editor/editor.cpp:152
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -655,24 +655,24 @@ msgstr ""
 "Zaškrtávacími políčkami môžete vybrať, ktoré lekcie chcete precvičovať. \n"
 "Iba zaškrtnuté lekcie [x] budú ponúknuté v testoch!"
 
-#: src/editor/editor.cpp:160
+#: src/editor/editor.cpp:163
 #, kde-format
 msgid "Word Types"
 msgstr "Typy slov"
 
-#: src/editor/editor.cpp:180
+#: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr "Ohýbanie slov (slovesá, prídavné mená, podstatné mená)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
 #, kde-format
 msgid "Comparison Forms"
 msgstr "Tvary stupňovania\t"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:209
+#: src/editor/editor.cpp:212
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -680,65 +680,65 @@ msgstr "Viacnásobný výber"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, kde-format
 msgid "Synonyms"
 msgstr "Synonymá"
 
-#: src/editor/editor.cpp:236
+#: src/editor/editor.cpp:239
 #, kde-format
 msgid "Antonyms"
 msgstr "Antonymá"
 
-#: src/editor/editor.cpp:250
+#: src/editor/editor.cpp:253
 #, kde-format
 msgid "False Friends"
 msgstr "Falošní priatelia"
 
-#: src/editor/editor.cpp:265
+#: src/editor/editor.cpp:268
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr "Fonetické symboly"
 
-#: src/editor/editor.cpp:280
+#: src/editor/editor.cpp:283
 #, kde-format
 msgid "Image"
 msgstr "Obrázok"
 
-#: src/editor/editor.cpp:295
+#: src/editor/editor.cpp:298
 #, kde-format
 msgid "Summary"
 msgstr "Súhrn"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:309
+#: src/editor/editor.cpp:312
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, kde-format
 msgid "Sound"
 msgstr "Zvuk"
 
-#: src/editor/editor.cpp:324
+#: src/editor/editor.cpp:328
 #, kde-format
 msgid "Internet"
 msgstr "Internet"
 
-#: src/editor/editor.cpp:339
+#: src/editor/editor.cpp:344
 #, kde-format
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: src/editor/editor.cpp:414
+#: src/editor/editor.cpp:419
 #, kde-format
 msgid "Enter search terms here"
 msgstr "Sem zadajte výrazy pre vyhľadávanie"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:420
 #, kde-format
 msgid "Search your vocabulary"
 msgstr "Prehľadať vašu slovnú zásobu"
 
-#: src/editor/editor.cpp:417
+#: src/editor/editor.cpp:422
 #, kde-format
 msgid "S&earch:"
 msgstr "&Hľadať:"

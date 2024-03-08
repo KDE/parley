@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 02:26+0000\n"
+"POT-Creation-Date: 2024-03-08 02:19+0000\n"
 "PO-Revision-Date: 2011-04-24 00:32-0700\n"
 "Last-Translator: Fumiaki Okushi <okushi@kde.gr.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -279,8 +279,8 @@ msgstr "この語彙コレクションをエディタで開く"
 msgid "Practice Anyway"
 msgstr "再び練習する"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
-#: src/editor/editor.cpp:372
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
+#: src/editor/editor.cpp:377
 #, kde-format
 msgid "Practice"
 msgstr "練習"
@@ -654,12 +654,12 @@ msgstr ""
 msgid "Next"
 msgstr "次へ"
 
-#: src/editor/editor.cpp:138
+#: src/editor/editor.cpp:141
 #, kde-format
 msgid "Units"
 msgstr ""
 
-#: src/editor/editor.cpp:149
+#: src/editor/editor.cpp:152
 #, fuzzy, kde-format
 #| msgid ""
 #| "Right click to add, delete, or rename lessons. \n"
@@ -674,24 +674,24 @@ msgstr ""
 "チェックボックスを使って練習するレッスンを選択できます。\n"
 "チェックしたレッスン [x] からのみ出題されます。"
 
-#: src/editor/editor.cpp:160
+#: src/editor/editor.cpp:163
 #, kde-format
 msgid "Word Types"
 msgstr "品詞"
 
-#: src/editor/editor.cpp:180
+#: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
 #, kde-format
 msgid "Comparison Forms"
 msgstr "比較形"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:209
+#: src/editor/editor.cpp:212
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -699,67 +699,67 @@ msgstr "選択問題"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, kde-format
 msgid "Synonyms"
 msgstr "同義語"
 
-#: src/editor/editor.cpp:236
+#: src/editor/editor.cpp:239
 #, kde-format
 msgid "Antonyms"
 msgstr "対義語"
 
-#: src/editor/editor.cpp:250
+#: src/editor/editor.cpp:253
 #, kde-format
 msgid "False Friends"
 msgstr "空似言葉"
 
-#: src/editor/editor.cpp:265
+#: src/editor/editor.cpp:268
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr "音声記号"
 
-#: src/editor/editor.cpp:280
+#: src/editor/editor.cpp:283
 #, kde-format
 msgid "Image"
 msgstr "画像"
 
-#: src/editor/editor.cpp:295
+#: src/editor/editor.cpp:298
 #, kde-format
 msgid "Summary"
 msgstr "まとめ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:309
+#: src/editor/editor.cpp:312
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, kde-format
 msgid "Sound"
 msgstr "サウンド"
 
-#: src/editor/editor.cpp:324
+#: src/editor/editor.cpp:328
 #, kde-format
 msgid "Internet"
 msgstr "インターネット"
 
-#: src/editor/editor.cpp:339
+#: src/editor/editor.cpp:344
 #, kde-format
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: src/editor/editor.cpp:414
+#: src/editor/editor.cpp:419
 #, kde-format
 msgid "Enter search terms here"
 msgstr "ここに検索語を入力します"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:420
 #, fuzzy, kde-format
 #| msgid "Helps you train your vocabulary"
 msgid "Search your vocabulary"
 msgstr "語彙増強のお手伝いをします"
 
 # ACCELERATOR changed by translator
-#: src/editor/editor.cpp:417
+#: src/editor/editor.cpp:422
 #, kde-format
 msgid "S&earch:"
 msgstr "検索(&A):"

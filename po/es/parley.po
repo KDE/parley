@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 02:26+0000\n"
+"POT-Creation-Date: 2024-03-08 02:19+0000\n"
 "PO-Revision-Date: 2024-01-11 02:01+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -279,8 +279,8 @@ msgstr "Abrir esta colección de vocabulario en el editor"
 msgid "Practice Anyway"
 msgstr "Practicar de todas formas"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
-#: src/editor/editor.cpp:372
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
+#: src/editor/editor.cpp:377
 #, kde-format
 msgid "Practice"
 msgstr "Practicar"
@@ -630,12 +630,12 @@ msgstr "Número:"
 msgid "Next"
 msgstr "Siguiente"
 
-#: src/editor/editor.cpp:138
+#: src/editor/editor.cpp:141
 #, kde-format
 msgid "Units"
 msgstr "Unidades"
 
-#: src/editor/editor.cpp:149
+#: src/editor/editor.cpp:152
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -648,24 +648,24 @@ msgstr ""
 "practicar. \n"
 "¡En las pruebas solo se le preguntará por las unidades marcadas con [x]!"
 
-#: src/editor/editor.cpp:160
+#: src/editor/editor.cpp:163
 #, kde-format
 msgid "Word Types"
 msgstr "Tipos de palabras"
 
-#: src/editor/editor.cpp:180
+#: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr "Inflexión (verbos, adjetivos, nombres)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
 #, kde-format
 msgid "Comparison Forms"
 msgstr "Formas de comparación"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:209
+#: src/editor/editor.cpp:212
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -673,65 +673,65 @@ msgstr "Varias opciones"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, kde-format
 msgid "Synonyms"
 msgstr "Sinónimos"
 
-#: src/editor/editor.cpp:236
+#: src/editor/editor.cpp:239
 #, kde-format
 msgid "Antonyms"
 msgstr "Antónimos"
 
-#: src/editor/editor.cpp:250
+#: src/editor/editor.cpp:253
 #, kde-format
 msgid "False Friends"
 msgstr "Falsos amigos"
 
-#: src/editor/editor.cpp:265
+#: src/editor/editor.cpp:268
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr "Símbolos fonéticos"
 
-#: src/editor/editor.cpp:280
+#: src/editor/editor.cpp:283
 #, kde-format
 msgid "Image"
 msgstr "Imagen"
 
-#: src/editor/editor.cpp:295
+#: src/editor/editor.cpp:298
 #, kde-format
 msgid "Summary"
 msgstr "Resumen"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:309
+#: src/editor/editor.cpp:312
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, kde-format
 msgid "Sound"
 msgstr "Sonido"
 
-#: src/editor/editor.cpp:324
+#: src/editor/editor.cpp:328
 #, kde-format
 msgid "Internet"
 msgstr "Internet"
 
-#: src/editor/editor.cpp:339
+#: src/editor/editor.cpp:344
 #, kde-format
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: src/editor/editor.cpp:414
+#: src/editor/editor.cpp:419
 #, kde-format
 msgid "Enter search terms here"
 msgstr "Introduzca los términos de búsqueda aquí"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:420
 #, kde-format
 msgid "Search your vocabulary"
 msgstr "Buscar en su vocabulario"
 
-#: src/editor/editor.cpp:417
+#: src/editor/editor.cpp:422
 #, kde-format
 msgid "S&earch:"
 msgstr "Bus&car:"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 02:26+0000\n"
+"POT-Creation-Date: 2024-03-08 02:19+0000\n"
 "PO-Revision-Date: 2013-11-16 05:27+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -270,8 +270,8 @@ msgstr "Осы сөздік жиынын өңдеу үшін ашу"
 msgid "Practice Anyway"
 msgstr "Жатығуны қайталау"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
-#: src/editor/editor.cpp:372
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
+#: src/editor/editor.cpp:377
 #, kde-format
 msgid "Practice"
 msgstr "Жаттығу"
@@ -646,12 +646,12 @@ msgstr "Сан:"
 msgid "Next"
 msgstr "Келесі"
 
-#: src/editor/editor.cpp:138
+#: src/editor/editor.cpp:141
 #, kde-format
 msgid "Units"
 msgstr ""
 
-#: src/editor/editor.cpp:149
+#: src/editor/editor.cpp:152
 #, fuzzy, kde-format
 #| msgid ""
 #| "Right click to add, delete, or rename lessons. \n"
@@ -666,24 +666,24 @@ msgstr ""
 "Белгі көзін белгілеп жаттығу үшін сабақтарды таңдап алыңыз.\n"
 "Тек [x] белгісі бар сабақтар бойынша сынақ өткізіледі!"
 
-#: src/editor/editor.cpp:160
+#: src/editor/editor.cpp:163
 #, kde-format
 msgid "Word Types"
 msgstr "Сөз табтары"
 
-#: src/editor/editor.cpp:180
+#: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr "Септеу/Жіктеу (етістік, сын есім, зат есім)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
 #, kde-format
 msgid "Comparison Forms"
 msgstr "Шырайлар"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:209
+#: src/editor/editor.cpp:212
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -691,66 +691,66 @@ msgstr "Бірнешеден таңдау"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, kde-format
 msgid "Synonyms"
 msgstr "Синонимдер"
 
-#: src/editor/editor.cpp:236
+#: src/editor/editor.cpp:239
 #, kde-format
 msgid "Antonyms"
 msgstr "Антонимдер"
 
-#: src/editor/editor.cpp:250
+#: src/editor/editor.cpp:253
 #, kde-format
 msgid "False Friends"
 msgstr "Жалған ұқсастары"
 
-#: src/editor/editor.cpp:265
+#: src/editor/editor.cpp:268
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr "Фонетикалық символдар"
 
-#: src/editor/editor.cpp:280
+#: src/editor/editor.cpp:283
 #, kde-format
 msgid "Image"
 msgstr "Кескін"
 
-#: src/editor/editor.cpp:295
+#: src/editor/editor.cpp:298
 #, kde-format
 msgid "Summary"
 msgstr "Қортыны"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:309
+#: src/editor/editor.cpp:312
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, kde-format
 msgid "Sound"
 msgstr "Дыбыс"
 
-#: src/editor/editor.cpp:324
+#: src/editor/editor.cpp:328
 #, kde-format
 msgid "Internet"
 msgstr "Интернет"
 
-#: src/editor/editor.cpp:339
+#: src/editor/editor.cpp:344
 #, kde-format
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: src/editor/editor.cpp:414
+#: src/editor/editor.cpp:419
 #, kde-format
 msgid "Enter search terms here"
 msgstr "Мүнда іздеу шартын келтіру керек"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:420
 #, fuzzy, kde-format
 #| msgid "Helps you train your vocabulary"
 msgid "Search your vocabulary"
 msgstr "Сөздерді пысықтауға көмек"
 
-#: src/editor/editor.cpp:417
+#: src/editor/editor.cpp:422
 #, kde-format
 msgid "S&earch:"
 msgstr "І&здейтіні:"

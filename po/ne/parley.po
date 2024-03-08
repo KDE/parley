@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 02:26+0000\n"
+"POT-Creation-Date: 2024-03-08 02:19+0000\n"
 "PO-Revision-Date: 2007-12-31 19:25+0545\n"
 "Last-Translator: Shyam Krishna Bal <balshyam24@yahoo.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -293,8 +293,8 @@ msgstr "विभिन्न नामसँग सक्रिय शब्द
 msgid "Practice Anyway"
 msgstr "अभ्यास विकल्प"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
-#: src/editor/editor.cpp:372
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
+#: src/editor/editor.cpp:377
 #, fuzzy, kde-format
 #| msgctxt "@title:group"
 #| msgid "Practice"
@@ -684,13 +684,13 @@ msgstr ""
 msgid "Next"
 msgstr "पछिल्लो"
 
-#: src/editor/editor.cpp:138
+#: src/editor/editor.cpp:141
 #, fuzzy, kde-format
 #| msgid "New type"
 msgid "Units"
 msgstr "नयाँ प्रकार"
 
-#: src/editor/editor.cpp:149
+#: src/editor/editor.cpp:152
 #, fuzzy, kde-format
 #| msgid ""
 #| "Right click to add, delete, or rename lessons. \n"
@@ -705,25 +705,25 @@ msgstr ""
 "जाँच बाकसहरूसँग तपाईँ कुन पाठ अभ्यास गर्ने चयन गर्न सक्नुहुन्छ ।\n"
 "जाँच गरिएका पाठहरू मात्र [x] परीक्षामा सोधिनेछ!"
 
-#: src/editor/editor.cpp:160
+#: src/editor/editor.cpp:163
 #, kde-format
 msgid "Word Types"
 msgstr "शब्द प्रकार"
 
-#: src/editor/editor.cpp:180
+#: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
 #, fuzzy, kde-format
 #| msgid "Comparison"
 msgid "Comparison Forms"
 msgstr "तुलना"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:209
+#: src/editor/editor.cpp:212
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -731,44 +731,44 @@ msgstr "बहुँविध छनौट"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, fuzzy, kde-format
 #| msgid "Synonym"
 msgid "Synonyms"
 msgstr "पर्यायवाची शब्द"
 
-#: src/editor/editor.cpp:236
+#: src/editor/editor.cpp:239
 #, fuzzy, kde-format
 #| msgid "Antonym"
 msgid "Antonyms"
 msgstr "विपरीतार्थ शब्द"
 
-#: src/editor/editor.cpp:250
+#: src/editor/editor.cpp:253
 #, fuzzy, kde-format
 #| msgid "&False friend:"
 msgid "False Friends"
 msgstr "गलत साथी:"
 
-#: src/editor/editor.cpp:265
+#: src/editor/editor.cpp:268
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr ""
 
-#: src/editor/editor.cpp:280
+#: src/editor/editor.cpp:283
 #, fuzzy, kde-format
 #| msgid "Image:"
 msgid "Image"
 msgstr "छवि:"
 
-#: src/editor/editor.cpp:295
+#: src/editor/editor.cpp:298
 #, fuzzy, kde-format
 #| msgid "Practice Summary"
 msgid "Summary"
 msgstr "अभ्यास सारांश"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:309
+#: src/editor/editor.cpp:312
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, fuzzy, kde-format
 #| msgctxt "Describing the sound of the character"
@@ -776,28 +776,28 @@ msgstr "अभ्यास सारांश"
 msgid "Sound"
 msgstr "ध्वनि: "
 
-#: src/editor/editor.cpp:324
+#: src/editor/editor.cpp:328
 #, kde-format
 msgid "Internet"
 msgstr ""
 
-#: src/editor/editor.cpp:339
+#: src/editor/editor.cpp:344
 #, kde-format
 msgid "LaTeX"
 msgstr ""
 
-#: src/editor/editor.cpp:414
+#: src/editor/editor.cpp:419
 #, kde-format
 msgid "Enter search terms here"
 msgstr "यहाँ खोजी सर्तहरू प्रविष्ट गर्नुहोस्"
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:420
 #, fuzzy, kde-format
 #| msgid "Helps you train your vocabulary"
 msgid "Search your vocabulary"
 msgstr "तपाईँलाई तपाईँको शब्द सूची प्रशिक्षण गर्न मद्दत गर्दछ"
 
-#: src/editor/editor.cpp:417
+#: src/editor/editor.cpp:422
 #, kde-format
 msgid "S&earch:"
 msgstr "खोजी:"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 02:26+0000\n"
+"POT-Creation-Date: 2024-03-08 02:19+0000\n"
 "PO-Revision-Date: 2004-05-10 17:51+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: Brezhoneg <Suav.Icb@wanadoo.fr>\n"
@@ -281,8 +281,8 @@ msgstr "Enrollañ an teul geriaoueg bev"
 msgid "Practice Anyway"
 msgstr "Sell ouzh an dibarzhoù"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:371
-#: src/editor/editor.cpp:372
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
+#: src/editor/editor.cpp:377
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Practice"
@@ -668,13 +668,13 @@ msgstr "Du"
 msgid "Next"
 msgstr "A &heul"
 
-#: src/editor/editor.cpp:138
+#: src/editor/editor.cpp:141
 #, fuzzy, kde-format
 #| msgid "Comment: %1"
 msgid "Units"
 msgstr "Askelenn : %1"
 
-#: src/editor/editor.cpp:149
+#: src/editor/editor.cpp:152
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -682,25 +682,25 @@ msgid ""
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
 
-#: src/editor/editor.cpp:160
+#: src/editor/editor.cpp:163
 #, fuzzy, kde-format
 #| msgid "Word t&ype:"
 msgid "Word Types"
 msgstr "R&izh ar ger :"
 
-#: src/editor/editor.cpp:180
+#: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:194 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
 #, fuzzy, kde-format
 msgid "Comparison Forms"
 msgstr "&Boutin"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:209
+#: src/editor/editor.cpp:212
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -708,43 +708,43 @@ msgstr "Lies choazh"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:223 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, fuzzy, kde-format
 #| msgid "&Synonyms"
 msgid "Synonyms"
 msgstr "&Heñvelsteroù"
 
-#: src/editor/editor.cpp:236
+#: src/editor/editor.cpp:239
 #, fuzzy, kde-format
 #| msgid "astronomy"
 msgid "Antonyms"
 msgstr "steredoniezh"
 
-#: src/editor/editor.cpp:250
+#: src/editor/editor.cpp:253
 #, kde-format
 msgid "False Friends"
 msgstr ""
 
-#: src/editor/editor.cpp:265
+#: src/editor/editor.cpp:268
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr ""
 
-#: src/editor/editor.cpp:280
+#: src/editor/editor.cpp:283
 #, fuzzy, kde-format
 #| msgid "&male:\t"
 msgid "Image"
 msgstr "&paotr :\t"
 
-#: src/editor/editor.cpp:295
+#: src/editor/editor.cpp:298
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Summary"
 msgstr "Pennad"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:309
+#: src/editor/editor.cpp:312
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, fuzzy, kde-format
 #| msgctxt "Describing the sound of the character"
@@ -752,29 +752,29 @@ msgstr "Pennad"
 msgid "Sound"
 msgstr "Son :"
 
-#: src/editor/editor.cpp:324
+#: src/editor/editor.cpp:328
 #, fuzzy, kde-format
 #| msgid "Interlingue"
 msgid "Internet"
 msgstr "Interlingeg"
 
-#: src/editor/editor.cpp:339
+#: src/editor/editor.cpp:344
 #, kde-format
 msgid "LaTeX"
 msgstr ""
 
-#: src/editor/editor.cpp:414
+#: src/editor/editor.cpp:419
 #, kde-format
 msgid "Enter search terms here"
 msgstr ""
 
-#: src/editor/editor.cpp:415
+#: src/editor/editor.cpp:420
 #, fuzzy, kde-format
 #| msgid "Save the active vocabulary document"
 msgid "Search your vocabulary"
 msgstr "Enrollañ an teul geriaoueg bev"
 
-#: src/editor/editor.cpp:417
+#: src/editor/editor.cpp:422
 #, kde-format
 msgid "S&earch:"
 msgstr "K&aslk :"
