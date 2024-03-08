@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: KDE 4.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-19 00:35+0000\n"
-"PO-Revision-Date: 2024-03-06 22:40+0100\n"
+"PO-Revision-Date: 2024-03-07 22:29+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2066,7 +2066,7 @@ msgstr "12 hónap"
 #: src/practice/configure/blockoptions.cpp:220
 #, kde-format
 msgid "Illogical blocking times.\n"
-msgstr "Irreális blokkolási idők.\n"
+msgstr "Logikátlan tiltási idők.\n"
 
 #: src/practice/configure/blockoptions.cpp:222
 #: src/practice/configure/blockoptions.cpp:235
@@ -2083,7 +2083,7 @@ msgid ""
 "Illogical expiration times.\n"
 msgstr ""
 "\n"
-"Irreális lejárati idők.\n"
+"Logikátlan lejárati idők.\n"
 
 #: src/practice/configure/blockoptions.cpp:247
 #, kde-format
@@ -2092,20 +2092,20 @@ msgid ""
 "Illogical blocking vs. expiration times.\n"
 msgstr ""
 "\n"
-"Irreális blokkolási ill. lejárati idők.\n"
+"Logikátlan tiltási ill. lejárati idők.\n"
 
 #: src/practice/configure/blockoptions.cpp:249
 #, kde-format
 msgid ""
 "The blocking time at level %1 should be lower than the expiration time.\n"
 msgstr ""
-"A(z) %1. szinten a blokkolási időnek rövidebbnek kellene lennie a lejárati "
+"A(z) %1. szinten a tiltási időnek rövidebbnek kellene lennie a lejárati "
 "időnél.\n"
 
 #: src/practice/configure/blockoptions.cpp:255
 #, kde-format
 msgid "Illogical Values"
-msgstr "Irreális értékek"
+msgstr "Logikátlan értékek"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev2)
 #: src/practice/configure/blockoptions.ui:40
@@ -2135,7 +2135,7 @@ msgstr "Le&járat"
 #: src/practice/configure/blockoptions.ui:95
 #, kde-format
 msgid "Bl&ocking"
-msgstr "&Blokkolás"
+msgstr "&Tiltás"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev4)
 #: src/practice/configure/blockoptions.ui:118
@@ -2210,12 +2210,12 @@ msgstr "Általános gyakorlási beállítások"
 msgctxt ""
 "@title:group vocabulary can be set to be blocked for a certain amount of time"
 msgid "Blocking"
-msgstr "Blokkolás"
+msgstr "Tiltás"
 
 #: src/practice/configure/configurepracticedialog.cpp:37
 #, kde-format
 msgid "Blocking Settings"
-msgstr "Blokkolási beállítások"
+msgstr "Tiltási beállítások"
 
 #: src/practice/configure/configurepracticedialog.cpp:42
 #, kde-format
@@ -2235,13 +2235,13 @@ msgctxt ""
 "@title:group Configure specific settings for practicing vocabulary, short "
 "title in config dialog."
 msgid "Specific"
-msgstr "Különleges"
+msgstr "Speciális"
 
 #: src/practice/configure/configurepracticedialog.cpp:51
 #, kde-format
 msgctxt "Configure specific settings for practicing vocabulary."
 msgid "Specific Practice Settings"
-msgstr "Különleges gyakorlási beállítások"
+msgstr "Speciális gyakorlási beállítások"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: src/practice/configure/generalpracticeoptions.ui:17
@@ -2356,14 +2356,13 @@ msgid ""
 "associated directly with the current word. With this option enabled any "
 "synonym is accepted."
 msgstr ""
-"Alapértelmezettként megkérdezi, hogy belépsz e a szinonimákba ameddig "
-"belépsz abba amit közvetlenül az aktuális szóval társítanak. Ezzel az "
-"engedélyezett lehetőséggel bármilyen szinonimát elfogad."
+"Alapértelmezés szerint szinonimák megadására kérik, amíg meg nem adja azt, "
+"ami közvetlenül a jelenlegi szóhoz kapcsolódik. Ha ez az opció be van "
+"kapcsolva, bármely szinonima elfogadott."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
-#, fuzzy, kde-format
-#| msgid "Accept any Synonym"
+#, kde-format
 msgid "Accept any synonym"
 msgstr "Bármilyen szinonima elfogadása"
 
@@ -2375,17 +2374,15 @@ msgstr "Munkamenetek"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/generalpracticeoptions.ui:202
-#, fuzzy, kde-format
-#| msgid "Max session size"
+#, kde-format
 msgid "Max session size:"
-msgstr "Legnagyobb munkamenet méret"
+msgstr "Maximális munkamenet-méret:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
-#, fuzzy, kde-format
-#| msgid "Max number of new words"
+#, kde-format
 msgid "Max number of new words:"
-msgstr "Új szavak legnagyobb száma"
+msgstr "Új szavak maximális száma:"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:23
@@ -2429,29 +2426,26 @@ msgstr "Legfeljebb"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/thresholdoptions.ui:43
-#, fuzzy, kde-format
-#| msgid "&Grade:"
+#, kde-format
 msgid "Grade:"
-msgstr "&Osztályzat:"
+msgstr "Fokozat:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/thresholdoptions.ui:53
-#, fuzzy, kde-format
-#| msgid "Times practiced"
+#, kde-format
 msgid "Times practiced:"
-msgstr "Gyakorlási idő"
+msgstr "Gyakorlásszám:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
-#, fuzzy, kde-format
-#| msgid "Answered incorrectly"
+#, kde-format
 msgid "Answered incorrectly:"
-msgstr "Helytelenül válaszolt"
+msgstr "Helytelenül válaszolt:"
 
 #: src/practice/conjugationbackendmode.cpp:93
 #, kde-format
 msgid "All conjugation forms were right."
-msgstr "Minden ragozásalak helyes"
+msgstr "Minden ragozásalak helyes."
 
 #: src/practice/conjugationbackendmode.cpp:97
 #, kde-format
@@ -2527,11 +2521,11 @@ msgid_plural ""
 "You answered correctly %2 of a total of %1 words.\n"
 "You are %3% done."
 msgstr[0] ""
-"%2 helyes választ adtál a összes %1 szóból.\n"
-"%3% készen van."
+"%2 / %1 szót válaszolt meg helyesen.\n"
+"%3% van készen."
 msgstr[1] ""
-"%2 helyes választ adtál a összes %1 szóból.\n"
-"%3% készen van."
+"%2 / %1 szót válaszolt meg helyesen.\n"
+"%3% van készen."
 
 #: src/practice/latexrenderer.cpp:46
 #, kde-format
@@ -2547,13 +2541,13 @@ msgstr "LaTeX hiba."
 #: src/practice/writtenbackendmode.cpp:145
 #, kde-format
 msgid "You revealed the answer by using too many hints."
-msgstr "Felfedted a választ azáltal, hogy túl sok utalást használtál."
+msgstr "A túl sok tipp használatával felfedte a választ."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, answerLaterButton)
 #: src/practice/practice_mainwindow.ui:128
 #, kde-format
 msgid "Skip this word for now and ask again later"
-msgstr "Kihagyja most ezt a szót és később újra rákérdez"
+msgstr "Szó kihagyása most, és rákérdezés újra később"
 
 #. i18n: ectx: property (text), widget (QPushButton, answerLaterButton)
 #: src/practice/practice_mainwindow.ui:131
@@ -2632,20 +2626,20 @@ msgid ""
 msgstr ""
 "Amikor válaszolt, a Parley meg fogja jeleníteni, hogy a válasza helyes vagy "
 "hibás.\n"
-"Ez a parancsikon úgy változik, minek számít a válasz."
+"Ez a gyorsbillentyű megváltoztatja, minek számít a válasz."
 
 #: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
-msgstr "jártas vagy %1 a(z) %2-ből és a %3-ből. "
+msgstr "%1 gyakorolt %2 %3 alatt."
 
 #: src/practice/practicesummarycomponent.cpp:58
 #, kde-format
 msgid "one word"
 msgid_plural "%1 words"
-msgstr[0] "egy szó"
-msgstr[1] "%1 szó"
+msgstr[0] "Egy szót"
+msgstr[1] "%1 szót"
 
 #: src/practice/practicesummarycomponent.cpp:59
 #, kde-format
@@ -2664,12 +2658,12 @@ msgstr[1] "%1 másodperc"
 #: src/practice/practicesummarycomponent.cpp:68
 #, kde-format
 msgid "Practice Overview"
-msgstr "Gyakorlás áttekintés"
+msgstr "Gyakorlás áttekintése"
 
 #: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
-msgstr "Váltás a Gyakorlás áttekintés oldalra"
+msgstr "Váltás a Gyakorlás áttekintése oldalra"
 
 #: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
@@ -2684,7 +2678,7 @@ msgstr "OpenDocument szövegfájlok"
 #: src/practice/practicesummarycomponent.cpp:146
 #, kde-format
 msgid "Practice results"
-msgstr "Gyakorlás eredmények"
+msgstr "Gyakorlás eredményei"
 
 #: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
@@ -2758,7 +2752,7 @@ msgstr "A válasza"
 #: src/practice/sessionmanagerbase.cpp:53
 #, kde-format
 msgid "The vocabulary collection contains fewer than two languages."
-msgstr "A szókészletgyűjtemény kevesebb mint két nyelvet tartalmaz."
+msgstr "A szószedetgyűjtemény kevesebb mint két nyelvet tartalmaz."
 
 #: src/practice/sessionmanagerbase.cpp:53
 #, kde-format
@@ -2773,8 +2767,8 @@ msgid ""
 "first attempt."
 msgstr ""
 "Ez a válasz helyesnek lesz számolva.\n"
-"Csak akkor fogja a szavakat helyesnek számolni, ha azok első kísérletre "
-"helyesek."
+"A szavak csak akkor számítanak helyesnek, ha első próbálkoásra helyesen "
+"válaszolt."
 
 #: src/practice/statustoggle.cpp:78
 #, kde-format
@@ -2789,46 +2783,46 @@ msgid ""
 "first attempt."
 msgstr ""
 "Ez a válasz hibásnak fog számítani.\n"
-"Csak akkor fogja a szavakat helyesnek számolni, ha azok első kísérletre "
-"helyes a válasz."
+"A szavak csak akkor számítanak helyesnek, ha első próbálkoásra helyesen "
+"válaszolt."
 
 #: src/practice/statustoggle.cpp:82
 #, kde-format
 msgid "Count this answer as correct"
-msgstr "Ezt a választ helyesnek veszi"
+msgstr "Válasz helyesként számítása"
 
 #: src/practice/summarybarwidget.cpp:78
 #, kde-format
 msgctxt "test results"
 msgid "%1 % correct"
-msgstr "%1 % helyes"
+msgstr "%1% helyes"
 
 #: src/practice/summarybarwidget.cpp:80
 #, kde-format
 msgctxt "test results"
 msgid "%1 % wrong"
-msgstr "%1 % hibás"
+msgstr "%1% hibás"
 
 #: src/practice/summarybarwidget.cpp:82
 #, kde-format
 msgctxt "test results"
 msgid "%1 % not answered"
-msgstr "%1 % nem megválaszolt"
+msgstr "%1% nem megválaszolt"
 
 #: src/practice/summarybarwidget.cpp:140
 #, kde-format
 msgid "Answered correctly on the first attempt: %1 of %2 (%3 %)"
-msgstr "Helyes válasz az első kísérletre: %1 a(z) %2-ből (%3 %)"
+msgstr "Helyes válasz az első próbálkozásra: %1 / %2 (%3%)"
 
 #: src/practice/summarybarwidget.cpp:147
 #, kde-format
 msgid "Answered wrong on the first attempt: %1 of %2 (%3 %)"
-msgstr "Első próbálkozásra rossz válaszok: %1 a(z) %2 -ból (%3 %)"
+msgstr "Első próbálkozásra rossz válaszok: %1 / %2 (%3%)"
 
 #: src/practice/summarybarwidget.cpp:154
 #, kde-format
 msgid "Not answered during this practice: %1 of %2 (%3 %)"
-msgstr "Nem megválaszolt ezalatt a gyakorlat alatt: %1 a(z) %2-ből (%3 %)"
+msgstr "Nem megválaszolt ezalatt a gyakorlat alatt: %1 / %2 (%3%)"
 
 #: src/practice/writtenbackendmode.cpp:70
 #, kde-format
@@ -2841,7 +2835,7 @@ msgid ""
 "Your answer was a synonym. Please enter another word with the same "
 "translation."
 msgstr ""
-"A válasza egy szinonima volt. Kérem adjon meg egy másik szót azonos "
+"A válasza egy szinonima volt. Kérem, adjon meg egy másik szót azonos "
 "fordításban."
 
 #: src/practice/writtenbackendmode.cpp:88
@@ -2850,15 +2844,14 @@ msgid "Your answer was an already entered synonym."
 msgstr "A válasza egy már megadott szinonima volt."
 
 #: src/practice/writtenbackendmode.cpp:91
-#, fuzzy, kde-format
-#| msgid "Your answer was a synonym and your capitalization was wrong."
+#, kde-format
 msgid "Your answer was a synonym and your punctuation was wrong."
-msgstr "A válasza egy szinonima volt és a nagybetűs írás hibás volt."
+msgstr "A válasza egy szinonima volt és a központozása hibás volt."
 
 #: src/practice/writtenbackendmode.cpp:93
 #, kde-format
 msgid "Your answer was a synonym and your capitalization was wrong."
-msgstr "A válasza egy szinonima volt és a nagybetűs írás hibás volt."
+msgstr "A válasza szinonima volt, és a nagybetűs írásmódja hibás volt."
 
 #: src/practice/writtenbackendmode.cpp:95
 #, kde-format
@@ -2871,15 +2864,13 @@ msgid "Your answer was a synonym."
 msgstr "A válasza egy szinonima volt."
 
 #: src/practice/writtenbackendmode.cpp:105
-#, fuzzy, kde-format
-#| msgid ""
-#| "Your answer was wrong as capitalization mistakes are not accepted. Please "
-#| "try again."
+#, kde-format
 msgid ""
 "Your answer was wrong as punctuation mistakes are not accepted. Please try "
 "again."
 msgstr ""
-"A válasza hibás, a nagybetűs hibák nem elfogadhatóak. Kérjük próbálja újra."
+"A válasza hibás, a központozási hibák nem elfogadhatóak. Kérjük próbálja "
+"újra."
 
 #: src/practice/writtenbackendmode.cpp:107
 #, kde-format
@@ -2894,7 +2885,7 @@ msgstr ""
 msgid ""
 "Your answer was wrong as accent mistakes are not accepted. Please try again."
 msgstr ""
-"A válasza hibás, az ékezet hibák nem elfogadhatóak. Kérjük próbálja újra."
+"A válasza hibás, az ékezethibák nem elfogadhatóak. Kérjük próbálja újra."
 
 #: src/practice/writtenbackendmode.cpp:111
 #, kde-format
@@ -2902,10 +2893,9 @@ msgid "Your answer was wrong. Please try again."
 msgstr "A válasza hibás volt. Kérjük próbálja újra."
 
 #: src/practice/writtenbackendmode.cpp:118
-#, fuzzy, kde-format
-#| msgid "Your answer was right, but your capitalization was wrong."
+#, kde-format
 msgid "Your answer was right, but your punctuation was wrong."
-msgstr "A válasza helyes volt, de a nagybetűkezelései hibásak voltak."
+msgstr "A válasza helyes volt, de a központozása hibás voltak."
 
 #: src/practice/writtenbackendmode.cpp:120
 #, kde-format
@@ -2923,16 +2913,13 @@ msgid "Your answer was right."
 msgstr "A válasza helyes volt."
 
 #: src/practice/writtenbackendmode.cpp:128
-#, fuzzy, kde-format
-#| msgid ""
-#| "Your answer was right... but not on the first try and your capitalization "
-#| "was wrong."
+#, kde-format
 msgid ""
 "Your answer was right... but not on the first try and your punctuation was "
 "wrong."
 msgstr ""
-"A válasza helyes volt, de nem az első próbálkozás és a nagybetűkezelések "
-"hibásak voltak."
+"A válasz helyes volt, de nem az első próbálkozásra és a központozás is hibás "
+"volt."
 
 #: src/practice/writtenbackendmode.cpp:130
 #, kde-format
@@ -2940,7 +2927,7 @@ msgid ""
 "Your answer was right... but not on the first try and your capitalization "
 "was wrong."
 msgstr ""
-"A válasza helyes volt, de nem az első próbálkozás és a nagybetűkezelések "
+"A válasz helyes volt, de nem az első próbálkozásra és a nagybetűkezelések "
 "hibásak voltak."
 
 #: src/practice/writtenbackendmode.cpp:132
@@ -2948,13 +2935,13 @@ msgstr ""
 msgid ""
 "Your answer was right... but not on the first try and accents were wrong."
 msgstr ""
-"A válasz helyes volt... de nem az első próbálkozás és az ékezetek hibásak "
+"A válasz helyes volt, de nem az első próbálkozásra és az ékezetek hibásak "
 "voltak."
 
 #: src/practice/writtenbackendmode.cpp:134
 #, kde-format
 msgid "Your answer was right... but not on the first try."
-msgstr "A válaszod helyes, de nem ez volt az első próbálkozás."
+msgstr "A válasz helyes volt, de nem az első próbálkozásra."
 
 #: src/practice/writtenbackendmode.cpp:154
 #, kde-format
@@ -3001,7 +2988,7 @@ msgstr "E-&mail:"
 #: src/settings/documentproperties.ui:121
 #, kde-format
 msgid "A way to contact you (email or a webpage)."
-msgstr "Egy mód, ahogy kapcsolatba lehet lépni veled (email vagy weboldal)."
+msgstr "Egy mód, ahogy kapcsolatba lehet lépni Önnel (e-mail vagy weboldal)."
 
 #. i18n: ectx: property (text), widget (QLabel, label_remark)
 #: src/settings/documentproperties.ui:128
@@ -3079,7 +3066,7 @@ msgstr ""
 #: src/settings/documentproperties.ui:239
 #, kde-format
 msgid "GPLv2+ (GNU General Public License version 2 or later)"
-msgstr "GPLv2+ (GNU Általános Nyilvános Licenc 2. verzió vagy későbbi)"
+msgstr "GPLv2+ (GNU General Public License version 2 vagy későbbi)"
 
 #. i18n: ectx: property (text), widget (QLabel, label_language_1)
 #: src/settings/documentproperties.ui:256
@@ -3095,16 +3082,13 @@ msgstr "&Második nyelv:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
 #: src/settings/documentproperties.ui:311
-#, fuzzy, kde-format
-#| msgid "&Setup Grammar Details"
+#, kde-format
 msgid "&Setup grammar details"
 msgstr "&Nyelvtani jellemzők beállítása"
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgctxt "Attept to download grammar properties for the selected languages"
 msgid "Download grammar"
 msgstr "Nyelvtan letöltése"
@@ -3117,7 +3101,7 @@ msgstr "Nyelvtan letöltése"
 #: src/settings/languagesettings.kcfg:23 src/settings/languagesettings.kcfg:24
 #, kde-format
 msgid "Selected tenses for conjugation practice."
-msgstr "Ragozási gyakorlat a kiválasztott igeidőkért"
+msgstr "Kiválasztott igeidők a ragozási gyakorlathoz."
 
 #. i18n: ectx: label, entry (VisibleColumns), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (VisibleColumns), group (Document $(fileurl))
@@ -3134,7 +3118,7 @@ msgstr "Látható oszlopok a fő szerkesztőablakban."
 #: src/settings/documentsettings.kcfg:20 src/settings/documentsettings.kcfg:21
 #, kde-format
 msgid "Collapsed tree view items of statistics view window."
-msgstr ""
+msgstr "A statisztika nézet ablak összecsukott fa nézetének elemei."
 
 #: src/settings/generaloptions.cpp:41
 #, kde-format
@@ -3201,7 +3185,7 @@ msgstr "Megnyitás/mentés"
 #, kde-format
 msgid "Always open the collection that was active when quitting Parley"
 msgstr ""
-"Mindig kinyitja azt a gyűjteményt, ami aktív volt, mikor kilépsz a Parleyból"
+"Mindig azt a gyűjteményt nyissa meg, amely a Parley kilépésekor aktív volt."
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoOpenLast)
 #: src/settings/generaloptionsbase.ui:26
@@ -3210,22 +3194,22 @@ msgid ""
 "When this option is checked, the last active collection will be loaded "
 "automatically when starting Parley instead of showing the welcome screen."
 msgstr ""
-"Amikor ez a lehetőség ellenőrzött, az utolsó aktív gyűjtemény automatikusan "
-"be fog töltődni amikor elindul a Parley, ahelyett, hogy a bejelentkező "
-"képernyőt mutatná."
+"Ha ez az opció be van jelölve, akkor az utolsó aktív gyűjtemény "
+"automatikusan betöltődik a Parley indításakor a kezdőképernyő megjelenítése "
+"helyett."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoOpenLast)
 #: src/settings/generaloptionsbase.ui:29
 #, kde-format
 msgid "Always load the last opened collection on start"
-msgstr "Mindig betölti kezdésnél az utoljára kinyitott gyűjteményt"
+msgstr "Indításkor mindig az utoljára megnyitott gyűjteményt töltse be"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoSave)
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:39 src/settings/generaloptionsbase.ui:60
 #, kde-format
 msgid "Allow automatic saving of your work"
-msgstr "Lehetővé teszi a munkája automatikus elmentését"
+msgstr "A munka automatikus mentésének engedélyezése"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoSave)
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoBackup)
@@ -3238,13 +3222,13 @@ msgstr "Ha bejelöli ezt az opciót, a munkája automatikusan el lesz mentve"
 #: src/settings/generaloptionsbase.ui:45
 #, kde-format
 msgid "&Save vocabularies automatically on close and quit"
-msgstr "A szógyűjtemények &automatikus mentése bezáráskor és kilépéskor"
+msgstr "Szószedetek &automatikus mentése bezáráskor és kilépéskor"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:66
 #, kde-format
 msgid "&Create a backup every"
-msgstr "&Biztonsági mentés készítése minden"
+msgstr "&Biztonsági mentés készítése"
 
 #. i18n: ectx: property (text), widget (QLabel, lblBackupInterva)
 #: src/settings/generaloptionsbase.ui:89
@@ -3288,7 +3272,7 @@ msgstr "Szerkesztés"
 #: src/settings/generaloptionsbase.ui:162
 #, kde-format
 msgid "&Append new rows automatically when editing"
-msgstr "Automatikusan új sorokat csatol, amikor szerkeszt"
+msgstr "Új sorok &automatikus hozzáadása szerkesztéskor"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
 #: src/settings/kgametheme/kgamethemeselector.ui:37
@@ -3300,7 +3284,7 @@ msgstr "Ú&j témák letöltése…"
 #: src/settings/kgametheme/kgamethemeselector.ui:94
 #, kde-format
 msgid "Theme Details"
-msgstr "Témarészletek"
+msgstr "Téma részletei"
 
 #. i18n: ectx: property (text), widget (QLabel, labelContact)
 #: src/settings/kgametheme/kgamethemeselector.ui:128
@@ -3339,7 +3323,7 @@ msgstr "Nyelv eltávolítása"
 #: src/settings/languageproperties.cpp:45
 #, kde-format
 msgid "New Language"
-msgstr "Új nyelv felvétele"
+msgstr "Új nyelv"
 
 #: src/settings/languageproperties.cpp:58
 #, kde-format
@@ -3350,7 +3334,7 @@ msgstr "Tulajdonságok: %1"
 #: src/settings/languageproperties.cpp:88
 #, kde-format
 msgid "Really delete language: %1?"
-msgstr "Biztosan törölni szeretné ezt a nyelvet: %1?"
+msgstr "Biztosan törölni szeretné a(z) %1 a nyelvet?"
 
 #: src/settings/languageproperties.cpp:89
 #, kde-format
@@ -3360,7 +3344,7 @@ msgstr "Nyelv eltávolítása"
 #: src/settings/languagepropertiespage.cpp:83
 #, kde-format
 msgid "No KDE keyboard selector found."
-msgstr "Nem található KDE billentyűzet választó."
+msgstr "Nem található KDE billentyűzet-választó."
 
 #: src/settings/languagepropertiespage.cpp:346
 #: src/settings/languagepropertiespage.cpp:368
@@ -3603,13 +3587,13 @@ msgstr "&Tisztítás"
 #: src/settings/parley.kcfg:11
 #, kde-format
 msgid "Theme to use for practice and welcome screen"
-msgstr "Téma használata a gyakorlatban és a nyitóképernyőn"
+msgstr "Téma a gyakorlathoz és az üdvözlőképernyőhöz"
 
 #. i18n: ectx: label, entry (NumPreSetting), group (General)
 #: src/settings/parley.kcfg:15
 #, kde-format
 msgid "Number of stored setting profiles"
-msgstr "Eltárolt beállítási profilok száma"
+msgstr "Tárolt beállítási profilok száma"
 
 #. i18n: ectx: label, entry (SmartAppend), group (General)
 #: src/settings/parley.kcfg:19
@@ -3617,16 +3601,16 @@ msgstr "Eltárolt beállítási profilok száma"
 msgid ""
 "If true, when using the entry dialog, new rows will be appended as needed"
 msgstr ""
-"Ha igaz, amikor a bejegyzés párbeszédet használja, új soroka kerülnek "
-"csatolásra, ha szükséges"
+"Ha igaz, akkor a beviteli párbeszédpanel használatakor az új sorok szükség "
+"szerint lesznek hozzáfűzve."
 
 #. i18n: ectx: label, entry (Separator), group (General)
 #: src/settings/parley.kcfg:23
 #, kde-format
 msgid "This sets the separator used when copying/pasting text, default is Tab"
 msgstr ""
-"Ez a használt elválasztót állítja be amikor másol/beilleszt szöveget, "
-"alapértelmezett a Tab"
+"Ez állítja be a szöveg másolásakor/beillesztésekor használt elválasztójelet, "
+"a Tab az alapértelmezett"
 
 #. i18n: ectx: label, entry (EntriesPerLesson), group (General)
 #: src/settings/parley.kcfg:27
@@ -3639,21 +3623,21 @@ msgstr "A bejegyzések száma egységenként"
 #, kde-format
 msgid "If true, on each application start the last opened file will be loaded"
 msgstr ""
-"Ha igaz, minden alkalmazás kezdetén betöltődik a legutóljára megnyitott fájl"
+"Ha igaz, az utoljára megnyitott fájl töltődik be minden alkalmazásinduláskor "
 
 #. i18n: ectx: label, entry (AutoSave), group (General)
 #: src/settings/parley.kcfg:35
 #, kde-format
 msgid "If true, vocabularies are automatically saved on close and exit"
 msgstr ""
-"Ha igaz, a szógyűjtemények automatikus mentése történik bezáráskor és "
+"Ha igaz, a szószedetek automatikusan el lesznek mentve a bezáráskor és "
 "kilépéskor"
 
 #. i18n: ectx: label, entry (AutoBackup), group (General)
 #: src/settings/parley.kcfg:42
 #, kde-format
 msgid "If true, a backup is saved every BackupTime minutes"
-msgstr "Ha igaz, minden BiztonságiIdő percben a biztonsági mentés ment"
+msgstr "Ha igaz, biztonsági mentés készül a beállított időközönként"
 
 #. i18n: ectx: label, entry (BackupTime), group (General)
 #: src/settings/parley.kcfg:46
@@ -3665,21 +3649,19 @@ msgstr "Időintervallum két automatikus biztonsági mentés között"
 #: src/settings/parley.kcfg:57
 #, kde-format
 msgid "Show images on the front of the flashcard."
-msgstr "A tanulókártya előlapján lévő kép mutatása."
+msgstr "A tanulókártya előlapján lévő kép megjelenítése."
 
 #. i18n: ectx: label, entry (FlashcardsBackImage), group (PracticeOptions)
 #: src/settings/parley.kcfg:61
 #, kde-format
 msgid "Show images on the back of the flashcard."
-msgstr "A tanulókártya hátlapján lévő kép mutatása."
+msgstr "A tanulókártya hátlapján lévő kép megjelenítése."
 
 #. i18n: ectx: label, entry (Block), group (PracticeOptions)
 #: src/settings/parley.kcfg:65
 #, kde-format
 msgid "In Blocking Query Tab Dialog, if checked then the Query is blocked"
-msgstr ""
-"Zárolás alatt van a kérdés párbeszéd fül, ha be van jelölve, akkor a kérdés "
-"zárolt."
+msgstr "Ha be van jelölve a Kérdés tiltása lapon, a kérdés tiltva van"
 
 #. i18n: ectx: label, entry (Expire), group (PracticeOptions)
 #: src/settings/parley.kcfg:69
@@ -3688,22 +3670,18 @@ msgid ""
 "In Blocking Query Tab Dialog, if checked then the Query accepts an expiring "
 "time"
 msgstr ""
-"Zárolás alatt van a kérdés párbeszéd fül, ha be van jelölve, akkor a kérdés "
-"hozzáférés ideje lejárt."
+"Ha be van jelölve a Kérdés tiltása lapon, a kérdés elfogad lejárati időt"
 
 #. i18n: ectx: label, entry (TestOrderLesson), group (PracticeOptions)
 #: src/settings/parley.kcfg:73
-#, fuzzy, kde-format
-#| msgid ""
-#| "Append new vocabulary in a test in order of their lessons. Note that this "
-#| "will not be a hard transition, but a slow mix from one lesson to the next."
+#, kde-format
 msgid ""
 "Append new vocabulary in a collection in order of their units. Note that "
 "this will not be a hard transition, but a slow mix from one unit to the next."
 msgstr ""
-"Csatoljon új szókészletet egy tesztben a leckéik sorrendjében. Vegye "
-"figyelembe azt, hogy így nem lesz nagy ugrás, hanem a következő leckéből egy "
-"kissebb átmenet."
+"Az új szókincset a gyűjteményben az egységek sorrendjében illessze be. Vegye "
+"figyelembe, hogy ez nem egy kemény átmenet lesz, hanem egy lassú keveredés "
+"egyik egységtől a másikig."
 
 #. i18n: ectx: label, entry (TestNumberOfEntries), group (PracticeOptions)
 #: src/settings/parley.kcfg:77
@@ -3712,20 +3690,20 @@ msgid ""
 "The number of entries that are practiced at the same time. If one of these "
 "is answered correctly another entry will be appended."
 msgstr ""
-"Olyan bejegyzések száma, amiket gyakorolt már néhányszor. Ha egy ezek közül "
-"helyesen meg lett válaszolva, akkor másik bejegyzés csatolódik."
+"Az egyszerre gyakorolt bejegyzések száma. Ha az egyik ilyenre helyesen "
+"válaszolnak, egy újabb bejegyzés kerül hozzáfűzésre."
 
 #. i18n: ectx: label, entry (SwapDirection), group (PracticeOptions)
 #: src/settings/parley.kcfg:81
 #, kde-format
 msgid "Swap direction randomly"
-msgstr "Az irányok véletlen fel&cserélése"
+msgstr "Véletlenszerű irányváltás"
 
 #. i18n: ectx: label, entry (PracticeTimeout), group (PracticeOptions)
 #: src/settings/parley.kcfg:86
 #, kde-format
 msgid "Limit the time for the user to answer in a test."
-msgstr "Korlátozza az időt a felhasználó számára a tesztben a válaszadásra"
+msgstr "Korlátozza a felhasználó válaszadási idejét egy tesztben."
 
 #. i18n: ectx: label, entry (PracticeTimeoutMode), group (PracticeOptions)
 #: src/settings/parley.kcfg:90
@@ -3734,8 +3712,8 @@ msgid ""
 "Show - show the solution after the given time; Continue - go to the next "
 "question after the given time."
 msgstr ""
-"Mutat - adott idő után mutatja a megoldást; Folytat - adott idő után a "
-"következő kérdésre megy."
+"Megjelenítés - a megoldás megjelenítése a megadott idő után; Folytatás - "
+"tovább a következő kérdésre a megadott idő után."
 
 #. i18n: ectx: label, entry (PracticeTimeoutTimePerAnswer), group (PracticeOptions)
 #: src/settings/parley.kcfg:98
@@ -3747,38 +3725,37 @@ msgstr "A válaszadásra megengedett maximális idő."
 #: src/settings/parley.kcfg:103
 #, kde-format
 msgid "Enable suggestion lists in written practice."
-msgstr "Engedélyezi a javaslat listákat az írott gyakorlatban."
+msgstr "Javaslatlisták engedélyezése az írott gyakorlatban."
 
 #. i18n: ectx: label, entry (ShowHints), group (PracticeOptions)
 #: src/settings/parley.kcfg:107
 #, kde-format
 msgid "Enable the showing of hints."
-msgstr "Tippek mutatásának engedélyezése."
+msgstr "Tippek megjelenítésének engedélyezése."
 
 #. i18n: ectx: label, entry (IgnoreAccentMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:111
 #, kde-format
 msgid "Count answers as right when only the accentuation is wrong."
-msgstr "Helyesnek veszi a válaszokat, ha csak az ékezet rossz."
+msgstr "Számolja helyesnek a válaszokat, ha csak az ékezet hibás."
 
 #. i18n: ectx: label, entry (IgnoreCapitalizationMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:115
 #, kde-format
 msgid "Count answers as right when only the capitalization is wrong."
-msgstr "Helyesnek veszi a válaszokat, ha csak az nagybetűkezelés rossz."
+msgstr "Számolja helyesnek a válaszokat, ha csak a nagybetűsítés hibás."
 
 #. i18n: ectx: label, entry (IgnorePunctuationMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:119
-#, fuzzy, kde-format
-#| msgid "Count answers as right when only the accentuation is wrong."
+#, kde-format
 msgid "Count answers as right when only the punctuation is wrong."
-msgstr "Helyesnek veszi a válaszokat, ha csak az ékezet rossz."
+msgstr "Számolja helyesnek a válaszokat, ha csak a központozás hibás."
 
 #. i18n: ectx: label, entry (SplitTranslations), group (PracticeOptions)
 #: src/settings/parley.kcfg:124
 #, kde-format
 msgid "Split translations in written practice."
-msgstr "Osszon szét fordításokat az írott gyakorlatban."
+msgstr "A fordítások feldarabolása az írott gyakorlatban."
 
 #. i18n: ectx: label, entry (Periods), group (PracticeOptions)
 #: src/settings/parley.kcfg:128
@@ -3810,15 +3787,14 @@ msgstr "A fordítások feldarabolása a vesszőknél."
 msgid ""
 "Enable Show More button to reveal parts of the solution in written practice."
 msgstr ""
-"Több gomb megjelenítését engedélyezi az írott tesztben, hogy felfedje a "
+"A Több gomb megjelenítését engedélyezi az írott tesztben, hogy felfedje a "
 "megoldás részeit."
 
 #. i18n: ectx: label, entry (SkipKnownEnabled), group (PracticeOptions)
 #: src/settings/parley.kcfg:150
 #, kde-format
 msgid "Enable Skip (I Know It) button in written practice."
-msgstr ""
-"A kihagyás engedélyezése (Tudom) gomb bekapcsolása az írott gyakorlatban."
+msgstr "A Kihagyás (Tudom) gomb engedélyezése az írott gyakorlatban."
 
 #. i18n: ectx: label, entry (CountSynonymsAsCorrect), group (PracticeOptions)
 #: src/settings/parley.kcfg:154
@@ -3831,7 +3807,7 @@ msgstr "Amikor a szó helyett szinonimát ad meg, számolja helyesnek?"
 #: src/settings/parley.kcfg:158
 #, kde-format
 msgid "Enable image display in the practice dialogs."
-msgstr "Engedélyezi a képbemutatót a gyakorlópárbeszédekben."
+msgstr "Engedélyezi a képmegjelenítést a gyakorlópárbeszédekben."
 
 #. i18n: ectx: label, entry (PracticeSoundEnabled), group (PracticeOptions)
 #: src/settings/parley.kcfg:162
@@ -3841,19 +3817,20 @@ msgstr "Engedélyezi a hanglejátszást a gyakorlópárbeszédekben."
 
 #. i18n: ectx: label, entry (AllowImageInsteadOfWord), group (PracticeOptions)
 #: src/settings/parley.kcfg:166
-#, fuzzy, kde-format
-#| msgid "Allow using images instead of words in flashcards."
+#, kde-format
 msgid ""
 "Allow using images instead of words in flashcards. This will only be done if "
 "there is no word in the entry."
-msgstr "Képek használatának engedélyezése szöveg helyett a tanulókártyákon."
+msgstr ""
+"Képek használatának engedélyezése szöveg helyett a tanulókártyákon. Ez csak "
+"akkor történik meg, ha nincs szó a bejegyzésben."
 
 #. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
 #: src/settings/parley.kcfg:172
 #, kde-format
 msgid ""
 "The maximum number of words that will be practiced in a training session."
-msgstr ""
+msgstr "Az egy gyakorlómenetben gyakorolt szavak maximális száma."
 
 #. i18n: ectx: label, entry (SessionMaxNewWords), group (PracticeOptions)
 #: src/settings/parley.kcfg:176
@@ -3862,12 +3839,13 @@ msgid ""
 "The maximum number of new (untrained) words that will be used in a training "
 "session."
 msgstr ""
+"Az egy gyakorlómenetben gyakorolt új (nem gyakorolt) szavak maximális száma."
 
 #. i18n: ectx: label, entry (SessionLimitWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:180
 #, kde-format
 msgid "Limit the number of words in the initial phase."
-msgstr ""
+msgstr "Szavak számának korlátozása a kezdeti fázisban."
 
 #. i18n: ectx: label, entry (SessionMaxWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:184
@@ -3876,6 +3854,8 @@ msgid ""
 "The maximum number of words in the initial phase. If this limit is exceeded, "
 "no new words will be introduced."
 msgstr ""
+"A szavak maximális száma a kezdeti fázisban. Ha a korlátot túllépi, nem "
+"lesznek bevezetve új szavak."
 
 #. i18n: ectx: label, entry (MultipleChoiceWordTypeConsistancy), group (PracticeOptions)
 #: src/settings/parley.kcfg:190
@@ -3884,8 +3864,8 @@ msgid ""
 "Use the same word type as the solution for the incorrect answers in a "
 "multiple choice practice."
 msgstr ""
-"Használja ugyanazt a szótípust a helytelen válaszokban mint a megoldás a "
-"többválasztásos gyakorlatban."
+"Használja ugyanazt a szótípust, mint a hibás válaszok megoldása egy "
+"többszörös választásos gyakorlatban."
 
 #. i18n: ectx: label, entry (NumberMultipleChoiceAnswers), group (PracticeOptions)
 #: src/settings/parley.kcfg:194
@@ -3894,8 +3874,8 @@ msgid ""
 "How many answers are provided for a multiple choice question, including the "
 "correct answer."
 msgstr ""
-"hány választ nyújtott egy többször kiválasztott kérdésre, a helyes választ "
-"is beleértve."
+"Hány válaszlehetőség van megadva egy többszörös választásos kérdéshez, a "
+"helyes választ is beleértve."
 
 #. i18n: ectx: label, entry (ShowSearch), group (Appearance)
 #: src/settings/parley.kcfg:201
@@ -3905,17 +3885,17 @@ msgstr "A keresősáv megjelenítésének ki-be kapcsolása."
 
 #. i18n: ectx: label, entry (ShowSublessonentries), group (Appearance)
 #: src/settings/parley.kcfg:206
-#, fuzzy, kde-format
-#| msgid "When enabled a lesson also shows entries from its sublessons."
+#, kde-format
 msgid "When enabled a unit also shows entries from its subunits."
-msgstr "Mikor engedélyezett egy lecke, mutatja a belépést az részleckékből is."
+msgstr ""
+"Ha egy egység engedélyezve van, akkor az alegységek bejegyzései is "
+"megjelennek."
 
 #. i18n: ectx: label, entry (TableLessonColumnVisible), group (Appearance)
 #: src/settings/parley.kcfg:211
-#, fuzzy, kde-format
-#| msgid "Show/hide the lesson column."
+#, kde-format
 msgid "Show/hide the unit column."
-msgstr "Az lecke oszlop megjelenítése/elrejtése."
+msgstr "Az egység oszlop megjelenítése/elrejtése."
 
 #. i18n: ectx: label, entry (TableActiveColumnVisible), group (Appearance)
 #: src/settings/parley.kcfg:216
@@ -3925,10 +3905,9 @@ msgstr "Az aktív oszlop megjelenítése/elrejtése."
 
 #. i18n: ectx: label, entry (LessonEditingSelection), group (Appearance)
 #: src/settings/parley.kcfg:221
-#, fuzzy, kde-format
-#| msgid "Select which lessons are displayed for editing"
+#, kde-format
 msgid "Select which units are displayed for editing"
-msgstr "Válassza ki, melyik leckék jelenjenek meg szerkesztésre"
+msgstr "Válassza ki, mely egységek jelenjenek meg szerkesztésre"
 
 #. i18n: ectx: label, entry (MainWindowSplitter), group (Appearance)
 #: src/settings/parley.kcfg:231
@@ -3940,13 +3919,13 @@ msgstr "A főablak felosztási módja."
 #: src/settings/parley.kcfg:235
 #, kde-format
 msgid "The font used in the vocabulary table"
-msgstr "A profilban használt betűtípus kiválasztása"
+msgstr "A szószedettáblázatban használt betűtípus"
 
 #. i18n: ectx: label, entry (IPAFont), group (Appearance)
 #: src/settings/parley.kcfg:239
 #, kde-format
 msgid "The font used for phonetics"
-msgstr "A hangtanban használt betűtípus"
+msgstr "A fonetikához használt betűtípus"
 
 #. i18n: ectx: label, entry (CurrentCol), group (Appearance)
 #: src/settings/parley.kcfg:243
@@ -3962,25 +3941,22 @@ msgstr "Jelenleg kijelölt sor"
 
 #. i18n: ectx: label, entry (GradeColor), group (Appearance)
 #: src/settings/parley.kcfg:251
-#, fuzzy, kde-format
-#| msgid "Color used to display the grades"
+#, kde-format
 msgid "Color used to display the confidence levels"
-msgstr "A szintek megjelenítéséhez használt szín"
+msgstr "A magabiztossági szintek megjelenítéséhez használt szín"
 
 #. i18n: ectx: label, entry (PreGradeColor), group (Appearance)
 #: src/settings/parley.kcfg:255
-#, fuzzy, kde-format
-#| msgid "Color used to display the grades"
+#, kde-format
 msgid "Color used to display the early confidence levels"
-msgstr "A szintek megjelenítéséhez használt szín"
+msgstr "A korai magabiztossági szintek megjelenítéséhez használt szín"
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:184
-#, fuzzy, kde-format
-#| msgid "Color used to display the grades"
+#, kde-format
 msgid "Color used to display invalid units"
-msgstr "A szintek megjelenítéséhez használt szín"
+msgstr "Az érvénytelen egységek megjelenítéséhez használt szín"
 
 #. i18n: ectx: label, entry (PracticeMinimumTimesAsked), group (Thresholds)
 #: src/settings/parley.kcfg:267
@@ -4009,7 +3985,7 @@ msgid ""
 "The entry must have been answered incorrectly at least this often to be "
 "included in the practice."
 msgstr ""
-"A kérdésnek legalább ilyen gyakran kell helytelenül megválaszoltatnia, hogy "
+"A kérdésre legalább ilyen gyakran kell helytelenül válaszolni, hogy "
 "bekerüljön a gyakorlatba."
 
 #. i18n: ectx: label, entry (PracticeMaximumWrongCount), group (Thresholds)
@@ -4019,34 +3995,28 @@ msgid ""
 "The entry must have been answered incorrectly at most this often to be "
 "included in the practice."
 msgstr ""
-"A kérdésnek legfeljebb ilyen gyakran kell helytelenül megválaszoltatnia, "
-"hogy bekerüljön a gyakorlatba."
+"A kérdésre legfeljebb ilyen gyakran kell helytelenül válaszolni, hogy "
+"bekerüljön a gyakorlatba."
 
 #. i18n: ectx: label, entry (PracticeMinimumGrade), group (Thresholds)
 #: src/settings/parley.kcfg:285
-#, fuzzy, kde-format
-#| msgid ""
-#| "The entry must have at least this grade to be included in the practice "
-#| "(0..7)."
+#, kde-format
 msgid ""
 "The entry must have at least this confidence level to be included in the "
 "practice (0..7)."
 msgstr ""
-"A kérdésnek legalább ilyen gyakran kell helytelenül megválaszoltatnia, hogy "
-"bekerüljön a gyakorlatba."
+"A kérdés magabiztossági szintjének legalább ennyinek kell lennie, hogy "
+"bekerüljön a gyakorlatba (0..7)."
 
 #. i18n: ectx: label, entry (PracticeMaximumGrade), group (Thresholds)
 #: src/settings/parley.kcfg:289
-#, fuzzy, kde-format
-#| msgid ""
-#| "The entry must have at most this grade to be included in the practice "
-#| "(0..7)."
+#, kde-format
 msgid ""
 "The entry must have at most this confidence level to be included in the "
 "practice (0..7)."
 msgstr ""
-"A kérdésnek legfeljebb ilyen gyakran kell helytelenül megválaszoltatnia, "
-"hogy bekerüljön a gyakorlatba."
+"A kérdés magabiztossági szintjének legfeljebb ennyinek kell lennie, hogy "
+"bekerüljön a gyakorlatba (0..7)."
 
 #. i18n: ectx: label, entry (WordTypesInPracticeEnabled), group (Thresholds)
 #: src/settings/parley.kcfg:293
@@ -4059,14 +4029,14 @@ msgstr "Csak a kiválasztott szótípusok fognak beletartozni a gyakorlatba."
 #: src/settings/parley.kcfg:297 src/settings/parley.kcfg:298
 #, kde-format
 msgid "Selected word types for practices."
-msgstr "Kiválasztott szótípus a gyakorlatokig."
+msgstr "Kiválasztott szótípusok a gyakorlathoz."
 
 #. i18n: ectx: label, entry (SubWordTypesInPractice), group (Thresholds)
 #. i18n: ectx: whatsthis, entry (SubWordTypesInPractice), group (Thresholds)
 #: src/settings/parley.kcfg:301 src/settings/parley.kcfg:302
 #, kde-format
 msgid "Selected sub word types for practices."
-msgstr "A gyakorlatokért kiválasztott szótípus alcsoport."
+msgstr "Kiválasztott alszótípusok a gyakorlatokhoz."
 
 #. i18n: ectx: label, entry (LearningLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:309
@@ -4076,69 +4046,64 @@ msgstr "A nyelv amit tanul."
 
 #. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:313
-#, fuzzy, kde-format
-#| msgid "The language in which the user has to answer."
+#, kde-format
 msgid "The language that you know already."
-msgstr "Az a nyelv, amiben a felhasználónak válaszolnia kell."
+msgstr "A nyelv, amit már beszél."
 
 #. i18n: ectx: label, entry (ShowSolutionAfterAnswer), group (PracticeManager)
 #: src/settings/parley.kcfg:318
 #, kde-format
 msgid "Show the solution after an answer was given."
-msgstr "A megoldás meg&jelenítése válasz után:"
+msgstr "A megoldás megjelenítése a válasz után."
 
 #. i18n: ectx: label, entry (ShowSolutionAfterAnswerTime), group (PracticeManager)
 #: src/settings/parley.kcfg:322
 #, kde-format
 msgid "The time the solution is shown (seconds). 0 is unlimited."
-msgstr "A megoldásra fordítható időt mutatja (másodpercek). 0 a korlátlan."
+msgstr "A megoldás megjelenésének ideje (másodperc). A 0 a korlátlan."
 
 #. i18n: ectx: label, entry (PracticeMode), group (PracticeManager)
 #: src/settings/parley.kcfg:337
-#, fuzzy, kde-format
-#| msgid "The practice mode that is currently selected."
+#, kde-format
 msgid "The practice method that is currently selected."
-msgstr "Jelenleg a gyakorló mód van kiválasztva."
+msgstr "A jelenleg kiválasztott gyakorlási módszer."
 
 #. i18n: ectx: label, entry (PracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:348
 #, kde-format
 msgid "The practice mode that is currently selected."
-msgstr "Jelenleg a gyakorló mód van kiválasztva."
+msgstr "A jelenleg kiválasztott gyakorlómód."
 
 #. i18n: ectx: label, entry (BlockItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:354
-#, fuzzy, kde-format
-#| msgid "Amount of time different grades should be blocked"
+#, kde-format
 msgid "Amount of time different confidence levels should be blocked"
-msgstr "A szintek időeltérésének összegét kellene letiltani"
+msgstr "A különböző magabiztossági szintek tiltásának ideje"
 
 #. i18n: ectx: label, entry (ExpireItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:365
-#, fuzzy, kde-format
-#| msgid "Amount of time after which different grades should expire"
+#, kde-format
 msgid "Amount of time after which different confidence levels should expire"
-msgstr ""
-"A rendelkezésre álló idő, ami után a különböző szinteknek le kellene járniuk"
+msgstr "Az az idő, ami után a különböző magabiztossági szintek lejárnak"
 
 #. i18n: ectx: label, entry (RememberPracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:375
 #, kde-format
 msgid "If true, the practice direction for each practice mode is stored."
-msgstr ""
+msgstr "Ha igaz, a gyakorlás iránya az egyes gyakorlómódokhoz mentésre kerül."
 
 #. i18n: ectx: whatsthis, entry (RememberPracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:376
 #, kde-format
 msgid "Should the practice direction for each practice mode be stored?"
-msgstr ""
+msgstr "Az egyes gyakorlómódok gyakorlásának irányát el kell-e menteni?"
 
 #. i18n: ectx: label, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
 #. i18n: ectx: whatsthis, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
 #: src/settings/parley.kcfg:380 src/settings/parley.kcfg:381
 #, kde-format
 msgid "Stored values of practice direction for each practice mode."
-msgstr ""
+msgstr "A gyakorlás irányának mentett értékei az egyes gyakorlómódokhoz."
 
 #. i18n: ectx: label, entry (ProvidersUrl), group (KNewStuff)
 #: src/settings/parley.kcfg:387
@@ -4150,14 +4115,13 @@ msgstr "A Parley adatfájlok elérési útja"
 #: src/settings/parley.kcfg:391
 #, kde-format
 msgid "The command used to start a downloaded vocabulary"
-msgstr "A letöltött szókészlet indításához használt parancs"
+msgstr "A letöltött szószedet indításához használt parancs"
 
 #. i18n: ectx: label, entry (InstallPath), group (KNewStuff)
 #: src/settings/parley.kcfg:395
 #, kde-format
 msgid "The folder where downloaded vocabularies are saved by default"
-msgstr ""
-"Az az alapértelmezett könyvtár, ahová a letöltött szókészletek lettek mentve"
+msgstr "A letöltött szószedetek alapértelmezett mentési helye"
 
 #: src/settings/parleyprefs.cpp:24
 #, kde-format
@@ -4183,7 +4147,7 @@ msgstr "Nézet"
 #: src/settings/parleyprefs.cpp:30
 #, kde-format
 msgid "View Settings"
-msgstr "A beállítások megtekintése"
+msgstr "Nézetbeállítások"
 
 #: src/settings/parleyprefs.cpp:33
 #, kde-format
@@ -4198,29 +4162,29 @@ msgstr "Online fordítószolgáltatások"
 #: src/settings/translationshelloptions.cpp:20
 #, kde-format
 msgid "translate-shell is available."
-msgstr ""
+msgstr "A translate-shell elérhető."
 
 #: src/settings/translationshelloptions.cpp:23
 #, kde-format
 msgid "translate-shell executable could not be found."
-msgstr ""
+msgstr "A translate-shell nem található."
 
 #: src/settings/translationshelloptions.cpp:38
 #, kde-format
 msgid "Error"
-msgstr ""
+msgstr "Hiba"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxInstalledStatus)
 #: src/settings/translationshellpage.ui:18
 #, kde-format
 msgid "Translation Shell Integration"
-msgstr ""
+msgstr "Fordítási parancsértelmező integráció"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
 #, kde-format
 msgid "Run Interactive Functionality Test"
-msgstr ""
+msgstr "Interaktív funkcionalitási teszt futtatása"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/settings/translationshellpage.ui:58
@@ -4229,6 +4193,7 @@ msgid ""
 "The interaction test request translation of English word \"parley\" into "
 "German."
 msgstr ""
+"Az interakciós teszt az angol „parley” szó fordítását kéri német nyelvre."
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
 #: src/settings/translationshellpage.ui:68
@@ -4240,7 +4205,7 @@ msgstr "Online teszt indítása"
 #: src/settings/translationshellpage.ui:88
 #, kde-format
 msgid "Result:"
-msgstr ""
+msgstr "Eredmény:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelResultArea)
 #: src/settings/translationshellpage.ui:101
@@ -4261,7 +4226,7 @@ msgstr ""
 #: src/settings/viewoptionsbase.ui:48
 #, kde-format
 msgid "&Pronunciation symbols font:"
-msgstr "Kiejtésszimbólumok betűtípusa:"
+msgstr "&Kiejtésszimbólumok betűtípusa:"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
 #: src/settings/viewoptionsbase.ui:77
@@ -4271,18 +4236,16 @@ msgstr "Alapszín a szintek megjelenítéséhez:"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:96
-#, fuzzy, kde-format
-#| msgid "Color used to display the grades"
+#, kde-format
 msgid "Color used to display the progress"
-msgstr "A szintek megjelenítéséhez használt szín"
+msgstr "A haladás megjelenítéséhez használt szín"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:99
-#, fuzzy, kde-format
-#| msgid "Click here to change the color used to display the grades."
+#, kde-format
 msgid "Click here to change the color used to display the progress."
 msgstr ""
-"Kattintson ide a szintek megjelenítéséhez használt szín megváltoztatásához."
+"Kattintson ide a haladás megjelenítéséhez használt szín megváltoztatásához."
 
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
@@ -4301,25 +4264,23 @@ msgstr "Alt+0"
 
 #. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
 #: src/settings/viewoptionsbase.ui:121
-#, fuzzy, kde-format
-#| msgid "Base color for displaying grades:"
+#, kde-format
 msgid "Color for displaying early progress:"
-msgstr "Alapszín a szintek megjelenítéséhez:"
+msgstr "Alapszín a korai haladás megjelenítéséhez:"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:140
-#, fuzzy, kde-format
-#| msgid "Color used to display the grades"
+#, kde-format
 msgid "Color used to display the early progress"
-msgstr "A szintek megjelenítéséhez használt szín"
+msgstr "A korai haladás megjelenítéséhez használt szín"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:143
-#, fuzzy, kde-format
-#| msgid "Click here to change the color used to display the grades."
+#, kde-format
 msgid "Click here to change the color used to display the early progress."
 msgstr ""
-"Kattintson ide a szintek megjelenítéséhez használt szín megváltoztatásához."
+"Kattintson ide a korai haladás megjelenítéséhez használt szín "
+"megváltoztatásához."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:149
@@ -4329,18 +4290,17 @@ msgstr "Alt+1"
 
 #. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
 #: src/settings/viewoptionsbase.ui:165
-#, fuzzy, kde-format
-#| msgid "Color used to display the grades"
+#, kde-format
 msgid "Color used to display the grades:"
-msgstr "A szintek megjelenítéséhez használt szín"
+msgstr "A szintek megjelenítéséhez használt szín:"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:187
-#, fuzzy, kde-format
-#| msgid "Click here to change the color used to display the grades."
+#, kde-format
 msgid "Click here to change the color used to display invalid units."
 msgstr ""
-"Kattintson ide a szintek megjelenítéséhez használt szín megváltoztatásához."
+"Kattintson ide az érvénytelen egységek megjelenítéséhez használt szín "
+"megváltoztatásához."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:193
@@ -4368,16 +4328,14 @@ msgstr ""
 "Magabiztossági szint eltávolítása ebből az egységből és minden részegységből"
 
 #: src/statistics/statisticslegendwidget.cpp:27
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Progress gradients"
-msgstr "Állapotjelző"
+msgstr "Haladásátmenetek"
 
 #: src/statistics/statisticslegendwidget.cpp:28
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Early progress"
-msgstr "Állapotjelző"
+msgstr "Korai haladás"
 
 #: src/statistics/statisticslegendwidget.cpp:29
 #, kde-format
