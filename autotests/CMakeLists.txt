@@ -2,7 +2,7 @@ include(ECMMarkAsTest)
 include(ECMAddTests)
 include(CTest)
 
-find_package(Qt${QT_MAJOR_VERSION} 5.2.0 CONFIG REQUIRED Test)
+find_package(Qt6 5.2.0 CONFIG REQUIRED Test)
 
 # To add a new unittest
 # 1. Add its name to parley_gui_unit_tests or parley_non_gui_unit_tests
@@ -27,7 +27,7 @@ macro(PARLEY_GUI_UNITTESTS)
      ecm_add_test( ${_testname} ${parley_unittest_helpers}
        LINK_LIBRARIES
             parley_LIB
-            Qt${QT_MAJOR_VERSION}::Test
+            Qt6::Test
        TEST_NAME ${_name}
        GUI)
    endforeach()
@@ -39,7 +39,7 @@ macro(PARLEY_NON_GUI_UNITTESTS)
      ecm_add_test( ${_testname} ${parley_unittest_helpers}
        LINK_LIBRARIES
             parley_LIB
-            Qt${QT_MAJOR_VERSION}::Test
+            Qt6::Test
        TEST_NAME ${_name}
        )
    endforeach()

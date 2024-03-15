@@ -289,29 +289,29 @@ endif()
 
 target_link_libraries(parley_LIB
     LibKEduVocDocumentImport__KEduVocDocument
-    KF${QT_MAJOR_VERSION}::I18n
-    KF${QT_MAJOR_VERSION}::NewStuffWidgets
-    KF${QT_MAJOR_VERSION}::SonnetCore
-    KF${QT_MAJOR_VERSION}::SonnetUi
-    KF${QT_MAJOR_VERSION}::XmlGui
-    KF${QT_MAJOR_VERSION}::Completion
-    KF${QT_MAJOR_VERSION}::ConfigWidgets
-    KF${QT_MAJOR_VERSION}::ConfigGui
-    KF${QT_MAJOR_VERSION}::WidgetsAddons
-    KF${QT_MAJOR_VERSION}::TextWidgets
-    KF${QT_MAJOR_VERSION}::KIOWidgets
-    KF${QT_MAJOR_VERSION}::Notifications
-    KF${QT_MAJOR_VERSION}::Crash
-    KF${QT_MAJOR_VERSION}::CoreAddons
-    Qt${QT_MAJOR_VERSION}::Core
-    Qt${QT_MAJOR_VERSION}::Svg
-    Qt${QT_MAJOR_VERSION}::Widgets
-    Qt${QT_MAJOR_VERSION}::Concurrent
-    Qt${QT_MAJOR_VERSION}::Multimedia
+    KF6::I18n
+    KF6::NewStuffWidgets
+    KF6::SonnetCore
+    KF6::SonnetUi
+    KF6::XmlGui
+    KF6::Completion
+    KF6::ConfigWidgets
+    KF6::ConfigGui
+    KF6::WidgetsAddons
+    KF6::TextWidgets
+    KF6::KIOWidgets
+    KF6::Notifications
+    KF6::Crash
+    KF6::CoreAddons
+    Qt6::Core
+    Qt6::Svg
+    Qt6::Widgets
+    Qt6::Concurrent
+    Qt6::Multimedia
 )
 if (BUILD_BROWSERINTEGRATION)
     target_link_libraries(parley_LIB
-       Qt${QT_MAJOR_VERSION}::WebEngineWidgets
+       Qt6::WebEngineWidgets
     )
 endif()
 

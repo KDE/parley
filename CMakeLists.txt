@@ -32,17 +32,17 @@ add_definitions(-DKNEWSTUFFWIDGETS_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055A00)
 
 option(BUILD_BROWSERINTEGRATION "Build integration for accessing the Internet (requires QtWebengine)" ON)
 
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED
+find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED
   Core
   Svg
   Concurrent
   Multimedia
 )
 if (BUILD_BROWSERINTEGRATION)
-    find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED WebEngineWidgets)
+    find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED WebEngineWidgets)
 endif()
 
-find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} MODULE REQUIRED COMPONENTS
+find_package(KF6 ${KF_MIN_VERSION} MODULE REQUIRED COMPONENTS
   DocTools  #to produce the docbook
   CoreAddons
   Config
@@ -115,7 +115,7 @@ else(X11_Xrender_FOUND)
 endif(X11_Xrender_FOUND)
 
 if(BUILD_TESTING)
-  find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED Test)
+  find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Test)
   add_subdirectory( autotests )
   add_subdirectory( tests )
 endif()
@@ -130,7 +130,7 @@ if(HAVE_LIBXSLT)
 endif(HAVE_LIBXSLT)
 
 ki18n_install(po)
-if (KF${QT_MAJOR_VERSION}DocTools_FOUND)
+if (KF6DocTools_FOUND)
     kdoctools_install(po)
 endif()
 install(FILES org.kde.parley.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
