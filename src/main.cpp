@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
                                           "© 2007-2010\tFrederik Gladhorn\n")
                                         .toString());
     aboutData.setOtherText(ki18n("Helps you train your vocabulary").toString());
-    aboutData.setHomepage(QStringLiteral("https://edu.kde.org/parley"));
+    aboutData.setHomepage(QStringLiteral("https://apps.kde.org/parley"));
     aboutData.setBugAddress("submit@bugs.kde.org");
 
     aboutData.addAuthor(ki18n("Inge Wallin").toString(), ki18n("Developer and Co-maintainer").toString(), QStringLiteral("inge@lysator.liu.se"));
