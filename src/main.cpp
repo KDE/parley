@@ -66,9 +66,6 @@ int main(int argc, char *argv[])
     aboutData.addCredit(ki18n("Ramona Knapp").toString(), ki18n("Conceived the name Parley").toString());
 
     KAboutData::setApplicationData(aboutData);
-    QApplication::setApplicationName(QStringLiteral("parley"));
-    QApplication::setApplicationVersion(PARLEY_VERSION_STRING);
-    QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
     QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("parley")));
 
     KCrash::initialize();
