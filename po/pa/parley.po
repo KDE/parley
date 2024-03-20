@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 00:35+0000\n"
+"POT-Creation-Date: 2024-03-20 00:35+0000\n"
 "PO-Revision-Date: 2024-01-01 12:15-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -1578,12 +1578,12 @@ msgstr ""
 msgid "Conceived the name Parley"
 msgstr ""
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, kde-format
 msgid "[file]"
 msgstr ""
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, kde-format
 msgid "Document file to open"
 msgstr ""

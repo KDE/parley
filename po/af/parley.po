@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 00:35+0000\n"
+"POT-Creation-Date: 2024-03-20 00:35+0000\n"
 "PO-Revision-Date: 2002-11-07 11:31+0200\n"
 "Last-Translator: WEB-Translator <http://kde.af.org.za>\n"
 "Language-Team: AFRIKAANS <AF@lia.org.za>\n"
@@ -1604,13 +1604,13 @@ msgstr ""
 msgid "Conceived the name Parley"
 msgstr ""
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, fuzzy, kde-format
 #| msgid "+[file]"
 msgid "[file]"
 msgstr "+[lêer]"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, fuzzy, kde-format
 msgid "Document file to open"
 msgstr "Dokument lêer na open."

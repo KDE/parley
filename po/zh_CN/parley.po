@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 00:35+0000\n"
+"POT-Creation-Date: 2024-03-20 00:35+0000\n"
 "PO-Revision-Date: 2024-03-17 20:43\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1526,12 +1526,12 @@ msgstr "Ramona Knapp"
 msgid "Conceived the name Parley"
 msgstr "想出了 Parley 这个名字"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, kde-format
 msgid "[file]"
 msgstr "[文件]"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, kde-format
 msgid "Document file to open"
 msgstr "要打开的文档文件"

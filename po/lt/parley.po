@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 00:35+0000\n"
+"POT-Creation-Date: 2024-03-20 00:35+0000\n"
 "PO-Revision-Date: 2015-12-29 21:41+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: lt <kde-i18n-lt@kde.org>\n"
@@ -1645,13 +1645,13 @@ msgstr "Ramona Knapp"
 msgid "Conceived the name Parley"
 msgstr "Sugalvojo pavadinimą Parley"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, fuzzy, kde-format
 #| msgid "+[file]"
 msgid "[file]"
 msgstr "+[failas]"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, kde-format
 msgid "Document file to open"
 msgstr "Dokumento failas, kuris bus atvertas"

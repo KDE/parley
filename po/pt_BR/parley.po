@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 00:35+0000\n"
+"POT-Creation-Date: 2024-03-20 00:35+0000\n"
 "PO-Revision-Date: 2021-11-01 16:58-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -1556,12 +1556,12 @@ msgstr "Ramona Knapp"
 msgid "Conceived the name Parley"
 msgstr "Concebeu o nome Parley"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, kde-format
 msgid "[file]"
 msgstr "[arquivo]"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, kde-format
 msgid "Document file to open"
 msgstr "Arquivo a ser aberto"

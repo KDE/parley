@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 00:35+0000\n"
+"POT-Creation-Date: 2024-03-20 00:35+0000\n"
 "PO-Revision-Date: 2010-09-08 16:06+0200\n"
 "Last-Translator: Marko Dimjasevic <marko@dimjasevic.net>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -1620,13 +1620,13 @@ msgstr "Ramona Knapp"
 msgid "Conceived the name Parley"
 msgstr "Smislila ime Parley"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, fuzzy, kde-format
 #| msgid "+[file]"
 msgid "[file]"
 msgstr "+[datoteka]"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, kde-format
 msgid "Document file to open"
 msgstr "Datoteka za otvaranje"

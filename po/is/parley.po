@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 00:35+0000\n"
+"POT-Creation-Date: 2024-03-20 00:35+0000\n"
 "PO-Revision-Date: 2009-12-03 16:53+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic <kde-isl@molar.is>\n"
@@ -1604,13 +1604,13 @@ msgstr "Ramona Knapp"
 msgid "Conceived the name Parley"
 msgstr ""
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, fuzzy, kde-format
 #| msgid "+[file]"
 msgid "[file]"
 msgstr "+[skrá]"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, fuzzy, kde-format
 msgid "Document file to open"
 msgstr "Skjal sem á að opna."

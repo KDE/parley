@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 00:35+0000\n"
+"POT-Creation-Date: 2024-03-20 00:35+0000\n"
 "PO-Revision-Date: 2002-10-29 16:25SAST\n"
 "Last-Translator: Lwandle Mgidlana <lwandle@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -1614,13 +1614,13 @@ msgstr ""
 msgid "Conceived the name Parley"
 msgstr ""
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, fuzzy, kde-format
 #| msgid "+[file]"
 msgid "[file]"
 msgstr "+[file]"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, fuzzy, kde-format
 msgid "Document file to open"
 msgstr "Ifayile yoxwebhu izakuvula."

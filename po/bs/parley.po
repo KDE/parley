@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeedu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-19 00:35+0000\n"
+"POT-Creation-Date: 2024-03-20 00:35+0000\n"
 "PO-Revision-Date: 2015-01-05 15:02+0000\n"
 "Last-Translator: Velid <velid.aljic@gmail.com>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -1584,12 +1584,12 @@ msgstr "Ramona Knapp"
 msgid "Conceived the name Parley"
 msgstr "Koncipirano ime Parley"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, fuzzy, kde-format
 msgid "[file]"
 msgstr "+[datoteka]"
 
-#: src/main.cpp:77
+#: src/main.cpp:74
 #, kde-format
 msgid "Document file to open"
 msgstr "Datoteka dokumenta za otvaranje"
