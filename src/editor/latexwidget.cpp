@@ -25,7 +25,11 @@ LatexWidget::LatexWidget(VocabularyFilter *model, KEduVocDocument *doc, QWidget 
     LatexDelegate *delegate = new LatexDelegate(this);
     delegate->setMathModeCheckBox(mathModeCheckBox);
     m_mapper->setItemDelegate(delegate);
+#if QT_VERSION < QT_VERSION_CHECK(6, 7, 0)
     connect(mathModeCheckBox, &QCheckBox::stateChanged, this, &LatexWidget::checkBoxToggled);
+#else
+    connect(mathModeCheckBox, &QCheckBox::checkStateChanged, this, &LatexWidget::checkBoxToggled);
+#endif
     connect(lineEdit, &QLineEdit::editingFinished, this, &LatexWidget::updateLatex, Qt::QueuedConnection);
 }
 
