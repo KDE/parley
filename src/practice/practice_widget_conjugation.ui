@@ -14,7 +14,7 @@
    <item>
     <widget class="QLabel" name="tenseLabel">
      <property name="text">
-      <string comment="KDE::DoNotExtract">Präsens</string>
+      <string notr="true">Präsens</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -29,7 +29,7 @@
      <item row="1" column="0">
       <widget class="QLabel" name="questionLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract">to go</string>
+        <string notr="true">to go</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -45,7 +45,7 @@
      <item row="1" column="1">
       <widget class="QLineEdit" name="infinitiveEdit">
        <property name="text">
-        <string comment="KDE::DoNotExtract">gehen</string>
+        <string notr="true">gehen</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -61,7 +61,7 @@
      <item row="1" column="2">
       <widget class="QLabel" name="solutionLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract"/>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -92,7 +92,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string comment="KDE::DoNotExtract"/>
+      <string notr="true"/>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

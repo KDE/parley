@@ -14,7 +14,7 @@
    <item>
     <widget class="QLabel" name="lessonLabel">
      <property name="text">
-      <string comment="KDE::DoNotExtract">Unit 2: Nature Destroyed</string>
+      <string notr="true">Unit 2: Nature Destroyed</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -24,7 +24,7 @@
    <item>
     <widget class="QLabel" name="gradeLabel">
      <property name="text">
-      <string comment="KDE::DoNotExtract">pregrade/grade</string>
+      <string notr="true">pregrade/grade</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

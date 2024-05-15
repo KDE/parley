@@ -43,7 +43,7 @@
       <item row="1" column="1">
        <widget class="QLabel" name="lessonLabel">
         <property name="text">
-         <string comment="KDE::DoNotExtract">TextLabel</string>
+         <string notr="true">TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -63,7 +63,7 @@
       <item row="2" column="1">
        <widget class="QLabel" name="wordTypeLabel">
         <property name="text">
-         <string comment="KDE::DoNotExtract">TextLabel</string>
+         <string notr="true">TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -83,7 +83,7 @@
       <item row="3" column="1">
        <widget class="QLabel" name="blockedLabel">
         <property name="text">
-         <string comment="KDE::DoNotExtract">TextLabel</string>
+         <string notr="true">TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -103,7 +103,7 @@
       <item row="4" column="1">
        <widget class="QLabel" name="timesWrongLabel">
         <property name="text">
-         <string comment="KDE::DoNotExtract">TextLabel</string>
+         <string notr="true">TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -123,7 +123,7 @@
       <item row="5" column="1">
        <widget class="QLabel" name="timesPracticedLabel">
         <property name="text">
-         <string comment="KDE::DoNotExtract">TextLabel</string>
+         <string notr="true">TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -143,7 +143,7 @@
       <item row="6" column="1">
        <widget class="QLabel" name="minMaxGradeLabel">
         <property name="text">
-         <string comment="KDE::DoNotExtract">TextLabel</string>
+         <string notr="true">TextLabel</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -175,7 +175,7 @@
      <item>
       <widget class="QLabel" name="documentTotalLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract">TextLabel</string>
+        <string notr="true">TextLabel</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -196,7 +196,7 @@
      <item>
       <widget class="QLabel" name="totalLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract">TextLabel</string>
+        <string notr="true">TextLabel</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

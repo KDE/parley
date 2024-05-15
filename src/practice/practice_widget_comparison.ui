@@ -45,7 +45,7 @@
      <item row="1" column="2">
       <widget class="QLineEdit" name="absoluteEdit">
        <property name="text">
-        <string comment="KDE::DoNotExtract">good</string>
+        <string notr="true">good</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -61,7 +61,7 @@
      <item row="1" column="3">
       <widget class="QLabel" name="absoluteSolutionLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract"/>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -90,7 +90,7 @@
      <item row="2" column="2">
       <widget class="QLineEdit" name="comparativeEdit">
        <property name="text">
-        <string comment="KDE::DoNotExtract">better</string>
+        <string notr="true">better</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -106,7 +106,7 @@
      <item row="2" column="3">
       <widget class="QLabel" name="comparativeSolutionLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract"/>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -135,7 +135,7 @@
      <item row="3" column="2">
       <widget class="QLineEdit" name="superlativeEdit">
        <property name="text">
-        <string comment="KDE::DoNotExtract">best</string>
+        <string notr="true">best</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -151,7 +151,7 @@
      <item row="3" column="3">
       <widget class="QLabel" name="superlativeSolutionLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract"/>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -182,7 +182,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string comment="KDE::DoNotExtract"/>
+      <string notr="true"/>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

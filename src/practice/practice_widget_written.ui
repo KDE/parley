@@ -29,7 +29,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="questionLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract">Baum</string>
+        <string notr="true">Baum</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -45,7 +45,7 @@
      <item row="0" column="1">
       <widget class="QLabel" name="questionPronunciationLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract">[foo]</string>
+        <string notr="true">[foo]</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -58,7 +58,7 @@
      <item row="0" column="2">
       <widget class="Practice::AudioButton" name="questionSoundButton">
        <property name="text">
-        <string comment="KDE::DoNotExtract">...</string>
+        <string notr="true">...</string>
        </property>
        <property name="iconSize">
         <size>
@@ -71,7 +71,7 @@
      <item row="1" column="0">
       <widget class="QLabel" name="mixedSolutionLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract">Baum</string>
+        <string notr="true">Baum</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -87,7 +87,7 @@
      <item row="2" column="0">
       <widget class="QLabel" name="solutionLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract">tree</string>
+        <string notr="true">tree</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -103,7 +103,7 @@
      <item row="2" column="1">
       <widget class="QLabel" name="solutionPronunciationLabel">
        <property name="text">
-        <string comment="KDE::DoNotExtract">[foo]</string>
+        <string notr="true">[foo]</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -116,7 +116,7 @@
      <item row="2" column="2">
       <widget class="Practice::AudioButton" name="solutionSoundButton">
        <property name="text">
-        <string comment="KDE::DoNotExtract">...</string>
+        <string notr="true">...</string>
        </property>
        <property name="iconSize">
         <size>
@@ -132,7 +132,7 @@
      <item row="4" column="0">
       <widget class="QLineEdit" name="answerEdit">
        <property name="text">
-        <string comment="KDE::DoNotExtract">tree</string>
+        <string notr="true">tree</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -153,7 +153,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string comment="KDE::DoNotExtract">Waiting for an answer...</string>
+      <string notr="true">Waiting for an answer...</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
