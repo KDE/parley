@@ -2,9 +2,8 @@
 # translation of parley3.po to
 # translation of parley.po to
 # translation of kvoctrain.po to
-# Version: $Revision: 1681059 $
+# Version: $Revision: 1681191 $
 # Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
-#
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2003, 2004.
 # Marcin Bokszczanin <mboksz@bcig.pl>, 2004, 2005.
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2005, 2007.
@@ -16,6 +15,7 @@
 # Franciszek Janowski <nobange@poczta.onet.pl>, 2009.
 # Michał Lachowski <michal@lachowski.info>, 2010.
 # Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2020, 2021.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
