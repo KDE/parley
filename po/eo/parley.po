@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-20 00:35+0000\n"
-"PO-Revision-Date: 2024-01-03 14:17+0100\n"
+"PO-Revision-Date: 2024-05-30 07:49+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -769,7 +769,7 @@ msgstr "Propraĵoj El Originalo"
 #: src/editor/FromToEntryPageForm.ui:72
 #, kde-format
 msgid "&Confidence Level:"
-msgstr "Konfida Nivelo:"
+msgstr "&Konfida Nivelo:"
 
 #. i18n: ectx: property (text), widget (QLabel, fauxami_label)
 #: src/editor/FromToEntryPageForm.ui:95
@@ -2192,7 +2192,7 @@ msgctxt ""
 "@title:group Configure general settings for practicing vocabulary, short "
 "title in config dialog."
 msgid "General"
-msgstr "Generalo"
+msgstr "Ĝenerala"
 
 #: src/practice/configure/configurepracticedialog.cpp:30
 #, kde-format
