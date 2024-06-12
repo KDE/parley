@@ -1191,7 +1191,7 @@ msgstr "没有可供检查拼写的内容。"
 #, kde-format
 msgctxt "@title of a popup"
 msgid "No Spell Checker Available"
-msgstr "无可用的拼写检查器"
+msgstr "没有可用的拼写检查器"
 
 #: src/editor/vocabularyview.cpp:384
 #, kde-format
