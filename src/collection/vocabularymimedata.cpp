@@ -33,7 +33,7 @@ void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &tran
         for (int i : translationIndices) {
             // generate text string representation
             m_text.append(expression->translation(i)->text());
-            m_text.append(" - ");
+            m_text.append(QStringLiteral(" - "));
 
             // fill in word types independent of pointers
             KEduVocWordType *type = expression->translation(i)->wordType();
@@ -49,7 +49,7 @@ void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &tran
             }
         }
         m_expressions.append(exp);
-        m_text.append('\n');
+        m_text.append(QLatin1Char('\n'));
     }
 }
 

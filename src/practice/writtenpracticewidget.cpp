@@ -165,13 +165,13 @@ void WrittenPracticeWidget::setSolutionSound(const QUrl &soundUrl)
 
 void WrittenPracticeWidget::setSolutionPronunciation(const QString &pronunciationText)
 {
-    m_ui->solutionPronunciationLabel->setText('[' + pronunciationText + ']');
+    m_ui->solutionPronunciationLabel->setText(QLatin1Char('[') + pronunciationText + QLatin1Char(']'));
     m_ui->solutionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 
 void WrittenPracticeWidget::setQuestionPronunciation(const QString &pronunciationText)
 {
-    m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
+    m_ui->questionPronunciationLabel->setText(QLatin1Char('[') + pronunciationText + QLatin1Char(']'));
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 

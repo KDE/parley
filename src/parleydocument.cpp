@@ -50,7 +50,8 @@ void fetchGrammar(KEduVocDocument *doc, int languageIndex)
 {
     QString locale = doc->identifier(languageIndex).locale();
 
-    QUrl location(QUrl::fromUserInput(QStringLiteral("https://edu.kde.org/parley/locale/") + locale.split('_').at(0).toLower() + QStringLiteral(".kvtml")));
+    QUrl location(
+        QUrl::fromUserInput(QStringLiteral("https://edu.kde.org/parley/locale/") + locale.split(QLatin1Char('_')).at(0).toLower() + QStringLiteral(".kvtml")));
 
     KEduVocDocument grammarDoc;
     if (grammarDoc.open(location) == KEduVocDocument::NoError) {
@@ -288,7 +289,7 @@ bool ParleyDocument::queryClose()
 void ParleyDocument::openGHNS()
 {
     if (m_parleyApp->queryClose()) {
-        QDir downloadDir(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + '/' + "kvtml/");
+        QDir downloadDir(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + QStringLiteral("kvtml/"));
 
         downloadDir.mkpath(downloadDir.absolutePath());
 
@@ -311,14 +312,14 @@ void ParleyDocument::save()
     }
 
     // remove previous backup
-    QFile::remove(m_doc->url().toLocalFile() + '~');
+    QFile::remove(m_doc->url().toLocalFile() + QLatin1Char('~'));
     QFile::copy(QFile::encodeName(m_doc->url().toLocalFile()), QFile::encodeName(m_doc->url().toLocalFile() + '~'));
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
     Q_EMIT statesNeedSaving();
 
-    QString newgenerator = QLatin1String("Parley ") + PARLEY_VERSION_STRING;
+    QString newgenerator = QLatin1String("Parley ") + QLatin1String(PARLEY_VERSION_STRING);
     m_doc->setGenerator(newgenerator);
 
     bool isSuccess = false, isError = false;
@@ -401,12 +402,12 @@ void ParleyDocument::saveAs(QUrl url)
 
     QString msg = i18nc("@info:status saving a file", "Saving %1", url.toLocalFile());
 
-    QFile::remove(url.toLocalFile() + '~'); // remove previous backup
+    QFile::remove(url.toLocalFile() + QLatin1Char('~')); // remove previous backup
     QFile::copy(QFile::encodeName(url.toLocalFile()), QFile::encodeName(QString(url.toLocalFile() + '~')));
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
-    if (!url.toLocalFile().contains('.')) {
+    if (!url.toLocalFile().contains(QLatin1Char('.'))) {
         url = QUrl::fromLocalFile(url.toLocalFile() + QLatin1String(".kvtml"));
     }
 
@@ -427,7 +428,7 @@ void ParleyDocument::saveAs(QUrl url)
                                            KStandardGuiItem::save(),
                                            KStandardGuiItem::cancel());
         if (exit == KMessageBox::PrimaryAction) { // attempt lock steal
-            m_doc->setGenerator(QLatin1String("Parley ") + PARLEY_VERSION_STRING);
+            m_doc->setGenerator(QLatin1String("Parley ") + QLatin1String(PARLEY_VERSION_STRING));
             ret = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, KEduVocDocument::FileIgnoreLock);
 
             if (ret == KEduVocDocument::NoError) {

@@ -44,7 +44,7 @@ void AudioWidget::setDocument(KEduVocDocument *doc)
 QString AudioWidget::defaultOutputDirectory() const
 {
     if (m_doc) {
-        return m_doc->url().path().remove(".kvtml") + "/media";
+        return m_doc->url().path().remove(QStringLiteral(".kvtml")) + QStringLiteral("/media");
     } else {
         return QString();
     }
@@ -129,10 +129,10 @@ void AudioWidget::downloadWebserviceAudio()
 
     QString soundFileName = m_entry->translation(m_currentTranslation)->soundUrl().toLocalFile();
     if (soundFileName.isEmpty()) {
-        const QString fileName = m_entry->translation(m_currentTranslation)->text().replace(QRegularExpression("[^a-zA-Z\\s]"), QString());
+        const QString fileName = m_entry->translation(m_currentTranslation)->text().replace(QRegularExpression(QStringLiteral("[^a-zA-Z\\s]")), QString());
         int index{0};
         do {
-            soundFileName = dir.path() + '/' + fileName + '_' + QString::number(index) + ".ts";
+            soundFileName = dir.path() + QLatin1Char('/') + fileName + QLatin1Char('_') + QString::number(index) + QStringLiteral(".ts");
             ++index;
             qDebug() << "test" << soundFileName;
         } while (QFile::exists(soundFileName));

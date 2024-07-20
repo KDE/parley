@@ -146,8 +146,9 @@ void CollectionWidget::setupWidget(WordCount *dueWords)
     m_barWidget->setFixedSize(COLLWIDTH - 10, 45);
     mainLayout->addWidget(m_barWidget);
     m_practiceButton = new QPushButton(this);
-    QString buttonStyleSheet = "QPushButton { border: none; margin: 0px; padding: 0px; color: " + palette.color(QPalette::Active, QPalette::ButtonText).name()
-        + "; background-color: " + palette.color(QPalette::Active, QPalette::Button).name() + "; border-radius: 3px;}";
+    QString buttonStyleSheet = QStringLiteral("QPushButton { border: none; margin: 0px; padding: 0px; color: ")
+        + palette.color(QPalette::Active, QPalette::ButtonText).name() + QStringLiteral("; background-color: ")
+        + palette.color(QPalette::Active, QPalette::Button).name() + QStringLiteral("; border-radius: 3px;}");
     m_practiceButton->setStyleSheet(buttonStyleSheet);
 
     // buttonLayout is the horizontal layout for the bottom line in the

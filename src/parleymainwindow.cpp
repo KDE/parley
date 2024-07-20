@@ -97,13 +97,13 @@ ParleyMainWindow::~ParleyMainWindow()
 void ParleyMainWindow::addRecentFile(const QUrl &url, const QString &name)
 {
     m_recentFilesAction->addUrl(url, name);
-    m_recentFilesAction->saveEntries(KSharedConfig::openConfig()->group("Recent Files"));
+    m_recentFilesAction->saveEntries(KSharedConfig::openConfig()->group(QStringLiteral("Recent Files")));
 }
 
 void ParleyMainWindow::removeRecentFile(const QUrl &url)
 {
     m_recentFilesAction->removeUrl(url);
-    m_recentFilesAction->saveEntries(KSharedConfig::openConfig()->group("Recent Files"));
+    m_recentFilesAction->saveEntries(KSharedConfig::openConfig()->group(QStringLiteral("Recent Files")));
 }
 
 void ParleyMainWindow::documentUpdated(const std::shared_ptr<KEduVocDocument> &doc)
@@ -220,7 +220,7 @@ void ParleyMainWindow::initActions()
     ParleyActions::create(ParleyActions::FileOpenDownloaded, m_document, SLOT(openGHNS()), actionCollection());
 
     m_recentFilesAction = ParleyActions::createRecentFilesAction(m_document, SLOT(slotFileOpenRecent(QUrl)), actionCollection());
-    m_recentFilesAction->loadEntries(KSharedConfig::openConfig()->group("Recent Files"));
+    m_recentFilesAction->loadEntries(KSharedConfig::openConfig()->group(QStringLiteral("Recent Files")));
 
     ParleyActions::create(ParleyActions::FileSave, m_document, SLOT(save()), actionCollection());
     ParleyActions::create(ParleyActions::FileSaveAs, m_document, SLOT(saveAs()), actionCollection());

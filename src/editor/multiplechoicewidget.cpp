@@ -71,7 +71,7 @@ void MultipleChoiceWidget::slotAddChoiceButton()
 {
     m_choicesModel->insertRow(m_choicesModel->rowCount());
     QModelIndex index(m_choicesModel->index(m_choicesModel->rowCount() - 1));
-    m_choicesModel->setData(index, "");
+    m_choicesModel->setData(index, QString());
     multipleChoiceListView->scrollTo(index);
     multipleChoiceListView->setCurrentIndex(index);
     multipleChoiceListView->edit(index);
@@ -114,7 +114,7 @@ bool MultipleChoiceWidget::eventFilter(QObject *obj, QEvent *event)
             QDropEvent *dropEvent = static_cast<QDropEvent *>(event);
             // qDebug() << "You dropped onto me: " << dropEvent->mimeData()->text();
             if ((dropEvent->mimeData() != nullptr) && dropEvent->mimeData()->hasText()) {
-                QStringList choices = dropEvent->mimeData()->text().split('\n');
+                QStringList choices = dropEvent->mimeData()->text().split(QLatin1Char('\n'));
                 for (const QString &choice : std::as_const(choices)) {
                     m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
                     m_choicesModel->setData(m_choicesModel->index(multipleChoiceListView->model()->rowCount() - 1), choice);

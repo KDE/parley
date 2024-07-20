@@ -60,7 +60,7 @@ void SummaryWordWidget::setTranslation(KEduVocExpression *entry, int translation
         m_mapper->addMapping(paraphraseEntry, VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Paraphrase);
         m_mapper->addMapping(commentEntry, VocabularyModel::EntryColumnsMAX * translation + VocabularyModel::Comment);
 
-        languageLabel->setText("<b>" + m_doc->identifier(translation).name() + "</b>");
+        languageLabel->setText(QStringLiteral("<b>") + m_doc->identifier(translation).name() + QStringLiteral("</b>"));
         lessonLabel->setText(entry->lesson()->name());
 
         setCurrentWordType(entry, translation);

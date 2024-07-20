@@ -71,7 +71,7 @@ bool KGameTheme::load(const QString &fileName)
         qDebug() << "Could not open .desktop theme file" << filePath;
         return false;
     }
-    d->prefix = QFileInfo(themefile).absolutePath() + '/';
+    d->prefix = QFileInfo(themefile).absolutePath() + QLatin1Char('/');
     themefile.close();
 
     KConfig themeconfig(filePath, KConfig::SimpleConfig);

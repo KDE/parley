@@ -53,13 +53,13 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
 
     setHelp(QString(), QStringLiteral("parley"));
 
-    KConfigGroup cg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), "ConfigurePracticeDialog");
+    KConfigGroup cg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), QStringLiteral("ConfigurePracticeDialog"));
     this->resize(cg.readEntry("width", 100), cg.readEntry("height", 100));
 }
 
 ConfigurePracticeDialog::~ConfigurePracticeDialog()
 {
-    KConfigGroup cg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), "ConfigurePracticeDialog");
+    KConfigGroup cg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), QStringLiteral("ConfigurePracticeDialog"));
     cg.writeEntry("width", this->size().width());
     cg.writeEntry("height", this->size().height());
 }

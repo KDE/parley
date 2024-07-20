@@ -133,7 +133,7 @@ void PracticeSummaryComponent::setupDetailsTable()
 
 void PracticeSummaryComponent::exportResults()
 {
-    QString filter = i18n("HTML Files") + " (*.html);;" + i18n("OpenDocument text files") + " (*.odt)";
+    QString filter = i18n("HTML Files") + QStringLiteral(" (*.html);;") + i18n("OpenDocument text files") + QStringLiteral(" (*.odt)");
     QString caption;
     QString startingdir(QStringLiteral("kfiledialog:///practice_export"));
     QString fileName = QFileDialog::getSaveFileName(nullptr, caption, startingdir, filter);
@@ -143,10 +143,10 @@ void PracticeSummaryComponent::exportResults()
     }
 
     QTextDocument doc;
-    doc.setHtml("<html><head><title>" + i18n("Practice results") + "</title></body></html>");
+    doc.setHtml(QStringLiteral("<html><head><title>") + i18n("Practice results") + QStringLiteral("</title></body></html>"));
     QTextCursor cursor(&doc);
 
-    cursor.insertHtml("<h1>" + m_sessionManager->title() + "</h1><br />");
+    cursor.insertHtml(QStringLiteral("<h1>") + m_sessionManager->title() + QStringLiteral("</h1><br />"));
 
     cursor.insertText(i18n("Answered questions: %1\n", m_sessionManager->allEntryCount()));
     cursor.insertText(i18n("Correct answers: %1\n", m_sessionManager->statisticTotalCorrectFirstAttempt()));

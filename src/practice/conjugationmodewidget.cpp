@@ -90,7 +90,7 @@ void ConjugationModeWidget::setQuestion(const QVariant &question)
     int i = 0;
     for (QString pp : std::as_const(data.personalPronouns)) {
         if (data.personalPronouns.size() == 1) {
-            pp += " (" + data.tense + ')';
+            pp += QStringLiteral(" (") + data.tense + QLatin1Char(')');
         }
         m_personWidgets.at(i)->person->setText(pp);
         m_personWidgets.at(i)->person->setFont(m_solutionFont);

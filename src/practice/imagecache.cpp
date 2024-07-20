@@ -71,7 +71,7 @@ void ImageCache::openCache()
     // check identifier
     QString temp;
     stream >> temp;
-    if (temp != QString(identifier)) {
+    if (temp != QLatin1String(identifier)) {
         // qDebug() << "not loading cache because the identifier doesn't match";
         return;
     }
@@ -101,7 +101,7 @@ void ImageCache::saveCache()
     QFile file(m_saveFilename);
     file.open(QIODevice::WriteOnly);
     QDataStream stream(&file);
-    stream << QString(identifier) << m_filenames << m_timestamps << m_images;
+    stream << identifier << m_filenames << m_timestamps << m_images;
 }
 
 QDebug Practice::operator<<(QDebug dbg, const ImageCache &c)

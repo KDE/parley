@@ -178,7 +178,7 @@ void VocabularyView::reset()
         visibleColumns = ds.visibleColumns();
 
         KConfig parleyConfig(QStringLiteral("parleyrc"));
-        KConfigGroup documentGroup(&parleyConfig, "Document " + m_doc->url().url());
+        KConfigGroup documentGroup(&parleyConfig, QStringLiteral("Document ") + m_doc->url().url());
         QByteArray state = documentGroup.readEntry("VocabularyColumns", QByteArray());
 
         if (!horizontalHeader()->restoreState(state)) {
@@ -217,7 +217,7 @@ void VocabularyView::saveColumnVisibility() const
 
     horizontalHeader()->saveState();
     KConfig parleyConfig(QStringLiteral("parleyrc"));
-    KConfigGroup documentGroup(&parleyConfig, "Document " + m_doc->url().url());
+    KConfigGroup documentGroup(&parleyConfig, QStringLiteral("Document ") + m_doc->url().url());
     documentGroup.writeEntry("VocabularyColumns", horizontalHeader()->saveState());
 }
 
@@ -313,7 +313,7 @@ void VocabularyView::slotEditPaste()
     } else if (mimeData->hasText()) {
         qDebug() << "Clipboard contains text data.";
         // split at newline
-        QStringList lines = clipboard->text().split('\n');
+        QStringList lines = clipboard->text().split(QLatin1Char('\n'));
         for (const QString &line : std::as_const(lines)) {
             // split at tabs or semicolon:
             m_model->appendEntry(new KEduVocExpression(line.split(QRegularExpression(QStringLiteral("[\t;]")), Qt::KeepEmptyParts)));

@@ -77,17 +77,17 @@ void GenderBackendMode::prepareChoices(TestEntry *entry)
     QStringList choices;
 
     if (!m_masculine.isEmpty()) {
-        choices.append(m_masculine + ' ' + noun);
+        choices.append(m_masculine + QLatin1Char(' ') + noun);
     } else {
         choices.append(i18nc("@label the gender of the word: masculine", "%1 is masculine", noun));
     }
     if (!m_feminine.isEmpty()) {
-        choices.append(m_feminine + ' ' + noun);
+        choices.append(m_feminine + QLatin1Char(' ') + noun);
     } else {
         choices.append(i18nc("@label the gender of the word: feminine", "%1 is feminine", noun));
     }
     if (m_neuterExists && !m_neuter.isEmpty()) {
-        choices.append(m_neuter + ' ' + noun);
+        choices.append(m_neuter + QLatin1Char(' ') + noun);
     } else {
         choices.append(i18nc("@label the gender of the word: neuter", "%1 is neuter", noun));
     }

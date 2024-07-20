@@ -48,7 +48,7 @@ void LatexRenderer::renderLatex(QString tex)
     }
 
     if (tex.startsWith(QLatin1String("$$"))) {
-        tex.replace(0, 2, QStringLiteral("\\begin{eqnarray*}")).remove(-2, 2).append("\\end{eqnarray*}");
+        tex.replace(0, 2, QStringLiteral("\\begin{eqnarray*}")).remove(-2, 2).append(QStringLiteral("\\end{eqnarray*}"));
     } else {
         tex.remove(0, 2).remove(-2, 2);
     }
@@ -62,8 +62,9 @@ void LatexRenderer::renderLatex(QString tex)
     }
 
     QColor color = QGuiApplication::palette().color(QPalette::WindowText);
-    QString colorString = QString::number(color.redF()) + ',' + QString::number(color.greenF()) + ',' + QString::number(color.blueF());
-    QString expressionTex = QString(texTemplate).arg(colorString, tex.trimmed());
+    QString colorString =
+        QString::number(color.redF()) + QLatin1Char(',') + QString::number(color.greenF()) + QLatin1Char(',') + QString::number(color.blueF());
+    QString expressionTex = QLatin1String(texTemplate).arg(colorString, tex.trimmed());
 
     texFile->write(expressionTex.toUtf8());
     texFile->flush();

@@ -12,7 +12,7 @@ bool TranslateShellAdapter::isTranslateShellAvailable() const
 {
     if (!m_translateShellAvailable) {
         QProcess process;
-        process.start(QStringLiteral("trans"), QStringList() << "--version");
+        process.start(QStringLiteral("trans"), QStringList() << QStringLiteral("--version"));
         process.waitForFinished(1000);
         if (process.error() != QProcess::ProcessError::FailedToStart) {
             qDebug() << "Translateshell process found";
@@ -37,33 +37,33 @@ TranslateShellAdapter::Translation TranslateShellAdapter::translate(const QStrin
 
     QProcess process;
     process.start(QStringLiteral("trans"),
-                  {"-l",
-                   "en", // output language of CLI
-                   "-t",
+                  {QStringLiteral("-l"),
+                   QStringLiteral("en"), // output language of CLI
+                   QStringLiteral("-t"),
                    targetLanguage,
-                   "-s",
+                   QStringLiteral("-s"),
                    sourceLanguage,
                    word,
-                   "-no-ansi",
-                   "-show-alternatives=y",
-                   "-show-original=n",
-                   "-show-languages=n",
-                   "-show-original-dictionary=n",
-                   "-show-dictionary=y",
-                   "-no-warn"});
+                   QStringLiteral("-no-ansi"),
+                   QStringLiteral("-show-alternatives=y"),
+                   QStringLiteral("-show-original=n"),
+                   QStringLiteral("-show-languages=n"),
+                   QStringLiteral("-show-original-dictionary=n"),
+                   QStringLiteral("-show-dictionary=y"),
+                   QStringLiteral("-no-warn")});
     process.waitForFinished();
     if (process.exitCode() != 0) {
         TranslateShellAdapter::Translation translation;
         translation.m_error = true;
         return {};
     } else {
-        return TranslateShellAdapter::parseTranslateShellResult(process.readAll());
+        return TranslateShellAdapter::parseTranslateShellResult(QString::fromUtf8(process.readAll()));
     }
 }
 
 QFuture<bool> TranslateShellAdapter::downloadSoundFile(const QString &word, const QString &language, const QString &filePath)
 {
-    if (!filePath.endsWith(".ts")) {
+    if (!filePath.endsWith(QStringLiteral(".ts"))) {
         qWarning() << "Sound file will have TS format and should have that suffix";
     }
     if (QFile::exists(filePath)) {
@@ -78,13 +78,13 @@ QFuture<bool> TranslateShellAdapter::downloadSoundFile(const QString &word, cons
     QFuture<bool> result = QtConcurrent::run([word, language, filePath]() {
         QProcess process;
         process.start(QStringLiteral("trans"),
-                      {"-l",
-                       "en", // output language of CLI
-                       "-t",
+                      {QStringLiteral("-l"),
+                       QStringLiteral("en"), // output language of CLI
+                       QStringLiteral("-t"),
                        language,
                        word,
-                       "-no-translate",
-                       "-download-audio-as",
+                       QStringLiteral("-no-translate"),
+                       QStringLiteral("-download-audio-as"),
                        filePath});
         process.waitForFinished();
         return process.error() != QProcess::ProcessError::FailedToStart && process.exitCode() == 0;
@@ -94,7 +94,7 @@ QFuture<bool> TranslateShellAdapter::downloadSoundFile(const QString &word, cons
 
 TranslateShellAdapter::Translation TranslateShellAdapter::parseTranslateShellResult(const QString &output)
 {
-    const QStringList lines = output.split('\n');
+    const QStringList lines = output.split(QLatin1Char('\n'));
 
     Translation result;
     if (lines.count() < 1) {

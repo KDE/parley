@@ -111,7 +111,7 @@ protected:
 protected:
     AbstractFrontend *m_frontend{nullptr};
     TestEntry *m_current{nullptr};
-    QStringList m_synonyms{nullptr};
+    QStringList m_synonyms;
 };
 
 }

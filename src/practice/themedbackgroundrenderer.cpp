@@ -255,7 +255,7 @@ void ThemedBackgroundRenderer::renderRect(const QString &name, const QRect &rect
         }
         for (int inside = 1; inside >= 0; inside--) {
             renderItem(name,
-                       QString(inside ? "inside" : "border") + '-' + edge,
+                       QString(inside ? QStringLiteral("inside") : QStringLiteral("border")) + QLatin1Char('-') + edge,
                        rect,
                        p,
                        fastScale,
@@ -265,7 +265,7 @@ void ThemedBackgroundRenderer::renderRect(const QString &name, const QRect &rect
                        Centered,
                        inside);
             renderItem(name,
-                       QString(inside ? "inside" : "border") + '-' + edge + "-ratio",
+                       QString(inside ? QStringLiteral("inside") : QStringLiteral("border")) + QLatin1Char('-') + edge + QStringLiteral("-ratio"),
                        rect,
                        p,
                        fastScale,
@@ -275,7 +275,7 @@ void ThemedBackgroundRenderer::renderRect(const QString &name, const QRect &rect
                        Centered,
                        inside);
             renderItem(name,
-                       QString(inside ? "inside" : "border") + '-' + edge + "-noscale",
+                       QString(inside ? QStringLiteral("inside") : QStringLiteral("border")) + QLatin1Char('-') + edge + QStringLiteral("-noscale"),
                        rect,
                        p,
                        fastScale,
@@ -285,7 +285,7 @@ void ThemedBackgroundRenderer::renderRect(const QString &name, const QRect &rect
                        Centered,
                        inside);
             renderItem(name,
-                       QString(inside ? "inside" : "border") + '-' + edge + "-repeat",
+                       QString(inside ? QStringLiteral("inside") : QStringLiteral("border")) + QLatin1Char('-') + edge + QStringLiteral("-repeat"),
                        rect,
                        p,
                        fastScale,
@@ -295,7 +295,8 @@ void ThemedBackgroundRenderer::renderRect(const QString &name, const QRect &rect
                        Repeated,
                        inside);
             renderItem(name,
-                       QString(inside ? "inside" : "border") + '-' + edge + '-' + (scaleBase == Vertical ? "top" : "left"),
+                       QString(inside ? QStringLiteral("inside") : QStringLiteral("border")) + QLatin1Char('-') + edge + QLatin1Char('-')
+                           + (scaleBase == Vertical ? QStringLiteral("top") : QStringLiteral("left")),
                        rect,
                        p,
                        fastScale,
@@ -305,7 +306,8 @@ void ThemedBackgroundRenderer::renderRect(const QString &name, const QRect &rect
                        LeftTop,
                        inside);
             renderItem(name,
-                       QString(inside ? "inside" : "border") + '-' + edge + '-' + (scaleBase == Vertical ? "bottom" : "right"),
+                       QString(inside ? QStringLiteral("inside") : QStringLiteral("border")) + QLatin1Char('-') + edge + QLatin1Char('-')
+                           + (scaleBase == Vertical ? QStringLiteral("bottom") : QStringLiteral("right")),
                        rect,
                        p,
                        fastScale,

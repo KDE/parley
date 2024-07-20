@@ -76,7 +76,7 @@ Dashboard::Dashboard(ParleyMainWindow *parent)
     connect(m_ui.newButton, &QAbstractButton::clicked, m_mainWindow, &ParleyMainWindow::slotFileNew);
     connect(m_ui.openButton, &QAbstractButton::clicked, doc, &ParleyDocument::slotFileOpen);
     connect(m_ui.ghnsButton, &KNSWidgets::Button::dialogFinished, doc, &ParleyDocument::slotGHNS);
-    m_ui.ghnsButton->setConfigFile("parley.knsrc");
+    m_ui.ghnsButton->setConfigFile(QStringLiteral("parley.knsrc"));
 
     KConfigGroup cfg(KSharedConfig::openConfig(QStringLiteral("parleyrc")), objectName());
     m_mainWindow->applyMainWindowSettings(cfg);
@@ -148,10 +148,10 @@ void Dashboard::deleteChildWidgets(QLayoutItem *item)
 void Dashboard::populateMap()
 {
     KConfig parleyConfig(QStringLiteral("parleyrc"));
-    KConfigGroup recentFilesGroup(&parleyConfig, "Recent Files");
+    KConfigGroup recentFilesGroup(&parleyConfig, QStringLiteral("Recent Files"));
     for (int i = recentFilesGroup.keyList().count() / 2; i > 0; i--) {
-        QString urlString = recentFilesGroup.readPathEntry("File" + QString::number(i), QString());
-        QString nameString = recentFilesGroup.readEntry("Name" + QString::number(i), QString());
+        QString urlString = recentFilesGroup.readPathEntry(QStringLiteral("File") + QString::number(i), QString());
+        QString nameString = recentFilesGroup.readEntry(QStringLiteral("Name") + QString::number(i), QString());
         m_recentFilesMap.insert(urlString, nameString);
     }
 }

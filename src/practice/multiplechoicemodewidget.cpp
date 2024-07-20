@@ -188,28 +188,32 @@ void MultiplechoiceModeWidget::showSolution()
     // Set background to correct color, but with transparency
     const QString correctBackground = QStringLiteral("#7D") + m_correctPalette.color(QPalette::Text).name().remove(0, 1);
 
-    m_choiceButtons[m_solution]->setStyleSheet(
-        m_choiceButtons[m_solution]->styleSheet() +
-        " QPushButton:checked { "
-                "color: " + textColor.name() + "; "
-                "border-color: " + borderColor + "; "
-                "background-color: " + correctBackground +
-                            " }"
-    );
+    m_choiceButtons[m_solution]->setStyleSheet(m_choiceButtons[m_solution]->styleSheet()
+                                               + QStringLiteral(" QPushButton:checked { "
+                                                                "color: ")
+                                               + textColor.name()
+                                               + QStringLiteral("; "
+                                                                "border-color: ")
+                                               + borderColor
+                                               + QStringLiteral("; "
+                                                                "background-color: ")
+                                               + correctBackground + QStringLiteral(" }"));
     // Always check correct button to highlight correct answer
     m_choiceButtons[m_solution]->setChecked(true);
 
     if (input != -1 && input != m_solution) {
         const QString wrongBackground = QStringLiteral("#7D") + m_wrongPalette.color(QPalette::Text).name().remove(0, 1);
 
-        m_choiceButtons[input]->setStyleSheet(
-            m_choiceButtons[input]->styleSheet() +
-            " QPushButton:checked { "
-                    "color: " + textColor.name() + "; "
-                    "border-color: " + borderColor + "; "
-                    "background-color: " + wrongBackground +
-                                " }"
-        );
+        m_choiceButtons[input]->setStyleSheet(m_choiceButtons[input]->styleSheet()
+                                              + QStringLiteral(" QPushButton:checked { "
+                                                               "color: ")
+                                              + textColor.name()
+                                              + QStringLiteral("; "
+                                                               "border-color: ")
+                                              + borderColor
+                                              + QStringLiteral("; "
+                                                               "background-color: ")
+                                              + wrongBackground + QStringLiteral(" }"));
     }
     for (QPushButton *pushButton : std::as_const(m_choiceButtons)) {
         pushButton->setEnabled(false);
@@ -258,27 +262,31 @@ void MultiplechoiceModeWidget::resetButtonStyleSheet()
     const QColor textColor = palette().color(QPalette::WindowText);
     // Set border to text color with light transparency
     const QString borderColor = QStringLiteral("#90") + palette().color(QPalette::WindowText).name().remove(0, 1);
-    const QString defaultStyleSheet =
-        "QPushButton { text-align: left; "
-                      "color: " + textColor.name() + "; "
-                      "padding: 5px; "
-                      "border-color: #00FFFFFF; " // Make border transparent
-                      "border-style: solid; "
-                      "border-width: 1px; "
-                      "border-radius: 4px; "
-                      "font-style: " +
-                        m_solutionFont.styleName() + "; " +
-                      "font-weight: " +
-                        QString::number(m_solutionFont.weight()) + "; " +
-                      "font-size: " +
-                        QString::number(m_solutionFont.pointSize()) + "pt } "+
-        "QPushButton:hover { "
-                      "border-color: " + borderColor + " } "
-        "QPushButton:focus { "
-                      "color: " + textColor.name() + " } "
-        "QPushButton:focus:!hover { "
-                      "border-style: dashed; "
-                      "border-color: " + borderColor + " }";
+    const QString defaultStyleSheet = QStringLiteral(
+                                          "QPushButton { text-align: left; "
+                                          "color: ")
+        + textColor.name()
+        + QStringLiteral("; "
+                         "padding: 5px; "
+                         "border-color: #00FFFFFF; " // Make border transparent
+                         "border-style: solid; "
+                         "border-width: 1px; "
+                         "border-radius: 4px; "
+                         "font-style: ")
+        + m_solutionFont.styleName() + QStringLiteral("; ") + QStringLiteral("font-weight: ") + QString::number(m_solutionFont.weight()) + QStringLiteral("; ")
+        + QStringLiteral("font-size: ") + QString::number(m_solutionFont.pointSize()) + QStringLiteral("pt } ")
+        + QStringLiteral("QPushButton:hover { "
+                         "border-color: ")
+        + borderColor
+        + QStringLiteral(" } "
+                         "QPushButton:focus { "
+                         "color: ")
+        + textColor.name()
+        + QStringLiteral(" } "
+                         "QPushButton:focus:!hover { "
+                         "border-style: dashed; "
+                         "border-color: ")
+        + borderColor + QStringLiteral(" }");
 
     if (!m_choiceButtons.isEmpty()) {
         for (QPushButton *pushButton : std::as_const(m_choiceButtons)) {
