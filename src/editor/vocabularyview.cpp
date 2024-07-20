@@ -281,7 +281,7 @@ void VocabularyView::slotEditPaste()
     if (vocMimeData) {
         qDebug() << "Clipboard contains vocabulary mime data.";
         QList<VocabularyMimeData::MimeExpression> expressionList = vocMimeData->expressionList();
-        for (const VocabularyMimeData::MimeExpression &mimeEntry : qAsConst(expressionList)) {
+        for (const VocabularyMimeData::MimeExpression &mimeEntry : std::as_const(expressionList)) {
             KEduVocExpression *pasteExpression = new KEduVocExpression(mimeEntry.expression);
             m_model->appendEntry(pasteExpression);
 
@@ -314,7 +314,7 @@ void VocabularyView::slotEditPaste()
         qDebug() << "Clipboard contains text data.";
         // split at newline
         QStringList lines = clipboard->text().split('\n');
-        for (const QString &line : qAsConst(lines)) {
+        for (const QString &line : std::as_const(lines)) {
             // split at tabs or semicolon:
             m_model->appendEntry(new KEduVocExpression(line.split(QRegularExpression(QStringLiteral("[\t;]")), Qt::KeepEmptyParts)));
         }

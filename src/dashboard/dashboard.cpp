@@ -317,7 +317,7 @@ void Dashboard::setTheme()
 
 void Dashboard::updateWidgets()
 {
-    for (CollectionWidget *cw : qAsConst(m_collectionWidgets)) {
+    for (CollectionWidget *cw : std::as_const(m_collectionWidgets)) {
         cw->updateDue();
     }
 }

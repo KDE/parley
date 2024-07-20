@@ -234,11 +234,11 @@ void TranslateShellTest::translateShellProcessInteractionTest()
     QFuture<TranslateShellAdapter::Translation> translation = TranslateShellAdapter::translateAsync("haus", "de", "en");
     translation.waitForFinished();
     if (translation.result().m_suggestions.size() == 0) {
-        QWARN("did not receive any translation results");
+        qWarning("did not receive any translation results");
         return;
     }
     if (translation.result().m_suggestions.first() != "House") { // translation "haus" -> "House" is expected to be stable
-        QWARN("translation result differes from expectation");
+        qWarning("translation result differes from expectation");
     }
 }
 

@@ -16,13 +16,13 @@ void VocabularyMimeData::setTranslations(const QList<KEduVocTranslation *> &tran
     // sort the translations into entries to make deep copies for real copy and paste
     // to only include each expression once
     QList<KEduVocExpression *> expressions;
-    for (KEduVocTranslation *translation : qAsConst(m_translations)) {
+    for (KEduVocTranslation *translation : std::as_const(m_translations)) {
         if (!expressions.contains(translation->entry())) {
             expressions.append(translation->entry());
         }
     }
 
-    for (KEduVocExpression *expression : qAsConst(expressions)) {
+    for (KEduVocExpression *expression : std::as_const(expressions)) {
         MimeExpression exp;
         // deep copy
         exp.expression = KEduVocExpression(*expression);

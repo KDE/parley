@@ -41,7 +41,7 @@ void Collection::numDueWords(WordCount &wc)
     }
 
     // Count the number of words due for each grade level.
-    for (const TestEntry *entry : qAsConst(m_allTestEntries)) {
+    for (const TestEntry *entry : std::as_const(m_allTestEntries)) {
         int languageTo = entry->languageTo();
         KEduVocExpression *exp = entry->entry();
 

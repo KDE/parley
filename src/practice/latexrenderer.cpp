@@ -139,7 +139,7 @@ void LatexRenderer::latexRendered()
     QStringList extensions;
     extensions << QStringLiteral(".log") << QStringLiteral(".aux") << QStringLiteral(".tex") << QStringLiteral(".dvi") << QStringLiteral(".eps")
                << QStringLiteral(".png");
-    for (const QString &ext : qAsConst(extensions)) {
+    for (const QString &ext : std::as_const(extensions)) {
         QString s = m_latexFilename;
         s.replace(QLatin1String(".eps"), ext);
         QFile f(s);

@@ -96,9 +96,9 @@ QMap<QString, QString> DocumentProperties::localeLangsMap()
 
     QMap<QString, QString> languageCodeMap;
 
-    for (const QLocale &myLocale : qAsConst(allLocales)) {
-        if (!myLocale.nativeLanguageName().isEmpty() && !myLocale.nativeCountryName().isEmpty()) {
-            languageCodeMap[myLocale.nativeLanguageName() + " (" + myLocale.nativeCountryName() + ')'] = myLocale.name();
+    for (const QLocale &myLocale : std::as_const(allLocales)) {
+        if (!myLocale.nativeLanguageName().isEmpty() && !myLocale.nativeTerritoryName().isEmpty()) {
+            languageCodeMap[myLocale.nativeLanguageName() + " (" + myLocale.nativeTerritoryName() + ')'] = myLocale.name();
         }
     }
     return languageCodeMap;

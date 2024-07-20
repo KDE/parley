@@ -106,10 +106,10 @@ void LatexDelegate::setEditorData(QWidget *editor, const QModelIndex &index) con
         if (entry) {
             QString text = index.model()->data(index).toString();
             if (text.startsWith(QLatin1String("$$")) && text.endsWith(QLatin1String("$$"))) {
-                entry->setText(text.mid(2, text.count() - 4));
+                entry->setText(text.mid(2, text.size() - 4));
                 m_checkBox->setChecked(true);
             } else if (text.startsWith(QStringLiteral("§§")) && text.endsWith(QStringLiteral("§§"))) {
-                entry->setText(text.mid(2, text.count() - 4));
+                entry->setText(text.mid(2, text.size() - 4));
                 m_checkBox->setChecked(false);
             } else {
                 entry->setText(QString());

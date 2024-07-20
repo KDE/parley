@@ -211,7 +211,7 @@ QImage ThemedBackgroundRenderer::renderBackground(bool fastScale)
     image.fill(QColor(Qt::transparent).rgba());
     QPainter p(&image);
 
-    for (QPair<QString, QRect> rect : qAsConst(m_rects)) {
+    for (QPair<QString, QRect> rect : std::as_const(m_rects)) {
         if (!m_rects.isEmpty() && rect == m_rects[0]) {
             QMargins margins = contentMargins();
             rect.second =
@@ -237,7 +237,7 @@ void ThemedBackgroundRenderer::renderRect(const QString &name, const QRect &rect
 
     QStringList edges;
     edges << QStringLiteral("top") << QStringLiteral("bottom") << QStringLiteral("left") << QStringLiteral("right");
-    for (const QString &edge : qAsConst(edges)) {
+    for (const QString &edge : std::as_const(edges)) {
         ScaleBase scaleBase;
         Edge alignEdge;
         if (edge == QLatin1String("top")) {

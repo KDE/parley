@@ -211,7 +211,7 @@ QMimeData *ContainerModel::mimeData(const QModelIndexList &indexes) const
 
     //      QDataStream stream(&encodedData, QIODevice::WriteOnly);
     // stream << "Parley lesson";
-    //      for (const QModelIndex &index : qAsConst(indexes)) {
+    //      for (const QModelIndex &index : std::as_const(indexes)) {
     //          if (index.isValid()) {
     //              QString text = data(index, Qt::DisplayRole).toString();
     //              stream << text;
@@ -302,7 +302,7 @@ bool ContainerModel::dropMimeData(const QMimeData *data, Qt::DropAction action, 
                 }
             }
 
-            for (KEduVocExpression *entry : qAsConst(entries)) {
+            for (KEduVocExpression *entry : std::as_const(entries)) {
                 static_cast<KEduVocLesson *>(parent.internalPointer())->appendEntry(new KEduVocExpression(*entry));
             }
         }

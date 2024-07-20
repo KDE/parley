@@ -173,7 +173,7 @@ QList<TestEntry *> EntryFilter::entries(bool showDialog)
                 to = Prefs::knownLanguage();
             }
 
-            for (KEduVocExpression *entry : qAsConst(m_currentSelection[setNo])) {
+            for (KEduVocExpression *entry : std::as_const(m_currentSelection[setNo])) {
                 // Set the from and to translation for the entry itself.
                 TestEntry *testEntry = new TestEntry(entry);
 
@@ -191,7 +191,7 @@ void EntryFilter::expireEntries(int setNo)
 {
     if (Prefs::expire()) {
         int counter = 0;
-        for (KEduVocExpression *entry : qAsConst(m_entries[setNo])) {
+        for (KEduVocExpression *entry : std::as_const(m_entries[setNo])) {
             int grade = entry->translation(m_toTranslation)->grade();
 
             const QDateTime &date = entry->translation(m_toTranslation)->practiceDate();
@@ -245,7 +245,7 @@ void EntryFilter::setupFilteredEntries(int setNo)
 
 void EntryFilter::lessonEntries(int setNo)
 {
-    for (KEduVocExpression *entry : qAsConst(m_entries[setNo])) {
+    for (KEduVocExpression *entry : std::as_const(m_entries[setNo])) {
         if (entry->lesson()->inPractice()) {
             m_entriesLesson[setNo].insert(entry);
         }
@@ -255,7 +255,7 @@ void EntryFilter::lessonEntries(int setNo)
 void EntryFilter::wordTypeEntries(int setNo)
 {
     if (Prefs::wordTypesInPracticeEnabled()) {
-        for (KEduVocExpression *entry : qAsConst(m_entries[setNo])) {
+        for (KEduVocExpression *entry : std::as_const(m_entries[setNo])) {
             if (entry->translation(m_toTranslation)->wordType()) {
                 if (entry->translation(m_toTranslation)->wordType()->inPractice()) {
                     m_entriesWordType[setNo].insert(entry);
@@ -276,14 +276,14 @@ void EntryFilter::blockedEntries(int setNo)
 
     switch (Prefs::practiceMode()) {
     case Prefs::EnumPracticeMode::ConjugationPractice:
-        for (KEduVocExpression *entry : qAsConst(m_entries[setNo])) {
+        for (KEduVocExpression *entry : std::as_const(m_entries[setNo])) {
             if (!isConjugationBlocked(entry->translation(m_toTranslation))) {
                 m_entriesNotBlocked[setNo].insert(entry);
             }
         }
         break;
     case Prefs::EnumPracticeMode::GenderPractice:
-        for (KEduVocExpression *entry : qAsConst(m_entries[setNo])) {
+        for (KEduVocExpression *entry : std::as_const(m_entries[setNo])) {
             KEduVocText article = entry->translation(m_toTranslation)->article();
             if (!isBlocked(&article)) {
                 m_entriesNotBlocked[setNo].insert(entry);
@@ -291,7 +291,7 @@ void EntryFilter::blockedEntries(int setNo)
         }
         break;
     case Prefs::EnumPracticeMode::ComparisonPractice:
-        for (KEduVocExpression *entry : qAsConst(m_entries[setNo])) {
+        for (KEduVocExpression *entry : std::as_const(m_entries[setNo])) {
             KEduVocTranslation *translation = entry->translation(m_toTranslation);
             KEduVocText comparative = translation->comparativeForm();
             KEduVocText superlative = translation->superlativeForm();
@@ -301,7 +301,7 @@ void EntryFilter::blockedEntries(int setNo)
         }
         break;
     default:
-        for (KEduVocExpression *entry : qAsConst(m_entries[setNo])) {
+        for (KEduVocExpression *entry : std::as_const(m_entries[setNo])) {
             if (!isBlocked(entry->translation(m_toTranslation))) {
                 m_entriesNotBlocked[setNo].insert(entry);
                 // debugEntry("Not blocked:", entry,
@@ -383,7 +383,7 @@ bool EntryFilter::isBlocked(const KEduVocText *const text) const
 
 void EntryFilter::timesWrongEntries(int setNo)
 {
-    for (KEduVocExpression *entry : qAsConst(m_entries[setNo])) {
+    for (KEduVocExpression *entry : std::as_const(m_entries[setNo])) {
         if (entry->translation(m_toTranslation)->badCount() >= Prefs::practiceMinimumWrongCount()
             && entry->translation(m_toTranslation)->badCount() <= Prefs::practiceMaximumWrongCount()) {
             m_entriesTimesWrong[setNo].insert(entry);
@@ -393,7 +393,7 @@ void EntryFilter::timesWrongEntries(int setNo)
 
 void EntryFilter::timesPracticedEntries(int setNo)
 {
-    for (KEduVocExpression *entry : qAsConst(m_entries[setNo])) {
+    for (KEduVocExpression *entry : std::as_const(m_entries[setNo])) {
         if (entry->translation(m_toTranslation)->practiceCount() >= Prefs::practiceMinimumTimesAsked()
             && entry->translation(m_toTranslation)->practiceCount() <= Prefs::practiceMaximumTimesAsked()) {
             m_entriesTimesPracticed[setNo].insert(entry);
@@ -403,7 +403,7 @@ void EntryFilter::timesPracticedEntries(int setNo)
 
 void EntryFilter::minMaxGradeEntries(int setNo)
 {
-    for (KEduVocExpression *entry : qAsConst(m_entries[setNo])) {
+    for (KEduVocExpression *entry : std::as_const(m_entries[setNo])) {
         int grade = entry->translation(m_toTranslation)->grade();
         if (grade >= Prefs::practiceMinimumGrade() && grade <= Prefs::practiceMaximumGrade()) {
             m_entriesMinMaxGrade[setNo].insert(entry);
@@ -536,7 +536,7 @@ QList<TestEntry *> EntryFilter::conjugationTestEntries(bool ignoreBlocked) const
 
     QList<TestEntry *> testEntries;
     for (int i = 0; i < m_numSets; ++i) {
-        for (KEduVocExpression *entry : qAsConst(m_currentSelection[i])) {
+        for (KEduVocExpression *entry : std::as_const(m_currentSelection[i])) {
             const QStringList conjugationTenses = entry->translation(m_toTranslation)->conjugationTenses();
             for (const QString &tense : conjugationTenses) {
                 // Only include tenses which are both non-empty and which should be practiced

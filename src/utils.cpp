@@ -105,7 +105,7 @@ void WordCount::fillFromContainerForPracticeMode(KEduVocContainer &container,
             } break;
             case KEduVocWordFlag::Verb: {
                 QStringList conjugationTenses = translation.conjugationTenses();
-                for (const QString &activeTense : qAsConst(activeConjugationTenses)) {
+                for (const QString &activeTense : std::as_const(activeConjugationTenses)) {
                     if (conjugationTenses.contains(activeTense)) {
                         KEduVocConjugation conj = translation.getConjugation(activeTense);
                         const QList<KEduVocWordFlags> keys = conj.keys();

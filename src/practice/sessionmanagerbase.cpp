@@ -70,7 +70,7 @@ void SessionManagerBase::setDocument(KEduVocDocument *doc)
 
     //     qDebug() << "Entries: ----------------";
     //     qDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
-    //     for (TestEntry *entry : qAsConst(m_allTestEntries)) {
+    //     for (TestEntry *entry : std::as_const(m_allTestEntries)) {
     //         qDebug() << "Entry: " << entry->languageFrom() << entry->entry()->translation(entry->languageFrom())->text()
     //                  << "to" << entry->languageTo() << entry->entry()->translation(entry->languageTo())->text();
     //     }
@@ -174,7 +174,7 @@ QList<TestEntry *> SessionManagerBase::allUnansweredTestEntries()
 int SessionManagerBase::statisticTotalCorrectFirstAttempt()
 {
     int count = 0;
-    for (TestEntry *entry : qAsConst(m_allTestEntries)) {
+    for (TestEntry *entry : std::as_const(m_allTestEntries)) {
         if (entry->correctAtFirstAttempt()) {
             count++;
         }
@@ -185,7 +185,7 @@ int SessionManagerBase::statisticTotalCorrectFirstAttempt()
 int SessionManagerBase::statisticTotalWrong()
 {
     int count = 0;
-    for (TestEntry *entry : qAsConst(m_allTestEntries)) {
+    for (TestEntry *entry : std::as_const(m_allTestEntries)) {
         if (entry->statisticBadCount()) {
             count++;
         }
@@ -196,7 +196,7 @@ int SessionManagerBase::statisticTotalWrong()
 int SessionManagerBase::statisticTotalUnanswered()
 {
     int count = 0;
-    for (TestEntry *entry : qAsConst(m_allTestEntries)) {
+    for (TestEntry *entry : std::as_const(m_allTestEntries)) {
         if (entry->statisticCount() == 0) {
             count++;
         }
@@ -207,7 +207,7 @@ int SessionManagerBase::statisticTotalUnanswered()
 void SessionManagerBase::printStatistics()
 {
     qDebug() << "Test statistics: ";
-    for (TestEntry *entry : qAsConst(m_allTestEntries)) {
+    for (TestEntry *entry : std::as_const(m_allTestEntries)) {
         qDebug() << " asked: " << entry->statisticCount() << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
                  << "Entry: " << entry->entry()->translation(0)->text();
     }
