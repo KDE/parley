@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-20 00:35+0000\n"
+"POT-Creation-Date: 2024-07-21 00:37+0000\n"
 "PO-Revision-Date: 2024-01-26 10:32+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -409,14 +409,14 @@ msgstr "סופרלטיב:"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:486
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
 #, kde-format
 msgid "Adjective"
 msgstr "תואר"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:490
+#: src/parleydocument.cpp:491
 #, kde-format
 msgid "Adverb"
 msgstr "תואר הפועל"
@@ -531,21 +531,21 @@ msgstr "רבים"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:472
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:473
 #, kde-format
 msgid "Masculine"
 msgstr "בזכר"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:475
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:476
 #, kde-format
 msgid "Feminine"
 msgstr "בנקבה"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:478
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:479
 #, kde-format
 msgid "Neuter"
 msgstr "סתמי"
@@ -838,13 +838,13 @@ msgid "&Reset Confidence Levels"
 msgstr "&איפוס רמות ביטחון"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:482
+#: src/parleydocument.cpp:483
 #, kde-format
 msgid "Verb"
 msgstr "פועל"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:468
+#: src/parleydocument.cpp:469
 #, kde-format
 msgid "Noun"
 msgstr "שם עצם"
@@ -1308,7 +1308,7 @@ msgstr "תיקיית סוג מילים זאת מכילה תוארי פועל."
 msgid "This word type folder contains verbs."
 msgstr "תיקיית סוג מילים זאת מכילה פעלים."
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:494
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
 #, kde-format
 msgid "Conjunction"
 msgstr "מילת קישור"
@@ -1710,24 +1710,24 @@ msgstr "הצגת &חיפוש"
 msgid "Toggle display of the search bar"
 msgstr "החלפת תצוגת סרגל החיפוש"
 
-#: src/parleydocument.cpp:121 src/parleydocument.cpp:577
+#: src/parleydocument.cpp:122 src/parleydocument.cpp:578
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "מאפיינים עבור %1"
 
-#: src/parleydocument.cpp:158
+#: src/parleydocument.cpp:159
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "פתיחת אוסף אוצרות מילים"
 
-#: src/parleydocument.cpp:159
+#: src/parleydocument.cpp:160
 #, kde-format
 msgid "Open in practice &mode"
 msgstr "פתיחה במצב &תרגול"
 
-#: src/parleydocument.cpp:201
+#: src/parleydocument.cpp:202
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1741,23 +1741,23 @@ msgstr ""
 "\n"
 "להשתלט על הנעילה?\n"
 
-#: src/parleydocument.cpp:203
+#: src/parleydocument.cpp:204
 #, kde-format
 msgid "Take Over Lock"
 msgstr "השתלטות על נעילה"
 
-#: src/parleydocument.cpp:234
+#: src/parleydocument.cpp:235
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "פתיחת האוסף „%1” גרמה לשגיאה: %2"
 
-#: src/parleydocument.cpp:235
+#: src/parleydocument.cpp:236
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "פתיחת אוסף"
 
-#: src/parleydocument.cpp:263
+#: src/parleydocument.cpp:264
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1768,13 +1768,13 @@ msgstr ""
 "\n"
 "לשמור לפני היציאה?\n"
 
-#: src/parleydocument.cpp:296
+#: src/parleydocument.cpp:297
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "פתיחת אוסף אוצרות מילים שהורדו"
 
-#: src/parleydocument.cpp:335 src/parleydocument.cpp:423
+#: src/parleydocument.cpp:336 src/parleydocument.cpp:424
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1787,37 +1787,37 @@ msgstr ""
 "\n"
 "להשתלט על הנעילה?\n"
 
-#: src/parleydocument.cpp:366 src/parleydocument.cpp:459
+#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "כתיבת הקובץ „%1” גרמה לשגיאה: %2"
 
-#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
+#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "שמירת קובץ"
 
-#: src/parleydocument.cpp:382
+#: src/parleydocument.cpp:383
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "שמירת אוצר מילים בשם"
 
-#: src/parleydocument.cpp:394
+#: src/parleydocument.cpp:395
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr "<qt>הקובץ <p><b>%1</b></p>קיים. לכתוב עליו?</qt>"
 
-#: src/parleydocument.cpp:402
+#: src/parleydocument.cpp:403
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "%1 נשמר"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:506 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr "נחלת הכלל"
@@ -1825,24 +1825,24 @@ msgstr "נחלת הכלל"
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "שפות"
 
-#: src/parleydocument.cpp:515
+#: src/parleydocument.cpp:516
 #, kde-format
 msgid "A Second Language"
 msgstr "שפה שנייה"
 
-#: src/parleydocument.cpp:518
+#: src/parleydocument.cpp:519
 #, kde-format
 msgid "Lesson 1"
 msgstr "שיעור 1"
 
-#: src/parleydocument.cpp:560
+#: src/parleydocument.cpp:561
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "לא ניתן לפתוח את אוסף אוצרות המילים „%1”"
@@ -2521,7 +2521,7 @@ msgstr[3] ""
 msgid "Rendering..."
 msgstr "מתבצע עיבוד…"
 
-#: src/practice/latexrenderer.cpp:135
+#: src/practice/latexrenderer.cpp:136
 #, kde-format
 msgid "LaTeX error."
 msgstr "שגיאת LaTeX."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-20 00:35+0000\n"
+"POT-Creation-Date: 2024-07-21 00:37+0000\n"
 "PO-Revision-Date: 2004-05-10 17:51+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: Brezhoneg <Suav.Icb@wanadoo.fr>\n"
@@ -437,7 +437,7 @@ msgstr "&Pennadoù"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:486
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
 #, fuzzy, kde-format
 #| msgid "Acti&ve"
 msgid "Adjective"
@@ -445,7 +445,7 @@ msgstr "Be&v"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:490
+#: src/parleydocument.cpp:491
 #, kde-format
 msgid "Adverb"
 msgstr "Adverb"
@@ -566,7 +566,7 @@ msgstr "Liester"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:472
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:473
 #, fuzzy, kde-format
 #| msgid "&Male:"
 msgid "Masculine"
@@ -574,7 +574,7 @@ msgstr "&Paotr :"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:475
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:476
 #, fuzzy, kde-format
 #| msgid "Finished"
 msgid "Feminine"
@@ -582,7 +582,7 @@ msgstr "Disoc'het"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:478
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:479
 #, fuzzy, kde-format
 #| msgid "Ne&xt"
 msgid "Neuter"
@@ -906,14 +906,14 @@ msgid "&Reset Confidence Levels"
 msgstr ""
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:482
+#: src/parleydocument.cpp:483
 #, fuzzy, kde-format
 #| msgid "Verb"
 msgid "Verb"
 msgstr "Verb"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:468
+#: src/parleydocument.cpp:469
 #, fuzzy, kde-format
 #| msgid "&None"
 msgid "Noun"
@@ -1404,7 +1404,7 @@ msgstr ""
 msgid "This word type folder contains verbs."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:494
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
 #, fuzzy, kde-format
 #| msgid "Conjugation"
 msgid "Conjunction"
@@ -1825,27 +1825,27 @@ msgstr ""
 msgid "Toggle display of the search bar"
 msgstr ""
 
-#: src/parleydocument.cpp:121 src/parleydocument.cpp:577
+#: src/parleydocument.cpp:122 src/parleydocument.cpp:578
 #, fuzzy, kde-format
 #| msgid "&Properties..."
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "&Perzhioù ..."
 
-#: src/parleydocument.cpp:158
+#: src/parleydocument.cpp:159
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Document"
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Digeriñ teul ar geriaoueg"
 
-#: src/parleydocument.cpp:159
+#: src/parleydocument.cpp:160
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Open in practice &mode"
 msgstr "Pennad"
 
-#: src/parleydocument.cpp:201
+#: src/parleydocument.cpp:202
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1855,24 +1855,24 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:203
+#: src/parleydocument.cpp:204
 #, kde-format
 msgid "Take Over Lock"
 msgstr ""
 
-#: src/parleydocument.cpp:234
+#: src/parleydocument.cpp:235
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr ""
 
-#: src/parleydocument.cpp:235
+#: src/parleydocument.cpp:236
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Document"
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Digeriñ teul ar geriaoueg"
 
-#: src/parleydocument.cpp:263
+#: src/parleydocument.cpp:264
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1880,13 +1880,13 @@ msgid ""
 "Save file before exit?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:296
+#: src/parleydocument.cpp:297
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Dastum restr ar geriaoueg"
 
-#: src/parleydocument.cpp:335 src/parleydocument.cpp:423
+#: src/parleydocument.cpp:336 src/parleydocument.cpp:424
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1895,26 +1895,26 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:366 src/parleydocument.cpp:459
+#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr ""
 
-#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
+#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
 #, fuzzy, kde-format
 #| msgid "Save File"
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "Enrollañ ar restr"
 
-#: src/parleydocument.cpp:382
+#: src/parleydocument.cpp:383
 #, fuzzy, kde-format
 #| msgid "Save Vocabulary As"
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Enrollañ ar geriaoueg e"
 
-#: src/parleydocument.cpp:394
+#: src/parleydocument.cpp:395
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?"
@@ -1924,7 +1924,7 @@ msgid ""
 msgstr ""
 "<qt>Ar restr <br><b>%1</b><br>a zo c'hoazh. C'hoant ho peus e rasklañ ?</qt>"
 
-#: src/parleydocument.cpp:402
+#: src/parleydocument.cpp:403
 #, fuzzy, kde-format
 #| msgid "Saving %1"
 msgctxt "@info:status saving a file"
@@ -1932,7 +1932,7 @@ msgid "Saving %1"
 msgstr "Emaon oc'h enrollañ %1"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:506 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr ""
@@ -1940,24 +1940,24 @@ msgstr ""
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "Yezhoù"
 
-#: src/parleydocument.cpp:515
+#: src/parleydocument.cpp:516
 #, fuzzy, kde-format
 msgid "A Second Language"
 msgstr "&Lemel ur Yezh"
 
-#: src/parleydocument.cpp:518
+#: src/parleydocument.cpp:519
 #, fuzzy, kde-format
 msgid "Lesson 1"
 msgstr "<kentel ebet>"
 
-#: src/parleydocument.cpp:560
+#: src/parleydocument.cpp:561
 #, fuzzy, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Digeriñ un teul geriaoueg"
@@ -2652,7 +2652,7 @@ msgstr[1] ""
 msgid "Rendering..."
 msgstr "Emaon o voulañ ..."
 
-#: src/practice/latexrenderer.cpp:135
+#: src/practice/latexrenderer.cpp:136
 #, kde-format
 msgid "LaTeX error."
 msgstr ""

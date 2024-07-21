@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-20 00:35+0000\n"
+"POT-Creation-Date: 2024-07-21 00:37+0000\n"
 "PO-Revision-Date: 2021-01-18 19:24+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -436,7 +436,7 @@ msgstr "கட்டுரை"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:486
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
 #, fuzzy, kde-format
 #| msgid "Acti&ve"
 msgid "Adjective"
@@ -444,7 +444,7 @@ msgstr "பயன்பாட்டில் உள்ள"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:490
+#: src/parleydocument.cpp:491
 #, kde-format
 msgid "Adverb"
 msgstr "வினையெச்சம்"
@@ -566,7 +566,7 @@ msgstr "பன்மை"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:472
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:473
 #, fuzzy, kde-format
 #| msgid "&Male:"
 msgid "Masculine"
@@ -574,7 +574,7 @@ msgstr "ஆண்"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:475
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:476
 #, fuzzy, kde-format
 #| msgid "Definite"
 msgid "Feminine"
@@ -582,7 +582,7 @@ msgstr "அறுதியிட்ட"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:478
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:479
 #, fuzzy, kde-format
 #| msgid "Neu&tral:"
 msgid "Neuter"
@@ -900,14 +900,14 @@ msgid "&Reset Confidence Levels"
 msgstr ""
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:482
+#: src/parleydocument.cpp:483
 #, fuzzy, kde-format
 #| msgid "Verb"
 msgid "Verb"
 msgstr "வினைச்சொல்"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:468
+#: src/parleydocument.cpp:469
 #, kde-format
 msgid "Noun"
 msgstr "பெயர்சொல்"
@@ -1392,7 +1392,7 @@ msgstr ""
 msgid "This word type folder contains verbs."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:494
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
 #, fuzzy, kde-format
 #| msgid "Conjugation"
 msgid "Conjunction"
@@ -1804,26 +1804,26 @@ msgstr "சாமர்த்திய தேடல்"
 msgid "Toggle display of the search bar"
 msgstr "கருவிப்பட்டிகளின் திரை மாற்றுகிறது"
 
-#: src/parleydocument.cpp:121 src/parleydocument.cpp:577
+#: src/parleydocument.cpp:122 src/parleydocument.cpp:578
 #, fuzzy, kde-format
 #| msgid "Edit Properties for Original"
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "மூலத்தின் பண்புகளை திருத்து"
 
-#: src/parleydocument.cpp:158
+#: src/parleydocument.cpp:159
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "உதாரண சொற்கோவைக் கோப்பினைத் திற"
 
-#: src/parleydocument.cpp:159
+#: src/parleydocument.cpp:160
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Open in practice &mode"
 msgstr "பொது சுட்டுச்சொல்"
 
-#: src/parleydocument.cpp:201
+#: src/parleydocument.cpp:202
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1833,23 +1833,23 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:203
+#: src/parleydocument.cpp:204
 #, kde-format
 msgid "Take Over Lock"
 msgstr ""
 
-#: src/parleydocument.cpp:234
+#: src/parleydocument.cpp:235
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr ""
 
-#: src/parleydocument.cpp:235
+#: src/parleydocument.cpp:236
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "உதாரண சொற்கோவைக் கோப்பினைத் திற"
 
-#: src/parleydocument.cpp:263
+#: src/parleydocument.cpp:264
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1860,13 +1860,13 @@ msgstr ""
 "\n"
 "வெளியேறும் முன் சேமிக்க வேண்டுமா?\n"
 
-#: src/parleydocument.cpp:296
+#: src/parleydocument.cpp:297
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "சொற்கோவைக் கோப்பினை சேர்"
 
-#: src/parleydocument.cpp:335 src/parleydocument.cpp:423
+#: src/parleydocument.cpp:336 src/parleydocument.cpp:424
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1875,25 +1875,25 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:366 src/parleydocument.cpp:459
+#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr ""
 
-#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
+#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr ""
 
-#: src/parleydocument.cpp:382
+#: src/parleydocument.cpp:383
 #, fuzzy, kde-format
 #| msgid "Save Vocabulary As"
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "சொற்கோவையை எனச்சேமி..."
 
-#: src/parleydocument.cpp:394
+#: src/parleydocument.cpp:395
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?"
@@ -1902,7 +1902,7 @@ msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr "<qt>கோப்பு<br><b>%1</b><br>ஏற்கெனவே உள்ளது. மேலெழுதவேண்டுமா?</qt>"
 
-#: src/parleydocument.cpp:402
+#: src/parleydocument.cpp:403
 #, fuzzy, kde-format
 #| msgid "Saving %1"
 msgctxt "@info:status saving a file"
@@ -1910,7 +1910,7 @@ msgid "Saving %1"
 msgstr "%1ஐ சேமித்துக் கொண்டிருக்கிறது"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:506 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr ""
@@ -1918,25 +1918,25 @@ msgstr ""
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, fuzzy, kde-format
 msgid "Languages"
 msgstr "மொழி"
 
-#: src/parleydocument.cpp:515
+#: src/parleydocument.cpp:516
 #, fuzzy, kde-format
 #| msgid "&Append Language"
 msgid "A Second Language"
 msgstr "மொழியைச்சேர்"
 
-#: src/parleydocument.cpp:518
+#: src/parleydocument.cpp:519
 #, fuzzy, kde-format
 msgid "Lesson 1"
 msgstr "பாடத்தை உருவாக்கு"
 
-#: src/parleydocument.cpp:560
+#: src/parleydocument.cpp:561
 #, fuzzy, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "உதாரண சொற்கோவைக் கோப்பினைத் திற"
@@ -2633,7 +2633,7 @@ msgstr[1] ""
 msgid "Rendering..."
 msgstr ""
 
-#: src/practice/latexrenderer.cpp:135
+#: src/practice/latexrenderer.cpp:136
 #, kde-format
 msgid "LaTeX error."
 msgstr ""
