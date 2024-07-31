@@ -28,7 +28,6 @@ include(ECMDeprecationSettings)
 add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 add_definitions(-DQT_NO_FOREACH)
-add_definitions(-DKNEWSTUFFWIDGETS_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055A00)
 
 option(BUILD_BROWSERINTEGRATION "Build integration for accessing the Internet (requires QtWebengine)" ON)
 
