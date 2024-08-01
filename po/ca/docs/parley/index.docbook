@@ -1530,7 +1530,7 @@
 <para
 >Per a canviar el nom d'una unitat, feu-hi doble clic o clic amb el &BDR; sobre la unitat i escolliu <guimenuitem
 >Reanomena la unitat</guimenuitem
->. També es poden eliminar d'aquesta manera (però perdreu el seu contingut). </para>
+>. També es poden suprimir d'aquesta manera (però perdreu el seu contingut). </para>
 
 <para
 >Si no us agrada la disposició de les unitats, podeu moure una unitat amb el ratolí. La podeu arrossegar cap a una altra unitat, llavors es convertirà en un fill d'aquesta. </para>
@@ -2112,7 +2112,7 @@
 </screenshot>
 
 <para
->En el nostre cas només volem 4 entrades en la unitat dels animals. Hi haurà moltes línies en blanc que s'hauran d'eliminar. Per a fer-ho, primer feu clic sobre el camp buit, i manteniu premuda la tecla &Maj; mentre feu clic a l'últim camp buit. Totes les línies a esborrar seran ressaltades. A continuació, premeu la tecla &Del;. </para>
+>En el nostre cas només volem 4 entrades en la unitat dels animals. Hi haurà moltes línies en blanc que s'hauran de suprimir. Per a fer-ho, primer feu clic sobre el camp buit, i manteniu premuda la tecla &Maj; mentre feu clic a l'últim camp buit. Totes les línies a suprimir es ressaltaran. A continuació, premeu la tecla &Del;. </para>
 
 <para
 >Afegirem la terminologia de la fruita. Senzillament, feu clic sobre el nom de la unitat <guilabel
