@@ -1,11 +1,11 @@
 # Translation of parley.po to Catalan (Valencian)
-# Copyright (C) 2004-2023 This_file_is_part_of_KDE
+# Copyright (C) 2004-2024 This_file_is_part_of_KDE
 #
 # Sebastià Pla i Sanz <sps@sastia.com>, 2004.
 # Albert Astals Cid <aacid@kde.org>, 2004.
 # David Gil <al016950@yahoo.es>, 2005.
 # Orestes Mas Casals <orestes@tsc.upc.edu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
-# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2023.
+# SPDX-FileCopyrightText: 2007, 2008, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
 # Manuel Tortosa <manutortosa@gmail.com>, 2009.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2013, 2015, 2016, 2017, 2020, 2021.
 msgid ""
@@ -13,14 +13,14 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-21 00:37+0000\n"
-"PO-Revision-Date: 2023-12-05 13:15+0100\n"
+"PO-Revision-Date: 2024-07-31 12:42+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 24.05.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -634,7 +634,7 @@ msgid ""
 "With the checkboxes you can select which units you want to practice. \n"
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
-"Clic dret per a afegir, eliminar o canviar de nom unitats. \n"
+"Clic dret per a afegir, suprimir o canviar de nom unitats. \n"
 "Amb les caselles de selecció podeu escollir quines unitats voleu exercitar.\n"
 "En els exercicis només es preguntaran les unitats marcades [x]!"
 
@@ -908,12 +908,12 @@ msgstr "Canvia el nom de la unitat"
 #: src/editor/lessonview.cpp:48
 #, kde-format
 msgid "Delete Unit"
-msgstr "Elimina la unitat"
+msgstr "Suprimix la unitat"
 
 #: src/editor/lessonview.cpp:50
 #, kde-format
 msgid "Delete the selected unit."
-msgstr "Elimina la unitat seleccionada."
+msgstr "Suprimix la unitat seleccionada."
 
 #: src/editor/lessonview.cpp:56
 #, kde-format
@@ -1190,8 +1190,8 @@ msgstr "Canvia la visualització de columnes de vocabulari individuals"
 #, kde-format
 msgid "Do you really want to delete the selected entry?"
 msgid_plural "Do you really want to delete the selected %1 entries?"
-msgstr[0] "Segur que voleu eliminar l'entrada seleccionada?"
-msgstr[1] "Segur que voleu eliminar les %1 entrades seleccionades?"
+msgstr[0] "Segur que voleu suprimir l'entrada seleccionada?"
+msgstr[1] "Segur que voleu suprimir les %1 entrades seleccionades?"
 
 #: src/editor/vocabularyview.cpp:254
 #, kde-format
@@ -1337,7 +1337,7 @@ msgstr "Esta carpeta no conté paraules amb significat especial."
 #: src/editor/wordtypeview.cpp:209
 #, kde-format
 msgid "The root word type cannot be deleted."
-msgstr "El tipus de paraula arrel no es pot eliminar."
+msgstr "El tipus de paraula arrel no es pot suprimir."
 
 #: src/editor/wordtypeview.cpp:219
 #, kde-format
@@ -3346,7 +3346,7 @@ msgstr "Propietats per a %1"
 #: src/settings/languageproperties.cpp:88
 #, kde-format
 msgid "Really delete language: %1?"
-msgstr "Segur que voleu eliminar l'idioma: %1?"
+msgstr "Segur que voleu suprimir l'idioma: %1?"
 
 #: src/settings/languageproperties.cpp:89
 #, kde-format
