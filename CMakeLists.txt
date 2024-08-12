@@ -55,7 +55,7 @@ find_package(KF6 ${KF_MIN_VERSION} MODULE REQUIRED COMPONENTS
   Notifications
 )
 ecm_set_disabled_deprecation_versions(QT 6.7.0
-    KF 6.4.0
+    KF 6.5.0
 )
 
 
