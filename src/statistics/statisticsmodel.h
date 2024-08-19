@@ -46,7 +46,7 @@ public:
     std::shared_ptr<KEduVocDocument> document() const;
 
 public Q_SLOTS:
-    virtual void setDocument(const std::shared_ptr<KEduVocDocument> &doc) override;
+    void setDocument(const std::shared_ptr<KEduVocDocument> &doc) override;
 
 protected:
     KEduVocContainer *rootContainer() const override;
