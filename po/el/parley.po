@@ -19,8 +19,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.04.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 20.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -308,24 +308,21 @@ msgstr "Parley"
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/dashboard/dashboard.ui:120
-#, fuzzy, kde-format
-#| msgid "Create a New Collection"
+#, kde-format
 msgid "Create a New Collection..."
-msgstr "Δημιουργία μιας νέας συλλογής"
+msgstr "Δημιουργία μιας νέας συλλογής..."
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
-#, fuzzy, kde-format
-#| msgid "Open an Existing Collection"
+#, kde-format
 msgid "Open an Existing Collection..."
-msgstr "Άνοιγμα υπάρχουσας συλλογής"
+msgstr "Άνοιγμα υπάρχουσας συλλογής..."
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
-#, fuzzy, kde-format
-#| msgid "Download New Collections"
+#, kde-format
 msgid "Download New Collections..."
-msgstr "Λήψη νέων συλλογών"
+msgstr "Λήψη νέων συλλογών..."
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
@@ -568,66 +565,52 @@ msgstr "Πτώσεις"
 
 #. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
 #: src/editor/declensionwidget.ui:52
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Nominative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
-msgstr "Ονομαστική"
+msgstr "Ονομαστική:"
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Genitive"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
-msgstr "Γενική"
+msgstr "Γενική:"
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Dative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
-msgstr "Δοτική"
+msgstr "Δοτική:"
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Accusative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr "Αιτιατική"
+msgstr "Αιτιατική:"
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Ablative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
-msgstr "Αφαιρετική"
+msgstr "Αφαιρετική:"
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Locative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
-msgstr "Τοπική"
+msgstr "Τοπική:"
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Vocative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
-msgstr "Κλητική"
+msgstr "Κλητική:"
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #: src/editor/declensionwidget.ui:445
@@ -880,8 +863,7 @@ msgid "\"%1\" is a:"
 msgstr "Το\"%1\" αποτελεί:"
 
 #: src/editor/inflectionwidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Please select the noun's gender"
+#, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
 msgstr "Παρακαλώ επιλέξτε το γένος του ουσιαστικού"
@@ -893,10 +875,9 @@ msgstr "Εισάγετε εδώ  τον κώδικα LaTeX."
 
 #. i18n: ectx: property (text), widget (QLabel, texLabel)
 #: src/editor/latexwidget.ui:17
-#, fuzzy, kde-format
-#| msgid "LaTeX code"
+#, kde-format
 msgid "LaTeX code:"
-msgstr "Κώδικας LaTeX"
+msgstr "Κώδικας LaTeX:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -1055,38 +1036,33 @@ msgstr "Μάθημα"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/editor/summarywordwidget.ui:42
-#, fuzzy, kde-format
-#| msgid "Word type"
+#, kde-format
 msgid "Word type:"
-msgstr "Τύπος λέξης"
+msgstr "Τύπος λέξης:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
-#, fuzzy, kde-format
-#| msgid "Pronunciation"
+#, kde-format
 msgid "Pronunciation:"
-msgstr "Προφορά"
+msgstr "Προφορά:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/summarywordwidget.ui:71
-#, fuzzy, kde-format
-#| msgid "Example"
+#, kde-format
 msgid "Example:"
-msgstr "Παράδειγμα"
+msgstr "Παράδειγμα:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/summarywordwidget.ui:87
-#, fuzzy, kde-format
-#| msgid "Paraphrase"
+#, kde-format
 msgid "Paraphrase:"
-msgstr "Παράφραση"
+msgstr "Παράφραση:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
-#, fuzzy, kde-format
-#| msgid "&Comment:"
+#, kde-format
 msgid "Comment:"
-msgstr "&Σχόλιο:"
+msgstr "Σχόλιο:"
 
 #: src/editor/synonymwidget.cpp:59
 #, kde-format
@@ -1144,8 +1120,7 @@ msgid "False Friends of %1:"
 msgstr "Ψευδόφιλες λέξεις του %1:"
 
 #: src/editor/vocabularycolumnsdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Vocabulary Columns"
+#, kde-format
 msgctxt "@title:window"
 msgid "Vocabulary Columns"
 msgstr "Στήλες λεξιλογίου"
@@ -1383,8 +1358,7 @@ msgstr[0] "Υπάρχει μία λέξη αυτού του τύπου, ο οπ�
 msgstr[1] "Υπάρχουν %1 λέξεις αυτού του τύπου, ο οποίος θα χαθεί. Συνέχεια;"
 
 #: src/exportdialog.cpp:53
-#, fuzzy, kde-format
-#| msgid "Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Εξαγωγή"
@@ -1722,8 +1696,7 @@ msgid "Change practice settings"
 msgstr "Τροποποίηση ρυθμίσεων εξάσκησης"
 
 #: src/parleyactions.cpp:202
-#, fuzzy, kde-format
-#| msgid "Export results..."
+#, kde-format
 msgid "Export Results..."
 msgstr "Εξαγωγή αποτελεσμάτων..."
 
@@ -1759,8 +1732,7 @@ msgid "Properties for %1"
 msgstr "Ιδιότητες για το %1"
 
 #: src/parleydocument.cpp:159
-#, fuzzy, kde-format
-#| msgid "Open Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Άνοιγμα συλλογής λεξιλογίου"
@@ -1813,8 +1785,7 @@ msgstr ""
 "Αποθήκευση αρχείου πριν την έξοδο;\n"
 
 #: src/parleydocument.cpp:297
-#, fuzzy, kde-format
-#| msgid "Open Downloaded Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Άνοιγμα ληφθείσας συλλογής λεξιλογίου"
@@ -1845,8 +1816,7 @@ msgid "Save File"
 msgstr "Αποθήκευση αρχείου"
 
 #: src/parleydocument.cpp:383
-#, fuzzy, kde-format
-#| msgid "Save Vocabulary As"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Αποθήκευση λεξιλογίου ως"
@@ -2299,8 +2269,7 @@ msgstr "Απαντήσεις με λάθη στον τονισμό προσμε�
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:26
-#, fuzzy, kde-format
-#| msgid "Ignore Accents"
+#, kde-format
 msgid "Ignore accents"
 msgstr "Αγνόηση τονισμού"
 
@@ -2312,8 +2281,7 @@ msgstr "Οποιαδήποτε χρήση των κεφαλαίων στην α�
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:39
-#, fuzzy, kde-format
-#| msgid "Ignore Capitalization"
+#, kde-format
 msgid "Ignore capitalization"
 msgstr "Αγνόηση χρήσης κεφαλαίων γραμμάτων"
 
@@ -2325,8 +2293,7 @@ msgstr "Οποιοδήποτε λάθος στίξης στην απάντηση
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:52
-#, fuzzy, kde-format
-#| msgid "Ignore Punctuation"
+#, kde-format
 msgid "Ignore punctuation"
 msgstr "Αγνόηση στίξης"
 
@@ -2341,8 +2308,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:65
-#, fuzzy, kde-format
-#| msgid "Enable Hints"
+#, kde-format
 msgid "Enable hints"
 msgstr "Ενεργοποίηση υποδείξεων"
 
@@ -2360,8 +2326,7 @@ msgstr "Κατά τη διάρκεια της εξέτασης, εμφανίζο
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:100
-#, fuzzy, kde-format
-#| msgid "Image for Question"
+#, kde-format
 msgid "Image for question"
 msgstr "Εικόνα για την ερώτηση"
 
@@ -2374,8 +2339,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:113
-#, fuzzy, kde-format
-#| msgid "Image for Solution"
+#, kde-format
 msgid "Image for solution"
 msgstr "Εικόνα για τη λύση"
 
@@ -2413,8 +2377,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
-#, fuzzy, kde-format
-#| msgid "Accept any Synonym"
+#, kde-format
 msgid "Accept any synonym"
 msgstr "Αποδοχή κάθε συνωνύμου"
 
@@ -2426,17 +2389,15 @@ msgstr "Συνεδρίες"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/generalpracticeoptions.ui:202
-#, fuzzy, kde-format
-#| msgid "Max session size"
+#, kde-format
 msgid "Max session size:"
-msgstr "Μέγιστο μέγεθος συνεδρίας"
+msgstr "Μέγιστο μέγεθος συνεδρίας:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
-#, fuzzy, kde-format
-#| msgid "Max number of new words"
+#, kde-format
 msgid "Max number of new words:"
-msgstr "Μέγιστος αριθμός νέων λέξεων"
+msgstr "Μέγιστος αριθμός νέων λέξεων:"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:23
@@ -2481,24 +2442,21 @@ msgstr "Κατ' ανώτατο όριο"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/thresholdoptions.ui:43
-#, fuzzy, kde-format
-#| msgid "&Grade:"
+#, kde-format
 msgid "Grade:"
-msgstr "&Βαθμός:"
+msgstr "Βαθμός:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/thresholdoptions.ui:53
-#, fuzzy, kde-format
-#| msgid "Times practiced"
+#, kde-format
 msgid "Times practiced:"
-msgstr "Αριθμός εξασκήσεων"
+msgstr "Αριθμός εξασκήσεων:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
-#, fuzzy, kde-format
-#| msgid "Answered incorrectly"
+#, kde-format
 msgid "Answered incorrectly:"
-msgstr "Απαντήθηκαν λανθασμένα"
+msgstr "Απαντήθηκαν λανθασμένα:"
 
 #: src/practice/conjugationbackendmode.cpp:93
 #, kde-format
@@ -2628,15 +2586,13 @@ msgstr "Συνέχεια"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
 #: src/practice/practice_mainwindow.ui:219
-#, fuzzy, kde-format
-#| msgid "I did not know it"
+#, kde-format
 msgid "I Did not Know it"
 msgstr "&Δεν το ήξερα"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
 #: src/practice/practice_mainwindow.ui:226
-#, fuzzy, kde-format
-#| msgid "I knew it"
+#, kde-format
 msgid "I Knew it"
 msgstr "Το ή&ξερα"
 
@@ -3069,10 +3025,9 @@ msgstr "Οποιαδήποτε πρόσθετη πληροφορία."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/settings/documentproperties.ui:160
-#, fuzzy, kde-format
-#| msgid "Cate&gory"
+#, kde-format
 msgid "Cate&gory:"
-msgstr "Κατη&γορία"
+msgstr "Κατη&γορία:"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:173
@@ -3148,16 +3103,13 @@ msgstr "&Δεύτερη γλώσσα:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
 #: src/settings/documentproperties.ui:311
-#, fuzzy, kde-format
-#| msgid "&Setup Grammar Details"
+#, kde-format
 msgid "&Setup grammar details"
 msgstr "&Ρύθμιση λεπτομερειών γραμματικής"
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgctxt "Attept to download grammar properties for the selected languages"
 msgid "Download grammar"
 msgstr "Λήψη γραμματικής"
@@ -3376,8 +3328,7 @@ msgid "Author:"
 msgstr "Συγγραφέας:"
 
 #: src/settings/languageproperties.cpp:23
-#, fuzzy, kde-format
-#| msgid "Edit Languages"
+#, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
 msgstr "Επεξεργασία γλωσσών"
@@ -3464,8 +3415,7 @@ msgstr "Διάταξη πληκτρολογίου:"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
-#, fuzzy, kde-format
-#| msgid "&Download Grammar"
+#, kde-format
 msgid "&Download grammar"
 msgstr "&Λήψη γραμματικής"
 
