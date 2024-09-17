@@ -819,7 +819,7 @@ msgstr "&Ποτέ"
 #: src/editor/FromToEntryPageForm.ui:190
 #, kde-format
 msgid "T&oday"
-msgstr "Σ&ήμερα"
+msgstr "Σήμ&ερα"
 
 #. i18n: ectx: property (toolTip), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:206
