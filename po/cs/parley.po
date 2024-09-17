@@ -1,6 +1,6 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Vít Pelčák <vit@pelcak.org>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019.
+# SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2024 Vít Pelčák <vit@pelcak.org>
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
 # Vit Pelcak <vit@pelcak.org>, 2021, 2022, 2023.
 #
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-21 00:37+0000\n"
-"PO-Revision-Date: 2023-02-08 15:09+0100\n"
+"PO-Revision-Date: 2024-08-20 15:24+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 22.12.2\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -3350,7 +3350,7 @@ msgstr "Název:"
 #: src/settings/languagepropertiespage.ui:46
 #, kde-format
 msgid "Keyboard layout:"
-msgstr "Rozložení klávesnice:"
+msgstr "Rozvržení kláves:"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
@@ -3518,7 +3518,7 @@ msgstr "&Smazat"
 #: src/settings/languagesettings.kcfg:12 src/settings/languagesettings.kcfg:13
 #, kde-format
 msgid "Keyboard layout for this locale"
-msgstr "Rozložení klávesnice pro toto umístění"
+msgstr "Rozvržení kláves pro toto umístění"
 
 #. i18n: ectx: label, entry (SpellChecker), group (Locale $(locale))
 #. i18n: ectx: whatsthis, entry (SpellChecker), group (Locale $(locale))
