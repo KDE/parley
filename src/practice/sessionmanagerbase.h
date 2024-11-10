@@ -11,7 +11,7 @@
 
 // Qt
 #include <QElapsedTimer>
-#include <QVector>
+#include <QList>
 // kdeedulibs
 #include <KEduVocExpression>
 

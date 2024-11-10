@@ -12,7 +12,7 @@
 #include "sessionmanagerbase.h"
 
 // Qt
-#include <QVector>
+#include <QList>
 
 // kdeedulibs
 #include <KEduVocExpression>
