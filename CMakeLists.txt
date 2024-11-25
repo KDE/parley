@@ -36,6 +36,7 @@ find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED
   Svg
   Concurrent
   Multimedia
+  DBus
 )
 if (BUILD_BROWSERINTEGRATION)
     find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED WebEngineWidgets)

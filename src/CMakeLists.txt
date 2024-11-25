@@ -308,6 +308,7 @@ target_link_libraries(parley_LIB
     Qt6::Widgets
     Qt6::Concurrent
     Qt6::Multimedia
+    Qt6::DBus
 )
 if (BUILD_BROWSERINTEGRATION)
     target_link_libraries(parley_LIB
