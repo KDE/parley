@@ -153,7 +153,7 @@
     <p xml:lang="pt">Modos de Treino:</p>
     <p xml:lang="pt-BR">Modos de treinamento:</p>
     <p xml:lang="ru">Режимы обучения:</p>
-    <p xml:lang="sa">प्रशिक्षणविधयः : १.</p>
+    <p xml:lang="sa">प्रशिक्षणविधयः :</p>
     <p xml:lang="sk">Režimy tréningu:</p>
     <p xml:lang="sl">Načini učenja:</p>
     <p xml:lang="sv">Övningsmetoder:</p>
@@ -228,7 +228,7 @@
       <li xml:lang="pt">Letras Misturadas (ordenar as letras de uma palavra)</li>
       <li xml:lang="pt-BR">Letras misturadas (ordenar as letras de uma palavra)</li>
       <li xml:lang="ru">Перемешанные буквы (нужно восстановить правильный порядок букв в слове)</li>
-      <li xml:lang="sa">मिश्रिताक्षराणि (शब्दस्य अक्षराणि क्रमयन्तु) २.</li>
+      <li xml:lang="sa">मिश्रिताक्षराणि (शब्दस्य अक्षराणि क्रमयन्तु)</li>
       <li xml:lang="sk">Zmiešané písmená (poradie písmen v slove)</li>
       <li xml:lang="sl">Pomešane črke (postavite črke besede v pravilni vrstni red)</li>
       <li xml:lang="sv">Blandade bokstäver (ordna bokstäverna i ett ord)</li>
