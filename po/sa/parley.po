@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-21 00:37+0000\n"
-"PO-Revision-Date: 2024-12-19 21:41+0530\n"
+"PO-Revision-Date: 2024-12-20 22:01+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
@@ -117,13 +117,13 @@ msgstr "प्रभावितशब्दानां संख्या"
 #: src/collection/entryfilterdialog.ui:171
 #, kde-format
 msgid "Total number of entries:"
-msgstr "प्रविष्टीनां कुलसंख्या : १."
+msgstr "प्रविष्टीनां कुलसंख्या :"
 
 #. i18n: ectx: property (text), widget (QLabel, totalDescriptionLabel)
 #: src/collection/entryfilterdialog.ui:192
 #, kde-format
 msgid "Resulting number of words to practice:"
-msgstr "अभ्यासार्थं शब्दानां परिणामी संख्या : १."
+msgstr "अभ्यासार्थं शब्दानां परिणामी संख्या :"
 
 #: src/collection/lessonmodel.cpp:47
 #, kde-format
@@ -154,7 +154,7 @@ msgstr "विलोमपदं सम्पादयितुं विलो�
 #: src/collection/vocabularymodel.cpp:281
 #, kde-format
 msgid "Pronunciation (%1)"
-msgstr "उच्चारण (%1) २."
+msgstr "उच्चारण (%1)"
 
 #: src/collection/vocabularymodel.cpp:281
 #, kde-format
@@ -164,7 +164,7 @@ msgstr "उच्चारणं"
 #: src/collection/vocabularymodel.cpp:283
 #, kde-format
 msgid "Word Type (%1)"
-msgstr "शब्दप्रकार (%1) २."
+msgstr "शब्दप्रकार (%1)"
 
 #: src/collection/vocabularymodel.cpp:283
 #, kde-format
@@ -185,7 +185,7 @@ msgstr "समानार्थी शब्द (%1)"
 #: src/collection/vocabularymodel.cpp:287
 #, kde-format
 msgid "Antonym (%1)"
-msgstr "विलोम शब्द (%1) २."
+msgstr "विलोम शब्द (%1)"
 
 #: src/collection/vocabularymodel.cpp:287
 #, kde-format
@@ -205,7 +205,7 @@ msgstr "उदाहरण"
 #: src/collection/vocabularymodel.cpp:291
 #, kde-format
 msgid "Comment (%1)"
-msgstr "टिप्पणी (%1) ९."
+msgstr "टिप्पणी (%1)"
 
 #: src/collection/vocabularymodel.cpp:291
 #, kde-format
@@ -215,7 +215,7 @@ msgstr "टिप्पणी"
 #: src/collection/vocabularymodel.cpp:293
 #, kde-format
 msgid "Paraphrase (%1)"
-msgstr "परवाक्यम् (%1) २."
+msgstr "परवाक्यम् (%1)"
 
 #: src/collection/vocabularymodel.cpp:293
 #, kde-format
@@ -385,25 +385,25 @@ msgstr "संज्ञानां वा क्रियापदानां 
 #: src/editor/comparisonwidget.ui:27
 #, kde-format
 msgid "Absolute:"
-msgstr "निरपेक्षः : १."
+msgstr "निरपेक्षः :"
 
 #. i18n: ectx: property (text), widget (QLabel, comparativeLabel)
 #: src/editor/comparisonwidget.ui:59
 #, kde-format
 msgid "Comparative:"
-msgstr "तुलनात्मकः : १."
+msgstr "तुलनात्मकः :"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, superlativeLabel)
 #: src/editor/comparisonwidget.ui:88
 #, kde-format
 msgid "The superlative (fastest)"
-msgstr "अतिशयोक्तिः (वेगतमः) २."
+msgstr "अतिशयोक्तिः (वेगतमः)"
 
 #. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
 #: src/editor/comparisonwidget.ui:91
 #, kde-format
 msgid "Superlative:"
-msgstr "अतिशयोक्तिः : १."
+msgstr "अतिशयोक्तिः :"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
@@ -429,7 +429,7 @@ msgstr "क्रियाविशेषण"
 #: src/settings/optionlistform.ui:19
 #, kde-format
 msgid "-"
-msgstr "- ९."
+msgstr "-"
 
 #. i18n: ectx: property (title), widget (QGroupBox, layout)
 #: src/editor/conjugationwidget.ui:32
@@ -559,49 +559,49 @@ msgstr "निपातन रूपम्"
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
-msgstr "नामवाचक : १."
+msgstr "नामवाचक :"
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
-msgstr "जन्यम् : १."
+msgstr "जन्यम् :"
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
-msgstr "कर्मधारयः : १."
+msgstr "कर्मधारयः :"
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr "अभियोगात्मकः : १."
+msgstr "अभियोगात्मकः :"
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
-msgstr "अब्लेटिवः : १."
+msgstr "अब्लेटिवः :"
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
-msgstr "स्थानिकम् : १."
+msgstr "स्थानिकम् :"
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
-msgstr "व्यावसायिकः : १."
+msgstr "व्यावसायिकः :"
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #: src/editor/declensionwidget.ui:445
@@ -639,7 +639,7 @@ msgstr "शब्दप्रकाराः"
 #: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
-msgstr "विभक्ति (कर्म, विशेषण, संज्ञा) २."
+msgstr "विभक्ति (कर्म, विशेषण, संज्ञा)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
 #: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
@@ -767,13 +767,13 @@ msgstr "गुणाः मूलतः"
 #: src/editor/FromToEntryPageForm.ui:72
 #, kde-format
 msgid "&Confidence Level:"
-msgstr "&विश्वासस्तरः : १."
+msgstr "&विश्वासस्तरः :"
 
 #. i18n: ectx: property (text), widget (QLabel, fauxami_label)
 #: src/editor/FromToEntryPageForm.ui:95
 #, kde-format
 msgid "&False friend:"
-msgstr "&मिथ्या मित्रः : १."
+msgstr "&मिथ्या मित्रः :"
 
 #. i18n: ectx: property (title), widget (QGroupBox, GroupBox3)
 #: src/editor/FromToEntryPageForm.ui:110
@@ -867,7 +867,7 @@ msgstr "अत्र LaTeX कोडं प्रविशन्तु ।"
 #: src/editor/latexwidget.ui:17
 #, kde-format
 msgid "LaTeX code:"
-msgstr "LaTeX कोडः : १."
+msgstr "LaTeX कोडः :"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -1020,7 +1020,7 @@ msgstr "पाठ"
 #: src/editor/summarywordwidget.ui:42
 #, kde-format
 msgid "Word type:"
-msgstr "शब्दप्रकारः : १."
+msgstr "शब्दप्रकारः :"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
@@ -1038,7 +1038,7 @@ msgstr "उदाहरण:"
 #: src/editor/summarywordwidget.ui:87
 #, kde-format
 msgid "Paraphrase:"
-msgstr "परवाक्यम् : १."
+msgstr "परवाक्यम् :"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
@@ -1085,13 +1085,13 @@ msgstr "%1 तथा %2 मिथ्यामित्रौ स्तः"
 #, kde-format
 msgctxt "Title for a list of synonyms for a word"
 msgid "Synonyms of %1:"
-msgstr "%1 के समानार्थी शब्द: १."
+msgstr "%1 के समानार्थी शब्द:"
 
 #: src/editor/synonymwidget.cpp:93
 #, kde-format
 msgctxt "Title for a list of antonyms (opposites) for a word"
 msgid "Antonyms of %1:"
-msgstr "%1 इत्यस्य विलोम शब्दाः : १."
+msgstr "%1 इत्यस्य विलोम शब्दाः :"
 
 #: src/editor/synonymwidget.cpp:97
 #, kde-format
@@ -1848,7 +1848,7 @@ msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
 "when document is modified"
 msgid "%1 [*]"
-msgstr "%1 [*] ९."
+msgstr "%1 [*]"
 
 #: src/parleymainwindow.cpp:174
 #, kde-format
@@ -2104,7 +2104,7 @@ msgstr "स्तरः &5: ."
 #: src/practice/configure/blockoptions.ui:63
 #, kde-format
 msgid "Level &6:"
-msgstr "स्तर &६: १."
+msgstr "स्तर &६:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Expire)
 #: src/practice/configure/blockoptions.ui:79
@@ -2122,7 +2122,7 @@ msgstr "Bl&ocking इति"
 #: src/practice/configure/blockoptions.ui:118
 #, kde-format
 msgid "Level &4:"
-msgstr "स्तरः &४: १."
+msgstr "स्तरः &४:"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev7)
 #: src/practice/configure/blockoptions.ui:128
@@ -2134,7 +2134,7 @@ msgstr "स्तरः &7: ."
 #: src/practice/configure/blockoptions.ui:150
 #, kde-format
 msgid "Level &1:"
-msgstr "स्तरः &१: १."
+msgstr "स्तरः &१:"
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev3)
 #: src/practice/configure/blockoptions.ui:192
@@ -2146,7 +2146,7 @@ msgstr "स्तरः &3: ."
 #: src/practice/configure/blockoptions.ui:218
 #, kde-format
 msgid "Do not practice vocabulary that has been asked within:"
-msgstr "अन्तः पृष्टानां शब्दावलीनां अभ्यासं न कुर्वन्तु : १."
+msgstr "अन्तः पृष्टानां शब्दावलीनां अभ्यासं न कुर्वन्तु :"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/blockoptions.ui:228
@@ -2355,13 +2355,13 @@ msgstr "सत्रम्"
 #: src/practice/configure/generalpracticeoptions.ui:202
 #, kde-format
 msgid "Max session size:"
-msgstr "अधिकतमः सत्रस्य आकारः : १."
+msgstr "अधिकतमः सत्रस्य आकारः :"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
 #, kde-format
 msgid "Max number of new words:"
-msgstr "नूतनशब्दानां अधिकतमसंख्या : १."
+msgstr "नूतनशब्दानां अधिकतमसंख्या :"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:23
@@ -2381,7 +2381,7 @@ msgstr "समानशब्दप्रकारस्य विकल्प�
 #: src/practice/configure/specificpracticeoptions.ui:41
 #, kde-format
 msgid "Number of choices:"
-msgstr "विकल्पानां संख्या : १."
+msgstr "विकल्पानां संख्या :"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
 #: src/practice/configure/thresholdoptions.ui:17
@@ -2411,13 +2411,13 @@ msgstr "वर्ग:"
 #: src/practice/configure/thresholdoptions.ui:53
 #, kde-format
 msgid "Times practiced:"
-msgstr "अभ्यासः कालः : १."
+msgstr "अभ्यासः कालः :"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
 #, kde-format
 msgid "Answered incorrectly:"
-msgstr "गलत् उत्तरं दत्तम् : १."
+msgstr "गलत् उत्तरं दत्तम् :"
 
 #: src/practice/conjugationbackendmode.cpp:93
 #, kde-format
@@ -2947,7 +2947,7 @@ msgstr "&लेखकः:"
 #: src/settings/documentproperties.ui:102
 #, kde-format
 msgid "E&mail:"
-msgstr "ई-मेलः : १."
+msgstr "ई-मेलः :"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, contactLineEdit)
 #: src/settings/documentproperties.ui:121
@@ -3013,7 +3013,7 @@ msgstr "परीक्षणस्य सज्जता"
 #: src/settings/documentproperties.ui:213
 #, kde-format
 msgid "&License:"
-msgstr "&अनुज्ञापत्रः : १."
+msgstr "&अनुज्ञापत्रः :"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, licenseComboBox)
 #: src/settings/documentproperties.ui:227
@@ -3037,13 +3037,13 @@ msgstr "GPLv2+ (GNU General Public License संस्करणं 2 अथव�
 #: src/settings/documentproperties.ui:256
 #, kde-format
 msgid "&First language:"
-msgstr "&प्रथम भाषा : १."
+msgstr "&प्रथम भाषा :"
 
 #. i18n: ectx: property (text), widget (QLabel, label_language_2)
 #: src/settings/documentproperties.ui:282
 #, kde-format
 msgid "&Second language:"
-msgstr "&द्वितीय भाषा : १."
+msgstr "&द्वितीय भाषा :"
 
 #. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
 #: src/settings/documentproperties.ui:311
@@ -3113,7 +3113,7 @@ msgstr "|"
 #, kde-format
 msgctxt "CSV separator"
 msgid ","
-msgstr ", ९."
+msgstr ","
 
 #: src/settings/generaloptions.cpp:46
 #, kde-format
@@ -3318,7 +3318,7 @@ msgstr "कालनाम"
 #: src/settings/languagepropertiespage.cpp:368
 #, kde-format
 msgid "Enter name of tense:"
-msgstr "कालस्य नाम प्रविशतु : १."
+msgstr "कालस्य नाम प्रविशतु :"
 
 #: src/settings/languagepropertiespage.cpp:398
 #, kde-format
@@ -3350,7 +3350,7 @@ msgstr "नामः:"
 #: src/settings/languagepropertiespage.ui:46
 #, kde-format
 msgid "Keyboard layout:"
-msgstr "कीबोर्डविन्यासः : १."
+msgstr "कीबोर्डविन्यासः :"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
@@ -3362,7 +3362,7 @@ msgstr "&व्याकरण डाउनलोड करें"
 #: src/settings/languagepropertiespage.ui:88
 #, kde-format
 msgid "Spell checker:"
-msgstr "वर्तनीपरीक्षकः : १."
+msgstr "वर्तनीपरीक्षकः :"
 
 #. i18n: ectx: property (text), widget (QLabel, localeSelectionLabel)
 #: src/settings/languagepropertiespage.ui:101
@@ -3374,13 +3374,13 @@ msgstr "भाषा:"
 #: src/settings/languagepropertiespage.ui:117
 #, kde-format
 msgid "Font (practice):"
-msgstr "फ़ॉन्ट (अभ्यास) : १."
+msgstr "फ़ॉन्ट (अभ्यास) :"
 
 #. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
 #: src/settings/languagepropertiespage.ui:127
 #, kde-format
 msgid "Font (editor):"
-msgstr "फॉन्ट (सम्पादक) : १."
+msgstr "फॉन्ट (सम्पादक) :"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
 #: src/settings/languagepropertiespage.ui:141
@@ -3450,25 +3450,25 @@ msgstr "&2. व्यक्ति:"
 #: src/settings/languagepropertiespage.ui:579
 #, kde-format
 msgid "3. Person:"
-msgstr "3. व्यक्तिः : १."
+msgstr "3. व्यक्तिः :"
 
 #. i18n: ectx: property (text), widget (QLabel, male_c_label)
 #: src/settings/languagepropertiespage.ui:589
 #, kde-format
 msgid "M&ale:"
-msgstr "एम एण्ड ए : १."
+msgstr "एम एण्ड ए :"
 
 #. i18n: ectx: property (text), widget (QLabel, female_c_label)
 #: src/settings/languagepropertiespage.ui:625
 #, kde-format
 msgid "F&emale:"
-msgstr "एफ एण्ड एम कृते : १."
+msgstr "एफ एण्ड एम कृते :"
 
 #. i18n: ectx: property (text), widget (QLabel, natural_c_label)
 #: src/settings/languagepropertiespage.ui:661
 #, kde-format
 msgid "Neu&ter:"
-msgstr "नवीन&ter: १."
+msgstr "नवीन&ter:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, dualCheckBox)
 #: src/settings/languagepropertiespage.ui:697
@@ -4167,7 +4167,7 @@ msgstr "&उच्चारण चिह्न font:"
 #: src/settings/viewoptionsbase.ui:77
 #, kde-format
 msgid "Base color for displaying grades:"
-msgstr "ग्रेड् प्रदर्शयितुं आधारवर्णः : १."
+msgstr "ग्रेड् प्रदर्शयितुं आधारवर्णः :"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:96
@@ -4200,7 +4200,7 @@ msgstr "अल्ट+०"
 #: src/settings/viewoptionsbase.ui:121
 #, kde-format
 msgid "Color for displaying early progress:"
-msgstr "प्रारम्भिकप्रगतेः प्रदर्शनार्थं वर्णः : १."
+msgstr "प्रारम्भिकप्रगतेः प्रदर्शनार्थं वर्णः :"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:140
@@ -4224,7 +4224,7 @@ msgstr "अल्ट+१"
 #: src/settings/viewoptionsbase.ui:165
 #, kde-format
 msgid "Color used to display the grades:"
-msgstr "ग्रेड्स् प्रदर्शयितुं प्रयुक्तः वर्णः : १."
+msgstr "ग्रेड्स् प्रदर्शयितुं प्रयुक्तः वर्णः :"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:187
@@ -4377,4 +4377,4 @@ msgstr "प्रत्येकं Practice Mode कृते स्मर्�
 #, kde-format
 msgctxt "Confidence level in language, table header"
 msgid "Confidence (%1)"
-msgstr "विश्वासः (%1) २."
+msgstr "विश्वासः (%1)"
