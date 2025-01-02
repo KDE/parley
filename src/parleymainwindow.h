@@ -48,9 +48,6 @@ public:
     /** save the app-specific options on slotAppExit or by an Options dialog */
     void saveOptions();
 
-    /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
-    void updateTableFilter();
-
     /** update the list of recent files in the dashboard */
     void updateRecentFilesModel();
 

@@ -57,9 +57,6 @@ public:
 
     void initDockWidgets();
 
-    /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
-    void updateTableFilter();
-
     VocabularyView *vocabularyView() const
     {
         return m_vocabularyView;
