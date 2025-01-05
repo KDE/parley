@@ -58,6 +58,10 @@ parts:
     parse-info:
       - usr/share/metainfo/org.kde.parley.appdata.xml
     plugin: cmake
+    build-packages:
+      - libpulse0
+    stage-packages:
+      - libpulse0
     source: .
     source-type: local
     cmake-parameters:
