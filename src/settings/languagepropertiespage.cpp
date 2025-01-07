@@ -25,7 +25,9 @@
 
 #include "parleydocument.h"
 
-#define TENSE_TAG ". "
+using namespace Qt::Literals::StringLiterals;
+
+#define TENSE_TAG u". "_s
 
 LanguagePropertiesPage::LanguagePropertiesPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent)
     : QWidget(parent)
@@ -288,7 +290,7 @@ void LanguagePropertiesPage::accept()
     QString str;
     for (int i = 0; i < (int)tenseList->count(); i++) {
         str = tenseList->item(i)->text();
-        tenses.append(str.mid(str.indexOf(TENSE_TAG) + QStringLiteral(TENSE_TAG).length()));
+        tenses.append(str.mid(str.indexOf(TENSE_TAG) + TENSE_TAG.length()));
     }
 
     m_doc->identifier(m_identifierIndex).setTenseList(tenses);
@@ -362,7 +364,7 @@ void LanguagePropertiesPage::slotModifyTense()
 {
     if (tenseList->count() != 0 && (int)tenseList->count() > m_currentTense) {
         QString str = tenseList->item(m_currentTense)->text();
-        str = str.mid(str.indexOf(TENSE_TAG) + QStringLiteral(TENSE_TAG).length());
+        str = str.mid(str.indexOf(TENSE_TAG) + TENSE_TAG.length());
 
         bool ok;
         QString getTense = QInputDialog::getText(this, i18n("Tense Name"), i18n("Enter name of tense:"), QLineEdit::Normal, str, &ok);
@@ -379,7 +381,7 @@ void LanguagePropertiesPage::updateListBox(int start)
     QString str;
     for (int i = start; i < (int)tenseList->count(); i++) {
         str = tenseList->item(i)->text();
-        str = str.mid(str.indexOf(TENSE_TAG) + QStringLiteral(TENSE_TAG).length());
+        str = str.mid(str.indexOf(TENSE_TAG) + TENSE_TAG.length());
         tenseList->item(i)->setText(QStringLiteral("%1").arg(i + 1, 2).append(TENSE_TAG).append(str));
     }
 }

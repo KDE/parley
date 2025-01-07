@@ -30,6 +30,8 @@
 #include <libxslt/xsltutils.h>
 #include <string.h>
 
+using namespace Qt::Literals::StringLiterals;
+
 ExportDialog::ExportDialog(ParleyDocument *doc, QWidget *parent)
     : QDialog(parent)
     , m_doc{doc}
@@ -76,7 +78,7 @@ void ExportDialog::accept()
         xslFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("parley/xslt/table.xsl"));
     }
 
-    QString filter = i18n("HTML document") + " (*.html)";
+    QString filter = i18n("HTML document") + u" (*.html)"_s;
     QUrl filename = getFileName(filter);
     if (filename.isEmpty()) {
         return;

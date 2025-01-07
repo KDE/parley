@@ -9,7 +9,6 @@ set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_
 project(parley VERSION ${RELEASE_SERVICE_VERSION})
 set(QT_MIN_VERSION "6.5.0")
 set(KF_MIN_VERSION "6.3.0")
-set(KDE_COMPILERSETTINGS_LEVEL "5.82.0")
 
 find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 
@@ -23,11 +22,6 @@ include(FeatureSummary)
 include(KDEClangFormat)
 include(KDEGitCommitHooks)
 include(ECMDeprecationSettings)
-
-#Allows QString concatenation to use a single memory allocation per source line.
-add_definitions(-DQT_USE_STRINGBUILDER)
-add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
-add_definitions(-DQT_NO_FOREACH)
 
 option(BUILD_BROWSERINTEGRATION "Build integration for accessing the Internet (requires QtWebengine)" ON)
 

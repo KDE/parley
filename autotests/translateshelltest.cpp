@@ -8,8 +8,10 @@
 #include <QProcess>
 #include <QSignalSpy>
 
+using namespace Qt::Literals::StringLiterals;
+
 // LC_ALL=C trans -l en -s en -t de homework -show-alternatives=n -show-original=n -show-languages=n -show-original-dictionary=n -no-warn
-static const char *s_homework_en_de = R"""(Hausaufgaben
+static QString s_homework_en_de = QStringLiteral(R"""(Hausaufgaben
 
 Definitions of homework
 
@@ -24,18 +26,18 @@ noun
         housework, homework, homework assignment, assignment
     (die) Aufgabe
         task, duty, mission, job, function, homework
-)""";
+)""");
 
 // translation request of untranslatable string
 // LC_ALL=C trans -l en -s en -t de FOOBAA -show-alternatives=n -show-original=n -show-languages=n -show-original-dictionary=n -no-warn
-static const char *s_foobaa_en_de = R"""(FOOBAA
+static QString s_foobaa_en_de = QStringLiteral(R"""(FOOBAA
 
 Translations of FOOBAA
-)""";
+)""");
 
 // translation request of string with with special char, where warning "Did you mean: homework" is skipped with argument
 // LC_ALL=C trans -l en -s en -t de FOOBAA -show-alternatives=n -show-original=n -show-languages=n -show-original-dictionary=n -no-warn
-static const char *s_homework_special_char_en_de = R"""(_Hausaufgaben
+static QString s_homework_special_char_en_de = QStringLiteral(R"""(_Hausaufgaben
 
 Definitions of _homework
 
@@ -50,10 +52,10 @@ noun
         housework, homework, homework assignment, assignment
     (die) Aufgabe
         task, duty, mission, job, function, homework
-)""";
+)""");
 
 // LC_ALL=C trans -l en -s en -t de run -show-alternatives=n -show-original=n -show-languages=n -show-original-dictionary=n -no-warn
-static const char *s_run_en_de = R"""(Lauf
+static QString s_run_en_de = QStringLiteral(R"""(Lauf
 
 Definitions of run
 
@@ -154,10 +156,10 @@ verb
         drip, ooze, run, water, be dripping wet
     plagen
         plague, afflict, torment, infest, harass, run
-)""";
+)""");
 
 // LC_ALL=C trans -l en -s en -t de nice -show-alternatives=n -show-original=n -show-languages=n -show-original-dictionary=n -no-warn
-static const char *s_nice_en_de = R"""(nett
+static QString s_nice_en_de = QStringLiteral(R"""(nett
 
 Definitions of nice
 
@@ -188,42 +190,42 @@ adjective
         picky, fussy, finicky, niggling, over-particular, nit-picking
     anspruchsvoll
         demanding, exacting, fastidious, ambitious, discriminating, challenging
-)""";
+)""");
 
 // C_ALL=C trans -l en -s en -t de "this is a dog" -show-alternatives=y -show-original=n -show-languages=n -show-original-dictionary=n -no-warn
-static const char *s_sentence_dog_en_de = R"""(das ist ein Hund
+static QString s_sentence_dog_en_de = QStringLiteral(R"""(das ist ein Hund
 
 Translations of this is a dog
 
 this is a dog
     das ist ein Hund, dies ist ein Hund
-)""";
+)""");
 
 void TranslateShellTest::translationShellOutputParserTest()
 {
     {
-        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(QString(s_homework_en_de));
-        QCOMPARE(result.m_suggestions, QStringList{"Hausaufgaben"});
+        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(s_homework_en_de);
+        QCOMPARE(result.m_suggestions, QStringList{u"Hausaufgaben"_s});
     }
     {
-        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(QString(s_foobaa_en_de));
-        QCOMPARE(result.m_suggestions, QStringList{"FOOBAA"});
+        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(s_foobaa_en_de);
+        QCOMPARE(result.m_suggestions, QStringList{u"FOOBAA"_s});
     }
     {
-        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(QString(s_homework_special_char_en_de));
-        QCOMPARE(result.m_suggestions, QStringList{"_Hausaufgaben"});
+        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(s_homework_special_char_en_de);
+        QCOMPARE(result.m_suggestions, QStringList{u"_Hausaufgaben"_s});
     }
     {
-        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(QString(s_run_en_de));
-        QCOMPARE(result.m_suggestions, QStringList{"Lauf"});
+        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(s_run_en_de);
+        QCOMPARE(result.m_suggestions, QStringList{u"Lauf"_s});
     }
     {
-        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(QString(s_nice_en_de));
-        QCOMPARE(result.m_suggestions, QStringList{"nett"});
+        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(s_nice_en_de);
+        QCOMPARE(result.m_suggestions, QStringList{u"nett"_s});
     }
     {
-        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(QString(s_sentence_dog_en_de));
-        QCOMPARE(result.m_suggestions, QStringList{"das ist ein Hund"});
+        TranslateShellAdapter::Translation result = TranslateShellAdapter::parseTranslateShellResult(s_sentence_dog_en_de);
+        QCOMPARE(result.m_suggestions, QStringList{u"das ist ein Hund"_s});
     }
 }
 
@@ -231,13 +233,13 @@ void TranslateShellTest::translateShellProcessInteractionTest()
 {
     // important: we cannot rely on correct answers from the webservice, which may stop answering our requests
     // after a surprisingly small number of API interactions
-    QFuture<TranslateShellAdapter::Translation> translation = TranslateShellAdapter::translateAsync("haus", "de", "en");
+    QFuture<TranslateShellAdapter::Translation> translation = TranslateShellAdapter::translateAsync(u"haus"_s, u"de"_s, u"en"_s);
     translation.waitForFinished();
     if (translation.result().m_suggestions.size() == 0) {
         qWarning("did not receive any translation results");
         return;
     }
-    if (translation.result().m_suggestions.first() != "House") { // translation "haus" -> "House" is expected to be stable
+    if (translation.result().m_suggestions.first() != u"House"_s) { // translation "haus" -> "House" is expected to be stable
         qWarning("translation result differes from expectation");
     }
 }

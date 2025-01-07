@@ -19,6 +19,7 @@
 #include <QVBoxLayout>
 
 using namespace Practice;
+using namespace Qt::Literals::StringLiterals;
 
 MultiplechoiceModeWidget::MultiplechoiceModeWidget(GuiFrontend *frontend, QWidget *parent)
     : AbstractModeWidget(frontend, parent)
@@ -246,13 +247,13 @@ void MultiplechoiceModeWidget::setSolutionSound(const QUrl &soundUrl)
 
 void MultiplechoiceModeWidget::setSolutionPronunciation(const QString &pronunciationText)
 {
-    m_ui->solutionPronunciationLabel->setText('[' + pronunciationText + ']');
+    m_ui->solutionPronunciationLabel->setText('['_L1 + pronunciationText + ']'_L1);
     m_ui->solutionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 
 void MultiplechoiceModeWidget::setQuestionPronunciation(const QString &pronunciationText)
 {
-    m_ui->questionPronunciationLabel->setText('[' + pronunciationText + ']');
+    m_ui->questionPronunciationLabel->setText('['_L1 + pronunciationText + ']'_L1);
     m_ui->questionPronunciationLabel->setEnabled(!pronunciationText.isNull());
 }
 

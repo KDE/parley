@@ -13,6 +13,8 @@
 #include "kgametheme.h"
 #include "ui_kgamethemeselector.h"
 
+using namespace Qt::Literals::StringLiterals;
+
 class KGameThemeSelectorPrivate
 {
     KGameThemeSelector *q_ptr;
@@ -100,7 +102,7 @@ void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
 
     QStringList themesAvailable;
     QStringList themePaths = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation,
-                                                       QCoreApplication::applicationName() + '/' + lookupDirectory + '/',
+                                                       QCoreApplication::applicationName() + '/'_L1 + lookupDirectory + '/'_L1,
                                                        QStandardPaths::LocateDirectory);
     for (const QString &dir : std::as_const(themePaths)) {
         QDirIterator it(dir, QStringList() << QStringLiteral("*.desktop"), QDir::NoFilter, QDirIterator::Subdirectories);
@@ -112,14 +114,14 @@ void KGameThemeSelectorPrivate::findThemes(const QString &initialSelection)
 
     bool initialFound = false;
     for (const QString &file : std::as_const(themesAvailable)) {
-        QString themePath = lookupDirectory + '/' + file;
+        QString themePath = lookupDirectory + '/'_L1 + file;
         KGameTheme *atheme = new KGameTheme(groupName);
 
         if (atheme->load(themePath)) {
             QString themeName = atheme->themeProperty(QStringLiteral("Name"));
             // Add underscores to avoid duplicate names.
             while (themeMap.contains(themeName))
-                themeName += '_';
+                themeName += '_'_L1;
             themeMap.insert(themeName, atheme);
             QListWidgetItem *item = new QListWidgetItem(themeName, ui.themeList);
 

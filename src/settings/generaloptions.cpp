@@ -14,16 +14,18 @@
 
 #include "prefs.h"
 
-static const char *separator_id[] = {";", // 0
-                                     "#", // 1
-                                     "!", // 2
-                                     "|", // 3
-                                     ",", // 4
-                                     "\t", // 5
-                                     "  ", // 6
-                                     ":", // 7
-                                     "::", // 8
-                                     nullptr};
+using namespace Qt::Literals::StringLiterals;
+
+static QString separator_id[] = {u";"_s, // 0
+                                 u"#"_s, // 1
+                                 u"!"_s, // 2
+                                 u"|"_s, // 3
+                                 u","_s, // 4
+                                 u"\t"_s, // 5
+                                 u"  "_s, // 6
+                                 u":"_s, // 7
+                                 u"::"_s, // 8
+                                 QString()};
 
 GeneralOptions::GeneralOptions(QWidget *parent)
     : QWidget(parent)
@@ -71,7 +73,7 @@ bool GeneralOptions::isDefault()
 {
     if (kcfg_SeparatorCombo->currentIndex() < 0)
         return false;
-    return !strcmp(separator_id[kcfg_SeparatorCombo->currentIndex()], "\t");
+    return !QString::compare(separator_id[kcfg_SeparatorCombo->currentIndex()], u"\t"_s);
 }
 
 void GeneralOptions::updateSettings()

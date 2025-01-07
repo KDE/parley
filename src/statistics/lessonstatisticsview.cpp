@@ -26,6 +26,8 @@
 #include "utils.h"
 #include <KEduVocLesson>
 
+using namespace Qt::Literals::StringLiterals;
+
 // GradeDelegate shows the graphic colored bar in the statistics,
 // showing how far the student has come on the way to enlightenment.
 
@@ -187,7 +189,7 @@ void LessonStatisticsView::getCollapsedItems(QStringList &collapsedItems, const 
             collapsedItems << name;
         }
         for (int row = 0; row < rowCount; ++row) {
-            getCollapsedItems(collapsedItems, model()->index(row, 0, item), name + '/');
+            getCollapsedItems(collapsedItems, model()->index(row, 0, item), name + '/'_L1);
         }
     }
 }
@@ -222,7 +224,7 @@ void LessonStatisticsView::setCollapsedItems(const QStringList &collapsedItems, 
             expand(item);
         }
         for (int row = 0; row < rowCount; ++row) {
-            setCollapsedItems(collapsedItems, model()->index(row, 0, item), name + '/');
+            setCollapsedItems(collapsedItems, model()->index(row, 0, item), name + '/'_L1);
         }
     }
 }

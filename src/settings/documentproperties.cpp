@@ -17,6 +17,8 @@
 #include <QLabel>
 #include <QTextEdit>
 
+using namespace Qt::Literals::StringLiterals;
+
 DocumentProperties::DocumentProperties(KEduVocDocument *doc, bool languageSetup, QWidget *parent)
     : QWidget(parent)
     , m_doc(doc)
@@ -98,7 +100,7 @@ QMap<QString, QString> DocumentProperties::localeLangsMap()
 
     for (const QLocale &myLocale : std::as_const(allLocales)) {
         if (!myLocale.nativeLanguageName().isEmpty() && !myLocale.nativeTerritoryName().isEmpty()) {
-            languageCodeMap[myLocale.nativeLanguageName() + " (" + myLocale.nativeTerritoryName() + ')'] = myLocale.name();
+            languageCodeMap[myLocale.nativeLanguageName() + u" ("_s + myLocale.nativeTerritoryName() + ')'_L1] = myLocale.name();
         }
     }
     return languageCodeMap;

@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
     KLocalizedString::setApplicationDomain("parley");
 
-    KAboutData aboutData(QStringLiteral("parley"), ki18n("Parley").toString(), PARLEY_VERSION_STRING);
+    KAboutData aboutData(QStringLiteral("parley"), ki18n("Parley").toString(), QStringLiteral(PARLEY_VERSION_STRING));
     aboutData.setShortDescription(ki18n("Vocabulary Trainer").toString());
     aboutData.setLicense(KAboutLicense::GPL);
     aboutData.setCopyrightStatement(ki18n("© 1999-2002\tEwald Arnold\n"

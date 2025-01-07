@@ -18,17 +18,19 @@
 #include "utils.h"
 #include <KEduVocExpression>
 
+using namespace Qt::Literals::StringLiterals;
+
 StatisticsLegendWidget::StatisticsLegendWidget(QWidget *parent)
     : QWidget(parent)
 {
     ConfidenceColors colors(ConfidenceColors::ProgressiveColorScheme);
 
     QString tooltip;
-    tooltip += "<table><tr><td>" + i18n("Progress gradients") + "</td><td bgcolor=\"" + colors.longTermColors[KV_MAX_GRADE].name()
-        + "\"><nobr>    </nobr></td></tr>" + "<tr><td>" + i18n("Early progress") + "</td><td bgcolor=\"" + colors.initialTermColor.name()
-        + "\"><nobr>    </nobr></td></tr>" + "<tr><td>" + i18n("Not Practiced") + "</td><td bgcolor=\"" + colors.longTermColors[0].name()
-        + "\"><nobr>    </nobr></td></tr>" + "<tr><td>" + i18n("Invalid Entries") + "</td><td bgcolor=\"" + colors.invalidColor.name()
-        + "\" width=\"15%\"><nobr>    </nobr></td></tr></table>";
+    tooltip += u"<table><tr><td>"_s + i18n("Progress gradients") + u"</td><td bgcolor=\""_s + colors.longTermColors[KV_MAX_GRADE].name()
+        + u"\"><nobr>    </nobr></td></tr>"_s + u"<tr><td>"_s + i18n("Early progress") + u"</td><td bgcolor=\""_s + colors.initialTermColor.name()
+        + u"\"><nobr>    </nobr></td></tr>"_s + u"<tr><td>"_s + i18n("Not Practiced") + u"</td><td bgcolor=\""_s + colors.longTermColors[0].name()
+        + u"\"><nobr>    </nobr></td></tr>"_s + u"<tr><td>"_s + i18n("Invalid Entries") + u"</td><td bgcolor=\""_s + colors.invalidColor.name()
+        + u"\" width=\"15%\"><nobr>    </nobr></td></tr></table>"_s;
     setToolTip(tooltip);
 }
 

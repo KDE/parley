@@ -21,7 +21,7 @@
     </entry>
     <entry name="Separator" type="String">
       <label>This sets the separator used when copying/pasting text, default is Tab</label>
-      <default code="true">QChar('\t')</default>
+      <default code="true">QStringLiteral("\t")</default>
     </entry>
     <entry name="EntriesPerLesson" type="Int">
       <label>The number of entries per unit</label>

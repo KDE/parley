@@ -19,6 +19,7 @@
 #include <complex>
 
 using namespace Practice;
+using namespace Qt::Literals::StringLiterals;
 
 const char *texTemplate =
     "\\documentclass[12pt,fleqn]{article}          \n "
@@ -56,7 +57,7 @@ void LatexRenderer::renderLatex(QString tex)
 
     // Check if the parley subdir exists, if not, create it
     QString dir(QDir::tempPath() + QLatin1Char('/') + QCoreApplication::applicationName());
-    QTemporaryFile *texFile = new QTemporaryFile(dir + QLatin1Char('/') + QLatin1String("XXXXXX") + ".tex");
+    QTemporaryFile *texFile = new QTemporaryFile(dir + QLatin1Char('/') + QLatin1String("XXXXXX") + u".tex"_s);
     if (!texFile->open()) {
         return;
     }

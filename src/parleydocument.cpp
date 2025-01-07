@@ -44,6 +44,8 @@
 
 #include "settings/languageproperties.h"
 
+using namespace Qt::Literals::StringLiterals;
+
 namespace DocumentHelper
 {
 void fetchGrammar(KEduVocDocument *doc, int languageIndex)
@@ -313,7 +315,7 @@ void ParleyDocument::save()
 
     // remove previous backup
     QFile::remove(m_doc->url().toLocalFile() + QLatin1Char('~'));
-    QFile::copy(QFile::encodeName(m_doc->url().toLocalFile()), QFile::encodeName(m_doc->url().toLocalFile() + '~'));
+    QFile::copy(m_doc->url().toLocalFile(), m_doc->url().toLocalFile() + '~'_L1);
 
     m_doc->setCsvDelimiter(Prefs::separator());
 
@@ -403,7 +405,7 @@ void ParleyDocument::saveAs(QUrl url)
     QString msg = i18nc("@info:status saving a file", "Saving %1", url.toLocalFile());
 
     QFile::remove(url.toLocalFile() + QLatin1Char('~')); // remove previous backup
-    QFile::copy(QFile::encodeName(url.toLocalFile()), QFile::encodeName(QString(url.toLocalFile() + '~')));
+    QFile::copy(url.toLocalFile(), QString(url.toLocalFile() + '~'_L1));
 
     m_doc->setCsvDelimiter(Prefs::separator());
 

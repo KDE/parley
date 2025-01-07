@@ -17,6 +17,7 @@
 #include <QtConcurrentRun>
 
 using namespace Practice;
+using namespace Qt::Literals::StringLiterals;
 
 ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject *parent, const QString &cacheFilename)
     : QObject(parent)
@@ -25,7 +26,7 @@ ThemedBackgroundRenderer::ThemedBackgroundRenderer(QObject *parent, const QStrin
     , m_isFastScaledRender(true)
 {
     m_theme = new KGameTheme();
-    m_cache.setSaveFilename(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + '/' + cacheFilename);
+    m_cache.setSaveFilename(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + '/'_L1 + cacheFilename);
     m_timer.setSingleShot(true);
     m_timer.setInterval(1000);
     connect(&m_timer, &QTimer::timeout, this, &ThemedBackgroundRenderer::updateBackgroundTimeout);
@@ -65,7 +66,7 @@ void ThemedBackgroundRenderer::addRect(const QString &name, const QRect &rect)
 {
     m_rects.append(QPair<QString, QRect>(name, rect));
     if (!m_rectMappings.contains(name)) {
-        QString mapped = m_theme->property("X-Parley-" + name);
+        QString mapped = m_theme->property(u"X-Parley-"_s + name);
         m_rectMappings[name] = mapped.isEmpty() ? name : mapped;
     }
 }
@@ -102,7 +103,7 @@ QPixmap ThemedBackgroundRenderer::getScaledBackground()
 
 QColor ThemedBackgroundRenderer::fontColor(const QString &context, const QColor &fallback)
 {
-    QString text = m_theme->property("X-Parley-Font-Color-" + context).toLower();
+    QString text = m_theme->property(u"X-Parley-Font-Color-"_s + context).toLower();
     if (text.length() == 6 && text.contains(QRegularExpression(QStringLiteral("[0-9a-f]{6}")))) {
         return QColor(text.mid(0, 2).toInt(nullptr, 16), text.mid(2, 2).toInt(nullptr, 16), text.mid(4, 2).toInt(nullptr, 16));
     }
@@ -192,14 +193,14 @@ QMargins ThemedBackgroundRenderer::contentMargins()
         rect = m_rectMappings.value(rect);
     }
     QMargins margins;
-    if (m_renderer.elementExists(rect + "-border-topleft"))
-        margins.setTop(m_renderer.boundsOnElement(rect + "-border-topleft").toAlignedRect().height());
-    if (m_renderer.elementExists(rect + "-border-bottomleft"))
-        margins.setBottom(m_renderer.boundsOnElement(rect + "-border-bottomleft").toAlignedRect().height());
-    if (m_renderer.elementExists(rect + "-border-topleft"))
-        margins.setLeft(m_renderer.boundsOnElement(rect + "-border-topleft").toAlignedRect().width());
-    if (m_renderer.elementExists(rect + "-border-topright"))
-        margins.setRight(m_renderer.boundsOnElement(rect + "-border-topright").toAlignedRect().width());
+    if (m_renderer.elementExists(rect + u"-border-topleft"_s))
+        margins.setTop(m_renderer.boundsOnElement(rect + u"-border-topleft"_s).toAlignedRect().height());
+    if (m_renderer.elementExists(rect + u"-border-bottomleft"_s))
+        margins.setBottom(m_renderer.boundsOnElement(rect + u"-border-bottomleft"_s).toAlignedRect().height());
+    if (m_renderer.elementExists(rect + u"-border-topleft"_s))
+        margins.setLeft(m_renderer.boundsOnElement(rect + u"-border-topleft"_s).toAlignedRect().width());
+    if (m_renderer.elementExists(rect + u"-border-topright"_s))
+        margins.setRight(m_renderer.boundsOnElement(rect + u"-border-topright"_s).toAlignedRect().width());
     return margins;
 }
 
@@ -333,9 +334,9 @@ void ThemedBackgroundRenderer::renderItem(const QString &idBase,
 {
     // the id without the mapping, which we need to use for caching
     // (otherwise, images could share a place in the cache which makes it useless if they have different sizes)
-    QString id = idBase + '-' + idSuffix;
+    QString id = idBase + '-'_L1 + idSuffix;
     // the id according to the mapping specified in the desktop file
-    QString mappedId = m_rectMappings.contains(idBase) ? m_rectMappings.value(idBase) + '-' + idSuffix : id;
+    QString mappedId = m_rectMappings.contains(idBase) ? m_rectMappings.value(idBase) + '-'_L1 + idSuffix : id;
 
     if (!m_renderer.elementExists(mappedId))
         return;

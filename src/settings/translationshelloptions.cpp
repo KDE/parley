@@ -7,6 +7,8 @@
 #include <KLed>
 #include <KLocalizedString>
 
+using namespace Qt::Literals::StringLiterals;
+
 TranslationShellOptions::TranslationShellOptions(QWidget *parent)
     : QWidget(parent)
 {
@@ -26,12 +28,12 @@ TranslationShellOptions::TranslationShellOptions(QWidget *parent)
     formLayoutInstalledState->insertRow(0, installStatusLed, installStatusText);
 
     connect(buttonRunTest, &QToolButton::clicked, this, &TranslationShellOptions::runTranslateShellTest);
-    labelResultArea->setText("...");
+    labelResultArea->setText(u"..."_s);
 }
 
 void TranslationShellOptions::runTranslateShellTest()
 {
-    auto translationResult = mTranslationShellAdapter.translate("parley", "en", "de");
+    auto translationResult = mTranslationShellAdapter.translate(u"parley"_s, u"en"_s, u"de"_s);
     if (translationResult.m_suggestions.count() > 0) {
         labelResultArea->setText(translationResult.m_suggestions.first());
     } else {
