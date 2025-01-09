@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-21 00:37+0000\n"
+"POT-Creation-Date: 2025-01-09 00:37+0000\n"
 "PO-Revision-Date: 2019-12-12 21:30+0000\n"
 "Last-Translator: Vivek KJ Pazhedath <vivekkj2004@gmail.com>\n"
 "Language-Team: Malayalam <Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|"
@@ -402,14 +402,14 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:489
 #, kde-format
 msgid "Adjective"
 msgstr "നാമവിശേഷണം"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:491
+#: src/parleydocument.cpp:493
 #, kde-format
 msgid "Adverb"
 msgstr "ക്രിയാവിശേഷണം"
@@ -524,21 +524,21 @@ msgstr "ബഹുവചനം"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:475
 #, fuzzy, kde-format
 msgid "Masculine"
 msgstr "പുല്ലിംഗം"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:476
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:478
 #, kde-format
 msgid "Feminine"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:479
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:481
 #, kde-format
 msgid "Neuter"
 msgstr ""
@@ -831,13 +831,13 @@ msgid "&Reset Confidence Levels"
 msgstr ""
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:483
+#: src/parleydocument.cpp:485
 #, kde-format
 msgid "Verb"
 msgstr "ക്രിയാപദം"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:469
+#: src/parleydocument.cpp:471
 #, kde-format
 msgid "Noun"
 msgstr "നാമപദം"
@@ -1301,7 +1301,7 @@ msgstr ""
 msgid "This word type folder contains verbs."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:497
 #, fuzzy, kde-format
 msgid "Conjunction"
 msgstr "സംയോഗം"
@@ -1336,28 +1336,28 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/exportdialog.cpp:53
+#: src/exportdialog.cpp:55
 #, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr ""
 
-#: src/exportdialog.cpp:79
+#: src/exportdialog.cpp:81
 #, kde-format
 msgid "HTML document"
 msgstr "എച്ടിഎംഎല്‍ രേഖ"
 
-#: src/exportdialog.cpp:102
+#: src/exportdialog.cpp:104
 #, fuzzy, kde-format
 msgid "Could not write to file \"%1\""
 msgstr "ആഭ്യാസം തുടങ്ങുക"
 
-#: src/exportdialog.cpp:119
+#: src/exportdialog.cpp:121
 #, kde-format
 msgid "Export As"
 msgstr ""
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
+#: src/exportdialog.cpp:122 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "തലക്കെട്ടില്ലാത്ത"
@@ -1701,24 +1701,24 @@ msgstr "&തെരച്ചില്‍ കാണിക്കുക"
 msgid "Toggle display of the search bar"
 msgstr ""
 
-#: src/parleydocument.cpp:122 src/parleydocument.cpp:578
+#: src/parleydocument.cpp:124 src/parleydocument.cpp:580
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "%1-നുള്ള ഗുണഗണങ്ങള്‍"
 
-#: src/parleydocument.cpp:159
+#: src/parleydocument.cpp:161
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "പദാവലിയുടെ പേരു് മാറ്റി സൂക്ഷിക്കുക"
 
-#: src/parleydocument.cpp:160
+#: src/parleydocument.cpp:162
 #, kde-format
 msgid "Open in practice &mode"
 msgstr ""
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:204
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1728,23 +1728,23 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:204
+#: src/parleydocument.cpp:206
 #, kde-format
 msgid "Take Over Lock"
 msgstr ""
 
-#: src/parleydocument.cpp:235
+#: src/parleydocument.cpp:237
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr ""
 
-#: src/parleydocument.cpp:236
+#: src/parleydocument.cpp:238
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "പദാവലിയുടെ പേരു് മാറ്റി സൂക്ഷിക്കുക"
 
-#: src/parleydocument.cpp:264
+#: src/parleydocument.cpp:266
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1755,13 +1755,13 @@ msgstr ""
 "\n"
 "പുറത്തു് കടക്കുന്നതിനു് മുമ്പു് ഫയല്‍ സൂക്ഷിക്കണമോ?\n"
 
-#: src/parleydocument.cpp:297
+#: src/parleydocument.cpp:299
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "ഡൌണ്‍ലോട് ചെയ്ത പദാവലികള്‍ തുറക്കുക"
 
-#: src/parleydocument.cpp:336 src/parleydocument.cpp:424
+#: src/parleydocument.cpp:338 src/parleydocument.cpp:426
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1770,38 +1770,38 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
+#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr ""
 
-#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
+#: src/parleydocument.cpp:370 src/parleydocument.cpp:463
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "ഫയല്‍ സൂക്ഷിക്കുക"
 
-#: src/parleydocument.cpp:383
+#: src/parleydocument.cpp:385
 #, fuzzy, kde-format
 #| msgid "Save Vocabulary As"
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "പദാവലിയുടെ പേരു് മാറ്റി സൂക്ഷിക്കുക"
 
-#: src/parleydocument.cpp:395
+#: src/parleydocument.cpp:397
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr "<qt><p><b>%1</b></p>ഫയല്‍ നിലവിലുണ്ടു്. അതു് മാറ്റി എഴുതണമോ?</qt>"
 
-#: src/parleydocument.cpp:403
+#: src/parleydocument.cpp:405
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "%1 സൂക്ഷിക്കുന്നു"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr "പൊതു മണ്ഡലം (പബ്ലിക് ഡൊമെയിന്‍)"
@@ -1809,24 +1809,24 @@ msgstr "പൊതു മണ്ഡലം (പബ്ലിക് ഡൊമെയ�
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:510 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "ഭാഷകള്‍"
 
-#: src/parleydocument.cpp:516
+#: src/parleydocument.cpp:518
 #, kde-format
 msgid "A Second Language"
 msgstr ""
 
-#: src/parleydocument.cpp:519
+#: src/parleydocument.cpp:521
 #, kde-format
 msgid "Lesson 1"
 msgstr "പാഠം 1"
 
-#: src/parleydocument.cpp:561
+#: src/parleydocument.cpp:563
 #, fuzzy, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "പുതിയ പദാവലികള്‍ ഡൌണ്‍ലോട് ചെയ്യുന്നു"
@@ -2482,12 +2482,12 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/practice/latexrenderer.cpp:46
+#: src/practice/latexrenderer.cpp:47
 #, kde-format
 msgid "Rendering..."
 msgstr ""
 
-#: src/practice/latexrenderer.cpp:136
+#: src/practice/latexrenderer.cpp:137
 #, kde-format
 msgid "LaTeX error."
 msgstr ""
@@ -3051,55 +3051,55 @@ msgstr ""
 msgid "Collapsed tree view items of statistics view window."
 msgstr ""
 
-#: src/settings/generaloptions.cpp:41
+#: src/settings/generaloptions.cpp:43
 #, kde-format
 msgctxt "CSV separator"
 msgid ";"
 msgstr ";"
 
-#: src/settings/generaloptions.cpp:42
+#: src/settings/generaloptions.cpp:44
 #, kde-format
 msgctxt "CSV separator"
 msgid "#"
 msgstr "#"
 
-#: src/settings/generaloptions.cpp:43
+#: src/settings/generaloptions.cpp:45
 #, kde-format
 msgctxt "CSV separator"
 msgid "!"
 msgstr "!"
 
-#: src/settings/generaloptions.cpp:44
+#: src/settings/generaloptions.cpp:46
 #, kde-format
 msgctxt "CSV separator"
 msgid "|"
 msgstr "|"
 
-#: src/settings/generaloptions.cpp:45
+#: src/settings/generaloptions.cpp:47
 #, kde-format
 msgctxt "CSV separator"
 msgid ","
 msgstr ","
 
-#: src/settings/generaloptions.cpp:46
+#: src/settings/generaloptions.cpp:48
 #, kde-format
 msgctxt "CSV separator: tabulator"
 msgid "TAB"
 msgstr "TAB"
 
-#: src/settings/generaloptions.cpp:47
+#: src/settings/generaloptions.cpp:49
 #, kde-format
 msgctxt "CSV separator"
 msgid ">= 2 SPACES"
 msgstr ">= 2 SPACES"
 
-#: src/settings/generaloptions.cpp:48
+#: src/settings/generaloptions.cpp:50
 #, kde-format
 msgctxt "CSV separator"
 msgid " : "
 msgstr " : "
 
-#: src/settings/generaloptions.cpp:49
+#: src/settings/generaloptions.cpp:51
 #, kde-format
 msgctxt "CSV separator"
 msgid " :: "
@@ -3265,31 +3265,31 @@ msgstr "ഭാഷ വെട്ടിനീക്കണമോ: %1?"
 msgid "Remove Language"
 msgstr "ഭാഷ നീക്കം ചെയ്യുക"
 
-#: src/settings/languagepropertiespage.cpp:83
+#: src/settings/languagepropertiespage.cpp:85
 #, kde-format
 msgid "No KDE keyboard selector found."
 msgstr ""
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, fuzzy, kde-format
 msgid "Tense Name"
 msgstr "പേരു് മാറ്റുക"
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Enter name of tense:"
 msgstr ""
 
-#: src/settings/languagepropertiespage.cpp:398
+#: src/settings/languagepropertiespage.cpp:400
 #, kde-format
 msgid ""
 "The selected user defined tense could not be deleted\n"
 "because it is in use."
 msgstr ""
 
-#: src/settings/languagepropertiespage.cpp:399
+#: src/settings/languagepropertiespage.cpp:401
 #, kde-format
 msgid "Deleting Tense Description"
 msgstr ""
@@ -4041,17 +4041,17 @@ msgstr "ശരിയായ തര്‍ജ്ജമ നല്‍കുക:"
 msgid "Online Translation Services"
 msgstr "ശരിയായ തര്‍ജ്ജമ നല്‍കുക:"
 
-#: src/settings/translationshelloptions.cpp:20
+#: src/settings/translationshelloptions.cpp:22
 #, kde-format
 msgid "translate-shell is available."
 msgstr ""
 
-#: src/settings/translationshelloptions.cpp:23
+#: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
 msgstr ""
 
-#: src/settings/translationshelloptions.cpp:38
+#: src/settings/translationshelloptions.cpp:40
 #, kde-format
 msgid "Error"
 msgstr ""
@@ -4183,49 +4183,49 @@ msgstr ""
 msgid "Alt+2"
 msgstr "Alt+2"
 
-#: src/statistics/lessonstatisticsview.cpp:74
 #: src/statistics/lessonstatisticsview.cpp:76
+#: src/statistics/lessonstatisticsview.cpp:78
 #, fuzzy, kde-format
 msgid "Remove confidence levels from this unit"
 msgstr "നിലവിലുള്ള ഫയലില്‍ നിന്നും എല്ലാ ഗ്രേഡുകളും നീക്കം ചെയ്യുക"
 
-#: src/statistics/lessonstatisticsview.cpp:84
+#: src/statistics/lessonstatisticsview.cpp:86
 #, fuzzy, kde-format
 msgid "Remove confidence levels from this unit and all sub-units"
 msgstr "നിലവിലുള്ള ഫയലില്‍ നിന്നും എല്ലാ ഗ്രേഡുകളും നീക്കം ചെയ്യുക"
 
-#: src/statistics/lessonstatisticsview.cpp:86
+#: src/statistics/lessonstatisticsview.cpp:88
 #, fuzzy, kde-format
 msgid "Remove confidence level from this unit and all sub-units"
 msgstr "നിലവിലുള്ള ഫയലില്‍ നിന്നും എല്ലാ ഗ്രേഡുകളും നീക്കം ചെയ്യുക"
 
-#: src/statistics/statisticslegendwidget.cpp:27
+#: src/statistics/statisticslegendwidget.cpp:29
 #, fuzzy, kde-format
 msgid "Progress gradients"
 msgstr "പുരോഗതി"
 
-#: src/statistics/statisticslegendwidget.cpp:28
+#: src/statistics/statisticslegendwidget.cpp:30
 #, fuzzy, kde-format
 msgid "Early progress"
 msgstr "പുരോഗതി"
 
-#: src/statistics/statisticslegendwidget.cpp:29
+#: src/statistics/statisticslegendwidget.cpp:31
 #, fuzzy, kde-format
 msgid "Not Practiced"
 msgstr "അഭ്യാസം &നിര്‍ത്തുക"
 
-#: src/statistics/statisticslegendwidget.cpp:30
+#: src/statistics/statisticslegendwidget.cpp:32
 #, kde-format
 msgid "Invalid Entries"
 msgstr ""
 
-#: src/statistics/statisticslegendwidget.cpp:46
+#: src/statistics/statisticslegendwidget.cpp:48
 #, kde-format
 msgctxt "adjective, The word has been properly and fully learned by the user"
 msgid "Fully learned"
 msgstr ""
 
-#: src/statistics/statisticslegendwidget.cpp:47
+#: src/statistics/statisticslegendwidget.cpp:49
 #, fuzzy, kde-format
 msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"

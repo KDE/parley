@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-21 00:37+0000\n"
+"POT-Creation-Date: 2025-01-09 00:37+0000\n"
 "PO-Revision-Date: 2023-09-04 21:50+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -415,14 +415,14 @@ msgstr "Superlatiboa:"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:489
 #, kde-format
 msgid "Adjective"
 msgstr "Adjektiboa"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:491
+#: src/parleydocument.cpp:493
 #, kde-format
 msgid "Adverb"
 msgstr "Adberbioa"
@@ -537,21 +537,21 @@ msgstr "Plurala"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:475
 #, kde-format
 msgid "Masculine"
 msgstr "Maskulinoa"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:476
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:478
 #, kde-format
 msgid "Feminine"
 msgstr "Femeninoa"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:479
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:481
 #, kde-format
 msgid "Neuter"
 msgstr "Neutroa"
@@ -844,13 +844,13 @@ msgid "&Reset Confidence Levels"
 msgstr "Be&rrezarri konfiantza mailak"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:483
+#: src/parleydocument.cpp:485
 #, kde-format
 msgid "Verb"
 msgstr "Aditza"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:469
+#: src/parleydocument.cpp:471
 #, kde-format
 msgid "Noun"
 msgstr "Izena"
@@ -1315,7 +1315,7 @@ msgstr "Hitz-mota karpeta honek adberbioak ditu."
 msgid "This word type folder contains verbs."
 msgstr "Hitz-mota karpeta honek aditzak ditu."
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:497
 #, kde-format
 msgid "Conjunction"
 msgstr "Juntagailua"
@@ -1353,28 +1353,28 @@ msgstr[1] ""
 "Hitz mota horretako %1 hitz gelditzen dira. Haien mota galduko dute. "
 "Jarraitu?"
 
-#: src/exportdialog.cpp:53
+#: src/exportdialog.cpp:55
 #, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Esportatu"
 
-#: src/exportdialog.cpp:79
+#: src/exportdialog.cpp:81
 #, kde-format
 msgid "HTML document"
 msgstr "HTML dokumentua"
 
-#: src/exportdialog.cpp:102
+#: src/exportdialog.cpp:104
 #, kde-format
 msgid "Could not write to file \"%1\""
 msgstr "Ezin izan du \"%1\" fitxategian idatzi"
 
-#: src/exportdialog.cpp:119
+#: src/exportdialog.cpp:121
 #, kde-format
 msgid "Export As"
 msgstr "Esportatu honela"
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
+#: src/exportdialog.cpp:122 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "Izengabea"
@@ -1719,24 +1719,24 @@ msgstr "Erakutsi bil&aketa"
 msgid "Toggle display of the search bar"
 msgstr "Txandakatu bilaketa-barra azaltzea"
 
-#: src/parleydocument.cpp:122 src/parleydocument.cpp:578
+#: src/parleydocument.cpp:124 src/parleydocument.cpp:580
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "%1(r)en propietateak"
 
-#: src/parleydocument.cpp:159
+#: src/parleydocument.cpp:161
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Ireki hiztegi-bilduma"
 
-#: src/parleydocument.cpp:160
+#: src/parleydocument.cpp:162
 #, kde-format
 msgid "Open in practice &mode"
 msgstr "Ireki praktika &moduan"
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:204
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1751,23 +1751,23 @@ msgstr ""
 "\n"
 "Giltzatzearen jabetza hartu nahi duzu?\n"
 
-#: src/parleydocument.cpp:204
+#: src/parleydocument.cpp:206
 #, kde-format
 msgid "Take Over Lock"
 msgstr "Giltzatzeaz jabetu"
 
-#: src/parleydocument.cpp:235
+#: src/parleydocument.cpp:237
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "\"%1\" bilduma irekitzean errorea gertatu da: %2"
 
-#: src/parleydocument.cpp:236
+#: src/parleydocument.cpp:238
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Bilduma irekitzea"
 
-#: src/parleydocument.cpp:264
+#: src/parleydocument.cpp:266
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1778,13 +1778,13 @@ msgstr ""
 "\n"
 "Irten aurretik fitxategia gorde?\n"
 
-#: src/parleydocument.cpp:297
+#: src/parleydocument.cpp:299
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Ireki zama-jaitsitako hiztegi-bilduma"
 
-#: src/parleydocument.cpp:336 src/parleydocument.cpp:424
+#: src/parleydocument.cpp:338 src/parleydocument.cpp:426
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1798,24 +1798,24 @@ msgstr ""
 "\n"
 "Giltzatzearen jabetza hartu nahi duzu?\n"
 
-#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
+#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "\"%1\" fitxategian idaztean errore bat gertatu da: %2"
 
-#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
+#: src/parleydocument.cpp:370 src/parleydocument.cpp:463
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "Gorde fitxategia"
 
-#: src/parleydocument.cpp:383
+#: src/parleydocument.cpp:385
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Gorde hiztegia honela"
 
-#: src/parleydocument.cpp:395
+#: src/parleydocument.cpp:397
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
@@ -1823,14 +1823,14 @@ msgstr ""
 "<qt><p><b>%1</b></p>fitxategia lehendik ere badago. Gainidatzi nahi duzu?</"
 "qt>"
 
-#: src/parleydocument.cpp:403
+#: src/parleydocument.cpp:405
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "%1 gordetzen"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr "Domeinu publikoa"
@@ -1838,24 +1838,24 @@ msgstr "Domeinu publikoa"
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:510 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "Hizkuntzak"
 
-#: src/parleydocument.cpp:516
+#: src/parleydocument.cpp:518
 #, kde-format
 msgid "A Second Language"
 msgstr "Bigarren hizkuntza bat"
 
-#: src/parleydocument.cpp:519
+#: src/parleydocument.cpp:521
 #, kde-format
 msgid "Lesson 1"
 msgstr "1. ikasgaia"
 
-#: src/parleydocument.cpp:561
+#: src/parleydocument.cpp:563
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Ezin izan du \"%1\" hiztegi-bilduma ireki"
@@ -2528,12 +2528,12 @@ msgstr[1] ""
 "%1 hitzetatik %2 ondo erantzun d(it)uzu.\n"
 "% %3 egin duzu."
 
-#: src/practice/latexrenderer.cpp:46
+#: src/practice/latexrenderer.cpp:47
 #, kde-format
 msgid "Rendering..."
 msgstr "Errendatzen..."
 
-#: src/practice/latexrenderer.cpp:136
+#: src/practice/latexrenderer.cpp:137
 #, kde-format
 msgid "LaTeX error."
 msgstr "LaTeX errorea."
@@ -3123,55 +3123,55 @@ msgstr "Zutabe ikusgaiak editore nagusiaren leihoan."
 msgid "Collapsed tree view items of statistics view window."
 msgstr "Tolestu estatistika ikuspegi leihoko zuhaitz-ikuspegia."
 
-#: src/settings/generaloptions.cpp:41
+#: src/settings/generaloptions.cpp:43
 #, kde-format
 msgctxt "CSV separator"
 msgid ";"
 msgstr ";"
 
-#: src/settings/generaloptions.cpp:42
+#: src/settings/generaloptions.cpp:44
 #, kde-format
 msgctxt "CSV separator"
 msgid "#"
 msgstr "#"
 
-#: src/settings/generaloptions.cpp:43
+#: src/settings/generaloptions.cpp:45
 #, kde-format
 msgctxt "CSV separator"
 msgid "!"
 msgstr "!"
 
-#: src/settings/generaloptions.cpp:44
+#: src/settings/generaloptions.cpp:46
 #, kde-format
 msgctxt "CSV separator"
 msgid "|"
 msgstr "|"
 
-#: src/settings/generaloptions.cpp:45
+#: src/settings/generaloptions.cpp:47
 #, kde-format
 msgctxt "CSV separator"
 msgid ","
 msgstr ","
 
-#: src/settings/generaloptions.cpp:46
+#: src/settings/generaloptions.cpp:48
 #, kde-format
 msgctxt "CSV separator: tabulator"
 msgid "TAB"
 msgstr "TAB"
 
-#: src/settings/generaloptions.cpp:47
+#: src/settings/generaloptions.cpp:49
 #, kde-format
 msgctxt "CSV separator"
 msgid ">= 2 SPACES"
 msgstr ">= 2 ZURIUNE"
 
-#: src/settings/generaloptions.cpp:48
+#: src/settings/generaloptions.cpp:50
 #, kde-format
 msgctxt "CSV separator"
 msgid " : "
 msgstr " : "
 
-#: src/settings/generaloptions.cpp:49
+#: src/settings/generaloptions.cpp:51
 #, kde-format
 msgctxt "CSV separator"
 msgid " :: "
@@ -3342,24 +3342,24 @@ msgstr "Hizkuntza benetan ezabatzea nahi duzu: %1?"
 msgid "Remove Language"
 msgstr "Kendu hizkuntza"
 
-#: src/settings/languagepropertiespage.cpp:83
+#: src/settings/languagepropertiespage.cpp:85
 #, kde-format
 msgid "No KDE keyboard selector found."
 msgstr "Ez da KDE teklatu hautatzailerik aurkitu."
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Tense Name"
 msgstr "Aditz-denboraren izena"
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Enter name of tense:"
 msgstr "Sartu aditz-denboraren izena:"
 
-#: src/settings/languagepropertiespage.cpp:398
+#: src/settings/languagepropertiespage.cpp:400
 #, kde-format
 msgid ""
 "The selected user defined tense could not be deleted\n"
@@ -3368,7 +3368,7 @@ msgstr ""
 "Hautatutako erabiltzaileak definitutako aditz-denbora ezin\n"
 "da ezabatu, erabiltzen ari direlako."
 
-#: src/settings/languagepropertiespage.cpp:399
+#: src/settings/languagepropertiespage.cpp:401
 #, kde-format
 msgid "Deleting Tense Description"
 msgstr "Aditz-denboraren deskribapena ezabatzen"
@@ -4167,17 +4167,17 @@ msgstr "Lerroko itzulpenak"
 msgid "Online Translation Services"
 msgstr "Lerroko itzulpen zerbitzuak"
 
-#: src/settings/translationshelloptions.cpp:20
+#: src/settings/translationshelloptions.cpp:22
 #, kde-format
 msgid "translate-shell is available."
 msgstr "itzulpen-oskola («shell») erabilgarri dago."
 
-#: src/settings/translationshelloptions.cpp:23
+#: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
 msgstr "itzulpen-oskola («shell») ezin izan du aurkitu."
 
-#: src/settings/translationshelloptions.cpp:38
+#: src/settings/translationshelloptions.cpp:40
 #, kde-format
 msgid "Error"
 msgstr "Errorea"
@@ -4316,51 +4316,51 @@ msgstr ""
 msgid "Alt+2"
 msgstr "Alt+2"
 
-#: src/statistics/lessonstatisticsview.cpp:74
 #: src/statistics/lessonstatisticsview.cpp:76
+#: src/statistics/lessonstatisticsview.cpp:78
 #, kde-format
 msgid "Remove confidence levels from this unit"
 msgstr "Kendu unitate honetako konfiantza mailak"
 
-#: src/statistics/lessonstatisticsview.cpp:84
+#: src/statistics/lessonstatisticsview.cpp:86
 #, kde-format
 msgid "Remove confidence levels from this unit and all sub-units"
 msgstr ""
 "Kendu unitate honetako eta bere azpi-unitate guztietako konfiantza mailak"
 
-#: src/statistics/lessonstatisticsview.cpp:86
+#: src/statistics/lessonstatisticsview.cpp:88
 #, kde-format
 msgid "Remove confidence level from this unit and all sub-units"
 msgstr ""
 "Kendu unitate honetako eta bere azpi-unitate guztietako konfiantza maila"
 
-#: src/statistics/statisticslegendwidget.cpp:27
+#: src/statistics/statisticslegendwidget.cpp:29
 #, kde-format
 msgid "Progress gradients"
 msgstr "Aurrerapen maldak"
 
-#: src/statistics/statisticslegendwidget.cpp:28
+#: src/statistics/statisticslegendwidget.cpp:30
 #, kde-format
 msgid "Early progress"
 msgstr "Aurrerapen goiztiarra"
 
-#: src/statistics/statisticslegendwidget.cpp:29
+#: src/statistics/statisticslegendwidget.cpp:31
 #, kde-format
 msgid "Not Practiced"
 msgstr "Praktikatu gabea"
 
-#: src/statistics/statisticslegendwidget.cpp:30
+#: src/statistics/statisticslegendwidget.cpp:32
 #, kde-format
 msgid "Invalid Entries"
 msgstr "Sarrera baliogabeak"
 
-#: src/statistics/statisticslegendwidget.cpp:46
+#: src/statistics/statisticslegendwidget.cpp:48
 #, kde-format
 msgctxt "adjective, The word has been properly and fully learned by the user"
 msgid "Fully learned"
 msgstr "Erabat ikasia"
 
-#: src/statistics/statisticslegendwidget.cpp:47
+#: src/statistics/statisticslegendwidget.cpp:49
 #, kde-format
 msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"

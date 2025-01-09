@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-21 00:37+0000\n"
+"POT-Creation-Date: 2025-01-09 00:37+0000\n"
 "PO-Revision-Date: 2012-07-27 23:11+0300\n"
 "Last-Translator: Einars Sprugis <einars8@gmail.com>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
@@ -434,14 +434,14 @@ msgstr "Pārākā forma:"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:489
 #, kde-format
 msgid "Adjective"
 msgstr "Īpašības vārds"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:491
+#: src/parleydocument.cpp:493
 #, kde-format
 msgid "Adverb"
 msgstr "Apstākļa vārds"
@@ -556,21 +556,21 @@ msgstr "Daudzskaitlis"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:475
 #, kde-format
 msgid "Masculine"
 msgstr "Vīriešu"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:476
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:478
 #, kde-format
 msgid "Feminine"
 msgstr "Sieviešu"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:479
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:481
 #, kde-format
 msgid "Neuter"
 msgstr "Neitrāls"
@@ -882,13 +882,13 @@ msgid "&Reset Confidence Levels"
 msgstr ""
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:483
+#: src/parleydocument.cpp:485
 #, kde-format
 msgid "Verb"
 msgstr "Darbības vārds"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:469
+#: src/parleydocument.cpp:471
 #, kde-format
 msgid "Noun"
 msgstr "Lietvārds"
@@ -1383,7 +1383,7 @@ msgstr "Šī vārdu tipa mape satur apstākļa vārdus."
 msgid "This word type folder contains verbs."
 msgstr "Šī vārdu tipa mape satur darbības vārdus."
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:497
 #, kde-format
 msgid "Conjunction"
 msgstr "Saiklis"
@@ -1419,30 +1419,30 @@ msgstr[0] "Atlicis %1 vārds ar šo vārdu tipu. Tas zaudēs savu tipu. Turpinā
 msgstr[1] "Atlikuši %1 vārdi ar šo vārdu tipu. Tie zaudēs savu tipu. Turpināt?"
 msgstr[2] "Atlikuši %1 vārdi ar šo vārdu tipu. Tie zaudēs savu tipu. Turpināt?"
 
-#: src/exportdialog.cpp:53
+#: src/exportdialog.cpp:55
 #, fuzzy, kde-format
 #| msgid "Export"
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Eksportēt"
 
-#: src/exportdialog.cpp:79
+#: src/exportdialog.cpp:81
 #, kde-format
 msgid "HTML document"
 msgstr "HTML dokuments"
 
-#: src/exportdialog.cpp:102
+#: src/exportdialog.cpp:104
 #, fuzzy, kde-format
 #| msgid "Could not read collection from \"%1\""
 msgid "Could not write to file \"%1\""
 msgstr "Neizdevās nolasīt kolekciju no \"%1\""
 
-#: src/exportdialog.cpp:119
+#: src/exportdialog.cpp:121
 #, kde-format
 msgid "Export As"
 msgstr "Eksportēt kā"
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
+#: src/exportdialog.cpp:122 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "Nenosaukts"
@@ -1797,25 +1797,25 @@ msgstr "Rādīt meklēšanas &aili"
 msgid "Toggle display of the search bar"
 msgstr "Pārslēgt meklēšanas joslas rādīšanu"
 
-#: src/parleydocument.cpp:122 src/parleydocument.cpp:578
+#: src/parleydocument.cpp:124 src/parleydocument.cpp:580
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "%1 īpašības"
 
-#: src/parleydocument.cpp:159
+#: src/parleydocument.cpp:161
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Collection"
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Atvērt vārdnīcu kolekciju"
 
-#: src/parleydocument.cpp:160
+#: src/parleydocument.cpp:162
 #, kde-format
 msgid "Open in practice &mode"
 msgstr "Atvērt vingrināšanās režī&mā"
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:204
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1825,25 +1825,25 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:204
+#: src/parleydocument.cpp:206
 #, kde-format
 msgid "Take Over Lock"
 msgstr ""
 
-#: src/parleydocument.cpp:235
+#: src/parleydocument.cpp:237
 #, fuzzy, kde-format
 #| msgid "Writing file \"%1\" resulted in an error: %2"
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "Faila \"%1\" rakstīšanas rezultātā radās kļūda: %2"
 
-#: src/parleydocument.cpp:236
+#: src/parleydocument.cpp:238
 #, fuzzy, kde-format
 #| msgid "Open Collection"
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Atvērt kolekciju"
 
-#: src/parleydocument.cpp:264
+#: src/parleydocument.cpp:266
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1854,14 +1854,14 @@ msgstr ""
 "\n"
 "Saglabāt failu pirms iziešanas?\n"
 
-#: src/parleydocument.cpp:297
+#: src/parleydocument.cpp:299
 #, fuzzy, kde-format
 #| msgid "Open Downloaded Vocabulary Collection"
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Atvērt lejupielādēto vārdnīcu kolekciju"
 
-#: src/parleydocument.cpp:336 src/parleydocument.cpp:424
+#: src/parleydocument.cpp:338 src/parleydocument.cpp:426
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1870,39 +1870,39 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
+#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "Faila \"%1\" rakstīšanas rezultātā radās kļūda: %2"
 
-#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
+#: src/parleydocument.cpp:370 src/parleydocument.cpp:463
 #, fuzzy, kde-format
 #| msgid "Save File"
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "Saglabāt failu"
 
-#: src/parleydocument.cpp:383
+#: src/parleydocument.cpp:385
 #, fuzzy, kde-format
 #| msgid "Save Vocabulary As"
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Saglabā vārdnīcu kā"
 
-#: src/parleydocument.cpp:395
+#: src/parleydocument.cpp:397
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr "<qt>Fails<p><b>%1</b></p>jau pastāv. Vai vēlaties to pārrakstīt?</qt>"
 
-#: src/parleydocument.cpp:403
+#: src/parleydocument.cpp:405
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "Saglabā %1"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr "Publiskais domēns"
@@ -1910,24 +1910,24 @@ msgstr "Publiskais domēns"
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:510 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "Valodas"
 
-#: src/parleydocument.cpp:516
+#: src/parleydocument.cpp:518
 #, kde-format
 msgid "A Second Language"
 msgstr "Otrā valoda"
 
-#: src/parleydocument.cpp:519
+#: src/parleydocument.cpp:521
 #, kde-format
 msgid "Lesson 1"
 msgstr "1. nodarbība"
 
-#: src/parleydocument.cpp:561
+#: src/parleydocument.cpp:563
 #, fuzzy, kde-format
 #| msgid "Could not read collection from \"%1\""
 msgid "Could not open vocabulary collection \"%1\""
@@ -2631,12 +2631,12 @@ msgstr[2] ""
 "Jūs atbildējāt %2 no %1 vārdiem\n"
 "Esat pabeidzis %3%."
 
-#: src/practice/latexrenderer.cpp:46
+#: src/practice/latexrenderer.cpp:47
 #, kde-format
 msgid "Rendering..."
 msgstr "Renderē..."
 
-#: src/practice/latexrenderer.cpp:136
+#: src/practice/latexrenderer.cpp:137
 #, kde-format
 msgid "LaTeX error."
 msgstr "LaTeX kļūda."
@@ -3255,55 +3255,55 @@ msgstr "Redzamās kolonnas galvenajā redaktora logā."
 msgid "Collapsed tree view items of statistics view window."
 msgstr ""
 
-#: src/settings/generaloptions.cpp:41
+#: src/settings/generaloptions.cpp:43
 #, kde-format
 msgctxt "CSV separator"
 msgid ";"
 msgstr ";"
 
-#: src/settings/generaloptions.cpp:42
+#: src/settings/generaloptions.cpp:44
 #, kde-format
 msgctxt "CSV separator"
 msgid "#"
 msgstr "#"
 
-#: src/settings/generaloptions.cpp:43
+#: src/settings/generaloptions.cpp:45
 #, kde-format
 msgctxt "CSV separator"
 msgid "!"
 msgstr "!"
 
-#: src/settings/generaloptions.cpp:44
+#: src/settings/generaloptions.cpp:46
 #, kde-format
 msgctxt "CSV separator"
 msgid "|"
 msgstr "|"
 
-#: src/settings/generaloptions.cpp:45
+#: src/settings/generaloptions.cpp:47
 #, kde-format
 msgctxt "CSV separator"
 msgid ","
 msgstr ","
 
-#: src/settings/generaloptions.cpp:46
+#: src/settings/generaloptions.cpp:48
 #, kde-format
 msgctxt "CSV separator: tabulator"
 msgid "TAB"
 msgstr "TAB"
 
-#: src/settings/generaloptions.cpp:47
+#: src/settings/generaloptions.cpp:49
 #, kde-format
 msgctxt "CSV separator"
 msgid ">= 2 SPACES"
 msgstr ">= 2 ATSTARPES"
 
-#: src/settings/generaloptions.cpp:48
+#: src/settings/generaloptions.cpp:50
 #, kde-format
 msgctxt "CSV separator"
 msgid " : "
 msgstr " : "
 
-#: src/settings/generaloptions.cpp:49
+#: src/settings/generaloptions.cpp:51
 #, kde-format
 msgctxt "CSV separator"
 msgid " :: "
@@ -3475,24 +3475,24 @@ msgstr "Vai tiešām dzēst valodu: %1?"
 msgid "Remove Language"
 msgstr "Izņemt valodu"
 
-#: src/settings/languagepropertiespage.cpp:83
+#: src/settings/languagepropertiespage.cpp:85
 #, kde-format
 msgid "No KDE keyboard selector found."
 msgstr "Neviens KDE tastatūras atlasītājs netika atrasts."
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Tense Name"
 msgstr "Laika nosaukums"
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Enter name of tense:"
 msgstr "Ievadiet laika nosaukumu:"
 
-#: src/settings/languagepropertiespage.cpp:398
+#: src/settings/languagepropertiespage.cpp:400
 #, kde-format
 msgid ""
 "The selected user defined tense could not be deleted\n"
@@ -3501,7 +3501,7 @@ msgstr ""
 "Izvēlēto lietotāja definēto laiku nevar dzēst,\n"
 "jo tas tiek lietots."
 
-#: src/settings/languagepropertiespage.cpp:399
+#: src/settings/languagepropertiespage.cpp:401
 #, kde-format
 msgid "Deleting Tense Description"
 msgstr "Dzēš laika aprakstu"
@@ -4314,17 +4314,17 @@ msgstr "Ievadiet korektu tulkojumu:"
 msgid "Online Translation Services"
 msgstr "Sadalīt tulkojumus pie punktiem."
 
-#: src/settings/translationshelloptions.cpp:20
+#: src/settings/translationshelloptions.cpp:22
 #, kde-format
 msgid "translate-shell is available."
 msgstr ""
 
-#: src/settings/translationshelloptions.cpp:23
+#: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
 msgstr ""
 
-#: src/settings/translationshelloptions.cpp:38
+#: src/settings/translationshelloptions.cpp:40
 #, kde-format
 msgid "Error"
 msgstr ""
@@ -4469,55 +4469,55 @@ msgstr "Noklikšķiniet šeit, lai izmainītu 7. pakāpes krāsu."
 msgid "Alt+2"
 msgstr "Alt+2"
 
-#: src/statistics/lessonstatisticsview.cpp:74
 #: src/statistics/lessonstatisticsview.cpp:76
+#: src/statistics/lessonstatisticsview.cpp:78
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Remove confidence levels from this unit"
 msgstr "Izņemt visas pakāpes no šīs nodarbības"
 
-#: src/statistics/lessonstatisticsview.cpp:84
+#: src/statistics/lessonstatisticsview.cpp:86
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Remove confidence levels from this unit and all sub-units"
 msgstr "Izņemt visas pakāpes no šīs nodarbības"
 
-#: src/statistics/lessonstatisticsview.cpp:86
+#: src/statistics/lessonstatisticsview.cpp:88
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Remove confidence level from this unit and all sub-units"
 msgstr "Izņemt visas pakāpes no šīs nodarbības"
 
-#: src/statistics/statisticslegendwidget.cpp:27
+#: src/statistics/statisticslegendwidget.cpp:29
 #, fuzzy, kde-format
 #| msgid "Progress"
 msgid "Progress gradients"
 msgstr "Progress"
 
-#: src/statistics/statisticslegendwidget.cpp:28
+#: src/statistics/statisticslegendwidget.cpp:30
 #, fuzzy, kde-format
 #| msgid "Progress"
 msgid "Early progress"
 msgstr "Progress"
 
-#: src/statistics/statisticslegendwidget.cpp:29
+#: src/statistics/statisticslegendwidget.cpp:31
 #, fuzzy, kde-format
 #| msgid "Not &practiced:"
 msgid "Not Practiced"
 msgstr "Nav &vingrināts:"
 
-#: src/statistics/statisticslegendwidget.cpp:30
+#: src/statistics/statisticslegendwidget.cpp:32
 #, kde-format
 msgid "Invalid Entries"
 msgstr ""
 
-#: src/statistics/statisticslegendwidget.cpp:46
+#: src/statistics/statisticslegendwidget.cpp:48
 #, kde-format
 msgctxt "adjective, The word has been properly and fully learned by the user"
 msgid "Fully learned"
 msgstr ""
 
-#: src/statistics/statisticslegendwidget.cpp:47
+#: src/statistics/statisticslegendwidget.cpp:49
 #, fuzzy, kde-format
 #| msgid "Not &practiced:"
 msgctxt "adjective, The word has not even been practiced once by the user"

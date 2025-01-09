@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-21 00:37+0000\n"
+"POT-Creation-Date: 2025-01-09 00:37+0000\n"
 "PO-Revision-Date: 2019-09-29 12:21+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -438,7 +438,7 @@ msgstr "&Артиклҳо"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:489
 #, fuzzy, kde-format
 #| msgid "Acti&ve"
 msgid "Adjective"
@@ -446,7 +446,7 @@ msgstr "&Фаъол"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:491
+#: src/parleydocument.cpp:493
 #, kde-format
 msgid "Adverb"
 msgstr "Зарф"
@@ -567,7 +567,7 @@ msgstr "Ҷамъ"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:475
 #, fuzzy, kde-format
 #| msgid "&Male:"
 msgid "Masculine"
@@ -575,7 +575,7 @@ msgstr "&Мардона:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:476
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:478
 #, fuzzy, kde-format
 #| msgid "Definite"
 msgid "Feminine"
@@ -583,7 +583,7 @@ msgstr "Муайян"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:479
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:481
 #, fuzzy, kde-format
 #| msgid "Neu&tral:"
 msgid "Neuter"
@@ -903,14 +903,14 @@ msgid "&Reset Confidence Levels"
 msgstr ""
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:483
+#: src/parleydocument.cpp:485
 #, fuzzy, kde-format
 #| msgid "Verb"
 msgid "Verb"
 msgstr "Веъл"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:469
+#: src/parleydocument.cpp:471
 #, kde-format
 msgid "Noun"
 msgstr "Сифат"
@@ -1393,7 +1393,7 @@ msgstr ""
 msgid "This word type folder contains verbs."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:497
 #, fuzzy, kde-format
 msgid "Conjunction"
 msgstr "Тасрифкунӣ"
@@ -1428,31 +1428,31 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/exportdialog.cpp:53
+#: src/exportdialog.cpp:55
 #, fuzzy, kde-format
 #| msgid "Tense Description"
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Тасвири ҷиддӣ"
 
-#: src/exportdialog.cpp:79
+#: src/exportdialog.cpp:81
 #, fuzzy, kde-format
 #| msgid "Example sentence"
 msgid "HTML document"
 msgstr "Ҷумлаи мисол"
 
-#: src/exportdialog.cpp:102
+#: src/exportdialog.cpp:104
 #, fuzzy, kde-format
 #| msgid "Could not read "
 msgid "Could not write to file \"%1\""
 msgstr "Хонда натавонист"
 
-#: src/exportdialog.cpp:119
+#: src/exportdialog.cpp:121
 #, kde-format
 msgid "Export As"
 msgstr ""
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
+#: src/exportdialog.cpp:122 src/parleymainwindow.cpp:137
 #, fuzzy, kde-format
 msgid "Untitled"
 msgstr "сарлавҳа"
@@ -1801,26 +1801,26 @@ msgstr "Ҷустуҷӯи хушманд"
 msgid "Toggle display of the search bar"
 msgstr ""
 
-#: src/parleydocument.cpp:122 src/parleydocument.cpp:578
+#: src/parleydocument.cpp:124 src/parleydocument.cpp:580
 #, fuzzy, kde-format
 #| msgid "Edit Properties for Original"
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "Муҳаррири хусусиятҳо барои ҳақиқӣ"
 
-#: src/parleydocument.cpp:159
+#: src/parleydocument.cpp:161
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Кушодани файли луғати мисол"
 
-#: src/parleydocument.cpp:160
+#: src/parleydocument.cpp:162
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Open in practice &mode"
 msgstr "Артикл"
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:204
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1830,23 +1830,23 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:204
+#: src/parleydocument.cpp:206
 #, kde-format
 msgid "Take Over Lock"
 msgstr ""
 
-#: src/parleydocument.cpp:235
+#: src/parleydocument.cpp:237
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr ""
 
-#: src/parleydocument.cpp:236
+#: src/parleydocument.cpp:238
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Кушодани файли луғати мисол"
 
-#: src/parleydocument.cpp:264
+#: src/parleydocument.cpp:266
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1857,13 +1857,13 @@ msgstr ""
 "\n"
 "Пеш аз баромадан файлро нигоҳ кунам?\n"
 
-#: src/parleydocument.cpp:297
+#: src/parleydocument.cpp:299
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Кушодани луғат"
 
-#: src/parleydocument.cpp:336 src/parleydocument.cpp:424
+#: src/parleydocument.cpp:338 src/parleydocument.cpp:426
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1872,25 +1872,25 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
+#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr ""
 
-#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
+#: src/parleydocument.cpp:370 src/parleydocument.cpp:463
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr ""
 
-#: src/parleydocument.cpp:383
+#: src/parleydocument.cpp:385
 #, fuzzy, kde-format
 #| msgid "Save Vocabulary As"
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Нигоҳ доштани луғат монанди"
 
-#: src/parleydocument.cpp:395
+#: src/parleydocument.cpp:397
 #, fuzzy, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
@@ -1898,7 +1898,7 @@ msgstr ""
 "Файли интихобшуда боз мавҷуд аст.\n"
 "Шумо мехоҳед ин файл аз сари нав нависед\"%1\"?"
 
-#: src/parleydocument.cpp:403
+#: src/parleydocument.cpp:405
 #, fuzzy, kde-format
 #| msgid "Saving %1"
 msgctxt "@info:status saving a file"
@@ -1906,7 +1906,7 @@ msgid "Saving %1"
 msgstr "Нигоҳ доштани %1"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr ""
@@ -1914,25 +1914,25 @@ msgstr ""
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:510 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "Забонҳо"
 
-#: src/parleydocument.cpp:516
+#: src/parleydocument.cpp:518
 #, fuzzy, kde-format
 #| msgid "&Append Language"
 msgid "A Second Language"
 msgstr "&Иловаи забон"
 
-#: src/parleydocument.cpp:519
+#: src/parleydocument.cpp:521
 #, fuzzy, kde-format
 msgid "Lesson 1"
 msgstr "Сохтани дарс"
 
-#: src/parleydocument.cpp:561
+#: src/parleydocument.cpp:563
 #, fuzzy, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Кушодани файли луғати мисол"
@@ -2629,12 +2629,12 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/practice/latexrenderer.cpp:46
+#: src/practice/latexrenderer.cpp:47
 #, kde-format
 msgid "Rendering..."
 msgstr ""
 
-#: src/practice/latexrenderer.cpp:136
+#: src/practice/latexrenderer.cpp:137
 #, kde-format
 msgid "LaTeX error."
 msgstr ""
@@ -3255,57 +3255,57 @@ msgstr ""
 msgid "Collapsed tree view items of statistics view window."
 msgstr ""
 
-#: src/settings/generaloptions.cpp:41
+#: src/settings/generaloptions.cpp:43
 #, kde-format
 msgctxt "CSV separator"
 msgid ";"
 msgstr ""
 
-#: src/settings/generaloptions.cpp:42
+#: src/settings/generaloptions.cpp:44
 #, kde-format
 msgctxt "CSV separator"
 msgid "#"
 msgstr ""
 
-#: src/settings/generaloptions.cpp:43
+#: src/settings/generaloptions.cpp:45
 #, kde-format
 msgctxt "CSV separator"
 msgid "!"
 msgstr ""
 
-#: src/settings/generaloptions.cpp:44
+#: src/settings/generaloptions.cpp:46
 #, kde-format
 msgctxt "CSV separator"
 msgid "|"
 msgstr ""
 
-#: src/settings/generaloptions.cpp:45
+#: src/settings/generaloptions.cpp:47
 #, kde-format
 msgctxt "CSV separator"
 msgid ","
 msgstr ""
 
-#: src/settings/generaloptions.cpp:46
+#: src/settings/generaloptions.cpp:48
 #, fuzzy, kde-format
 #| msgid "TAB"
 msgctxt "CSV separator: tabulator"
 msgid "TAB"
 msgstr "TAB"
 
-#: src/settings/generaloptions.cpp:47
+#: src/settings/generaloptions.cpp:49
 #, fuzzy, kde-format
 #| msgid ">= 2 SPACES"
 msgctxt "CSV separator"
 msgid ">= 2 SPACES"
 msgstr ">= 2 ФОСИЛАҲО"
 
-#: src/settings/generaloptions.cpp:48
+#: src/settings/generaloptions.cpp:50
 #, kde-format
 msgctxt "CSV separator"
 msgid " : "
 msgstr ""
 
-#: src/settings/generaloptions.cpp:49
+#: src/settings/generaloptions.cpp:51
 #, kde-format
 msgctxt "CSV separator"
 msgid " :: "
@@ -3490,25 +3490,25 @@ msgstr "&Иловаи забон"
 msgid "Remove Language"
 msgstr "&Нест кардани забон"
 
-#: src/settings/languagepropertiespage.cpp:83
+#: src/settings/languagepropertiespage.cpp:85
 #, kde-format
 msgid "No KDE keyboard selector found."
 msgstr ""
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, fuzzy, kde-format
 #| msgid "Name"
 msgid "Tense Name"
 msgstr "Ном"
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Enter name of tense:"
 msgstr ""
 
-#: src/settings/languagepropertiespage.cpp:398
+#: src/settings/languagepropertiespage.cpp:400
 #, fuzzy, kde-format
 msgid ""
 "The selected user defined tense could not be deleted\n"
@@ -3517,7 +3517,7 @@ msgstr ""
 "Ин ҷиддии муайяншуда нест карда намешавад\n"
 "барои он ки ин дар ҳоли истифода мебошад."
 
-#: src/settings/languagepropertiespage.cpp:399
+#: src/settings/languagepropertiespage.cpp:401
 #, kde-format
 msgid "Deleting Tense Description"
 msgstr "Нест кардани тасвири вақт"
@@ -4301,17 +4301,17 @@ msgstr "&Тарҷума"
 msgid "Online Translation Services"
 msgstr "Тарҷумаи тақсимшави дар замонҳо"
 
-#: src/settings/translationshelloptions.cpp:20
+#: src/settings/translationshelloptions.cpp:22
 #, kde-format
 msgid "translate-shell is available."
 msgstr ""
 
-#: src/settings/translationshelloptions.cpp:23
+#: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
 msgstr ""
 
-#: src/settings/translationshelloptions.cpp:38
+#: src/settings/translationshelloptions.cpp:40
 #, kde-format
 msgid "Error"
 msgstr ""
@@ -4453,52 +4453,52 @@ msgstr "Барои дигаргун кардани ранги синфи 7 да�
 msgid "Alt+2"
 msgstr ""
 
-#: src/statistics/lessonstatisticsview.cpp:74
 #: src/statistics/lessonstatisticsview.cpp:76
+#: src/statistics/lessonstatisticsview.cpp:78
 #, fuzzy, kde-format
 msgid "Remove confidence levels from this unit"
 msgstr "Мақола ва дигар навиштаҳоро аз луғат бароварда шавад"
 
-#: src/statistics/lessonstatisticsview.cpp:84
+#: src/statistics/lessonstatisticsview.cpp:86
 #, fuzzy, kde-format
 msgid "Remove confidence levels from this unit and all sub-units"
 msgstr "Мақола ва дигар навиштаҳоро аз луғат бароварда шавад"
 
-#: src/statistics/lessonstatisticsview.cpp:86
+#: src/statistics/lessonstatisticsview.cpp:88
 #, fuzzy, kde-format
 msgid "Remove confidence level from this unit and all sub-units"
 msgstr "Мақола ва дигар навиштаҳоро аз луғат бароварда шавад"
 
-#: src/statistics/statisticslegendwidget.cpp:27
+#: src/statistics/statisticslegendwidget.cpp:29
 #, fuzzy, kde-format
 #| msgid "Progress"
 msgid "Progress gradients"
 msgstr "Инкишоф"
 
-#: src/statistics/statisticslegendwidget.cpp:28
+#: src/statistics/statisticslegendwidget.cpp:30
 #, fuzzy, kde-format
 #| msgid "Progress"
 msgid "Early progress"
 msgstr "Инкишоф"
 
-#: src/statistics/statisticslegendwidget.cpp:29
+#: src/statistics/statisticslegendwidget.cpp:31
 #, fuzzy, kde-format
 msgid "Not Practiced"
 msgstr "Бе савол"
 
-#: src/statistics/statisticslegendwidget.cpp:30
+#: src/statistics/statisticslegendwidget.cpp:32
 #, fuzzy, kde-format
 #| msgid "Entries"
 msgid "Invalid Entries"
 msgstr "Вурудҳо"
 
-#: src/statistics/statisticslegendwidget.cpp:46
+#: src/statistics/statisticslegendwidget.cpp:48
 #, kde-format
 msgctxt "adjective, The word has been properly and fully learned by the user"
 msgid "Fully learned"
 msgstr ""
 
-#: src/statistics/statisticslegendwidget.cpp:47
+#: src/statistics/statisticslegendwidget.cpp:49
 #, fuzzy, kde-format
 msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"

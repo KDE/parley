@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-21 00:37+0000\n"
+"POT-Creation-Date: 2025-01-09 00:37+0000\n"
 "PO-Revision-Date: 2021-11-01 15:57+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -416,14 +416,14 @@ msgstr "Найвищий ступінь:"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:489
 #, kde-format
 msgid "Adjective"
 msgstr "Прикметник"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:491
+#: src/parleydocument.cpp:493
 #, kde-format
 msgid "Adverb"
 msgstr "Прислівник"
@@ -538,21 +538,21 @@ msgstr "Множина"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:475
 #, kde-format
 msgid "Masculine"
 msgstr "Чоловічий"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:476
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:478
 #, kde-format
 msgid "Feminine"
 msgstr "Жіночий"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:479
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:481
 #, kde-format
 msgid "Neuter"
 msgstr "Середній"
@@ -845,13 +845,13 @@ msgid "&Reset Confidence Levels"
 msgstr "С&кинути довірчі рівні"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:483
+#: src/parleydocument.cpp:485
 #, kde-format
 msgid "Verb"
 msgstr "Дієслово"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:469
+#: src/parleydocument.cpp:471
 #, kde-format
 msgid "Noun"
 msgstr "Іменник"
@@ -1318,7 +1318,7 @@ msgstr "Ця тека частини мови містить прислівни�
 msgid "This word type folder contains verbs."
 msgstr "Ця тека частини мови містить дієслова."
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:497
 #, kde-format
 msgid "Conjunction"
 msgstr "Сполучник"
@@ -1364,28 +1364,28 @@ msgstr[3] ""
 "Існує %1 слово, яке належить до цієї частини мови. Воно втратить свою "
 "частину мови. Продовжувати?"
 
-#: src/exportdialog.cpp:53
+#: src/exportdialog.cpp:55
 #, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Експорт"
 
-#: src/exportdialog.cpp:79
+#: src/exportdialog.cpp:81
 #, kde-format
 msgid "HTML document"
 msgstr "Документ HTML"
 
-#: src/exportdialog.cpp:102
+#: src/exportdialog.cpp:104
 #, kde-format
 msgid "Could not write to file \"%1\""
 msgstr "Не вдалося записати дані до файла «%1»"
 
-#: src/exportdialog.cpp:119
+#: src/exportdialog.cpp:121
 #, kde-format
 msgid "Export As"
 msgstr "Експортувати як"
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
+#: src/exportdialog.cpp:122 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "Без назви"
@@ -1729,24 +1729,24 @@ msgstr "Показати панель по&шуку"
 msgid "Toggle display of the search bar"
 msgstr "Перемикає показ панелі пошуку"
 
-#: src/parleydocument.cpp:122 src/parleydocument.cpp:578
+#: src/parleydocument.cpp:124 src/parleydocument.cpp:580
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "Властивості %1"
 
-#: src/parleydocument.cpp:159
+#: src/parleydocument.cpp:161
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Відкрити збірку словників"
 
-#: src/parleydocument.cpp:160
+#: src/parleydocument.cpp:162
 #, kde-format
 msgid "Open in practice &mode"
 msgstr "Відкривати у режимі вп&рави"
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:204
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1761,23 +1761,23 @@ msgstr ""
 "\n"
 "Хочете зняти блокування?\n"
 
-#: src/parleydocument.cpp:204
+#: src/parleydocument.cpp:206
 #, kde-format
 msgid "Take Over Lock"
 msgstr "Зняти блокування"
 
-#: src/parleydocument.cpp:235
+#: src/parleydocument.cpp:237
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "Спроба відкрити збірку «%1» завершилася помилкою: %2"
 
-#: src/parleydocument.cpp:236
+#: src/parleydocument.cpp:238
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Відкриття збірки"
 
-#: src/parleydocument.cpp:264
+#: src/parleydocument.cpp:266
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1788,13 +1788,13 @@ msgstr ""
 "\n"
 "Зберегти файл перед виходом?\n"
 
-#: src/parleydocument.cpp:297
+#: src/parleydocument.cpp:299
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Відкрити отриману збірку словників"
 
-#: src/parleydocument.cpp:336 src/parleydocument.cpp:424
+#: src/parleydocument.cpp:338 src/parleydocument.cpp:426
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1808,37 +1808,37 @@ msgstr ""
 "\n"
 "Хочете зняти блокування?\n"
 
-#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
+#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "Спроба запису файла «%1» завершилася помилкою: %2"
 
-#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
+#: src/parleydocument.cpp:370 src/parleydocument.cpp:463
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "Збереження файла"
 
-#: src/parleydocument.cpp:383
+#: src/parleydocument.cpp:385
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Збереження словника із новою назвою"
 
-#: src/parleydocument.cpp:395
+#: src/parleydocument.cpp:397
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr "<qt>Файл<p><b>%1</b></p>вже існує. Хочете його перезаписати?</qt>"
 
-#: src/parleydocument.cpp:403
+#: src/parleydocument.cpp:405
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "Збереження %1"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr "Власність спільноти"
@@ -1846,24 +1846,24 @@ msgstr "Власність спільноти"
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:510 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "Мови"
 
-#: src/parleydocument.cpp:516
+#: src/parleydocument.cpp:518
 #, kde-format
 msgid "A Second Language"
 msgstr "Друга мова"
 
-#: src/parleydocument.cpp:519
+#: src/parleydocument.cpp:521
 #, kde-format
 msgid "Lesson 1"
 msgstr "Урок 1"
 
-#: src/parleydocument.cpp:561
+#: src/parleydocument.cpp:563
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Не вдалося відкрити збірку словників «%1»"
@@ -2547,12 +2547,12 @@ msgstr[3] ""
 "Ви правильно визначили %2 з %1 слова.\n"
 "Вправу виконано на %3 %."
 
-#: src/practice/latexrenderer.cpp:46
+#: src/practice/latexrenderer.cpp:47
 #, kde-format
 msgid "Rendering..."
 msgstr "Обробка…"
 
-#: src/practice/latexrenderer.cpp:136
+#: src/practice/latexrenderer.cpp:137
 #, kde-format
 msgid "LaTeX error."
 msgstr "Помилка LaTeX."
@@ -3155,55 +3155,55 @@ msgstr "Видимі стовпчики у головному вікні ред�
 msgid "Collapsed tree view items of statistics view window."
 msgstr "Згорнуті пункти у ієрархічному списку вікна перегляду статистики."
 
-#: src/settings/generaloptions.cpp:41
+#: src/settings/generaloptions.cpp:43
 #, kde-format
 msgctxt "CSV separator"
 msgid ";"
 msgstr ";"
 
-#: src/settings/generaloptions.cpp:42
+#: src/settings/generaloptions.cpp:44
 #, kde-format
 msgctxt "CSV separator"
 msgid "#"
 msgstr "#"
 
-#: src/settings/generaloptions.cpp:43
+#: src/settings/generaloptions.cpp:45
 #, kde-format
 msgctxt "CSV separator"
 msgid "!"
 msgstr "!"
 
-#: src/settings/generaloptions.cpp:44
+#: src/settings/generaloptions.cpp:46
 #, kde-format
 msgctxt "CSV separator"
 msgid "|"
 msgstr "|"
 
-#: src/settings/generaloptions.cpp:45
+#: src/settings/generaloptions.cpp:47
 #, kde-format
 msgctxt "CSV separator"
 msgid ","
 msgstr ","
 
-#: src/settings/generaloptions.cpp:46
+#: src/settings/generaloptions.cpp:48
 #, kde-format
 msgctxt "CSV separator: tabulator"
 msgid "TAB"
 msgstr "TAB"
 
-#: src/settings/generaloptions.cpp:47
+#: src/settings/generaloptions.cpp:49
 #, kde-format
 msgctxt "CSV separator"
 msgid ">= 2 SPACES"
 msgstr ">= 2 ПРОПУСКИ"
 
-#: src/settings/generaloptions.cpp:48
+#: src/settings/generaloptions.cpp:50
 #, kde-format
 msgctxt "CSV separator"
 msgid " : "
 msgstr " : "
 
-#: src/settings/generaloptions.cpp:49
+#: src/settings/generaloptions.cpp:51
 #, kde-format
 msgctxt "CSV separator"
 msgid " :: "
@@ -3376,24 +3376,24 @@ msgstr "Вилучити мову %1?"
 msgid "Remove Language"
 msgstr "Вилучити мову"
 
-#: src/settings/languagepropertiespage.cpp:83
+#: src/settings/languagepropertiespage.cpp:85
 #, kde-format
 msgid "No KDE keyboard selector found."
 msgstr "Не знайдено інструмента вибору розкладки KDE."
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Tense Name"
 msgstr "Назва часу"
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Enter name of tense:"
 msgstr "Введіть назву часу:"
 
-#: src/settings/languagepropertiespage.cpp:398
+#: src/settings/languagepropertiespage.cpp:400
 #, kde-format
 msgid ""
 "The selected user defined tense could not be deleted\n"
@@ -3402,7 +3402,7 @@ msgstr ""
 "Не вдалося вилучити цей визначений користувачем\n"
 "час, оскільки він зараз використовується."
 
-#: src/settings/languagepropertiespage.cpp:399
+#: src/settings/languagepropertiespage.cpp:401
 #, kde-format
 msgid "Deleting Tense Description"
 msgstr "Вилучення опису часу"
@@ -4205,17 +4205,17 @@ msgstr "Інтернет-переклад"
 msgid "Online Translation Services"
 msgstr "Служби інтернет-перекладу"
 
-#: src/settings/translationshelloptions.cpp:20
+#: src/settings/translationshelloptions.cpp:22
 #, kde-format
 msgid "translate-shell is available."
 msgstr "Доступний translate-shell."
 
-#: src/settings/translationshelloptions.cpp:23
+#: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
 msgstr "Не вдалося знайти виконуваний файл translate-shell."
 
-#: src/settings/translationshelloptions.cpp:38
+#: src/settings/translationshelloptions.cpp:40
 #, kde-format
 msgid "Error"
 msgstr "Помилка"
@@ -4357,49 +4357,49 @@ msgstr ""
 msgid "Alt+2"
 msgstr "Alt+2"
 
-#: src/statistics/lessonstatisticsview.cpp:74
 #: src/statistics/lessonstatisticsview.cpp:76
+#: src/statistics/lessonstatisticsview.cpp:78
 #, kde-format
 msgid "Remove confidence levels from this unit"
 msgstr "Вилучити усі довірчі рівні з цього модуля"
 
-#: src/statistics/lessonstatisticsview.cpp:84
+#: src/statistics/lessonstatisticsview.cpp:86
 #, kde-format
 msgid "Remove confidence levels from this unit and all sub-units"
 msgstr "Вилучити усі довірчі з поточного уроку та усіх підлеглих модулів"
 
-#: src/statistics/lessonstatisticsview.cpp:86
+#: src/statistics/lessonstatisticsview.cpp:88
 #, kde-format
 msgid "Remove confidence level from this unit and all sub-units"
 msgstr "Вилучити усі довірчі з цього модуля та усіх підлеглих модулів"
 
-#: src/statistics/statisticslegendwidget.cpp:27
+#: src/statistics/statisticslegendwidget.cpp:29
 #, kde-format
 msgid "Progress gradients"
 msgstr "Градієнти поступу"
 
-#: src/statistics/statisticslegendwidget.cpp:28
+#: src/statistics/statisticslegendwidget.cpp:30
 #, kde-format
 msgid "Early progress"
 msgstr "Початковий поступ"
 
-#: src/statistics/statisticslegendwidget.cpp:29
+#: src/statistics/statisticslegendwidget.cpp:31
 #, kde-format
 msgid "Not Practiced"
 msgstr "Не пройдено"
 
-#: src/statistics/statisticslegendwidget.cpp:30
+#: src/statistics/statisticslegendwidget.cpp:32
 #, kde-format
 msgid "Invalid Entries"
 msgstr "Некоректні записи"
 
-#: src/statistics/statisticslegendwidget.cpp:46
+#: src/statistics/statisticslegendwidget.cpp:48
 #, kde-format
 msgctxt "adjective, The word has been properly and fully learned by the user"
 msgid "Fully learned"
 msgstr "Повністю вивчено"
 
-#: src/statistics/statisticslegendwidget.cpp:47
+#: src/statistics/statisticslegendwidget.cpp:49
 #, kde-format
 msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"

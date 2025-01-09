@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-21 00:37+0000\n"
+"POT-Creation-Date: 2025-01-09 00:37+0000\n"
 "PO-Revision-Date: 2013-11-16 05:27+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -424,14 +424,14 @@ msgstr "Таңдаулы шырайы:"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:489
 #, kde-format
 msgid "Adjective"
 msgstr "Сын есім"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:491
+#: src/parleydocument.cpp:493
 #, kde-format
 msgid "Adverb"
 msgstr "Үстеу"
@@ -546,21 +546,21 @@ msgstr "Көптік тұлға"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:475
 #, kde-format
 msgid "Masculine"
 msgstr "Аталық тек"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:476
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:478
 #, kde-format
 msgid "Feminine"
 msgstr "Аналық тек"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:479
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:481
 #, kde-format
 msgid "Neuter"
 msgstr "Орта тек"
@@ -872,13 +872,13 @@ msgid "&Reset Confidence Levels"
 msgstr ""
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:483
+#: src/parleydocument.cpp:485
 #, kde-format
 msgid "Verb"
 msgstr "Етістік"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:469
+#: src/parleydocument.cpp:471
 #, kde-format
 msgid "Noun"
 msgstr "Зат есім"
@@ -1367,7 +1367,7 @@ msgstr "Бұл сөз табының қапшығында сын есімдер 
 msgid "This word type folder contains verbs."
 msgstr "Бұл сөз табының қапшығында етістіктер орналасады."
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:497
 #, kde-format
 msgid "Conjunction"
 msgstr "Жалғаулық"
@@ -1403,29 +1403,29 @@ msgstr[0] ""
 "Бұл сөз табына жататын %1 сөз бар. Олар (ол) енді ешбір тапқа жатпайтын "
 "болмақ. Бола берсін бе?"
 
-#: src/exportdialog.cpp:53
+#: src/exportdialog.cpp:55
 #, fuzzy, kde-format
 #| msgid "Export"
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Экспорттау"
 
-#: src/exportdialog.cpp:79
+#: src/exportdialog.cpp:81
 #, kde-format
 msgid "HTML document"
 msgstr "HTML құжатты"
 
-#: src/exportdialog.cpp:102
+#: src/exportdialog.cpp:104
 #, kde-format
 msgid "Could not write to file \"%1\""
 msgstr "\"%1\" файлына жазуы болмады"
 
-#: src/exportdialog.cpp:119
+#: src/exportdialog.cpp:121
 #, kde-format
 msgid "Export As"
 msgstr "Экспорттайтын түрі"
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
+#: src/exportdialog.cpp:122 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "Untitled"
@@ -1778,25 +1778,25 @@ msgstr "Ізд&еуді көрсету"
 msgid "Toggle display of the search bar"
 msgstr "Іздеу жолағының көрсету күйін терістеу"
 
-#: src/parleydocument.cpp:122 src/parleydocument.cpp:578
+#: src/parleydocument.cpp:124 src/parleydocument.cpp:580
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "%1 қасиеттері"
 
-#: src/parleydocument.cpp:159
+#: src/parleydocument.cpp:161
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Collection"
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Сөздік жиынын ашу"
 
-#: src/parleydocument.cpp:160
+#: src/parleydocument.cpp:162
 #, kde-format
 msgid "Open in practice &mode"
 msgstr "Жаттығу &күйінде ашу"
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:204
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1806,24 +1806,24 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:204
+#: src/parleydocument.cpp:206
 #, kde-format
 msgid "Take Over Lock"
 msgstr ""
 
-#: src/parleydocument.cpp:235
+#: src/parleydocument.cpp:237
 #, fuzzy, kde-format
 #| msgid "Writing file \"%1\" resulted in an error: %2"
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "\"%1\" файлын жазғанда қате орын алды: %2"
 
-#: src/parleydocument.cpp:236
+#: src/parleydocument.cpp:238
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Жиынды ашу"
 
-#: src/parleydocument.cpp:264
+#: src/parleydocument.cpp:266
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1834,14 +1834,14 @@ msgstr ""
 "\n"
 "Шығу алдында сақтамақсыз ба?\n"
 
-#: src/parleydocument.cpp:297
+#: src/parleydocument.cpp:299
 #, fuzzy, kde-format
 #| msgid "Open Downloaded Vocabulary Collection"
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Жүктеп алынған сөздік жиынын ашу"
 
-#: src/parleydocument.cpp:336 src/parleydocument.cpp:424
+#: src/parleydocument.cpp:338 src/parleydocument.cpp:426
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1850,25 +1850,25 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
+#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "\"%1\" файлын жазғанда қате орын алды: %2"
 
-#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
+#: src/parleydocument.cpp:370 src/parleydocument.cpp:463
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "Файлды сақтау"
 
-#: src/parleydocument.cpp:383
+#: src/parleydocument.cpp:385
 #, fuzzy, kde-format
 #| msgid "Save Vocabulary As"
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Сөздікті былай сақтау"
 
-#: src/parleydocument.cpp:395
+#: src/parleydocument.cpp:397
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
@@ -1876,14 +1876,14 @@ msgstr ""
 "<qt>Былай, <p><b>%1</b></p> деп аталған файл бар екен. Үстінен жаза берейік "
 "пе?</qt>"
 
-#: src/parleydocument.cpp:403
+#: src/parleydocument.cpp:405
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "%1 дегенді сақтау"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr "Қоғамдық пайдада"
@@ -1891,24 +1891,24 @@ msgstr "Қоғамдық пайдада"
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:510 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "Тілдер"
 
-#: src/parleydocument.cpp:516
+#: src/parleydocument.cpp:518
 #, kde-format
 msgid "A Second Language"
 msgstr "Екінші тіл"
 
-#: src/parleydocument.cpp:519
+#: src/parleydocument.cpp:521
 #, kde-format
 msgid "Lesson 1"
 msgstr "1-сабақ"
 
-#: src/parleydocument.cpp:561
+#: src/parleydocument.cpp:563
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "\"%1\" сөздік жиыны ашылмады"
@@ -2599,12 +2599,12 @@ msgstr[0] ""
 "%1 сөз туралы сұраққа %2 жауап берілді.\n"
 "%3% бітті."
 
-#: src/practice/latexrenderer.cpp:46
+#: src/practice/latexrenderer.cpp:47
 #, kde-format
 msgid "Rendering..."
 msgstr "Кескіндеу..."
 
-#: src/practice/latexrenderer.cpp:136
+#: src/practice/latexrenderer.cpp:137
 #, kde-format
 msgid "LaTeX error."
 msgstr "LaTeX қатесі"
@@ -3203,55 +3203,55 @@ msgstr "Редактордың негізгі терезесінде көрсе�
 msgid "Collapsed tree view items of statistics view window."
 msgstr ""
 
-#: src/settings/generaloptions.cpp:41
+#: src/settings/generaloptions.cpp:43
 #, kde-format
 msgctxt "CSV separator"
 msgid ";"
 msgstr ";"
 
-#: src/settings/generaloptions.cpp:42
+#: src/settings/generaloptions.cpp:44
 #, kde-format
 msgctxt "CSV separator"
 msgid "#"
 msgstr "#"
 
-#: src/settings/generaloptions.cpp:43
+#: src/settings/generaloptions.cpp:45
 #, kde-format
 msgctxt "CSV separator"
 msgid "!"
 msgstr "!"
 
-#: src/settings/generaloptions.cpp:44
+#: src/settings/generaloptions.cpp:46
 #, kde-format
 msgctxt "CSV separator"
 msgid "|"
 msgstr "|"
 
-#: src/settings/generaloptions.cpp:45
+#: src/settings/generaloptions.cpp:47
 #, kde-format
 msgctxt "CSV separator"
 msgid ","
 msgstr ","
 
-#: src/settings/generaloptions.cpp:46
+#: src/settings/generaloptions.cpp:48
 #, kde-format
 msgctxt "CSV separator: tabulator"
 msgid "TAB"
 msgstr "TAB"
 
-#: src/settings/generaloptions.cpp:47
+#: src/settings/generaloptions.cpp:49
 #, kde-format
 msgctxt "CSV separator"
 msgid ">= 2 SPACES"
 msgstr ">= 2 БОС_ОРЫН"
 
-#: src/settings/generaloptions.cpp:48
+#: src/settings/generaloptions.cpp:50
 #, kde-format
 msgctxt "CSV separator"
 msgid " : "
 msgstr " : "
 
-#: src/settings/generaloptions.cpp:49
+#: src/settings/generaloptions.cpp:51
 #, kde-format
 msgctxt "CSV separator"
 msgid " :: "
@@ -3423,24 +3423,24 @@ msgstr "Мына тілді шын өшірмексіз бе: %1?"
 msgid "Remove Language"
 msgstr "Тілді өшіру"
 
-#: src/settings/languagepropertiespage.cpp:83
+#: src/settings/languagepropertiespage.cpp:85
 #, kde-format
 msgid "No KDE keyboard selector found."
 msgstr "KDE пернетақта ауыстырғышы табылмады."
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Tense Name"
 msgstr "Шақ"
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Enter name of tense:"
 msgstr "Шақтың атауы:"
 
-#: src/settings/languagepropertiespage.cpp:398
+#: src/settings/languagepropertiespage.cpp:400
 #, kde-format
 msgid ""
 "The selected user defined tense could not be deleted\n"
@@ -3449,7 +3449,7 @@ msgstr ""
 "Пайдаланушы анықтаған шақ өшірілмеді,\n"
 "өйткені ол пайдаланыста"
 
-#: src/settings/languagepropertiespage.cpp:399
+#: src/settings/languagepropertiespage.cpp:401
 #, kde-format
 msgid "Deleting Tense Description"
 msgstr "Шақ сипатттамасын өшіру"
@@ -4248,17 +4248,17 @@ msgstr "Автоаудару"
 msgid "Online Translation Services"
 msgstr "Түрлі аудармаларды нүктемен бөлу."
 
-#: src/settings/translationshelloptions.cpp:20
+#: src/settings/translationshelloptions.cpp:22
 #, kde-format
 msgid "translate-shell is available."
 msgstr ""
 
-#: src/settings/translationshelloptions.cpp:23
+#: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
 msgstr ""
 
-#: src/settings/translationshelloptions.cpp:38
+#: src/settings/translationshelloptions.cpp:40
 #, kde-format
 msgid "Error"
 msgstr ""
@@ -4401,53 +4401,53 @@ msgstr "7-деңгейінің түсін өзгерту үшін осында �
 msgid "Alt+2"
 msgstr "Alt+2"
 
-#: src/statistics/lessonstatisticsview.cpp:74
 #: src/statistics/lessonstatisticsview.cpp:76
+#: src/statistics/lessonstatisticsview.cpp:78
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Remove confidence levels from this unit"
 msgstr "Сабақтағы деңгейлерін кетіру"
 
-#: src/statistics/lessonstatisticsview.cpp:84
+#: src/statistics/lessonstatisticsview.cpp:86
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Remove confidence levels from this unit and all sub-units"
 msgstr "Сабақтағы деңгейлерін кетіру"
 
-#: src/statistics/lessonstatisticsview.cpp:86
+#: src/statistics/lessonstatisticsview.cpp:88
 #, fuzzy, kde-format
 #| msgid "Remove all grades from this lesson"
 msgid "Remove confidence level from this unit and all sub-units"
 msgstr "Сабақтағы деңгейлерін кетіру"
 
-#: src/statistics/statisticslegendwidget.cpp:27
+#: src/statistics/statisticslegendwidget.cpp:29
 #, kde-format
 msgid "Progress gradients"
 msgstr ""
 
-#: src/statistics/statisticslegendwidget.cpp:28
+#: src/statistics/statisticslegendwidget.cpp:30
 #, kde-format
 msgid "Early progress"
 msgstr ""
 
-#: src/statistics/statisticslegendwidget.cpp:29
+#: src/statistics/statisticslegendwidget.cpp:31
 #, fuzzy, kde-format
 #| msgid "Not &practiced:"
 msgid "Not Practiced"
 msgstr "&Өтпегені:"
 
-#: src/statistics/statisticslegendwidget.cpp:30
+#: src/statistics/statisticslegendwidget.cpp:32
 #, kde-format
 msgid "Invalid Entries"
 msgstr ""
 
-#: src/statistics/statisticslegendwidget.cpp:46
+#: src/statistics/statisticslegendwidget.cpp:48
 #, kde-format
 msgctxt "adjective, The word has been properly and fully learned by the user"
 msgid "Fully learned"
 msgstr ""
 
-#: src/statistics/statisticslegendwidget.cpp:47
+#: src/statistics/statisticslegendwidget.cpp:49
 #, fuzzy, kde-format
 #| msgid "Not &practiced:"
 msgctxt "adjective, The word has not even been practiced once by the user"

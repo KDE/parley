@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-21 00:37+0000\n"
+"POT-Creation-Date: 2025-01-09 00:37+0000\n"
 "PO-Revision-Date: 2021-08-21 16:25+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: kde-hindi\n"
@@ -451,7 +451,7 @@ msgstr "सुपरलेटिव (%S)"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:489
 #, fuzzy, kde-format
 #| msgctxt "state of a row"
 #| msgid "Active"
@@ -460,7 +460,7 @@ msgstr "सक्रिय"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:491
+#: src/parleydocument.cpp:493
 #, kde-format
 msgid "Adverb"
 msgstr ""
@@ -576,7 +576,7 @@ msgstr "बहुवचन"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:473
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:475
 #, fuzzy, kde-format
 #| msgid "&Male:"
 msgid "Masculine"
@@ -584,7 +584,7 @@ msgstr "नर: (&M)"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:476
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:478
 #, fuzzy, kde-format
 #| msgid "Definite"
 msgid "Feminine"
@@ -592,7 +592,7 @@ msgstr "डेफिनिट"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:479
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:481
 #, fuzzy, kde-format
 #| msgid "Neu&ter:"
 msgid "Neuter"
@@ -913,14 +913,14 @@ msgid "&Reset Confidence Levels"
 msgstr ""
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:483
+#: src/parleydocument.cpp:485
 #, fuzzy, kde-format
 #| msgid "Verb:"
 msgid "Verb"
 msgstr "क्रियाः"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:469
+#: src/parleydocument.cpp:471
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "@item:inlistbox selection for word types with special meaning in the "
@@ -1430,7 +1430,7 @@ msgstr ""
 msgid "This word type folder contains verbs."
 msgstr ""
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:497
 #, fuzzy, kde-format
 #| msgid "Conjugation"
 msgid "Conjunction"
@@ -1467,30 +1467,30 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/exportdialog.cpp:53
+#: src/exportdialog.cpp:55
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr "कोई प्रतीक नहीं"
 
-#: src/exportdialog.cpp:79
+#: src/exportdialog.cpp:81
 #, fuzzy, kde-format
 #| msgid "Example document"
 msgid "HTML document"
 msgstr "उदाहरण शब्दकोश"
 
-#: src/exportdialog.cpp:102
+#: src/exportdialog.cpp:104
 #, fuzzy, kde-format
 #| msgid "Start Practice..."
 msgid "Could not write to file \"%1\""
 msgstr "अभ्यास प्रारंभ करें..."
 
-#: src/exportdialog.cpp:119
+#: src/exportdialog.cpp:121
 #, kde-format
 msgid "Export As"
 msgstr ""
 
-#: src/exportdialog.cpp:120 src/parleymainwindow.cpp:137
+#: src/exportdialog.cpp:122 src/parleymainwindow.cpp:137
 #, kde-format
 msgid "Untitled"
 msgstr "बिना शीर्षक"
@@ -1857,26 +1857,26 @@ msgstr "ढूंढना दिखाएँ (&a)"
 msgid "Toggle display of the search bar"
 msgstr "खोजक पट्टी का प्रदर्शन टॉगल करें"
 
-#: src/parleydocument.cpp:122 src/parleydocument.cpp:578
+#: src/parleydocument.cpp:124 src/parleydocument.cpp:580
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr " %1 के लिए गुण"
 
-#: src/parleydocument.cpp:159
+#: src/parleydocument.cpp:161
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Document"
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "शब्दावली दस्तावेज़ खोलें"
 
-#: src/parleydocument.cpp:160
+#: src/parleydocument.cpp:162
 #, fuzzy, kde-format
 #| msgid "&Last Practiced"
 msgid "Open in practice &mode"
 msgstr "पिछला अभ्यास (&L)"
 
-#: src/parleydocument.cpp:202
+#: src/parleydocument.cpp:204
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1886,25 +1886,25 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:204
+#: src/parleydocument.cpp:206
 #, kde-format
 msgid "Take Over Lock"
 msgstr ""
 
-#: src/parleydocument.cpp:235
+#: src/parleydocument.cpp:237
 #, fuzzy, kde-format
 #| msgid "Writing file \"%1\" resulted in an error: %2"
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "फ़ाइल \"%1\" में लिखने की कोशिश में त्रुटि : %2 हुई"
 
-#: src/parleydocument.cpp:236
+#: src/parleydocument.cpp:238
 #, fuzzy, kde-format
 #| msgid "Open Vocabulary Document"
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "शब्दावली दस्तावेज़ खोलें"
 
-#: src/parleydocument.cpp:264
+#: src/parleydocument.cpp:266
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1915,14 +1915,14 @@ msgstr ""
 "\n"
 "बाहर होने से पहले सहेजें?\n"
 
-#: src/parleydocument.cpp:297
+#: src/parleydocument.cpp:299
 #, fuzzy, kde-format
 #| msgid "Downloads new vocabularies"
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "नई शब्दावलियाँ डाउनलोड करें"
 
-#: src/parleydocument.cpp:336 src/parleydocument.cpp:424
+#: src/parleydocument.cpp:338 src/parleydocument.cpp:426
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1931,40 +1931,40 @@ msgid ""
 "Do you want to take over the lock?\n"
 msgstr ""
 
-#: src/parleydocument.cpp:367 src/parleydocument.cpp:460
+#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "फ़ाइल \"%1\" में लिखने की कोशिश में त्रुटि : %2 हुई"
 
-#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
+#: src/parleydocument.cpp:370 src/parleydocument.cpp:463
 #, fuzzy, kde-format
 #| msgid "Save File"
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "फ़ाइल सहेजें"
 
-#: src/parleydocument.cpp:383
+#: src/parleydocument.cpp:385
 #, fuzzy, kde-format
 #| msgid "Save Vocabulary As"
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "शब्दावली ऐसे सहेजें"
 
-#: src/parleydocument.cpp:395
+#: src/parleydocument.cpp:397
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr ""
 "<qt>फ़ाइल<p><b>%1</b></p>पहले से ही मौज़ूद है. क्या आप इसे मिटाकर लिखना चाहते हैं?</qt>"
 
-#: src/parleydocument.cpp:403
+#: src/parleydocument.cpp:405
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "सहेज रहे %1"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr ""
@@ -1972,25 +1972,25 @@ msgstr ""
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:510 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "भाषाएं"
 
-#: src/parleydocument.cpp:516
+#: src/parleydocument.cpp:518
 #, kde-format
 msgid "A Second Language"
 msgstr "द्वितीय भाषा"
 
-#: src/parleydocument.cpp:519
+#: src/parleydocument.cpp:521
 #, fuzzy, kde-format
 #| msgid "Lesson %1"
 msgid "Lesson 1"
 msgstr "सबक %1"
 
-#: src/parleydocument.cpp:561
+#: src/parleydocument.cpp:563
 #, fuzzy, kde-format
 #| msgid "Open an example vocabulary document"
 msgid "Could not open vocabulary collection \"%1\""
@@ -2689,12 +2689,12 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/practice/latexrenderer.cpp:46
+#: src/practice/latexrenderer.cpp:47
 #, kde-format
 msgid "Rendering..."
 msgstr ""
 
-#: src/practice/latexrenderer.cpp:136
+#: src/practice/latexrenderer.cpp:137
 #, kde-format
 msgid "LaTeX error."
 msgstr ""
@@ -3302,55 +3302,55 @@ msgstr ""
 msgid "Collapsed tree view items of statistics view window."
 msgstr ""
 
-#: src/settings/generaloptions.cpp:41
+#: src/settings/generaloptions.cpp:43
 #, kde-format
 msgctxt "CSV separator"
 msgid ";"
 msgstr ";"
 
-#: src/settings/generaloptions.cpp:42
+#: src/settings/generaloptions.cpp:44
 #, kde-format
 msgctxt "CSV separator"
 msgid "#"
 msgstr "#"
 
-#: src/settings/generaloptions.cpp:43
+#: src/settings/generaloptions.cpp:45
 #, kde-format
 msgctxt "CSV separator"
 msgid "!"
 msgstr "!"
 
-#: src/settings/generaloptions.cpp:44
+#: src/settings/generaloptions.cpp:46
 #, kde-format
 msgctxt "CSV separator"
 msgid "|"
 msgstr "|"
 
-#: src/settings/generaloptions.cpp:45
+#: src/settings/generaloptions.cpp:47
 #, kde-format
 msgctxt "CSV separator"
 msgid ","
 msgstr ","
 
-#: src/settings/generaloptions.cpp:46
+#: src/settings/generaloptions.cpp:48
 #, kde-format
 msgctxt "CSV separator: tabulator"
 msgid "TAB"
 msgstr "टैब"
 
-#: src/settings/generaloptions.cpp:47
+#: src/settings/generaloptions.cpp:49
 #, kde-format
 msgctxt "CSV separator"
 msgid ">= 2 SPACES"
 msgstr ">= 2 स्पेसेस"
 
-#: src/settings/generaloptions.cpp:48
+#: src/settings/generaloptions.cpp:50
 #, kde-format
 msgctxt "CSV separator"
 msgid " : "
 msgstr " : "
 
-#: src/settings/generaloptions.cpp:49
+#: src/settings/generaloptions.cpp:51
 #, kde-format
 msgctxt "CSV separator"
 msgid " :: "
@@ -3519,25 +3519,25 @@ msgstr "सचमुच भाषा को मिटाएँ: %1?"
 msgid "Remove Language"
 msgstr "भाषा हटाएँ"
 
-#: src/settings/languagepropertiespage.cpp:83
+#: src/settings/languagepropertiespage.cpp:85
 #, kde-format
 msgid "No KDE keyboard selector found."
 msgstr ""
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, fuzzy, kde-format
 #| msgid "&Rename"
 msgid "Tense Name"
 msgstr "नाम बदलें (&R)"
 
-#: src/settings/languagepropertiespage.cpp:346
-#: src/settings/languagepropertiespage.cpp:368
+#: src/settings/languagepropertiespage.cpp:348
+#: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Enter name of tense:"
 msgstr ""
 
-#: src/settings/languagepropertiespage.cpp:398
+#: src/settings/languagepropertiespage.cpp:400
 #, kde-format
 msgid ""
 "The selected user defined tense could not be deleted\n"
@@ -3546,7 +3546,7 @@ msgstr ""
 "चयनित उपयोक्ता द्वारा पारिभाषित काल को मिटाया नहीं जा सका\n"
 "चूंकि यह उपयोग में है."
 
-#: src/settings/languagepropertiespage.cpp:399
+#: src/settings/languagepropertiespage.cpp:401
 #, kde-format
 msgid "Deleting Tense Description"
 msgstr "काल वर्णन मिटाया जा रहा है"
@@ -4335,17 +4335,17 @@ msgstr "सही अनुवाद भरें:"
 msgid "Online Translation Services"
 msgstr "पूर्णविरामचिह्न पर अनुवाद अलग करें."
 
-#: src/settings/translationshelloptions.cpp:20
+#: src/settings/translationshelloptions.cpp:22
 #, kde-format
 msgid "translate-shell is available."
 msgstr ""
 
-#: src/settings/translationshelloptions.cpp:23
+#: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
 msgstr ""
 
-#: src/settings/translationshelloptions.cpp:38
+#: src/settings/translationshelloptions.cpp:40
 #, kde-format
 msgid "Error"
 msgstr ""
@@ -4490,56 +4490,56 @@ msgstr "दरजा 7 का रंग बदलने हेतु यहा�
 msgid "Alt+2"
 msgstr "ऑल्ट+2"
 
-#: src/statistics/lessonstatisticsview.cpp:74
 #: src/statistics/lessonstatisticsview.cpp:76
+#: src/statistics/lessonstatisticsview.cpp:78
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Remove confidence levels from this unit"
 msgstr "जांच में से सभी सबक मिटाएँ."
 
-#: src/statistics/lessonstatisticsview.cpp:84
+#: src/statistics/lessonstatisticsview.cpp:86
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Remove confidence levels from this unit and all sub-units"
 msgstr "जांच में से सभी सबक मिटाएँ."
 
-#: src/statistics/lessonstatisticsview.cpp:86
+#: src/statistics/lessonstatisticsview.cpp:88
 #, fuzzy, kde-format
 #| msgid "Remove all lessons from the test."
 msgid "Remove confidence level from this unit and all sub-units"
 msgstr "जांच में से सभी सबक मिटाएँ."
 
-#: src/statistics/statisticslegendwidget.cpp:27
+#: src/statistics/statisticslegendwidget.cpp:29
 #, fuzzy, kde-format
 #| msgid "Progress"
 msgid "Progress gradients"
 msgstr "प्रगति"
 
-#: src/statistics/statisticslegendwidget.cpp:28
+#: src/statistics/statisticslegendwidget.cpp:30
 #, fuzzy, kde-format
 #| msgid "Progress"
 msgid "Early progress"
 msgstr "प्रगति"
 
-#: src/statistics/statisticslegendwidget.cpp:29
+#: src/statistics/statisticslegendwidget.cpp:31
 #, fuzzy, kde-format
 #| msgid "Not &practiced:"
 msgid "Not Practiced"
 msgstr "अभ्यास नहीं किया गया: (&p)"
 
-#: src/statistics/statisticslegendwidget.cpp:30
+#: src/statistics/statisticslegendwidget.cpp:32
 #, fuzzy, kde-format
 #| msgid "Entries"
 msgid "Invalid Entries"
 msgstr "प्रविष्टियाँ"
 
-#: src/statistics/statisticslegendwidget.cpp:46
+#: src/statistics/statisticslegendwidget.cpp:48
 #, kde-format
 msgctxt "adjective, The word has been properly and fully learned by the user"
 msgid "Fully learned"
 msgstr ""
 
-#: src/statistics/statisticslegendwidget.cpp:47
+#: src/statistics/statisticslegendwidget.cpp:49
 #, fuzzy, kde-format
 #| msgid "Not &practiced:"
 msgctxt "adjective, The word has not even been practiced once by the user"
