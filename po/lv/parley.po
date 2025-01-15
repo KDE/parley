@@ -4,36 +4,37 @@
 # Gints Polis <gintam@inbox.lv>, 2003.
 # Maris Nartiss <maris.kde@gmail.com>, 2008, 2009.
 # Einars Sprugis <einars8@gmail.com>, 2012.
+# SPDX-FileCopyrightText: 2025 Toms Trasuns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-09 00:37+0000\n"
-"PO-Revision-Date: 2012-07-27 23:11+0300\n"
-"Last-Translator: Einars Sprugis <einars8@gmail.com>\n"
-"Language-Team: Latvian <locale@laka.lv>\n"
+"PO-Revision-Date: 2025-01-13 16:21+0200\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 24.12.0\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Gints Polis, Einārs Sprūģis"
+msgstr "Gints Polis, Einārs Sprūģis, Toms Trasūns"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "gintam@inbox.lv, einars8@gmail.com"
+msgstr "gintam@inbox.lv, einars8@gmail.com, toms.trasuns@posteo.net"
 
 #: src/collection/containermodel.cpp:150
 #, kde-format
 msgid "Unit"
-msgstr ""
+msgstr "Vienība"
 
 #: src/collection/containermodel.cpp:158
 #, kde-format
@@ -45,9 +46,7 @@ msgstr "Ierakstu skaits šajā nodarbībā."
 msgid ""
 "The vocabulary document contains no entries that can be used for the chosen "
 "type of practice."
-msgstr ""
-"Vārdnīcas dokuments nesatur ierakstus, kuri varētu tikt izmantoti "
-"izvēlētajam vingrinājuma veidam."
+msgstr "Vārdnīcas dokuments nesatur ierakstus izvēlētajam vingrinājuma veidam."
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, EntryFilterDialog)
 #: src/collection/entryfilterdialog.ui:14
@@ -63,9 +62,9 @@ msgid ""
 "can choose to ignore some of your configuration settings to start a practice "
 "anyway.</p>"
 msgstr ""
-"<p>Jūsu vārdnīcas izvēle vingrinājumam ir tukša.</p><p>Apakšā varat "
-"izvēlēties ignorēt dažus jūsu konfigurācijas iestatījumus, lai tomēr varētu "
-"sākt vingrinājumu.</p>"
+"<p>Vingrinājuma vārdnīcu atlase ir tukša.</p><p>Apakšā varat izvēlēties "
+"ignorēt dažus jūsu konfigurācijas iestatījumus, lai tomēr varētu sākt "
+"vingrinājumu.</p>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
 #: src/collection/entryfilterdialog.ui:30
@@ -111,10 +110,9 @@ msgstr "Ignorēt minimālo/maksimālo pakāpi"
 
 #. i18n: ectx: property (text), widget (QLabel, numberAffectedWordsLabel)
 #: src/collection/entryfilterdialog.ui:156
-#, fuzzy, kde-format
-#| msgid "Number of choices:"
+#, kde-format
 msgid "Number of Affected Words"
-msgstr "Izvēļu skaits:"
+msgstr "Ietekmēto vārdu skaits"
 
 #. i18n: ectx: property (text), widget (QLabel, documentTotalDescriptionLabel)
 #: src/collection/entryfilterdialog.ui:171
@@ -126,7 +124,7 @@ msgstr "Kopējais ierakstu skaits:"
 #: src/collection/entryfilterdialog.ui:192
 #, kde-format
 msgid "Resulting number of words to practice:"
-msgstr "Izrietošais vingrināmo vārdu skaits:"
+msgstr "Izrietošais vingrinājumu vārdu skaits:"
 
 #: src/collection/lessonmodel.cpp:47
 #, kde-format
@@ -142,7 +140,7 @@ msgstr "Nav"
 #: src/collection/vocabularymodel.cpp:185
 #, kde-format
 msgid "You can drag and drop words onto their word type."
-msgstr "Varat pārnest un nomest vārdus uz to vārdu tipa."
+msgstr "Varat vilkt un nomest vārdus uz to vārdu tipa."
 
 #: src/collection/vocabularymodel.cpp:187
 #, kde-format
@@ -155,10 +153,9 @@ msgid "Enable the antonym view to edit antonyms."
 msgstr "Ieslēgt antonīmu skatu, lai rediģētu antonīmus."
 
 #: src/collection/vocabularymodel.cpp:281
-#, fuzzy, kde-format
-#| msgid "Pronunciation"
+#, kde-format
 msgid "Pronunciation (%1)"
-msgstr "Izruna"
+msgstr "Izruna (%1)"
 
 #: src/collection/vocabularymodel.cpp:281
 #, kde-format
@@ -166,10 +163,9 @@ msgid "Pronunciation"
 msgstr "Izruna"
 
 #: src/collection/vocabularymodel.cpp:283
-#, fuzzy, kde-format
-#| msgid "Word Type"
+#, kde-format
 msgid "Word Type (%1)"
-msgstr "Vārda tips"
+msgstr "Vārda tips (%1)"
 
 #: src/collection/vocabularymodel.cpp:283
 #, kde-format
@@ -183,17 +179,14 @@ msgid "Synonym"
 msgstr "Sinonīms"
 
 #: src/collection/vocabularymodel.cpp:285
-#, fuzzy, kde-format
-#| msgid "Synonym: "
+#, kde-format
 msgid "Synonym (%1)"
-msgstr "Sinonīmi: "
+msgstr "Sinonīms (%1)"
 
 #: src/collection/vocabularymodel.cpp:287
-#, fuzzy, kde-format
-#| msgctxt "Title for a list of antonyms (opposites) for a word"
-#| msgid "Antonyms of %1:"
+#, kde-format
 msgid "Antonym (%1)"
-msgstr "%1 antonīmi:"
+msgstr "Antonīms (%1)"
 
 #: src/collection/vocabularymodel.cpp:287
 #, kde-format
@@ -201,10 +194,9 @@ msgid "Antonym"
 msgstr "Antonīms"
 
 #: src/collection/vocabularymodel.cpp:289
-#, fuzzy, kde-format
-#| msgid "Example"
+#, kde-format
 msgid "Example (%1)"
-msgstr "Piemērs"
+msgstr "Piemērs (%1)"
 
 #: src/collection/vocabularymodel.cpp:289
 #, kde-format
@@ -212,10 +204,9 @@ msgid "Example"
 msgstr "Piemērs"
 
 #: src/collection/vocabularymodel.cpp:291
-#, fuzzy, kde-format
-#| msgid "Comment"
+#, kde-format
 msgid "Comment (%1)"
-msgstr "Komentārs"
+msgstr "Komentārs (%1)"
 
 #: src/collection/vocabularymodel.cpp:291
 #, kde-format
@@ -223,10 +214,9 @@ msgid "Comment"
 msgstr "Komentārs"
 
 #: src/collection/vocabularymodel.cpp:293
-#, fuzzy, kde-format
-#| msgid "Paraphrase"
+#, kde-format
 msgid "Paraphrase (%1)"
-msgstr "Parafrāze"
+msgstr "Parafrāze (%1)"
 
 #: src/collection/vocabularymodel.cpp:293
 #, kde-format
@@ -236,8 +226,7 @@ msgstr "Parafrāze"
 #: src/collection/vocabularymodel.cpp:312
 #, kde-format
 msgid "Please use Edit -> Languages to set up your document."
-msgstr ""
-"Lūdzu, izmantojiet 'Rediģēt' -> 'Valodas', lai iestatītu savu dokumentu."
+msgstr "Lai sagatavotu dokumentu, ejiet uz „Rediģēt“ —> „Valodas“."
 
 #: src/collection/vocabularymodel.cpp:312
 #, kde-format
@@ -245,29 +234,27 @@ msgid "No Languages Defined"
 msgstr "Nav definēta neviena valoda"
 
 #: src/collection/vocabularymodel.cpp:317
-#, fuzzy, kde-format
-#| msgid "Select a lesson before adding vocabulary."
+#, kde-format
 msgid "Select a unit before adding vocabulary."
-msgstr "Pirms pievienot vārdnīcu, izvēlieties nodarbību."
+msgstr "Pirms pievienot vārdnīcu, izvēlieties vienību."
 
 #: src/collection/vocabularymodel.cpp:317
-#, fuzzy, kde-format
-#| msgid "No Lesson Selected"
+#, kde-format
 msgid "No Unit Selected"
-msgstr "Nav izvēlēta neviena nodarbība"
+msgstr "Nav izvēlēta neviena vienība"
 
 #: src/dashboard/barwidget.cpp:120
 #, kde-format
 msgid "%1 word due"
 msgid_plural "%1 words due"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "vēl apgūstams %1 vārds"
+msgstr[1] "vēl apgūstami %1 vārdi"
+msgstr[2] "vēl apgūstams %1 vārdu"
 
 #: src/dashboard/barwidget.cpp:122
 #, kde-format
 msgid "Fully learned"
-msgstr ""
+msgstr "Pilnībā apgūts"
 
 #: src/dashboard/buttondelegate.cpp:32
 #, kde-format
@@ -275,10 +262,9 @@ msgid "Open this vocabulary collection in the editor"
 msgstr "Atvērt šo vārdnīcas kolekciju redaktorā"
 
 #: src/dashboard/collectionwidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "Practice Again"
+#, kde-format
 msgid "Practice Anyway"
-msgstr "Vingrināties vēlreiz"
+msgstr "Vingrināties tik un tā"
 
 #: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
 #: src/editor/editor.cpp:377
@@ -288,30 +274,26 @@ msgstr "Vingrināties"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
 #: src/dashboard/dashboard.cpp:225 src/dashboard/dashboard.ui:38
-#, fuzzy, kde-format
-#| msgid "Open Collection"
+#, kde-format
 msgid "Active Collections"
-msgstr "Atvērt kolekciju"
+msgstr "Aktīvās kolekcijas"
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
 #: src/dashboard/dashboard.cpp:230 src/dashboard/dashboard.ui:77
-#, fuzzy, kde-format
-#| msgid "Last Opened Collections"
+#, kde-format
 msgid "Completed Collections"
-msgstr "Pēdējās atvērtās kolekcijas"
+msgstr "Pabeigtās kolekcijas"
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
 #: src/dashboard/dashboard.cpp:278 src/editor/multiplechoicewidget.ui:28
 #, kde-format
 msgid "Remove"
-msgstr "Izņemt"
+msgstr "Noņemt"
 
 #: src/dashboard/dashboard.cpp:278
-#, fuzzy, kde-format
-#| msgid "Do you really want to delete the selected entry?"
-#| msgid_plural "Do you really want to delete the selected %1 entries?"
+#, kde-format
 msgid "Are you sure you want to remove this collection?"
-msgstr "Vai tiešām vēlaties dzēst iezīmēto %1 ierakstu?"
+msgstr "Vai tiešām vēlaties noņemt šo kolekciju?"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
 #: src/dashboard/dashboard.ui:14 src/main.cpp:25
@@ -321,24 +303,21 @@ msgstr "Parley"
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/dashboard/dashboard.ui:120
-#, fuzzy, kde-format
-#| msgid "Create a New Collection"
+#, kde-format
 msgid "Create a New Collection..."
-msgstr "Izveidot jaunu kolekciju"
+msgstr "Izveidot jaunu kolekciju..."
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
-#, fuzzy, kde-format
-#| msgid "Open an Existing Collection"
+#, kde-format
 msgid "Open an Existing Collection..."
-msgstr "Atvērt jau esošu kolekciju"
+msgstr "Atvērt jau esošu kolekciju..."
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
-#, fuzzy, kde-format
-#| msgid "Download New Collections"
+#, kde-format
 msgid "Download New Collections..."
-msgstr "Lejupielādēt jaunas kolekcijas"
+msgstr "Lejupielādēt jaunas kolekcijas..."
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
@@ -367,21 +346,19 @@ msgstr "Ierakstīt"
 #: src/editor/audiowidget.ui:33
 #, kde-format
 msgid "Download audio file with webservice"
-msgstr ""
+msgstr "Izmantot tīmekļa pakalpojumu, lai lejupielādētu audio datni"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:36
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgid "Download"
-msgstr "Lejupielādēt gramatiku"
+msgstr "Lejupielādēt"
 
 #. i18n: ectx: property (text), widget (QPushButton, showCurrentButton)
 #: src/editor/browserwidget.ui:18
 #, kde-format
 msgid "Lookup Current"
-msgstr "Atrast pašreizējo"
+msgstr "Uzmeklēt pašreizējo"
 
 #. i18n: ectx: property (text), widget (QCheckBox, followTableCheckBox)
 #: src/editor/browserwidget.ui:33
@@ -405,8 +382,8 @@ msgstr "Neizdevās noteikt apstākļa vārdu tipu"
 #, kde-format
 msgid "The comparative is used to compare nouns or verbs (faster)"
 msgstr ""
-"Salīdzinošā forma tiek izmantota, lai salīdzinātu lietvārdus vai darbības "
-"vārdus (ātrāk)"
+"Pārākā pakāpe tiek izmantota, lai salīdzinātu lietvārdus vai darbības vārdus "
+"(ātrāks)"
 
 #. i18n: ectx: property (text), widget (QLabel, absoluteLabel)
 #: src/editor/comparisonwidget.ui:27
@@ -418,19 +395,19 @@ msgstr "Absolūtā forma:"
 #: src/editor/comparisonwidget.ui:59
 #, kde-format
 msgid "Comparative:"
-msgstr "Salīdzinošā forma:"
+msgstr "Pārākā pakāpe:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, superlativeLabel)
 #: src/editor/comparisonwidget.ui:88
 #, kde-format
 msgid "The superlative (fastest)"
-msgstr "Pārākā (ātrākā)"
+msgstr "Vispārākā (visātrākais)"
 
 #. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
 #: src/editor/comparisonwidget.ui:91
 #, kde-format
 msgid "Superlative:"
-msgstr "Pārākā forma:"
+msgstr "Vispārākā pakāpe:"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
@@ -489,7 +466,7 @@ msgstr "Otrā"
 #: src/editor/conjugationwidget.ui:241
 #, kde-format
 msgid "Third Male"
-msgstr "Trešā vīriešu7"
+msgstr "Trešā vīriešu"
 
 #. i18n: ectx: property (text), widget (QLabel, singularThirdFemalePersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualThirdFemalePersonLabel)
@@ -531,7 +508,7 @@ msgstr "&Laiks:"
 #: src/settings/languagepropertiespage.ui:486
 #, kde-format
 msgid "Singular"
-msgstr "Vienskaitļa"
+msgstr "Vienskaitlis"
 
 #. i18n: ectx: property (text), widget (QLabel, dualLabel)
 #. i18n: ectx: property (text), item, widget (QComboBox, numberSelection)
@@ -540,7 +517,7 @@ msgstr "Vienskaitļa"
 #: src/settings/languagepropertiespage.ui:493
 #, kde-format
 msgid "Dual"
-msgstr "Duāls"
+msgstr "Divskaitlis"
 
 #. i18n: ectx: property (text), widget (QLabel, male_label_4)
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4_3)
@@ -583,66 +560,52 @@ msgstr "Locījumu formas"
 
 #. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
 #: src/editor/declensionwidget.ui:52
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Nominative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
-msgstr "Nominatīvs"
+msgstr "Nominatīvs:"
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Genitive"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
-msgstr "Ģenitīvs"
+msgstr "Ģenitīvs:"
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Dative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
-msgstr "Datīvs"
+msgstr "Datīvs:"
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Accusative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr "Akuzatīvs"
+msgstr "Akuzatīvs:"
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Ablative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
-msgstr "Ablatīvs"
+msgstr "Ablatīvs:"
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Locative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
-msgstr "Lokatīvs"
+msgstr "Lokatīvs:"
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Vocative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
-msgstr "Vokatīvs"
+msgstr "Vokatīvs:"
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #: src/editor/declensionwidget.ui:445
@@ -659,22 +622,18 @@ msgstr "Nākamais"
 #: src/editor/editor.cpp:141
 #, kde-format
 msgid "Units"
-msgstr ""
+msgstr "Vienības"
 
 #: src/editor/editor.cpp:152
-#, fuzzy, kde-format
-#| msgid ""
-#| "Right click to add, delete, or rename lessons. \n"
-#| "With the checkboxes you can select which lessons you want to practice. \n"
-#| "Only checked lessons [x] will be asked in the tests!"
+#, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
 "With the checkboxes you can select which units you want to practice. \n"
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
-"Izdariet labo klikšķi, lai pievienotu, dzēstu vai pārdēvētu nodarbības. \n"
-"Ar izvēles rūtiņām varat atzīmēt, kuras nodarbības vēlaties vingrināties.\n"
-"Testos tiks uzdotas tikai atzīmētās '[x]' nodarbības!"
+"Ar labo klikšķi pievienojiet, dzēsiet vai pārdēvējiet vienības. \n"
+"Ar izvēles rūtiņām varat norādīt, kuras vienības vēlaties apgūt. \n"
+"Vingrinājuma laikā programma piedāvās tikai atzīmētās [x] vienības!"
 
 #: src/editor/editor.cpp:163
 #, kde-format
@@ -684,7 +643,7 @@ msgstr "Vārdu tipi"
 #: src/editor/editor.cpp:183
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
-msgstr "Inflekcija (darbības vārdi, īpašības vārdi, lietvārdi)"
+msgstr "Locīšana (darbības vārdi, īpašības vārdi, lietvārdi)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
 #: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
@@ -697,7 +656,7 @@ msgstr "Salīdzināmās formas"
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
-msgstr "Vairākas iespējas"
+msgstr "Jautājumi ar atbilžu variantiem"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
@@ -752,13 +711,12 @@ msgstr "LaTeX"
 #: src/editor/editor.cpp:419
 #, kde-format
 msgid "Enter search terms here"
-msgstr "Ievadiet meklējamo tekstu šeit"
+msgstr "Ierakstiet meklējamo tekstu"
 
 #: src/editor/editor.cpp:420
-#, fuzzy, kde-format
-#| msgid "Helps you train your vocabulary"
+#, kde-format
 msgid "Search your vocabulary"
-msgstr "Palīdz attīstīt jūsu leksiku"
+msgstr "Meklējiet savu vārdnīcu"
 
 #: src/editor/editor.cpp:422
 #, kde-format
@@ -770,7 +728,7 @@ msgstr "M&eklēt:"
 #: src/practice/practiceui.rc:7 src/statistics/statisticsui.rc:7
 #, kde-format
 msgid "&File"
-msgstr "&Fails"
+msgstr "&Datne"
 
 #. i18n: ectx: Menu (edit)
 #: src/editor/editorui.rc:12
@@ -788,7 +746,7 @@ msgstr "&Skats"
 #: src/editor/editorui.rc:51
 #, kde-format
 msgid "&Unit"
-msgstr ""
+msgstr "&Vienība"
 
 #. i18n: ectx: Menu (learning)
 #: src/editor/editorui.rc:65 src/practice/practicesummaryui.rc:12
@@ -813,7 +771,7 @@ msgstr "Īpašības no oriģināla"
 #: src/editor/FromToEntryPageForm.ui:72
 #, kde-format
 msgid "&Confidence Level:"
-msgstr ""
+msgstr "&Pārliecības līmenis:"
 
 #. i18n: ectx: property (text), widget (QLabel, fauxami_label)
 #: src/editor/FromToEntryPageForm.ui:95
@@ -861,25 +819,25 @@ msgstr "Šod&ien"
 #: src/editor/FromToEntryPageForm.ui:206
 #, kde-format
 msgid "The date this expression was last practiced"
-msgstr "Datums, kad ar šo izteiksmi pēdējo reizi tika veikts vingrinājums"
+msgstr "Datums, kas pēdējo reizi apguvāt izteiksmi"
 
 #. i18n: ectx: property (specialValueText), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:209
 #, kde-format
 msgid "Not Practiced Yet"
-msgstr "Vēl nav vingrināts"
+msgstr "Vēl nav mēģināts"
 
 #. i18n: ectx: property (displayFormat), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:229
 #, kde-format
 msgid "dd.MM.yyyy"
-msgstr "dd.mm.ggg"
+msgstr "dd.mm.gggg"
 
 #. i18n: ectx: property (text), widget (QPushButton, resetGradesButton)
 #: src/editor/FromToEntryPageForm.ui:260
 #, kde-format
 msgid "&Reset Confidence Levels"
-msgstr ""
+msgstr "&Atiestatīt pārliecības līmeņus"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
 #: src/parleydocument.cpp:485
@@ -896,26 +854,24 @@ msgstr "Lietvārds"
 #: src/editor/inflectionwidget.cpp:81
 #, kde-format
 msgid "\"%1\" is a:"
-msgstr "\"%1\" ir:"
+msgstr "„%1“ ir:"
 
 #: src/editor/inflectionwidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Please select the noun's gender"
+#, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
-msgstr "Lūdzu, izvēlieties lietvārda dzimti"
+msgstr "Norādiet lietvārda dzimti"
 
 #: src/editor/latexwidget.cpp:22
 #, kde-format
 msgid "Enter LaTeX code here."
-msgstr "LaTeX kodu ievadiet šeit."
+msgstr "Ierakstiet „LaTeX“ kodu."
 
 #. i18n: ectx: property (text), widget (QLabel, texLabel)
 #: src/editor/latexwidget.ui:17
-#, fuzzy, kde-format
-#| msgid "LaTeX code"
+#, kde-format
 msgid "LaTeX code:"
-msgstr "LaTeX kods"
+msgstr "„LaTeX“ kods:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -934,135 +890,115 @@ msgstr "Matemātikas režīms"
 #: src/editor/lessonview.cpp:32
 #, kde-format
 msgid "New Unit"
-msgstr ""
+msgstr "Jauna vienība"
 
 #: src/editor/lessonview.cpp:34
-#, fuzzy, kde-format
-#| msgid "Add a new lesson to your document"
+#, kde-format
 msgid "Add a new unit to your document"
-msgstr "Pievienot jaunu nodarbību jūsu dokumentam"
+msgstr "Pievienojiet dokumentam jaunu vienību"
 
 #: src/editor/lessonview.cpp:40
-#, fuzzy, kde-format
-#| msgid "Rename"
+#, kde-format
 msgid "Rename Unit"
-msgstr "Pārdēvēt"
+msgstr "Pārdēvēt vienību"
 
 #: src/editor/lessonview.cpp:48
-#, fuzzy, kde-format
-#| msgid "&Delete Entry"
+#, kde-format
 msgid "Delete Unit"
-msgstr "&Dzēst ierakstu"
+msgstr "Dzēst vienību"
 
 #: src/editor/lessonview.cpp:50
-#, fuzzy, kde-format
-#| msgid "Delete the selected lesson."
+#, kde-format
 msgid "Delete the selected unit."
-msgstr "Dzēst izvēlēto nodarbību."
+msgstr "Dzēst atlasīto vienību."
 
 #: src/editor/lessonview.cpp:56
-#, fuzzy, kde-format
-#| msgid "Split Lesson into Smaller Lessons"
+#, kde-format
 msgid "Split Unit into Smaller Units"
-msgstr "Sadalīt nodarbību mazākās nodarbībās"
+msgstr "Sadalīt vienību mazākās vienībās"
 
 #: src/editor/lessonview.cpp:58
-#, fuzzy, kde-format
-#| msgid "Make multiple smaller lessons out of one big lesson."
+#, kde-format
 msgid "Make multiple smaller units out of one big unit."
-msgstr "Izveidot vairākas mazākas nodarbības no vienas lielas."
+msgstr "No vienas lielās vienības izveidot vairākas mazākas vienības."
 
 #: src/editor/lessonview.cpp:64
 #, kde-format
 msgid "Move to new lesson"
-msgstr ""
+msgstr "Pāriet uz jaunu nodarbību"
 
 #: src/editor/lessonview.cpp:66
-#, fuzzy, kde-format
-#| msgid "Save the active vocabulary collection"
+#, kde-format
 msgid "Moves the selected vocabulary to a new lesson"
-msgstr "Saglabā aktīvo vārdnīcas kolekciju"
+msgstr "Pārvieto atlasītu vārdnīcu uz jaunu nodarbību"
 
 #: src/editor/lessonview.cpp:72 src/parleyactions.cpp:150
 #, kde-format
 msgid "Remove Confidence Levels"
-msgstr ""
+msgstr "Noņemt pārliecības līmeņus"
 
 #: src/editor/lessonview.cpp:74
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit."
-msgstr "Izņemt visas pakāpes no šīs nodarbības"
+msgstr "Noņemt pārliecības līmeņus šai vienībai."
 
 #: src/editor/lessonview.cpp:80
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove Confidence Levels From This Unit And All Subunits"
-msgstr "Izņemt visas pakāpes no šīs nodarbības"
+msgstr "Noņemt pārliecības līmeņus šai vienībai un visām apakšvienībām"
 
 #: src/editor/lessonview.cpp:82
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit and all subunits."
-msgstr "Izņemt visas pakāpes no šīs nodarbības"
+msgstr "Noņemt pārliecības līmeņus šai vienībai un visām apakšvienībām."
 
 #: src/editor/lessonview.cpp:88
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Expand Units and Subunits"
-msgstr "Izņemt visas pakāpes no šīs nodarbības"
+msgstr "Izvērst vienības un apakšvienības"
 
 #: src/editor/lessonview.cpp:90
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Expand all units and subunits."
-msgstr "Izņemt visas pakāpes no šīs nodarbības"
+msgstr "Izvērst visas vienības un apakšvienības"
 
 #: src/editor/lessonview.cpp:96
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Collapse All Units And Subunits"
-msgstr "Izņemt visas pakāpes no šīs nodarbības"
+msgstr "Sakļaut visas vienības un apakšvienības"
 
 #: src/editor/lessonview.cpp:98
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Collapse all units and subunits."
-msgstr "Izņemt visas pakāpes no šīs nodarbības"
+msgstr "Sakļaut visas vienības un apakšvienības."
 
 #: src/editor/lessonview.cpp:190
 #, kde-format
 msgid "The root lesson cannot be deleted."
-msgstr "Saknes nodarbība nevar tikt dzēsta."
+msgstr "Saknes nodarbību nevar dzēst."
 
 #: src/editor/lessonview.cpp:200
-#, fuzzy, kde-format
-#| msgid "There is %1 word left in this lesson. Do you want to delete it?"
-#| msgid_plural ""
-#| "There are %1 words left in this lesson. Do you want to delete them?"
+#, kde-format
 msgid "There is %1 word left in this unit. Do you want to delete it?"
 msgid_plural ""
 "There are %1 words left in this unit. Do you want to delete them?"
-msgstr[0] "Šajā nodarbībā ir atlicis %1 vārds. Vai vēlaties to dzēst?"
-msgstr[1] "Šajā nodarbībā ir atlikuši %1 vārdi. Vai vēlaties tos dzēst?"
-msgstr[2] "Šajā nodarbībā ir atlicis %1 vārdu. Vai vēlaties tos dzēst?"
+msgstr[0] "Šajā vienībā ir atlicis %1 vārds. Vai vēlaties to dzēst?"
+msgstr[1] "Šajā vienībā ir atlikuši %1 vārdi. Vai vēlaties tos dzēst?"
+msgstr[2] "Šajā vienībā ir atlicis %1 vārdu. Vai vēlaties tos dzēst?"
 
 #: src/editor/lessonview.cpp:221
-#, fuzzy, kde-format
-#| msgid "Entries per Lesson"
+#, kde-format
 msgid "Entries per Unit"
-msgstr "Ieraksti uz nodarbību"
+msgstr "Ieraksti vienībā"
 
 #: src/editor/lessonview.cpp:222
-#, fuzzy, kde-format
-#| msgid ""
-#| "The lesson will be split into smaller lessons. How many entries in each "
-#| "lesson do you want?"
+#, kde-format
 msgid ""
 "The unit will be split into smaller unit. How many entries in each unit do "
 "you want?"
 msgstr ""
-"Nodarbība tiks sadalīta mazākās. Cik ierakstus katrā nodarbībā vēlaties?"
+"Programma vienību sadalīs mazākās vienībās. Cik daudz ierakstu katra vienībā "
+"vēlaties?"
 
 #: src/editor/lessonview.cpp:245
 #, kde-format
@@ -1089,85 +1025,80 @@ msgstr "Nodarbība"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/editor/summarywordwidget.ui:42
-#, fuzzy, kde-format
-#| msgid "Word type"
+#, kde-format
 msgid "Word type:"
-msgstr "Vārda tips"
+msgstr "Vārda tips:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
-#, fuzzy, kde-format
-#| msgid "Pronunciation"
+#, kde-format
 msgid "Pronunciation:"
-msgstr "Izruna"
+msgstr "Izruna:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/summarywordwidget.ui:71
-#, fuzzy, kde-format
-#| msgid "Example"
+#, kde-format
 msgid "Example:"
-msgstr "Piemērs"
+msgstr "Piemērs:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/summarywordwidget.ui:87
-#, fuzzy, kde-format
-#| msgid "Paraphrase"
+#, kde-format
 msgid "Paraphrase:"
-msgstr "Parafrāze"
+msgstr "Parafrāze:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
-#, fuzzy, kde-format
-#| msgid "&Comment:"
+#, kde-format
 msgid "Comment:"
-msgstr "&Komentārs:"
+msgstr "Komentārs:"
 
 #: src/editor/synonymwidget.cpp:59
 #, kde-format
 msgid "Select Synonyms"
-msgstr "Izvēlēties sinonīmus"
+msgstr "Atlasiet sinonīmus"
 
 #: src/editor/synonymwidget.cpp:65
 #, kde-format
 msgid "%1 and %2 are not Synonyms"
-msgstr "%1 un %2 nav sinonīmi"
+msgstr "„%1“ un „%2“ nav sinonīmi"
 
 #: src/editor/synonymwidget.cpp:67
 #, kde-format
 msgid "%1 and %2 are Synonyms"
-msgstr "%1 un %2 ir sinonīmi"
+msgstr "„%1“ un „%2“ ir sinonīmi"
 
 #: src/editor/synonymwidget.cpp:72
 #, kde-format
 msgid "%1 and %2 are not Antonyms"
-msgstr "%1 un %2 nav antonīmi"
+msgstr "„%1“ un „%2“ nav antonīmi"
 
 #: src/editor/synonymwidget.cpp:74
 #, kde-format
 msgid "%1 and %2 are Antonyms"
-msgstr "%1 un %2 ir antonīmi"
+msgstr "„%1“ un „%2“ ir antonīmi"
 
 #: src/editor/synonymwidget.cpp:79
 #, kde-format
 msgid "%1 and %2 are not False Friends"
-msgstr "%1 un %2 nav viltus draugi"
+msgstr "„%1“ un „%2“ nav viltus draugi"
 
 #: src/editor/synonymwidget.cpp:81
 #, kde-format
 msgid "%1 and %2 are False Friends"
-msgstr "%1 un %2 ir viltus draugi"
+msgstr "„%1“ un „%2“ ir viltus draugi"
 
 #: src/editor/synonymwidget.cpp:90
 #, kde-format
 msgctxt "Title for a list of synonyms for a word"
 msgid "Synonyms of %1:"
-msgstr "%1 sinonīmi:"
+msgstr "„%1“ sinonīmi:"
 
 #: src/editor/synonymwidget.cpp:93
 #, kde-format
 msgctxt "Title for a list of antonyms (opposites) for a word"
 msgid "Antonyms of %1:"
-msgstr "%1 antonīmi:"
+msgstr "„%1“ antonīmi:"
 
 #: src/editor/synonymwidget.cpp:97
 #, kde-format
@@ -1175,11 +1106,10 @@ msgctxt ""
 "Title for a list of false friend (things that sound similar but have "
 "different meanings) for a word"
 msgid "False Friends of %1:"
-msgstr "%1 viltus draugi:"
+msgstr "„%1“ viltus draugi:"
 
 #: src/editor/vocabularycolumnsdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Vocabulary Columns"
+#, kde-format
 msgctxt "@title:window"
 msgid "Vocabulary Columns"
 msgstr "Vārdnīcas kolonnas"
@@ -1187,19 +1117,17 @@ msgstr "Vārdnīcas kolonnas"
 #: src/editor/vocabularycolumnsdialog.cpp:58
 #, kde-format
 msgid "Enable/Disable the columns for each language"
-msgstr "Ieslēgt/Izslēgt kolonnas katrai valodai"
+msgstr "Ieslēgt/izslēgt kolonnas katrai valodai"
 
 #: src/editor/vocabularydelegate.cpp:145
-#, fuzzy, kde-format
-#| msgid "Currently selected row"
+#, kde-format
 msgid "Sound file selected: %1"
-msgstr "Pašreiz izvēlētā rinda"
+msgstr "Atlasītā skaņas datne: %1"
 
 #: src/editor/vocabularydelegate.cpp:147
-#, fuzzy, kde-format
-#| msgid "Currently selected row"
+#, kde-format
 msgid "Image file selected: %1"
-msgstr "Pašreiz izvēlētā rinda"
+msgstr "Atlasītā attēla datne: %1"
 
 #: src/editor/vocabularyview.cpp:79
 #, kde-format
@@ -1209,7 +1137,7 @@ msgstr "&Pievienot jaunu ierakstu"
 #: src/editor/vocabularyview.cpp:82
 #, kde-format
 msgid "Append a new row to the vocabulary"
-msgstr "Pievienot jaunu rindu vārdnīcai"
+msgstr "Pievienot vārdnīcai jaunu rindu"
 
 #: src/editor/vocabularyview.cpp:91
 #, kde-format
@@ -1219,7 +1147,7 @@ msgstr "&Dzēst ierakstu"
 #: src/editor/vocabularyview.cpp:94
 #, kde-format
 msgid "Delete the selected rows"
-msgstr "Dzēst izvēlētās rindas"
+msgstr "Dzēst atlasītās rindas"
 
 #: src/editor/vocabularyview.cpp:105
 #, kde-format
@@ -1239,12 +1167,12 @@ msgstr "Ielīmēt"
 #: src/editor/vocabularyview.cpp:126
 #, kde-format
 msgid "Select all rows"
-msgstr "Iezīmēt visas rindas"
+msgstr "Atlasīt visas rindas"
 
 #: src/editor/vocabularyview.cpp:132
 #, kde-format
 msgid "Deselect all rows"
-msgstr "Noņem iezīmi no visām rindām"
+msgstr "Noņem atlasi no visām rindām"
 
 #: src/editor/vocabularyview.cpp:140
 #, kde-format
@@ -1260,9 +1188,9 @@ msgstr "Pārslēgt atsevišķu vārdnīcas kolonnu attēlošanu"
 #, kde-format
 msgid "Do you really want to delete the selected entry?"
 msgid_plural "Do you really want to delete the selected %1 entries?"
-msgstr[0] "Vai tiešām vēlaties dzēst iezīmēto %1 ierakstu?"
-msgstr[1] "Vai tiešām vēlaties dzēst iezīmētos %1 ierakstus?"
-msgstr[2] "Vai tiešām vēlaties dzēst iezīmētos %1 ierakstus?"
+msgstr[0] "Vai tiešām vēlaties dzēst %1 atlasīto ierakstu?"
+msgstr[1] "Vai tiešām vēlaties dzēst %1 atlasītos ierakstus?"
+msgstr[2] "Vai tiešām vēlaties dzēst %1 atlasītos ierakstus?"
 
 #: src/editor/vocabularyview.cpp:254
 #, kde-format
@@ -1287,8 +1215,8 @@ msgid ""
 "Either the language set up is incorrect or no spellchecker was installed for "
 "this locale: %1."
 msgstr ""
-"Vai nu valoda ir nepareizi iestatīta, vai arī šajai lokālei (%1) nav "
-"instalēta neviena pareizrakstības pārbaudītāja."
+"Vai nu valoda ir nepareizi iestatīta, vai arī šai lokālei (%1) nav instalēta "
+"neviena pareizrakstības pārbaudītāja."
 
 #: src/editor/wordtypeview.cpp:31
 #, kde-format
@@ -1298,7 +1226,7 @@ msgstr "Jauns"
 #: src/editor/wordtypeview.cpp:33
 #, kde-format
 msgid "Add a new word type to your document"
-msgstr "Pievienot jaunu vārdu tipu jūsu dokumentam"
+msgstr "Pievienot dokumentam jaunu vārdu tipu"
 
 #: src/editor/wordtypeview.cpp:39
 #, kde-format
@@ -1308,7 +1236,7 @@ msgstr "Pārdēvēt"
 #: src/editor/wordtypeview.cpp:41
 #, kde-format
 msgid "Rename the selected word type"
-msgstr "Pārdēvēt izvēlēto vārdu tipu"
+msgstr "Pārdēvēt atlasīto vārdu tipu"
 
 #: src/editor/wordtypeview.cpp:47
 #, kde-format
@@ -1318,7 +1246,7 @@ msgstr "Dzēst vārdu tipu"
 #: src/editor/wordtypeview.cpp:49
 #, kde-format
 msgid "Delete the selected word type."
-msgstr "Dzēst izvēlēto vārdu tipu."
+msgstr "Dzēst atlasīto vārdu tipu."
 
 #: src/editor/wordtypeview.cpp:56
 #, kde-format
@@ -1331,7 +1259,7 @@ msgstr "Gramatika"
 #: src/editor/wordtypeview.cpp:58
 #, kde-format
 msgid "To let Parley know the grammatical meaning of a word type."
-msgstr "Lai ļautu Parley zināt vārdu, ko rakstāt, gramatisko nozīmi."
+msgstr "Lai ļautu „Parley“ zināt rakstītā vārda gramatisko nozīmi."
 
 #: src/editor/wordtypeview.cpp:66
 #, kde-format
@@ -1341,7 +1269,7 @@ msgstr "Šī vārdu tipa mape satur lietvārdus."
 #: src/editor/wordtypeview.cpp:72
 #, kde-format
 msgid "Masculine Noun"
-msgstr "Vīriešu dzimtes lietvārds"
+msgstr "Vīriešu dzimtes lietvārdi"
 
 #: src/editor/wordtypeview.cpp:74
 #, kde-format
@@ -1351,7 +1279,7 @@ msgstr "Šī vārdu tipa mape satur vīriešu dzimtes lietvārdus."
 #: src/editor/wordtypeview.cpp:80
 #, kde-format
 msgid "Feminine Noun"
-msgstr "Sieviešu dzimtes lietvārds"
+msgstr "Sieviešu dzimtes lietvārdi"
 
 #: src/editor/wordtypeview.cpp:82
 #, kde-format
@@ -1361,12 +1289,12 @@ msgstr "Šī vārdu tipa mape satur sieviešu dzimtes lietvārdus."
 #: src/editor/wordtypeview.cpp:88
 #, kde-format
 msgid "Neuter Noun"
-msgstr "Neitrāla dzimte"
+msgstr "Nekatrā dzimte"
 
 #: src/editor/wordtypeview.cpp:90
 #, kde-format
 msgid "This word type folder contains neuter nouns."
-msgstr "Šī vārdu tipa mape satur neitrālas dzimtes lietvārdus."
+msgstr "Šī vārdu tipa mape satur nekatras dzimtes lietvārdus."
 
 #: src/editor/wordtypeview.cpp:98
 #, kde-format
@@ -1406,7 +1334,7 @@ msgstr "Šī vārdu tipa mape nesatur vārdu tipu ar speciālu nozīmi."
 #: src/editor/wordtypeview.cpp:209
 #, kde-format
 msgid "The root word type cannot be deleted."
-msgstr "Saknes vārdu tips nevar tikt dzēsts."
+msgstr "Saknes vārdu tipu nevar dzēst."
 
 #: src/editor/wordtypeview.cpp:219
 #, kde-format
@@ -1415,13 +1343,15 @@ msgid ""
 msgid_plural ""
 "There are %1 words left with this word type. They will lose their word type. "
 "Continue?"
-msgstr[0] "Atlicis %1 vārds ar šo vārdu tipu. Tas zaudēs savu tipu. Turpināt?"
-msgstr[1] "Atlikuši %1 vārdi ar šo vārdu tipu. Tie zaudēs savu tipu. Turpināt?"
-msgstr[2] "Atlikuši %1 vārdi ar šo vārdu tipu. Tie zaudēs savu tipu. Turpināt?"
+msgstr[0] ""
+"Atlicis %1 vārds ar šo vārdu tipu. Tas savu tipu zaudēs. Vai turpināt?"
+msgstr[1] ""
+"Atlikuši %1 vārdi ar šo vārdu tipu. Tie savu tipu zaudēs. Vai turpināt?"
+msgstr[2] ""
+"Atlicis %1 vārdu ar šo vārdu tipu. Tie savu tipu zaudēs. Vai turpināt?"
 
 #: src/exportdialog.cpp:55
-#, fuzzy, kde-format
-#| msgid "Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Eksportēt"
@@ -1432,10 +1362,9 @@ msgid "HTML document"
 msgstr "HTML dokuments"
 
 #: src/exportdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Could not read collection from \"%1\""
+#, kde-format
 msgid "Could not write to file \"%1\""
-msgstr "Neizdevās nolasīt kolekciju no \"%1\""
+msgstr "Neizdevās rakstīt datnē „%1“"
 
 #: src/exportdialog.cpp:121
 #, kde-format
@@ -1463,7 +1392,7 @@ msgstr "Vārdu kartiņas — drukāt apmācības kartiņas (HTML)"
 #: src/exportdialog.ui:30
 #, kde-format
 msgid "A vocabulary list that works in a web-browser and can be printed (HTML)"
-msgstr "Vārdu saraksts, kas strādā tīmekļa pārlūkā un var tikt drukāts (HTML)"
+msgstr "Vārdu saraksts, kas strādā tīmekļa pārlūkā un ko var izdrukāt (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, csvRadio)
 #: src/exportdialog.ui:40
@@ -1474,7 +1403,7 @@ msgstr "Ar komatu atdalītas vērtības (CSV)"
 #: src/main.cpp:26
 #, kde-format
 msgid "Vocabulary Trainer"
-msgstr "Leksikas treneris"
+msgstr "Vārdu krājuma apgūšanas programma"
 
 #: src/main.cpp:28
 #, kde-format
@@ -1484,31 +1413,30 @@ msgid ""
 "© 2004-2007\tPeter Hedlund\n"
 "© 2007-2010\tFrederik Gladhorn\n"
 msgstr ""
-"© 1999-2002\tEwald Arnold\n"
-"© 2001-2002\tKDE komanda\n"
-"© 2004-2007\tPeter Hedlund\n"
-"© 2007-2010\tFrederik Gladhorn\n"
+"© 1999—2002\tEwald Arnold\n"
+"© 2001—2002\tKDE komanda\n"
+"© 2004—2007\tPeter Hedlund\n"
+"© 2007—2010\tFrederik Gladhorn\n"
 
 #: src/main.cpp:33
 #, kde-format
 msgid "Helps you train your vocabulary"
-msgstr "Palīdz attīstīt jūsu leksiku"
+msgstr "Palīdz pilnveidot vārdu krājumu"
 
 #: src/main.cpp:37
 #, kde-format
 msgid "Inge Wallin"
-msgstr ""
+msgstr "Inge Wallin"
 
 #: src/main.cpp:37 src/main.cpp:39
-#, fuzzy, kde-format
-#| msgid "Developer and maintainer"
+#, kde-format
 msgid "Developer and Co-maintainer"
-msgstr "Izstrādātājs un uzturētājs"
+msgstr "Izstrādātājs un līdzuzturētājs"
 
 #: src/main.cpp:39
 #, kde-format
 msgid "Amarvir Singh"
-msgstr ""
+msgstr "Amarvir Singh"
 
 #: src/main.cpp:41
 #, kde-format
@@ -1516,10 +1444,9 @@ msgid "Frederik Gladhorn"
 msgstr "Frederik Gladhorn"
 
 #: src/main.cpp:41
-#, fuzzy, kde-format
-#| msgid "Developer and maintainer"
+#, kde-format
 msgid "Developer, former maintainer"
-msgstr "Izstrādātājs un uzturētājs"
+msgstr "Izstrādātājs un kādreizējais uzturētājs"
 
 #: src/main.cpp:43
 #, kde-format
@@ -1539,7 +1466,7 @@ msgstr "David Capel"
 #: src/main.cpp:45
 #, kde-format
 msgid "Practice Dialogs"
-msgstr "Vingrinājuma dialogi"
+msgstr "Vingrinājumu lodziņi"
 
 #: src/main.cpp:47
 #, kde-format
@@ -1569,7 +1496,7 @@ msgstr "Ewald Arnold"
 #: src/main.cpp:54
 #, kde-format
 msgid "Original Author"
-msgstr "Sākotnējais autors"
+msgstr "Sākotnējās versijas autors"
 
 #: src/main.cpp:58
 #, kde-format
@@ -1579,7 +1506,7 @@ msgstr "Lee Olson"
 #: src/main.cpp:58
 #, kde-format
 msgid "Artwork and Oxygen Icons"
-msgstr "Grafiskais noformējums un Oxygen ikonas"
+msgstr "Grafiskais noformējums un „Oxygen“ ikonas"
 
 #: src/main.cpp:60
 #, kde-format
@@ -1589,7 +1516,7 @@ msgstr "Anne-Marie Mahfouf"
 #: src/main.cpp:60
 #, kde-format
 msgid "Port to KConfig XT"
-msgstr "Portēšana uz KConfig XT"
+msgstr "Portēšana uz „KConfig XT“"
 
 #: src/main.cpp:62
 #, kde-format
@@ -1599,7 +1526,7 @@ msgstr "Jeremy Whiting"
 #: src/main.cpp:62
 #, kde-format
 msgid "Rewriting the kvtml library for KDE4"
-msgstr "Kvtml bibliotēkas pārraksīšana uz KDE4"
+msgstr "KVTML bibliotēkas pārrakstīšana priekš KDE4"
 
 #: src/main.cpp:64
 #, kde-format
@@ -1619,18 +1546,17 @@ msgstr "Ramona Knapp"
 #: src/main.cpp:66
 #, kde-format
 msgid "Conceived the name Parley"
-msgstr "Iecere par nosaukumu 'Parley'"
+msgstr "Izdomāja nosaukumu „Parley“"
 
 #: src/main.cpp:74
-#, fuzzy, kde-format
-#| msgid "+[file]"
+#, kde-format
 msgid "[file]"
-msgstr "+[fails]"
+msgstr "[datne]"
 
 #: src/main.cpp:74
 #, kde-format
 msgid "Document file to open"
-msgstr "Atveramā dokumenta fails"
+msgstr "Atveramā dokumenta datne"
 
 #: src/parleyactions.cpp:71
 #, kde-format
@@ -1685,23 +1611,22 @@ msgstr "Rediģēt dokumenta īpašības"
 #: src/parleyactions.cpp:122
 #, kde-format
 msgid "Dashboard"
-msgstr ""
+msgstr "Pārskatne"
 
 #: src/parleyactions.cpp:123
-#, fuzzy, kde-format
-#| msgid "Close the current vocabulary collection and show the start page"
+#, kde-format
 msgid "Close the current vocabulary collection and show the dashboard"
-msgstr "Aizvērt pašreizējo vārdnīcu kolekciju un parādīt sākuma lapu"
+msgstr "Aizvērt pašreizējo vārdnīcas kolekciju un parādīt pārskatni"
 
 #: src/parleyactions.cpp:129
 #, kde-format
 msgid "Quit Parley"
-msgstr "Iziet no Parley"
+msgstr "Iziet no „Parley“"
 
 #: src/parleyactions.cpp:134
 #, kde-format
 msgid "Show the configuration dialog"
-msgstr "Rādīt konfigurācijas logu"
+msgstr "Rādīt konfigurācijas lodziņu"
 
 #: src/parleyactions.cpp:141
 #, kde-format
@@ -1715,23 +1640,19 @@ msgid ""
 msgstr "Rediģēt kolekcijā esošās valodas un to gramatiskās īpašības."
 
 #: src/parleyactions.cpp:151
-#, fuzzy, kde-format
-#| msgid "Remove all grades from the current document"
+#, kde-format
 msgid "Remove all confidence levels from the current document"
-msgstr "Izņemt visas pakāpes no pašreizējā dokumenta"
+msgstr "Noņemt visas pārliecības pakāpes no pašreizējā dokumenta"
 
 #: src/parleyactions.cpp:162
-#, fuzzy, kde-format
-#| msgid "Show Entries from Child Lessons"
+#, kde-format
 msgid "Show Entries from Child Units"
-msgstr "Rādīt ierakstus no apakšnodarbībām"
+msgstr "Rādīt ierakstus no apakšvienībām"
 
 #: src/parleyactions.cpp:163
-#, fuzzy, kde-format
-#| msgid "Enable to also see the entries of child lessons in each lesson."
+#, kde-format
 msgid "Enable to also see the entries of child units in each unit."
-msgstr ""
-"Ieslēdziet, lai redzētu arī ierakstus katras nodarbības apakšnodarbībai"
+msgstr "Ieslēdziet, lai redzētu arī katras vienības apakšvienību ierakstus."
 
 #: src/parleyactions.cpp:173
 #, kde-format
@@ -1740,10 +1661,9 @@ msgstr "Automātiskā tulkošana"
 
 #. i18n: ectx: label, entry (AutomaticTranslation), group (General)
 #: src/parleyactions.cpp:174 src/settings/parley.kcfg:50
-#, fuzzy, kde-format
-#| msgid "Enable automatic translation of the lesson entries."
+#, kde-format
 msgid "Enable automatic translation of the unit entries."
-msgstr "Ieslēgt nodarbības ierakstu automātisko tulkošanu."
+msgstr "Ieslēgt vienību ierakstu automātisko tulkošanu."
 
 #: src/parleyactions.cpp:184
 #, kde-format
@@ -1766,16 +1686,14 @@ msgid "Change practice settings"
 msgstr "Mainīt vingrinājumu iestatījumus"
 
 #: src/parleyactions.cpp:202
-#, fuzzy, kde-format
-#| msgid "&Export..."
+#, kde-format
 msgid "Export Results..."
-msgstr "&Eksportēt..."
+msgstr "Eksportēt rezultātus..."
 
 #: src/parleyactions.cpp:203
-#, fuzzy, kde-format
-#| msgid "Select the correct translation:"
+#, kde-format
 msgid "Write a file with the results of the practice"
-msgstr "Atzīmējiet pareizu tulkojumu:"
+msgstr "Izveidot datni ar vingrinājumu rezultātiem"
 
 #: src/parleyactions.cpp:211
 #, kde-format
@@ -1790,7 +1708,7 @@ msgstr "Pārslēgties uz vārdnīcas redaktoru"
 #: src/parleyactions.cpp:220
 #, kde-format
 msgid "Show Se&arch"
-msgstr "Rādīt meklēšanas &aili"
+msgstr "Ieslēgt &meklēšanu"
 
 #: src/parleyactions.cpp:221
 #, kde-format
@@ -1801,11 +1719,10 @@ msgstr "Pārslēgt meklēšanas joslas rādīšanu"
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
-msgstr "%1 īpašības"
+msgstr "„%1“ īpašības"
 
 #: src/parleydocument.cpp:161
-#, fuzzy, kde-format
-#| msgid "Open Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Atvērt vārdnīcu kolekciju"
@@ -1813,7 +1730,7 @@ msgstr "Atvērt vārdnīcu kolekciju"
 #: src/parleydocument.cpp:162
 #, kde-format
 msgid "Open in practice &mode"
-msgstr "Atvērt vingrināšanās režī&mā"
+msgstr "Atvērt &vingrināšanās režīmā"
 
 #: src/parleydocument.cpp:204
 #, kde-format
@@ -1824,21 +1741,24 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
+"Vārdnīcas kolekciju ir slēdzis cits process. Varat atvērt datni, pārņemot "
+"slēgu, bet tādā gadījumā zaudēsiet otra procesa, kas ir atvēris vārdnīcu, "
+"veiktās izmaiņas.\n"
+"\n"
+"Vai vēlaties pārņemt slēgu?\n"
 
 #: src/parleydocument.cpp:206
 #, kde-format
 msgid "Take Over Lock"
-msgstr ""
+msgstr "Pārņemt slēgu"
 
 #: src/parleydocument.cpp:237
-#, fuzzy, kde-format
-#| msgid "Writing file \"%1\" resulted in an error: %2"
+#, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
-msgstr "Faila \"%1\" rakstīšanas rezultātā radās kļūda: %2"
+msgstr "„%1“ kolekcijas atvēršana izraisīja kļūdu: %2"
 
 #: src/parleydocument.cpp:238
-#, fuzzy, kde-format
-#| msgid "Open Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Atvērt kolekciju"
@@ -1850,16 +1770,15 @@ msgid ""
 "\n"
 "Save file before exit?\n"
 msgstr ""
-"Vārdnīca ir labota.\n"
+"Vārdnīcā ir veiktas izmaiņas.\n"
 "\n"
-"Saglabāt failu pirms iziešanas?\n"
+"Vai pirms iziešanas datni saglabāt?\n"
 
 #: src/parleydocument.cpp:299
-#, fuzzy, kde-format
-#| msgid "Open Downloaded Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
-msgstr "Atvērt lejupielādēto vārdnīcu kolekciju"
+msgstr "Atvērt lejupielādēto vārdnīcas kolekciju"
 
 #: src/parleydocument.cpp:338 src/parleydocument.cpp:426
 #, kde-format
@@ -1869,22 +1788,25 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
+"Datni „%1“ ir slēdzis cits process. Varat saglabāt šajā datnē, ja pārņemsiet "
+"slēgu, bet tādā gadījumā zaudēsiet visas izmaiņas, ko ir veikusi programma, "
+"kurai šobrīd ir slēgs.\n"
+"\n"
+"Vai vēlaties pārņemt slēgu?\n"
 
 #: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
-msgstr "Faila \"%1\" rakstīšanas rezultātā radās kļūda: %2"
+msgstr "„%1“ datnes rakstīšana izraisīja kļūdu: %2"
 
 #: src/parleydocument.cpp:370 src/parleydocument.cpp:463
-#, fuzzy, kde-format
-#| msgid "Save File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save File"
-msgstr "Saglabāt failu"
+msgstr "Saglabāt datni"
 
 #: src/parleydocument.cpp:385
-#, fuzzy, kde-format
-#| msgid "Save Vocabulary As"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Saglabā vārdnīcu kā"
@@ -1893,13 +1815,13 @@ msgstr "Saglabā vārdnīcu kā"
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
-msgstr "<qt>Fails<p><b>%1</b></p>jau pastāv. Vai vēlaties to pārrakstīt?</qt>"
+msgstr "<qt>Datne<p><b>%1</b></p>jau pastāv. Vai vēlaties to pārrakstīt?</qt>"
 
 #: src/parleydocument.cpp:405
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
-msgstr "Saglabā %1"
+msgstr "Saglabā „%1“"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/parleydocument.cpp:509 src/settings/documentproperties.ui:234
@@ -1928,10 +1850,9 @@ msgid "Lesson 1"
 msgstr "1. nodarbība"
 
 #: src/parleydocument.cpp:563
-#, fuzzy, kde-format
-#| msgid "Could not read collection from \"%1\""
+#, kde-format
 msgid "Could not open vocabulary collection \"%1\""
-msgstr "Neizdevās nolasīt kolekciju no \"%1\""
+msgstr "Neizdevās atvērt vārdnīcas kolekciju „%1“"
 
 #: src/parleymainwindow.cpp:134
 #, kde-format
@@ -1939,7 +1860,7 @@ msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
 "when document is modified"
 msgid "%1 [*]"
-msgstr ""
+msgstr "%1 [*]"
 
 #: src/parleymainwindow.cpp:174
 #, kde-format
@@ -1947,12 +1868,12 @@ msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr ""
+"Nevarat sākt vingrinājumu, kad zināmā valoda ir tā pati, kas mācāmā valoda."
 
 #: src/parleymainwindow.cpp:174
-#, fuzzy, kde-format
-#| msgid "&Second language:"
+#, kde-format
 msgid "Select languages"
-msgstr "&Otrā valoda:"
+msgstr "Atlasiet valodas"
 
 #: src/parleymainwindow.cpp:212
 #, kde-format
@@ -2004,7 +1925,7 @@ msgctxt ""
 "the user entered the wrong absolute form when practicing comparison forms of "
 "adjectives (the base form of the adjective is wrong)"
 msgid "\"%1\" is the wrong word."
-msgstr "\"%1\" ir nepareizs vārds."
+msgstr "„%1“ ir nepareizs vārds."
 
 #: src/practice/comparisonbackendmode.cpp:70
 #, kde-format
@@ -2012,7 +1933,7 @@ msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (good, better, best)"
 msgid "Both comparison forms (comparative and superlative) are wrong."
-msgstr "Abas salīdzināmās formas (salīdzinošā un pārākā) ir nepareizas."
+msgstr "Abas salīdzināmās pakāpes (pārākā un vispārākā) ir nepareizas."
 
 #: src/practice/comparisonbackendmode.cpp:74
 #, kde-format
@@ -2020,7 +1941,7 @@ msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (second form wrong - better)"
 msgid "The comparative is wrong."
-msgstr "Salīdzinošā ir nepareiza."
+msgstr "Pārākā pakāpe ir nepareiza."
 
 #: src/practice/comparisonbackendmode.cpp:78
 #, kde-format
@@ -2028,7 +1949,7 @@ msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (third form wrong - best)"
 msgid "The superlative is wrong."
-msgstr "Pārākā ir nepareiza."
+msgstr "Vispārākā pakāpe ir nepareiza."
 
 #: src/practice/comparisonmodewidget.cpp:65
 #, kde-format
@@ -2061,11 +1982,11 @@ msgstr "8 stundas"
 
 #: src/practice/configure/blockoptions.cpp:29
 msgid "12 Hours"
-msgstr "12 stundas"
+msgstr "12 stundu"
 
 #: src/practice/configure/blockoptions.cpp:30
 msgid "18 Hours"
-msgstr "18 stundas"
+msgstr "18 stundu"
 
 #: src/practice/configure/blockoptions.cpp:32
 msgid "1 Day"
@@ -2133,22 +2054,22 @@ msgstr "6 mēneši"
 
 #: src/practice/configure/blockoptions.cpp:50
 msgid "10 Months"
-msgstr "10 mēneši"
+msgstr "10 mēnešu"
 
 #: src/practice/configure/blockoptions.cpp:51
 msgid "12 Months"
-msgstr "12 mēneši"
+msgstr "12 mēnešu"
 
 #: src/practice/configure/blockoptions.cpp:220
 #, kde-format
 msgid "Illogical blocking times.\n"
-msgstr "Nepareizi bloķēšanas laiki.\n"
+msgstr "Neloģiski bloķēšanas laiki.\n"
 
 #: src/practice/configure/blockoptions.cpp:222
 #: src/practice/configure/blockoptions.cpp:235
 #, kde-format
 msgid "The time for level %1 should be lower than the time for level %2.\n"
-msgstr "Laiks līmenim %1 nav zemāks kā laiks līmenim %2.\n"
+msgstr "Laiks %1. līmenim nav mazāks par laiku %2. līmenim.\n"
 
 #: src/practice/configure/blockoptions.cpp:233
 #, kde-format
@@ -2166,14 +2087,14 @@ msgid ""
 "Illogical blocking vs. expiration times.\n"
 msgstr ""
 "\n"
-"Nepareizi bloķēšanas pret nobeigšanas laikiem.\n"
+"Nepareizi „bloķēšanas pret izbeigšanās“ laiki.\n"
 
 #: src/practice/configure/blockoptions.cpp:249
 #, kde-format
 msgid ""
 "The blocking time at level %1 should be lower than the expiration time.\n"
 msgstr ""
-"Līmenī %1 bloķēšanas laikam būtu jābūt zemākam nekā izbeigšanās laikam.\n"
+"%1. līmenī bloķēšanas laikam būtu jābūt zemākam nekā izbeigšanās laikam.\n"
 
 #: src/practice/configure/blockoptions.cpp:255
 #, kde-format
@@ -2238,7 +2159,7 @@ msgstr "&3. līmenis:"
 #: src/practice/configure/blockoptions.ui:218
 #, kde-format
 msgid "Do not practice vocabulary that has been asked within:"
-msgstr "Nevingrināties ar vārdnīcu, kas tikusi atbildēta pēdējos:"
+msgstr "Nevingrināties ar vārdnīcu, ko atbildējāt pirms vismaz:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/blockoptions.ui:228
@@ -2265,8 +2186,7 @@ msgid "Configure Practice"
 msgstr "Konfigurēt vingrinājumu"
 
 #: src/practice/configure/configurepracticedialog.cpp:28
-#, fuzzy, kde-format
-#| msgid "General"
+#, kde-format
 msgctxt ""
 "@title:group Configure general settings for practicing vocabulary, short "
 "title in config dialog."
@@ -2274,12 +2194,10 @@ msgid "General"
 msgstr "Pamata"
 
 #: src/practice/configure/configurepracticedialog.cpp:30
-#, fuzzy, kde-format
-#| msgctxt "Configure advanced settings for practicing vocabulary."
-#| msgid "Advanced Practice Settings"
+#, kde-format
 msgctxt "Configure general settings for practicing vocabulary."
 msgid "General Practice Settings"
-msgstr "Paplašinātie vingrinājumu iestatījumi"
+msgstr "Pamata vingrinājumu iestatījumi"
 
 #: src/practice/configure/configurepracticedialog.cpp:35
 #, kde-format
@@ -2311,15 +2229,13 @@ msgctxt ""
 "@title:group Configure specific settings for practicing vocabulary, short "
 "title in config dialog."
 msgid "Specific"
-msgstr ""
+msgstr "Specifiski"
 
 #: src/practice/configure/configurepracticedialog.cpp:51
-#, fuzzy, kde-format
-#| msgctxt "Configure advanced settings for practicing vocabulary."
-#| msgid "Advanced Practice Settings"
+#, kde-format
 msgctxt "Configure specific settings for practicing vocabulary."
 msgid "Specific Practice Settings"
-msgstr "Paplašinātie vingrinājumu iestatījumi"
+msgstr "Specifiskie vingrinājumu iestatījumi"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: src/practice/configure/generalpracticeoptions.ui:17
@@ -2331,41 +2247,37 @@ msgstr "Labošana"
 #: src/practice/configure/generalpracticeoptions.ui:23
 #, kde-format
 msgid "Answers with wrong accents are still counted as correct."
-msgstr "Atbildes ar nepareiziem akcentiem joprojām tiek skaitītas kā pareizas."
+msgstr "Atbildes ar nepareizām diakritiskajām zīmēm skaitās kā pareizas."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:26
-#, fuzzy, kde-format
-#| msgid "Ignore Accents"
+#, kde-format
 msgid "Ignore accents"
-msgstr "Ignorēt akcentus"
+msgstr "Ignorēt diakritiskās zīmes"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:36
 #, kde-format
 msgid "Any captitalization in the answer is counted as correct."
-msgstr "Jebkāda lielo/mazo burtu lietošana atbildē tiek skaitīta kā pareiza."
+msgstr "Atbildē nepārbauda lielo/mazo burtu lietošanu."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:39
-#, fuzzy, kde-format
-#| msgid "Ignore Capitalization"
+#, kde-format
 msgid "Ignore capitalization"
-msgstr "Ignorēt lielo/mazo burtu lietojumu"
+msgstr "Ignorēt lielos/mazos burtus"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:49
-#, fuzzy, kde-format
-#| msgid "Any captitalization in the answer is counted as correct."
+#, kde-format
 msgid "Any punctuation mistake in the answer is counted as correct."
-msgstr "Jebkāda lielo/mazo burtu lietošana atbildē tiek skaitīta kā pareiza."
+msgstr "Atbildes ar kļūdainu interpunkciju skaitās pareizas."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:52
-#, fuzzy, kde-format
-#| msgid "Ignore Capitalization"
+#, kde-format
 msgid "Ignore punctuation"
-msgstr "Ignorēt lielo/mazo burtu lietojumu"
+msgstr "Ignorēt interpunkciju"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:62
@@ -2373,15 +2285,14 @@ msgstr "Ignorēt lielo/mazo burtu lietojumu"
 msgid ""
 "During the practice you can use the hint button to see parts of the solution."
 msgstr ""
-"Vingrinājuma laikā varat izmantot ieteikuma pogu, lai redzētu daļu no "
+"Vingrinājuma laikā varat izmantot mājienu pogu, lai redzētu daļu no "
 "atrisinājuma."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:65
-#, fuzzy, kde-format
-#| msgid "Enable Hints"
+#, kde-format
 msgid "Enable hints"
-msgstr "Ieslēgt ieteikumus"
+msgstr "Ieslēgt mājienus"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
 #: src/practice/configure/generalpracticeoptions.ui:91
@@ -2393,46 +2304,43 @@ msgstr "Attēli un skaņa"
 #: src/practice/configure/generalpracticeoptions.ui:97
 #, kde-format
 msgid "During the practice, images are shown for the question."
-msgstr "Vingrinājuma laikā kā jautājumi tiek rādīti attēli."
+msgstr "Vingrinājuma laikā jautājumam rāda attēlus."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:100
-#, fuzzy, kde-format
-#| msgid "Image for Question"
+#, kde-format
 msgid "Image for question"
-msgstr "Attēls kā jautājums"
+msgstr "Attēls jautājumam"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:110
 #, kde-format
 msgid "During the practice, images are shown for the solution."
-msgstr "Vingrinājuma laikā kā atrisinājumi tiek rādīti attēli."
+msgstr "Vingrinājuma laikā atbildei rāda attēlus"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:113
-#, fuzzy, kde-format
-#| msgid "Image for Solution"
+#, kde-format
 msgid "Image for solution"
-msgstr "Attēls kā atrisinājums"
+msgstr "Attēls atbildei"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:123
-#, fuzzy, kde-format
-#| msgid "Show images on the back of the flashcard."
+#, kde-format
 msgid "Allow using images instead of words in flashcards."
-msgstr "Rādīt attēlus vārdu kartītes aizmugurē."
+msgstr "Atļaut kartiņās vārdu vietā lietot attēlus."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:126
 #, kde-format
 msgid "Allow images instead of words"
-msgstr ""
+msgstr "Atļaut attēlus vārdu vietā"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PracticeSoundEnabled)
 #: src/practice/configure/generalpracticeoptions.ui:136
 #, kde-format
 msgid "Enable playing of pronunciation sound files during the practice."
-msgstr "Ieslēgt izrunas skaņu failu atskaņošanu vingrinājumu laikā."
+msgstr "Ieslēgt izrunas skaņas datņu atskaņošanu vingrinājumu laikā."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/generalpracticeoptions.ui:158
@@ -2442,36 +2350,33 @@ msgid ""
 "associated directly with the current word. With this option enabled any "
 "synonym is accepted."
 msgstr ""
-"Pēc noklusējuma jums tiek vaicāts ievadīt sinonīmus, līdz ievadat tādu, kurš "
-"tieši ir saistīts ar pašreizējo vārdu. Ja šī opcija ir ieslēgta, tiek "
-"pieņemts jebkurš sinonīms."
+"Pēc noklusējuma programma lūgs ierakstīt sinonīms līdz ierakstīsiet tādu, "
+"kas ir tieši sasaistīts ar pašreizējo vārdu. Ja ir ieslēgta šī opcija, "
+"programma pieņems jebkādu sinonīmu."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
-#, fuzzy, kde-format
-#| msgid "Accept any Synonym"
+#, kde-format
 msgid "Accept any synonym"
-msgstr "Pieņemt jebkuru sinonīmu"
+msgstr "Pieņemt visus sinonīmus"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: src/practice/configure/generalpracticeoptions.ui:191
-#, fuzzy, kde-format
-#| msgid "Expression"
+#, kde-format
 msgid "Sessions"
-msgstr "Izteiksme"
+msgstr "Sesijas"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/generalpracticeoptions.ui:202
 #, kde-format
 msgid "Max session size:"
-msgstr ""
+msgstr "Maksimālais sesijas lielums:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
-#, fuzzy, kde-format
-#| msgid "Total number of entries:"
+#, kde-format
 msgid "Max number of new words:"
-msgstr "Kopējais ierakstu skaits:"
+msgstr "Maksimālais jaunu vārdu skaits:"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:23
@@ -2487,13 +2392,13 @@ msgstr ""
 #: src/practice/configure/specificpracticeoptions.ui:26
 #, kde-format
 msgid "Use choices of the same word type"
-msgstr "Lietot izvēlēs ar vienu vārdu tipu"
+msgstr "Atbilžu izvēlēs lietot vienu vārdu tipu"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/specificpracticeoptions.ui:41
 #, kde-format
 msgid "Number of choices:"
-msgstr "Izvēļu skaits:"
+msgstr "Atbilžu izvēļu skaits:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
 #: src/practice/configure/thresholdoptions.ui:17
@@ -2515,24 +2420,21 @@ msgstr "Ne vairāk par"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/thresholdoptions.ui:43
-#, fuzzy, kde-format
-#| msgid "&Grade:"
+#, kde-format
 msgid "Grade:"
-msgstr "&Pakāpe:"
+msgstr "Pakāpe:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/thresholdoptions.ui:53
-#, fuzzy, kde-format
-#| msgid "Times practiced"
+#, kde-format
 msgid "Times practiced:"
-msgstr "Vingrināšanās reižu skaits"
+msgstr "Vingrināšanās reižu skaits:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
-#, fuzzy, kde-format
-#| msgid "Answered incorrectly"
+#, kde-format
 msgid "Answered incorrectly:"
-msgstr "Atbildēts nepareizi"
+msgstr "Atbildēts nepareizi:"
 
 #: src/practice/conjugationbackendmode.cpp:93
 #, kde-format
@@ -2544,50 +2446,48 @@ msgstr "Visas konjugācijas formas bija pareizas."
 msgctxt "You did not get the conjugation forms right."
 msgid "You answered %1 conjugation form correctly."
 msgid_plural "You answered %1 conjugation forms correctly."
-msgstr[0] "Jūs pareizi atbildējāt %1 konjugācijas formu."
-msgstr[1] "Jūs pareizi atbildējāt %1 konfigurācijas formas."
-msgstr[2] "Jūs pareizi atbildējāt %1 konfigurācijas formas."
+msgstr[0] "Jūs pareizi norādījāt %1 konjugācijas formu."
+msgstr[1] "Jūs pareizi norādījāt %1 konjugācijas formas."
+msgstr[2] "Jūs pareizi norādījāt %1 konjugācijas formu."
 
 #: src/practice/conjugationmodewidget.cpp:111
 #, kde-format
 msgid "Enter all conjugation forms."
-msgstr "Ievadiet visas konfigurācijas formas."
+msgstr "Ierakstiet visas konfigurācijas formas."
 
 #: src/practice/genderbackendmode.cpp:62
 #, kde-format
 msgid "Choose the right article for \"%1\""
-msgstr "Izvēlieties pareizo artikulu priekš \"%1\""
+msgstr "Izvēlieties pareizo artikulu vārdam: „%1“"
 
 #: src/practice/genderbackendmode.cpp:82
 #, kde-format
 msgctxt "@label the gender of the word: masculine"
 msgid "%1 is masculine"
-msgstr "%1 ir vīriešu"
+msgstr "„%1“ ir vīriešu dzimte"
 
 #: src/practice/genderbackendmode.cpp:87
 #, kde-format
 msgctxt "@label the gender of the word: feminine"
 msgid "%1 is feminine"
-msgstr "%1 ir sieviešu"
+msgstr "%1 ir sieviešu dzimte"
 
 #: src/practice/genderbackendmode.cpp:92
 #, kde-format
 msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
-msgstr "%1 ir neitrāls"
+msgstr "%1 ir nekatra dzimte"
 
 #: src/practice/guifrontend.cpp:122
 #, kde-format
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
-msgstr ""
+msgstr "Vienība: %1"
 
 #: src/practice/guifrontend.cpp:128
-#, fuzzy, kde-format
-#| msgid "one word"
-#| msgid_plural "%1 words"
+#, kde-format
 msgid "New word"
-msgstr "%1 vārds"
+msgstr "Jauns vārds"
 
 #: src/practice/guifrontend.cpp:131
 #, kde-format
@@ -2595,26 +2495,20 @@ msgctxt ""
 "Display of the current confidence level during practice, 1st param is either "
 "initial or long term"
 msgid "%1, confidence %2"
-msgstr ""
+msgstr "%1, pārliecība %2"
 
 #: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "initial"
-msgstr ""
+msgstr "pirmie soļi"
 
 #: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "long term"
-msgstr ""
+msgstr "ilgtermiņa"
 
 #: src/practice/guifrontend.cpp:198
-#, fuzzy, kde-format
-#| msgid ""
-#| "You answered %2 of a total of %1 word.\n"
-#| "You are %3% done."
-#| msgid_plural ""
-#| "You answered %2 of a total of %1 words.\n"
-#| "You are %3% done."
+#, kde-format
 msgid ""
 "You answered correctly %2 of a total of %1 word.\n"
 "You are %3% done."
@@ -2622,36 +2516,36 @@ msgid_plural ""
 "You answered correctly %2 of a total of %1 words.\n"
 "You are %3% done."
 msgstr[0] ""
-"Jūs atbildējāt %2 no %1 vārda.\n"
-"Esat pabeidzis %3%."
+"Jūs pareizi atbildējāt uz %2 no %1 vārda.\n"
+"Šobrīd ir paveikti %3 %."
 msgstr[1] ""
-"Jūs atbildējāt %2 no %1 vārdiem\n"
-"Esat pabeidzis %3%."
+"Jūs pareizi atbildējāt uz %2 no %1 vārdiem.\n"
+"Šobrīd ir paveikti %3 %."
 msgstr[2] ""
-"Jūs atbildējāt %2 no %1 vārdiem\n"
-"Esat pabeidzis %3%."
+"Jūs pareizi atbildējāt uz %2 no %1 vārdiem.\n"
+"Šobrīd ir paveikti %3 %."
 
 #: src/practice/latexrenderer.cpp:47
 #, kde-format
 msgid "Rendering..."
-msgstr "Renderē..."
+msgstr "Atveido..."
 
 #: src/practice/latexrenderer.cpp:137
 #, kde-format
 msgid "LaTeX error."
-msgstr "LaTeX kļūda."
+msgstr "„LaTeX“ kļūda."
 
 #: src/practice/multiplechoicebackendmode.cpp:103
 #: src/practice/writtenbackendmode.cpp:145
 #, kde-format
 msgid "You revealed the answer by using too many hints."
-msgstr "Jūs atklājāt atbildi, izmantojot pārāk daudz ieteikumu."
+msgstr "Jūs atklājāt atbildi, izmantojot pārāk daudz mājienu."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, answerLaterButton)
 #: src/practice/practice_mainwindow.ui:128
 #, kde-format
 msgid "Skip this word for now and ask again later"
-msgstr "Pagaidām izlaist šo vārdu, un vaicāt to vēlāk"
+msgstr "Izlaist vārdu un pie tā atgriezties vēlāk"
 
 #. i18n: ectx: property (text), widget (QPushButton, answerLaterButton)
 #: src/practice/practice_mainwindow.ui:131
@@ -2663,7 +2557,7 @@ msgstr "Atbildēt vēlāk"
 #: src/practice/practice_mainwindow.ui:141
 #, kde-format
 msgid "Hint"
-msgstr "Ieteikums"
+msgstr "Mājiens"
 
 #. i18n: ectx: property (text), widget (QPushButton, continueButton)
 #: src/practice/practice_mainwindow.ui:202
@@ -2673,17 +2567,15 @@ msgstr "Turpināt"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
 #: src/practice/practice_mainwindow.ui:219
-#, fuzzy, kde-format
-#| msgid "I did not know it"
+#, kde-format
 msgid "I Did not Know it"
 msgstr "Es to nezināju"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
 #: src/practice/practice_mainwindow.ui:226
-#, fuzzy, kde-format
-#| msgid "I knew it"
+#, kde-format
 msgid "I Knew it"
-msgstr "Es zināju"
+msgstr "Es to zināju"
 
 #. i18n: ectx: property (format), widget (QProgressBar, totalProgress)
 #: src/practice/practice_mainwindow.ui:300
@@ -2701,13 +2593,13 @@ msgstr "absolūtā forma"
 #: src/practice/practice_widget_comparison.ui:80
 #, kde-format
 msgid "comparative"
-msgstr "salīdzinošā forma"
+msgstr "pārākā pakāpe"
 
 #. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
 #: src/practice/practice_widget_comparison.ui:125
 #, kde-format
 msgid "superlative"
-msgstr "pārākā forma"
+msgstr "vispārākā pakāpe"
 
 #: src/practice/practicemainwindow.cpp:70
 #, kde-format
@@ -2730,8 +2622,8 @@ msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
 "This shortcut changes how the answer is counted."
 msgstr ""
-"Kad atbildēsiet, Parley parādīs, ka atbilde bija pareiza vai nepareiza.\n"
-"Šīs īsceļš maina, kā atbilde tiek ieskaitīta."
+"Pēc atbildēšanas „Parley“ parādīs, vai atbilde bija pareiza vai nepareiza.\n"
+"Šī saīsne maina, kā atbilde tiek ieskaitīta."
 
 #: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
@@ -2764,83 +2656,74 @@ msgstr[1] "%1 sekundes"
 msgstr[2] "%1 sekunžu"
 
 #: src/practice/practicesummarycomponent.cpp:68
-#, fuzzy, kde-format
-#| msgid "Not Queried Yet"
+#, kde-format
 msgid "Practice Overview"
-msgstr "Nav Vēl Pieprasīts"
+msgstr "Vingrināšanās pārskats"
 
 #: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
-msgstr ""
+msgstr "Pārslēgties un vingrināšanās pārskata lapu"
 
 #: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
 msgid "HTML Files"
-msgstr ""
+msgstr "HTML datnes"
 
 #: src/practice/practicesummarycomponent.cpp:136
-#, fuzzy, kde-format
-#| msgid "General Document Properties"
+#, kde-format
 msgid "OpenDocument text files"
-msgstr "Dokumenta pamata īpašības"
+msgstr "„OpenDocument“ teksta datnes"
 
 #: src/practice/practicesummarycomponent.cpp:146
-#, fuzzy, kde-format
-#| msgid "Not Queried Yet"
+#, kde-format
 msgid "Practice results"
-msgstr "Nav Vēl Pieprasīts"
+msgstr "Vingrinājuma rezultāti"
 
 #: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
 msgid "Answered questions: %1\n"
-msgstr ""
+msgstr "Atbildētie jautājumi: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:152
-#, fuzzy, kde-format
-#| msgid "Current tense is: %1."
+#, kde-format
 msgid "Correct answers: %1\n"
-msgstr "Tekošais laiks ir: %1."
+msgstr "Pareizās atbildes: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:153
-#, fuzzy, kde-format
-#| msgid "&Wrong:"
+#, kde-format
 msgid "Wrong answers: %1\n"
-msgstr "&Kļūdains:"
+msgstr "Nepareizās atbildes: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:160
-#, fuzzy, kde-format
-#| msgid "Attempts"
+#, kde-format
 msgid "<b>Attempts</b>"
-msgstr "Mēģinājumi"
+msgstr "<b>Mēģinājumi</b>"
 
 #: src/practice/practicesummarycomponent.cpp:161
-#, fuzzy, kde-format
-#| msgid "Question"
+#, kde-format
 msgid "<b>Question</b>"
-msgstr "Jautājums"
+msgstr "<b>Jautājums</b>"
 
 #: src/practice/practicesummarycomponent.cpp:162
 #, kde-format
 msgid "<b>Correct answer</b>"
-msgstr ""
+msgstr "<b>Pareiza atbilde</b>"
 
 #: src/practice/practicesummarycomponent.cpp:163
 #, kde-format
 msgid "<b>Your errors</b>"
-msgstr ""
+msgstr "<b>Jūsu kļūdas</b>"
 
 #: src/practice/practicesummarycomponent.cpp:178
-#, fuzzy, kde-format
-#| msgid "Could not read collection from \"%1\""
+#, kde-format
 msgid "Could not write to %1"
-msgstr "Neizdevās nolasīt kolekciju no \"%1\""
+msgstr "Neizdevās rakstīt datnē „%1“"
 
 #: src/practice/practicesummarycomponent.cpp:178
-#, fuzzy, kde-format
-#| msgid "Could not read collection from \"%1\""
+#, kde-format
 msgid "Could not write file"
-msgstr "Neizdevās nolasīt kolekciju no \"%1\""
+msgstr "Neizdevās rakstīt datnē"
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #: src/practice/practicesummarywidget.ui:28
@@ -2858,7 +2741,7 @@ msgstr "Jautājums"
 #: src/practice/practicesummarywidget.ui:38
 #, kde-format
 msgid "Solution"
-msgstr "Atrisinājums"
+msgstr "Atbilde"
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #: src/practice/practicesummarywidget.ui:43
@@ -2883,9 +2766,8 @@ msgid ""
 "Words will only be counted as correct if they are answered correctly on the "
 "first attempt."
 msgstr ""
-"Šī atbilde tiks skaitīta kā pareiza.\n"
-"Vārdi tiks skaitīti kā pareizi, ja tiek tiek atbildēti pareizi pirmajā "
-"mēģinājumā."
+"Šī atbilde skaitās pareiza.\n"
+"Atbildes skaitās pareizas, ja pareizi atbildat ar pirmo reizi."
 
 #: src/practice/statustoggle.cpp:78
 #, kde-format
@@ -2899,9 +2781,8 @@ msgid ""
 "Words will only be counted as correct if they are answered correctly on the "
 "first attempt."
 msgstr ""
-"Šī atbilde tiks skaitīta kā nepareiza\n"
-"Vārdi tiks skaitīti kā pareizi, ja tiek tiek atbildēti pareizi pirmajā "
-"mēģinājumā."
+"Šī atbilde skaitīsies nepareiza.\n"
+"Atbildes skaitās pareizas, ja pareizi atbildat ar pirmo reizi."
 
 #: src/practice/statustoggle.cpp:82
 #, kde-format
@@ -2952,30 +2833,28 @@ msgid ""
 "Your answer was a synonym. Please enter another word with the same "
 "translation."
 msgstr ""
-"Jūsu atbilde bija sinonīms. Lūdzu, ievadiet citu vārdu ar to pašu tulkojumu."
+"Jūsu atbilde bija sinonīms. Ierakstiet citu vārdu ar to pašu tulkojumu."
 
 #: src/practice/writtenbackendmode.cpp:88
 #, kde-format
 msgid "Your answer was an already entered synonym."
-msgstr "Jūsu atbilde bija jau ievadīts sinonīms."
+msgstr "Jūsu atbilde bija jau ierakstīts sinonīms."
 
 #: src/practice/writtenbackendmode.cpp:91
-#, fuzzy, kde-format
-#| msgid "Your answer was a synonym and your capitalization was wrong."
+#, kde-format
 msgid "Your answer was a synonym and your punctuation was wrong."
-msgstr ""
-"Jūsu atbilde bija sinonīms, un lielo/mazo burtu izmantojums bija nepareizs."
+msgstr "Jūsu atbilde bija sinonīms, bet kļūdījāties ar interpunkciju."
 
 #: src/practice/writtenbackendmode.cpp:93
 #, kde-format
 msgid "Your answer was a synonym and your capitalization was wrong."
 msgstr ""
-"Jūsu atbilde bija sinonīms, un lielo/mazo burtu izmantojums bija nepareizs."
+"Jūsu atbilde bija sinonīms, bet kļūdījāties ar lielo/mazo burtu rakstību."
 
 #: src/practice/writtenbackendmode.cpp:95
 #, kde-format
 msgid "Your answer was a synonym and accents were wrong."
-msgstr "Jūsu atbilde bija sinonīms, un akcenti bija nepareizi."
+msgstr "Jūsu atbilde bija sinonīms, bet kļūdījāties ar diakritiskajām zīmēm."
 
 #: src/practice/writtenbackendmode.cpp:97
 #, kde-format
@@ -2983,16 +2862,13 @@ msgid "Your answer was a synonym."
 msgstr "Jūsu atbilde bija sinonīms."
 
 #: src/practice/writtenbackendmode.cpp:105
-#, fuzzy, kde-format
-#| msgid ""
-#| "Your answer was wrong as capitalization mistakes are not accepted. Please "
-#| "try again."
+#, kde-format
 msgid ""
 "Your answer was wrong as punctuation mistakes are not accepted. Please try "
 "again."
 msgstr ""
-"Jūsu atbilde bija nepareiza, jo lielo/mazo burtu izmantojuma kļūdas netiek "
-"pieņemtas. Lūdzu, mēģiniet vēlreiz."
+"Jūsu atbilde bija nepareiza, jo programmas iestatījumos ir norādīts, ka "
+"jāievēro pareiza interpunkcija. Mēģiniet vēlreiz."
 
 #: src/practice/writtenbackendmode.cpp:107
 #, kde-format
@@ -3000,39 +2876,37 @@ msgid ""
 "Your answer was wrong as capitalization mistakes are not accepted. Please "
 "try again."
 msgstr ""
-"Jūsu atbilde bija nepareiza, jo lielo/mazo burtu izmantojuma kļūdas netiek "
-"pieņemtas. Lūdzu, mēģiniet vēlreiz."
+"Jūsu atbilde bija nepareiza, jo programmas iestatījumos ir norādīts, ka "
+"jāievēro lielo/mazo burtu lietojums. Mēģiniet vēlreiz."
 
 #: src/practice/writtenbackendmode.cpp:109
 #, kde-format
 msgid ""
 "Your answer was wrong as accent mistakes are not accepted. Please try again."
 msgstr ""
-"Jūsu atbilde bija nepareiza, jo akcentu kļūdas netiek pieņemtas. Lūdzu, "
-"mēģiniet vēlreiz."
+"Jūsu atbilde bija nepareiza, jo programmas iestatījumos ir norādīts, ka "
+"jāievēro diakritisko zīmju lietojums. Mēģiniet vēlreiz."
 
 #: src/practice/writtenbackendmode.cpp:111
 #, kde-format
 msgid "Your answer was wrong. Please try again."
-msgstr "Jūsu atbilde bija nepareiza. Lūdzu, mēģiniet vēlreiz."
+msgstr "Jūsu atbilde bija nepareiza. Mēģiniet vēlreiz."
 
 #: src/practice/writtenbackendmode.cpp:118
-#, fuzzy, kde-format
-#| msgid "Your answer was right, but your capitalization was wrong."
+#, kde-format
 msgid "Your answer was right, but your punctuation was wrong."
-msgstr ""
-"Jūsu atbilde bija pareiza, bet lielo/mazo burtu izmantojums bija nepareizs."
+msgstr "Jūsu atbilde bija pareiza, bet kļūdījāties ar interpunkciju."
 
 #: src/practice/writtenbackendmode.cpp:120
 #, kde-format
 msgid "Your answer was right, but your capitalization was wrong."
 msgstr ""
-"Jūsu atbilde bija pareiza, bet lielo/mazo burtu izmantojums bija nepareizs."
+"Jūsu atbilde bija pareiza, bet kļūdījāties ar lielo/mazo burtu lietojumu."
 
 #: src/practice/writtenbackendmode.cpp:122
 #, kde-format
 msgid "Your answer was right, but accents were wrong."
-msgstr "Jūsu atbilde bija pareiza, bet akcenti bija nepareizi."
+msgstr "Jūsu atbilde bija pareiza, bet kļūdījāties ar diakritiskajām zīmēm."
 
 #: src/practice/writtenbackendmode.cpp:124
 #, kde-format
@@ -3040,16 +2914,13 @@ msgid "Your answer was right."
 msgstr "Jūsu atbilde bija pareiza."
 
 #: src/practice/writtenbackendmode.cpp:128
-#, fuzzy, kde-format
-#| msgid ""
-#| "Your answer was right... but not on the first try and your capitalization "
-#| "was wrong."
+#, kde-format
 msgid ""
 "Your answer was right... but not on the first try and your punctuation was "
 "wrong."
 msgstr ""
-"Jūsu atbilde bija pareiza... bet ne pirmajā mēģinājumā, un lielo/mazo burtu "
-"izmantojums bija nepareizs."
+"Jūsu atbilde bija pareiza... bet ne pirmajā mēģinājumā, kā arī kļūdījāties "
+"ar interpunkciju."
 
 #: src/practice/writtenbackendmode.cpp:130
 #, kde-format
@@ -3057,16 +2928,16 @@ msgid ""
 "Your answer was right... but not on the first try and your capitalization "
 "was wrong."
 msgstr ""
-"Jūsu atbilde bija pareiza... bet ne pirmajā mēģinājumā, un lielo/mazo burtu "
-"izmantojums bija nepareizs."
+"Jūsu atbilde bija pareiza... bet ne pirmajā mēģinājumā, kā arī kļūdījāties "
+"ar lielo/mazo burtu lietojumu."
 
 #: src/practice/writtenbackendmode.cpp:132
 #, kde-format
 msgid ""
 "Your answer was right... but not on the first try and accents were wrong."
 msgstr ""
-"Jūsu atbilde bija pareiza... bet ne pirmajā mēģinājumā, un akcenti bija "
-"nepareizi."
+"Jūsu atbilde bija pareiza... bet ne pirmajā mēģinājumā, kā arī kļūdījāties "
+"ar diakritisko zīmju lietojumu."
 
 #: src/practice/writtenbackendmode.cpp:134
 #, kde-format
@@ -3081,7 +2952,7 @@ msgstr "Atrisinājums sākas ar: %1"
 #: src/practice/writtenpracticewidget.cpp:130
 #, kde-format
 msgid "Synonym: "
-msgstr "Sinonīmi: "
+msgstr "Sinonīms: "
 
 #. i18n: ectx: property (title), widget (QGroupBox, tiltle_group)
 #: src/settings/documentproperties.ui:38
@@ -3110,16 +2981,15 @@ msgstr "&Autors:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_author_2)
 #: src/settings/documentproperties.ui:102
-#, fuzzy, kde-format
-#| msgid "&Email:"
+#, kde-format
 msgid "E&mail:"
-msgstr "&E-pasts:"
+msgstr "&E-pasta adrese:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, contactLineEdit)
 #: src/settings/documentproperties.ui:121
 #, kde-format
 msgid "A way to contact you (email or a webpage)."
-msgstr "Veids, kā ar jums sazināties (e-pasts vai tīmekļa lapa)."
+msgstr "Veids, kā ar jums sazināties (e-pasta adrese vai tīmekļa vietne)."
 
 #. i18n: ectx: property (text), widget (QLabel, label_remark)
 #: src/settings/documentproperties.ui:128
@@ -3135,10 +3005,9 @@ msgstr "Jebkāda papildu informācija."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/settings/documentproperties.ui:160
-#, fuzzy, kde-format
-#| msgid "Cat&egory"
+#, kde-format
 msgid "Cate&gory:"
-msgstr "Kat&egorija"
+msgstr "Kat&egorija:"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:173
@@ -3174,7 +3043,7 @@ msgstr "Vēsture"
 #: src/settings/documentproperties.ui:205
 #, kde-format
 msgid "Test Preparation"
-msgstr "Testu sagatavošana"
+msgstr "Gatavošanās pārbaudes darbiem"
 
 #. i18n: ectx: property (text), widget (QLabel, label_license)
 #: src/settings/documentproperties.ui:213
@@ -3190,15 +3059,15 @@ msgid ""
 "If you consider contributing your file to KDE in the future, an appropriate "
 "license is required."
 msgstr ""
-"Licence, zem kādas būs jūsu dokuments.\n"
-"Ja apsverat iespēju savu failu nākotnē ziedot KDE, nepieciešama piemērota "
-"licence."
+"Ar kādu licenci licencējams jūsu dokuments.\n"
+"Ja apsverat iespēju savu datni nākotnē ziedot KDE, izvēlieties piemērotu "
+"licenci."
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/settings/documentproperties.ui:239
 #, kde-format
 msgid "GPLv2+ (GNU General Public License version 2 or later)"
-msgstr "GPLv2+ (GNU General Public License versija 2 vai vēlāka)"
+msgstr "GPLv2+ („GNU General Public License“ versija 2 vai vēlāka)"
 
 #. i18n: ectx: property (text), widget (QLabel, label_language_1)
 #: src/settings/documentproperties.ui:256
@@ -3214,16 +3083,13 @@ msgstr "&Otrā valoda:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
 #: src/settings/documentproperties.ui:311
-#, fuzzy, kde-format
-#| msgid "&Setup Grammar Details"
+#, kde-format
 msgid "&Setup grammar details"
 msgstr "Ie&statīt gramatiskās īpašības"
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgctxt "Attept to download grammar properties for the selected languages"
 msgid "Download grammar"
 msgstr "Lejupielādēt gramatiku"
@@ -3236,7 +3102,7 @@ msgstr "Lejupielādēt gramatiku"
 #: src/settings/languagesettings.kcfg:23 src/settings/languagesettings.kcfg:24
 #, kde-format
 msgid "Selected tenses for conjugation practice."
-msgstr "Izvēlētie laiki konfigurāciju vingrinājumam."
+msgstr "Atlasītie laiki konjugāciju vingrinājumam."
 
 #. i18n: ectx: label, entry (VisibleColumns), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (VisibleColumns), group (Document $(fileurl))
@@ -3253,7 +3119,7 @@ msgstr "Redzamās kolonnas galvenajā redaktora logā."
 #: src/settings/documentsettings.kcfg:20 src/settings/documentsettings.kcfg:21
 #, kde-format
 msgid "Collapsed tree view items of statistics view window."
-msgstr ""
+msgstr "Sakļauts statistikas skata loga koka skats."
 
 #: src/settings/generaloptions.cpp:43
 #, kde-format
@@ -3313,13 +3179,13 @@ msgstr " :: "
 #: src/settings/generaloptionsbase.ui:17
 #, kde-format
 msgid "Open/Save"
-msgstr "Atvērt/Saglabāt"
+msgstr "Atvēršana/saglabāšana"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AutoOpenLast)
 #: src/settings/generaloptionsbase.ui:23
 #, kde-format
 msgid "Always open the collection that was active when quitting Parley"
-msgstr "Vienmēr atvērt kolekciju, kas bija aktīva, izejot no Parley"
+msgstr "Vienmēr atvērt kolekciju, kas bija atvērta, izejot no „Parley“"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoOpenLast)
 #: src/settings/generaloptionsbase.ui:26
@@ -3328,8 +3194,8 @@ msgid ""
 "When this option is checked, the last active collection will be loaded "
 "automatically when starting Parley instead of showing the welcome screen."
 msgstr ""
-"Kad šī opcija ir izvēlēta, palaižot Parley, tiks automātiski ielādēta pēdējā "
-"aktīvā kolekcija tā vietā, lai rādītu sveiciena ekrānu."
+"Ja ir izvēlēta šī opcija, palaižot „Parley“, programma sveiciena ekrāna "
+"vietā automātiski ielādēs pēdējās sesijas laikā aktīvo kolekciju"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoOpenLast)
 #: src/settings/generaloptionsbase.ui:29
@@ -3342,20 +3208,20 @@ msgstr "Palaižot vienmēr ielādēt pēdējo atvērto kolekciju"
 #: src/settings/generaloptionsbase.ui:39 src/settings/generaloptionsbase.ui:60
 #, kde-format
 msgid "Allow automatic saving of your work"
-msgstr "Ļaut automātisku jūsu darba sagabāšanu"
+msgstr "Ļaut darba automātisku saglabāšanu"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoSave)
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:42 src/settings/generaloptionsbase.ui:63
 #, kde-format
 msgid "Your work will be automatically saved if you check this option"
-msgstr "Ja atzīmēsiet šo opciju, jūsu darbs tiks automātiski saglabāts"
+msgstr "Ja atzīmēsiet šo opciju, jūsu darbu programma saglabās automātiski"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoSave)
 #: src/settings/generaloptionsbase.ui:45
 #, kde-format
 msgid "&Save vocabularies automatically on close and quit"
-msgstr "Izejot automātiski &saglabāt vārdnīcas"
+msgstr "Aizverot programmu, automātiski &saglabāt vārdnīcas"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_AutoBackup)
 #: src/settings/generaloptionsbase.ui:66
@@ -3373,7 +3239,7 @@ msgstr "minūtes"
 #: src/settings/generaloptionsbase.ui:100
 #, kde-format
 msgid "Sep&arator for text file import/export (CSV):"
-msgstr "Atdalītājs teksta faila importēšanai/eksportēšanai (CSV):"
+msgstr "&Atdalītājs teksta datnes importēšanai/eksportēšanai (CSV):"
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, kcfg_SeparatorCombo)
 #: src/settings/generaloptionsbase.ui:116
@@ -3382,8 +3248,8 @@ msgid ""
 "Choose which separator you want to use to separate your data when importing "
 "and exporting text."
 msgstr ""
-"Izvēlieties, kādu atdalītāju vēlaties lietot, lai, importējot un eksportējot "
-"tekstu, atdalītu datus."
+"Izvēlieties lietojamo atdalītāju, lai, importējot un eksportējot tekstu, "
+"atdalītu datus."
 
 #. i18n: ectx: property (whatsThis), widget (KComboBox, kcfg_SeparatorCombo)
 #: src/settings/generaloptionsbase.ui:119
@@ -3392,7 +3258,7 @@ msgid ""
 "Choose the separator to use to divide the parts of an expression when "
 "importing or exporting data as text."
 msgstr ""
-"Izvēlieties, kādu atdalītāju lietot, lai, importējot un eksportējot datus kā "
+"Izvēlieties lietojamo atdalītāju, lai, importējot un eksportējot datus kā "
 "tekstu, atdalītu izteiksmju daļas."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
@@ -3405,25 +3271,25 @@ msgstr "Rediģēšana"
 #: src/settings/generaloptionsbase.ui:162
 #, kde-format
 msgid "&Append new rows automatically when editing"
-msgstr "Rediģējot pievienot j&aunas rindas automātiski"
+msgstr "&Rediģējot automātiski pievienot jaunas rindas"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, getNewButton)
 #: src/settings/kgametheme/kgamethemeselector.ui:37
 #, kde-format
 msgid "&Get New Themes..."
-msgstr "Ielā&dēt jaunas tēmas..."
+msgstr "Ielā&dēt jaunus motīvus..."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/kgametheme/kgamethemeselector.ui:94
 #, kde-format
 msgid "Theme Details"
-msgstr "Tēmas detaļas"
+msgstr "Motīva informācija"
 
 #. i18n: ectx: property (text), widget (QLabel, labelContact)
 #: src/settings/kgametheme/kgamethemeselector.ui:128
 #, kde-format
 msgid "Contact:"
-msgstr "Kontakts:"
+msgstr "Saziņai:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelDescription)
 #: src/settings/kgametheme/kgamethemeselector.ui:163
@@ -3438,8 +3304,7 @@ msgid "Author:"
 msgstr "Autors:"
 
 #: src/settings/languageproperties.cpp:23
-#, fuzzy, kde-format
-#| msgid "Edit Languages"
+#, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
 msgstr "Rediģēt valodas"
@@ -3452,7 +3317,7 @@ msgstr "Pievienot valodas"
 #: src/settings/languageproperties.cpp:30
 #, kde-format
 msgid "Remove language"
-msgstr "Izņemt valodu"
+msgstr "Noņemt valodu"
 
 #: src/settings/languageproperties.cpp:45
 #, kde-format
@@ -3463,7 +3328,7 @@ msgstr "Jauna valoda"
 #, kde-format
 msgctxt "Edit language properties"
 msgid "Properties for %1"
-msgstr "%1 īpašības"
+msgstr "„%1“ īpašības"
 
 #: src/settings/languageproperties.cpp:88
 #, kde-format
@@ -3473,12 +3338,12 @@ msgstr "Vai tiešām dzēst valodu: %1?"
 #: src/settings/languageproperties.cpp:89
 #, kde-format
 msgid "Remove Language"
-msgstr "Izņemt valodu"
+msgstr "Noņemt valodu"
 
 #: src/settings/languagepropertiespage.cpp:85
 #, kde-format
 msgid "No KDE keyboard selector found."
-msgstr "Neviens KDE tastatūras atlasītājs netika atrasts."
+msgstr "Nav atrasts neviens KDE tastatūras atlasītājs."
 
 #: src/settings/languagepropertiespage.cpp:348
 #: src/settings/languagepropertiespage.cpp:370
@@ -3490,7 +3355,7 @@ msgstr "Laika nosaukums"
 #: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Enter name of tense:"
-msgstr "Ievadiet laika nosaukumu:"
+msgstr "Ierakstiet laika nosaukumu:"
 
 #: src/settings/languagepropertiespage.cpp:400
 #, kde-format
@@ -3498,7 +3363,7 @@ msgid ""
 "The selected user defined tense could not be deleted\n"
 "because it is in use."
 msgstr ""
-"Izvēlēto lietotāja definēto laiku nevar dzēst,\n"
+"Atlasīto lietotāja definēto laiku nevar dzēst,\n"
 "jo tas tiek lietots."
 
 #: src/settings/languagepropertiespage.cpp:401
@@ -3526,8 +3391,7 @@ msgstr "Tastatūras izkārtojums:"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
-#, fuzzy, kde-format
-#| msgid "&Download Grammar"
+#, kde-format
 msgid "&Download grammar"
 msgstr "&Lejupielādēt gramatiku"
 
@@ -3553,7 +3417,7 @@ msgstr "Fonts (vingrināšanās):"
 #: src/settings/languagepropertiespage.ui:127
 #, kde-format
 msgid "Font (editor):"
-msgstr "Fonts (redaktors):"
+msgstr "Fonts (redaktoram):"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
 #: src/settings/languagepropertiespage.ui:141
@@ -3599,7 +3463,7 @@ msgstr "&Sieviešu:"
 #: src/settings/languagepropertiespage.ui:339
 #, kde-format
 msgid "&Neutral:"
-msgstr "&Neitrāls:"
+msgstr "&Nekatra:"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_3)
 #: src/settings/languagepropertiespage.ui:451
@@ -3641,7 +3505,7 @@ msgstr "&Sieviešu:"
 #: src/settings/languagepropertiespage.ui:661
 #, kde-format
 msgid "Neu&ter:"
-msgstr "&Neitrāls:"
+msgstr "&Nekatra:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, dualCheckBox)
 #: src/settings/languagepropertiespage.ui:697
@@ -3653,7 +3517,7 @@ msgstr "Divskaitļu konjugācijas"
 #: src/settings/languagepropertiespage.ui:704
 #, kde-format
 msgid "A neutral conjugation form exists"
-msgstr "Pastāv neitrāla konjugācijas forma"
+msgstr "Pastāv nekatra konjugācijas forma"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maleFemaleDifferCheckBox)
 #: src/settings/languagepropertiespage.ui:717
@@ -3691,26 +3555,26 @@ msgstr "&Dzēst"
 #: src/settings/languagesettings.kcfg:12 src/settings/languagesettings.kcfg:13
 #, kde-format
 msgid "Keyboard layout for this locale"
-msgstr "Tastatūras izkārtojums šajai lokālei"
+msgstr "Tastatūras izkārtojums šai lokālei"
 
 #. i18n: ectx: label, entry (SpellChecker), group (Locale $(locale))
 #. i18n: ectx: whatsthis, entry (SpellChecker), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:17 src/settings/languagesettings.kcfg:18
 #, kde-format
 msgid "Spell checker for this language"
-msgstr "Pareizrakstības pārbaudītājs šajai valodai"
+msgstr "Pareizrakstības pārbaudītājs šai valodai"
 
 #. i18n: ectx: label, entry (PracticeFont), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:32
 #, kde-format
 msgid "The font used during practice"
-msgstr "Vingrinājumā izmanotais fonts"
+msgstr "Vingrinājumā izmantotais fonts"
 
 #. i18n: ectx: label, entry (EditorFont), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:36
 #, kde-format
 msgid "The font used in the editor"
-msgstr "Redaktorā izmantojamais fonts"
+msgstr "Redaktorā izmantotais fonts"
 
 #. i18n: ectx: property (text), widget (QPushButton, cleanUpButton)
 #: src/settings/optionlistform.ui:124
@@ -3722,7 +3586,7 @@ msgstr "&Attīrīt"
 #: src/settings/parley.kcfg:11
 #, kde-format
 msgid "Theme to use for practice and welcome screen"
-msgstr "Vingrinājumiem un sveiciena ekrānam izmantojamā tēma"
+msgstr "Vingrinājumiem un sveiciena ekrānam izmantojamais motīvs"
 
 #. i18n: ectx: label, entry (NumPreSetting), group (General)
 #: src/settings/parley.kcfg:15
@@ -3736,37 +3600,38 @@ msgstr "Uzglabāto iestatījumu profilu skaits"
 msgid ""
 "If true, when using the entry dialog, new rows will be appended as needed"
 msgstr ""
-"Ja patiess, jaunas rindas tiks pievienotas pēc vajadzības, kad tiks "
-"izmantots ievadīšanas dialoglogs"
+"Ja patiess, ievadīšanas lodziņā jaunas rindas programma pievienos pēc "
+"vajadzības"
 
 #. i18n: ectx: label, entry (Separator), group (General)
 #: src/settings/parley.kcfg:23
 #, kde-format
 msgid "This sets the separator used when copying/pasting text, default is Tab"
 msgstr ""
-"Šis iestata atdalītāju, ko izmantot, kad tiek kopēts/ielīmēts teksts, "
-"noklusējums ir tabulators"
+"Nosaka atdalītāju, ko izmantot, kopējot/ielīmējot teksti. Noklusējums ir "
+"tabulators"
 
 #. i18n: ectx: label, entry (EntriesPerLesson), group (General)
 #: src/settings/parley.kcfg:27
-#, fuzzy, kde-format
-#| msgid "The number of entries per lesson"
+#, kde-format
 msgid "The number of entries per unit"
-msgstr "Ierakstu skaits nodarbībā"
+msgstr "Ierakstu skaits uz vienību"
 
 #. i18n: ectx: label, entry (AutoOpenLast), group (General)
 #: src/settings/parley.kcfg:31
 #, kde-format
 msgid "If true, on each application start the last opened file will be loaded"
 msgstr ""
-"Ja patiess, katrā lietotnes palaišanas reizē tiks ielādēts pēdējais "
-"atvērtais fails"
+"Ja patiess, katrā lietotnes palaišanas reizē programma ielādēs pēdējo "
+"atvērto datni"
 
 #. i18n: ectx: label, entry (AutoSave), group (General)
 #: src/settings/parley.kcfg:35
 #, kde-format
 msgid "If true, vocabularies are automatically saved on close and exit"
-msgstr "Ja patiess, aizverot un izejot vārdnīcas automātiski tiek saglabātas"
+msgstr ""
+"Ja patiess, programma automātiski saglabās izmaiņas, aizverot un izejot "
+"vārdnīcas"
 
 #. i18n: ectx: label, entry (AutoBackup), group (General)
 #: src/settings/parley.kcfg:42
@@ -3799,8 +3664,7 @@ msgstr "Rādīt attēlus vārdu kartītes aizmugurē."
 #, kde-format
 msgid "In Blocking Query Tab Dialog, if checked then the Query is blocked"
 msgstr ""
-"Vaicājuma bloķēšanas cilnes dialoglogā — ja atzīmēts, tad vaicājums tiek "
-"bloķēts"
+"Vaicājuma bloķēšanas cilnes lodziņā — ja atzīmēts, tad vaicājums tiek bloķēts"
 
 #. i18n: ectx: label, entry (Expire), group (PracticeOptions)
 #: src/settings/parley.kcfg:69
@@ -3809,21 +3673,18 @@ msgid ""
 "In Blocking Query Tab Dialog, if checked then the Query accepts an expiring "
 "time"
 msgstr ""
-"Vaicājuma bloķēšanas cilnes dialoglogā — ja atzīmēts, tad vaicājums pieņem "
+"Vaicājuma bloķēšanas cilnes lodziņā — ja atzīmēts, tad vaicājums pieņem "
 "termiņa beigu laiku"
 
 #. i18n: ectx: label, entry (TestOrderLesson), group (PracticeOptions)
 #: src/settings/parley.kcfg:73
-#, fuzzy, kde-format
-#| msgid ""
-#| "Append new vocabulary in a test in order of their lessons. Note that this "
-#| "will not be a hard transition, but a slow mix from one lesson to the next."
+#, kde-format
 msgid ""
 "Append new vocabulary in a collection in order of their units. Note that "
 "this will not be a hard transition, but a slow mix from one unit to the next."
 msgstr ""
-"Jaunus vārdus testā pievienot tā nodarbību secībā. Ievērojiet, ka tā nebūs "
-"momentāna, bet gan pakāpeniska pāreja."
+"Jaunu vārdnīcu kolekcijai pievienot to vienību kārtībā. Ievērojiet, ka šī "
+"nebūs rupja pāreja, bet lēnas sajaukums starp abām vienībām."
 
 #. i18n: ectx: label, entry (TestNumberOfEntries), group (PracticeOptions)
 #: src/settings/parley.kcfg:77
@@ -3832,8 +3693,8 @@ msgid ""
 "The number of entries that are practiced at the same time. If one of these "
 "is answered correctly another entry will be appended."
 msgstr ""
-"Ierakstu skaits, ar kādu vingrināties vienlaikus. Ja viens no tiem tiek "
-"atbildēts pareizi, tiek pievienots cits ieraksts."
+"Ierakstu skaits, ar kādu vingrināties vienlaikus. Ja uz vienu no tiem "
+"atbildēsiet pareizi, programma pievienos citu ierakstu."
 
 #. i18n: ectx: label, entry (SwapDirection), group (PracticeOptions)
 #: src/settings/parley.kcfg:81
@@ -3854,8 +3715,8 @@ msgid ""
 "Show - show the solution after the given time; Continue - go to the next "
 "question after the given time."
 msgstr ""
-"'Rādīt' — parādīt atrisinājumu pēc dotā laika; 'Turpināt' — pēc dotā laika "
-"iet uz nākamo jautājumu."
+"„Rādīt“ — beidzoties laikam, parādīt atrisinājumu. „Turpināt“ — beidzoties "
+"laikam, iet uz nākamo jautājumu."
 
 #. i18n: ectx: label, entry (PracticeTimeoutTimePerAnswer), group (PracticeOptions)
 #: src/settings/parley.kcfg:98
@@ -3873,28 +3734,28 @@ msgstr "Ieslēgt ieteikumu sarakstus rakstveida vingrinājumos."
 #: src/settings/parley.kcfg:107
 #, kde-format
 msgid "Enable the showing of hints."
-msgstr "Ieslēgt ieteikumu rādīšanu."
+msgstr "Ieslēgt mājienu rādīšanu."
 
 #. i18n: ectx: label, entry (IgnoreAccentMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:111
 #, kde-format
 msgid "Count answers as right when only the accentuation is wrong."
-msgstr "Ieskaitīt atbildes kā pareizas tikai tad, ja akcentējums ir nepareizs."
+msgstr ""
+"Ieskaitīt atbildes kā pareizas, ja nepareizas ir tikai diakritiskās zīmes."
 
 #. i18n: ectx: label, entry (IgnoreCapitalizationMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:115
 #, kde-format
 msgid "Count answers as right when only the capitalization is wrong."
 msgstr ""
-"Ieskaitīt atbildes kā pareizas tikai tad, ja lielo/mazo burtu lietojums ir "
-"nepareizs."
+"Ieskaitīt atbildes kā pareizas, ja nepareizs ir tikai lielo/mazo burtu "
+"lietojums."
 
 #. i18n: ectx: label, entry (IgnorePunctuationMistakes), group (PracticeOptions)
 #: src/settings/parley.kcfg:119
-#, fuzzy, kde-format
-#| msgid "Count answers as right when only the accentuation is wrong."
+#, kde-format
 msgid "Count answers as right when only the punctuation is wrong."
-msgstr "Ieskaitīt atbildes kā pareizas tikai tad, ja akcentējums ir nepareizs."
+msgstr "Ieskaitīt atbildes kā pareizas, ka nepareiza ir tikai interpunkcija."
 
 #. i18n: ectx: label, entry (SplitTranslations), group (PracticeOptions)
 #: src/settings/parley.kcfg:124
@@ -3912,7 +3773,7 @@ msgstr "Sadalīt tulkojumus pie punktiem."
 #: src/settings/parley.kcfg:132
 #, kde-format
 msgid "Split translations at colons."
-msgstr "Sadalīt tulkojumus pie semikoliem."
+msgstr "Sadalīt tulkojumus pie koliem."
 
 #. i18n: ectx: label, entry (Semicolons), group (PracticeOptions)
 #: src/settings/parley.kcfg:136
@@ -3932,49 +3793,50 @@ msgstr "Sadalīt tulkojumus pie komatiem."
 msgid ""
 "Enable Show More button to reveal parts of the solution in written practice."
 msgstr ""
-"Ieslēgt pogu 'Rādīt vairāk', lai atklātu daļas no risinājuma rakstveida "
-"vingrinājumos."
+"Ieslēgt pogu „Rādīt vairāk“, lai rakstveida vingrinājumos atklātu daļas no "
+"risinājuma."
 
 #. i18n: ectx: label, entry (SkipKnownEnabled), group (PracticeOptions)
 #: src/settings/parley.kcfg:150
 #, kde-format
 msgid "Enable Skip (I Know It) button in written practice."
-msgstr "Ieslēgt pogu 'Izlaist (es to zinu)' rakstveida vingrinājumos."
+msgstr "Rakstveida vingrinājumos rādīt pogu „Izlaist (es to zinu)“."
 
 #. i18n: ectx: label, entry (CountSynonymsAsCorrect), group (PracticeOptions)
 #: src/settings/parley.kcfg:154
 #, kde-format
 msgid ""
 "When the synonym instead of the word was entered, does it count as correct?"
-msgstr "Vai ieskaitīt kā pareizu, ja vārda vietā tika ievadīts sinonīms?"
+msgstr "Vai ieskaitīt kā pareizu, ja vārda vietā ievadāt sinonīmu?"
 
 #. i18n: ectx: label, entry (PracticeImagesEnabled), group (PracticeOptions)
 #: src/settings/parley.kcfg:158
 #, kde-format
 msgid "Enable image display in the practice dialogs."
-msgstr "Ieslēgt attēlu rādīšanu vingrinājumu dialoglogos."
+msgstr "Ieslēgt attēlu rādīšanu vingrinājumu lodziņos."
 
 #. i18n: ectx: label, entry (PracticeSoundEnabled), group (PracticeOptions)
 #: src/settings/parley.kcfg:162
 #, kde-format
 msgid "Enable sound playback in the practice dialogs."
-msgstr "Ieslēgt skaņu atskaņošanu vingrinājumu dialoglogos."
+msgstr "Ieslēgt skaņu atskaņošanu vingrinājumu lodziņos."
 
 #. i18n: ectx: label, entry (AllowImageInsteadOfWord), group (PracticeOptions)
 #: src/settings/parley.kcfg:166
-#, fuzzy, kde-format
-#| msgid "Show images on the back of the flashcard."
+#, kde-format
 msgid ""
 "Allow using images instead of words in flashcards. This will only be done if "
 "there is no word in the entry."
-msgstr "Rādīt attēlus vārdu kartītes aizmugurē."
+msgstr ""
+"Atļaut attēlu lietošanu kartiņās vārdu vietā. Tas notiks tikai tad, ka "
+"ierakstam nav vārda."
 
 #. i18n: ectx: label, entry (SessionMaxSize), group (PracticeOptions)
 #: src/settings/parley.kcfg:172
 #, kde-format
 msgid ""
 "The maximum number of words that will be practiced in a training session."
-msgstr ""
+msgstr "Maksimālais  vārdu skaits, ko mācīties vienā vingrinājumu sesijā."
 
 #. i18n: ectx: label, entry (SessionMaxNewWords), group (PracticeOptions)
 #: src/settings/parley.kcfg:176
@@ -3983,12 +3845,14 @@ msgid ""
 "The maximum number of new (untrained) words that will be used in a training "
 "session."
 msgstr ""
+"Maksimālais jaunu (nemacītu) vārdu skaits, ko izmantot vienā vingrinājumu "
+"sesijā."
 
 #. i18n: ectx: label, entry (SessionLimitWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:180
 #, kde-format
 msgid "Limit the number of words in the initial phase."
-msgstr ""
+msgstr "Ierobežot vārdu skaitu sākotnējā fāzē."
 
 #. i18n: ectx: label, entry (SessionMaxWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:184
@@ -3997,6 +3861,8 @@ msgid ""
 "The maximum number of words in the initial phase. If this limit is exceeded, "
 "no new words will be introduced."
 msgstr ""
+"Maksimālais vārdu skaits sākotnējā fāzē. Ja šis ierobežojums ir pārsniegts, "
+"jaunus vārdus programma nerādīs."
 
 #. i18n: ectx: label, entry (MultipleChoiceWordTypeConsistancy), group (PracticeOptions)
 #: src/settings/parley.kcfg:190
@@ -4005,8 +3871,8 @@ msgid ""
 "Use the same word type as the solution for the incorrect answers in a "
 "multiple choice practice."
 msgstr ""
-"Vairāku iespēju vingrinājumā nepareizajām atbildēm izmantot tādu pašu vārdu "
-"tipu, kādu atrisinājumam."
+"vingrinājumā ar atbilžu variantiem visos atbilžu variantos izmantot vienu un "
+"to pašu vārda tipu."
 
 #. i18n: ectx: label, entry (NumberMultipleChoiceAnswers), group (PracticeOptions)
 #: src/settings/parley.kcfg:194
@@ -4014,7 +3880,9 @@ msgstr ""
 msgid ""
 "How many answers are provided for a multiple choice question, including the "
 "correct answer."
-msgstr "Atbilžu skaits vairāku iespēju jautājumā, ieskaitot pareizo atbildi."
+msgstr ""
+"Cik daudz atbildu rādīt vingrinājumā ar atbilžu variantiem, ieskaitot "
+"pareizo atbildi"
 
 #. i18n: ectx: label, entry (ShowSearch), group (Appearance)
 #: src/settings/parley.kcfg:201
@@ -4024,17 +3892,15 @@ msgstr "Pārslēgt meklēšanas joslas rādīšanu."
 
 #. i18n: ectx: label, entry (ShowSublessonentries), group (Appearance)
 #: src/settings/parley.kcfg:206
-#, fuzzy, kde-format
-#| msgid "When enabled a lesson also shows entries from its sublessons."
+#, kde-format
 msgid "When enabled a unit also shows entries from its subunits."
-msgstr "Kad ieslēgts, nodarbība rāda ierakstus arī no tās apakšnodarbībām."
+msgstr "Kad ieslēgts vienība rāda arī ierakstus no tās apakšvienībām."
 
 #. i18n: ectx: label, entry (TableLessonColumnVisible), group (Appearance)
 #: src/settings/parley.kcfg:211
-#, fuzzy, kde-format
-#| msgid "Show/hide the lesson column."
+#, kde-format
 msgid "Show/hide the unit column."
-msgstr "Rādīt/slēpt nodarbības kolonnu."
+msgstr "Rādīt/slēpt vienības kolonnu."
 
 #. i18n: ectx: label, entry (TableActiveColumnVisible), group (Appearance)
 #: src/settings/parley.kcfg:216
@@ -4044,16 +3910,15 @@ msgstr "Rādīt/slēpt aktīvo kolonnu."
 
 #. i18n: ectx: label, entry (LessonEditingSelection), group (Appearance)
 #: src/settings/parley.kcfg:221
-#, fuzzy, kde-format
-#| msgid "Select which lessons are displayed for editing"
+#, kde-format
 msgid "Select which units are displayed for editing"
-msgstr "Izvēlieties, kuras nodarbības tiek rādītas rediģēšanai"
+msgstr "Atlasiet, kuras vienības parādīt rediģēšanai"
 
 #. i18n: ectx: label, entry (MainWindowSplitter), group (Appearance)
 #: src/settings/parley.kcfg:231
 #, kde-format
 msgid "How the main window is divided."
-msgstr "Kā galvenais logs ir sadalīts."
+msgstr "Kā sadalīt galveno logu."
 
 #. i18n: ectx: label, entry (PracticeFont), group (Appearance)
 #: src/settings/parley.kcfg:235
@@ -4071,35 +3936,32 @@ msgstr "Fonētikai izmantojamais fonts"
 #: src/settings/parley.kcfg:243
 #, kde-format
 msgid "Currently selected column"
-msgstr "Pašreiz izvēlētā kolonna"
+msgstr "Pašreiz atlasītā kolonna"
 
 #. i18n: ectx: label, entry (CurrentRow), group (Appearance)
 #: src/settings/parley.kcfg:247
 #, kde-format
 msgid "Currently selected row"
-msgstr "Pašreiz izvēlētā rinda"
+msgstr "Pašreiz atlasītā rinda"
 
 #. i18n: ectx: label, entry (GradeColor), group (Appearance)
 #: src/settings/parley.kcfg:251
-#, fuzzy, kde-format
-#| msgid "Colors used to display different grades"
+#, kde-format
 msgid "Color used to display the confidence levels"
-msgstr "Atšķirīgu pakāpju attēlošanai izmantotās krāsas"
+msgstr "Krāsa pārliecības līmeņu parādīšanai"
 
 #. i18n: ectx: label, entry (PreGradeColor), group (Appearance)
 #: src/settings/parley.kcfg:255
-#, fuzzy, kde-format
-#| msgid "Colors used to display different grades"
+#, kde-format
 msgid "Color used to display the early confidence levels"
-msgstr "Atšķirīgu pakāpju attēlošanai izmantotās krāsas"
+msgstr "Krāsa pirmo pārliecības līmeņu parādīšanai"
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:184
-#, fuzzy, kde-format
-#| msgid "Colors used to display different grades"
+#, kde-format
 msgid "Color used to display invalid units"
-msgstr "Atšķirīgu pakāpju attēlošanai izmantotās krāsas"
+msgstr "Krāsa nederīgu vienību parādīšanai"
 
 #. i18n: ectx: label, entry (PracticeMinimumTimesAsked), group (Thresholds)
 #: src/settings/parley.kcfg:267
@@ -4108,8 +3970,8 @@ msgid ""
 "The entry must have been asked at least this often to be included in the "
 "practice."
 msgstr ""
-"Ierakstam jābūt vaicātam vismaz šādu reižu skaitu, lai to iekļautu "
-"vingrinājumā."
+"Lai ierakstu iekļautu vingrinājumā, tam ir jābūt vaicātam vismaz šādu reižu "
+"skaitu."
 
 #. i18n: ectx: label, entry (PracticeMaximumTimesAsked), group (Thresholds)
 #: src/settings/parley.kcfg:271
@@ -4118,8 +3980,8 @@ msgid ""
 "The entry must have been asked at most this often to be included in the "
 "practice."
 msgstr ""
-"Ierakstam jābūt vaicātam, maksimums, šādu reižu skaitu, lai to iekļautu "
-"vingrinājumā."
+"Lai ierakstu iekļautu vingrinājumā, tam ir jābūt vaicātam ne vairāk par šādu "
+"reižu skaitu."
 
 #. i18n: ectx: label, entry (PracticeMinimumWrongCount), group (Thresholds)
 #: src/settings/parley.kcfg:276
@@ -4128,8 +3990,8 @@ msgid ""
 "The entry must have been answered incorrectly at least this often to be "
 "included in the practice."
 msgstr ""
-"Ierakstam jābūt atbildētam nepareizi vismaz šādu reižu skaitu, lai to "
-"iekļautu vingrinājumā."
+"Lai ierakstu iekļautu vingrinājumā, tad ir jābūt atbildētam nepareizi vismaz "
+"šādu reižu skaitu."
 
 #. i18n: ectx: label, entry (PracticeMaximumWrongCount), group (Thresholds)
 #: src/settings/parley.kcfg:280
@@ -4138,39 +4000,34 @@ msgid ""
 "The entry must have been answered incorrectly at most this often to be "
 "included in the practice."
 msgstr ""
-"Ierakstam jābūt atbildētam nepareizi, maksimums, šādu reižu skaitu, lai to "
-"iekļautu vingrinājumā."
+"Lai ierakstu iekļautu vingrinājumā, tad ir jābūt atbildētam nepareizi ne "
+"vairāk par šādu reižu skaitu."
 
 #. i18n: ectx: label, entry (PracticeMinimumGrade), group (Thresholds)
 #: src/settings/parley.kcfg:285
-#, fuzzy, kde-format
-#| msgid ""
-#| "The entry must have at least this grade to be included in the practice "
-#| "(0..7)."
+#, kde-format
 msgid ""
 "The entry must have at least this confidence level to be included in the "
 "practice (0..7)."
 msgstr ""
-"Ierakstam jābūt vismaz šādai pakāpei, lai to iekļautu vingrinājumā (0..7)."
+"Lai ierakstu iekļautu vingrinājumā, tam ir jābūt vismaz šādam pārliecības "
+"līmenim (0..7)."
 
 #. i18n: ectx: label, entry (PracticeMaximumGrade), group (Thresholds)
 #: src/settings/parley.kcfg:289
-#, fuzzy, kde-format
-#| msgid ""
-#| "The entry must have at most this grade to be included in the practice "
-#| "(0..7)."
+#, kde-format
 msgid ""
 "The entry must have at most this confidence level to be included in the "
 "practice (0..7)."
 msgstr ""
-"Ierakstam jābūt, maksimums, šādai pakāpei, lai to iekļautu vingrinājumā "
-"(0..7)."
+"Lai ierakstu iekļautu vingrinājumā, tam ir jābūt ne lielākam šādam "
+"pārliecības līmenim par šo (0..7)."
 
 #. i18n: ectx: label, entry (WordTypesInPracticeEnabled), group (Thresholds)
 #: src/settings/parley.kcfg:293
 #, kde-format
 msgid "Only selected word types will be included in practice."
-msgstr "Vingrinājumā tiks iekļauti tikai izvēlētie vārdu tipi."
+msgstr "Vingrinājumā tiks iekļauti tikai atlasītie vārdu tipi."
 
 #. i18n: ectx: label, entry (WordTypesInPractice), group (Thresholds)
 #. i18n: ectx: whatsthis, entry (WordTypesInPractice), group (Thresholds)
@@ -4188,17 +4045,15 @@ msgstr "Izvēlētie vārdu apakštipi vingrinājumiem."
 
 #. i18n: ectx: label, entry (LearningLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:309
-#, fuzzy, kde-format
-#| msgid "The language that is displayed in a test."
+#, kde-format
 msgid "The language that you are learning."
-msgstr "Valoda, kas tiek attēlota testā."
+msgstr "Valodu, kuru mācaties."
 
 #. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:313
-#, fuzzy, kde-format
-#| msgid "The language in which the user has to answer."
+#, kde-format
 msgid "The language that you know already."
-msgstr "Valoda, kādā lietotājam ir jāatbild."
+msgstr "Valoda, kuru jau zināt."
 
 #. i18n: ectx: label, entry (ShowSolutionAfterAnswer), group (PracticeManager)
 #: src/settings/parley.kcfg:318
@@ -4210,46 +4065,44 @@ msgstr "Pēc atbildēšanas parādīt risinājumu."
 #: src/settings/parley.kcfg:322
 #, kde-format
 msgid "The time the solution is shown (seconds). 0 is unlimited."
-msgstr "Atrisinājuma rādītšanas ilgums (sekundēs). 0 — neierobežots."
+msgstr "Atrisinājuma rādīšanas ilgums (sekundēs). 0 — neierobežots."
 
 #. i18n: ectx: label, entry (PracticeMode), group (PracticeManager)
 #: src/settings/parley.kcfg:337
-#, fuzzy, kde-format
-#| msgid "The practice mode that is currently selected."
+#, kde-format
 msgid "The practice method that is currently selected."
-msgstr "Pašreiz izvēlētais vingrināšanās režīms."
+msgstr "Šobrīd izmantotā vingrināšanās metode."
 
 #. i18n: ectx: label, entry (PracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:348
 #, kde-format
 msgid "The practice mode that is currently selected."
-msgstr "Pašreiz izvēlētais vingrināšanās režīms."
+msgstr "Šobrīd atlasītā vingrināšanās metode."
 
 #. i18n: ectx: label, entry (BlockItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:354
-#, fuzzy, kde-format
-#| msgid "Amount of time different grades should be blocked"
+#, kde-format
 msgid "Amount of time different confidence levels should be blocked"
-msgstr "Atšķirīgu pakāpju bloķēšanas ilgums"
+msgstr "Laiks, uz kādu ir jābloķē dažādi pārliecības līmeņi"
 
 #. i18n: ectx: label, entry (ExpireItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:365
-#, fuzzy, kde-format
-#| msgid "Amount of time after which different grades should expire"
+#, kde-format
 msgid "Amount of time after which different confidence levels should expire"
-msgstr "Laiks, pēc kāda dažādām pakāpēm beidzas termiņš"
+msgstr "Laiks, pēc kura dažādi pārliecības līmeņi zaudē aktualitāti"
 
 #. i18n: ectx: label, entry (RememberPracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:375
 #, kde-format
 msgid "If true, the practice direction for each practice mode is stored."
 msgstr ""
+"Ja patiess, programma saglabā katras vingrināšanās vingrināšanās virzienu."
 
 #. i18n: ectx: whatsthis, entry (RememberPracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:376
 #, kde-format
 msgid "Should the practice direction for each practice mode be stored?"
-msgstr ""
+msgstr "Vai saglabāt katras vingrināšanās vingrināšanās virzienu?"
 
 #. i18n: ectx: label, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
 #. i18n: ectx: whatsthis, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
@@ -4257,12 +4110,13 @@ msgstr ""
 #, kde-format
 msgid "Stored values of practice direction for each practice mode."
 msgstr ""
+"Katras vingrināšanās režīma vingrināšanās virziena saglabātās vērtības."
 
 #. i18n: ectx: label, entry (ProvidersUrl), group (KNewStuff)
 #: src/settings/parley.kcfg:387
 #, kde-format
 msgid "The Providers path for Parley"
-msgstr "Parley nodrošinātāja ceļš"
+msgstr "„Parley“ sniedzēju ceļš"
 
 #. i18n: ectx: label, entry (InstallationCommand), group (KNewStuff)
 #: src/settings/parley.kcfg:391
@@ -4274,12 +4128,12 @@ msgstr "Komanda lejupielādētās vārdnīcas palaišanai"
 #: src/settings/parley.kcfg:395
 #, kde-format
 msgid "The folder where downloaded vocabularies are saved by default"
-msgstr "Noklusētā mape, kur saglabāt lejupielādētās vārdnīcas"
+msgstr "Noklusējuma mape, kurā saglabāt lejupielādētās vārdnīcas"
 
 #: src/settings/parleyprefs.cpp:24
 #, kde-format
 msgid "Theme"
-msgstr "Tēma"
+msgstr "Motīvs"
 
 #: src/settings/parleyprefs.cpp:27
 #, kde-format
@@ -4303,43 +4157,41 @@ msgid "View Settings"
 msgstr "Skata iestatījumi"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Enter the correct translation:"
+#, kde-format
 msgid "Online Translations"
-msgstr "Ievadiet korektu tulkojumu:"
+msgstr "Tiešsaistes tulkošana"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Split translations at periods."
+#, kde-format
 msgid "Online Translation Services"
-msgstr "Sadalīt tulkojumus pie punktiem."
+msgstr "Tiešsaistes tulkošanas pakalpojumi"
 
 #: src/settings/translationshelloptions.cpp:22
 #, kde-format
 msgid "translate-shell is available."
-msgstr ""
+msgstr "„translate-shell“ ir pieejams."
 
 #: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
-msgstr ""
+msgstr "Neizdevās atrast „translate-shell“ izpilddatni."
 
 #: src/settings/translationshelloptions.cpp:40
 #, kde-format
 msgid "Error"
-msgstr ""
+msgstr "Kļūda"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxInstalledStatus)
 #: src/settings/translationshellpage.ui:18
 #, kde-format
 msgid "Translation Shell Integration"
-msgstr ""
+msgstr "Tulkošanas čaulas integrācija"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
 #, kde-format
 msgid "Run Interactive Functionality Test"
-msgstr ""
+msgstr "Palaist interaktīvās funkcionalitātes testu"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/settings/translationshellpage.ui:58
@@ -4348,26 +4200,26 @@ msgid ""
 "The interaction test request translation of English word \"parley\" into "
 "German."
 msgstr ""
+"Interakcijas pārbaude satur angļu valodas vārda „parley“ tulkošanu vācu "
+"valodā."
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
 #: src/settings/translationshellpage.ui:68
-#, fuzzy, kde-format
-#| msgid "Starting special query..."
+#, kde-format
 msgid "Start online test"
-msgstr "Startējam speciālo pieprasījumu..."
+msgstr "Sākt tiešsaistes pārbaudi"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/settings/translationshellpage.ui:88
 #, kde-format
 msgid "Result:"
-msgstr ""
+msgstr "Rezultāts:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelResultArea)
 #: src/settings/translationshellpage.ui:101
-#, fuzzy, kde-format
-#| msgid "&New..."
+#, kde-format
 msgid "..."
-msgstr "&Jauns..."
+msgstr "..."
 
 #. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
 #: src/settings/viewoptionsbase.ui:41
@@ -4375,9 +4227,7 @@ msgstr "&Jauns..."
 msgid ""
 "Specify which font to use for displaying pronunciations using phonetic "
 "symbols."
-msgstr ""
-"Norādiet, kuru fontu lietot izrunas attēlošanai, izmantojot fonētiskos "
-"simbolus."
+msgstr "Norādiet fontu izrunas attēlošanai, izmantojot fonētiskos simbolus."
 
 #. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
 #: src/settings/viewoptionsbase.ui:48
@@ -4387,24 +4237,21 @@ msgstr "Izr&unas simbolu fonts:"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
 #: src/settings/viewoptionsbase.ui:77
-#, fuzzy, kde-format
-#| msgid "Colors used to display different grades"
+#, kde-format
 msgid "Base color for displaying grades:"
-msgstr "Atšķirīgu pakāpju attēlošanai izmantotās krāsas"
+msgstr "Pamata krāsa pakāpju parādīšanai:"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:96
-#, fuzzy, kde-format
-#| msgid "Colors used to display different grades"
+#, kde-format
 msgid "Color used to display the progress"
-msgstr "Atšķirīgu pakāpju attēlošanai izmantotās krāsas"
+msgstr "Krāsa progresa parādīšanai"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:99
-#, fuzzy, kde-format
-#| msgid "Click here to change the color for grade 7."
+#, kde-format
 msgid "Click here to change the color used to display the progress."
-msgstr "Noklikšķiniet šeit, lai izmainītu 7. pakāpes krāsu."
+msgstr "Spiediet te, lai mainītu krāsu progresa attēlošanai."
 
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
@@ -4413,35 +4260,33 @@ msgstr "Noklikšķiniet šeit, lai izmainītu 7. pakāpes krāsu."
 #: src/settings/viewoptionsbase.ui:190
 #, kde-format
 msgid "&Base"
-msgstr ""
+msgstr "&Bāze"
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:105
-#, fuzzy, kde-format
-#| msgid "Alt+7"
+#, kde-format
 msgid "Alt+0"
-msgstr "Alt+7"
+msgstr "Alt+0"
 
 #. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
 #: src/settings/viewoptionsbase.ui:121
-#, fuzzy, kde-format
-#| msgid "Colors used to display different grades"
+#, kde-format
 msgid "Color for displaying early progress:"
-msgstr "Atšķirīgu pakāpju attēlošanai izmantotās krāsas"
+msgstr "Krāsa agra progresa parādīšanai:"
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:140
-#, fuzzy, kde-format
-#| msgid "Colors used to display different grades"
+#, kde-format
 msgid "Color used to display the early progress"
-msgstr "Atšķirīgu pakāpju attēlošanai izmantotās krāsas"
+msgstr "Krāsa agra progresa parādīšanai"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:143
-#, fuzzy, kde-format
-#| msgid "Click here to change the color for grade 7."
+#, kde-format
 msgid "Click here to change the color used to display the early progress."
-msgstr "Noklikšķiniet šeit, lai izmainītu 7. pakāpes krāsu."
+msgstr ""
+"Spiediet te, lai mainītu krāsu, ko programma izmanto agra progresa "
+"attēlošanai."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:149
@@ -4451,17 +4296,16 @@ msgstr "Alt+1"
 
 #. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
 #: src/settings/viewoptionsbase.ui:165
-#, fuzzy, kde-format
-#| msgid "Colors used to display different grades"
+#, kde-format
 msgid "Color used to display the grades:"
-msgstr "Atšķirīgu pakāpju attēlošanai izmantotās krāsas"
+msgstr "Krāsa pakāpju parādīšanai:"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:187
-#, fuzzy, kde-format
-#| msgid "Click here to change the color for grade 7."
+#, kde-format
 msgid "Click here to change the color used to display invalid units."
-msgstr "Noklikšķiniet šeit, lai izmainītu 7. pakāpes krāsu."
+msgstr ""
+"Spiediet te, lai mainītu krāsu, ko izmanto nederīgu vienību parādīšanai."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:193
@@ -4471,162 +4315,144 @@ msgstr "Alt+2"
 
 #: src/statistics/lessonstatisticsview.cpp:76
 #: src/statistics/lessonstatisticsview.cpp:78
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit"
-msgstr "Izņemt visas pakāpes no šīs nodarbības"
+msgstr "Noņemt no vienības visus pārliecības līmeņus"
 
 #: src/statistics/lessonstatisticsview.cpp:86
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit and all sub-units"
-msgstr "Izņemt visas pakāpes no šīs nodarbības"
+msgstr "Noņemt no vienības un visām tās apakšvienībām tās pārliecības līmeņus"
 
 #: src/statistics/lessonstatisticsview.cpp:88
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence level from this unit and all sub-units"
-msgstr "Izņemt visas pakāpes no šīs nodarbības"
+msgstr "Noņemt no vienības un visām tās apakšvienībām tās pārliecības līmeni"
 
 #: src/statistics/statisticslegendwidget.cpp:29
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Progress gradients"
-msgstr "Progress"
+msgstr "Progresa gradienti"
 
 #: src/statistics/statisticslegendwidget.cpp:30
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Early progress"
-msgstr "Progress"
+msgstr "Agrs progress"
 
 #: src/statistics/statisticslegendwidget.cpp:31
-#, fuzzy, kde-format
-#| msgid "Not &practiced:"
+#, kde-format
 msgid "Not Practiced"
-msgstr "Nav &vingrināts:"
+msgstr "Vēl nevingrinājāties"
 
 #: src/statistics/statisticslegendwidget.cpp:32
 #, kde-format
 msgid "Invalid Entries"
-msgstr ""
+msgstr "Nederīgi ieraksti"
 
 #: src/statistics/statisticslegendwidget.cpp:48
 #, kde-format
 msgctxt "adjective, The word has been properly and fully learned by the user"
 msgid "Fully learned"
-msgstr ""
+msgstr "Pilnībā apgūts"
 
 #: src/statistics/statisticslegendwidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Not &practiced:"
+#, kde-format
 msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
-msgstr "Nav &vingrināts:"
+msgstr "Vēl nevingrinājāties"
 
 #: src/statistics/statisticsmainwindow.cpp:192
 #, kde-format
 msgid "Known to Learning"
-msgstr ""
+msgstr "No zināmā uz mācāmo"
 
 #: src/statistics/statisticsmainwindow.cpp:193
 #, kde-format
 msgid "Learning to Known"
-msgstr ""
+msgstr "No mācāmā uz zināmo"
 
 #: src/statistics/statisticsmainwindow.cpp:194
-#, fuzzy, kde-format
-#| msgid "Mixed Letters"
+#, kde-format
 msgid "Mixed Directions"
-msgstr "Jauktie burti"
+msgstr "Jaukts virziens"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/statistics/statisticsmainwindow.ui:29
-#, fuzzy, kde-format
-#| msgid "Language Selection"
+#, kde-format
 msgid "Language to Learn"
-msgstr "Valodas izvēle"
+msgstr "Apgūstamā valoda"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/statistics/statisticsmainwindow.ui:39
-#, fuzzy, kde-format
-#| msgid "New Language"
+#, kde-format
 msgid "Known Language"
-msgstr "Jauna valoda"
+msgstr "Zināmā valoda"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeMode)
 #: src/statistics/statisticsmainwindow.ui:75
-#, fuzzy, kde-format
-#| msgid "Practice Mode:"
+#, kde-format
 msgid "Practice Mode"
-msgstr "Vingrināšanās režīms:"
+msgstr "Vingrināšanās režīms"
 
 #. i18n: ectx: property (text), widget (QRadioButton, flashCard)
 #: src/statistics/statisticsmainwindow.ui:81
 #, kde-format
 msgid "Flash Cards"
-msgstr "Vārdu kartiņas"
+msgstr "Kartiņas"
 
 #. i18n: ectx: property (text), widget (QRadioButton, mixedLetters)
 #: src/statistics/statisticsmainwindow.ui:91
-#, fuzzy, kde-format
-#| msgid "Mixed Letters"
+#, kde-format
 msgid "Mixed &Letters"
-msgstr "Jauktie burti"
+msgstr "Jauktie &burti"
 
 #. i18n: ectx: property (text), widget (QRadioButton, multipleChoice)
 #: src/statistics/statisticsmainwindow.ui:98
-#, fuzzy, kde-format
-#| msgid "Multiple Choice"
+#, kde-format
 msgid "M&ultiple Choice"
-msgstr "Vairākas iespējas"
+msgstr "Atbilžu &varianti"
 
 #. i18n: ectx: property (text), widget (QRadioButton, written)
 #: src/statistics/statisticsmainwindow.ui:105
-#, fuzzy, kde-format
-#| msgid "Written"
+#, kde-format
 msgid "Wri&tten"
-msgstr "Rakstveida"
+msgstr "&Rakstveida"
 
 #. i18n: ectx: property (text), widget (QRadioButton, exampleSentence)
 #: src/statistics/statisticsmainwindow.ui:115
-#, fuzzy, kde-format
-#| msgid "Example Sentences"
+#, kde-format
 msgid "E&xample Sentences"
-msgstr "Piemēra teikumi"
+msgstr "&Piemēra teikumi"
 
 #. i18n: ectx: property (text), widget (QRadioButton, gender)
 #: src/statistics/statisticsmainwindow.ui:125
-#, fuzzy, kde-format
-#| msgid "Gender of Nouns"
+#, kde-format
 msgid "&Gender of Nouns"
-msgstr "Lietvārdu dzimtes"
+msgstr "&Lietvārdu dzimtes"
 
 #. i18n: ectx: property (text), widget (QRadioButton, conjugations)
 #: src/statistics/statisticsmainwindow.ui:145
-#, fuzzy, kde-format
-#| msgid "Conjugations"
+#, kde-format
 msgid "Co&njugations"
-msgstr "Konjugācijas"
+msgstr "&Konjugācijas"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeDirection)
 #: src/statistics/statisticsmainwindow.ui:191
-#, fuzzy, kde-format
-#| msgid "Practice Dialogs"
+#, kde-format
 msgid "Practice Direction"
-msgstr "Vingrinājuma dialogi"
+msgstr "Vingrinājuma virziens"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rememberPracticeDirection)
 #: src/statistics/statisticsmainwindow.ui:200
 #, kde-format
 msgid "Remember for each Practice Mode"
-msgstr ""
+msgstr "Atcerēties katram vingrinājuma režīmam"
 
 #: src/statistics/statisticsmodel.cpp:26
 #, kde-format
 msgctxt "Confidence level in language, table header"
 msgid "Confidence (%1)"
-msgstr ""
+msgstr "Pārliecība (%1)"
 
 #, fuzzy
 #~| msgid "Grades from %1 to %2"
