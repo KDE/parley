@@ -32,6 +32,7 @@
   <name xml:lang="ka">Parley</name>
   <name xml:lang="ko">Parley</name>
   <name xml:lang="lt">Parley</name>
+  <name xml:lang="lv">Parley</name>
   <name xml:lang="nds">Parley</name>
   <name xml:lang="nl">Parley</name>
   <name xml:lang="nn">Parley</name>
@@ -72,6 +73,7 @@
   <summary xml:lang="ka">ლექსიკონის სწავლა</summary>
   <summary xml:lang="ko">어휘 연습 도구</summary>
   <summary xml:lang="lt">Žodyno treniruoklis</summary>
+  <summary xml:lang="lv">Vārdu krājuma apgūšana</summary>
   <summary xml:lang="nds">Vokaveln lehren</summary>
   <summary xml:lang="nl">Woordjes oefenen</summary>
   <summary xml:lang="nn">Gloseøving</summary>
@@ -109,6 +111,7 @@
     <p xml:lang="id">Parley adalah pelatih kosakata. Ini membantu kamu untuk menghafal kosakatamu, contohnya ketika kamu mencoba untuk belajar bahasa asing. Ini mendukung banyak fitur khusus bahasa, tetapi dapat digunakan untuk tugas belajar lainnya juga. Ini menggunakan metode pembelajaran pengulangan berspasi, yang membuat pembelajaran menjadi optimal. Koleksi kosakata dapat diunduh dengan "Get Hot New Stuff" atau diciptakan dengan editor bawaan.</p>
     <p xml:lang="it">Parley è un programma per l'apprendimento di vocaboli. Ti aiuta a memorizzare i vocaboli, ad esempio quando stai imparando una lingua straniera. Supporta molte delle caratteristiche specifiche delle varie lingue, ma può essere usato anche per imparare altre cose. Come metodo di apprendimento usa la ripetizione dilazionata, che rende l'apprendimento ottimale. Puoi scaricare delle collezioni di vocaboli da «Scarica le novità», ma puoi anche crearle con l'editor integrato.</p>
     <p xml:lang="ka">Parley ლექსიკონის მასწავლებელია. ის გეხმარებათ, დაიმახსოვროთ თქვენი სიტყვები მაგალითად მაშინ, როცა უცხო ენის შესწავლას ცდილობთ. მას აქვს ბევრი ენის სპეციფიკების მხარდაჭერა, მაგრამ ის სხვა სასწავლო ამოცანებისთვისაც შეგიძლიათ, გამოიყენოთ. ის იყენებს გამოტოვებული გამეორებით სწავლის მეთოდს, რომელიც სწავლებას ოპტიმალურს ხდის. ლექსიკონის კოლექციები შეგიძლიათ, "ახალი ლექსიკონების გადმოწერით" მიიღოთ, ან ჩაშენებული რედაქტორით შექმნათ.</p>
+    <p xml:lang="lv">„Parley“ ir vārdu krājuma apguves programma. Tā palīdz iegaumēt vārdus, piemēram, kad mācaties kādu svešvalodu, un atbalsta daudzas uz valodu mācību orientētas iespējas, bet to var izmantot arī citiem mācību uzdevumiem. Tā izmanto mācībām optimālo vēlākas atkārtošanas metodi. Vārdu krājumus varat lejupielādēt, spiežot uz „Iegūt jaunus“ pogas vai izveidot, izmantojot programma iebūvēto redaktoru.</p>
     <p xml:lang="nds">Parley is en Vokavel-Lehrprogramm. Dat hölpt Di bi't Lehren vun Dien Wöör, a.B. ut en butenlannsch Spraak. Dat ünnerstütt vele Spraakfunkschonen, man lett sik ok för anner Saken bruken. De Lehrmetood is de Wedderhalen mit Afstand, wat dat Lehren verbetert. Vokavelsetten kannst Du över „Deegte niege Saken“ daalladen oder mit den inbuut Editor sülven opstellen.</p>
     <p xml:lang="nl">Met Parley kunt u woordjes oefenen. Het helpt uw woordenschat uit te breiden, bijvoorbeeld bij het leren van een vreemde taal. Veel taaleigen zaken worden ondersteund, maar u kunt Parley ook gebruiken voor andere leeroefeningen. Het gebruikt de "spaced repetition" leermethode (met geregelde herhalingen), om optimaal te kunnen leren. Woordenlijsten kunnen worden gedownload, of met het ingebouwde bewerkingsprogramma zelf worden gemaakt.</p>
     <p xml:lang="pl">Parley jest programem do ćwiczenia słownictwa. Pomaga zapamiętać słownictwo np. w przypadku nauki obcego języka. Zapewnia wiele możliwości zależnych od języka, lecz można go użyć także do nauki innych rzeczy. Używa metody nauki polegającej na powtarzaniu w czasie, co sprawia, że nauka jest optymalna. Zbiory słownictwa można pobrać poprzez usługę "Get Hot New Stuff" lub utworzyć poprzez wbudowany edytor.</p>
@@ -146,6 +149,7 @@
     <p xml:lang="it">Modalità di apprendimento:</p>
     <p xml:lang="ka">ვარჯიშის რეჟიმები:</p>
     <p xml:lang="ko">연습 모드:</p>
+    <p xml:lang="lv">Apguves režīmi</p>
     <p xml:lang="nds">Ööv-Bedriefoorden:</p>
     <p xml:lang="nl">Oefenmethodes:</p>
     <p xml:lang="nn">Øvingsmodusar:</p>
@@ -186,6 +190,7 @@
       <li xml:lang="ka">ბარათები</li>
       <li xml:lang="ko">플래시 카드</li>
       <li xml:lang="lt">Kortelės</li>
+      <li xml:lang="lv">Kartiņas</li>
       <li xml:lang="nds">Naslakoorten</li>
       <li xml:lang="nl">Oefenkaarten</li>
       <li xml:lang="nn">Spørjekort</li>
@@ -222,6 +227,7 @@
       <li xml:lang="id">Huruf Campuran (urutan huruf kata)</li>
       <li xml:lang="it">Lettere mescolate (ordina le lettere di una parola)</li>
       <li xml:lang="ka">შერეული სიმბოლოები (სიტყვაში სიმბოლოების მიმდევრობა)</li>
+      <li xml:lang="lv">Sajaukti burti (sakārto burtus pareizā secībā)</li>
       <li xml:lang="nds">Mischt Bookstaven (Bookstaven vun en Woort ornen)</li>
       <li xml:lang="nl">Gehutselde letters (zet de letters in het woord in de goede volgorde)</li>
       <li xml:lang="pl">Mieszane litery (ułóż litery słowa)</li>
@@ -260,6 +266,7 @@
       <li xml:lang="ka">დიდი არჩევანი</li>
       <li xml:lang="ko">객관식</li>
       <li xml:lang="lt">Pasirinkimas iš kelių atsakymų</li>
+      <li xml:lang="lv">Izvēlies pareizo atbildi</li>
       <li xml:lang="nds">Mehrfachköör</li>
       <li xml:lang="nl">Meerkeuze</li>
       <li xml:lang="nn">Fleirvalsoppgåver</li>
@@ -300,6 +307,7 @@
       <li xml:lang="ka">დაწერილია</li>
       <li xml:lang="ko">주관식</li>
       <li xml:lang="lt">Rašyba</li>
+      <li xml:lang="lv">Ieraksti</li>
       <li xml:lang="nds">Schreven</li>
       <li xml:lang="nl">Geschreven</li>
       <li xml:lang="pl">Pisemny</li>
@@ -335,6 +343,7 @@
       <li xml:lang="id">Pelatihan khusus bahasa: artikel, formulir perbandingan, konjugasi, sinonim/antonim/parafrase</li>
       <li xml:lang="it">Apprendimenti specifici per le lingue: articoli, forme di confronto, coniugazioni, sinonimi/antonimi/parafrasi</li>
       <li xml:lang="ka">ენისთვის სპეციფიკური ვარჯიშები: არტიკლები, შედარების ფორმები, უღლებები, სინონინები/ანტონიმები/ომონიმები</li>
+      <li xml:lang="lv">Valodām specifiski apguves režīmi: artikuli, salīdzināmās formas, konjugācijas, sinonīmi/antonīmi/parafrāzes</li>
       <li xml:lang="nds">Besünner Spraaklexen: Artikeln, Stiegformen, Böögformen, Liekwöör, Güntwöör, Ümschrieven</li>
       <li xml:lang="nl">Taaleigen oefeningen: lidwoorden, vergelijkingen, vervoegingen, synoniemen/antoniemen/paragrafen</li>
       <li xml:lang="pl">Ćwiczenia wyjątkowe dla języka: rodzajnik, formy porównawcze, odmiany, synonimy/antonimy/parafrazy</li>
@@ -378,6 +387,7 @@
       <caption xml:lang="id">Memilih koleksi untuk pelatihan di Parley</caption>
       <caption xml:lang="it">Scegliere una collezione per l'apprendimento in Parley</caption>
       <caption xml:lang="ka">კოლექციის არჩევა Parley-ში სავარჯიშოდ</caption>
+      <caption xml:lang="lv">„Parley“ valodas apguves kolekcija</caption>
       <caption xml:lang="nl">Een verzameling kiezen voor oefenen in Parley</caption>
       <caption xml:lang="pl">Wybór zbioru do ćwiczeń w Parley</caption>
       <caption xml:lang="pt">A escolher uma colecção para praticar no Parley</caption>
