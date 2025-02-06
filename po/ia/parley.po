@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2025 This file is copyright:
 # This file is distributed under the same license as the parley package.
 #
-# Giovanni Sora <g.sora@tiscali.it>, 2020, 2021.
+# SPDX-FileCopyrightText: 2020, 2021, 2025 Giovanni Sora <g.sora@tiscali.it>
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-21 00:37+0000\n"
-"PO-Revision-Date: 2021-11-03 14:28+0100\n"
+"PO-Revision-Date: 2025-02-05 10:43+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.04.2\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -158,12 +158,12 @@ msgstr "Pronunciation"
 #: src/collection/vocabularymodel.cpp:283
 #, kde-format
 msgid "Word Type (%1)"
-msgstr ""
+msgstr "Typo de parola (%1)"
 
 #: src/collection/vocabularymodel.cpp:283
 #, kde-format
 msgid "Word Type"
-msgstr ""
+msgstr "Typo de parola"
 
 #. i18n: ectx: property (text), widget (QPushButton, synonymButton)
 #: src/collection/vocabularymodel.cpp:285 src/editor/synonymwidget.ui:26
@@ -404,14 +404,14 @@ msgstr ""
 #: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:487
 #, kde-format
 msgid "Adjective"
-msgstr ""
+msgstr "Adjectivo"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
 #: src/parleydocument.cpp:491
 #, kde-format
 msgid "Adverb"
-msgstr ""
+msgstr "Adverbio"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, DocumentProperties)
 #. i18n: ectx: property (windowTitle), widget (QWidget, OptionListForm)
@@ -625,7 +625,7 @@ msgstr ""
 #: src/editor/editor.cpp:163
 #, kde-format
 msgid "Word Types"
-msgstr ""
+msgstr "Typos de parola"
 
 #: src/editor/editor.cpp:183
 #, kde-format
@@ -643,7 +643,7 @@ msgstr ""
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
-msgstr ""
+msgstr "Selection multiple"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
@@ -776,7 +776,7 @@ msgstr ""
 #: src/editor/FromToEntryPageForm.ui:142
 #, kde-format
 msgid "&Wrong:"
-msgstr ""
+msgstr "&Errate:"
 
 #. i18n: ectx: property (text), widget (QLabel, qcount_label)
 #: src/editor/FromToEntryPageForm.ui:155
@@ -812,7 +812,7 @@ msgstr ""
 #: src/editor/FromToEntryPageForm.ui:209
 #, kde-format
 msgid "Not Practiced Yet"
-msgstr ""
+msgstr "Non ancora practicate"
 
 #. i18n: ectx: property (displayFormat), widget (QDateEdit, queryDateEdit)
 #: src/editor/FromToEntryPageForm.ui:229
@@ -1005,13 +1005,13 @@ msgstr "Linguage"
 #: src/editor/summarywordwidget.ui:32
 #, kde-format
 msgid "Lesson"
-msgstr ""
+msgstr "Lection"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/editor/summarywordwidget.ui:42
 #, kde-format
 msgid "Word type:"
-msgstr ""
+msgstr "Typo de parola:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
@@ -1161,7 +1161,7 @@ msgstr ""
 #: src/editor/vocabularyview.cpp:140
 #, kde-format
 msgid "Vocabulary Columns..."
-msgstr ""
+msgstr "Columnas de vocabulario..."
 
 #: src/editor/vocabularyview.cpp:141
 #, kde-format
@@ -1295,7 +1295,7 @@ msgstr ""
 #: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:495
 #, kde-format
 msgid "Conjunction"
-msgstr ""
+msgstr "Conjunction"
 
 #: src/editor/wordtypeview.cpp:122
 #, kde-format
@@ -1375,7 +1375,7 @@ msgstr ""
 #: src/exportdialog.ui:40
 #, kde-format
 msgid "Comma separated values (CSV)"
-msgstr ""
+msgstr "Valores separate per virgula (Comma-Separated Values, CSV)"
 
 #: src/main.cpp:26
 #, kde-format
@@ -1454,7 +1454,7 @@ msgstr "Scripting"
 #: src/main.cpp:49
 #, kde-format
 msgid "Peter Hedlund"
-msgstr ""
+msgstr "Peter Hedlund"
 
 #: src/main.cpp:50
 #, kde-format
@@ -1787,7 +1787,7 @@ msgstr "On salveguarda %1"
 #: src/parleydocument.cpp:507 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
-msgstr ""
+msgstr "Dominio Public"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
@@ -1807,7 +1807,7 @@ msgstr ""
 #: src/parleydocument.cpp:519
 #, kde-format
 msgid "Lesson 1"
-msgstr ""
+msgstr "Lection 1"
 
 #: src/parleydocument.cpp:561
 #, kde-format
@@ -2433,7 +2433,7 @@ msgstr "Unitate: %1"
 #: src/practice/guifrontend.cpp:128
 #, kde-format
 msgid "New word"
-msgstr ""
+msgstr "Nove Parola"
 
 #: src/practice/guifrontend.cpp:131
 #, kde-format
@@ -2496,7 +2496,7 @@ msgstr ""
 #: src/practice/practice_mainwindow.ui:141
 #, kde-format
 msgid "Hint"
-msgstr ""
+msgstr "Suggestion"
 
 #. i18n: ectx: property (text), widget (QPushButton, continueButton)
 #: src/practice/practice_mainwindow.ui:202
@@ -2681,7 +2681,7 @@ msgstr "Solution"
 #: src/practice/practicesummarywidget.ui:43
 #, kde-format
 msgid "Your Answer"
-msgstr ""
+msgstr "Tu responsa"
 
 #: src/practice/sessionmanagerbase.cpp:53
 #, kde-format
@@ -2729,7 +2729,7 @@ msgstr "%1 % correcte"
 #, kde-format
 msgctxt "test results"
 msgid "%1 % wrong"
-msgstr ""
+msgstr "%1 % Errate"
 
 #: src/practice/summarybarwidget.cpp:82
 #, kde-format
@@ -3335,7 +3335,7 @@ msgstr "Articulos"
 #: src/settings/languagepropertiespage.ui:404
 #, kde-format
 msgid "Definite"
-msgstr ""
+msgstr "Definitive"
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4)
 #. i18n: ectx: property (text), widget (QLabel, TextLabel4_2)
@@ -3343,7 +3343,7 @@ msgstr ""
 #: src/settings/languagepropertiespage.ui:411
 #, kde-format
 msgid "Indefinite"
-msgstr ""
+msgstr "Indefinitive"
 
 #. i18n: ectx: property (text), widget (QLabel, male_label)
 #. i18n: ectx: property (text), widget (QLabel, male_label_2)
@@ -4261,7 +4261,7 @@ msgstr ""
 #: src/statistics/statisticsmainwindow.ui:98
 #, kde-format
 msgid "M&ultiple Choice"
-msgstr ""
+msgstr "Selection m&ultiple"
 
 #. i18n: ectx: property (text), widget (QRadioButton, written)
 #: src/statistics/statisticsmainwindow.ui:105
