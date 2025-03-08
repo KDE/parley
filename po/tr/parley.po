@@ -2,7 +2,7 @@
 # translation of kvoctrain.po to
 # Copyright (C) 2003, 2004, 2005, 2007 Free Software Foundation, Inc.
 #
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
 # Ömer Fadıl USTA <omer_fad@hotmail.com>, 2002.
 # Görkem Çetin <gorkem@kde.org>, 2003, 2004.
 # Engin Çağatay <engincagatay@yahoo.com>, 2004, 2005, 2007.
@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-21 00:37+0000\n"
-"PO-Revision-Date: 2024-03-22 01:11+0300\n"
+"PO-Revision-Date: 2025-03-07 23:36+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.02.1\n"
+"X-Generator: Lokalize 25.03.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1429,10 +1429,10 @@ msgid ""
 "© 2004-2007\tPeter Hedlund\n"
 "© 2007-2010\tFrederik Gladhorn\n"
 msgstr ""
-"© 1999-2002\tEwald Arnold\n"
-"© 2001-2002\tThe KDE team\n"
-"© 2004-2007\tPeter Hedlund\n"
-"© 2007-2010\tFrederik Gladhorn\n"
+"© 1999–2002\tEwald Arnold\n"
+"© 2001–2002\tThe KDE team\n"
+"© 2004–2007\tPeter Hedlund\n"
+"© 2007–2010\tFrederik Gladhorn\n"
 
 #: src/main.cpp:33
 #, kde-format
@@ -1447,7 +1447,7 @@ msgstr "Inge Wallin"
 #: src/main.cpp:37 src/main.cpp:39
 #, kde-format
 msgid "Developer and Co-maintainer"
-msgstr "Geliştirici ve projeyi yürüten"
+msgstr "Geliştirici ve yardımcı bakımcı"
 
 #: src/main.cpp:39
 #, kde-format
@@ -1462,7 +1462,7 @@ msgstr "Frederik Gladhorn"
 #: src/main.cpp:41
 #, kde-format
 msgid "Developer, former maintainer"
-msgstr "Geliştirici ve projeyi yürüten"
+msgstr "Geliştirici ve önceki bakımcı"
 
 #: src/main.cpp:43
 #, kde-format
@@ -1482,7 +1482,7 @@ msgstr "David Capel"
 #: src/main.cpp:45
 #, kde-format
 msgid "Practice Dialogs"
-msgstr "Çalışma Pencereleri"
+msgstr "Alıştırma iletişim kutuları"
 
 #: src/main.cpp:47
 #, kde-format
@@ -1492,7 +1492,7 @@ msgstr "Avgoustinos Kadis"
 #: src/main.cpp:47
 #, kde-format
 msgid "Scripting"
-msgstr "Betikleme"
+msgstr "Betik yazımı"
 
 #: src/main.cpp:49
 #, kde-format
@@ -1502,7 +1502,7 @@ msgstr "Peter Hedlund"
 #: src/main.cpp:50
 #, kde-format
 msgid "Countless fixes, former maintainer, port to KDE4"
-msgstr "Sayısız düzeltme, eski yürüten, KDE4 geçişi"
+msgstr "Sayısız düzeltme, önceki bakımcı, KDE4 geçişi"
 
 #: src/main.cpp:53
 #, kde-format
@@ -1512,7 +1512,7 @@ msgstr "Ewald Arnold"
 #: src/main.cpp:54
 #, kde-format
 msgid "Original Author"
-msgstr "Özgün Yazar"
+msgstr "Özgün yazar"
 
 #: src/main.cpp:58
 #, kde-format
@@ -1522,7 +1522,7 @@ msgstr "Lee Olson"
 #: src/main.cpp:58
 #, kde-format
 msgid "Artwork and Oxygen Icons"
-msgstr "Sanatsal Çalışmalar ve Oxygen Simgeleri"
+msgstr "Sanatsal çalışmalar ve Oksijen simgeleri"
 
 #: src/main.cpp:60
 #, kde-format
