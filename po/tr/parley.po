@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-09 00:37+0000\n"
-"PO-Revision-Date: 2025-03-07 23:36+0300\n"
+"PO-Revision-Date: 2025-03-13 23:07+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.03.70\n"
+"X-Generator: Lokalize 25.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -320,19 +320,19 @@ msgstr "Parley"
 #: src/dashboard/dashboard.ui:120
 #, kde-format
 msgid "Create a New Collection..."
-msgstr "Yeni Bir Koleksiyon Oluştur..."
+msgstr "Yeni Bir Koleksiyon Oluştur…"
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
 #, kde-format
 msgid "Open an Existing Collection..."
-msgstr "Var Olan Bir Koleksiyonu Aç..."
+msgstr "Var Olan Bir Koleksiyonu Aç…"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
 #, kde-format
 msgid "Download New Collections..."
-msgstr "Yeni Koleksiyonlar İndir..."
+msgstr "Yeni Koleksiyonlar İndir…"
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
@@ -599,7 +599,7 @@ msgstr "-e hali:"
 #, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr "- hali:"
+msgstr "-i hali:"
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
@@ -787,7 +787,7 @@ msgstr "Özgünden Gelen Özellikler"
 #: src/editor/FromToEntryPageForm.ui:72
 #, kde-format
 msgid "&Confidence Level:"
-msgstr "&Güven Düzeyi:"
+msgstr "&Güven düzeyi:"
 
 #. i18n: ectx: property (text), widget (QLabel, fauxami_label)
 #: src/editor/FromToEntryPageForm.ui:95
@@ -870,7 +870,7 @@ msgstr "Ad"
 #: src/editor/inflectionwidget.cpp:81
 #, kde-format
 msgid "\"%1\" is a:"
-msgstr "\"%1\" bir :"
+msgstr "“%1” bir:"
 
 #: src/editor/inflectionwidget.cpp:124
 #, kde-format
@@ -1121,7 +1121,7 @@ msgctxt ""
 "Title for a list of false friend (things that sound similar but have "
 "different meanings) for a word"
 msgid "False Friends of %1:"
-msgstr "%1 Ögesinin Yanlış Arkadaşları:"
+msgstr "%1 ögesinin yanlış arkadaşları:"
 
 #: src/editor/vocabularycolumnsdialog.cpp:43
 #, kde-format
@@ -1192,7 +1192,7 @@ msgstr "Bütün satırların seçimini kaldır"
 #: src/editor/vocabularyview.cpp:140
 #, kde-format
 msgid "Vocabulary Columns..."
-msgstr "Söz Dağarcığı Sütunları..."
+msgstr "Söz Dağarcığı Sütunları…"
 
 #: src/editor/vocabularyview.cpp:141
 #, kde-format
@@ -1274,7 +1274,7 @@ msgstr "Dilbilgisi"
 #, kde-format
 msgid "To let Parley know the grammatical meaning of a word type."
 msgstr ""
-"Parley'in bir sözcük türünün gramatik anlamını bilmesini sağlamak için."
+"Parley’in bir sözcük türünün gramatik anlamını bilmesini sağlamak için."
 
 #: src/editor/wordtypeview.cpp:66
 #, kde-format
@@ -1379,7 +1379,7 @@ msgstr "HTML belgesi"
 #: src/exportdialog.cpp:104
 #, kde-format
 msgid "Could not write to file \"%1\""
-msgstr "\"%1\" dosyasına yazılamadı"
+msgstr "“%1” dosyasına yazılamadı."
 
 #: src/exportdialog.cpp:121
 #, kde-format
@@ -1401,7 +1401,7 @@ msgstr "Dışa Aktar"
 #: src/exportdialog.ui:20
 #, kde-format
 msgid "Flash Cards - to print learning cards (HTML)"
-msgstr "Bilgi Kartları - öğrenme kartlarını yazdırmak için (HTML)"
+msgstr "Bilgi Kartları — öğrenme kartlarını yazdırmak için (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
 #: src/exportdialog.ui:30
@@ -1527,7 +1527,7 @@ msgstr "Sanatsal çalışmalar ve Oksijen simgeleri"
 #: src/main.cpp:60
 #, kde-format
 msgid "Anne-Marie Mahfouf"
-msgstr "Anne-Marie Mahfouf"
+msgstr "Anne–Marie Mahfouf"
 
 #: src/main.cpp:60
 #, kde-format
@@ -1587,7 +1587,7 @@ msgstr "Var olan bir söz dağarcığı belgesini açar"
 #: src/parleyactions.cpp:84
 #, kde-format
 msgid "Open &Downloaded Vocabularies..."
-msgstr "İn&dirilen Söz Dağarcıklarını Aç..."
+msgstr "İn&dirilen Söz Dağarcıklarını Aç…"
 
 #: src/parleyactions.cpp:85
 #, kde-format
@@ -1607,7 +1607,7 @@ msgstr "Etkin söz dağarcığı koleksiyonunu başka bir adla kaydet"
 #: src/parleyactions.cpp:104
 #, kde-format
 msgid "&Export..."
-msgstr "&Dışa Aktar..."
+msgstr "&Dışa Aktar…"
 
 #: src/parleyactions.cpp:105
 #, kde-format
@@ -1617,7 +1617,7 @@ msgstr "HTML veya CSV Olarak Dışa Aktar"
 #: src/parleyactions.cpp:113
 #, kde-format
 msgid "&Properties..."
-msgstr "&Özellikler..."
+msgstr "&Özellikler…"
 
 #: src/parleyactions.cpp:114
 #, kde-format
@@ -1647,7 +1647,7 @@ msgstr "Yapılandırma diyaloğunu göster"
 #: src/parleyactions.cpp:141
 #, kde-format
 msgid "&Languages..."
-msgstr "Dil&ler..."
+msgstr "Dil&ler…"
 
 #: src/parleyactions.cpp:142
 #, kde-format
@@ -1685,7 +1685,7 @@ msgstr "Birim girdilerinin otomatik olarak çevrilmesini etkinleştir."
 #: src/parleyactions.cpp:184
 #, kde-format
 msgid "Start Practice..."
-msgstr "Alıştırmayı Başlat..."
+msgstr "Alıştırmayı Başlat…"
 
 #: src/parleyactions.cpp:185
 #, kde-format
@@ -1695,7 +1695,7 @@ msgstr "Alıştırmayı Başlat"
 #: src/parleyactions.cpp:193
 #, kde-format
 msgid "Configure Practice..."
-msgstr "Alıştırmayı Yapılandır..."
+msgstr "Alıştırmayı Yapılandır…"
 
 #: src/parleyactions.cpp:194
 #, kde-format
@@ -1705,7 +1705,7 @@ msgstr "Alıştırma ayarlarını değiştir"
 #: src/parleyactions.cpp:202
 #, kde-format
 msgid "Export Results..."
-msgstr "Sonuçları Dışa Aktar..."
+msgstr "Sonuçları Dışa Aktar…"
 
 #: src/parleyactions.cpp:203
 #, kde-format
@@ -1772,7 +1772,7 @@ msgstr "Kilidi Kaldır"
 #: src/parleydocument.cpp:237
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
-msgstr "\"%1\" koleksiyonunu kaldırmak bir hataya neden oldu: %2"
+msgstr "“%1” koleksiyonunu kaldırmak bir hataya neden oldu: %2"
 
 #: src/parleydocument.cpp:238
 #, kde-format
@@ -1805,15 +1805,16 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
-"\"%1\" dosyası başka bir süreç tarafından kilitlenmiş. Kilidi kaldırırsanız "
-"dosyayı kaydedebilirsiniz ama diğer sürecin değişikliklerini kaybedersiniz.\n"
+"“%1” dosyası başka bir süreç tarafından kilitlenmiş. Kilidi\n"
+"kaldırırsanız dosyayı kaydedebilirsiniz ama diğer sürecin\n"
+"değişikliklerini kaybedersiniz.\n"
 "\n"
 "Kilidi kaldırmak istiyor musunuz?\n"
 
 #: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
-msgstr "\"%1\" dosyasına yazmak bir hataya neden oldu: %2"
+msgstr "“%1” dosyasına yazmak bir hataya neden oldu: %2"
 
 #: src/parleydocument.cpp:370 src/parleydocument.cpp:463
 #, kde-format
@@ -1868,7 +1869,7 @@ msgstr "Ders 1"
 #: src/parleydocument.cpp:563
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
-msgstr "\"%1\" söz dağarcığı koleksiyonu açılamadı"
+msgstr "“%1” söz dağarcığı koleksiyonu açılamadı"
 
 #: src/parleymainwindow.cpp:134
 #, kde-format
@@ -1895,7 +1896,7 @@ msgstr "Dilleri seçin"
 #: src/parleymainwindow.cpp:212
 #, kde-format
 msgid "Download New Vocabularies..."
-msgstr "Yeni Söz Dağarcıkları İndir..."
+msgstr "Yeni Söz Dağarcıkları İndir…"
 
 #: src/parleymainwindow.cpp:218
 #, kde-format
@@ -1942,7 +1943,7 @@ msgctxt ""
 "the user entered the wrong absolute form when practicing comparison forms of "
 "adjectives (the base form of the adjective is wrong)"
 msgid "\"%1\" is the wrong word."
-msgstr "\"%1\", yanlış sözcük."
+msgstr "“%1”, yanlış sözcük."
 
 #: src/practice/comparisonbackendmode.cpp:70
 #, kde-format
@@ -2479,7 +2480,7 @@ msgstr "Tüm eylem çekimlerini girin."
 #: src/practice/genderbackendmode.cpp:62
 #, kde-format
 msgid "Choose the right article for \"%1\""
-msgstr "\"%1\" için doğru ilgeci seç"
+msgstr "“%1” için doğru ilgeci seç"
 
 #: src/practice/genderbackendmode.cpp:82
 #, kde-format
@@ -2546,7 +2547,7 @@ msgstr[1] ""
 #: src/practice/latexrenderer.cpp:47
 #, kde-format
 msgid "Rendering..."
-msgstr "Sunuluyor..."
+msgstr "Sunuluyor…"
 
 #: src/practice/latexrenderer.cpp:137
 #, kde-format
@@ -2931,7 +2932,7 @@ msgstr "Yanıtınız doğru."
 msgid ""
 "Your answer was right... but not on the first try and your punctuation was "
 "wrong."
-msgstr "Yanıtınız doğru... ancak ilk denemede değil ve noktalama hatanız var."
+msgstr "Yanıtınız doğru… ancak ilk denemede değil ve noktalama hatanız var."
 
 #: src/practice/writtenbackendmode.cpp:130
 #, kde-format
@@ -2939,19 +2940,18 @@ msgid ""
 "Your answer was right... but not on the first try and your capitalization "
 "was wrong."
 msgstr ""
-"Yanıtınız doğru... ancak ilk denemede değil ve büyük harf kullanımınız "
-"yanlış."
+"Yanıtınız doğru… ancak ilk denemede değil ve büyük harf kullanımınız yanlış."
 
 #: src/practice/writtenbackendmode.cpp:132
 #, kde-format
 msgid ""
 "Your answer was right... but not on the first try and accents were wrong."
-msgstr "Yanıtınız doğru... ancak ilk denemede değil ve aksan yanlış."
+msgstr "Yanıtınız doğru… ancak ilk denemede değil ve aksan yanlış."
 
 #: src/practice/writtenbackendmode.cpp:134
 #, kde-format
 msgid "Your answer was right... but not on the first try."
-msgstr "Yanıtınız doğru... ancak ilk denemede değil."
+msgstr "Yanıtınız doğru… ancak ilk denemede değil."
 
 #: src/practice/writtenbackendmode.cpp:154
 #, kde-format
@@ -3069,7 +3069,7 @@ msgid ""
 "license is required."
 msgstr ""
 "Belgenizin altında olması gereken lisans.\n"
-"Gelecekte dosyanızı KDE'ye destek olarak vermeyi düşünürseniz uygun bir "
+"Gelecekte dosyanızı KDE’ye destek olarak vermeyi düşünürseniz uygun bir "
 "lisansa gereksiniminiz olacaktır."
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
@@ -3194,7 +3194,7 @@ msgstr "Aç/Kaydet"
 #: src/settings/generaloptionsbase.ui:23
 #, kde-format
 msgid "Always open the collection that was active when quitting Parley"
-msgstr "Her zaman daha önce Parley'den çıkarken etkin olan koleksiyonu aç"
+msgstr "Her zaman daha önce Parley’den çıkarken etkin olan koleksiyonu aç"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, kcfg_AutoOpenLast)
 #: src/settings/generaloptionsbase.ui:26
@@ -3286,7 +3286,7 @@ msgstr "Düzenlerken yeni satırları otomatik olarak &iliştir"
 #: src/settings/kgametheme/kgamethemeselector.ui:37
 #, kde-format
 msgid "&Get New Themes..."
-msgstr "&Yeni Temalar Al..."
+msgstr "&Yeni Temalar Al…"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/kgametheme/kgamethemeselector.ui:94
@@ -3484,19 +3484,19 @@ msgstr "Kişi Adılları"
 #: src/settings/languagepropertiespage.ui:507
 #, kde-format
 msgid "&1. Person:"
-msgstr "&1. Şahıs:"
+msgstr "&1. kişi:"
 
 #. i18n: ectx: property (text), widget (QLabel, pers2_label)
 #: src/settings/languagepropertiespage.ui:543
 #, kde-format
 msgid "&2. Person:"
-msgstr "&2. Şşahıs:"
+msgstr "&2. kişi:"
 
 #. i18n: ectx: property (text), widget (QLabel, pers3_label)
 #: src/settings/languagepropertiespage.ui:579
 #, kde-format
 msgid "3. Person:"
-msgstr "3. Şahıs:"
+msgstr "3. kişi:"
 
 #. i18n: ectx: property (text), widget (QLabel, male_c_label)
 #: src/settings/languagepropertiespage.ui:589
@@ -3545,13 +3545,13 @@ msgstr "Zamanlar"
 #: src/settings/languagepropertiespage.ui:752 src/settings/optionlistform.ui:63
 #, kde-format
 msgid "&New..."
-msgstr "&Yeni..."
+msgstr "&Yeni…"
 
 #. i18n: ectx: property (text), widget (QPushButton, modifyButton)
 #: src/settings/languagepropertiespage.ui:765 src/settings/optionlistform.ui:78
 #, kde-format
 msgid "&Modify..."
-msgstr "&Değiştir..."
+msgstr "&Değiştir…"
 
 #. i18n: ectx: property (text), widget (QPushButton, deleteButton)
 #: src/settings/languagepropertiespage.ui:778 src/settings/optionlistform.ui:93
@@ -3720,7 +3720,7 @@ msgid ""
 "Show - show the solution after the given time; Continue - go to the next "
 "question after the given time."
 msgstr ""
-"Göster - verilen zaman sonunda çözümü görüntüle; Sürdür - verilen zaman "
+"Göster — verilen zaman sonunda çözümü görüntüle; Sürdür — verilen zaman "
 "sonunda sonraki soruya geç."
 
 #. i18n: ectx: label, entry (PracticeTimeoutTimePerAnswer), group (PracticeOptions)
@@ -4167,7 +4167,7 @@ msgstr "translate-shell kullanılabilir."
 #: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
-msgstr "translate-shell çalıştırılabiliri bulunamadı."
+msgstr "translate-shell yürütülebiliri bulunamadı."
 
 #: src/settings/translationshelloptions.cpp:40
 #, kde-format
@@ -4193,7 +4193,7 @@ msgid ""
 "The interaction test request translation of English word \"parley\" into "
 "German."
 msgstr ""
-"Etkileşim sınaması, İngilizce \"parley\" sözcüğünün Almancaya çevrilmesini "
+"Etkileşim sınaması, İngilizce “parley” sözcüğünün Almancaya çevrilmesini "
 "gerektirir."
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
@@ -4212,7 +4212,7 @@ msgstr "Sonuç:"
 #: src/settings/translationshellpage.ui:101
 #, kde-format
 msgid "..."
-msgstr "..."
+msgstr "…"
 
 #. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
 #: src/settings/viewoptionsbase.ui:41
