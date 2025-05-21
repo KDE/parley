@@ -1,25 +1,22 @@
-# Translation of parley.po to Spanish
-# translation of parley.po to Spanish
-# Translation of parley to Spanish
-# Copyright (C) 2002,2003, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+# Spanish translations for parley.po package.
+# Copyright (C) 2002-2025 This file is copyright:
+# This file is distributed under the same license as the parley package.
 #
-# Miguel Revilla Rodríguez <yo@miguelrevilla.com>, 2002,2003.
-# SPDX-FileCopyrightText: 2004, 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2024 Eloy Cuadra <ecuadra@eloihr.net>
-# Rafael Beccar <traduccioneskde@rafabeccar.com.ar>, 2004.
-# Rafael Beccar <kdemail@rafabeccar.com.ar>, 2004.
-# Rafael Beccar <rafael.beccar@kdemail.net>, 2004, 2005.
-# santi <santi@kde-es.org>, 2006.
-# Santiago Fernández Sancho <santi@kde-es.org>, 2007, 2008.
-# Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>, 2007.
-# Jaime Robles <jaime@kde.org>, 2008.
-# Enrique Matias Sanchez (Quique) <cronopios@gmail.com>, 2009.
-# Rocio Gallego <traducciones@rociogallego.com>, 2012, 2013, 2014.
+# SPDX-FileCopyrightText: 2002, 2003 Miguel Revilla Rodríguez <yo@miguelrevilla.com>
+# SPDX-FileCopyrightText: 2004, 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2024, 2025 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2004 Rafael Beccar <traduccioneskde@rafabeccar.com.ar>
+# SPDX-FileCopyrightText: 2004 Rafael Beccar <kdemail@rafabeccar.com.ar>
+# SPDX-FileCopyrightText: 2004, 2005 Rafael Beccar <rafael.beccar@kdemail.net>
+# SPDX-FileCopyrightText: 2006, 2007, 2008 Santiago Fernández Sancho <santi@kde-es.org>
+# SPDX-FileCopyrightText: 2007, 2009 Enrique Matias Sanchez (Quique) <cronopios@gmail.com>
+# SPDX-FileCopyrightText: 2008 Jaime Robles <jaime@kde.org>
+# SPDX-FileCopyrightText: 2012, 2013, 2014 Rocio Gallego <traducciones@rociogallego.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-09 00:37+0000\n"
-"PO-Revision-Date: 2024-01-11 02:01+0100\n"
+"PO-Revision-Date: 2025-05-21 01:18+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -318,19 +315,19 @@ msgstr "Parley"
 #: src/dashboard/dashboard.ui:120
 #, kde-format
 msgid "Create a New Collection..."
-msgstr "Crear una nueva colección..."
+msgstr "Crear una nueva colección…"
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
 #, kde-format
 msgid "Open an Existing Collection..."
-msgstr "Abrir una colección existente..."
+msgstr "Abrir una colección existente…"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
 #, kde-format
 msgid "Download New Collections..."
-msgstr "Descargar nuevas colecciones..."
+msgstr "Descargar nuevas colecciones…"
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
@@ -1191,7 +1188,7 @@ msgstr "Liberar todas las filas"
 #: src/editor/vocabularyview.cpp:140
 #, kde-format
 msgid "Vocabulary Columns..."
-msgstr "Columnas del vocabulario..."
+msgstr "Columnas del vocabulario…"
 
 #: src/editor/vocabularyview.cpp:141
 #, kde-format
@@ -1589,7 +1586,7 @@ msgstr "Abre una colección de vocabulario ya existente"
 #: src/parleyactions.cpp:84
 #, kde-format
 msgid "Open &Downloaded Vocabularies..."
-msgstr "Abrir los vocabularios &descargados..."
+msgstr "Abrir los vocabularios &descargados…"
 
 #: src/parleyactions.cpp:85
 #, kde-format
@@ -1609,7 +1606,7 @@ msgstr "Guardar la colección de vocabulario activa con otro nombre"
 #: src/parleyactions.cpp:104
 #, kde-format
 msgid "&Export..."
-msgstr "&Exportar..."
+msgstr "&Exportar…"
 
 #: src/parleyactions.cpp:105
 #, kde-format
@@ -1619,7 +1616,7 @@ msgstr "Exportar a HTML o CSV"
 #: src/parleyactions.cpp:113
 #, kde-format
 msgid "&Properties..."
-msgstr "&Propiedades..."
+msgstr "&Propiedades…"
 
 #: src/parleyactions.cpp:114
 #, kde-format
@@ -1650,7 +1647,7 @@ msgstr "Muestra el diálogo de configuración"
 #: src/parleyactions.cpp:141
 #, kde-format
 msgid "&Languages..."
-msgstr "&Idiomas..."
+msgstr "&Idiomas…"
 
 #: src/parleyactions.cpp:142
 #, kde-format
@@ -1687,7 +1684,7 @@ msgstr "Activar la traducción automática de las entradas de la unidad."
 #: src/parleyactions.cpp:184
 #, kde-format
 msgid "Start Practice..."
-msgstr "Iniciar la práctica..."
+msgstr "Iniciar la práctica…"
 
 #: src/parleyactions.cpp:185
 #, kde-format
@@ -1697,7 +1694,7 @@ msgstr "Iniciar la práctica"
 #: src/parleyactions.cpp:193
 #, kde-format
 msgid "Configure Practice..."
-msgstr "Configurar la práctica..."
+msgstr "Configurar la práctica…"
 
 #: src/parleyactions.cpp:194
 #, kde-format
@@ -1707,7 +1704,7 @@ msgstr "Cambiar las preferencias de la práctica"
 #: src/parleyactions.cpp:202
 #, kde-format
 msgid "Export Results..."
-msgstr "Exportar resultado..."
+msgstr "Exportar resultado…"
 
 #: src/parleyactions.cpp:203
 #, kde-format
@@ -1898,7 +1895,7 @@ msgstr "Elegir idiomas"
 #: src/parleymainwindow.cpp:212
 #, kde-format
 msgid "Download New Vocabularies..."
-msgstr "Descargar vocabularios nuevos..."
+msgstr "Descargar vocabularios nuevos…"
 
 #: src/parleymainwindow.cpp:218
 #, kde-format
@@ -2552,7 +2549,7 @@ msgstr[1] ""
 #: src/practice/latexrenderer.cpp:47
 #, kde-format
 msgid "Rendering..."
-msgstr "Preparando la representación..."
+msgstr "Preparando la representación…"
 
 #: src/practice/latexrenderer.cpp:137
 #, kde-format
@@ -2943,8 +2940,8 @@ msgid ""
 "Your answer was right... but not on the first try and your punctuation was "
 "wrong."
 msgstr ""
-"Su respuesta ha sido correcta... pero no al primer intento, y la puntuación "
-"no es correcta."
+"Su respuesta ha sido correcta… pero no al primer intento, y la puntuación no "
+"es correcta."
 
 #: src/practice/writtenbackendmode.cpp:130
 #, kde-format
@@ -2952,7 +2949,7 @@ msgid ""
 "Your answer was right... but not on the first try and your capitalization "
 "was wrong."
 msgstr ""
-"Su respuesta ha sido correcta... pero no al primer intento, y el uso de "
+"Su respuesta ha sido correcta… pero no al primer intento, y el uso de "
 "mayúsculas no es correcto."
 
 #: src/practice/writtenbackendmode.cpp:132
@@ -2960,13 +2957,13 @@ msgstr ""
 msgid ""
 "Your answer was right... but not on the first try and accents were wrong."
 msgstr ""
-"Su respuesta ha sido correcta... pero no al primer intento, y los acentos no "
+"Su respuesta ha sido correcta… pero no al primer intento, y los acentos no "
 "son correctos."
 
 #: src/practice/writtenbackendmode.cpp:134
 #, kde-format
 msgid "Your answer was right... but not on the first try."
-msgstr "Su respuesta ha sido correcta... pero no al primer intento."
+msgstr "Su respuesta ha sido correcta… pero no al primer intento."
 
 #: src/practice/writtenbackendmode.cpp:154
 #, kde-format
@@ -3302,7 +3299,7 @@ msgstr "&Añadir filas nuevas automáticamente al editar"
 #: src/settings/kgametheme/kgamethemeselector.ui:37
 #, kde-format
 msgid "&Get New Themes..."
-msgstr "Ob&tener nuevos temas..."
+msgstr "Ob&tener nuevos temas…"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/kgametheme/kgamethemeselector.ui:94
@@ -3561,13 +3558,13 @@ msgstr "Tiempos"
 #: src/settings/languagepropertiespage.ui:752 src/settings/optionlistform.ui:63
 #, kde-format
 msgid "&New..."
-msgstr "&Nuevo..."
+msgstr "&Nuevo…"
 
 #. i18n: ectx: property (text), widget (QPushButton, modifyButton)
 #: src/settings/languagepropertiespage.ui:765 src/settings/optionlistform.ui:78
 #, kde-format
 msgid "&Modify..."
-msgstr "&Modificar..."
+msgstr "&Modificar…"
 
 #. i18n: ectx: property (text), widget (QPushButton, deleteButton)
 #: src/settings/languagepropertiespage.ui:778 src/settings/optionlistform.ui:93
@@ -4260,7 +4257,7 @@ msgstr "Resultado:"
 #: src/settings/translationshellpage.ui:101
 #, kde-format
 msgid "..."
-msgstr "..."
+msgstr "…"
 
 #. i18n: ectx: property (whatsThis), widget (KFontRequester, kcfg_IPAFont)
 #: src/settings/viewoptionsbase.ui:41
@@ -4500,467 +4497,3 @@ msgstr "Recordar para cada modo de prácticas"
 msgctxt "Confidence level in language, table header"
 msgid "Confidence (%1)"
 msgstr "Confianza (%1)"
-
-#~ msgid "Confidence Levels from %1 to %2"
-#~ msgstr "Niveles de confianza de %1 a %2"
-
-#~ msgid "&Help"
-#~ msgstr "A&yuda"
-
-#~ msgid ""
-#~ "<p>Parley enables you to edit many additional properties of the words you "
-#~ "enter.</p>\n"
-#~ "<p>Use \"View -> ...\" check boxes to enable different information that "
-#~ "will help you set additional information for your vocabulary. These "
-#~ "include Image, Sound, Word Types and many more. Choose the ones you like."
-#~ "</p>\n"
-#~ msgstr ""
-#~ "<p>Parley le permite editar muchas propiedades adicionales de las "
-#~ "palabras que puede introducir.</p>\n"
-#~ "<p>Use las casillas «Ver -> ...» para activar las diferentes "
-#~ "informaciones que le ayudarán a definir información adicional para su "
-#~ "vocabulario. Esto incluye imágenes, sonido, tipos de palabras y mucho "
-#~ "más. Elija las que desee.</p>\n"
-
-#~ msgid ""
-#~ "<p>To <em>search</em> for a word, simply type it into the search bar.</"
-#~ "p>\n"
-#~ msgstr ""
-#~ "<p>Para <em>buscar</em> una palabra, solo tiene escribirla en la barra de "
-#~ "búsqueda.</p>\n"
-
-#~ msgid ""
-#~ "<p>If you want to see all words of a certain word type (e.g. nouns), "
-#~ "simply select the word type in the list.</p>\n"
-#~ "<p>To show the word type list, use \"View -> Word Types\" check box.</p>\n"
-#~ msgstr ""
-#~ "<p>Si desea ver todas las palabras de un determinado tipo (por ejemplo, "
-#~ "sustantivos), seleccione el tipo de palabra en la lista.</p>\n"
-#~ "<p>Para mostrar la lista de tipos de palabras, use la casilla «Ver -> "
-#~ "Tipos de palabras».</p>\n"
-
-#~ msgid ""
-#~ "<p>You can drag and drop your lessons to change their order or even make "
-#~ "a lesson a child of another lesson.</p>\n"
-#~ msgstr ""
-#~ "<p>Puede arrastrar y soltar su lección para cambiar el orden e incluso "
-#~ "hacerla depender de otra.</p>\n"
-
-#~ msgid ""
-#~ "<p>You can simply drag a word into the word types list to change its type."
-#~ "</p>\n"
-#~ "<p>You can even select multiple words at the same time.</p>\n"
-#~ msgstr ""
-#~ "<p>Puede arrastrar una palabra en la lista de tipos de palabras para "
-#~ "cambiar su tipo.</p>\n"
-#~ "<p>También puede seleccionar varias palabras a la vez.</p>\n"
-
-#~ msgid ""
-#~ "<p><em>Setting Images</em></p>\n"
-#~ "<p>A fast way to set an image for a word is to simply drop it onto the "
-#~ "image dock.</p>\n"
-#~ msgstr ""
-#~ "<p><em>Preferencias de las imágenes</em></p>\n"
-#~ "<p>Una forma rápida de asignar una imagen a una palabra es soltarla en el "
-#~ "área de la imagen.</p>\n"
-
-#~ msgid ""
-#~ "<p><em>Word Types</em></p>\n"
-#~ "<p>You can set a special tag to some word types to let Parley know their "
-#~ "grammatical meaning.</p>\n"
-#~ "<p>For verbs for example you can then enter conjugations.</p>\n"
-#~ msgstr ""
-#~ "<p><em>Tipos de palabras</em></p>\n"
-#~ "<p>Puede asignar una etiqueta especial a algunos tipos de palabras para "
-#~ "permitir que Parley sepa su significado gramatical.</p>\n"
-#~ "<p>Para los verbos, por ejemplo, puede introducir las conjugaciones.</p>\n"
-
-#~ msgid ""
-#~ "<p><em>Multiple Choice</em></p>\n"
-#~ "<p>For some vocabularies multiple choice tests work best. You can add "
-#~ "choices to a word that will always be displayed in Multiple Choice mode. "
-#~ "Otherwise random choices are generated from the other entries in the "
-#~ "document. (Use the Multiple Choice tool for that.)</p>\n"
-#~ msgstr ""
-#~ "<p><em>Elección múltiple</em></p>\n"
-#~ "<p>Para algunos vocabularios son mejores las pruebas de elección "
-#~ "múltiple. Puede añadir opciones a una palabra que siempre se mostrará en "
-#~ "el modo de varias opciones. Si no, se generarán elecciones aleatorias a "
-#~ "partir de otras entradas del documento (utilice para ello la herramienta "
-#~ "de elección múltiple).</p>\n"
-
-#~ msgid ""
-#~ "<p>Want to enter pronunciation symbols quickly? <em>Double-click</em> the "
-#~ "symbol you need to directly add it.</p>\n"
-#~ msgstr ""
-#~ "<p>¿Desea introducir símbolos de pronunciación rápidamente? Realice una "
-#~ "<em>doble pulsación</em> sobre el símbolo que necesite para añadirlo "
-#~ "directamente.</p>\n"
-
-#~ msgid ""
-#~ "<p>You can use the \"Download New Vocabulary\" dialog or visit the "
-#~ "website listing many vocabulary documents:\n"
-#~ "<a href=\"https://edu.kde.org/contrib/kvtml2.php\">https://edu.kde.org/"
-#~ "contrib/kvtml2.php</a>.</p>\n"
-#~ msgstr ""
-#~ "<p>Puede utilizar el diálogo «Descargar vocabulario nuevo» o visitar el "
-#~ "sitio web en el que puede encontrar muchos documentos de vocabulario:\n"
-#~ "<a href=\"https://edu.kde.org/contrib/kvtml2.php\">https://edu.kde.org/"
-#~ "contrib/kvtml2.php</a>.</p>\n"
-
-#~ msgid "Comparison forms"
-#~ msgstr "Formas de comparación"
-
-#~ msgid "Grade"
-#~ msgstr "Calificación"
-
-#~ msgid ""
-#~ "<p>If you do not want to see the answer again after pressing enter when "
-#~ "practicing, you can configure Parley to directly skip to the next entry.</"
-#~ "p>\n"
-#~ "<p>You can even choose to display the answer for a fixed amount of time. "
-#~ "Use \"Configure Practice...\" -> \"Advanced\" -> \"Show solution after "
-#~ "answering\".</p>\n"
-#~ msgstr ""
-#~ "<p>Si no desea ver la respuesta después de pulsar Intro cuando está "
-#~ "practicando, puede configurar Parley para saltar directamente a la "
-#~ "siguiente entrada.</p>\n"
-#~ "<p>También puede mostrar la respuesta durante un tiempo fijo. utilice "
-#~ "«Configurar práctica» -> «Avanzada» -> «Mostrar solución después de la "
-#~ "respuesta».</p>\n"
-
-#~ msgid "Mark as known (highest grade)"
-#~ msgstr "Marcar como conocido (máxima calificación)"
-
-#~ msgid "Sets the grade for the selected words to 7 (highest grade)"
-#~ msgstr ""
-#~ "Establece la calificación para las palabras seleccionadas hasta 7 (máxima "
-#~ "calificación)"
-
-#~ msgid "Fetch Sound"
-#~ msgstr "Obtener sonido"
-
-#~ msgid ""
-#~ "Fetches a sound file from commons.wikimedia.org for the selected word"
-#~ msgstr ""
-#~ "Obtiene un archivo de sonido de commons.wikimedia.org para la palabra "
-#~ "seleccionada"
-
-#~ msgid "&Scripts"
-#~ msgstr "Guione&s"
-
-#~ msgid "&Script Manager"
-#~ msgstr "Gestor de guione&s"
-
-#~ msgid "Enable and disable scripts"
-#~ msgstr "Activar y desactivar scripts"
-
-#~ msgid "The script file does not exist."
-#~ msgstr "El archivo de guion no existe."
-
-#~ msgid "Error in file %1 at line %2:"
-#~ msgstr "Error en el archivo %1 en la línea %2:"
-
-#~ msgctxt "debug information in error message"
-#~ msgid "Backtrace:"
-#~ msgstr "Traza inversa:"
-
-#~ msgid "Script Dialog"
-#~ msgstr "Diálogo del guion"
-
-#~ msgid "A script could not be activated and has been disabled."
-#~ msgid_plural "%1 scripts could not be activated and have been disabled."
-#~ msgstr[0] "No se puede activar un guion, y ha sido desactivado."
-#~ msgstr[1] "No se pueden activar %1 guiones, y han sido desactivados."
-
-#~ msgid ""
-#~ "This probably means that there are errors in the script or that the "
-#~ "required packages are not installed."
-#~ msgstr ""
-#~ "Esto puede significar que hay errores en el guion o que no se han "
-#~ "instalado los paquetes necesarios."
-
-#~ msgid "Script Activation"
-#~ msgstr "Activación del guion"
-
-#~ msgid "&Upload Vocabulary Document..."
-#~ msgstr "En&viar documento de vocabulario..."
-
-#~ msgid "Share the current vocabulary collection with other users"
-#~ msgstr "Compartir la colección de vocabulario actual con otros usuarios"
-
-#~ msgid "Could not create temporary directory \"%1\""
-#~ msgstr "No se puede crear el directorio temporal «%1»"
-
-#~ msgid "Could not save vocabulary collection \"%1\""
-#~ msgstr "No se puede guardar la colección de vocabulario «%1»"
-
-#~ msgid "Vocabulary collection:"
-#~ msgstr "Colección de vocabulario:"
-
-#~ msgid "Language Selection"
-#~ msgstr "Selección del idioma"
-
-#~ msgid "Top:"
-#~ msgstr "Arriba del todo:"
-
-#~ msgid "Bottom:"
-#~ msgstr "Abajo del todo:"
-
-#~ msgid "Reveal solution when mouse cursor is over the widget"
-#~ msgstr ""
-#~ "Revelar la solución cuando el puntero del ratón esté sobre el elemento "
-#~ "gráfico"
-
-#~ msgid "Always show the solution"
-#~ msgstr "Mostrar siempre la solución"
-
-#~ msgid "Update interval:"
-#~ msgstr "Intervalo de actualización:"
-
-#~ msgid "Select Font..."
-#~ msgstr "Seleccionar tipo de letra..."
-
-#~ msgid " second"
-#~ msgid_plural " seconds"
-#~ msgstr[0] " segundo"
-#~ msgstr[1] " segundos"
-
-#~ msgid "*.kvtml|Vocabulary Collections"
-#~ msgstr "*.kvtml|Colecciones de vocabulario"
-
-#~ msgid "Limit the number of words in the initial phase"
-#~ msgstr "Limitar el número de palabras en la frase inicial"
-
-#~ msgid "Max number of words in the initial phase"
-#~ msgstr "Número máximo de palabras en la frase inicial"
-
-#~ msgid "I knew it well"
-#~ msgstr "Ya lo sabía"
-
-#~ msgid "Initial phase"
-#~ msgstr "Frase inicial"
-
-#~ msgid "Long term phase"
-#~ msgstr "Frase a largo plazo"
-
-#~ msgid "Invalid entry"
-#~ msgstr "Entrada no válida"
-
-#~ msgid "Newly started"
-#~ msgstr "Recién comenzada"
-
-#~ msgid ""
-#~ "Error: ui file not found.\n"
-#~ "Check your installation."
-#~ msgstr ""
-#~ "Error: archivo Ui no encontrado.\n"
-#~ "Compruebe su instalación."
-
-#~ msgid "Fetch Image"
-#~ msgstr "Obtener imagen"
-
-#~ msgid ""
-#~ "No Selection:\n"
-#~ "Select a word to fetch an image for it"
-#~ msgstr ""
-#~ "Ninguna selección:\n"
-#~ "Seleccione una palabra para obtener una imagen sobre ella"
-
-#~ msgid "Fetches an image for the selected translation"
-#~ msgstr "Obtiene una imagen para la traducción seleccionada"
-
-#~ msgid "Give a keyword to search for an image related to it:"
-#~ msgstr "Proporcione una palabra clave para buscar una imagen relacionada:"
-
-#~ msgid "Search"
-#~ msgstr "Buscar"
-
-#~ msgid "Free images only (creative commons, gpl, ...)"
-#~ msgstr "Solo imágenes libres (Creative Commons, GPL...)"
-
-#~ msgid "Previous"
-#~ msgstr "Anterior"
-
-#~ msgid ""
-#~ "Requires you to answer each question correctly 3 times in a row for it to "
-#~ "be counted as correct."
-#~ msgstr ""
-#~ "Es necesario que responda correctamente tres veces consecutivas cada "
-#~ "pregunta para que sea contabilizada como correcta."
-
-#~ msgid "Require 3 consecutive correct answers"
-#~ msgstr "Son necesarias 3 respuestas correctas consecutivas"
-
-#~ msgid "Use the Leitner learning method"
-#~ msgstr "Utilizar el método de aprendizaje Leitner"
-
-#~ msgid "Lessons"
-#~ msgstr "Lecciones"
-
-#~ msgid "The root unit cannot be deleted."
-#~ msgstr "La unidad raíz no se puede borrar."
-
-#~ msgid "Color for displaying invalid units:"
-#~ msgstr "Color base para mostrar las unidades no válidas:"
-
-#~ msgid "Start practice instead of editor"
-#~ msgstr "Iniciar la práctica en lugar del editor"
-
-#~ msgid "&Start Page"
-#~ msgstr "&Página de inicio"
-
-#~ msgid "Could not read collection from \"%1\""
-#~ msgstr "No se puede leer la colección de «%1»"
-
-#~ msgid "&Lesson"
-#~ msgstr "&Lección"
-
-#~ msgid "&Reset Grades"
-#~ msgstr "&Reiniciar las calificaciones"
-
-#~ msgid "Remove Grades"
-#~ msgstr "Eliminar las calificaciones"
-
-#~ msgctxt "Display of the current lesson during practice"
-#~ msgid "Lesson: %1"
-#~ msgstr "Lección: %1"
-
-#~ msgid "Remove &Grades from this lesson"
-#~ msgstr "Eliminar las &calificaciones de esta lección"
-
-#~ msgid "Remove &Grades from this lesson and all sub-lessons"
-#~ msgstr ""
-#~ "Eliminar todas las &calificaciones de esta lección y de todas las "
-#~ "sublecciones"
-
-#~ msgctxt "Grade in language, table header"
-#~ msgid "Grade (%1)"
-#~ msgstr "Calificación (%1)"
-
-#~ msgid "Rename Lesson"
-#~ msgstr "Cambiar el nombre de la lección"
-
-#~ msgid "Delete Lesson"
-#~ msgstr "Borrar la lección"
-
-#~ msgid "Remove Grades from this Lesson"
-#~ msgstr "Eliminar las calificaciones de esta lección"
-
-#~ msgctxt "caption for an overview of the grades for a document"
-#~ msgid "Statistics for \"%1\""
-#~ msgstr "Estadísticas para «%1»"
-
-#~ msgctxt "pair of two languages that the user chooses to practice"
-#~ msgid "%1 to %2"
-#~ msgstr "%1 a %2"
-
-#~ msgid "Languages:"
-#~ msgstr "Idiomas:"
-
-#~ msgctxt ""
-#~ "@title:group Configure advanced settings for practicing vocabulary, short "
-#~ "title in config dialog."
-#~ msgid "Advanced"
-#~ msgstr "Avanzadas"
-
-#~ msgid ""
-#~ "Check this if you want to practice with images instead of words in "
-#~ "flashcards."
-#~ msgstr ""
-#~ "Marque esta opción si quiere practicar con imágenes en lugar de palabras "
-#~ "en las tarjetas"
-
-#~ msgid "Remove &Grades"
-#~ msgstr "Eliminar las &calificaciones"
-
-#~ msgid "Use your own colors"
-#~ msgstr "Utilizar sus propios colores"
-
-#~ msgid "Grade Colors"
-#~ msgstr "Colores de las calificaciones"
-
-#~ msgid ""
-#~ "If it is unchecked, you will just have black on white for the grades; if "
-#~ "it is checked, the colors below will be chosen."
-#~ msgstr ""
-#~ "Si está sin marcar, solo tendrá negro sobre blanco en los grados. Si está "
-#~ "marcado, se tomarán los colores de abajo."
-
-#~ msgid "&Use colors"
-#~ msgstr "&Usar colores"
-
-#~ msgid "Color for the grade 7"
-#~ msgstr "Color para la nota 7"
-
-#~ msgid "&7"
-#~ msgstr "&7"
-
-#~ msgid "Color for the grade 6"
-#~ msgstr "Color para la nota 6"
-
-#~ msgid "Click here to change the color for grade 6."
-#~ msgstr "Pulse aquí para cambiar el color de la nota 6."
-
-#~ msgid "&6"
-#~ msgstr "&6"
-
-#~ msgid "Alt+6"
-#~ msgstr "Alt+6"
-
-#~ msgid "Color for the grade 5"
-#~ msgstr "Color para la nota 5"
-
-#~ msgid "Click here to change the color for grade 5."
-#~ msgstr "Pulse aquí para cambiar el color de la nota 5."
-
-#~ msgid "&5"
-#~ msgstr "&5"
-
-#~ msgid "Alt+5"
-#~ msgstr "Alt+5"
-
-#~ msgid "Color for the grade 4"
-#~ msgstr "Color para la nota 4"
-
-#~ msgid "Click here to change the color for grade 4."
-#~ msgstr "Pulse aquí para cambiar el color de la nota 4."
-
-#~ msgid "&4"
-#~ msgstr "&4"
-
-#~ msgid "Alt+4"
-#~ msgstr "Alt+4"
-
-#~ msgid "Color for the grade 3"
-#~ msgstr "Color para la nota 3"
-
-#~ msgid "Click here to change the color for grade 3."
-#~ msgstr "Pulse aquí para cambiar el color de la nota 3."
-
-#~ msgid "&3"
-#~ msgstr "&3"
-
-#~ msgid "Alt+3"
-#~ msgstr "Alt+3"
-
-#~ msgid "Color for the grade 2"
-#~ msgstr "Color para la nota 2"
-
-#~ msgid "Click here to change the color for grade 2."
-#~ msgstr "Pulse aquí para cambiar el color de la nota 2."
-
-#~ msgid "&2"
-#~ msgstr "&2"
-
-#~ msgid "Color for the grade 1"
-#~ msgstr "Color para la nota 1"
-
-#~ msgid "Click here to change the color for grade 1."
-#~ msgstr "Pulse aquí para cambiar el color de la nota 1."
-
-#~ msgid "&1"
-#~ msgstr "&1"
-
-#~ msgid "&N"
-#~ msgstr "&N"
