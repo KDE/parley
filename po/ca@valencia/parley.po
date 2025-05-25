@@ -68,8 +68,8 @@ msgid ""
 "anyway.</p>"
 msgstr ""
 "<p>La vostra selecció de vocabulari per a l'exercici està buida.</p><p>A "
-"davall podeu escollir ignorar alguns dels vostres configuracions de "
-"configuració per tal d'iniciar igualment un exercici.</p>"
+"davall podeu escollir ignorar alguns dels vostres parametres de configuració "
+"per tal d'iniciar igualment un exercici.</p>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
 #: src/collection/entryfilterdialog.ui:30
@@ -2168,7 +2168,7 @@ msgstr "Nivell &3:"
 #: src/practice/configure/blockoptions.ui:218
 #, kde-format
 msgid "Do not practice vocabulary that has been asked within:"
-msgstr "No exercites cap vocabulari que haja estat demanat en menys de:"
+msgstr "No exercites cap vocabulari que haja sigut demanat en menys de:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/practice/configure/blockoptions.ui:228
@@ -2469,7 +2469,7 @@ msgstr "Introduïu totes les formes de conjugació."
 #: src/practice/genderbackendmode.cpp:62
 #, kde-format
 msgid "Choose the right article for \"%1\""
-msgstr "Escolliu l'article correcte per a «%1»"
+msgstr "Trieu l'article correcte per a «%1»"
 
 #: src/practice/genderbackendmode.cpp:82
 #, kde-format
@@ -3072,7 +3072,7 @@ msgid ""
 "license is required."
 msgstr ""
 "La llicència que voleu aplicar al vostre document.\n"
-"Si penseu aportar-lo al projecte KDE en el futur, cal una llicència adient."
+"Si penseu aportar-lo al projecte KDE en el futur, cal una llicència adint."
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
 #: src/settings/documentproperties.ui:239
@@ -3261,8 +3261,8 @@ msgid ""
 "Choose which separator you want to use to separate your data when importing "
 "and exporting text."
 msgstr ""
-"Escolliu quin separador voleu utilitzar per a separar les dades en importar "
-"i exportar text."
+"Trieu quin separador voleu utilitzar per a separar les dades en importar i "
+"exportar text."
 
 #. i18n: ectx: property (whatsThis), widget (KComboBox, kcfg_SeparatorCombo)
 #: src/settings/generaloptionsbase.ui:119
@@ -3271,7 +3271,7 @@ msgid ""
 "Choose the separator to use to divide the parts of an expression when "
 "importing or exporting data as text."
 msgstr ""
-"Escolliu el separador que voleu utilitzar per a dividir les parts d'una "
+"Trieu el separador que voleu utilitzar per a dividir les parts d'una "
 "expressió en importar o exportar dades com a text."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
@@ -4279,7 +4279,7 @@ msgstr "Color utilitzat per a mostrar la progressió"
 #, kde-format
 msgid "Click here to change the color used to display the progress."
 msgstr ""
-"Feu clic ací per a canviar el color utilitzat per a mostrar la progressió."
+"Cliqueu ací per a canviar el color utilitzat per a mostrar la progressió."
 
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
@@ -4313,7 +4313,7 @@ msgstr "Color utilitzat per a mostrar la progressió inicial"
 #, kde-format
 msgid "Click here to change the color used to display the early progress."
 msgstr ""
-"Feu clic ací per a canviar el color utilitzat per a mostrar la progressió "
+"Cliqueu ací per a canviar el color utilitzat per a mostrar la progressió "
 "inicial."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
@@ -4333,7 +4333,7 @@ msgstr "Color utilitzat per a mostrar les qualificacions:"
 #, kde-format
 msgid "Click here to change the color used to display invalid units."
 msgstr ""
-"Feu clic ací per a canviar el color utilitzat per a mostrar les unitats no "
+"Cliqueu ací per a canviar el color utilitzat per a mostrar les unitats no "
 "vàlides."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
