@@ -270,7 +270,7 @@
 
 <para
 >Si desea empezar su propia colección de vocabulario, pulse el botón <guibutton
->Crear una nueva colección...</guibutton
+>Crear una nueva colección…</guibutton
 >. </para>
 
 <para
@@ -347,7 +347,7 @@
 ><imagedata fileref="practice-start.png" format="PNG"/></imageobject
 ></inlinemediaobject
 > <guiicon
->Iniciar la práctica...</guiicon
+>Iniciar la práctica…</guiicon
 > que hay en la barra de herramientas. </para>
 
 <sect1 id="practice-overview"
@@ -431,7 +431,7 @@
 ></inlinemediaobject
 > <link linkend="advanced-practice-configuration"
 ><guiicon
->Configurar práctica...</guiicon
+>Configurar práctica…</guiicon
 ></link
 > que hay en la barra de herramientas. </para>
 
@@ -589,7 +589,7 @@
 ><imagedata fileref="practice-start.png" format="PNG"/></imageobject
 ></inlinemediaobject
 > <guiicon
->Iniciar la práctica...</guiicon
+>Iniciar la práctica…</guiicon
 > que hay en la barra de herramientas, se muestra la siguiente pantalla. El modo de entrenamiento <guilabel
 >Tarjetas de aprendizaje</guilabel
 > funciona como si estuviera usando tarjetas de aprendizaje «reales». Debe adivinar el resultado y, si necesita un poco de ayuda, pude pulsar el botón <guibutton
@@ -829,7 +829,7 @@
 ></inlinemediaobject
 > <link linkend="advanced-practice-configuration"
 ><guiicon
->Configurar práctica...</guiicon
+>Configurar práctica…</guiicon
 ></link
 > en la barra de herramientas. </para>
 
@@ -973,12 +973,12 @@
 ><imagedata fileref="document-export.png" format="PNG"/></imageobject
 ></inlinemediaobject
 > <guiicon
->Exportar resultado...</guiicon
+>Exportar resultado…</guiicon
 > de la barra de herramientas o use la opción del menú <menuchoice
 ><guimenu
 >Práctica</guimenu
 > <guimenuitem
->Exportar resultado...</guimenuitem
+>Exportar resultado…</guimenuitem
 ></menuchoice
 > para exportar el resultado de la práctica como &HTML; o como archivo de texto de OpenDocument (<literal role="extension"
 >.odt</literal
@@ -1016,7 +1016,7 @@
 ><imagedata fileref="practice-start.png" format="PNG"/></imageobject
 ></inlinemediaobject
 > <guiicon
->Iniciar la práctica...</guiicon
+>Iniciar la práctica…</guiicon
 > que hay en la barra de herramientas. </para>
 
 <para
@@ -1094,7 +1094,7 @@
 ><imagedata fileref="practice-start.png" format="PNG"/></imageobject
 ></inlinemediaobject
 > <guiicon
->Iniciar la práctica...</guiicon
+>Iniciar la práctica…</guiicon
 > que hay en la barra de herramientas. </para>
 
 <para
@@ -1167,7 +1167,7 @@
 ><imagedata fileref="practice-start.png" format="PNG"/></imageobject
 ></inlinemediaobject
 > <guiicon
->Iniciar la práctica...</guiicon
+>Iniciar la práctica…</guiicon
 > que hay en la barra de herramientas. Se le pide que introduzca las formas de conjugación correctas según el tiempo que se muestra. Para avanzar, pulse el botón <guibutton
 >Continuar</guibutton
 >. </para>
@@ -1215,7 +1215,7 @@
 ><guimenu
 >Archivo</guimenu
 ><guimenuitem
->Propiedades...</guimenuitem
+>Propiedades…</guimenuitem
 ></menuchoice
 >. Aquí se encuentran las <guilabel
 >Preferencias del documento generales</guilabel
@@ -1228,7 +1228,7 @@
 ><guimenu
 >Editar</guimenu
 > <guimenuitem
->Idiomas...</guimenuitem
+>Idiomas…</guimenuitem
 ></menuchoice
 >. Abre el diálogo <guilabel
 >Editar idiomas</guilabel
@@ -1241,7 +1241,7 @@
 ><guimenu
 >Práctica</guimenu
 ><guimenuitem
->Configurar práctica...</guimenuitem
+>Configurar práctica…</guimenuitem
 ></menuchoice
 > Aquí hay preferencias sobre cómo practicar el vocabulario. Dependiendo de lo que quiera hacer durante una sesión de aprendizaje en particular, puede cambiarlas sobre la marcha.</para
 ></listitem>
@@ -1252,7 +1252,7 @@
 ><guimenu
 >Preferencias</guimenu
 ><guimenuitem
->Configurar &parley;...</guimenuitem
+>Configurar &parley;…</guimenuitem
 ></menuchoice
 > Para más preferencias generales y de visualización.</para
 ></listitem>
@@ -1267,7 +1267,7 @@
 ><guimenu
 >Archivo</guimenu
 > <guimenuitem
->Propiedades...</guimenuitem
+>Propiedades…</guimenuitem
 ></menuchoice
 > para editar los datos. </para>
 
@@ -1294,7 +1294,7 @@
 ><guimenu
 >Ver</guimenu
 > <guimenuitem
->Columnas del vocabulario...</guimenuitem
+>Columnas del vocabulario…</guimenuitem
 ></menuchoice
 > del menú. Aquí puede determinar si se muestran las columnas de <emphasis
 >Pronunciación, Categoría gramatical, Sinónimos, Antónimos, Ejemplo, Comentario</emphasis
@@ -1323,7 +1323,7 @@
 ><guimenu
 >Editar</guimenu
 > <guimenuitem
->Idiomas...</guimenuitem
+>Idiomas…</guimenuitem
 ></menuchoice
 > para acceder a la gramática. </para>
 
@@ -1480,9 +1480,9 @@
 >En la pestaña <guilabel
 >Tiempos</guilabel
 > encontrará los diferentes tiempos que están disponibles para una forma verbal. Puede añadir más tiempos a los existentes pulsando los botones <guibutton
->Nuevo...</guibutton
+>Nuevo…</guibutton
 >, <guibutton
->Modificar...</guibutton
+>Modificar…</guibutton
 > o, en caso de que no existan, borrarlos con <guibutton
 >Borrar</guibutton
 > después de haberlos seleccionado. </para>
@@ -2056,7 +2056,7 @@
 
 <para
 >Pulse el botón<guibutton
->Crear una nueva colección...</guibutton
+>Crear una nueva colección…</guibutton
 > </para>
 
 <para
@@ -2066,12 +2066,12 @@
 
 <screenshot>
   <screeninfo
->Diálogo de propiedades de...</screeninfo>
+>Diálogo de propiedades de…</screeninfo>
   <mediaobject>
     <imageobject
 ><imagedata fileref="general_document_properties.png" format="PNG"/></imageobject>
     <caption
->Diálogo de propiedades de...</caption>
+>Diálogo de propiedades de…</caption>
   </mediaobject>
 </screenshot>
 
@@ -2150,7 +2150,7 @@
 > está resaltada y solo tiene que sobrescribirla tecleando <guilabel
 >Animales</guilabel
 >. Cuando termine, pulse la tecla &Enter;. A continuación, haga clic con el &RMB; en <guilabel
->Colección: entrenador de vocabulario E...</guilabel
+>Colección: entrenador de vocabulario E…</guilabel
 >, que es la raíz del árbol de unidades, y seleccione <guimenuitem
 >Nueva unidad</guimenuitem
 > de las opciones que se muestran. En el nuevo campo, escriba <guilabel
@@ -2182,11 +2182,11 @@
 >. Esta segunda unidad está completamente vacía. Como tenemos cinco términos de frutas, tenemos que añadir cinco líneas. Por tanto, pulse la tecla &Ins; cinco veces y después, añada su terminología como antes. </para>
 
 <para
->No olvide guardar de vez en cuando... </para>
+>No olvide guardar de vez en cuando… </para>
 
 <para
 >Haga clic en la raíz de nuestro árbol de unidades <guilabel
->Colección: Entrenador de vocabulario...</guilabel
+>Colección: Entrenador de vocabulario…</guilabel
 > y &parley; nos mostrará todas las entradas que están presentes en las dos unidades: </para>
 
 <screenshot>
@@ -2505,7 +2505,7 @@
 
 <para
 >Pulse el botón <guilabel
->Crear una nueva colección...</guilabel
+>Crear una nueva colección…</guilabel
 > y se mostrará la siguiente pantalla con los campos vacíos o parcialmente rellenos: </para>
 
 <screenshot>
@@ -2549,7 +2549,7 @@
 ><guimenu
 >Ver</guimenu
 > <guimenuitem
->Idiomas...</guimenuitem
+>Idiomas…</guimenuitem
 ></menuchoice
 > para mostrar la sección <guilabel
 >Propiedades para nome singolo</guilabel
@@ -2666,7 +2666,7 @@
 ><imagedata fileref="practice-start.png" format="PNG"/></imageobject
 ></inlinemediaobject
 > <guiicon
->Iniciar la práctica...</guiicon
+>Iniciar la práctica…</guiicon
 > que hay en la barra de herramientas y diviértase. </para>
 </sect2>
 </sect1>
@@ -2679,7 +2679,7 @@
 >Cuando esté en el <guilabel
 >Cuadro de mandos</guilabel
 > tendrá la posibilidad de instalar colecciones directamente del servidor, siempre y cuando esté conectado. Solo tiene que pulsar el botón <guibutton
->Descargar nuevas colecciones...</guibutton
+>Descargar nuevas colecciones…</guibutton
 >. </para>
 
 <screenshot>
@@ -2725,7 +2725,7 @@
 ><guimenu
 >Preferencias</guimenu
 > <guimenuitem
->Configurar &parley;...</guimenuitem
+>Configurar &parley;…</guimenuitem
 ></menuchoice
 >. </para>
 
@@ -2767,7 +2767,7 @@
 
 <para
 >Y si no es suficiente, puede pulsar el botón <guibutton
->Obtener nuevos temas...</guibutton
+>Obtener nuevos temas…</guibutton
 > para buscar más temas. Más adelante, esperamos tener cada vez más temas disponibles. Si sabe crear gráficos &SVG; (por ejemplo, con <ulink url="https://inkscape.org"
 ><application
 >Inkscape</application
@@ -2810,7 +2810,7 @@
 > le llevará inmediatamente al vocabulario que estaba aprendiendo. Con frecuencia, utilizará esta opción junto con la segunda, <guilabel
 >Guardar opciones automáticamente al cerrar o salir</guilabel
 > porque resulta útil no tener que responder siempre a la misma pregunta de si se deben guardar los cambios (incluidos los resultados del aprendizaje) o no. La opción <guilabel
->Crear una copia de seguridad cada ... minutos</guilabel
+>Crear una copia de seguridad cada … minutos</guilabel
 > puede resultar muy útil para ayudarle a guardar su trabajo frecuentemente. Una cosa menos en la que pensar. </para>
 
 <para
@@ -2966,7 +2966,7 @@
 >En cualquier caso, los archivos se mostrarán en el diálogo <guilabel
 >Descargar novedades</guilabel
 > tras pulsar el botón <guibutton
->Descargar nuevas colecciones...</guibutton
+>Descargar nuevas colecciones…</guibutton
 > del <guilabel
 >Cuadro de mandos</guilabel
 >. </para>
