@@ -241,7 +241,7 @@ msgstr "No hi ha cap idioma definit"
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
 msgid "Select a unit before adding vocabulary."
-msgstr "Seleccioneu una unitat abans d'afegir-hi vocabulari."
+msgstr "Trieu una unitat abans d'afegir-hi vocabulari."
 
 #: src/collection/vocabularymodel.cpp:317
 #, kde-format
@@ -863,7 +863,7 @@ msgstr "«%1» és un:"
 #, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
-msgstr "Seleccioneu el gènere del nom"
+msgstr "Trieu el gènere del nom"
 
 #: src/editor/latexwidget.cpp:22
 #, kde-format
@@ -1058,7 +1058,7 @@ msgstr "Comentari:"
 #: src/editor/synonymwidget.cpp:59
 #, kde-format
 msgid "Select Synonyms"
-msgstr "Selecciona els sinònims"
+msgstr "Tria els sinònims"
 
 #: src/editor/synonymwidget.cpp:65
 #, kde-format
@@ -1169,7 +1169,7 @@ msgstr "Apega"
 #: src/editor/vocabularyview.cpp:126
 #, kde-format
 msgid "Select all rows"
-msgstr "Selecciona totes les files"
+msgstr "Tria totes les files"
 
 #: src/editor/vocabularyview.cpp:132
 #, kde-format
@@ -1880,7 +1880,7 @@ msgstr ""
 #: src/parleymainwindow.cpp:174
 #, kde-format
 msgid "Select languages"
-msgstr "Seleccioneu idiomes"
+msgstr "Trieu els idiomes"
 
 #: src/parleymainwindow.cpp:212
 #, kde-format
@@ -3930,7 +3930,7 @@ msgstr "Mostra o oculta la columna activa."
 #: src/settings/parley.kcfg:221
 #, kde-format
 msgid "Select which units are displayed for editing"
-msgstr "Selecciona quines unitats es mostren per a editar"
+msgstr "Tria quines unitats es mostren per a editar"
 
 #. i18n: ectx: label, entry (MainWindowSplitter), group (Appearance)
 #: src/settings/parley.kcfg:231
@@ -4153,7 +4153,8 @@ msgstr "L'ordre utilitzada per a iniciar un vocabulari baixat"
 #: src/settings/parley.kcfg:395
 #, kde-format
 msgid "The folder where downloaded vocabularies are saved by default"
-msgstr "La carpeta on es guarden per defecte els vocabularis baixats"
+msgstr ""
+"La carpeta on es guardaran de manera predeterminada els vocabularis baixats"
 
 #: src/settings/parleyprefs.cpp:24
 #, kde-format
