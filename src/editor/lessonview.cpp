@@ -16,7 +16,7 @@
 
 #include <KEduVocExpression>
 #include <KEduVocLesson>
-#include <kmessagebox.h>
+#include <KMessageBox>
 
 #include "editor/editor.h"
 #include "prefs.h"

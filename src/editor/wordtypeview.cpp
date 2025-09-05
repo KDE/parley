@@ -15,7 +15,7 @@
 
 #include <KEduVocExpression>
 #include <KEduVocWordtype>
-#include <kmessagebox.h>
+#include <KMessageBox>
 
 #include "containermodel.h"
 #include "editor/editor.h"
