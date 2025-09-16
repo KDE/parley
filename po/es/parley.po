@@ -2541,10 +2541,10 @@ msgid_plural ""
 "You are %3% done."
 msgstr[0] ""
 "Ha respondido correctamente %2 de un total de %1 palabra.\n"
-"Ha completado el %3%."
+"Ha completado el %3 %."
 msgstr[1] ""
 "Ha respondido correctamente %2 de un total de %1 palabras.\n"
-"Ha completado el %3%."
+"Ha completado el %3 %."
 
 #: src/practice/latexrenderer.cpp:47
 #, kde-format
