@@ -387,7 +387,7 @@
 >Konfiguracija vaje</guilabel
 > z <inlinemediaobject
 ><imageobject
-><imagedata fileref="practice-setup.png " format="PNG"/></imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
 ></inlinemediaobject
 > <link linkend="advanced-practice-configuration"
 ><guiicon
@@ -546,7 +546,7 @@
 >Način za vadbo</guilabel
 > in pritisnili na <inlinemediaobject
 ><imageobject
-><imagedata fileref="practice-start.png" format=" PNG"/></imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
 ></inlinemediaobject
 > <guiicon
 >Začni vajo...</guiicon
@@ -2427,7 +2427,7 @@
 ><imageobject
 ><imagedata fileref="practice-start.png" format="PNG"/></imageobject
 ></inlinemediaobject
-> <link linkend=" vocabulary-practice"
+> <link linkend="vocabulary-practice"
 ><guiicon
 >Vaja</guiicon
 ></link
