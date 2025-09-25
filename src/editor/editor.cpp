@@ -45,7 +45,6 @@
 #include <KCharSelect>
 #include <KToggleAction>
 
-#include <QDockWidget>
 #include <QHeaderView>
 #include <QMenu>
 #include <QScrollArea>
