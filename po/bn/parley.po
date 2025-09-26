@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-09 00:37+0000\n"
+"POT-Creation-Date: 2025-09-26 00:38+0000\n"
 "PO-Revision-Date: 2006-04-21 09:38-0500\n"
 "Last-Translator: Progga <progga@BengaLinux.Org>\n"
 "Language-Team: Bengali <kde-translation@bengalinux.org>\n"
@@ -289,8 +289,8 @@ msgstr "বর্তমানে ব্যবহৃত শব্দভাণ্�
 msgid "Practice Anyway"
 msgstr "প্রদর্শন সংক্রান্ত বৈশিষ্ট্য"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
-#: src/editor/editor.cpp:377
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:375
+#: src/editor/editor.cpp:376
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Practice"
@@ -673,14 +673,14 @@ msgstr "নভেম্বর"
 msgid "Next"
 msgstr "&পরবর্তী"
 
-#: src/editor/editor.cpp:141
+#: src/editor/editor.cpp:140
 #, fuzzy, kde-format
 #| msgctxt "Abbreviation for R)emark"
 #| msgid "R: %1"
 msgid "Units"
 msgstr "মন্তব্য: %1"
 
-#: src/editor/editor.cpp:152
+#: src/editor/editor.cpp:151
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -688,26 +688,26 @@ msgid ""
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
 
-#: src/editor/editor.cpp:163
+#: src/editor/editor.cpp:162
 #, fuzzy, kde-format
 #| msgid "Word t&ype:"
 msgid "Word Types"
 msgstr "শব্দের &ধরন:"
 
-#: src/editor/editor.cpp:183
+#: src/editor/editor.cpp:182
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:196 src/statistics/statisticsmainwindow.ui:135
 #, fuzzy, kde-format
 #| msgid "&Comparison Forms"
 msgid "Comparison Forms"
 msgstr "তুলনার রূ&প"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:212
+#: src/editor/editor.cpp:211
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -715,44 +715,44 @@ msgstr "নৈব্যক্তিক প্রশ্ন"
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:225 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, fuzzy, kde-format
 #| msgid "&Synonyms"
 msgid "Synonyms"
 msgstr "&সমার্থক শব্দ"
 
-#: src/editor/editor.cpp:239
+#: src/editor/editor.cpp:238
 #, fuzzy, kde-format
 #| msgid "&Antonyms"
 msgid "Antonyms"
 msgstr "বি&পরীত শব্দ"
 
-#: src/editor/editor.cpp:253
+#: src/editor/editor.cpp:252
 #, fuzzy, kde-format
 #| msgid "&False friend:"
 msgid "False Friends"
 msgstr "নক&ল বন্ধু:"
 
-#: src/editor/editor.cpp:268
+#: src/editor/editor.cpp:267
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr ""
 
-#: src/editor/editor.cpp:283
+#: src/editor/editor.cpp:282
 #, fuzzy, kde-format
 #| msgid "&male:\t"
 msgid "Image"
 msgstr "পুরু&ষ:\t"
 
-#: src/editor/editor.cpp:298
+#: src/editor/editor.cpp:297
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Summary"
 msgstr "পদাশ্রিত নির্দেশক"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:312
+#: src/editor/editor.cpp:311
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, fuzzy, kde-format
 #| msgctxt "Describing the sound of the character"
@@ -760,29 +760,29 @@ msgstr "পদাশ্রিত নির্দেশক"
 msgid "Sound"
 msgstr "উচ্চারণ: "
 
-#: src/editor/editor.cpp:328
+#: src/editor/editor.cpp:327
 #, fuzzy, kde-format
 #| msgid "Interlingue"
 msgid "Internet"
 msgstr "ইন্টারলিঙ্গুয়া"
 
-#: src/editor/editor.cpp:344
+#: src/editor/editor.cpp:343
 #, kde-format
 msgid "LaTeX"
 msgstr ""
 
-#: src/editor/editor.cpp:419
+#: src/editor/editor.cpp:418
 #, kde-format
 msgid "Enter search terms here"
 msgstr ""
 
-#: src/editor/editor.cpp:420
+#: src/editor/editor.cpp:419
 #, fuzzy, kde-format
 #| msgid "Helps you train your vocabulary"
 msgid "Search your vocabulary"
 msgstr "আপনার শব্দভাণ্ডার সমৃদ্ধ করতে সাহায্য করে"
 
-#: src/editor/editor.cpp:422
+#: src/editor/editor.cpp:421
 #, fuzzy, kde-format
 msgid "S&earch:"
 msgstr "&মন্তব্য:"

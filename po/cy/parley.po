@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ../cy/messages//kdeedu/kvoctrain.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-09 00:37+0000\n"
+"POT-Creation-Date: 2025-09-26 00:38+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -275,8 +275,8 @@ msgstr "Agor dogfen gyfredol"
 msgid "Practice Anyway"
 msgstr "Gweld Gosodiadau"
 
-#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:376
-#: src/editor/editor.cpp:377
+#: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:375
+#: src/editor/editor.cpp:376
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Practice"
@@ -656,12 +656,12 @@ msgstr "Tachwedd"
 msgid "Next"
 msgstr "Ne&saf"
 
-#: src/editor/editor.cpp:141
+#: src/editor/editor.cpp:140
 #, kde-format
 msgid "Units"
 msgstr ""
 
-#: src/editor/editor.cpp:152
+#: src/editor/editor.cpp:151
 #, kde-format
 msgid ""
 "Right click to add, delete, or rename units. \n"
@@ -669,26 +669,26 @@ msgid ""
 "Only checked units [x] will be asked in the practice!"
 msgstr ""
 
-#: src/editor/editor.cpp:163
+#: src/editor/editor.cpp:162
 #, fuzzy, kde-format
 #| msgid "T&ype"
 msgid "Word Types"
 msgstr "M&ath"
 
-#: src/editor/editor.cpp:183
+#: src/editor/editor.cpp:182
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
-#: src/editor/editor.cpp:197 src/statistics/statisticsmainwindow.ui:135
+#: src/editor/editor.cpp:196 src/statistics/statisticsmainwindow.ui:135
 #, fuzzy, kde-format
 #| msgid "Compar&ison"
 msgid "Comparison Forms"
 msgstr "C&ymharu"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: src/editor/editor.cpp:212
+#: src/editor/editor.cpp:211
 #: src/practice/configure/specificpracticeoptions.ui:17
 #, kde-format
 msgid "Multiple Choice"
@@ -696,70 +696,70 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, synonymLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: src/editor/editor.cpp:226 src/editor/synonymwidget.ui:16
+#: src/editor/editor.cpp:225 src/editor/synonymwidget.ui:16
 #: src/practice/configure/generalpracticeoptions.ui:152
 #, fuzzy, kde-format
 #| msgid "&Synonyms"
 msgid "Synonyms"
 msgstr "&Cyfystyron"
 
-#: src/editor/editor.cpp:239
+#: src/editor/editor.cpp:238
 #, fuzzy, kde-format
 #| msgid "astronomy"
 msgid "Antonyms"
 msgstr "astroleg"
 
-#: src/editor/editor.cpp:253
+#: src/editor/editor.cpp:252
 #, kde-format
 msgid "False Friends"
 msgstr ""
 
-#: src/editor/editor.cpp:268
+#: src/editor/editor.cpp:267
 #, kde-format
 msgid "Phonetic Symbols"
 msgstr ""
 
-#: src/editor/editor.cpp:283
+#: src/editor/editor.cpp:282
 #, fuzzy, kde-format
 #| msgid "E&xample:"
 msgid "Image"
 msgstr "E&nghraifft :"
 
-#: src/editor/editor.cpp:298
+#: src/editor/editor.cpp:297
 #, fuzzy, kde-format
 #| msgid "Article"
 msgid "Summary"
 msgstr "Erthygl"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PracticeSoundEnabled)
-#: src/editor/editor.cpp:312
+#: src/editor/editor.cpp:311
 #: src/practice/configure/generalpracticeoptions.ui:139
 #, fuzzy, kde-format
 #| msgid "&Remove Language"
 msgid "Sound"
 msgstr "&Gwaredu Iaith"
 
-#: src/editor/editor.cpp:328
+#: src/editor/editor.cpp:327
 #, kde-format
 msgid "Internet"
 msgstr ""
 
-#: src/editor/editor.cpp:344
+#: src/editor/editor.cpp:343
 #, kde-format
 msgid "LaTeX"
 msgstr ""
 
-#: src/editor/editor.cpp:419
+#: src/editor/editor.cpp:418
 #, kde-format
 msgid "Enter search terms here"
 msgstr ""
 
-#: src/editor/editor.cpp:420
+#: src/editor/editor.cpp:419
 #, fuzzy, kde-format
 msgid "Search your vocabulary"
 msgstr "Agor dogfen gyfredol"
 
-#: src/editor/editor.cpp:422
+#: src/editor/editor.cpp:421
 #, fuzzy, kde-format
 msgid "S&earch:"
 msgstr "Mawrth"
