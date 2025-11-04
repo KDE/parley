@@ -1652,7 +1652,7 @@ msgstr "Quitter Parley"
 #: src/parleyactions.cpp:134
 #, kde-format
 msgid "Show the configuration dialog"
-msgstr "Afficher la boîte de dialogue de configuration"
+msgstr "Afficher la boite de dialogue de configuration"
 
 #: src/parleyactions.cpp:141
 #, kde-format
@@ -3649,7 +3649,7 @@ msgstr "Nombre de profils de configuration enregistrés"
 msgid ""
 "If true, when using the entry dialog, new rows will be appended as needed"
 msgstr ""
-"Si cette option est sélectionnée, lors de l'utilisation de la boîte de "
+"Si cette option est sélectionnée, lors de l'utilisation de la boite de "
 "dialogue pour l'ajout d'entrées, de nouvelles lignes seront ajoutées suivant "
 "les besoins"
 
@@ -3714,7 +3714,7 @@ msgstr "Afficher des images au verso des fiches mnémotechniques."
 #, kde-format
 msgid "In Blocking Query Tab Dialog, if checked then the Query is blocked"
 msgstr ""
-"Si cette option est sélectionnée dans la boîte de dialogue pour le blocage "
+"Si cette option est sélectionnée dans la boite de dialogue pour le blocage "
 "des requêtes, alors la requête est bloquée."
 
 #. i18n: ectx: label, entry (Expire), group (PracticeOptions)
@@ -3724,7 +3724,7 @@ msgid ""
 "In Blocking Query Tab Dialog, if checked then the Query accepts an expiring "
 "time"
 msgstr ""
-"Si cette option est sélectionnée dans la boîte de dialogue pour le blocage "
+"Si cette option est sélectionnée dans la boite de dialogue pour le blocage "
 "des requêtes, alors, la requête accepte un délai d'expiration."
 
 #. i18n: ectx: label, entry (TestOrderLesson), group (PracticeOptions)
@@ -3871,13 +3871,13 @@ msgstr ""
 #, kde-format
 msgid "Enable image display in the practice dialogs."
 msgstr ""
-"Activer l'affichage des images dans les boîtes de dialogue d'exercices."
+"Activer l'affichage des images dans les boites de dialogue d'exercices."
 
 #. i18n: ectx: label, entry (PracticeSoundEnabled), group (PracticeOptions)
 #: src/settings/parley.kcfg:162
 #, kde-format
 msgid "Enable sound playback in the practice dialogs."
-msgstr "Activer la lecture des sons dans les boîtes de dialogue d'exercices."
+msgstr "Activer la lecture des sons dans les boites de dialogue d'exercices."
 
 #. i18n: ectx: label, entry (AllowImageInsteadOfWord), group (PracticeOptions)
 #: src/settings/parley.kcfg:166
