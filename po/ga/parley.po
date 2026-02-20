@@ -61,24 +61,21 @@ msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, ignoreGroupBox)
 #: src/collection/entryfilterdialog.ui:30
-#, fuzzy, kde-format
-#| msgid "Show the configuration dialog"
+#, kde-format
 msgid "Ignore Configuration for:"
-msgstr "Taispeáin an dialóg chumraíochta"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, lessonCheckBox)
 #: src/collection/entryfilterdialog.ui:36
-#, fuzzy, kde-format
-#| msgid "Rename Lesson"
+#, kde-format
 msgid "Ignore Lessons"
-msgstr "Athainmnigh Ceacht"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, wordTypeCheckBox)
 #: src/collection/entryfilterdialog.ui:56
-#, fuzzy, kde-format
-#| msgid "Word Types"
+#, kde-format
 msgid "Ignore Word Types"
-msgstr "Cineálacha Focail"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, blockedCheckBox)
 #: src/collection/entryfilterdialog.ui:76
@@ -94,10 +91,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, timesPracticedCheckBox)
 #: src/collection/entryfilterdialog.ui:116
-#, fuzzy, kde-format
-#| msgid "Written Practice"
+#, kde-format
 msgid "Ignore Times Practiced"
-msgstr "Cleachtadh Scríofa"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, minMaxGradeCheckBox)
 #: src/collection/entryfilterdialog.ui:136
@@ -150,10 +146,9 @@ msgid "Enable the antonym view to edit antonyms."
 msgstr ""
 
 #: src/collection/vocabularymodel.cpp:281
-#, fuzzy, kde-format
-#| msgid "Pronunciation"
+#, kde-format
 msgid "Pronunciation (%1)"
-msgstr "Fuaimniú"
+msgstr ""
 
 #: src/collection/vocabularymodel.cpp:281
 #, kde-format
@@ -161,10 +156,9 @@ msgid "Pronunciation"
 msgstr "Fuaimniú"
 
 #: src/collection/vocabularymodel.cpp:283
-#, fuzzy, kde-format
-#| msgid "Word Type"
+#, kde-format
 msgid "Word Type (%1)"
-msgstr "Cineál Focail"
+msgstr ""
 
 #: src/collection/vocabularymodel.cpp:283
 #, kde-format
@@ -178,16 +172,14 @@ msgid "Synonym"
 msgstr "Comhchiallach"
 
 #: src/collection/vocabularymodel.cpp:285
-#, fuzzy, kde-format
-#| msgid "Synonym: "
+#, kde-format
 msgid "Synonym (%1)"
-msgstr "Comhchiallach: "
+msgstr ""
 
 #: src/collection/vocabularymodel.cpp:287
-#, fuzzy, kde-format
-#| msgid "Antonym"
+#, kde-format
 msgid "Antonym (%1)"
-msgstr "Frithchiallach"
+msgstr ""
 
 #: src/collection/vocabularymodel.cpp:287
 #, kde-format
@@ -195,10 +187,9 @@ msgid "Antonym"
 msgstr "Frithchiallach"
 
 #: src/collection/vocabularymodel.cpp:289
-#, fuzzy, kde-format
-#| msgid "Example"
+#, kde-format
 msgid "Example (%1)"
-msgstr "Sampla"
+msgstr ""
 
 #: src/collection/vocabularymodel.cpp:289
 #, kde-format
@@ -206,10 +197,9 @@ msgid "Example"
 msgstr "Sampla"
 
 #: src/collection/vocabularymodel.cpp:291
-#, fuzzy, kde-format
-#| msgid "Comment"
+#, kde-format
 msgid "Comment (%1)"
-msgstr "Nóta"
+msgstr ""
 
 #: src/collection/vocabularymodel.cpp:291
 #, kde-format
@@ -217,10 +207,9 @@ msgid "Comment"
 msgstr "Nóta"
 
 #: src/collection/vocabularymodel.cpp:293
-#, fuzzy, kde-format
-#| msgid "Paraphrase"
+#, kde-format
 msgid "Paraphrase (%1)"
-msgstr "Imlabhra"
+msgstr ""
 
 #: src/collection/vocabularymodel.cpp:293
 #, kde-format
@@ -253,9 +242,6 @@ msgid "%1 word due"
 msgid_plural "%1 words due"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
 
 #: src/dashboard/barwidget.cpp:122
 #, kde-format
@@ -268,10 +254,9 @@ msgid "Open this vocabulary collection in the editor"
 msgstr "Oscail an bailiúchán stór focal seo san eagarthóir"
 
 #: src/dashboard/collectionwidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "Practice Again"
+#, kde-format
 msgid "Practice Anyway"
-msgstr "Cleacht Arís"
+msgstr ""
 
 #: src/dashboard/collectionwidget.cpp:98 src/editor/editor.cpp:375
 #: src/editor/editor.cpp:376
@@ -281,19 +266,15 @@ msgstr "Cleachtadh"
 
 #. i18n: ectx: property (text), widget (QLabel, recentLabel)
 #: src/dashboard/dashboard.cpp:225 src/dashboard/dashboard.ui:38
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Open Collection"
+#, kde-format
 msgid "Active Collections"
-msgstr "Oscail Bailiúchán"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, completedLabel)
 #: src/dashboard/dashboard.cpp:230 src/dashboard/dashboard.ui:77
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Open Collection"
+#, kde-format
 msgid "Completed Collections"
-msgstr "Oscail Bailiúchán"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, removeChoiceButton)
 #: src/dashboard/dashboard.cpp:278 src/editor/multiplechoicewidget.ui:28
@@ -302,11 +283,9 @@ msgid "Remove"
 msgstr "Bain"
 
 #: src/dashboard/dashboard.cpp:278
-#, fuzzy, kde-format
-#| msgid "Do you really want to delete the selected entry?"
-#| msgid_plural "Do you really want to delete the selected %1 entries?"
+#, kde-format
 msgid "Are you sure you want to remove this collection?"
-msgstr "An bhfuil tú cinnte gur mian leat an iontráil roghnaithe a scriosadh?"
+msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, Dashboard)
 #: src/dashboard/dashboard.ui:14 src/main.cpp:25
@@ -316,24 +295,21 @@ msgstr "Parley"
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/dashboard/dashboard.ui:120
-#, fuzzy, kde-format
-#| msgid "Create a New Collection"
+#, kde-format
 msgid "Create a New Collection..."
-msgstr "Cruthaigh Bailiúchán Nua"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
-#, fuzzy, kde-format
-#| msgid "Open an Existing Collection"
+#, kde-format
 msgid "Open an Existing Collection..."
-msgstr "Oscail Bailiúchán atá ann"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
-#, fuzzy, kde-format
-#| msgid "Download New Collections"
+#, kde-format
 msgid "Download New Collections..."
-msgstr "Íosluchtaigh Bailiúcháin Nua"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, headingLabel)
 #: src/dashboard/dashboard.ui:141
@@ -366,11 +342,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:36
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgid "Download"
-msgstr "Íosluchtaigh Gramadach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, showCurrentButton)
 #: src/editor/browserwidget.ui:18
@@ -415,10 +389,9 @@ msgstr "Comparáideach:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, superlativeLabel)
 #: src/editor/comparisonwidget.ui:88
-#, fuzzy, kde-format
-#| msgid "superlative"
+#, kde-format
 msgid "The superlative (fastest)"
-msgstr "sárchéimneach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
 #: src/editor/comparisonwidget.ui:91
@@ -571,73 +544,58 @@ msgstr "Neamhinscneach"
 
 #. i18n: ectx: property (title), widget (QGroupBox, declensionGroupBox)
 #: src/editor/declensionwidget.ui:38
-#, fuzzy, kde-format
-#| msgid "Declensions"
+#, kde-format
 msgid "Declension Forms"
-msgstr "Díochlaontaí"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
 #: src/editor/declensionwidget.ui:52
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Nominative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
-msgstr "Ainmneach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Genitive"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
-msgstr "Ginideach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Dative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
-msgstr "Tabharthach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Accusative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
-msgstr "Cuspóireach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Ablative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
-msgstr "Ochslaíoch"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Locative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
-msgstr "Áitreabhach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Vocative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
-msgstr "Gairmeach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #: src/editor/declensionwidget.ui:445
@@ -652,10 +610,9 @@ msgid "Next"
 msgstr "Ar Aghaidh"
 
 #: src/editor/editor.cpp:140
-#, fuzzy, kde-format
-#| msgid "New type"
+#, kde-format
 msgid "Units"
-msgstr "Cineál nua"
+msgstr ""
 
 #: src/editor/editor.cpp:151
 #, kde-format
@@ -677,10 +634,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
 #: src/editor/editor.cpp:196 src/statistics/statisticsmainwindow.ui:135
-#, fuzzy, kde-format
-#| msgid "Conjugation Forms"
+#, kde-format
 msgid "Comparison Forms"
-msgstr "Foirmeacha Réimnithe"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: src/editor/editor.cpp:211
@@ -745,10 +701,9 @@ msgid "Enter search terms here"
 msgstr "Iontráil téarmaí cuardaigh anseo"
 
 #: src/editor/editor.cpp:419
-#, fuzzy, kde-format
-#| msgid "Helps you train your vocabulary"
+#, kde-format
 msgid "Search your vocabulary"
-msgstr "Feabhsaigh do stór focal"
+msgstr ""
 
 #: src/editor/editor.cpp:421
 #, kde-format
@@ -795,11 +750,9 @@ msgstr "Barra Uirlisí Eagarthóireachta"
 
 #. i18n: ectx: property (title), widget (QGroupBox, direc_label)
 #: src/editor/FromToEntryPageForm.ui:26
-#, fuzzy, kde-format
-#| msgctxt "@title:window document properties"
-#| msgid "Properties for %1"
+#, kde-format
 msgid "Properties From Original"
-msgstr "Airíonna %1"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, grade_label)
 #: src/editor/FromToEntryPageForm.ui:72
@@ -815,10 +768,9 @@ msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, GroupBox3)
 #: src/editor/FromToEntryPageForm.ui:110
-#, fuzzy, kde-format
-#| msgid "Practice options"
+#, kde-format
 msgid "Practice &Counts"
-msgstr "Roghanna cleachta"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, bcount_label)
 #: src/editor/FromToEntryPageForm.ui:142
@@ -892,11 +844,10 @@ msgid "\"%1\" is a:"
 msgstr "Séard atá i \"%1\" ná:"
 
 #: src/editor/inflectionwidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Please select the first column data:"
+#, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
-msgstr "Roghnaigh sonraí an chéad cholúin:"
+msgstr ""
 
 #: src/editor/latexwidget.cpp:22
 #, kde-format
@@ -905,10 +856,9 @@ msgstr "Iontráil cód LaTeX anseo."
 
 #. i18n: ectx: property (text), widget (QLabel, texLabel)
 #: src/editor/latexwidget.ui:17
-#, fuzzy, kde-format
-#| msgid "LaTeX code"
+#, kde-format
 msgid "LaTeX code:"
-msgstr "Cód LaTeX"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -925,34 +875,29 @@ msgid "Math mode"
 msgstr "Mód Matamaiticiúil"
 
 #: src/editor/lessonview.cpp:32
-#, fuzzy, kde-format
-#| msgid "New type"
+#, kde-format
 msgid "New Unit"
-msgstr "Cineál nua"
+msgstr ""
 
 #: src/editor/lessonview.cpp:34
-#, fuzzy, kde-format
-#| msgid "Add a new lesson to your document"
+#, kde-format
 msgid "Add a new unit to your document"
-msgstr "Cuir ceacht nua le do cháipéis"
+msgstr ""
 
 #: src/editor/lessonview.cpp:40
-#, fuzzy, kde-format
-#| msgid "Rename"
+#, kde-format
 msgid "Rename Unit"
-msgstr "Athainmnigh"
+msgstr ""
 
 #: src/editor/lessonview.cpp:48
-#, fuzzy, kde-format
-#| msgid "&Delete Entry"
+#, kde-format
 msgid "Delete Unit"
-msgstr "&Scrios Iontráil"
+msgstr ""
 
 #: src/editor/lessonview.cpp:50
-#, fuzzy, kde-format
-#| msgid "Delete the selected lesson."
+#, kde-format
 msgid "Delete the selected unit."
-msgstr "Scrios an ceacht roghnaithe."
+msgstr ""
 
 #: src/editor/lessonview.cpp:56
 #, kde-format
@@ -965,10 +910,9 @@ msgid "Make multiple smaller units out of one big unit."
 msgstr ""
 
 #: src/editor/lessonview.cpp:64
-#, fuzzy, kde-format
-#| msgid "New lesson"
+#, kde-format
 msgid "Move to new lesson"
-msgstr "Ceacht nua"
+msgstr ""
 
 #: src/editor/lessonview.cpp:66
 #, kde-format
@@ -981,46 +925,39 @@ msgid "Remove Confidence Levels"
 msgstr ""
 
 #: src/editor/lessonview.cpp:74
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit."
-msgstr "Bain gach grád ón cheacht seo"
+msgstr ""
 
 #: src/editor/lessonview.cpp:80
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove Confidence Levels From This Unit And All Subunits"
-msgstr "Bain gach grád ón cheacht seo"
+msgstr ""
 
 #: src/editor/lessonview.cpp:82
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit and all subunits."
-msgstr "Bain gach grád ón cheacht seo"
+msgstr ""
 
 #: src/editor/lessonview.cpp:88
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Expand Units and Subunits"
-msgstr "Bain gach grád ón cheacht seo"
+msgstr ""
 
 #: src/editor/lessonview.cpp:90
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Expand all units and subunits."
-msgstr "Bain gach grád ón cheacht seo"
+msgstr ""
 
 #: src/editor/lessonview.cpp:96
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Collapse All Units And Subunits"
-msgstr "Bain gach grád ón cheacht seo"
+msgstr ""
 
 #: src/editor/lessonview.cpp:98
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Collapse all units and subunits."
-msgstr "Bain gach grád ón cheacht seo"
+msgstr ""
 
 #: src/editor/lessonview.cpp:190
 #, kde-format
@@ -1028,29 +965,17 @@ msgid "The root lesson cannot be deleted."
 msgstr ""
 
 #: src/editor/lessonview.cpp:200
-#, fuzzy, kde-format
-#| msgid "There is %1 word left in this lesson. Do you want to delete it?"
-#| msgid_plural ""
-#| "There are %1 words left in this lesson. Do you want to delete them?"
+#, kde-format
 msgid "There is %1 word left in this unit. Do you want to delete it?"
 msgid_plural ""
 "There are %1 words left in this unit. Do you want to delete them?"
 msgstr[0] ""
-"Tá %1 fhocal fágtha sa cheacht seo. An bhfuil fonn ort iad a scriosadh?"
 msgstr[1] ""
-"Tá %1 fhocal fágtha sa cheacht seo. An bhfuil fonn ort iad a scriosadh?"
-msgstr[2] ""
-"Tá %1 fhocal fágtha sa cheacht seo. An bhfuil fonn ort iad a scriosadh?"
-msgstr[3] ""
-"Tá %1 bhfocal fágtha sa cheacht seo. An bhfuil fonn ort iad a scriosadh?"
-msgstr[4] ""
-"Tá %1 focal fágtha sa cheacht seo. An bhfuil fonn ort iad a scriosadh?"
 
 #: src/editor/lessonview.cpp:221
-#, fuzzy, kde-format
-#| msgid "Entries per Lesson"
+#, kde-format
 msgid "Entries per Unit"
-msgstr "Iontrálacha sa Cheacht"
+msgstr ""
 
 #: src/editor/lessonview.cpp:222
 #, kde-format
@@ -1084,38 +1009,33 @@ msgstr "Ceacht"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/editor/summarywordwidget.ui:42
-#, fuzzy, kde-format
-#| msgid "Word type"
+#, kde-format
 msgid "Word type:"
-msgstr "Cineál focail"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/summarywordwidget.ui:55
-#, fuzzy, kde-format
-#| msgid "Pronunciation"
+#, kde-format
 msgid "Pronunciation:"
-msgstr "Fuaimniú"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/summarywordwidget.ui:71
-#, fuzzy, kde-format
-#| msgid "E&xample:"
+#, kde-format
 msgid "Example:"
-msgstr "S&ampla:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/summarywordwidget.ui:87
-#, fuzzy, kde-format
-#| msgid "&Paraphrase:"
+#, kde-format
 msgid "Paraphrase:"
-msgstr "&Imlabhra:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/editor/summarywordwidget.ui:103
-#, fuzzy, kde-format
-#| msgid "&Comment:"
+#, kde-format
 msgid "Comment:"
-msgstr "&Nóta:"
+msgstr ""
 
 #: src/editor/synonymwidget.cpp:59
 #, kde-format
@@ -1173,11 +1093,10 @@ msgid "False Friends of %1:"
 msgstr ""
 
 #: src/editor/vocabularycolumnsdialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Vocabulary Columns..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Vocabulary Columns"
-msgstr "Colúin Stóir Fhocal..."
+msgstr ""
 
 #: src/editor/vocabularycolumnsdialog.cpp:58
 #, kde-format
@@ -1185,16 +1104,14 @@ msgid "Enable/Disable the columns for each language"
 msgstr ""
 
 #: src/editor/vocabularydelegate.cpp:145
-#, fuzzy, kde-format
-#| msgid "Currently selected row"
+#, kde-format
 msgid "Sound file selected: %1"
-msgstr "An ró roghnaithe faoi láthair"
+msgstr ""
 
 #: src/editor/vocabularydelegate.cpp:147
-#, fuzzy, kde-format
-#| msgid "Currently selected row"
+#, kde-format
 msgid "Image file selected: %1"
-msgstr "An ró roghnaithe faoi láthair"
+msgstr ""
 
 #: src/editor/vocabularyview.cpp:79
 #, kde-format
@@ -1432,11 +1349,10 @@ msgstr[4] ""
 "ar aghaidh mar sin féin?"
 
 #: src/exportdialog.cpp:55
-#, fuzzy, kde-format
-#| msgid "Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export"
-msgstr "Easpórtáil"
+msgstr ""
 
 #: src/exportdialog.cpp:81
 #, kde-format
@@ -1444,10 +1360,9 @@ msgid "HTML document"
 msgstr "Cáipéis HTML"
 
 #: src/exportdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Could not read collection from \"%1\""
+#, kde-format
 msgid "Could not write to file \"%1\""
-msgstr "Níorbh fhéidir an bailiúchán a léamh ó \"%1\""
+msgstr ""
 
 #: src/exportdialog.cpp:121
 #, kde-format
@@ -1512,10 +1427,9 @@ msgid "Inge Wallin"
 msgstr ""
 
 #: src/main.cpp:37 src/main.cpp:39
-#, fuzzy, kde-format
-#| msgid "Developer and maintainer"
+#, kde-format
 msgid "Developer and Co-maintainer"
-msgstr "Forbróir agus cothaitheoir"
+msgstr ""
 
 #: src/main.cpp:39
 #, kde-format
@@ -1528,10 +1442,9 @@ msgid "Frederik Gladhorn"
 msgstr "Frederik Gladhorn"
 
 #: src/main.cpp:41
-#, fuzzy, kde-format
-#| msgid "Developer and maintainer"
+#, kde-format
 msgid "Developer, former maintainer"
-msgstr "Forbróir agus cothaitheoir"
+msgstr ""
 
 #: src/main.cpp:43
 #, kde-format
@@ -1634,10 +1547,9 @@ msgid "Conceived the name Parley"
 msgstr "Cheap sí an t-ainm Parley"
 
 #: src/main.cpp:74
-#, fuzzy, kde-format
-#| msgid "+[file]"
+#, kde-format
 msgid "[file]"
-msgstr "+[comhad]"
+msgstr ""
 
 #: src/main.cpp:74
 #, kde-format
@@ -1700,10 +1612,9 @@ msgid "Dashboard"
 msgstr ""
 
 #: src/parleyactions.cpp:123
-#, fuzzy, kde-format
-#| msgid "Close the current vocabulary collection and show the start page"
+#, kde-format
 msgid "Close the current vocabulary collection and show the dashboard"
-msgstr "Dún an bailiúchán reatha agus taispeáin an leathanach tosaigh"
+msgstr ""
 
 #: src/parleyactions.cpp:129
 #, kde-format
@@ -1727,10 +1638,9 @@ msgid ""
 msgstr ""
 
 #: src/parleyactions.cpp:151
-#, fuzzy, kde-format
-#| msgid "Remove all grades from the current document"
+#, kde-format
 msgid "Remove all confidence levels from the current document"
-msgstr "Bain gach grád ón cháipéis reatha"
+msgstr ""
 
 #: src/parleyactions.cpp:162
 #, kde-format
@@ -1774,10 +1684,9 @@ msgid "Change practice settings"
 msgstr "Athraigh roghanna cleachta"
 
 #: src/parleyactions.cpp:202
-#, fuzzy, kde-format
-#| msgid "&Export..."
+#, kde-format
 msgid "Export Results..."
-msgstr "&Easpórtáil..."
+msgstr ""
 
 #: src/parleyactions.cpp:203
 #, kde-format
@@ -1811,11 +1720,10 @@ msgid "Properties for %1"
 msgstr "Airíonna %1"
 
 #: src/parleydocument.cpp:161
-#, fuzzy, kde-format
-#| msgid "Vocabulary collection:"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
-msgstr "Bailiúchán stór focal:"
+msgstr ""
 
 #: src/parleydocument.cpp:162
 #, kde-format
@@ -1838,10 +1746,9 @@ msgid "Take Over Lock"
 msgstr ""
 
 #: src/parleydocument.cpp:237
-#, fuzzy, kde-format
-#| msgid "Writing file \"%1\" resulted in an error: %2"
+#, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
-msgstr "Tharla earráid agus comhad \"%1\" á scríobh: %2"
+msgstr ""
 
 #: src/parleydocument.cpp:238
 #, kde-format
@@ -1861,11 +1768,10 @@ msgstr ""
 "Sábháil an comhad roimh scor?\n"
 
 #: src/parleydocument.cpp:299
-#, fuzzy, kde-format
-#| msgid "Open &Downloaded Vocabularies..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
-msgstr "Oscail &Stóir Fhocal Íosluchtaithe..."
+msgstr ""
 
 #: src/parleydocument.cpp:338 src/parleydocument.cpp:426
 #, kde-format
@@ -1888,11 +1794,10 @@ msgid "Save File"
 msgstr "Sábháil Comhad"
 
 #: src/parleydocument.cpp:385
-#, fuzzy, kde-format
-#| msgid "Save Vocabulary As"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
-msgstr "Sábháil an Stór Focal Mar"
+msgstr ""
 
 #: src/parleydocument.cpp:397
 #, kde-format
@@ -1935,10 +1840,9 @@ msgid "Lesson 1"
 msgstr "Ceacht 1"
 
 #: src/parleydocument.cpp:563
-#, fuzzy, kde-format
-#| msgid "Could not read collection from \"%1\""
+#, kde-format
 msgid "Could not open vocabulary collection \"%1\""
-msgstr "Níorbh fhéidir an bailiúchán a léamh ó \"%1\""
+msgstr ""
 
 #: src/parleymainwindow.cpp:134
 #, kde-format
@@ -1956,10 +1860,9 @@ msgid ""
 msgstr ""
 
 #: src/parleymainwindow.cpp:174
-#, fuzzy, kde-format
-#| msgid "Setup Languages"
+#, kde-format
 msgid "Select languages"
-msgstr "Socraigh Teangacha"
+msgstr ""
 
 #: src/parleymainwindow.cpp:212
 #, kde-format
@@ -1991,10 +1894,9 @@ msgstr "Barra Uirlisí Staitisticí"
 
 #. i18n: ectx: ToolBar (practiceSummaryToolBar)
 #: src/parleyui.rc:40 src/practice/practicesummaryui.rc:20
-#, fuzzy, kde-format
-#| msgid "Practice Toolbar"
+#, kde-format
 msgid "Practice Summary Toolbar"
-msgstr "Barra Uirlisí Cleachta"
+msgstr ""
 
 #: src/practice/audiobutton.cpp:59 src/practice/audiobutton.cpp:60
 #, kde-format
@@ -2209,13 +2111,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_Block)
 #: src/practice/configure/blockoptions.ui:95
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "@title:group vocabulary can be set to be blocked for a certain amount of "
-#| "time"
-#| msgid "Blocking"
+#, kde-format
 msgid "Bl&ocking"
-msgstr "Blocáil"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, l_lev4)
 #: src/practice/configure/blockoptions.ui:118
@@ -2272,21 +2170,18 @@ msgid "Configure Practice"
 msgstr "Cumraigh Cleachtadh"
 
 #: src/practice/configure/configurepracticedialog.cpp:28
-#, fuzzy, kde-format
-#| msgid "General"
+#, kde-format
 msgctxt ""
 "@title:group Configure general settings for practicing vocabulary, short "
 "title in config dialog."
 msgid "General"
-msgstr "Ginearálta"
+msgstr ""
 
 #: src/practice/configure/configurepracticedialog.cpp:30
-#, fuzzy, kde-format
-#| msgctxt "Configure advanced settings for practicing vocabulary."
-#| msgid "Advanced Practice Settings"
+#, kde-format
 msgctxt "Configure general settings for practicing vocabulary."
 msgid "General Practice Settings"
-msgstr "Ardroghanna Cleachta"
+msgstr ""
 
 #: src/practice/configure/configurepracticedialog.cpp:35
 #, kde-format
@@ -2321,12 +2216,10 @@ msgid "Specific"
 msgstr ""
 
 #: src/practice/configure/configurepracticedialog.cpp:51
-#, fuzzy, kde-format
-#| msgctxt "Configure advanced settings for practicing vocabulary."
-#| msgid "Advanced Practice Settings"
+#, kde-format
 msgctxt "Configure specific settings for practicing vocabulary."
 msgid "Specific Practice Settings"
-msgstr "Ardroghanna Cleachta"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: src/practice/configure/generalpracticeoptions.ui:17
@@ -2342,10 +2235,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:26
-#, fuzzy, kde-format
-#| msgid "Rename Lesson"
+#, kde-format
 msgid "Ignore accents"
-msgstr "Athainmnigh Ceacht"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:36
@@ -2355,10 +2247,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:39
-#, fuzzy, kde-format
-#| msgid "Show the configuration dialog"
+#, kde-format
 msgid "Ignore capitalization"
-msgstr "Taispeáin an dialóg chumraíochta"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:49
@@ -2368,10 +2259,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:52
-#, fuzzy, kde-format
-#| msgid "Show the configuration dialog"
+#, kde-format
 msgid "Ignore punctuation"
-msgstr "Taispeáin an dialóg chumraíochta"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:62
@@ -2382,10 +2272,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:65
-#, fuzzy, kde-format
-#| msgid "Enable Hints"
+#, kde-format
 msgid "Enable hints"
-msgstr "Cumasaigh Leideanna"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
 #: src/practice/configure/generalpracticeoptions.ui:91
@@ -2401,10 +2290,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:100
-#, fuzzy, kde-format
-#| msgid "Question"
+#, kde-format
 msgid "Image for question"
-msgstr "Ceist"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:110
@@ -2414,10 +2302,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:113
-#, fuzzy, kde-format
-#| msgid "Show &Solution"
+#, kde-format
 msgid "Image for solution"
-msgstr "Tai&speáin an Freagra"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:123
@@ -2448,17 +2335,15 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
-#, fuzzy, kde-format
-#| msgid "Select Synonyms"
+#, kde-format
 msgid "Accept any synonym"
-msgstr "Roghnaigh Comhchiallaigh"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: src/practice/configure/generalpracticeoptions.ui:191
-#, fuzzy, kde-format
-#| msgid "Expression"
+#, kde-format
 msgid "Sessions"
-msgstr "Slonn"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/generalpracticeoptions.ui:202
@@ -2468,10 +2353,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
-#, fuzzy, kde-format
-#| msgid "Total number of entries:"
+#, kde-format
 msgid "Max number of new words:"
-msgstr "Líon iomlán na n-iontrálacha:"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:23
@@ -2483,17 +2367,15 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:26
-#, fuzzy, kde-format
-#| msgid "Rename the selected word type"
+#, kde-format
 msgid "Use choices of the same word type"
-msgstr "Athainmnigh an cineál roghnaithe focail"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/specificpracticeoptions.ui:41
-#, fuzzy, kde-format
-#| msgid "Total number of entries:"
+#, kde-format
 msgid "Number of choices:"
-msgstr "Líon iomlán na n-iontrálacha:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
 #: src/practice/configure/thresholdoptions.ui:17
@@ -2515,17 +2397,15 @@ msgstr "Ar a mhéad"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/thresholdoptions.ui:43
-#, fuzzy, kde-format
-#| msgid "&Grade:"
+#, kde-format
 msgid "Grade:"
-msgstr "&Grád:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/thresholdoptions.ui:53
-#, fuzzy, kde-format
-#| msgid "Not &practiced:"
+#, kde-format
 msgid "Times practiced:"
-msgstr "Gan &chleachtadh fós:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
@@ -2545,9 +2425,6 @@ msgid "You answered %1 conjugation form correctly."
 msgid_plural "You answered %1 conjugation forms correctly."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
 
 #: src/practice/conjugationmodewidget.cpp:111
 #, kde-format
@@ -2578,18 +2455,15 @@ msgid "%1 is neuter"
 msgstr "Is focal neamhinscneach é %1"
 
 #: src/practice/guifrontend.cpp:122
-#, fuzzy, kde-format
-#| msgid "Comment: %1"
+#, kde-format
 msgctxt "Display of the current unit during practice"
 msgid "Unit: %1"
-msgstr "Nóta: %1"
+msgstr ""
 
 #: src/practice/guifrontend.cpp:128
-#, fuzzy, kde-format
-#| msgid "one word"
-#| msgid_plural "%1 words"
+#, kde-format
 msgid "New word"
-msgstr "focal amháin"
+msgstr ""
 
 #: src/practice/guifrontend.cpp:131
 #, kde-format
@@ -2619,9 +2493,6 @@ msgid_plural ""
 "You are %3% done."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
 
 #: src/practice/latexrenderer.cpp:47
 #, kde-format
@@ -2665,17 +2536,15 @@ msgstr "Lean ar aghaidh"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
 #: src/practice/practice_mainwindow.ui:219
-#, fuzzy, kde-format
-#| msgid "I did not know it"
+#, kde-format
 msgid "I Did not Know it"
-msgstr "Ní raibh a fhios agam"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
 #: src/practice/practice_mainwindow.ui:226
-#, fuzzy, kde-format
-#| msgid "I knew it"
+#, kde-format
 msgid "I Knew it"
-msgstr "Bhí a fhios agam"
+msgstr ""
 
 #. i18n: ectx: property (format), widget (QProgressBar, totalProgress)
 #: src/practice/practice_mainwindow.ui:300
@@ -2760,10 +2629,9 @@ msgstr[3] "%1 soicind"
 msgstr[4] "%1 soicind"
 
 #: src/practice/practicesummarycomponent.cpp:68
-#, fuzzy, kde-format
-#| msgid "Practice options"
+#, kde-format
 msgid "Practice Overview"
-msgstr "Roghanna cleachta"
+msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
@@ -2776,16 +2644,14 @@ msgid "HTML Files"
 msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:136
-#, fuzzy, kde-format
-#| msgid "Document Properties"
+#, kde-format
 msgid "OpenDocument text files"
-msgstr "Airíonna na Cáipéise"
+msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:146
-#, fuzzy, kde-format
-#| msgid "Practice options"
+#, kde-format
 msgid "Practice results"
-msgstr "Roghanna cleachta"
+msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
@@ -2798,22 +2664,19 @@ msgid "Correct answers: %1\n"
 msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:153
-#, fuzzy, kde-format
-#| msgid "Wrong answer:"
+#, kde-format
 msgid "Wrong answers: %1\n"
-msgstr "Freagra mícheart:"
+msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:160
-#, fuzzy, kde-format
-#| msgid "Attempts"
+#, kde-format
 msgid "<b>Attempts</b>"
-msgstr "Iarrachtaí"
+msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:161
-#, fuzzy, kde-format
-#| msgid "Question"
+#, kde-format
 msgid "<b>Question</b>"
-msgstr "Ceist"
+msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:162
 #, kde-format
@@ -2826,16 +2689,14 @@ msgid "<b>Your errors</b>"
 msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:178
-#, fuzzy, kde-format
-#| msgid "Could not read collection from \"%1\""
+#, kde-format
 msgid "Could not write to %1"
-msgstr "Níorbh fhéidir an bailiúchán a léamh ó \"%1\""
+msgstr ""
 
 #: src/practice/practicesummarycomponent.cpp:178
-#, fuzzy, kde-format
-#| msgid "Could not read collection from \"%1\""
+#, kde-format
 msgid "Could not write file"
-msgstr "Níorbh fhéidir an bailiúchán a léamh ó \"%1\""
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #: src/practice/practicesummarywidget.ui:28
@@ -3074,10 +2935,9 @@ msgstr "Úd&ar:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_author_2)
 #: src/settings/documentproperties.ui:102
-#, fuzzy, kde-format
-#| msgid "&Email:"
+#, kde-format
 msgid "E&mail:"
-msgstr "&Ríomhphost:"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, contactLineEdit)
 #: src/settings/documentproperties.ui:121
@@ -3099,10 +2959,9 @@ msgstr "Eolas breise."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/settings/documentproperties.ui:160
-#, fuzzy, kde-format
-#| msgid "Cat&egory"
+#, kde-format
 msgid "Cate&gory:"
-msgstr "Cat&agóir"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:173
@@ -3136,10 +2995,9 @@ msgstr "Stair"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #: src/settings/documentproperties.ui:205
-#, fuzzy, kde-format
-#| msgid "Tense Description"
+#, kde-format
 msgid "Test Preparation"
-msgstr "Cur Síos ar Aimsir"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_license)
 #: src/settings/documentproperties.ui:213
@@ -3176,19 +3034,16 @@ msgstr "An &dara teanga:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
 #: src/settings/documentproperties.ui:311
-#, fuzzy, kde-format
-#| msgid "&Setup Grammar Details"
+#, kde-format
 msgid "&Setup grammar details"
-msgstr "&Socraigh Mionsonraí Gramadaí"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgctxt "Attept to download grammar properties for the selected languages"
 msgid "Download grammar"
-msgstr "Íosluchtaigh Gramadach"
+msgstr ""
 
 #. i18n: ectx: label, entry (ConjugationTenses), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Document $(fileurl))
@@ -3394,11 +3249,10 @@ msgid "Author:"
 msgstr "Údar:"
 
 #: src/settings/languageproperties.cpp:23
-#, fuzzy, kde-format
-#| msgid "Edit Languages"
+#, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
-msgstr "Cuir Teangacha in Eagar"
+msgstr ""
 
 #: src/settings/languageproperties.cpp:27
 #, kde-format
@@ -3480,11 +3334,9 @@ msgstr "Leagan amach an mhéarchláir:"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgid "&Download grammar"
-msgstr "Íosluchtaigh Gramadach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, spellcheckerLabel)
 #: src/settings/languagepropertiespage.ui:88
@@ -3500,10 +3352,9 @@ msgstr "Teanga:"
 
 #. i18n: ectx: property (text), widget (QLabel, fontLabel_2)
 #: src/settings/languagepropertiespage.ui:117
-#, fuzzy, kde-format
-#| msgid "Not &practiced:"
+#, kde-format
 msgid "Font (practice):"
-msgstr "Gan &chleachtadh fós:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
 #: src/settings/languagepropertiespage.ui:127
@@ -3682,10 +3533,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (NumPreSetting), group (General)
 #: src/settings/parley.kcfg:15
-#, fuzzy, kde-format
-#| msgid "Number of entries in this lesson."
+#, kde-format
 msgid "Number of stored setting profiles"
-msgstr "Líon na n-iontrálacha sa cheacht seo."
+msgstr ""
 
 #. i18n: ectx: label, entry (SmartAppend), group (General)
 #: src/settings/parley.kcfg:19
@@ -3702,10 +3552,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (EntriesPerLesson), group (General)
 #: src/settings/parley.kcfg:27
-#, fuzzy, kde-format
-#| msgid "The number of entries per lesson"
+#, kde-format
 msgid "The number of entries per unit"
-msgstr "Líon na n-iontrálacha sa cheacht"
+msgstr ""
 
 #. i18n: ectx: label, entry (AutoOpenLast), group (General)
 #: src/settings/parley.kcfg:31
@@ -3803,11 +3652,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (Suggestions), group (PracticeOptions)
 #: src/settings/parley.kcfg:103
-#, fuzzy, kde-format
-#| msgid "Enable Skip (I Know It) button in written practice."
+#, kde-format
 msgid "Enable suggestion lists in written practice."
 msgstr ""
-"Cuir Cnaipe 'Ná Bac Leis' (Tá Fhios Agam) ar fáil i gcleachtadh scríofa."
 
 #. i18n: ectx: label, entry (ShowHints), group (PracticeOptions)
 #: src/settings/parley.kcfg:107
@@ -3835,11 +3682,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (SplitTranslations), group (PracticeOptions)
 #: src/settings/parley.kcfg:124
-#, fuzzy, kde-format
-#| msgid "Enable Skip (I Know It) button in written practice."
+#, kde-format
 msgid "Split translations in written practice."
 msgstr ""
-"Cuir Cnaipe 'Ná Bac Leis' (Tá Fhios Agam) ar fáil i gcleachtadh scríofa."
 
 #. i18n: ectx: label, entry (Periods), group (PracticeOptions)
 #: src/settings/parley.kcfg:128
@@ -3867,12 +3712,10 @@ msgstr ""
 
 #. i18n: ectx: label, entry (ShowMore), group (PracticeOptions)
 #: src/settings/parley.kcfg:146
-#, fuzzy, kde-format
-#| msgid "Enable Skip (I Know It) button in written practice."
+#, kde-format
 msgid ""
 "Enable Show More button to reveal parts of the solution in written practice."
 msgstr ""
-"Cuir Cnaipe 'Ná Bac Leis' (Tá Fhios Agam) ar fáil i gcleachtadh scríofa."
 
 #. i18n: ectx: label, entry (SkipKnownEnabled), group (PracticeOptions)
 #: src/settings/parley.kcfg:150
@@ -3991,10 +3834,9 @@ msgstr "Conas a roinntear an phríomhfhuinneog."
 
 #. i18n: ectx: label, entry (PracticeFont), group (Appearance)
 #: src/settings/parley.kcfg:235
-#, fuzzy, kde-format
-#| msgid "The command used to start a downloaded vocabulary"
+#, kde-format
 msgid "The font used in the vocabulary table"
-msgstr "An t-ordú a úsáidtear chun stór focal íosluchtaithe a thosú"
+msgstr ""
 
 #. i18n: ectx: label, entry (IPAFont), group (Appearance)
 #: src/settings/parley.kcfg:239
@@ -4016,25 +3858,22 @@ msgstr "An ró roghnaithe faoi láthair"
 
 #. i18n: ectx: label, entry (GradeColor), group (Appearance)
 #: src/settings/parley.kcfg:251
-#, fuzzy, kde-format
-#| msgid "Color for the grade 7"
+#, kde-format
 msgid "Color used to display the confidence levels"
-msgstr "Dath gráid 7"
+msgstr ""
 
 #. i18n: ectx: label, entry (PreGradeColor), group (Appearance)
 #: src/settings/parley.kcfg:255
-#, fuzzy, kde-format
-#| msgid "Color for the grade 7"
+#, kde-format
 msgid "Color used to display the early confidence levels"
-msgstr "Dath gráid 7"
+msgstr ""
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/parley.kcfg:259 src/settings/viewoptionsbase.ui:184
-#, fuzzy, kde-format
-#| msgid "Color for the grade 7"
+#, kde-format
 msgid "Color used to display invalid units"
-msgstr "Dath gráid 7"
+msgstr ""
 
 #. i18n: ectx: label, entry (PracticeMinimumTimesAsked), group (Thresholds)
 #: src/settings/parley.kcfg:267
@@ -4112,10 +3951,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (KnownLanguage), group (PracticeManager)
 #: src/settings/parley.kcfg:313
-#, fuzzy, kde-format
-#| msgid "The language of the second column of vocabulary."
+#, kde-format
 msgid "The language that you know already."
-msgstr "Teanga an dara cholúin sa stór focal."
+msgstr ""
 
 #. i18n: ectx: label, entry (ShowSolutionAfterAnswer), group (PracticeManager)
 #: src/settings/parley.kcfg:318
@@ -4217,16 +4055,14 @@ msgid "View Settings"
 msgstr "Socruithe Amhairc"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Enter Translation:"
+#, kde-format
 msgid "Online Translations"
-msgstr "Iontráil Aistriúchán:"
+msgstr ""
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Enter Translation:"
+#, kde-format
 msgid "Online Translation Services"
-msgstr "Iontráil Aistriúchán:"
+msgstr ""
 
 #: src/settings/translationshelloptions.cpp:22
 #, kde-format
@@ -4265,10 +4101,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
 #: src/settings/translationshellpage.ui:68
-#, fuzzy, kde-format
-#| msgid "Start a test"
+#, kde-format
 msgid "Start online test"
-msgstr "Tosaigh scrúdú"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/settings/translationshellpage.ui:88
@@ -4292,10 +4127,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
 #: src/settings/viewoptionsbase.ui:48
-#, fuzzy, kde-format
-#| msgid "Pronunciation"
+#, kde-format
 msgid "&Pronunciation symbols font:"
-msgstr "Fuaimniú"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
 #: src/settings/viewoptionsbase.ui:77
@@ -4305,17 +4139,15 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:96
-#, fuzzy, kde-format
-#| msgid "Color for the grade 7"
+#, kde-format
 msgid "Color used to display the progress"
-msgstr "Dath gráid 7"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:99
-#, fuzzy, kde-format
-#| msgid "Click here to change the color for grade 7."
+#, kde-format
 msgid "Click here to change the color used to display the progress."
-msgstr "Cliceáil anseo chun dath gráid 7 a athrú."
+msgstr ""
 
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_GradeColor)
 #. i18n: ectx: property (text), widget (KColorButton, kcfg_PreGradeColor)
@@ -4328,31 +4160,27 @@ msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_GradeColor)
 #: src/settings/viewoptionsbase.ui:105
-#, fuzzy, kde-format
-#| msgid "Alt+7"
+#, kde-format
 msgid "Alt+0"
-msgstr "Alt+7"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, preGradeColorLabel)
 #: src/settings/viewoptionsbase.ui:121
-#, fuzzy, kde-format
-#| msgid "Color for the grade 7"
+#, kde-format
 msgid "Color for displaying early progress:"
-msgstr "Dath gráid 7"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:140
-#, fuzzy, kde-format
-#| msgid "Color for the grade 7"
+#, kde-format
 msgid "Color used to display the early progress"
-msgstr "Dath gráid 7"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:143
-#, fuzzy, kde-format
-#| msgid "Click here to change the color for grade 7."
+#, kde-format
 msgid "Click here to change the color used to display the early progress."
-msgstr "Cliceáil anseo chun dath gráid 7 a athrú."
+msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:149
@@ -4362,17 +4190,15 @@ msgstr "Alt+1"
 
 #. i18n: ectx: property (text), widget (QLabel, invalidUnitColorLabel)
 #: src/settings/viewoptionsbase.ui:165
-#, fuzzy, kde-format
-#| msgid "Color for the grade 7"
+#, kde-format
 msgid "Color used to display the grades:"
-msgstr "Dath gráid 7"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:187
-#, fuzzy, kde-format
-#| msgid "Click here to change the color for grade 7."
+#, kde-format
 msgid "Click here to change the color used to display invalid units."
-msgstr "Cliceáil anseo chun dath gráid 7 a athrú."
+msgstr ""
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_InvalidUnitColor)
 #: src/settings/viewoptionsbase.ui:193
@@ -4382,46 +4208,39 @@ msgstr "Alt+2"
 
 #: src/statistics/lessonstatisticsview.cpp:76
 #: src/statistics/lessonstatisticsview.cpp:78
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit"
-msgstr "Bain gach grád ón cheacht seo"
+msgstr ""
 
 #: src/statistics/lessonstatisticsview.cpp:86
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence levels from this unit and all sub-units"
-msgstr "Bain gach grád ón cheacht seo"
+msgstr ""
 
 #: src/statistics/lessonstatisticsview.cpp:88
-#, fuzzy, kde-format
-#| msgid "Remove all grades from this lesson"
+#, kde-format
 msgid "Remove confidence level from this unit and all sub-units"
-msgstr "Bain gach grád ón cheacht seo"
+msgstr ""
 
 #: src/statistics/statisticslegendwidget.cpp:29
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Progress gradients"
-msgstr "Dul chun cinn"
+msgstr ""
 
 #: src/statistics/statisticslegendwidget.cpp:30
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Early progress"
-msgstr "Dul chun cinn"
+msgstr ""
 
 #: src/statistics/statisticslegendwidget.cpp:31
-#, fuzzy, kde-format
-#| msgid "Not &practiced:"
+#, kde-format
 msgid "Not Practiced"
-msgstr "Gan &chleachtadh fós:"
+msgstr ""
 
 #: src/statistics/statisticslegendwidget.cpp:32
-#, fuzzy, kde-format
-#| msgid "Entries"
+#, kde-format
 msgid "Invalid Entries"
-msgstr "Iontrálacha"
+msgstr ""
 
 #: src/statistics/statisticslegendwidget.cpp:48
 #, kde-format
@@ -4430,23 +4249,20 @@ msgid "Fully learned"
 msgstr ""
 
 #: src/statistics/statisticslegendwidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Not &practiced:"
+#, kde-format
 msgctxt "adjective, The word has not even been practiced once by the user"
 msgid "Not practiced"
-msgstr "Gan &chleachtadh fós:"
+msgstr ""
 
 #: src/statistics/statisticsmainwindow.cpp:192
-#, fuzzy, kde-format
-#| msgid "&Learning"
+#, kde-format
 msgid "Known to Learning"
-msgstr "Fogh&laim"
+msgstr ""
 
 #: src/statistics/statisticsmainwindow.cpp:193
-#, fuzzy, kde-format
-#| msgid "&Learning"
+#, kde-format
 msgid "Learning to Known"
-msgstr "Fogh&laim"
+msgstr ""
 
 #: src/statistics/statisticsmainwindow.cpp:194
 #, kde-format
@@ -4455,24 +4271,21 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/statistics/statisticsmainwindow.ui:29
-#, fuzzy, kde-format
-#| msgid "Languages or other"
+#, kde-format
 msgid "Language to Learn"
-msgstr "Teangacha nó cinn eile"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/statistics/statisticsmainwindow.ui:39
-#, fuzzy, kde-format
-#| msgid "New Language"
+#, kde-format
 msgid "Known Language"
-msgstr "Teanga Nua"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeMode)
 #: src/statistics/statisticsmainwindow.ui:75
-#, fuzzy, kde-format
-#| msgid "Practice Mode:"
+#, kde-format
 msgid "Practice Mode"
-msgstr "Mód Cleachta:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, flashCard)
 #: src/statistics/statisticsmainwindow.ui:81
@@ -4488,45 +4301,39 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, multipleChoice)
 #: src/statistics/statisticsmainwindow.ui:98
-#, fuzzy, kde-format
-#| msgid "Multiple Choice"
+#, kde-format
 msgid "M&ultiple Choice"
-msgstr "Ceist Ilroghnach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, written)
 #: src/statistics/statisticsmainwindow.ui:105
-#, fuzzy, kde-format
-#| msgid "Written"
+#, kde-format
 msgid "Wri&tten"
-msgstr "Scríofa"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, exampleSentence)
 #: src/statistics/statisticsmainwindow.ui:115
-#, fuzzy, kde-format
-#| msgid "Example Sentences"
+#, kde-format
 msgid "E&xample Sentences"
-msgstr "Abairtí Samplacha"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, gender)
 #: src/statistics/statisticsmainwindow.ui:125
-#, fuzzy, kde-format
-#| msgid "Neuter Noun"
+#, kde-format
 msgid "&Gender of Nouns"
-msgstr "Ainmfhocal Neamhinscneach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, conjugations)
 #: src/statistics/statisticsmainwindow.ui:145
-#, fuzzy, kde-format
-#| msgid "Conjugations"
+#, kde-format
 msgid "Co&njugations"
-msgstr "Réimnithe"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxPracticeDirection)
 #: src/statistics/statisticsmainwindow.ui:191
-#, fuzzy, kde-format
-#| msgid "Practice Dialogs"
+#, kde-format
 msgid "Practice Direction"
-msgstr "Dialóga Cleachta"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, rememberPracticeDirection)
 #: src/statistics/statisticsmainwindow.ui:200
@@ -4539,2146 +4346,3 @@ msgstr ""
 msgctxt "Confidence level in language, table header"
 msgid "Confidence (%1)"
 msgstr ""
-
-#~ msgid "&Help"
-#~ msgstr "&Cabhair"
-
-#~ msgid "Grade"
-#~ msgstr "Grád"
-
-#, fuzzy
-#~| msgid "Sound"
-#~ msgid "Fetch Sound"
-#~ msgstr "Fuaim"
-
-#~ msgid "&Scripts"
-#~ msgstr "&Scripteanna"
-
-#~ msgid "&Script Manager"
-#~ msgstr "Bainisteoir na &Scripteanna"
-
-#~ msgid "A script could not be activated and has been disabled."
-#~ msgid_plural "%1 scripts could not be activated and have been disabled."
-#~ msgstr[0] "Níorbh fhéidir script a ghníomhachtú agus bhí sé díchumasaithe."
-#~ msgstr[1] ""
-#~ "Níorbh fhéidir %1 script a ghníomhachtú agus bhí siad díchumasaithe."
-#~ msgstr[2] ""
-#~ "Níorbh fhéidir %1 script a ghníomhachtú agus bhí siad díchumasaithe."
-#~ msgstr[3] ""
-#~ "Níorbh fhéidir %1 script a ghníomhachtú agus bhí siad díchumasaithe."
-#~ msgstr[4] ""
-#~ "Níorbh fhéidir %1 script a ghníomhachtú agus bhí siad díchumasaithe."
-
-#~ msgid "&Upload Vocabulary Document..."
-#~ msgstr "&Oscail Cáipéis Stóir Focal..."
-
-#, fuzzy
-#~| msgid "Could not read collection from \"%1\""
-#~ msgid "Could not create temporary directory \"%1\""
-#~ msgstr "Níorbh fhéidir an bailiúchán a léamh ó \"%1\""
-
-#, fuzzy
-#~| msgid "Could not read collection from \"%1\""
-#~ msgid "Could not save vocabulary collection \"%1\""
-#~ msgstr "Níorbh fhéidir an bailiúchán a léamh ó \"%1\""
-
-#~ msgid "Language Selection"
-#~ msgstr "Roghnú Teanga"
-
-#~ msgid "Top:"
-#~ msgstr "Barr:"
-
-#~ msgid "Bottom:"
-#~ msgstr "Bun:"
-
-#~ msgid "Update interval:"
-#~ msgstr "Eatramh idir nuashonruithe:"
-
-#~ msgid "Select Font..."
-#~ msgstr "Roghnaigh Cló..."
-
-#~ msgid " second"
-#~ msgid_plural " seconds"
-#~ msgstr[0] " soicind"
-#~ msgstr[1] " shoicind"
-#~ msgstr[2] " shoicind"
-#~ msgstr[3] " soicind"
-#~ msgstr[4] " soicind"
-
-#~ msgid "*.kvtml|Vocabulary Collections"
-#~ msgstr "*.kvtml|Bailiúcháin Stór Focal"
-
-#, fuzzy
-#~| msgid "Total number of entries:"
-#~ msgid "Max number of words in the initial phase"
-#~ msgstr "Líon iomlán na n-iontrálacha:"
-
-#, fuzzy
-#~| msgid "I knew it"
-#~ msgid "I knew it well"
-#~ msgstr "Bhí a fhios agam"
-
-#, fuzzy
-#~| msgid "Entries"
-#~ msgid "Invalid entry"
-#~ msgstr "Iontrálacha"
-
-#~ msgid "Fetch Image"
-#~ msgstr "Faigh Íomhá"
-
-#~ msgid "Search"
-#~ msgstr "Cuardaigh"
-
-#~ msgid "Previous"
-#~ msgstr "Roimhe Seo"
-
-#~ msgid "Lessons"
-#~ msgstr "Ceachtanna"
-
-#~ msgid "Start practice instead of editor"
-#~ msgstr "Tosaigh cleachtadh in ionad an eagarthóra"
-
-#~ msgid "&Start Page"
-#~ msgstr "Leathanach To&saigh"
-
-#~ msgid "Could not read collection from \"%1\""
-#~ msgstr "Níorbh fhéidir an bailiúchán a léamh ó \"%1\""
-
-#~ msgid "&Lesson"
-#~ msgstr "&Ceacht"
-
-#~ msgid "&Reset Grades"
-#~ msgstr "Athshoc&raigh Gráid"
-
-#~ msgid "Remove Grades"
-#~ msgstr "Bain Gráid"
-
-#~ msgctxt "Display of the current lesson during practice"
-#~ msgid "Lesson: %1"
-#~ msgstr "Ceacht: %1"
-
-#, fuzzy
-#~| msgid "Remove all grades from this lesson"
-#~ msgid "Remove &Grades from this lesson"
-#~ msgstr "Bain gach grád ón cheacht seo"
-
-#, fuzzy
-#~| msgid "Remove all grades from this lesson"
-#~ msgid "Remove &Grades from this lesson and all sub-lessons"
-#~ msgstr "Bain gach grád ón cheacht seo"
-
-#~ msgctxt "Grade in language, table header"
-#~ msgid "Grade (%1)"
-#~ msgstr "Grád (%1)"
-
-#~ msgid "Rename Lesson"
-#~ msgstr "Athainmnigh Ceacht"
-
-#~ msgid "Delete Lesson"
-#~ msgstr "Scrios Ceacht"
-
-#, fuzzy
-#~| msgid "Remove all grades from this lesson"
-#~ msgid "Remove Grades from this Lesson"
-#~ msgstr "Bain gach grád ón cheacht seo"
-
-#~ msgctxt "caption for an overview of the grades for a document"
-#~ msgid "Statistics for \"%1\""
-#~ msgstr "Staitisticí le haghaidh \"%1\""
-
-#~ msgid "Languages:"
-#~ msgstr "Teangacha:"
-
-#~ msgctxt ""
-#~ "@title:group Configure advanced settings for practicing vocabulary, short "
-#~ "title in config dialog."
-#~ msgid "Advanced"
-#~ msgstr "Ardroghanna"
-
-#~ msgid "Remove &Grades"
-#~ msgstr "Bain &Gráid"
-
-#~ msgid "Use your own colors"
-#~ msgstr "Úsáid do dhathanna féin"
-
-#, fuzzy
-#~| msgid "&Use colors"
-#~ msgid "Grade Colors"
-#~ msgstr "Ú&sáid dathanna"
-
-#~ msgid "&Use colors"
-#~ msgstr "Ú&sáid dathanna"
-
-#~ msgid "&7"
-#~ msgstr "&7"
-
-#~ msgid "Color for the grade 6"
-#~ msgstr "Dath gráid 6"
-
-#~ msgid "Click here to change the color for grade 6."
-#~ msgstr "Cliceáil anseo chun dath gráid 6 a athrú."
-
-#~ msgid "&6"
-#~ msgstr "&6"
-
-#~ msgid "Alt+6"
-#~ msgstr "Alt+6"
-
-#~ msgid "Color for the grade 5"
-#~ msgstr "Dath gráid 5"
-
-#~ msgid "Click here to change the color for grade 5."
-#~ msgstr "Cliceáil anseo chun dath gráid 5 a athrú."
-
-#~ msgid "&5"
-#~ msgstr "&5"
-
-#~ msgid "Alt+5"
-#~ msgstr "Alt+5"
-
-#~ msgid "Color for the grade 4"
-#~ msgstr "Dath gráid 4"
-
-#~ msgid "Click here to change the color for grade 4."
-#~ msgstr "Cliceáil anseo chun dath gráid 4 a athrú."
-
-#~ msgid "&4"
-#~ msgstr "&4"
-
-#~ msgid "Alt+4"
-#~ msgstr "Alt+4"
-
-#~ msgid "Color for the grade 3"
-#~ msgstr "Dath gráid 3"
-
-#~ msgid "Click here to change the color for grade 3."
-#~ msgstr "Cliceáil anseo chun dath gráid 3 a athrú."
-
-#~ msgid "&3"
-#~ msgstr "&3"
-
-#~ msgid "Alt+3"
-#~ msgstr "Alt+3"
-
-#~ msgid "Color for the grade 2"
-#~ msgstr "Dath gráid 2"
-
-#~ msgid "Click here to change the color for grade 2."
-#~ msgstr "Cliceáil anseo chun dath gráid 2 a athrú."
-
-#~ msgid "&2"
-#~ msgstr "&2"
-
-#~ msgid "Color for the grade 1"
-#~ msgstr "Dath gráid 1"
-
-#~ msgid "Click here to change the color for grade 1."
-#~ msgstr "Cliceáil anseo chun dath gráid 1 a athrú."
-
-#~ msgid "&1"
-#~ msgstr "&1"
-
-#~ msgid "&N"
-#~ msgstr "&N"
-
-#~ msgid "Words"
-#~ msgstr "Focail"
-
-#~ msgid "\"%1\" is a noun"
-#~ msgstr "Is ainmfhocal é \"%1\""
-
-#~ msgid "Conjugation"
-#~ msgstr "Réimniú"
-
-#~ msgid "&IPA font:"
-#~ msgstr "Cló &IPA:"
-
-#~ msgid "&Table font:"
-#~ msgstr "Cló &tábla:"
-
-#~ msgid "Export Options"
-#~ msgstr "Roghanna Easpórtála"
-
-#~ msgid "List"
-#~ msgstr "Liosta"
-
-#~ msgid "A vocabulary list."
-#~ msgstr "Liosta stór focal."
-
-#~ msgid "CSV"
-#~ msgstr "CSV"
-
-#~ msgid "General Options"
-#~ msgstr "Roghanna Ginearálta"
-
-#~ msgid "Enable Images"
-#~ msgstr "Cumasaigh Íomhánna"
-
-#~ msgid "unlimited"
-#~ msgstr "gan teorainn"
-
-#~ msgid "Box 7 (best)"
-#~ msgstr "Bosca 7 (is fearr)"
-
-#~ msgid "Box 6"
-#~ msgstr "Bosca 6"
-
-#~ msgid "Box 5"
-#~ msgstr "Bosca 5"
-
-#~ msgid "Box 4"
-#~ msgstr "Bosca 4"
-
-#~ msgid "Box 3"
-#~ msgstr "Bosca 3"
-
-#~ msgid "Box 2"
-#~ msgstr "Bosca 2"
-
-#~ msgid "Box 1 (lowest)"
-#~ msgstr "Bosca 1 (is ísle)"
-
-#~ msgid "without name"
-#~ msgstr "gan ainm"
-
-#~ msgid "No icon"
-#~ msgstr "Gan deilbhín"
-
-#~ msgid "Flag:"
-#~ msgstr "Bratach:"
-
-#~| msgid "&Edit"
-#~ msgid "&Editor"
-#~ msgstr "&Eagar"
-
-#~ msgid "Form"
-#~ msgstr "Foirm"
-
-#~ msgid "Practice theme to use"
-#~ msgstr "Téama cleachta le húsáid"
-
-#~ msgctxt "@title:group"
-#~ msgid "Practice"
-#~ msgstr "Cleachtadh"
-
-#~ msgctxt "@label image preview is empty"
-#~ msgid "No Preview"
-#~ msgstr "Gan Réamhamharc"
-
-#~ msgctxt "@label image preview is empty"
-#~ msgid "No Image"
-#~ msgstr "Gan Íomhá"
-
-#~ msgctxt "@label the gender of the word: masculine"
-#~ msgid "&masculine:\t"
-#~ msgstr "&firinscneach:\t"
-
-#~ msgctxt "@label the gender of the word: feminine"
-#~ msgid "&feminine:\t"
-#~ msgstr "&baininscneach:\t"
-
-#~ msgctxt "@label the gender of the word: neuter"
-#~ msgid "&neuter:\t"
-#~ msgstr "&neamhinscneach:\t"
-
-#~ msgid "Enter the synonym:"
-#~ msgstr "Iontráil an téarma comhchiallach:"
-
-#~ msgid "Synonym Training"
-#~ msgstr "Traenáil Téarmaí Comhchiallacha"
-
-#~ msgid "Enter the antonym:"
-#~ msgstr "Iontráil an téarma frithchiallach:"
-
-#~ msgid "Antonym Training"
-#~ msgstr "Traenáil Téarmaí Frithchiallacha"
-
-#~ msgid "Enter the word:"
-#~ msgstr "Iontráil an focal:"
-
-#~ msgid "Example sentence"
-#~ msgstr "Abairt shamplach"
-
-#~ msgid "Rename the selected lesson"
-#~ msgstr "Athainmnigh an ceacht roghnaithe"
-
-#~ msgid "No options"
-#~ msgstr "Gan roghanna"
-
-#~ msgid "Configure Practice"
-#~ msgstr "Cumraigh Cleachtadh"
-
-#~ msgid "Configure practice settings"
-#~ msgstr "Cumraigh socruithe cleachta"
-
-#~ msgid "Document Statistics"
-#~ msgstr "Staitistic don Cháipéis"
-
-#~ msgid "Total:"
-#~ msgstr "Iomlán:"
-
-#~ msgid "Enter the correct translation:"
-#~ msgstr "Iontráil an t-aistriúchán ceart:"
-
-#~ msgid "Show &More"
-#~ msgstr "&Tuilleadh"
-
-#~ msgid "&Verify"
-#~ msgstr "&Cinntigh"
-
-#~ msgid "Skip (I &Know It)"
-#~ msgstr "Ná Bac Leis (Tá &Fhios Agam)"
-
-#~ msgid "Skip (Do &Not Know)"
-#~ msgstr "Ná Bac Leis (&Níl Fhios Agam)"
-
-#~ msgid "&Continue"
-#~ msgstr "&Lean ar aghaidh"
-
-#~ msgid "Hints"
-#~ msgstr "Leideanna"
-
-#~ msgid "T&ype:"
-#~ msgstr "C&ineál:"
-
-#~ msgid "Count:"
-#~ msgstr "Líon:"
-
-#~ msgid "Time:"
-#~ msgstr "Am:"
-
-#~ msgid "Cycle:"
-#~ msgstr "Ciogal:"
-
-#~ msgid "&Stop Practice"
-#~ msgstr "Stop &Cleachtadh"
-
-#~ msgctxt ""
-#~ "Comparison form of adjective - the normal form of the adjective (good)"
-#~ msgid "&Absolute"
-#~ msgstr "&Absalóideach"
-
-#~ msgctxt "comparison form of adjectives - comparison form (better)"
-#~ msgid "&Comparative"
-#~ msgstr "&Comparáideach"
-
-#~ msgctxt "comparison of adjectives - (best)"
-#~ msgid "&Superlative"
-#~ msgstr "&Sárchéimneach"
-
-#~ msgid "Verb:"
-#~ msgstr "Briathar:"
-
-#~ msgid "Select the correct translation:"
-#~ msgstr "Roghnaigh an t-aistriúchán ceart:"
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid " - "
-#~ msgstr " - "
-
-#~ msgctxt "Listen to the vocabulary entry (sound)"
-#~ msgid "Play"
-#~ msgstr "Seinn"
-
-#~ msgid "Verify"
-#~ msgstr "Fíoraigh"
-
-#~ msgid "&male"
-#~ msgstr "&firinscneach"
-
-#~ msgid "&female"
-#~ msgstr "&baininscneach"
-
-#~ msgid "&neutral"
-#~ msgstr "&neamhinscneach"
-
-#~ msgid "Enable Skip (I Know it) &button"
-#~ msgstr "Cnaipe 'Ná Bac Leis (Tá &Fhios Agam)'"
-
-#~ msgid "Type of Test"
-#~ msgstr "Cineál Scrúdaithe"
-
-#~ msgid "Options"
-#~ msgstr "Roghanna"
-
-#~ msgctxt "the language that is shown to the user in a test"
-#~ msgid "From"
-#~ msgstr "Ó"
-
-#~ msgctxt "the language to which the user translates to in a test"
-#~ msgid "To"
-#~ msgstr "Go"
-
-#~ msgid "Current Maintainer"
-#~ msgstr "Cothaitheoir Reatha"
-
-#~ msgid "Google Images"
-#~ msgstr "Íomhánna Google"
-
-#~ msgid "OK"
-#~ msgstr "OK"
-
-#~ msgid "Cancel"
-#~ msgstr "Cealaigh"
-
-#~ msgid "Enter tense description:"
-#~ msgstr "Déan cur síos ar aimsir:"
-
-#~ msgctxt "@label the gender of the word: Masculine"
-#~ msgid "Masculine"
-#~ msgstr "Firinscneach"
-
-#~ msgctxt "@label the gender of the word: Female"
-#~ msgid "Feminine"
-#~ msgstr "Baininscneach"
-
-#~ msgctxt "@label the gender of the word: Neuter"
-#~ msgid "Neuter"
-#~ msgstr "Neamhinscneach"
-
-#~ msgid "First person"
-#~ msgstr "An chéad phearsa"
-
-#~ msgid "Second person"
-#~ msgstr "An dara pearsa"
-
-#~ msgid "Third person"
-#~ msgstr "An tríú pearsa"
-
-#~ msgctxt "Grammatical masculine gender"
-#~ msgid "Masculine"
-#~ msgstr "Firinscneach"
-
-#~ msgctxt "Grammatical feminine gender"
-#~ msgid "Feminine"
-#~ msgstr "Baininscneach"
-
-#~ msgctxt "Grammatical neuter gender"
-#~ msgid "Neuter"
-#~ msgstr "Neamhinscneach"
-
-#~ msgctxt "Grammatical singular number"
-#~ msgid "Singular"
-#~ msgstr "Uatha"
-
-#~ msgctxt "Grammatical dual number (doesn't exist in all languages)"
-#~ msgid "Dual"
-#~ msgstr "Déach"
-
-#~ msgctxt "Grammatical plural number"
-#~ msgid "Plural"
-#~ msgstr "Iolra"
-
-#~ msgctxt "Grammatical infinitive of a verb"
-#~ msgid "Infinitive"
-#~ msgstr "Infinideach"
-
-#~ msgctxt "the separator for a list of wrong words that the user entered"
-#~ msgid "; "
-#~ msgstr "; "
-
-#~ msgid "Original Word"
-#~ msgstr "Bunfhocal"
-
-#~ msgid "Translation"
-#~ msgstr "Aistriúchán"
-
-#~ msgid "Points"
-#~ msgstr "Pointí"
-
-#~ msgid "Check Answer"
-#~ msgstr "Seiceáil an Freagra"
-
-#~ msgid "Empty answers are always wrong."
-#~ msgstr "Bíonn freagra folamh mícheart i gcónaí."
-
-#~ msgid "%1 has a problem..."
-#~ msgstr "Tá fadhb ag %1..."
-
-#~ msgid "Seems like you got the spelling wrong."
-#~ msgstr "Dealraíonn sé go bhfuil rud éigin mílitrithe."
-
-#~ msgid "Wrong:"
-#~ msgstr "Mícheart:"
-
-#~ msgid "I &Know It"
-#~ msgstr "Tá &Fhios Agam"
-
-#~ msgid "I &Don't Know It"
-#~ msgstr "&Níl Fhios Agam"
-
-#~ msgid "&Flip"
-#~ msgstr "&Smeach"
-
-#~ msgid "Skip (Answer Known)"
-#~ msgstr "Ná Bac Leis (Tá Fhios Agam)"
-
-#~ msgid "Skip (Answer Not Known)"
-#~ msgstr "Ná Bac Leis (Níl Fhios Agam)"
-
-#~ msgid "Show Hint"
-#~ msgstr "Taispeáin Leid"
-
-#~ msgid "Select Synonym:"
-#~ msgstr "Roghnaigh Comhchiallach:"
-
-#~ msgid "Select Antonym:"
-#~ msgstr "Roghnaigh Frithchiallach:"
-
-#~ msgid "Select the Correct Article:"
-#~ msgstr "Roghnaigh an tAlt Ceart:"
-
-#~ msgid "Select Translation:"
-#~ msgstr "Roghnaigh Aistriúchán:"
-
-#~ msgid "Enter Missing Word:"
-#~ msgstr "Iontráil an Focal Ar Iarraidh:"
-
-#~ msgid "Conjugate:"
-#~ msgstr "Réimnigh"
-
-#~ msgid "Total Points:"
-#~ msgstr "Pointí Iomlána:"
-
-#~ msgid "Percent:"
-#~ msgstr "Céatadán:"
-
-#~ msgid "Navigation"
-#~ msgstr "Nascleanúint"
-
-#~ msgid "TextLabel"
-#~ msgstr "Lipéad"
-
-#~ msgid "Check"
-#~ msgstr "Seiceáil"
-
-#~ msgid "Declension"
-#~ msgstr "Díochlaonadh"
-
-#~ msgid "Open &Example..."
-#~ msgstr "Oscail &Sampla..."
-
-#~ msgid "Layout"
-#~ msgstr "Leagan Amach"
-
-#~ msgid "<font color=\"#006633\">Correct!</font> "
-#~ msgstr "<font color=\"#006633\">Ceart!</font> "
-
-#~ msgid "<font color=\"#8C1818\">You're missing an article.</font> "
-#~ msgstr "<font color=\"#8C1818\">Alt ar iarraidh.</font> "
-
-#~ msgid "<font color=\"#000fff000\">Correct!</font>"
-#~ msgstr "<font color=\"#000fff000\">Ceart!</font>"
-
-#~ msgid "<font color=\"#000fff000\">Correct!</font> "
-#~ msgstr "<font color=\"#000fff000\">Ceart!</font> "
-
-#~ msgid "<font color=\"#188C18\">"
-#~ msgstr "<font color=\"#188C18\">"
-
-#~ msgid "</font> "
-#~ msgstr "</font> "
-
-#~ msgid "<font color=\"#8C1818\">"
-#~ msgstr "<font color=\"#8C1818\">"
-
-#~ msgid "Old Practice Dialogs"
-#~ msgstr "Seandialóga Cleachta"
-
-#~ msgid "Start a test with the last settings"
-#~ msgstr "Tosaigh scrúdú le na socruithe is déanaí"
-
-#~ msgid "Set up and start a test"
-#~ msgstr "Socraigh agus tosaigh scrúdú"
-
-#~ msgid "Ready."
-#~ msgstr "Réidh."
-
-#~ msgid "Welcome"
-#~ msgstr "Fáilte"
-
-#~ msgid "Introduction"
-#~ msgstr "Buneolas: Cáipéis Nua"
-
-#~ msgid "Title and author"
-#~ msgstr "Teideal agus údar"
-
-#~ msgid "Create a New Parley Document"
-#~ msgstr "Cruthaigh Cáipéis Nua Parley"
-
-#~ msgid "Please select a language:"
-#~ msgstr "Roghnaigh teanga:"
-
-#~ msgid "Title:"
-#~ msgstr "Teideal:"
-
-#~ msgid "Please select a second language (can be the same as before):"
-#~ msgstr ""
-#~ "Roghnaigh an dara teanga (is féidir an teanga chéanna a roghnú arís):"
-
-#~ msgid "Second title:"
-#~ msgstr "An dara teideal:"
-
-#~ msgid "© 2008\tDavid Capel\n"
-#~ msgstr "© 2008\tDavid Capel\n"
-
-#~ msgid "Plugin Settings"
-#~ msgstr "Socruithe an Bhreiseáin"
-
-#~ msgid "Scripts"
-#~ msgstr "Scripteanna"
-
-#~ msgid "Available Plugins"
-#~ msgstr "Breiseáin Le Fáil"
-
-#~ msgid "Run"
-#~ msgstr "Rith"
-
-#~ msgid "&Grammar..."
-#~ msgstr "&Gramadach..."
-
-#~ msgid "Tense Descriptions"
-#~ msgstr "Cur Síos ar Aimsirí"
-
-#~ msgid "Language Elements"
-#~ msgstr "Eilimintí Teanga"
-
-#~ msgid "Common Properties"
-#~ msgstr "Airíonna Coitianta"
-
-#~ msgid "&Lesson:"
-#~ msgstr "&Ceacht:"
-
-#~ msgid "&Expression:"
-#~ msgstr "&Slonn:"
-
-#~ msgid "T&ype"
-#~ msgstr "C&ineál"
-
-#~ msgid "&Subtype:"
-#~ msgstr "&Fochineál:"
-
-#~ msgid "Acti&ve"
-#~ msgstr "Gnío&mhach"
-
-#~ msgid "Conjugation of Verbs"
-#~ msgstr "Réimniú Briathra"
-
-#~ msgid "Waldo Bastian"
-#~ msgstr "Waldo Bastian"
-
-#~ msgid "Help with port to Qt3/KDE3"
-#~ msgstr "Cabhair le leagan Qt3/KDE3"
-
-#~ msgid "Eric Bischoff"
-#~ msgstr "Eric Bischoff"
-
-#~ msgid "Kevin Kramer"
-#~ msgstr "Kevin Kramer"
-
-#~ msgid "Andreas Neuper"
-#~ msgstr "Andreas Neuper"
-
-#~ msgid ""
-#~ "Converter script \"langen2kvtml\" \n"
-#~ "Download files at http://www.vokabeln.de/files.htm"
-#~ msgstr ""
-#~ "Script tiontaithe \"langen2kvtml\" \n"
-#~ "Íosluchtaigh comhaid ó http://www.vokabeln.de/files.htm"
-
-#~ msgid "Dennis Haney"
-#~ msgstr "Dennis Haney"
-
-#~ msgid "Johannes Simon"
-#~ msgstr "Johannes Simon"
-
-#~ msgid "KDE Team"
-#~ msgstr "Foireann KDE"
-
-#~ msgid "Many small enhancements"
-#~ msgstr "Go leor feabhsúchán beaga"
-
-#~ msgctxt "@label the gender of the word: male"
-#~ msgid "&male"
-#~ msgstr "&firinscneach"
-
-#~ msgctxt "@label the gender of the word: female"
-#~ msgid "&female"
-#~ msgstr "&baininscneach"
-
-#~ msgctxt "@label the gender of the word: neutral"
-#~ msgid "&neutral"
-#~ msgstr "&neamhinscneach"
-
-#~ msgid "Female"
-#~ msgstr "Baininscneach"
-
-#~ msgid "Neutral"
-#~ msgstr "Neodrach"
-
-#~ msgid "Custom:"
-#~ msgstr "Saincheaptha:"
-
-#~ msgid "Start Parley first."
-#~ msgstr "Tosaigh Parley ar dtús."
-
-#~ msgctxt "general statistics page"
-#~ msgid "General"
-#~ msgstr "Ginearálta"
-
-#~ msgid "Lesson Statistics"
-#~ msgstr "Staitistic don Cheacht"
-
-#~ msgid ""
-#~ "<html><p style='white-space:pre'><b>Number of Entries per Grade</b></"
-#~ "p><table><tr><td>%1</td><td>%2</td></tr><tr><td>%3</td><td>%4</td></"
-#~ "tr><tr><td>%5</td><td>%6</td></tr><tr><td>%7</td><td>%8</td></tr><tr><td>"
-#~ "%9</td><td>%10</td></tr><tr><td>%11</td><td>%12</td></tr><tr><td>%13</"
-#~ "td><td>%14</td></tr><tr><td>%15</td><td>%16</td></tr></table></html>"
-#~ msgstr ""
-#~ "<html><p style='white-space:pre'><b>Líon na nIontrálacha sa Ghrád</b></"
-#~ "p><table><tr><td>%1</td><td>%2</td></tr><tr><td>%3</td><td>%4</td></"
-#~ "tr><tr><td>%5</td><td>%6</td></tr><tr><td>%7</td><td>%8</td></tr><tr><td>"
-#~ "%9</td><td>%10</td></tr><tr><td>%11</td><td>%12</td></tr><tr><td>%13</"
-#~ "td><td>%14</td></tr><tr><td>%15</td><td>%16</td></tr></table></html>"
-
-#~ msgid "Reset"
-#~ msgstr "Athshocraigh"
-
-#~ msgid "Filename:"
-#~ msgstr "Ainm comhaid:"
-
-#~ msgid "Entries:"
-#~ msgstr "Iontrálacha:"
-
-#~ msgid "Lessons:"
-#~ msgstr "Ceachtanna:"
-
-#~ msgid "GPL (GNU General Public License)"
-#~ msgstr "GPL (GNU General Public License)"
-
-#~ msgid "A&utomatic"
-#~ msgstr "&Uathoibríoch"
-
-#~ msgid "ParleyPlasma Configuration"
-#~ msgstr "Cumraíocht ParleyPlasma"
-
-#~ msgctxt "state of a row"
-#~ msgid "Inactive"
-#~ msgstr "Neamhghníomhach"
-
-#~ msgctxt "state of a row"
-#~ msgid "Active"
-#~ msgstr "Gníomhach"
-
-#~ msgid "© 2007\tFrederik Gladhorn\n"
-#~ msgstr "© 2007\tFrederik Gladhorn\n"
-
-#~ msgid "Parley is sexy."
-#~ msgstr "Ríomhchlár gnéasach é Parley."
-
-#~ msgid "&Edit Entry..."
-#~ msgstr "Cuir Iontráil in &Eagar..."
-
-#~ msgid "No Valid Vocabulary Found"
-#~ msgstr "Níor Aimsíodh Stór Focal Bailí"
-
-#~ msgid "Change Settings"
-#~ msgstr "Athraigh na Socruithe"
-
-#~ msgid "Selected lessons"
-#~ msgstr "Ceachtanna roghnaithe"
-
-#~ msgid "&Merge..."
-#~ msgstr "Cu&maisc..."
-
-#~ msgid "New subtype"
-#~ msgstr "Fochineál nua"
-
-#~ msgid "Select a type"
-#~ msgstr "Roghnaigh cineál"
-
-#~ msgid "Special meaning of %1:"
-#~ msgstr "Sainmhíniú speisialta ar %1:"
-
-#~ msgid "%1 does not have special subtypes."
-#~ msgstr "Níl fochineálacha speisialta ag %1."
-
-#~ msgid "%1 is not a special type."
-#~ msgstr "Ní cineál speisialta é %1."
-
-#~ msgid "&New word type"
-#~ msgstr "Cineál nua &focail"
-
-#~ msgid "&Add subtype"
-#~ msgstr "Cuir &fochineál leis"
-
-#~ msgid "&Rename"
-#~ msgstr "&Athainmnigh"
-
-#~ msgid "Tools"
-#~ msgstr "Uirlisí"
-
-#~ msgid "Browse"
-#~ msgstr "Brabhsáil"
-
-#~ msgid "This word type folder contains nounMales."
-#~ msgstr "Tá ainmfhocail fhirinscneacha san fhillteán seo."
-
-#~ msgid "This word type folder contains nounNeutrals."
-#~ msgstr "Tá ainmfhocail neodracha san fhillteán seo."
-
-#~ msgid "Unicode name: "
-#~ msgstr "Ainm Unicode: "
-
-#~ msgctxt "Describing the sound of the character"
-#~ msgid "Sound: "
-#~ msgstr "Fuaimniú: "
-
-#~ msgid "Do you really want to delete the selected entries?"
-#~ msgstr ""
-#~ "An bhfuil tú cinnte gur mian leat na hiontrálacha roghnaithe a scriosadh?"
-
-#~ msgid "1 entry with the same content was found and removed."
-#~ msgid_plural "%1 entries with the same content were found and removed."
-#~ msgstr[0] "Aimsíodh agus baineadh iontráil amháin leis an inneachar céanna."
-#~ msgstr[1] "Aimsíodh agus baineadh %1 iontráil leis an inneachar céanna."
-#~ msgstr[2] "Aimsíodh agus baineadh %1 iontráil leis an inneachar céanna."
-#~ msgstr[3] "Aimsíodh agus baineadh %1 n-iontráil leis an inneachar céanna."
-#~ msgstr[4] "Aimsíodh agus baineadh %1 iontráil leis an inneachar céanna."
-
-#~ msgid " (%1)"
-#~ msgstr " (%1)"
-
-#~ msgid "Type: %1"
-#~ msgstr "Cineál: %1"
-
-#~ msgid "Usage Labels"
-#~ msgstr "Lipéid Úsáide"
-
-#~ msgctxt "word types"
-#~ msgid "Types"
-#~ msgstr "Cineálacha"
-
-#~ msgctxt "usage (area) of an expression"
-#~ msgid "Usage"
-#~ msgstr "Úsáid"
-
-#~ msgid "Additional Properties"
-#~ msgstr "Airíonna Breise"
-
-#~ msgid "Audio:"
-#~ msgstr "Fuaim:"
-
-#~ msgid "&1:"
-#~ msgstr "&1:"
-
-#~ msgid "&2:"
-#~ msgstr "&2:"
-
-#~ msgid "&3:"
-#~ msgstr "&3:"
-
-#~ msgid "&4:"
-#~ msgstr "&4:"
-
-#~ msgid "&5:"
-#~ msgstr "&5:"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "anatomy"
-#~ msgstr "anatamaíocht"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "biology"
-#~ msgstr "bitheolaíocht"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "figuratively"
-#~ msgstr "fáthchiallach"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "geology"
-#~ msgstr "geolaíocht"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "historical"
-#~ msgstr "stairiúil"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "informal"
-#~ msgstr "neamhfhoirmiúil"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "ironic"
-#~ msgstr "íorónta"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "literary"
-#~ msgstr "liteartha"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "mythology"
-#~ msgstr "miotaseolaíocht"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "proper name"
-#~ msgstr "ainm dílis"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "pharmacy"
-#~ msgstr "cógaisíocht"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "philosophy"
-#~ msgstr "fealsúnacht"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "physics"
-#~ msgstr "fisic"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "physiology"
-#~ msgstr "fiseolaíocht"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "rhetoric"
-#~ msgstr "reitric"
-
-#~ msgctxt "context in which vocabulary entry is used"
-#~ msgid "zoology"
-#~ msgstr "zó-eolaíocht"
-
-#~ msgid "&Reset"
-#~ msgstr "Athshoc&raigh"
-
-#~ msgctxt ""
-#~ "edit general vocabulary properties that are common to all word types"
-#~ msgid "Common"
-#~ msgstr "Coitianta"
-
-#~ msgctxt "edit additional properties like image, synonym, etc."
-#~ msgid "Additional"
-#~ msgstr "Breise"
-
-#~ msgid "Additional properties"
-#~ msgstr "Airíonna breise"
-
-#~ msgctxt "@title:window Editing one entry, %1 the word, %2 the language"
-#~ msgid "\"%1\" (%2)"
-#~ msgstr "\"%1\" (%2)"
-
-#~ msgctxt "@title:window Editing %1 entries, %2 the language"
-#~ msgid "Edit One Word (%2)"
-#~ msgid_plural "Edit %1 words (%2)"
-#~ msgstr[0] "Cuir Focal in Eagar (%2)"
-#~ msgstr[1] "Cuir %1 Fhocal in Eagar (%2)"
-#~ msgstr[2] "Cuir %1 Fhocal in Eagar (%2)"
-#~ msgstr[3] "Cuir %1 bhFocal in Eagar (%2)"
-#~ msgstr[4] "Cuir %1 Focal in Eagar (%2)"
-
-#~ msgid ""
-#~ "The entry dialog contains unsaved changes.\n"
-#~ "Do you want to apply or discard your changes?"
-#~ msgstr ""
-#~ "Tá athruithe gan sábháil sa dialóg iontrála.\n"
-#~ "An bhfuil fonn ort do chuid athruithe a shábháil?"
-
-#~ msgid "Unsaved Changes"
-#~ msgstr "Athruithe gan sábháil"
-
-#~ msgid "Deselect All Lessons"
-#~ msgstr "Díroghnaigh Gach Ceacht"
-
-#~ msgid "Edit current lesson"
-#~ msgstr "Cuir an ceacht reatha in eagar"
-
-#~ msgid "Edit all lessons"
-#~ msgstr "Cuir gach ceacht in eagar"
-
-#~ msgid "at"
-#~ msgstr "ag"
-
-#~ msgid "co&mmas"
-#~ msgstr "camóga"
-
-#~ msgid "Quit KVocTrain"
-#~ msgstr "Scoir KVocTrain"
-
-#~ msgid "G&rade:"
-#~ msgstr "G&rád:"
-
-#~ msgid "N&ame:"
-#~ msgstr "&Ainm:"
-
-#~ msgid "&Save"
-#~ msgstr "&Sábháil"
-
-#~ msgid "&Load"
-#~ msgstr "&Luchtaigh"
-
-#~ msgid "Sep&arator:"
-#~ msgstr "&Deighilteoir:"
-
-#~ msgid "Worse Than"
-#~ msgstr "Níos Measa Ná"
-
-#~ msgid "Equal/Worse Than"
-#~ msgstr "Cothrom Le/Níos Measa Ná"
-
-#~ msgid ">"
-#~ msgstr ">"
-
-#~ msgid ">="
-#~ msgstr ">="
-
-#~ msgid "Equal/Better Than"
-#~ msgstr "Cothrom Le/Níos Fearr Ná"
-
-#~ msgid "Better Than"
-#~ msgstr "Níos Fearr Ná"
-
-#~ msgid "<="
-#~ msgstr "<="
-
-#~ msgid "<"
-#~ msgstr "<"
-
-#~ msgid "Equal To"
-#~ msgstr "Cothrom Le"
-
-#~ msgid "Not Equal"
-#~ msgstr "Ní Cothrom"
-
-#~ msgid "Before"
-#~ msgstr "Roimh"
-
-#~ msgid "Current Lesson"
-#~ msgstr "Ceacht Reatha"
-
-#~ msgid "Profiles"
-#~ msgstr "Próifílí"
-
-#~ msgid "Andrea Marconi"
-#~ msgstr "Andrea Marconi"
-
-#~ msgid "Hans Kottmann"
-#~ msgstr "Hans Kottmann"
-
-#~ msgid "Grzegorz Ilczuk"
-#~ msgstr "Grzegorz Ilczuk"
-
-#~ msgid "Suggested Parley as new name"
-#~ msgstr "Mhol sí \"Parley\" mar ainm nua"
-
-#~ msgid "Ready"
-#~ msgstr "Réidh"
-
-#~ msgid "Copying selection to clipboard..."
-#~ msgstr "Roghnúchán á chóipeáil go dtí an ghearrthaisce..."
-
-#~ msgid "Inserting clipboard contents..."
-#~ msgstr "Inneachar na gearrthaisce á ionsá..."
-
-#~ msgid "Autobackup in progress"
-#~ msgstr "Cúltaca uathoibríoch ar siúl"
-
-#~ msgid "Creating new file..."
-#~ msgstr "Comhad nua á chruthú..."
-
-#~ msgid "Opening file..."
-#~ msgstr "Comhad á oscailt..."
-
-#~ msgid "Loading %1"
-#~ msgstr "%1 Á Luchtú"
-
-#~ msgid "Opening example file..."
-#~ msgstr "Comhad samplach á oscailt..."
-
-#~ msgid "Saving file under new filename..."
-#~ msgstr "Comhad á shábháil le hainm nua..."
-
-#~ msgctxt "@label:image image preview is empty"
-#~ msgid "No Image"
-#~ msgstr "Gan Íomhá"
-
-#~ msgid "Random Test"
-#~ msgstr "Scrúdú Randamach"
-
-#~ msgid "Skip (&Do Not Know)"
-#~ msgstr "Ná Bac Leis (&Níl Fhios Agam)"
-
-#~ msgid "Language Properties"
-#~ msgstr "Airíonna na Teanga"
-
-#~ msgid "Delete subtype"
-#~ msgstr "Scrios fochineál"
-
-#~ msgid "&Stop Test"
-#~ msgstr "&Stad an Scrúdú"
-
-#~ msgid "&Edit Expression..."
-#~ msgstr "&Cuir Slonn in Eagar..."
-
-#~ msgid "&Language"
-#~ msgstr "&Teanga"
-
-#~ msgid "&Neuter:"
-#~ msgstr "&Neodrach:"
-
-#~ msgid "Test"
-#~ msgstr "Scrúdú"
-
-#~ msgid "Last q&uery:"
-#~ msgstr "&Iarratas is déanaí:"
-
-#~ msgid "&Profiles..."
-#~ msgstr "&Próifílí..."
-
-#~ msgid "C&ommon"
-#~ msgstr "C&oitianta"
-
-#~ msgid "&Common"
-#~ msgstr "&Coitianta"
-
-#~ msgid "Language code (ISO 639):"
-#~ msgstr "Cód teanga (ISO 639):"
-
-#~ msgid "&Remark:"
-#~ msgstr "&Nóta:"
-
-#~ msgid "Show &All"
-#~ msgstr "Taisp&eáin Uile"
-
-#~ msgid "Configure languages"
-#~ msgstr "Cumraigh teangacha"
-
-#~ msgctxt "state of a row"
-#~ msgid "In Test"
-#~ msgstr "Sa Scrúdú"
-
-#~ msgid "Save the entries in the current test as a new vocabulary"
-#~ msgstr "Sábháil iontrálacha an scrúdaithe reatha mar stór focal nua"
-
-#~ msgid "The Parley Team"
-#~ msgstr "Foireann Parley"
-
-#~ msgid "Finished"
-#~ msgstr "Críochnaithe"
-
-#~ msgid "&natural:\t"
-#~ msgstr "&neodrach:\t"
-
-#~ msgid "KVocTrain"
-#~ msgstr "KVocTrain"
-
-#~ msgid "&Picture:"
-#~ msgstr "&Pictiúr:"
-
-#~ msgid "The KVocTrain team"
-#~ msgstr "Foireann KVocTrain"
-
-#~ msgid "From %1"
-#~ msgstr "Ó %1"
-
-#~ msgid "&Verbs"
-#~ msgstr "&Briathra"
-
-#~ msgid "&Articles"
-#~ msgstr "&Ailt:"
-
-#~ msgid "&Paraphrase"
-#~ msgstr "&Imlabhra"
-
-#~ msgid "Click"
-#~ msgstr "Cliceáil"
-
-#~ msgid "Language->Edit Languages"
-#~ msgstr "Teanga->Cuir Teangacha in Eagar"
-
-#~ msgid "&General"
-#~ msgstr "&Ginearálta"
-
-#~ msgid "Picture is Invalid"
-#~ msgstr "Pictiúr Neamhbhailí"
-
-#~ msgid "Picture is invalid"
-#~ msgstr "Pictiúr neamhbhailí"
-
-#~ msgid "Add a new language to the vocabulary"
-#~ msgstr "Cuir teanga nua leis an stór focal"
-
-#~ msgid "&Original"
-#~ msgstr "&Bunúsach"
-
-#~ msgid "Other"
-#~ msgstr "Eile"
-
-#~ msgid "Lan&guage Properties..."
-#~ msgstr "Soc&ruithe Teanga..."
-
-#~ msgid "Query"
-#~ msgstr "Iarratas"
-
-#~ msgid "Query Settings"
-#~ msgstr "Socruithe Iarratais"
-
-#~ msgid "&Vocabulary"
-#~ msgstr "Stór Fo&cal"
-
-#~ msgctxt "state of a row"
-#~ msgid "In Query"
-#~ msgstr "San Iarratas"
-
-#~ msgid "Am."
-#~ msgstr "Meir."
-
-#~ msgid "Americanism"
-#~ msgstr "Meiriceánachas"
-
-#~ msgid "abbr."
-#~ msgstr "giorr."
-
-#~ msgid "anat."
-#~ msgstr "anat."
-
-#~ msgid "astr."
-#~ msgstr "réalt."
-
-#~ msgid "astronomy"
-#~ msgstr "réalteolaíocht"
-
-#~ msgid "biol."
-#~ msgstr "bith."
-
-#~ msgid "b.s."
-#~ msgstr "droch"
-
-#~ msgid "bad sense"
-#~ msgstr "droch-chiall"
-
-#~ msgid "contemptuously"
-#~ msgstr "drochmheasúil"
-
-#~ msgid "eccl."
-#~ msgstr "eagl."
-
-#~ msgid "ecclesiastical"
-#~ msgstr "eaglasta"
-
-#~ msgid "fig."
-#~ msgstr "fáthch."
-
-#~ msgid "geol."
-#~ msgstr "geol."
-
-#~ msgid "icht."
-#~ msgstr "iasc."
-
-#~ msgid "ichthyology"
-#~ msgstr "iasceolaíocht"
-
-#~ msgid "iro."
-#~ msgstr "íor."
-
-#~ msgid "irregular"
-#~ msgstr "neamhrialta"
-
-#~ msgid "lit."
-#~ msgstr "lit."
-
-#~ msgid "metall."
-#~ msgstr "miotal."
-
-#~ msgid "metallurgy"
-#~ msgstr "miotalóireacht"
-
-#~ msgid "meteor."
-#~ msgstr "meitéar."
-
-#~ msgid "meteorology"
-#~ msgstr "meitéareolaíocht"
-
-#~ msgid "mineralogy"
-#~ msgstr "mianreolaíocht"
-
-#~ msgid "mot."
-#~ msgstr "gluais."
-
-#~ msgid "motoring"
-#~ msgstr "gluaisteánaíocht"
-
-#~ msgid "mount."
-#~ msgstr "sléibh."
-
-#~ msgid "mountaineering"
-#~ msgstr "sléibhteoireacht"
-
-#~ msgid "myth."
-#~ msgstr "miotas."
-
-#~ msgid "opt."
-#~ msgstr "opt."
-
-#~ msgid "optics"
-#~ msgstr "optaic"
-
-#~ msgid "orn."
-#~ msgstr "éan."
-
-#~ msgid "ornithology"
-#~ msgstr "éaneolaíocht"
-
-#~ msgid "parl."
-#~ msgstr "parl."
-
-#~ msgid "parliamentary"
-#~ msgstr "parlaiminteach"
-
-#~ msgid "pharm."
-#~ msgstr "cógais."
-
-#~ msgid "phls."
-#~ msgstr "feals."
-
-#~ msgid "phot."
-#~ msgstr "fóta."
-
-#~ msgid "photography"
-#~ msgstr "fótagrafaíocht"
-
-#~ msgid "phys."
-#~ msgstr "fisic"
-
-#~ msgid "physiol."
-#~ msgstr "fiseol."
-
-#~ msgid "pl."
-#~ msgstr "iol."
-
-#~ msgid "plural"
-#~ msgstr "iolra"
-
-#~ msgid "poet."
-#~ msgstr "fil."
-
-#~ msgid "poetry"
-#~ msgstr "filíocht"
-
-#~ msgid "pol."
-#~ msgstr "pol."
-
-#~ msgid "politics"
-#~ msgstr "polaitíocht"
-
-#~ msgid "prov."
-#~ msgstr "cúige."
-
-#~ msgid "provincialism"
-#~ msgstr "cúigeachas"
-
-#~ msgid "psych."
-#~ msgstr "síc."
-
-#~ msgid "psychology"
-#~ msgstr "síceolaíocht"
-
-#~ msgid "rhet."
-#~ msgstr "reit."
-
-#~ msgid "surv."
-#~ msgstr "suirbh."
-
-#~ msgid "surveying"
-#~ msgstr "suirbhéireacht"
-
-#~ msgid "tel."
-#~ msgstr "teil."
-
-#~ msgid "teleph."
-#~ msgstr "teileaf."
-
-#~ msgid "telephony"
-#~ msgstr "teileafónaíocht"
-
-#~ msgid "thea."
-#~ msgstr "dráma."
-
-#~ msgid "theater"
-#~ msgstr "drámaíocht"
-
-#~ msgid "typ."
-#~ msgstr "cló."
-
-#~ msgid "typography"
-#~ msgstr "clóghrafaíocht"
-
-#~ msgid "univ."
-#~ msgstr "oll."
-
-#~ msgid "university"
-#~ msgstr "ollscoil"
-
-#~ msgid "vet."
-#~ msgstr "tréid."
-
-#~ msgid "veterinary medicine"
-#~ msgstr "tréidliacht"
-
-#~ msgid "zo."
-#~ msgstr "zó."
-
-#~ msgid "Merging file..."
-#~ msgstr "Comhad á chumasc..."
-
-#~ msgid "Pronoun"
-#~ msgstr "Forainm"
-
-#~ msgid "Phrase"
-#~ msgstr "Frása"
-
-#~ msgid "Numeral"
-#~ msgstr "Uimhreán"
-
-#~ msgid "Preposition"
-#~ msgstr "Réamhfhocal"
-
-#~ msgid "Informal"
-#~ msgstr "Neamhfhoirmiúil"
-
-#~ msgid "Figuratively"
-#~ msgstr "Fáthchiallach"
-
-#~ msgid "Numeral Ordinal"
-#~ msgstr "Orduimhir"
-
-#~ msgid "Numeral Cardinal"
-#~ msgstr "Bunuimhir"
-
-#~ msgid "Verb Regular"
-#~ msgstr "Briathar Rialta"
-
-#~ msgid "Verb Irregular"
-#~ msgstr "Briathar Neamhrialta"
-
-#~ msgid "Pronoun Possessive"
-#~ msgstr "Forainm Sealbhach"
-
-#~ msgid "Pronoun Personal"
-#~ msgstr "Forainm Pearsanta"
-
-#~ msgid "Noun Male"
-#~ msgstr "Ainmfhocal Firinscneach"
-
-#~ msgid "Noun Neutral"
-#~ msgstr "Ainmfhocal Neamhinscneach"
-
-#~ msgid "Co&mmon"
-#~ msgstr "Co&itianta"
-
-#~ msgid "Default lesson"
-#~ msgstr "Ceacht réamhshocraithe"
-
-#  Mozilla
-#~ msgid "Afar"
-#~ msgstr "Afárais"
-
-# "Abcáis" placename in Oll-liosta --kps
-#~ msgid "Abkhazian"
-#~ msgstr "Abcáisis"
-
-#~ msgid "Avestan"
-#~ msgstr "Aivéistis"
-
-#~ msgid "Afrikaans"
-#~ msgstr "Afracáinis"
-
-#~ msgid "Amharic"
-#~ msgstr "Amáiris"
-
-#~ msgid "Arabic"
-#~ msgstr "Araibis"
-
-#~ msgid "Assamese"
-#~ msgstr "Asaimis"
-
-#~ msgid "Aymara"
-#~ msgstr "Adhmarais"
-
-#~ msgid "Azerbaijani"
-#~ msgstr "Asarbaiseáinis"
-
-# placename in Oll-liosta
-#~ msgid "Bashkir"
-#~ msgstr "Baiscíris"
-
-#~ msgid "Belarusian"
-#~ msgstr "Bealarúisis"
-
-#~ msgid "Bulgarian"
-#~ msgstr "Bulgáiris"
-
-#~ msgid "Bihari"
-#~ msgstr "Bihairis"
-
-# Mozilla
-#~ msgid "Bislama"
-#~ msgstr "Bioslamais"
-
-#~ msgid "Bengali"
-#~ msgstr "Beangáilis"
-
-#~ msgid "Tibetan"
-#~ msgstr "Tibéidis"
-
-#~ msgid "Breton"
-#~ msgstr "Briotáinis"
-
-#~ msgid "Bosnian"
-#~ msgstr "Boisnis"
-
-#~ msgid "Catalan"
-#~ msgstr "Catalóinis"
-
-#~ msgid "Chamorro"
-#~ msgstr "Seamóróis"
-
-#~ msgid "Corsican"
-#~ msgstr "Corsaicis"
-
-#~ msgid "Czech"
-#~ msgstr "Seicis"
-
-#~ msgid "Church Slavic"
-#~ msgstr "Slaivis"
-
-#~ msgid "Chuvash"
-#~ msgstr "Suvaisis"
-
-#~ msgid "Welsh"
-#~ msgstr "Breatnais"
-
-#~ msgid "Danish"
-#~ msgstr "Danmhairgis"
-
-#~ msgid "English"
-#~ msgstr "Béarla"
-
-#~ msgid "Esperanto"
-#~ msgstr "Esperanto"
-
-#~ msgid "Spanish"
-#~ msgstr "Spáinnis"
-
-#~ msgid "Estonian"
-#~ msgstr "Eastóinis"
-
-#~ msgid "Persian"
-#~ msgstr "Peirsis"
-
-#~ msgid "Fijian"
-#~ msgstr "Fidsis"
-
-#~ msgid "French"
-#~ msgstr "Fraincis"
-
-#~ msgid "Frisian"
-#~ msgstr "Freaslainnis"
-
-#~ msgid "Irish"
-#~ msgstr "Gaeilge"
-
-#~ msgid "Gaelic"
-#~ msgstr "Gàidhlig"
-
-#~ msgid "Scottish Gaelic"
-#~ msgstr "Gàidhlig"
-
-#~ msgid "Gallegan"
-#~ msgstr "Gailísis"
-
-#~ msgid "Guarani"
-#~ msgstr "Guaráinis"
-
-#~ msgid "Gujarati"
-#~ msgstr "Gúisearáitis"
-
-#~ msgid "Manx"
-#~ msgstr "Manainnis"
-
-# Mozilla
-#~ msgid "Hausa"
-#~ msgstr "Hásais"
-
-#~ msgid "Hebrew"
-#~ msgstr "Eabhrais"
-
-#~ msgid "Hindi"
-#~ msgstr "Hiondúis"
-
-#~ msgid "Hiri Motu"
-#~ msgstr "Hírí-Mótúis"
-
-#~ msgid "Croatian"
-#~ msgstr "Cróitis"
-
-#~ msgid "Hungarian"
-#~ msgstr "Ungáiris"
-
-#~ msgid "Armenian"
-#~ msgstr "Airméinis"
-
-#~ msgid "Herero"
-#~ msgstr "Heiréiróis"
-
-#~ msgid "Indonesian"
-#~ msgstr "Indinéisis"
-
-# Mozilla
-#~ msgid "Inupiaq"
-#~ msgstr "Inupiaq"
-
-#~ msgid "Icelandic"
-#~ msgstr "Íoslainnis"
-
-#~ msgid "Italian"
-#~ msgstr "Iodáilis"
-
-#~ msgid "Inuktitut"
-#~ msgstr "Ionúitis"
-
-#~ msgid "Japanese"
-#~ msgstr "Seapáinis"
-
-#~ msgid "Javanese"
-#~ msgstr "Iávais"
-
-#~ msgid "Georgian"
-#~ msgstr "Seoirsis"
-
-# M. Gunn
-#~ msgid "Kikuyu"
-#~ msgstr "Ciocúis"
-
-#~ msgid "Kuanyama"
-#~ msgstr "Cuainiáimis"
-
-# have "Casacstáin" in corpus --KPS
-#~ msgid "Kazakh"
-#~ msgstr "Casaicis"
-
-#~ msgid "Kalaallisut"
-#~ msgstr "Graonlainnis"
-
-# #-#-#-#-#  tmp.XXXXMZ2Xhi (yudit 2.7.6)  #-#-#-#-#
-# #-#-#-#-#  temp1.po (firefox 1.0_pre)  #-#-#-#-#
-# #-#-#-#-#  iso_639-0.19.ga.po (iso_639 0.19)  #-#-#-#-#
-# Mozilla
-#~ msgid "Khmer"
-#~ msgstr "Ciméiris"
-
-#~ msgid "Kannada"
-#~ msgstr "Cannadais"
-
-#~ msgid "Korean"
-#~ msgstr "Cóiréis"
-
-# placename in corpus --kps
-#~ msgid "Kashmiri"
-#~ msgstr "Caismíris"
-
-#~ msgid "Kurdish"
-#~ msgstr "Coirdis"
-
-#~ msgid "Komi"
-#~ msgstr "Coimí"
-
-#~ msgid "Cornish"
-#~ msgstr "Coirnis"
-
-#~ msgid "Kirghiz"
-#~ msgstr "Cirgisis"
-
-#~ msgid "Latin"
-#~ msgstr "Laidin"
-
-# Mozilla
-#~ msgid "Lingala"
-#~ msgstr "Lingala"
-
-#~ msgid "Lithuanian"
-#~ msgstr "Liotuáinis"
-
-#~ msgid "Latvian"
-#~ msgstr "Laitvis"
-
-#~ msgid "Malagasy"
-#~ msgstr "Malagásais"
-
-#~ msgid "Marshall"
-#~ msgstr "Marascailis"
-
-#~ msgid "Maori"
-#~ msgstr "Maorais"
-
-#~ msgid "Macedonian"
-#~ msgstr "Macadóinis"
-
-#~ msgid "Malayalam"
-#~ msgstr "Mailéalaimis"
-
-#~ msgid "Mongolian"
-#~ msgstr "Mongóilis"
-
-#~ msgid "Moldavian"
-#~ msgstr "Moldávais"
-
-#~ msgid "Marathi"
-#~ msgstr "Maraitis"
-
-#~ msgid "Maltese"
-#~ msgstr "Máltais"
-
-#~ msgid "Burmese"
-#~ msgstr "Burmais"
-
-#~ msgid "Nauru"
-#~ msgstr "Nárúis"
-
-#~ msgid "Ndebele, North"
-#~ msgstr "Ndebele Thuaidh"
-
-#~ msgid "Nepali"
-#~ msgstr "Neipealais"
-
-#~ msgid "Ndonga"
-#~ msgstr "Ndongais"
-
-#~ msgid "Dutch"
-#~ msgstr "Ollainnis"
-
-#~ msgid "Norwegian Nynorsk"
-#~ msgstr "Ioruais Nynorsk"
-
-#~ msgid "Norwegian"
-#~ msgstr "Ioruais"
-
-#~ msgid "Ndebele, South"
-#~ msgstr "Ndebele Theas"
-
-#~ msgid "Chichewa"
-#~ msgstr "Siseivis"
-
-#~ msgid "Occitan"
-#~ msgstr "Ocatáinis"
-
-#~ msgid "Provencal"
-#~ msgstr "Proibhinsis"
-
-# Mozilla
-#~ msgid "Oromo"
-#~ msgstr "Oraimis"
-
-# #-#-#-#-#  iso_639-0.19.ga.po (iso_639 0.19)  #-#-#-#-#
-# Mozilla
-#~ msgid "Oriya"
-#~ msgstr "Oirísis"
-
-#~ msgid "Ossetic"
-#~ msgstr "Óiséitis"
-
-#~ msgid "Panjabi"
-#~ msgstr "Painseáibis"
-
-#~ msgid "Pali"
-#~ msgstr "Páilis"
-
-#~ msgid "Polish"
-#~ msgstr "Polainnis"
-
-#~ msgid "Pushto"
-#~ msgstr "Paistis"
-
-#~ msgid "Portuguese"
-#~ msgstr "Portaingéilis"
-
-#~ msgid "Quechua"
-#~ msgstr "Ceatsuais"
-
-#~ msgid "Raeto-Romance"
-#~ msgstr "Raeta-Rómáinsis"
-
-#~ msgid "Romanian"
-#~ msgstr "Rómáinis"
-
-#~ msgid "Kinyarwanda"
-#~ msgstr "Cinearuáindis"
-
-#~ msgid "Sanskrit"
-#~ msgstr "Sanscrait"
-
-#~ msgid "Sardinian"
-#~ msgstr "Sairdínis"
-
-#~ msgid "Sindhi"
-#~ msgstr "Sindis"
-
-#~ msgid "Northern Sami"
-#~ msgstr "Sáimis Thuaidh"
-
-#~ msgid "Sango"
-#~ msgstr "Sangóis"
-
-#~ msgid "Sinhalese"
-#~ msgstr "Siolóinis"
-
-#~ msgid "Slovak"
-#~ msgstr "Slóvaicis"
-
-#~ msgid "Slovenian"
-#~ msgstr "Slóivéinis"
-
-#~ msgid "Samoan"
-#~ msgstr "Samóis"
-
-#~ msgid "Shona"
-#~ msgstr "Seoinis"
-
-#~ msgid "Somali"
-#~ msgstr "Somáilis"
-
-#~ msgid "Albanian"
-#~ msgstr "Albáinis"
-
-#~ msgid "Serbian"
-#~ msgstr "Seirbis"
-
-#~ msgid "Swati"
-#~ msgstr "Suaisis"
-
-#~ msgid "Sundanese"
-#~ msgstr "Sundais"
-
-#~ msgid "Swedish"
-#~ msgstr "Sualainnis"
-
-#~ msgid "Swahili"
-#~ msgstr "Svahaílis"
-
-#~ msgid "Tamil"
-#~ msgstr "Tamailis"
-
-#~ msgid "Telugu"
-#~ msgstr "Teileagúis"
-
-# have "Táidsíceastáin" in corpus
-#~ msgid "Tajik"
-#~ msgstr "Táidsícis"
-
-#~ msgid "Thai"
-#~ msgstr "Téalainnis"
-
-#~ msgid "Tigrinya"
-#~ msgstr "Tigrínis"
-
-#~ msgid "Turkmen"
-#~ msgstr "Tuircméinis"
-
-#~ msgid "Tagalog"
-#~ msgstr "Tagálaigis"
-
-#~ msgid "Tswana"
-#~ msgstr "Suáinis"
-
-#~ msgid "Tonga"
-#~ msgstr "Tongais"
-
-#~ msgid "Turkish"
-#~ msgstr "Tuircis"
-
-#~ msgid "Tsonga"
-#~ msgstr "Songais"
-
-# Mozilla
-#~ msgid "Twi"
-#~ msgstr "Twi"
-
-# have "Taihítí" in corpus
-#~ msgid "Tahitian"
-#~ msgstr "Taihítis"
-
-#~ msgid "Uighur"
-#~ msgstr "Úígiúiris"
-
-#~ msgid "Ukrainian"
-#~ msgstr "Úcráinis"
-
-#~ msgid "Urdu"
-#~ msgstr "Urdais"
-
-# on google too --kps
-#~ msgid "Uzbek"
-#~ msgstr "Úisbéicis"
-
-#~ msgid "Vietnamese"
-#~ msgstr "Vítneamais"
-
-# M. Gunn
-#~ msgid "Wolof"
-#~ msgstr "Volaifis"
-
-# in google
-#~ msgid "Xhosa"
-#~ msgstr "Cóisis"
-
-#~ msgid "Yiddish"
-#~ msgstr "Giúdais"
-
-# Mozilla
-#~ msgid "Yoruba"
-#~ msgstr "Iarúibis"
-
-#~ msgid "Zhuang"
-#~ msgstr "Siuáingis"
-
-#~ msgid "Chinese"
-#~ msgstr "Sínis"
-
-#~ msgid "Zulu"
-#~ msgstr "Súlúis"
-
-#~ msgid ""
-#~ "<qt>The selected file will now be downloaded and saved as\n"
-#~ "<b>'%1'</b>.</qt>"
-#~ msgstr ""
-#~ "<qt>Íosluchtófar agus sábhálfar an comhad roghnaithe mar\n"
-#~ "<b>'%1'</b>.</qt>"
-
-#~ msgid "Bokmål"
-#~ msgstr "Bokmål"
-
-#~ msgid "Volapük"
-#~ msgstr "Volapük"
-
-#~ msgid "&All"
-#~ msgstr "G&ach Rud"
-
-#~ msgid "Copy & Paste"
-#~ msgstr "Cóipeáil agus Greamaigh"
-
-#~ msgid "Order"
-#~ msgstr "Ord"
-
-#~ msgid "&Down"
-#~ msgstr "&Síos"
-
-#~ msgid "&Up"
-#~ msgstr "S&uas"
-
-#~ msgid "title"
-#~ msgstr "teideal"
-
-#~ msgid "January"
-#~ msgstr "Eanáir"
-
-#~ msgid "February"
-#~ msgstr "Feabhra"
-
-#~ msgid "April"
-#~ msgstr "Aibreán"
-
-#~ msgid "May"
-#~ msgstr "Bealtaine"
-
-#~ msgid "June"
-#~ msgstr "Meitheamh"
-
-#~ msgid "July"
-#~ msgstr "Iúil"
-
-#~ msgid "August"
-#~ msgstr "Lúnasa"
-
-#~ msgid "September"
-#~ msgstr "Meán Fómhair"
-
-#~ msgid "October"
-#~ msgstr "Deireadh Fómhair"
-
-#~ msgid "December"
-#~ msgstr "Mí na Nollag"
-
-#~ msgid "&Remove Column"
-#~ msgstr "&Bain Colún"
-
-#~ msgid "&Remove Selected Area"
-#~ msgstr "&Bain an Limistéar Roghnaithe"
-
-#~ msgid "Overwrite"
-#~ msgstr "Forscríobh"
-
-#~ msgid "Clean Up"
-#~ msgstr "Glan"
-
-#~ msgid "KVocTrain - %1"
-#~ msgstr "KVocTrain - %1"
-
-#~ msgid "Future"
-#~ msgstr "Fáistineach"
-
-#~ msgid "! Title:"
-#~ msgstr "! Teideal:"
-
-#~ msgid "! Author:"
-#~ msgstr "! Údar:"
-
-#~ msgid "Error in csv file"
-#~ msgstr "Earráid i gcomhad csv"
-
-#~ msgid ""
-#~ "File:\t%1\n"
-#~ "Line:\t%2\n"
-#~ msgstr ""
-#~ "Comhad:\t%1\n"
-#~ "Líne:\t%2\n"
-
-#~ msgid "Unknown attribute"
-#~ msgstr "Tréith anaithnid"
-
-#~ msgid "Unknown element"
-#~ msgstr "Eilimint anaithnid"
-
-#~ msgid "<qt>Cannot open file<br><b>%1</b></qt>"
-#~ msgstr "<qt>Ní féidir comhad a oscailt<br><b>%1</b></qt>"
-
-#~ msgid "&Retry"
-#~ msgstr "At&riail"
-
-#~ msgid "<qt>Cannot write to file<br><b>%1</b></qt>"
-#~ msgstr "<qt>Ní féidir an comhad<br><b>%1</b> a scríobh</qt>"
-
-#~ msgid "Level 1"
-#~ msgstr "Leibhéal 1"
-
-#~ msgid "Level 2"
-#~ msgstr "Leibhéal 2"
-
-#~ msgid "Level 3"
-#~ msgstr "Leibhéal 3"
-
-#~ msgid "Level 4"
-#~ msgstr "Leibhéal 4"
