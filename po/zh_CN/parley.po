@@ -3524,7 +3524,7 @@ msgstr "如果选中，当使用条目对话框时，新行会按需自动追加
 #: src/settings/parley.kcfg:23
 #, kde-format
 msgid "This sets the separator used when copying/pasting text, default is Tab"
-msgstr "在此设置复制/粘贴文字时用的分隔符，默认为制表符 Tab。"
+msgstr "在此设置复制/粘贴文本时用的分隔符，默认为制表符 Tab。"
 
 #. i18n: ectx: label, entry (EntriesPerLesson), group (General)
 #: src/settings/parley.kcfg:27
