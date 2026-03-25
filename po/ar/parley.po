@@ -3121,7 +3121,7 @@ msgstr "الأزمنة المختارة لتدريب التصريف."
 #: src/settings/languagesettings.kcfg:28 src/settings/languagesettings.kcfg:29
 #, kde-format
 msgid "Visible columns in the main editor window."
-msgstr "الأعمدة المرئية في نافذة المحرر الرئيسية."
+msgstr "الأعمدة المرئية في نافذة المحرر الرئيسة."
 
 #. i18n: ectx: label, entry (CollapsedStatisticsViewItems), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (CollapsedStatisticsViewItems), group (Document $(fileurl))
