@@ -27,8 +27,8 @@ parts:
     source: https://invent.kde.org/education/libkeduvocdocument.git
     source-branch: master
     build-snaps:
-      - kde-qt6-core24-sdk/latest/beta
-      - kf6-core24-sdk/latest/beta
+      - kde-qt6-core24-sdk/latest/stable
+      - kf6-core24-sdk/latest/stable
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
       - -DCMAKE_BUILD_TYPE=Release
@@ -42,8 +42,8 @@ parts:
       - usr/share/metainfo/org.kde.parley.appdata.xml
     plugin: cmake
     build-snaps:
-      - kde-qt6-core24-sdk/latest/beta
-      - kf6-core24-sdk/latest/beta
+      - kde-qt6-core24-sdk/latest/stable
+      - kf6-core24-sdk/latest/stable
     build-packages:
       - libxml2-dev
       - gettext
@@ -54,10 +54,12 @@ parts:
       - docbook-xsl
       - libpulse0
       - libxslt1-dev
+      - libdrm2
     stage-packages:
       - libpulse0
       - translate-shell
       - libxslt1.1
+      - libdrm2
     source: .
     source-type: local
     cmake-parameters:
