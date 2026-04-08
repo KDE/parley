@@ -3,31 +3,34 @@
 # SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2024 Vít Pelčák <vit@pelcak.org>
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
 # Vit Pelcak <vit@pelcak.org>, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2026 Libor Filípek <filipek.libor@protonmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:48+0000\n"
-"PO-Revision-Date: 2024-08-20 15:24+0200\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
-"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2026-04-07 21:24+0200\n"
+"Last-Translator: Libor Filípek <filipek.libor@protonmail.com>\n"
+"Language-Team: \n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Martin Malina, Klára Cihlářová, Pavel Fric"
+msgstr "Martin Malina,Klára Cihlářová,Pavel Fric,Libor Filípek"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "martinmalina@seznam.cz, koty@seznam.cz, pavelfric@seznam.cz"
+msgstr ""
+"martinmalina@seznam.cz,koty@seznam.cz,pavelfric@seznam.cz,libor."
+"filipek@gmail.com"
 
 #: src/collection/containermodel.cpp:150
 #, kde-format
@@ -112,7 +115,7 @@ msgstr "Nevšímat si nejnižší/nejvyšší známky"
 #: src/collection/entryfilterdialog.ui:156
 #, kde-format
 msgid "Number of Affected Words"
-msgstr ""
+msgstr "Počet dotčených slov"
 
 #. i18n: ectx: property (text), widget (QLabel, documentTotalDescriptionLabel)
 #: src/collection/entryfilterdialog.ui:171
@@ -247,19 +250,19 @@ msgstr "Není vybrána žádná jednotka"
 #, kde-format
 msgid "%1 word due"
 msgid_plural "%1 words due"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%1 slovo zbývá"
+msgstr[1] "%1 slova zbývají"
+msgstr[2] "%1 slov zbývá"
 
 #: src/dashboard/barwidget.cpp:122
 #, kde-format
 msgid "Fully learned"
-msgstr ""
+msgstr "Plně naučené"
 
 #: src/dashboard/buttondelegate.cpp:32
 #, kde-format
 msgid "Open this vocabulary collection in the editor"
-msgstr ""
+msgstr "Otevřít tuto sbírku slovíček v editoru"
 
 #: src/dashboard/collectionwidget.cpp:96
 #, kde-format
@@ -439,7 +442,7 @@ msgstr "-"
 #: src/editor/conjugationwidget.ui:32
 #, kde-format
 msgid "Conjugation Forms"
-msgstr ""
+msgstr "Skloňované tvary"
 
 #. i18n: ectx: property (text), widget (QLabel, singularFirstPersonLabel)
 #. i18n: ectx: property (text), widget (QLabel, dualFirstPersonLabel)
@@ -635,17 +638,17 @@ msgstr ""
 "S pomocí zaškrtávacích okének, si můžete vybrat, které jednotky si přejete "
 "procvičovat. \n"
 "Při zkoušení budete dotazováni pouze na materiál obsažený v zaškrtnutých "
-"lekcích [x]."
+"lekcích [x]!"
 
 #: src/editor/editor.cpp:162
 #, kde-format
 msgid "Word Types"
-msgstr "Slovní druhy:"
+msgstr "Slovní druhy"
 
 #: src/editor/editor.cpp:182
 #, kde-format
 msgid "Inflection (verbs, adjectives, nouns)"
-msgstr ""
+msgstr "Skloňování (slovesa, přídavná jména, podstatná jména)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, comparisonForms)
 #: src/editor/editor.cpp:196 src/statistics/statisticsmainwindow.ui:135
@@ -773,7 +776,7 @@ msgstr "Vlastnosti z originálu"
 #: src/editor/FromToEntryPageForm.ui:72
 #, kde-format
 msgid "&Confidence Level:"
-msgstr ""
+msgstr "Ú&roveň jistoty:"
 
 #. i18n: ectx: property (text), widget (QLabel, fauxami_label)
 #: src/editor/FromToEntryPageForm.ui:95
@@ -839,7 +842,7 @@ msgstr "dd.mm.yyyy"
 #: src/editor/FromToEntryPageForm.ui:260
 #, kde-format
 msgid "&Reset Confidence Levels"
-msgstr ""
+msgstr "&Obnovit úrovně jistoty"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
 #: src/parleydocument.cpp:485
@@ -862,18 +865,18 @@ msgstr "\"%1\" je:"
 #, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
-msgstr ""
+msgstr "Vyberte prosím rod podstatného jména"
 
 #: src/editor/latexwidget.cpp:22
 #, kde-format
 msgid "Enter LaTeX code here."
-msgstr ""
+msgstr "Zde zadejte kód LaTeXu."
 
 #. i18n: ectx: property (text), widget (QLabel, texLabel)
 #: src/editor/latexwidget.ui:17
 #, kde-format
 msgid "LaTeX code:"
-msgstr "Kód LaTeX"
+msgstr "Kód LaTeX:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -927,7 +930,7 @@ msgstr "Vytvořit více menších jednotek z jedné velké jednotky."
 #: src/editor/lessonview.cpp:64
 #, kde-format
 msgid "Move to new lesson"
-msgstr ""
+msgstr "Přejít na novou lekci"
 
 #: src/editor/lessonview.cpp:66
 #, kde-format
@@ -937,22 +940,22 @@ msgstr "Přesune zvolenou slovní zásobu do nové lekce"
 #: src/editor/lessonview.cpp:72 src/parleyactions.cpp:150
 #, kde-format
 msgid "Remove Confidence Levels"
-msgstr ""
+msgstr "Odstranit intervaly jistoty"
 
 #: src/editor/lessonview.cpp:74
 #, kde-format
 msgid "Remove confidence levels from this unit."
-msgstr ""
+msgstr "Z této jednotky odstranit intervaly jistoty."
 
 #: src/editor/lessonview.cpp:80
 #, kde-format
 msgid "Remove Confidence Levels From This Unit And All Subunits"
-msgstr ""
+msgstr "Odstranit úrovně jistoty z této jednotky a všech podjednotek"
 
 #: src/editor/lessonview.cpp:82
 #, kde-format
 msgid "Remove confidence levels from this unit and all subunits."
-msgstr ""
+msgstr "Odstranit úrovně jistoty z této jednotky a všech podjednotek."
 
 #: src/editor/lessonview.cpp:88
 #, kde-format
@@ -1124,12 +1127,12 @@ msgstr "Povolit/Zakázat sloupce pro každý jazyk"
 #: src/editor/vocabularydelegate.cpp:145
 #, kde-format
 msgid "Sound file selected: %1"
-msgstr ""
+msgstr "Vybraný zvukový soubor: %1"
 
 #: src/editor/vocabularydelegate.cpp:147
 #, kde-format
 msgid "Image file selected: %1"
-msgstr ""
+msgstr "Vybraný obrazový soubor: %1"
 
 #: src/editor/vocabularyview.cpp:79
 #, kde-format
@@ -1391,13 +1394,15 @@ msgstr "Exportovat"
 #: src/exportdialog.ui:20
 #, kde-format
 msgid "Flash Cards - to print learning cards (HTML)"
-msgstr ""
+msgstr "Kartičky – pro tisk výukových karet (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
 #: src/exportdialog.ui:30
 #, kde-format
 msgid "A vocabulary list that works in a web-browser and can be printed (HTML)"
 msgstr ""
+"Seznam slovíček, který funguje v internetovém prohlížeči a lze jej "
+"vytisknout (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, csvRadio)
 #: src/exportdialog.ui:40
@@ -1441,7 +1446,7 @@ msgstr "Vývojář a jeden ze správců"
 #: src/main.cpp:39
 #, kde-format
 msgid "Amarvir Singh"
-msgstr ""
+msgstr "Amarvir Singh"
 
 #: src/main.cpp:41
 #, kde-format
@@ -1616,12 +1621,12 @@ msgstr "Upravit vlastnosti dokumentu"
 #: src/parleyactions.cpp:122
 #, kde-format
 msgid "Dashboard"
-msgstr "Přístrojová deska"
+msgstr "Přehled"
 
 #: src/parleyactions.cpp:123
 #, kde-format
 msgid "Close the current vocabulary collection and show the dashboard"
-msgstr "Zavřít aktivní sbírku se slovní zásobu a zobrazit přístrojovou desku"
+msgstr "Zavřít aktivní sbírku se slovní zásobu a zobrazit přehled"
 
 #: src/parleyactions.cpp:129
 #, kde-format
@@ -1649,7 +1654,7 @@ msgstr ""
 #: src/parleyactions.cpp:151
 #, kde-format
 msgid "Remove all confidence levels from the current document"
-msgstr ""
+msgstr "Odebrat všechny úrovně jistoty z aktuálního dokumentu"
 
 #: src/parleyactions.cpp:162
 #, kde-format
@@ -1680,7 +1685,7 @@ msgstr "Začít s procvičováním..."
 #: src/parleyactions.cpp:185
 #, kde-format
 msgid "Start practicing"
-msgstr ""
+msgstr "Začít procvičovat"
 
 #: src/parleyactions.cpp:193
 #, kde-format
@@ -1700,7 +1705,7 @@ msgstr "Exportovat výsledky..."
 #: src/parleyactions.cpp:203
 #, kde-format
 msgid "Write a file with the results of the practice"
-msgstr ""
+msgstr "Uložit soubor s výsledky procvičování"
 
 #: src/parleyactions.cpp:211
 #, kde-format
@@ -1710,7 +1715,7 @@ msgstr "Editor"
 #: src/parleyactions.cpp:212
 #, kde-format
 msgid "Switch to vocabulary editor"
-msgstr ""
+msgstr "Přejít do editoru slovní zásoby"
 
 #: src/parleyactions.cpp:220
 #, kde-format
@@ -1748,11 +1753,16 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
+"Soubor slovníku je uzamčen jiným procesem.  Soubor můžete otevřít, pokud "
+"převezmete zámek, ale přijdete o všechny změny provedené v rámci toho "
+"druhého procesu.\n"
+"\n"
+"Chcete převzít zámek?\n"
 
 #: src/parleydocument.cpp:206
 #, kde-format
 msgid "Take Over Lock"
-msgstr ""
+msgstr "Převzít zámek"
 
 #: src/parleydocument.cpp:237
 #, kde-format
@@ -1790,6 +1800,11 @@ msgid ""
 "\n"
 "Do you want to take over the lock?\n"
 msgstr ""
+"Soubor \"%1\" je uzamčen jiným procesem.  Do souboru můžete ukládat, pokud "
+"převezmete zámek, ale ztratíte veškeré změny provedené v rámci toho druhého "
+"procesu.\n"
+"\n"
+"Chcete převzít zámek?\n"
 
 #: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
@@ -1857,7 +1872,7 @@ msgctxt ""
 "Title and a modified status indicator.  [*] is exact and will be shown only "
 "when document is modified"
 msgid "%1 [*]"
-msgstr ""
+msgstr "%1 [*]"
 
 #: src/parleymainwindow.cpp:174
 #, kde-format
@@ -1865,6 +1880,8 @@ msgid ""
 "You cannot start to practice when the known language is the same as the "
 "language to learn."
 msgstr ""
+"Nemůžete začít procvičovat, pokud je jazyk, který znáte, stejný jako jazyk, "
+"který se chcete naučit."
 
 #: src/parleymainwindow.cpp:174
 #, kde-format
@@ -1891,19 +1908,19 @@ msgstr "Hlavní panel nástrojů"
 #: src/parleyui.rc:29 src/practice/practiceui.rc:18
 #, kde-format
 msgid "Practice Toolbar"
-msgstr ""
+msgstr "Nástrojová lišta procvičování"
 
 #. i18n: ectx: ToolBar (statisticsToolBar)
 #: src/parleyui.rc:33 src/statistics/statisticsui.rc:19
 #, kde-format
 msgid "Statistics Toolbar"
-msgstr ""
+msgstr "Nástrojová lišta statistik"
 
 #. i18n: ectx: ToolBar (practiceSummaryToolBar)
 #: src/parleyui.rc:40 src/practice/practicesummaryui.rc:20
 #, kde-format
 msgid "Practice Summary Toolbar"
-msgstr ""
+msgstr "Nástrojová lišta s přehledem procvičování"
 
 #: src/practice/audiobutton.cpp:59 src/practice/audiobutton.cpp:60
 #, kde-format
@@ -1913,7 +1930,7 @@ msgstr "Zastavit"
 #: src/practice/comparisonbackendmode.cpp:59
 #, kde-format
 msgid "All comparison forms were right."
-msgstr ""
+msgstr "Všechny stupňované tvary jsou správně."
 
 #: src/practice/comparisonbackendmode.cpp:65
 #, kde-format
@@ -1921,7 +1938,7 @@ msgctxt ""
 "the user entered the wrong absolute form when practicing comparison forms of "
 "adjectives (the base form of the adjective is wrong)"
 msgid "\"%1\" is the wrong word."
-msgstr ""
+msgstr "\"%1\" není správné slovo."
 
 #: src/practice/comparisonbackendmode.cpp:70
 #, kde-format
@@ -1929,7 +1946,7 @@ msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (good, better, best)"
 msgid "Both comparison forms (comparative and superlative) are wrong."
-msgstr ""
+msgstr "Oba tvary stupňů (komparativ a superlativ) jsou nesprávné."
 
 #: src/practice/comparisonbackendmode.cpp:74
 #, kde-format
@@ -1937,7 +1954,7 @@ msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (second form wrong - better)"
 msgid "The comparative is wrong."
-msgstr ""
+msgstr "Komparativ je nesprávný."
 
 #: src/practice/comparisonbackendmode.cpp:78
 #, kde-format
@@ -1945,16 +1962,16 @@ msgctxt ""
 "the user entered the wrong comparison forms when practicing comparison forms "
 "of adjectives (third form wrong - best)"
 msgid "The superlative is wrong."
-msgstr ""
+msgstr "Superlativ je nesprávný."
 
 #: src/practice/comparisonmodewidget.cpp:65
 #, kde-format
 msgid "Enter the comparison forms."
-msgstr ""
+msgstr "Zadejte stupňované tvary."
 
 #: src/practice/configure/blockoptions.cpp:22
 msgid "Do not Care"
-msgstr "Nestarej se"
+msgstr "Je mi to jedno"
 
 #: src/practice/configure/blockoptions.cpp:24
 msgid "30 Min"
@@ -2243,30 +2260,31 @@ msgstr "Oprava"
 #, kde-format
 msgid "Answers with wrong accents are still counted as correct."
 msgstr ""
+"Odpovědi s nesprávnými diakritickými znaménky se stále počítají jako správné."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:26
 #, kde-format
 msgid "Ignore accents"
-msgstr ""
+msgstr "Ignorovat diakritiku"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:36
 #, kde-format
 msgid "Any captitalization in the answer is counted as correct."
-msgstr ""
+msgstr "Jakákoli velká písmena v odpovědi se považují za správná."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:39
 #, kde-format
 msgid "Ignore capitalization"
-msgstr "Nevšímat si chyb v psaní velkých písmen"
+msgstr "Ignorovat velká písmena"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:49
 #, kde-format
 msgid "Any punctuation mistake in the answer is counted as correct."
-msgstr ""
+msgstr "Jakákoli interpunkční chyba v odpovědi se počítá jako správná."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:52
@@ -2280,6 +2298,7 @@ msgstr "Ignorovat interpunkci"
 msgid ""
 "During the practice you can use the hint button to see parts of the solution."
 msgstr ""
+"Během procvičování můžete pomocí tlačítka s nápovědou zobrazit části řešení."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:65
@@ -2297,25 +2316,25 @@ msgstr "Obrázky a zvuk"
 #: src/practice/configure/generalpracticeoptions.ui:97
 #, kde-format
 msgid "During the practice, images are shown for the question."
-msgstr ""
+msgstr "Během procvičování se k otázkám zobrazují obrázky."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:100
 #, kde-format
 msgid "Image for question"
-msgstr ""
+msgstr "Obrázek k otázce"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:110
 #, kde-format
 msgid "During the practice, images are shown for the solution."
-msgstr ""
+msgstr "Během procvičování se zobrazují obrázky znázorňující řešení."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:113
 #, kde-format
 msgid "Image for solution"
-msgstr ""
+msgstr "Obrázek k řešení"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_AllowImageInsteadOfWord)
 #: src/practice/configure/generalpracticeoptions.ui:123
@@ -2327,13 +2346,13 @@ msgstr "Povolit v kartičkách použití obrázků namísto slov."
 #: src/practice/configure/generalpracticeoptions.ui:126
 #, kde-format
 msgid "Allow images instead of words"
-msgstr ""
+msgstr "Použít obrázky místo slov"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PracticeSoundEnabled)
 #: src/practice/configure/generalpracticeoptions.ui:136
 #, kde-format
 msgid "Enable playing of pronunciation sound files during the practice."
-msgstr ""
+msgstr "Povolit přehrávání zvukových souborů s výslovností během procvičování."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/practice/configure/generalpracticeoptions.ui:158
@@ -2343,6 +2362,9 @@ msgid ""
 "associated directly with the current word. With this option enabled any "
 "synonym is accepted."
 msgstr ""
+"Ve výchozím nastavení se vás systém ptá na zadání synonym, dokud nezadáte "
+"to, které přímo souvisí s aktuálním slovem. Je-li tato možnost zapnutá, "
+"přijme se jakékoli synonymum."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
@@ -2375,6 +2397,8 @@ msgid ""
 "When creating multiple choice practices, try to show answers of the same "
 "word type."
 msgstr ""
+"Při vytváření procvičování s výběrem z více možností se snažte uvádět "
+"odpovědi stejného slovního druhu."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MultipleChoiceWordTypeConsistancy)
 #: src/practice/configure/specificpracticeoptions.ui:26
@@ -2386,7 +2410,7 @@ msgstr "Použít volby stejného slovního druhu"
 #: src/practice/configure/specificpracticeoptions.ui:41
 #, kde-format
 msgid "Number of choices:"
-msgstr ""
+msgstr "Počet možností:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_8)
 #: src/practice/configure/thresholdoptions.ui:17
@@ -2416,7 +2440,7 @@ msgstr "Úroveň:"
 #: src/practice/configure/thresholdoptions.ui:53
 #, kde-format
 msgid "Times practiced:"
-msgstr ""
+msgstr "Časy procvičování:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
@@ -2427,44 +2451,44 @@ msgstr "Zodpovězeno nesprávně:"
 #: src/practice/conjugationbackendmode.cpp:93
 #, kde-format
 msgid "All conjugation forms were right."
-msgstr ""
+msgstr "Všechny tvary časování byly správné."
 
 #: src/practice/conjugationbackendmode.cpp:97
 #, kde-format
 msgctxt "You did not get the conjugation forms right."
 msgid "You answered %1 conjugation form correctly."
 msgid_plural "You answered %1 conjugation forms correctly."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Správně jste zodpověděli %1 tvar časování."
+msgstr[1] "Správně jste zodpověděli %1 tvary časování."
+msgstr[2] "Správně jste zodpověděli %1 tvarů časování."
 
 #: src/practice/conjugationmodewidget.cpp:111
 #, kde-format
 msgid "Enter all conjugation forms."
-msgstr ""
+msgstr "Zadejte všechny tvary časování."
 
 #: src/practice/genderbackendmode.cpp:62
 #, kde-format
 msgid "Choose the right article for \"%1\""
-msgstr ""
+msgstr "Vyberte si vhodný článek pro \"%1\""
 
 #: src/practice/genderbackendmode.cpp:82
 #, kde-format
 msgctxt "@label the gender of the word: masculine"
 msgid "%1 is masculine"
-msgstr ""
+msgstr "%1 je mužského rodu"
 
 #: src/practice/genderbackendmode.cpp:87
 #, kde-format
 msgctxt "@label the gender of the word: feminine"
 msgid "%1 is feminine"
-msgstr ""
+msgstr "%1 je ženského rodu"
 
 #: src/practice/genderbackendmode.cpp:92
 #, kde-format
 msgctxt "@label the gender of the word: neuter"
 msgid "%1 is neuter"
-msgstr ""
+msgstr "%1 je středního rodu"
 
 #: src/practice/guifrontend.cpp:122
 #, kde-format
@@ -2493,7 +2517,7 @@ msgstr "počáteční"
 #: src/practice/guifrontend.cpp:132
 #, kde-format
 msgid "long term"
-msgstr ""
+msgstr "dlouhodobý"
 
 #: src/practice/guifrontend.cpp:198
 #, kde-format
@@ -2504,8 +2528,14 @@ msgid_plural ""
 "You answered correctly %2 of a total of %1 words.\n"
 "You are %3% done."
 msgstr[0] ""
+"Odpověděl/a jste správně na %2 slovo z %1.\n"
+"Máte hotovo %3 %."
 msgstr[1] ""
+"Odpověděl/a jste správně na %2 slova z %1.\n"
+"Máte hotovo %3 %."
 msgstr[2] ""
+"Odpověděl/a jste správně na %2 slov z %1.\n"
+"Máte hotovo %3 %."
 
 #: src/practice/latexrenderer.cpp:47
 #, kde-format
@@ -2521,13 +2551,13 @@ msgstr "Chyba LaTeXu."
 #: src/practice/writtenbackendmode.cpp:145
 #, kde-format
 msgid "You revealed the answer by using too many hints."
-msgstr ""
+msgstr "Odpověď byla odhalena tím, že bylo použito příliš mnoho nápověd."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, answerLaterButton)
 #: src/practice/practice_mainwindow.ui:128
 #, kde-format
 msgid "Skip this word for now and ask again later"
-msgstr ""
+msgstr "Toto slovo prozatím přeskočte a zeptejte se později znovu"
 
 #. i18n: ectx: property (text), widget (QPushButton, answerLaterButton)
 #: src/practice/practice_mainwindow.ui:131
@@ -2551,13 +2581,13 @@ msgstr "Pokračovat"
 #: src/practice/practice_mainwindow.ui:219
 #, kde-format
 msgid "I Did not Know it"
-msgstr ""
+msgstr "To jsem nevěděl"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
 #: src/practice/practice_mainwindow.ui:226
 #, kde-format
 msgid "I Knew it"
-msgstr ""
+msgstr "Já to věděl"
 
 #. i18n: ectx: property (format), widget (QProgressBar, totalProgress)
 #: src/practice/practice_mainwindow.ui:300
@@ -2575,13 +2605,13 @@ msgstr "absolutní"
 #: src/practice/practice_widget_comparison.ui:80
 #, kde-format
 msgid "comparative"
-msgstr "Komparativ (druhý stupeň)"
+msgstr "komparativ"
 
 #. i18n: ectx: property (text), widget (QLabel, superlativeLabel)
 #: src/practice/practice_widget_comparison.ui:125
 #, kde-format
 msgid "superlative"
-msgstr "Superlativ"
+msgstr "superlativ"
 
 #: src/practice/practicemainwindow.cpp:70
 #, kde-format
@@ -2591,12 +2621,12 @@ msgstr "Zastavit procvičování"
 #: src/practice/practicemainwindow.cpp:72
 #, kde-format
 msgid "Stop practicing"
-msgstr ""
+msgstr "Přestat procvičovat"
 
 #: src/practice/practicemainwindow.cpp:79
 #, kde-format
 msgid "Change answer to right/wrong"
-msgstr ""
+msgstr "Změnit odpověď na správnou/nesprávnou"
 
 #: src/practice/practicemainwindow.cpp:81
 #, kde-format
@@ -2604,12 +2634,15 @@ msgid ""
 "When you answered, Parley will display that the answer was right or wrong.\n"
 "This shortcut changes how the answer is counted."
 msgstr ""
+"Jakmile odpovíte, Parley vám ukáže, zda byla odpověď správná, nebo "
+"nesprávná.\n"
+"Tato zkratka mění způsob, jakým se odpověď vyhodnocuje."
 
 #: src/practice/practicesummarycomponent.cpp:57
 #, kde-format
 msgctxt "number of words, minutes, seconds"
 msgid "You practiced %1 in %2 and %3."
-msgstr ""
+msgstr "Procvičoval/a sis %1 v %2 a %3."
 
 #: src/practice/practicesummarycomponent.cpp:58
 #, kde-format
@@ -2638,12 +2671,12 @@ msgstr[2] "%1 sekund"
 #: src/practice/practicesummarycomponent.cpp:68
 #, kde-format
 msgid "Practice Overview"
-msgstr "Přehled cvičení"
+msgstr "Přehled procvičování"
 
 #: src/practice/practicesummarycomponent.cpp:69
 #, kde-format
 msgid "Switch to the Practice Overview page"
-msgstr ""
+msgstr "Přejít na stránku s přehledem procvičování"
 
 #: src/practice/practicesummarycomponent.cpp:136
 #, kde-format
@@ -2663,17 +2696,17 @@ msgstr "Procvičovat výsledky"
 #: src/practice/practicesummarycomponent.cpp:151
 #, kde-format
 msgid "Answered questions: %1\n"
-msgstr ""
+msgstr "Zodpovězené otázky: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:152
 #, kde-format
 msgid "Correct answers: %1\n"
-msgstr ""
+msgstr "Správné odpovědi: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:153
 #, kde-format
 msgid "Wrong answers: %1\n"
-msgstr ""
+msgstr "Špatné odpovědi: %1\n"
 
 #: src/practice/practicesummarycomponent.cpp:160
 #, kde-format
@@ -2732,12 +2765,12 @@ msgstr "Vaše odpověď"
 #: src/practice/sessionmanagerbase.cpp:53
 #, kde-format
 msgid "The vocabulary collection contains fewer than two languages."
-msgstr ""
+msgstr "Sbírka slovíček obsahuje méně než dva jazyky."
 
 #: src/practice/sessionmanagerbase.cpp:53
 #, kde-format
 msgid "Could not start practice"
-msgstr ""
+msgstr "Procvičování nebylo možné spustit"
 
 #: src/practice/statustoggle.cpp:77
 #, kde-format
@@ -2746,11 +2779,14 @@ msgid ""
 "Words will only be counted as correct if they are answered correctly on the "
 "first attempt."
 msgstr ""
+"Tato odpověď bude považována za správnou.\n"
+"Slova budou považována za správná pouze v případě, že budou správně "
+"zodpovězena při prvním pokusu."
 
 #: src/practice/statustoggle.cpp:78
 #, kde-format
 msgid "Count this answer as wrong"
-msgstr ""
+msgstr "Označit tuto odpověď jako nesprávnou"
 
 #: src/practice/statustoggle.cpp:81
 #, kde-format
@@ -2759,11 +2795,14 @@ msgid ""
 "Words will only be counted as correct if they are answered correctly on the "
 "first attempt."
 msgstr ""
+"Tato odpověď bude vyhodnocena jako nesprávná.\n"
+"Slova budou považována za správná pouze v případě, že je zadáte správně na "
+"první pokus."
 
 #: src/practice/statustoggle.cpp:82
 #, kde-format
 msgid "Count this answer as correct"
-msgstr ""
+msgstr "Označit tuto odpověď jako správnou"
 
 #: src/practice/summarybarwidget.cpp:78
 #, kde-format
@@ -2786,17 +2825,17 @@ msgstr "%1 % nezodpovězeno"
 #: src/practice/summarybarwidget.cpp:140
 #, kde-format
 msgid "Answered correctly on the first attempt: %1 of %2 (%3 %)"
-msgstr ""
+msgstr "Správně zodpovězeno na první pokus: %1 z %2 (%3 %)"
 
 #: src/practice/summarybarwidget.cpp:147
 #, kde-format
 msgid "Answered wrong on the first attempt: %1 of %2 (%3 %)"
-msgstr ""
+msgstr "Špatně zodpovězeno na první pokus: %1 z %2 (%3 %)"
 
 #: src/practice/summarybarwidget.cpp:154
 #, kde-format
 msgid "Not answered during this practice: %1 of %2 (%3 %)"
-msgstr ""
+msgstr "V tomto procvičování nezodpovězeno: %1 z %2 (%3 %)"
 
 #: src/practice/writtenbackendmode.cpp:70
 #, kde-format
@@ -2809,11 +2848,12 @@ msgid ""
 "Your answer was a synonym. Please enter another word with the same "
 "translation."
 msgstr ""
+"Vaše odpověď byla synonymem. Zadejte prosím jiné slovo se stejným překladem."
 
 #: src/practice/writtenbackendmode.cpp:88
 #, kde-format
 msgid "Your answer was an already entered synonym."
-msgstr ""
+msgstr "Vaše odpověď byla již zadaným synonymem."
 
 #: src/practice/writtenbackendmode.cpp:91
 #, kde-format
@@ -2823,17 +2863,17 @@ msgstr "Vaše odpověď byla synonymum, ale interpunkce nebyla správně."
 #: src/practice/writtenbackendmode.cpp:93
 #, kde-format
 msgid "Your answer was a synonym and your capitalization was wrong."
-msgstr ""
+msgstr "Vaše odpověď byla synonymem a velká písmena byla nesprávná."
 
 #: src/practice/writtenbackendmode.cpp:95
 #, kde-format
 msgid "Your answer was a synonym and accents were wrong."
-msgstr ""
+msgstr "Vaše odpověď byla synonymem a diakritika byla nesprávná."
 
 #: src/practice/writtenbackendmode.cpp:97
 #, kde-format
 msgid "Your answer was a synonym."
-msgstr ""
+msgstr "Vaše odpověď byla synonymem."
 
 #: src/practice/writtenbackendmode.cpp:105
 #, kde-format
@@ -2841,6 +2881,8 @@ msgid ""
 "Your answer was wrong as punctuation mistakes are not accepted. Please try "
 "again."
 msgstr ""
+"Vaše odpověď byla nesprávná, protože chyby v interpunkci nejsou povoleny. "
+"Zkuste to prosím znovu."
 
 #: src/practice/writtenbackendmode.cpp:107
 #, kde-format
@@ -2848,37 +2890,41 @@ msgid ""
 "Your answer was wrong as capitalization mistakes are not accepted. Please "
 "try again."
 msgstr ""
+"Vaše odpověď byla nesprávná, protože chyby ve velkých písmenech nejsou "
+"povoleny. Zkuste to prosím znovu."
 
 #: src/practice/writtenbackendmode.cpp:109
 #, kde-format
 msgid ""
 "Your answer was wrong as accent mistakes are not accepted. Please try again."
 msgstr ""
+"Vaše odpověď byla nesprávná, protože chyby v přízvuku nejsou povoleny. "
+"Zkuste to prosím znovu."
 
 #: src/practice/writtenbackendmode.cpp:111
 #, kde-format
 msgid "Your answer was wrong. Please try again."
-msgstr ""
+msgstr "Vaše odpověď byla nesprávná. Zkuste to prosím znovu."
 
 #: src/practice/writtenbackendmode.cpp:118
 #, kde-format
 msgid "Your answer was right, but your punctuation was wrong."
-msgstr "Vaše odpověď byla správná, ale interpunkce nebyla správně."
+msgstr "Vaše odpověď byla správná, ale interpunkce byla nesprávná."
 
 #: src/practice/writtenbackendmode.cpp:120
 #, kde-format
 msgid "Your answer was right, but your capitalization was wrong."
-msgstr ""
+msgstr "Vaše odpověď byla správná, ale velká písmena byla nesprávná."
 
 #: src/practice/writtenbackendmode.cpp:122
 #, kde-format
 msgid "Your answer was right, but accents were wrong."
-msgstr ""
+msgstr "Vaše odpověď byla správná, ale diakritika byla nesprávná."
 
 #: src/practice/writtenbackendmode.cpp:124
 #, kde-format
 msgid "Your answer was right."
-msgstr ""
+msgstr "Vaše odpověď byla správná."
 
 #: src/practice/writtenbackendmode.cpp:128
 #, kde-format
@@ -2895,22 +2941,26 @@ msgid ""
 "Your answer was right... but not on the first try and your capitalization "
 "was wrong."
 msgstr ""
+"Vaše odpověď byla správná... ale ne na první pokus a velká písmena byla "
+"nesprávná."
 
 #: src/practice/writtenbackendmode.cpp:132
 #, kde-format
 msgid ""
 "Your answer was right... but not on the first try and accents were wrong."
 msgstr ""
+"Vaše odpověď byla správná... ale ne na první pokus a diakritika byla "
+"nesprávná."
 
 #: src/practice/writtenbackendmode.cpp:134
 #, kde-format
 msgid "Your answer was right... but not on the first try."
-msgstr ""
+msgstr "Vaše odpověď byla správná... ale ne na první pokus."
 
 #: src/practice/writtenbackendmode.cpp:154
 #, kde-format
 msgid "The solution starts with: %1"
-msgstr ""
+msgstr "Řešení začíná s: %1"
 
 #: src/practice/writtenpracticewidget.cpp:130
 #, kde-format
@@ -3082,7 +3132,7 @@ msgstr "Viditelné sloupce v hlavním okně úprav."
 #: src/settings/documentsettings.kcfg:20 src/settings/documentsettings.kcfg:21
 #, kde-format
 msgid "Collapsed tree view items of statistics view window."
-msgstr ""
+msgstr "Sbalené položky stromové struktury v okně statistik."
 
 #: src/settings/generaloptions.cpp:43
 #, kde-format
@@ -3130,13 +3180,13 @@ msgstr ">= 2 MEZERY"
 #, kde-format
 msgctxt "CSV separator"
 msgid " : "
-msgstr ": "
+msgstr " : "
 
 #: src/settings/generaloptions.cpp:51
 #, kde-format
 msgctxt "CSV separator"
 msgid " :: "
-msgstr ":: "
+msgstr " :: "
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/generaloptionsbase.ui:17
@@ -3306,19 +3356,19 @@ msgstr "Odebrat jazyk"
 #: src/settings/languagepropertiespage.cpp:85
 #, kde-format
 msgid "No KDE keyboard selector found."
-msgstr ""
+msgstr "Nebylo nalezeno žádné zařízení pro výběr klávesnice v prostředí KDE."
 
 #: src/settings/languagepropertiespage.cpp:348
 #: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Tense Name"
-msgstr ""
+msgstr "Název času"
 
 #: src/settings/languagepropertiespage.cpp:348
 #: src/settings/languagepropertiespage.cpp:370
 #, kde-format
 msgid "Enter name of tense:"
-msgstr ""
+msgstr "Zadejte název času:"
 
 #: src/settings/languagepropertiespage.cpp:400
 #, kde-format
@@ -3374,13 +3424,13 @@ msgstr "Jazyk:"
 #: src/settings/languagepropertiespage.ui:117
 #, kde-format
 msgid "Font (practice):"
-msgstr ""
+msgstr "Písmo (procvičování):"
 
 #. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
 #: src/settings/languagepropertiespage.ui:127
 #, kde-format
 msgid "Font (editor):"
-msgstr ""
+msgstr "Písmo (editor):"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
 #: src/settings/languagepropertiespage.ui:141
@@ -3525,19 +3575,19 @@ msgstr "Rozvržení kláves pro toto umístění"
 #: src/settings/languagesettings.kcfg:17 src/settings/languagesettings.kcfg:18
 #, kde-format
 msgid "Spell checker for this language"
-msgstr ""
+msgstr "Kontrola pravopisu pro tento jazyk"
 
 #. i18n: ectx: label, entry (PracticeFont), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:32
 #, kde-format
 msgid "The font used during practice"
-msgstr ""
+msgstr "Písmo použité během procvičování"
 
 #. i18n: ectx: label, entry (EditorFont), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:36
 #, kde-format
 msgid "The font used in the editor"
-msgstr ""
+msgstr "Písmo použité v editoru"
 
 #. i18n: ectx: property (text), widget (QPushButton, cleanUpButton)
 #: src/settings/optionlistform.ui:124
@@ -3549,7 +3599,7 @@ msgstr "Vyčisti&t"
 #: src/settings/parley.kcfg:11
 #, kde-format
 msgid "Theme to use for practice and welcome screen"
-msgstr ""
+msgstr "Motiv pro procvičování a úvodní obrazovku"
 
 #. i18n: ectx: label, entry (NumPreSetting), group (General)
 #: src/settings/parley.kcfg:15
@@ -3803,6 +3853,8 @@ msgstr ""
 msgid ""
 "The maximum number of words that will be practiced in a training session."
 msgstr ""
+"Maximální počet slov, která se budou procvičovat během jedné tréninkové "
+"lekce."
 
 #. i18n: ectx: label, entry (SessionMaxNewWords), group (PracticeOptions)
 #: src/settings/parley.kcfg:176
@@ -3811,12 +3863,14 @@ msgid ""
 "The maximum number of new (untrained) words that will be used in a training "
 "session."
 msgstr ""
+"Maximální počet nových (neprocvičovaných) slov, která budou použita v rámci "
+"tréninkové lekce."
 
 #. i18n: ectx: label, entry (SessionLimitWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:180
 #, kde-format
 msgid "Limit the number of words in the initial phase."
-msgstr ""
+msgstr "V úvodní fázi omezit počet slov."
 
 #. i18n: ectx: label, entry (SessionMaxWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:184
@@ -3825,6 +3879,8 @@ msgid ""
 "The maximum number of words in the initial phase. If this limit is exceeded, "
 "no new words will be introduced."
 msgstr ""
+"Maximální počet slov v úvodní fázi. Pokud bude tento limit překročen, "
+"nebudou přidána žádná nová slova."
 
 #. i18n: ectx: label, entry (MultipleChoiceWordTypeConsistancy), group (PracticeOptions)
 #: src/settings/parley.kcfg:190
@@ -3911,13 +3967,13 @@ msgstr "Aktuálně vybraný řádek"
 #: src/settings/parley.kcfg:251
 #, kde-format
 msgid "Color used to display the confidence levels"
-msgstr ""
+msgstr "Barva použitá k zobrazení úrovní jistoty"
 
 #. i18n: ectx: label, entry (PreGradeColor), group (Appearance)
 #: src/settings/parley.kcfg:255
 #, kde-format
 msgid "Color used to display the early confidence levels"
-msgstr ""
+msgstr "Barva použitá k zobrazení počátečních úrovní jistoty"
 
 #. i18n: ectx: label, entry (InvalidUnitColor), group (Appearance)
 #. i18n: ectx: property (toolTip), widget (KColorButton, kcfg_InvalidUnitColor)
@@ -3971,6 +4027,8 @@ msgid ""
 "The entry must have at least this confidence level to be included in the "
 "practice (0..7)."
 msgstr ""
+"Položka musí mít alespoň tuto úroveň jistoty, aby mohla být zahrnuta do "
+"procvičování (0..7)."
 
 #. i18n: ectx: label, entry (PracticeMaximumGrade), group (Thresholds)
 #: src/settings/parley.kcfg:289
@@ -3979,6 +4037,8 @@ msgid ""
 "The entry must have at most this confidence level to be included in the "
 "practice (0..7)."
 msgstr ""
+"Aby byla položka zahrnuta do procvičování, nesmí její úroveň jistoty "
+"překročit tuto hodnotu (0..7)."
 
 #. i18n: ectx: label, entry (WordTypesInPracticeEnabled), group (Thresholds)
 #: src/settings/parley.kcfg:293
@@ -4030,44 +4090,46 @@ msgstr ""
 #: src/settings/parley.kcfg:337
 #, kde-format
 msgid "The practice method that is currently selected."
-msgstr ""
+msgstr "Metoda procvičování, která je aktuálně vybrána."
 
 #. i18n: ectx: label, entry (PracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:348
 #, kde-format
 msgid "The practice mode that is currently selected."
-msgstr ""
+msgstr "Režim procvičování, který je aktuálně vybrán."
 
 #. i18n: ectx: label, entry (BlockItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:354
 #, kde-format
 msgid "Amount of time different confidence levels should be blocked"
-msgstr ""
+msgstr "Doba, po kterou by měly být blokovány různé úrovně jistoty"
 
 #. i18n: ectx: label, entry (ExpireItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:365
 #, kde-format
 msgid "Amount of time after which different confidence levels should expire"
-msgstr ""
+msgstr "Doba, po jejímž uplynutí by měly vypršet různé úrovně jistoty"
 
 #. i18n: ectx: label, entry (RememberPracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:375
 #, kde-format
 msgid "If true, the practice direction for each practice mode is stored."
 msgstr ""
+"Pokud je to možné, uloží se pokyny k procvičování pro každý režim "
+"procvičování."
 
 #. i18n: ectx: whatsthis, entry (RememberPracticeDirection), group (PracticeManager)
 #: src/settings/parley.kcfg:376
 #, kde-format
 msgid "Should the practice direction for each practice mode be stored?"
-msgstr ""
+msgstr "Měly by se pokyny k postupu pro každý režim ukládat?"
 
 #. i18n: ectx: label, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
 #. i18n: ectx: whatsthis, entry (PracticeDirectionsByPracticeMode), group (PracticeManager)
 #: src/settings/parley.kcfg:380 src/settings/parley.kcfg:381
 #, kde-format
 msgid "Stored values of practice direction for each practice mode."
-msgstr ""
+msgstr "Uložené hodnoty směru procvičování pro každý jeho režim."
 
 #. i18n: ectx: label, entry (ProvidersUrl), group (KNewStuff)
 #: src/settings/parley.kcfg:387
@@ -4116,22 +4178,22 @@ msgstr "Nastavení pohledu"
 #: src/settings/parleyprefs.cpp:33
 #, kde-format
 msgid "Online Translations"
-msgstr ""
+msgstr "Online překlady"
 
 #: src/settings/parleyprefs.cpp:33
 #, kde-format
 msgid "Online Translation Services"
-msgstr "Služba pro překlady"
+msgstr "Online překladatelské služby"
 
 #: src/settings/translationshelloptions.cpp:22
 #, kde-format
 msgid "translate-shell is available."
-msgstr ""
+msgstr "překladatelské prostředí je dostupné."
 
 #: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
-msgstr ""
+msgstr "překladatelské prostředí nelze najít."
 
 #: src/settings/translationshelloptions.cpp:40
 #, kde-format
@@ -4142,13 +4204,13 @@ msgstr "Chyba"
 #: src/settings/translationshellpage.ui:18
 #, kde-format
 msgid "Translation Shell Integration"
-msgstr ""
+msgstr "Integrace překladatelského prostředí"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
 #, kde-format
 msgid "Run Interactive Functionality Test"
-msgstr ""
+msgstr "Spustit interaktivní funkční test"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/settings/translationshellpage.ui:58
@@ -4157,12 +4219,14 @@ msgid ""
 "The interaction test request translation of English word \"parley\" into "
 "German."
 msgstr ""
+"Tento interaktivní test vyžaduje překlad anglického slova \"parley\" do "
+"němčiny."
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
 #: src/settings/translationshellpage.ui:68
 #, kde-format
 msgid "Start online test"
-msgstr ""
+msgstr "Spustit online test"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/settings/translationshellpage.ui:88
@@ -4190,7 +4254,7 @@ msgstr ""
 #: src/settings/viewoptionsbase.ui:48
 #, kde-format
 msgid "&Pronunciation symbols font:"
-msgstr ""
+msgstr "&Písmo symbolů výslovnosti:"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
 #: src/settings/viewoptionsbase.ui:77
@@ -4235,13 +4299,13 @@ msgstr "Barva pro zobrazení raného průběhu:"
 #: src/settings/viewoptionsbase.ui:140
 #, kde-format
 msgid "Color used to display the early progress"
-msgstr ""
+msgstr "Barva použitá k zobrazení počátečního pokroku"
 
 #. i18n: ectx: property (whatsThis), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:143
 #, kde-format
 msgid "Click here to change the color used to display the early progress."
-msgstr ""
+msgstr "Klikněte sem a změňte barvu, kterou se zobrazuje počáteční pokrok."
 
 #. i18n: ectx: property (shortcut), widget (KColorButton, kcfg_PreGradeColor)
 #: src/settings/viewoptionsbase.ui:149
@@ -4272,27 +4336,27 @@ msgstr "Alt+2"
 #: src/statistics/lessonstatisticsview.cpp:78
 #, kde-format
 msgid "Remove confidence levels from this unit"
-msgstr ""
+msgstr "Odebrat z této jednotky intervaly jistoty"
 
 #: src/statistics/lessonstatisticsview.cpp:86
 #, kde-format
 msgid "Remove confidence levels from this unit and all sub-units"
-msgstr ""
+msgstr "Odstranit úrovně jistoty z této jednotky a všech podjednotek"
 
 #: src/statistics/lessonstatisticsview.cpp:88
 #, kde-format
 msgid "Remove confidence level from this unit and all sub-units"
-msgstr ""
+msgstr "Odebrat úroveň jistoty z této jednotky a všech podjednotek"
 
 #: src/statistics/statisticslegendwidget.cpp:29
 #, kde-format
 msgid "Progress gradients"
-msgstr ""
+msgstr "Průběh vývoje"
 
 #: src/statistics/statisticslegendwidget.cpp:30
 #, kde-format
 msgid "Early progress"
-msgstr ""
+msgstr "Počáteční pokrok"
 
 #: src/statistics/statisticslegendwidget.cpp:31
 #, kde-format
@@ -4308,7 +4372,7 @@ msgstr "Neplatné položky"
 #, kde-format
 msgctxt "adjective, The word has been properly and fully learned by the user"
 msgid "Fully learned"
-msgstr ""
+msgstr "Plně naučené"
 
 #: src/statistics/statisticslegendwidget.cpp:49
 #, kde-format
@@ -4319,12 +4383,12 @@ msgstr "Nebylo procvičováno"
 #: src/statistics/statisticsmainwindow.cpp:192
 #, kde-format
 msgid "Known to Learning"
-msgstr ""
+msgstr "Známé z výuky"
 
 #: src/statistics/statisticsmainwindow.cpp:193
 #, kde-format
 msgid "Learning to Known"
-msgstr ""
+msgstr "Učit se poznávat"
 
 #: src/statistics/statisticsmainwindow.cpp:194
 #, kde-format
@@ -4335,7 +4399,7 @@ msgstr "Smíšené směry"
 #: src/statistics/statisticsmainwindow.ui:29
 #, kde-format
 msgid "Language to Learn"
-msgstr "Jazyk, jenž se chcete učit"
+msgstr "Jazyk, který se chcete učit"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/statistics/statisticsmainwindow.ui:39
@@ -4371,7 +4435,7 @@ msgstr "Vícenásobná vol&ba"
 #: src/statistics/statisticsmainwindow.ui:105
 #, kde-format
 msgid "Wri&tten"
-msgstr ""
+msgstr "N&apsáno"
 
 #. i18n: ectx: property (text), widget (QRadioButton, exampleSentence)
 #: src/statistics/statisticsmainwindow.ui:115
@@ -4383,7 +4447,7 @@ msgstr "Vět&y na ukázku"
 #: src/statistics/statisticsmainwindow.ui:125
 #, kde-format
 msgid "&Gender of Nouns"
-msgstr ""
+msgstr "&Rod podstatných jmen"
 
 #. i18n: ectx: property (text), widget (QRadioButton, conjugations)
 #: src/statistics/statisticsmainwindow.ui:145
@@ -4401,7 +4465,7 @@ msgstr "Směr pro procvičování"
 #: src/statistics/statisticsmainwindow.ui:200
 #, kde-format
 msgid "Remember for each Practice Mode"
-msgstr ""
+msgstr "Nezapomenout v každém režimu procvičování"
 
 #: src/statistics/statisticsmodel.cpp:26
 #, kde-format

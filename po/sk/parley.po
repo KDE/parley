@@ -20,8 +20,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 23.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -307,22 +307,19 @@ msgstr "Parley"
 
 #. i18n: ectx: property (text), widget (QPushButton, newButton)
 #: src/dashboard/dashboard.ui:120
-#, fuzzy, kde-format
-#| msgid "Create a New Collection"
+#, kde-format
 msgid "Create a New Collection..."
 msgstr "Vytvoriť novú kolekciu"
 
 #. i18n: ectx: property (text), widget (QPushButton, openButton)
 #: src/dashboard/dashboard.ui:127
-#, fuzzy, kde-format
-#| msgid "Open an Existing Collection"
+#, kde-format
 msgid "Open an Existing Collection..."
 msgstr "Otvoriť jestvujúcu kolekciu"
 
 #. i18n: ectx: property (text), widget (KNSWidgets::Button, ghnsButton)
 #: src/dashboard/dashboard.ui:134
-#, fuzzy, kde-format
-#| msgid "Download New Collections"
+#, kde-format
 msgid "Download New Collections..."
 msgstr "Stiahnuť nové kolekcie"
 
@@ -353,7 +350,7 @@ msgstr "Nahrať"
 #: src/editor/audiowidget.ui:33
 #, kde-format
 msgid "Download audio file with webservice"
-msgstr ""
+msgstr "Download audio file with webservice"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadButton)
 #: src/editor/audiowidget.ui:36
@@ -566,63 +563,49 @@ msgstr "Skloňované tvary"
 
 #. i18n: ectx: property (text), widget (QLabel, nominativeLabel)
 #: src/editor/declensionwidget.ui:52
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Nominative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Nominative:"
 msgstr "Nominatív"
 
 #. i18n: ectx: property (text), widget (QLabel, genitivLabel)
 #: src/editor/declensionwidget.ui:71
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Genitive"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Genitive:"
 msgstr "Genitív"
 
 #. i18n: ectx: property (text), widget (QLabel, dativLabel)
 #: src/editor/declensionwidget.ui:90
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Dative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Dative:"
 msgstr "Datív"
 
 #. i18n: ectx: property (text), widget (QLabel, accusativeLabel)
 #: src/editor/declensionwidget.ui:109
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Accusative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Accusative:"
 msgstr "Akuzatív"
 
 #. i18n: ectx: property (text), widget (QLabel, ablativLabel)
 #: src/editor/declensionwidget.ui:128
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Ablative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Ablative:"
 msgstr "Ablatív"
 
 #. i18n: ectx: property (text), widget (QLabel, locativeLabel)
 #: src/editor/declensionwidget.ui:147
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Locative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Locative:"
 msgstr "Lokál"
 
 #. i18n: ectx: property (text), widget (QLabel, vocativeLabel)
 #: src/editor/declensionwidget.ui:166
-#, fuzzy, kde-format
-#| msgctxt "one of the seven cases (grammatical)"
-#| msgid "Vocative"
+#, kde-format
 msgctxt "one of the seven cases (grammatical)"
 msgid "Vocative:"
 msgstr "Vokatív"
@@ -877,8 +860,7 @@ msgid "\"%1\" is a:"
 msgstr "\"%1\" je:"
 
 #: src/editor/inflectionwidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Please select the noun's gender"
+#, kde-format
 msgctxt "@title:window"
 msgid "Please select the noun's gender"
 msgstr "Prosím, vyberte rod podstatného mena"
@@ -1708,8 +1690,7 @@ msgid "Change practice settings"
 msgstr "Zmeniť nastavenie precvičovania"
 
 #: src/parleyactions.cpp:202
-#, fuzzy, kde-format
-#| msgid "Export results..."
+#, kde-format
 msgid "Export Results..."
 msgstr "Exportovať výsledky..."
 
@@ -1745,8 +1726,7 @@ msgid "Properties for %1"
 msgstr "Vlastnosti pre %1"
 
 #: src/parleydocument.cpp:161
-#, fuzzy, kde-format
-#| msgid "Open Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Otvoriť kolekciu slovnej zásoby"
@@ -1798,8 +1778,7 @@ msgstr ""
 "Uložiť súbor pred ukončením?\n"
 
 #: src/parleydocument.cpp:299
-#, fuzzy, kde-format
-#| msgid "Open Downloaded Vocabulary Collection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Otvoriť stiahnutú kolekciu slovnej zásoby"
@@ -1829,8 +1808,7 @@ msgid "Save File"
 msgstr "Uložiť súbor"
 
 #: src/parleydocument.cpp:385
-#, fuzzy, kde-format
-#| msgid "Save Vocabulary As"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Uložiť slovník ako"
@@ -2275,8 +2253,7 @@ msgstr "Odpovede s nesprávnymi prízvukmi sa stále počítajú ako správne."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreAccentMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:26
-#, fuzzy, kde-format
-#| msgid "Ignore Accents"
+#, kde-format
 msgid "Ignore accents"
 msgstr "Ignorovať prízvuky"
 
@@ -2288,8 +2265,7 @@ msgstr "Akékoľvek použitie veľkých písmen v odpovedi sa počíta ako sprá
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnoreCapitalizationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:39
-#, fuzzy, kde-format
-#| msgid "Ignore Capitalization"
+#, kde-format
 msgid "Ignore capitalization"
 msgstr "Ignorovať veľké písmená"
 
@@ -2301,8 +2277,7 @@ msgstr "Akákoľvek chyba v interpunkcii v odpovedi sa počíta ako správna."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_IgnorePunctuationMistakes)
 #: src/practice/configure/generalpracticeoptions.ui:52
-#, fuzzy, kde-format
-#| msgid "Ignore Punctuation"
+#, kde-format
 msgid "Ignore punctuation"
 msgstr "Ignorovať interpunkciu"
 
@@ -2317,8 +2292,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
 #: src/practice/configure/generalpracticeoptions.ui:65
-#, fuzzy, kde-format
-#| msgid "Enable Hints"
+#, kde-format
 msgid "Enable hints"
 msgstr "Povoliť rady"
 
@@ -2336,8 +2310,7 @@ msgstr "Počas precvičovania sú k otázke zobrazené obrázky."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsFrontImage)
 #: src/practice/configure/generalpracticeoptions.ui:100
-#, fuzzy, kde-format
-#| msgid "Image for Question"
+#, kde-format
 msgid "Image for question"
 msgstr "Obrázok pre otázku"
 
@@ -2349,8 +2322,7 @@ msgstr "Počas precvičovania sú k riešeniu zobrazené obrázky."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_FlashcardsBackImage)
 #: src/practice/configure/generalpracticeoptions.ui:113
-#, fuzzy, kde-format
-#| msgid "Image for Solution"
+#, kde-format
 msgid "Image for solution"
 msgstr "Obrázok pre riešenie"
 
@@ -2386,8 +2358,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_CountSynonymsAsCorrect)
 #: src/practice/configure/generalpracticeoptions.ui:168
-#, fuzzy, kde-format
-#| msgid "Accept any Synonym"
+#, kde-format
 msgid "Accept any synonym"
 msgstr "Prijať akúkoľvek synonymum"
 
@@ -2399,15 +2370,13 @@ msgstr "Sedenia"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/generalpracticeoptions.ui:202
-#, fuzzy, kde-format
-#| msgid "Max session size"
+#, kde-format
 msgid "Max session size:"
 msgstr "Maximálna veľkosť sedenia"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/practice/configure/generalpracticeoptions.ui:251
-#, fuzzy, kde-format
-#| msgid "Max number of new words"
+#, kde-format
 msgid "Max number of new words:"
 msgstr "Maximálny počet nových slov"
 
@@ -2459,15 +2428,13 @@ msgstr "Úroveň:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/practice/configure/thresholdoptions.ui:53
-#, fuzzy, kde-format
-#| msgid "Times practiced"
+#, kde-format
 msgid "Times practiced:"
 msgstr "krát precvičované"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/practice/configure/thresholdoptions.ui:80
-#, fuzzy, kde-format
-#| msgid "Answered incorrectly"
+#, kde-format
 msgid "Answered incorrectly:"
 msgstr "Zodpovedané nesprávne"
 
@@ -2602,15 +2569,13 @@ msgstr "Pokračovať"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsWrongButton)
 #: src/practice/practice_mainwindow.ui:219
-#, fuzzy, kde-format
-#| msgid "I did not know it"
+#, kde-format
 msgid "I Did not Know it"
 msgstr "Nevedel som"
 
 #. i18n: ectx: property (text), widget (QPushButton, countAsCorrectButton)
 #: src/practice/practice_mainwindow.ui:226
-#, fuzzy, kde-format
-#| msgid "I knew it"
+#, kde-format
 msgid "I Knew it"
 msgstr "Vedel som"
 
@@ -3122,16 +3087,13 @@ msgstr "Druhý jazyk:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, grammarCheckBox)
 #: src/settings/documentproperties.ui:311
-#, fuzzy, kde-format
-#| msgid "&Setup Grammar Details"
+#, kde-format
 msgid "&Setup grammar details"
 msgstr "Na&staviť gramatické podrobnosti"
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
-#, fuzzy, kde-format
-#| msgctxt "Attept to download grammar properties for the selected languages"
-#| msgid "Download Grammar"
+#, kde-format
 msgctxt "Attept to download grammar properties for the selected languages"
 msgid "Download grammar"
 msgstr "Stiahnuť gramatiku"
@@ -3347,8 +3309,7 @@ msgid "Author:"
 msgstr "Autor:"
 
 #: src/settings/languageproperties.cpp:23
-#, fuzzy, kde-format
-#| msgid "Edit Languages"
+#, kde-format
 msgctxt "@title:window"
 msgid "Edit Languages"
 msgstr "Upraviť jazyky"
@@ -3435,8 +3396,7 @@ msgstr "Rozloženie klávesov:"
 
 #. i18n: ectx: property (text), widget (QPushButton, downloadGrammarButton)
 #: src/settings/languagepropertiespage.ui:75
-#, fuzzy, kde-format
-#| msgid "&Download Grammar"
+#, kde-format
 msgid "&Download grammar"
 msgstr "&Stiahnuť gramatiku"
 
@@ -4196,26 +4156,24 @@ msgid "View Settings"
 msgstr "Možnosti pohľadu"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Automatic Translation"
+#, kde-format
 msgid "Online Translations"
 msgstr "Automatický preklad"
 
 #: src/settings/parleyprefs.cpp:33
-#, fuzzy, kde-format
-#| msgid "Split translations at periods."
+#, kde-format
 msgid "Online Translation Services"
 msgstr "Rozdeliť preklady bodkami."
 
 #: src/settings/translationshelloptions.cpp:22
 #, kde-format
 msgid "translate-shell is available."
-msgstr ""
+msgstr "translate-shell is dostupné."
 
 #: src/settings/translationshelloptions.cpp:25
 #, kde-format
 msgid "translate-shell executable could not be found."
-msgstr ""
+msgstr "translate-shell executable could not be found."
 
 #: src/settings/translationshelloptions.cpp:40
 #, kde-format
@@ -4226,13 +4184,13 @@ msgstr "Chyba"
 #: src/settings/translationshellpage.ui:18
 #, kde-format
 msgid "Translation Shell Integration"
-msgstr ""
+msgstr "Translation Shell Integration"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
 #, kde-format
 msgid "Run Interactive Functionality Test"
-msgstr ""
+msgstr "Run Interactive Functionality Test"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/settings/translationshellpage.ui:58
@@ -4241,12 +4199,14 @@ msgid ""
 "The interaction test request translation of English word \"parley\" into "
 "German."
 msgstr ""
+"The interaction test request translation of English word \"parley\" into "
+"German."
 
 #. i18n: ectx: property (text), widget (QToolButton, buttonRunTest)
 #: src/settings/translationshellpage.ui:68
 #, kde-format
 msgid "Start online test"
-msgstr ""
+msgstr "Start online test"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/settings/translationshellpage.ui:88
@@ -4499,12 +4459,6 @@ msgstr "Dôvera (%1)"
 #~ msgstr "&Pomocník"
 
 #, fuzzy
-#~| msgid ""
-#~| "<p>Parley enables you to edit many additional properties of the words "
-#~| "you enter.</p>\n"
-#~| "<p>Use \"Settings\" -> \"Tools\" to enable different tools that will "
-#~| "help you set additional information for your vocabulary. These include "
-#~| "images, sound, word types and many more. Choose the ones you like.</p>\n"
 #~ msgid ""
 #~ "<p>Parley enables you to edit many additional properties of the words you "
 #~ "enter.</p>\n"
@@ -4528,11 +4482,6 @@ msgstr "Dôvera (%1)"
 #~ "vyhľadávacieho poľa.</p>\n"
 
 #, fuzzy
-#~| msgid ""
-#~| "<p>If you want to see all words of a certain word type (e.g. nouns), "
-#~| "simply select the word type in the list.</p>\n"
-#~| "<p>To show the word type list, use \"Settings\" -> \"Tools\" -> \"Word "
-#~| "Types\" in the menu.</p>\n"
 #~ msgid ""
 #~ "<p>If you want to see all words of a certain word type (e.g. nouns), "
 #~ "simply select the word type in the list.</p>\n"
@@ -4601,11 +4550,6 @@ msgstr "Dôvera (%1)"
 #~ "symbol, ktorý potrebujete priamo pridať.</p>\n"
 
 #, fuzzy
-#~| msgid ""
-#~| "<p>You can use the \"Download New Vocabulary\" dialog or visit the "
-#~| "website listing many vocabulary documents:\n"
-#~| "<a href=\"http://edu.kde.org/contrib/kvtml2.php\">http://edu.kde.org/"
-#~| "contrib/kvtml2.php</a>.</p>\n"
 #~ msgid ""
 #~ "<p>You can use the \"Download New Vocabulary\" dialog or visit the "
 #~ "website listing many vocabulary documents:\n"
@@ -4800,6 +4744,5 @@ msgstr "Dôvera (%1)"
 #~ msgid "Lessons"
 #~ msgstr "Lekcie"
 
-#~| msgid "The root lesson cannot be deleted."
 #~ msgid "The root unit cannot be deleted."
 #~ msgstr "Základná lekcia nemôže byť vymazaná."
