@@ -2,7 +2,6 @@
 Name=Parley
 Name[ar]=المفاوض
 Name[ast]=Parley
-Name[bg]=Parley
 Name[bs]=Parley
 Name[ca]=Parley
 Name[ca@valencia]=Parley
@@ -105,7 +104,6 @@ GenericName=Vocabulary Trainer
 GenericName[af]=Woordeskat-afrigter
 GenericName[ar]=مدرب المفردات
 GenericName[be]=Пашырэнне слоўнікавага запасу
-GenericName[bg]=Речникови тренировки
 GenericName[bn]=শব্দভাণ্ডার সমৃদ্ধকারী
 GenericName[bs]=Trener riječnika
 GenericName[ca]=Entrenador de vocabulari
