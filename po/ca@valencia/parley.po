@@ -231,7 +231,7 @@ msgstr "Paràfrasi"
 #: src/collection/vocabularymodel.cpp:312
 #, kde-format
 msgid "Please use Edit -> Languages to set up your document."
-msgstr "Utilitzeu «Edita -> Idiomes» per a configurar el vostre document."
+msgstr "Utilitzeu «Edita → Idiomes» per a configurar el vostre document."
 
 #: src/collection/vocabularymodel.cpp:312
 #, kde-format
@@ -1387,7 +1387,7 @@ msgstr "Exporta"
 #: src/exportdialog.ui:20
 #, kde-format
 msgid "Flash Cards - to print learning cards (HTML)"
-msgstr "Fitxes ràpides - per a imprimir les fitxes d'aprenentatge (HTML)"
+msgstr "Fitxes ràpides – per a imprimir les fitxes d'aprenentatge (HTML)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, tableRadio)
 #: src/exportdialog.ui:30
@@ -3727,7 +3727,7 @@ msgid ""
 "Show - show the solution after the given time; Continue - go to the next "
 "question after the given time."
 msgstr ""
-"Mostra - mostra la solució després d'un temps predefinit. Continua - salta "
+"Mostra – mostra la solució després d'un temps predefinit. Continua – salta "
 "fins a la següent pregunta després del temps predefinit."
 
 #. i18n: ectx: label, entry (PracticeTimeoutTimePerAnswer), group (PracticeOptions)
