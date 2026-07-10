@@ -26,7 +26,6 @@
 #include <QMimeDatabase>
 #include <QStandardPaths>
 #include <QTemporaryDir>
-#include <knewstuff_version.h>
 
 #include <QDialog>
 #include <QDialogButtonBox>
