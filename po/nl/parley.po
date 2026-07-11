@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:48+0000\n"
+"POT-Creation-Date: 2026-07-11 00:39+0000\n"
 "PO-Revision-Date: 2022-10-28 11:04+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -415,14 +415,14 @@ msgstr "Overtreffende trap:"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:489
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:488
 #, kde-format
 msgid "Adjective"
 msgstr "Bijvoeglijk naamwoord"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:493
+#: src/parleydocument.cpp:492
 #, kde-format
 msgid "Adverb"
 msgstr "Bijwoord"
@@ -537,21 +537,21 @@ msgstr "Meervoud"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:475
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:474
 #, kde-format
 msgid "Masculine"
 msgstr "Mannelijk"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:478
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:477
 #, kde-format
 msgid "Feminine"
 msgstr "Vrouwelijk"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:481
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:480
 #, kde-format
 msgid "Neuter"
 msgstr "Onzijdig"
@@ -846,13 +846,13 @@ msgid "&Reset Confidence Levels"
 msgstr "&Beoordelingen opnieuw"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:485
+#: src/parleydocument.cpp:484
 #, kde-format
 msgid "Verb"
 msgstr "Werkwoord"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:471
+#: src/parleydocument.cpp:470
 #, kde-format
 msgid "Noun"
 msgstr "Zelfstandig naamwoord"
@@ -1317,7 +1317,7 @@ msgstr "Deze map met woordtypen bevat bijwoorden."
 msgid "This word type folder contains verbs."
 msgstr "Deze map met woordtypen bevat werkwoorden."
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:497
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:496
 #, kde-format
 msgid "Conjunction"
 msgstr "Voegwoord"
@@ -1726,24 +1726,24 @@ msgstr "Zo&eken tonen"
 msgid "Toggle display of the search bar"
 msgstr "Zoekbalk aan- of uitzetten"
 
-#: src/parleydocument.cpp:124 src/parleydocument.cpp:580
+#: src/parleydocument.cpp:123 src/parleydocument.cpp:579
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "Eigenschappen voor %1"
 
-#: src/parleydocument.cpp:161
+#: src/parleydocument.cpp:160
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "Woordenlijstverzameling openen"
 
-#: src/parleydocument.cpp:162
+#: src/parleydocument.cpp:161
 #, kde-format
 msgid "Open in practice &mode"
 msgstr "Openen in oefen&modus"
 
-#: src/parleydocument.cpp:204
+#: src/parleydocument.cpp:203
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1757,23 +1757,23 @@ msgstr ""
 "eventuele wijzigingen dan verloren.\n"
 "Wilt u de blokkering overnemen?\n"
 
-#: src/parleydocument.cpp:206
+#: src/parleydocument.cpp:205
 #, kde-format
 msgid "Take Over Lock"
 msgstr "Blokkering overnemen"
 
-#: src/parleydocument.cpp:237
+#: src/parleydocument.cpp:236
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "Verzameling \"%1\" openen geeft fout: %2"
 
-#: src/parleydocument.cpp:238
+#: src/parleydocument.cpp:237
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "Verzameling openen"
 
-#: src/parleydocument.cpp:266
+#: src/parleydocument.cpp:265
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1784,13 +1784,13 @@ msgstr ""
 "\n"
 "Bestand voor het afsluiten opslaan?\n"
 
-#: src/parleydocument.cpp:299
+#: src/parleydocument.cpp:298
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "Opgehaalde woordenlijstverzameling openen"
 
-#: src/parleydocument.cpp:338 src/parleydocument.cpp:426
+#: src/parleydocument.cpp:337 src/parleydocument.cpp:425
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1803,38 +1803,38 @@ msgstr ""
 "eventuele wijzigingen dan verloren.\n"
 "Wilt u de blokkering overnemen?\n"
 
-#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
+#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "Schrijven bestand \"%1\"geeft fout: %2"
 
-#: src/parleydocument.cpp:370 src/parleydocument.cpp:463
+#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "Bestand opslaan"
 
-#: src/parleydocument.cpp:385
+#: src/parleydocument.cpp:384
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "Woordenlijst opslaan als"
 
-#: src/parleydocument.cpp:397
+#: src/parleydocument.cpp:396
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr ""
 "<qt>Het bestand <p><b>%1</b></p>bestaat al. Wilt u het overschrijven?</qt>"
 
-#: src/parleydocument.cpp:405
+#: src/parleydocument.cpp:404
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "%1 wordt opgeslagen"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr "Publiek domein"
@@ -1842,24 +1842,24 @@ msgstr "Publiek domein"
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:510 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "Talen"
 
-#: src/parleydocument.cpp:518
+#: src/parleydocument.cpp:517
 #, kde-format
 msgid "A Second Language"
 msgstr "Een tweede taal"
 
-#: src/parleydocument.cpp:521
+#: src/parleydocument.cpp:520
 #, kde-format
 msgid "Lesson 1"
 msgstr "Les 1"
 
-#: src/parleydocument.cpp:563
+#: src/parleydocument.cpp:562
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "Kon woordenlijstverzameling \"%1\" niet openen"

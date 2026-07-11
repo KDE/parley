@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:48+0000\n"
+"POT-Creation-Date: 2026-07-11 00:39+0000\n"
 "PO-Revision-Date: 2023-12-12 18:56+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -409,14 +409,14 @@ msgstr "最高級："
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdjectiveButton)
 #: src/editor/comparisonwidget.ui:116 src/editor/inflectionwidget.cpp:42
-#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:489
+#: src/editor/wordtypeview.cpp:96 src/parleydocument.cpp:488
 #, kde-format
 msgid "Adjective"
 msgstr "形容詞"
 
 #. i18n: ectx: property (text), widget (QPushButton, makeAdverbButton)
 #: src/editor/comparisonwidget.ui:123 src/editor/wordtypeview.cpp:104
-#: src/parleydocument.cpp:493
+#: src/parleydocument.cpp:492
 #, kde-format
 msgid "Adverb"
 msgstr "副詞"
@@ -531,21 +531,21 @@ msgstr "複數"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: src/editor/declensionwidget.cpp:153 src/editor/declensionwidget.ui:185
-#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:475
+#: src/editor/inflectionwidget.cpp:114 src/parleydocument.cpp:474
 #, kde-format
 msgid "Masculine"
 msgstr "雄性"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: src/editor/declensionwidget.cpp:154 src/editor/declensionwidget.ui:271
-#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:478
+#: src/editor/inflectionwidget.cpp:116 src/parleydocument.cpp:477
 #, kde-format
 msgid "Feminine"
 msgstr "雌性"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: src/editor/declensionwidget.cpp:155 src/editor/declensionwidget.ui:357
-#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:481
+#: src/editor/inflectionwidget.cpp:115 src/parleydocument.cpp:480
 #, kde-format
 msgid "Neuter"
 msgstr "中性"
@@ -838,13 +838,13 @@ msgid "&Reset Confidence Levels"
 msgstr "重置自信等級"
 
 #: src/editor/inflectionwidget.cpp:32 src/editor/wordtypeview.cpp:112
-#: src/parleydocument.cpp:485
+#: src/parleydocument.cpp:484
 #, kde-format
 msgid "Verb"
 msgstr "動詞"
 
 #: src/editor/inflectionwidget.cpp:37 src/editor/wordtypeview.cpp:64
-#: src/parleydocument.cpp:471
+#: src/parleydocument.cpp:470
 #, kde-format
 msgid "Noun"
 msgstr "名詞"
@@ -1301,7 +1301,7 @@ msgstr "此單字型態資料夾包含了副詞。"
 msgid "This word type folder contains verbs."
 msgstr "此單字型態資料夾包含了動詞。"
 
-#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:497
+#: src/editor/wordtypeview.cpp:120 src/parleydocument.cpp:496
 #, kde-format
 msgid "Conjunction"
 msgstr "連接詞"
@@ -1700,24 +1700,24 @@ msgstr "顯示搜尋(&A)"
 msgid "Toggle display of the search bar"
 msgstr "切換顯示搜尋列"
 
-#: src/parleydocument.cpp:124 src/parleydocument.cpp:580
+#: src/parleydocument.cpp:123 src/parleydocument.cpp:579
 #, kde-format
 msgctxt "@title:window document properties"
 msgid "Properties for %1"
 msgstr "%1 的屬性"
 
-#: src/parleydocument.cpp:161
+#: src/parleydocument.cpp:160
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Vocabulary Collection"
 msgstr "開啟字彙收藏"
 
-#: src/parleydocument.cpp:162
+#: src/parleydocument.cpp:161
 #, kde-format
 msgid "Open in practice &mode"
 msgstr "以練習模式開啟(&M)"
 
-#: src/parleydocument.cpp:204
+#: src/parleydocument.cpp:203
 #, kde-format
 msgid ""
 "The vocabulary collection is locked by another process.  You can open the "
@@ -1731,23 +1731,23 @@ msgstr ""
 "\n"
 "您要移除鎖定嗎？\n"
 
-#: src/parleydocument.cpp:206
+#: src/parleydocument.cpp:205
 #, kde-format
 msgid "Take Over Lock"
 msgstr "移除鎖定"
 
-#: src/parleydocument.cpp:237
+#: src/parleydocument.cpp:236
 #, kde-format
 msgid "Opening collection \"%1\" resulted in an error: %2"
 msgstr "開啟收藏 %1 時發生錯誤：%2"
 
-#: src/parleydocument.cpp:238
+#: src/parleydocument.cpp:237
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Collection"
 msgstr "開啟收藏"
 
-#: src/parleydocument.cpp:266
+#: src/parleydocument.cpp:265
 #, kde-format
 msgid ""
 "Vocabulary is modified.\n"
@@ -1758,13 +1758,13 @@ msgstr ""
 "\n"
 "退出前要儲存檔案嗎？\n"
 
-#: src/parleydocument.cpp:299
+#: src/parleydocument.cpp:298
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Downloaded Vocabulary Collection"
 msgstr "開啟下載好的字彙收藏"
 
-#: src/parleydocument.cpp:338 src/parleydocument.cpp:426
+#: src/parleydocument.cpp:337 src/parleydocument.cpp:425
 #, kde-format
 msgid ""
 "File \"%1\" is locked by another process.  You can save to the file if you "
@@ -1777,37 +1777,37 @@ msgstr ""
 "\n"
 "您要儲存檔案嗎？\n"
 
-#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
+#: src/parleydocument.cpp:368 src/parleydocument.cpp:461
 #, kde-format
 msgid "Writing file \"%1\" resulted in an error: %2"
 msgstr "寫入檔案 %1 時發生錯誤：%2"
 
-#: src/parleydocument.cpp:370 src/parleydocument.cpp:463
+#: src/parleydocument.cpp:369 src/parleydocument.cpp:462
 #, kde-format
 msgctxt "@title:window"
 msgid "Save File"
 msgstr "儲存檔案"
 
-#: src/parleydocument.cpp:385
+#: src/parleydocument.cpp:384
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Vocabulary As"
 msgstr "字彙另存為"
 
-#: src/parleydocument.cpp:397
+#: src/parleydocument.cpp:396
 #, kde-format
 msgid ""
 "<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>"
 msgstr "<qt>檔案<br/><b>%1</b><br/>已存在。您要覆寫它嗎？</qt>"
 
-#: src/parleydocument.cpp:405
+#: src/parleydocument.cpp:404
 #, kde-format
 msgctxt "@info:status saving a file"
 msgid "Saving %1"
 msgstr "正在儲存 %1"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, licenseComboBox)
-#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:234
+#: src/parleydocument.cpp:508 src/settings/documentproperties.ui:234
 #, kde-format
 msgid "Public Domain"
 msgstr "公開領域"
@@ -1815,24 +1815,24 @@ msgstr "公開領域"
 #. i18n: ectx: property (text), item, widget (KComboBox, categoryComboBox)
 #. i18n: ectx: property (title), widget (QGroupBox, languageGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxLanguages)
-#: src/parleydocument.cpp:510 src/settings/documentproperties.ui:180
+#: src/parleydocument.cpp:509 src/settings/documentproperties.ui:180
 #: src/settings/documentproperties.ui:250
 #: src/statistics/statisticsmainwindow.ui:23
 #, kde-format
 msgid "Languages"
 msgstr "語言"
 
-#: src/parleydocument.cpp:518
+#: src/parleydocument.cpp:517
 #, kde-format
 msgid "A Second Language"
 msgstr "第二語言"
 
-#: src/parleydocument.cpp:521
+#: src/parleydocument.cpp:520
 #, kde-format
 msgid "Lesson 1"
 msgstr "課程 1"
 
-#: src/parleydocument.cpp:563
+#: src/parleydocument.cpp:562
 #, kde-format
 msgid "Could not open vocabulary collection \"%1\""
 msgstr "無法開啟字彙收藏 \"%1\""
