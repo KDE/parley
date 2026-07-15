@@ -5,8 +5,11 @@
 
 #include "translateshelladapter.h"
 #include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
 #include <QProcess>
-#include <QtConcurrent>
+#include <QtConcurrentRun>
 
 bool TranslateShellAdapter::isTranslateShellAvailable() const
 {
