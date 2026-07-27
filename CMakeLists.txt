@@ -103,7 +103,7 @@ endif(${LIBXSLT_FOUND} AND ${LIBXML2_FOUND})
 
 if(X11_Xrender_FOUND)
   message(STATUS "X11 Xrender found")
-  set( parley_LINK_LIBS ${parley_LINK_LIBS} ${X11_LIBRARIES} ${X11_Xrender_LIB})
+  set( parley_LINK_LIBS ${X11_LIBRARIES} ${X11_Xrender_LIB})
 else(X11_Xrender_FOUND)
   message(STATUS "X11 Xrender not found, but not required")
 endif(X11_Xrender_FOUND)
