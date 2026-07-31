@@ -2304,7 +2304,7 @@ msgstr "Zeichensetzung ignorieren"
 msgid ""
 "During the practice you can use the hint button to see parts of the solution."
 msgstr ""
-"Während der Übung können Sie den Knopf „Tipp“ benutzen, um einen Teil der "
+"Während der Übung können Sie den Knopf „Tipp“ verwenden, um einen Teil der "
 "Lösung anzuzeigen."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowHints)
@@ -3856,7 +3856,7 @@ msgstr ""
 msgid ""
 "The maximum number of words that will be practiced in a training session."
 msgstr ""
-"Die maximale Anzahl von Wörtern, die in einer Übungssitzung benutzt werden."
+"Die maximale Anzahl von Wörtern, die in einer Übungssitzung verwendet werden."
 
 #. i18n: ectx: label, entry (SessionMaxNewWords), group (PracticeOptions)
 #: src/settings/parley.kcfg:176
@@ -3866,7 +3866,7 @@ msgid ""
 "session."
 msgstr ""
 "Die maximale Anzahl von neuen nicht geübten Wörtern, die in einer "
-"Übungssitzung benutzt werden."
+"Übungssitzung verwendet werden."
 
 #. i18n: ectx: label, entry (SessionLimitWordsInitialPhase), group (PracticeOptions)
 #: src/settings/parley.kcfg:180
