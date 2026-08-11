@@ -7,9 +7,16 @@
     "base": "io.qt.qtwebengine.BaseApp",
     "base-version": "6.11",
     "command": "parley",
-    "tags": ["nightly"],
+    "tags": [
+        "nightly"
+    ],
     "desktop-file-name-suffix": " (Nightly)",
-    "finish-args": ["--share=network", "--share=ipc", "--socket=fallback-x11", "--socket=wayland" ],
+    "finish-args": [
+        "--share=network",
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland"
+    ],
     "cleanup": [
         "*.a",
         "*.la",
@@ -27,13 +34,25 @@
         {
             "name": "libkeduvocdocument",
             "buildsystem": "cmake-ninja",
-            "config-opts": [ "-DBUILD_WITH_QT6=ON" ],
-            "sources": [ { "type": "git", "url": "https://invent.kde.org/kde/libkeduvocdocument.git" } ]
+            "config-opts": [
+                "-DBUILD_WITH_QT6=ON"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/kde/libkeduvocdocument.git"
+                }
+            ]
         },
         {
             "name": "parley",
             "buildsystem": "cmake-ninja",
-            "sources": [ { "type": "dir", "path": "." } ]
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ]
         }
     ]
 }
