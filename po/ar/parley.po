@@ -2062,7 +2062,7 @@ msgstr "10 أشهر"
 
 #: src/practice/configure/blockoptions.cpp:51
 msgid "12 Months"
-msgstr "12 شهراً"
+msgstr "12 شهرًا"
 
 #: src/practice/configure/blockoptions.cpp:220
 #, kde-format
