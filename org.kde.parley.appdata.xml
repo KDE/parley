@@ -364,6 +364,9 @@
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=parley</url>
   <url type="help">https://docs.kde.org/?application=parley</url>
   <url type="donation">https://www.kde.org/community/donations/?app=parley&amp;source=appdata</url>
+  <custom>
+    <value key="KDE::mailinglist">kde-edu@kde.org</value>
+  </custom>
   <content_rating type="oars-1.1"/>
   <screenshots>
     <screenshot type="default">
