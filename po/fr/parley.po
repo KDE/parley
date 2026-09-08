@@ -1490,7 +1490,7 @@ msgstr "David Capel"
 #: src/main.cpp:45
 #, kde-format
 msgid "Practice Dialogs"
-msgstr "Boîtes de dialogue d'exercices"
+msgstr "Boites de dialogue d'exercices"
 
 #: src/main.cpp:47
 #, kde-format
