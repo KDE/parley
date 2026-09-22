@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-11 00:39+0000\n"
-"PO-Revision-Date: 2026-06-01 16:36-0400\n"
+"PO-Revision-Date: 2026-09-22 18:03+0900\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
-"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -423,7 +423,7 @@ msgstr "رەۋىش"
 #: src/settings/optionlistform.ui:19
 #, kde-format
 msgid "-"
-msgstr "-"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, layout)
 #: src/editor/conjugationwidget.ui:32
@@ -693,7 +693,7 @@ msgstr "ئىنتېرنېت"
 #: src/editor/editor.cpp:343
 #, kde-format
 msgid "LaTeX"
-msgstr "LaTeX"
+msgstr ""
 
 #: src/editor/editor.cpp:418
 #, kde-format
@@ -1411,7 +1411,7 @@ msgstr ""
 #: src/main.cpp:41
 #, kde-format
 msgid "Frederik Gladhorn"
-msgstr "Frederik Gladhorn"
+msgstr ""
 
 #: src/main.cpp:41
 #, kde-format
@@ -1481,7 +1481,7 @@ msgstr ""
 #: src/main.cpp:60
 #, kde-format
 msgid "Anne-Marie Mahfouf"
-msgstr "Anne-Marie Mahfouf"
+msgstr ""
 
 #: src/main.cpp:60
 #, kde-format
@@ -1491,7 +1491,7 @@ msgstr ""
 #: src/main.cpp:62
 #, kde-format
 msgid "Jeremy Whiting"
-msgstr "Jeremy Whiting"
+msgstr ""
 
 #: src/main.cpp:62
 #, kde-format
@@ -1918,7 +1918,7 @@ msgstr ""
 
 #: src/practice/configure/blockoptions.cpp:24
 msgid "30 Min"
-msgstr ""
+msgstr "30 ئەڭ كىچىك قىممەت"
 
 #: src/practice/configure/blockoptions.cpp:25
 msgid "1 Hour"
@@ -1938,11 +1938,11 @@ msgstr ""
 
 #: src/practice/configure/blockoptions.cpp:29
 msgid "12 Hours"
-msgstr ""
+msgstr "12 سائەت"
 
 #: src/practice/configure/blockoptions.cpp:30
 msgid "18 Hours"
-msgstr ""
+msgstr "18 سائەت"
 
 #: src/practice/configure/blockoptions.cpp:32
 msgid "1 Day"
@@ -2010,11 +2010,11 @@ msgstr "6 ئاي"
 
 #: src/practice/configure/blockoptions.cpp:50
 msgid "10 Months"
-msgstr ""
+msgstr "10 ئاي"
 
 #: src/practice/configure/blockoptions.cpp:51
 msgid "12 Months"
-msgstr ""
+msgstr "12 ئاي"
 
 #: src/practice/configure/blockoptions.cpp:220
 #, kde-format
@@ -3035,13 +3035,13 @@ msgstr "؛"
 #, kde-format
 msgctxt "CSV separator"
 msgid "#"
-msgstr "#"
+msgstr ""
 
 #: src/settings/generaloptions.cpp:45
 #, kde-format
 msgctxt "CSV separator"
 msgid "!"
-msgstr "!"
+msgstr ""
 
 #: src/settings/generaloptions.cpp:46
 #, kde-format
@@ -3071,7 +3071,7 @@ msgstr ""
 #, kde-format
 msgctxt "CSV separator"
 msgid " : "
-msgstr " : "
+msgstr ""
 
 #: src/settings/generaloptions.cpp:51
 #, kde-format
@@ -3371,19 +3371,19 @@ msgstr ""
 #: src/settings/languagepropertiespage.ui:507
 #, kde-format
 msgid "&1. Person:"
-msgstr ""
+msgstr "&1. كىشى:"
 
 #. i18n: ectx: property (text), widget (QLabel, pers2_label)
 #: src/settings/languagepropertiespage.ui:543
 #, kde-format
 msgid "&2. Person:"
-msgstr ""
+msgstr "&2. كىشى:"
 
 #. i18n: ectx: property (text), widget (QLabel, pers3_label)
 #: src/settings/languagepropertiespage.ui:579
 #, kde-format
 msgid "3. Person:"
-msgstr ""
+msgstr "3. كىشى:"
 
 #. i18n: ectx: property (text), widget (QLabel, male_c_label)
 #: src/settings/languagepropertiespage.ui:589
