@@ -4099,7 +4099,6 @@ msgstr "Текущий выбранный способ тренировки."
 msgid "The practice mode that is currently selected."
 msgstr "Текущий выбранный режим тренировки."
 
-# BUGME: unclear message
 #. i18n: ectx: label, entry (BlockItem$(Grade)), group (PracticeManager)
 #: src/settings/parley.kcfg:354
 #, kde-format
