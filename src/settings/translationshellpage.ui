@@ -33,7 +33,7 @@
          </size>
         </property>
         <property name="text">
-         <string notr="true">Parley provides access to translation webservices via utilizing the &quot;translate-shell&quot; tool.</string>
+         <string>Parley provides access to translation webservices via utilizing the &quot;translate-shell&quot; tool.</string>
         </property>
         <property name="textInteractionFlags">
          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
