@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-11 00:39+0000\n"
+"POT-Creation-Date: 2026-10-26 00:45+0000\n"
 "PO-Revision-Date: 2025-09-25 19:16+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -4172,6 +4172,14 @@ msgstr "خطأ"
 #, kde-format
 msgid "Translation Shell Integration"
 msgstr "تكامل Translation Shell"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/settings/translationshellpage.ui:36
+#, kde-format
+msgid ""
+"Parley provides access to translation webservices via utilizing the "
+"\"translate-shell\" tool."
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
