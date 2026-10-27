@@ -1,11 +1,11 @@
 # Translation of parley.po to Catalan
-# Copyright (C) 2004-2024 This_file_is_part_of_KDE
+# Copyright (C) 2004-2026 This_file_is_part_of_KDE
 #
 # SPDX-FileCopyrightText: 2004 Sebastià Pla i Sanz <sps@sastia.com>
 # SPDX-FileCopyrightText: 2004 Albert Astals Cid <aacid@kde.org>
 # SPDX-FileCopyrightText: 2005 David Gil <al016950@yahoo.es>
 # SPDX-FileCopyrightText: 2005-2014 Orestes Mas Casals <orestes@tsc.upc.edu>
-# SPDX-FileCopyrightText: 2007-2008, 2010-2021, 2023-2024 Josep M. Ferrer <txemaq@gmail.com>
+# SPDX-FileCopyrightText: 2007-2008, 2010-2021, 2023-2024, 2026 Josep M. Ferrer <txemaq@gmail.com>
 # SPDX-FileCopyrightText: 2009 Manuel Tortosa <manutortosa@gmail.com>
 # SPDX-FileCopyrightText: 2013, 2015-2017, 2020-2021 Antoni Bella Pérez <antonibella5@yahoo.com>
 msgid ""
@@ -13,14 +13,14 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-26 00:45+0000\n"
-"PO-Revision-Date: 2024-07-31 12:42+0200\n"
+"PO-Revision-Date: 2026-10-26 09:39+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 25.04.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -4219,6 +4219,8 @@ msgid ""
 "Parley provides access to translation webservices via utilizing the "
 "\"translate-shell\" tool."
 msgstr ""
+"Parley proporciona accés als serveis web de traducció utilitzant l'eina "
+"«translate-shell»."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
