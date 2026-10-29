@@ -4193,6 +4193,8 @@ msgid ""
 "Parley provides access to translation webservices via utilizing the "
 "\"translate-shell\" tool."
 msgstr ""
+"Parley poskytuje prístup k prekladovým webovým službám pomocou nástroja "
+"„translate-shell“."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/settings/translationshellpage.ui:52
