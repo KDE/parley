@@ -1176,7 +1176,7 @@ msgstr "Ordlistekolonner …"
 #: src/editor/vocabularyview.cpp:141
 #, kde-format
 msgid "Toggle display of individual vocabulary columns"
-msgstr "Slår av/på visning av hver kolonne i ordlista"
+msgstr "Slår på/av visning av hver kolonne i ordlista"
 
 #: src/editor/vocabularyview.cpp:253
 #, kde-format
@@ -1707,7 +1707,7 @@ msgstr "V&is søk"
 #: src/parleyactions.cpp:221
 #, kde-format
 msgid "Toggle display of the search bar"
-msgstr "Slår av/på visning av søkelinja"
+msgstr "Slår på/av visning av søkelinja"
 
 #: src/parleydocument.cpp:123 src/parleydocument.cpp:579
 #, kde-format
@@ -3831,7 +3831,7 @@ msgstr ""
 #: src/settings/parley.kcfg:201
 #, kde-format
 msgid "Toggle display of the search bar."
-msgstr "Slår av/på visning av søkelinja."
+msgstr "Slår på/av visning av søkelinja."
 
 #. i18n: ectx: label, entry (ShowSublessonentries), group (Appearance)
 #: src/settings/parley.kcfg:206

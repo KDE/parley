@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kvoctrain\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-26 00:45+0000\n"
-"PO-Revision-Date: 2026-10-26 07:46+0200\n"
+"PO-Revision-Date: 2026-11-11 23:00+0200\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
@@ -2540,16 +2540,16 @@ msgid_plural ""
 "You are %3% done."
 msgstr[0] ""
 "Даны правильные ответы на %2 из %1 слова.\n"
-"Завершено: %3%."
+"Завершено: %3 %."
 msgstr[1] ""
 "Даны правильные ответы на %2 из %1 слов.\n"
-"Завершено: %3%."
+"Завершено: %3 %."
 msgstr[2] ""
 "Даны правильные ответы на %2 из %1 слов.\n"
-"Завершено: %3%."
+"Завершено: %3 %."
 msgstr[3] ""
 "Даны правильные ответы на %2 из %1 слова.\n"
-"Завершено: %3%."
+"Завершено: %3 %."
 
 #: src/practice/latexrenderer.cpp:47
 #, kde-format
@@ -2824,34 +2824,34 @@ msgstr "Считать ответ верным"
 #, kde-format
 msgctxt "test results"
 msgid "%1 % correct"
-msgstr "%1% верных ответов"
+msgstr "%1 % верных ответов"
 
 #: src/practice/summarybarwidget.cpp:80
 #, kde-format
 msgctxt "test results"
 msgid "%1 % wrong"
-msgstr "%1% неверных ответов"
+msgstr "%1 % неверных ответов"
 
 #: src/practice/summarybarwidget.cpp:82
 #, kde-format
 msgctxt "test results"
 msgid "%1 % not answered"
-msgstr "%1% без ответов"
+msgstr "%1 % без ответов"
 
 #: src/practice/summarybarwidget.cpp:140
 #, kde-format
 msgid "Answered correctly on the first attempt: %1 of %2 (%3 %)"
-msgstr "Верных ответов с первой попытки: %1 из %2 (%3%)"
+msgstr "Верных ответов с первой попытки: %1 из %2 (%3 %)"
 
 #: src/practice/summarybarwidget.cpp:147
 #, kde-format
 msgid "Answered wrong on the first attempt: %1 of %2 (%3 %)"
-msgstr "Неверных ответов с первой попытки: %1 из %2 (%3%)"
+msgstr "Неверных ответов с первой попытки: %1 из %2 (%3 %)"
 
 #: src/practice/summarybarwidget.cpp:154
 #, kde-format
 msgid "Not answered during this practice: %1 of %2 (%3 %)"
-msgstr "Не было ответов в течение этой тренировки: %1 из %2 (%3%)"
+msgstr "Не было ответов в течение этой тренировки: %1 из %2 (%3 %)"
 
 #: src/practice/writtenbackendmode.cpp:70
 #, kde-format
