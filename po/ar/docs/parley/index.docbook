@@ -1,0 +1,3034 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Arabic "INCLUDE"
+>]>
+
+<book id="parley" lang="&language;">
+
+<bookinfo>
+<title
+>دليل المفاوض</title>
+
+<authorgroup>
+<author
+>&Frederik.Gladhorn; &Frederik.Gladhorn.mail; </author>
+
+<author
+><personname
+><firstname
+>Sabine</firstname
+><surname
+>Eller</surname
+></personname
+> <email
+>s.eller@voxhumanitatis.org</email
+> </author>
+
+<author
+><personname
+><firstname
+>Daniel</firstname
+><surname
+>Laidig</surname
+></personname
+> <email
+>d.laidig@gmx.de</email
+> </author>
+
+<author
+><personname
+><firstname
+>Amarvir</firstname
+><surname
+>Singh</surname
+></personname
+> <email
+>amarvir.ammu.93@gmail.com</email
+> </author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+  <year
+>2010</year>
+  <holder
+>&Frederik.Gladhorn;</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Sabine Eller</holder>
+</copyright>
+<copyright>
+  <year
+>2010</year>
+  <holder
+>Daniel Laidig</holder>
+</copyright>
+<copyright>
+  <year
+>2014</year>
+  <holder
+>Amarvir Singh</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-11-02</date>
+<releaseinfo
+>ترس كيدي 21.08</releaseinfo>
+
+<!-- Abstract about this handbook -->
+<abstract>
+  <para
+>المفاوض هو مدرب مفردات. يساعدك على حفظ مفرداتك، مثلًا عندما تحاول تعلم لغة أجنبية. المفاوض لا يقتصر على تعلم اللغات بل يدعم العديد من الموضوعات.</para>
+</abstract>
+
+<keywordset>
+  <keyword
+>كيدي</keyword>
+  <keyword
+>المفاوض</keyword>
+  <keyword
+>معجم</keyword>
+  <keyword
+>تدريب</keyword>
+  <keyword
+>تعلم</keyword>
+</keywordset>
+<!-- https://bugs.kde.org/show_bug.cgi?id=281586#c2 adjustable font size for practice window for better reading on highres screens -->
+</bookinfo>
+<!--userbase <timestamp
+>2010-06-25T18:39:29Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="introduction"
+><title
+>مقدمة</title>
+
+<para
+>المفاوض هو مدرب مفردات. يساعدك على حفظ مفرداتك، مثلًا عندما تحاول تعلم لغة أجنبية. يمكنك إنشاء مجموعات مفرداتك الخاصة بالكلمات التي تحتاجها أو الاختيار من مجموعة واسعة من <ulink url="https://userbase.kde.org/Parley#Vocabulary_Collections"
+>مجموعات المفردات</ulink
+> المتاحة. هناك يمكنك العثور على مجموعات تحتوي على مفردات لغوية وأيضًا تشريح، موسيقى، جغرافيا، كيمياء أو تحضير للامتحانات. </para>
+
+<para
+>المفاوض مرن جدًا ويستخدم <ulink url="https://en.wikipedia.org/wiki/Flashcard"
+>منهج البطاقات التعليمية</ulink
+>. يتتبع تقدمك التعليمي آليًا. باستخدام المفاوض يمكنك ترتيب مفرداتك كما تشاء، وتنشئ دروسك الخاصة حسب الحاجة. ولكن على عكس البطاقات التعليمية الحقيقية، يمكنك استخدام طرق تعلم مختلفة مع المفاوض. </para>
+
+<para
+>تحتوي البطاقات التعليمية على تعابير على الوجه الأمامي وترجمتها على الظهر. تبدأ بمجموعة من البطاقات. إذا عرفت ترجمة بطاقة، يمكنك وضعها في مجموعة ثانية من البطاقات. إذا لم تتذكرها، تُبقيها في المجموعة الأولى لتحاول مرة أخرى لاحقًا. </para>
+
+<para
+>التركيز الرئيس لـ المفاوض ليس تعليمك القواعد. ومع ذلك، هناك بعض أشكال التمارين التي قد تساعدك في هذا الشأن. </para>
+
+<para
+>يتكون المفاوض من جزأين كبيرين: <link linkend="practice"
+>ممارسة المفردات</link
+> و<link linkend="vocabulary-editing"
+>محرر لمجموعات المفردات</link
+>. </para>
+
+<para
+>في هذا الدليل، يشير مصطلح <emphasis
+>مجموعة مفردات</emphasis
+> إلى ملف يحتوي على <emphasis
+>وحدات</emphasis
+>. يمكن أن تكون كل وحدة درسًا أو مجموعة دروس متداخلة إلى أي عمق. في بقية هذا الدليل، سنشير إلى الوحدات بدلًا من الدروس حيث يمكن استخدامها لأغراض أخرى أيضًا. </para>
+
+<para
+>يمكن الوصول إلى كل من <guilabel
+>المحرر</guilabel
+> و<guilabel
+>الممارسة</guilabel
+> من <link linkend="practice-overview"
+>نظرة عامة على الممارسة</link
+>. </para>
+
+<para
+>تتكون <link linkend="practice"
+>الممارسة</link
+> من ثلاثة أجزاء: أولًا <link linkend="practice-overview"
+>نظرة عامة على الممارسة</link
+> حيث تختار ما تريد ممارسته. من هناك تبدأ <link linkend="practice"
+>الممارسة</link
+> الفعلية، وعند الانتهاء، تحصل على <link linkend="summary-after-practice"
+>ملخص</link
+>. </para>
+
+<tip
+><para
+>كما هو الحال في جميع التطبيقات، حاول استخدام النقر بالزر الأيمن إذا كنت تستكشف الميزات والوظائف في المفاوض. يؤدي النقر بالزر الأيمن للفأرة إلى عرض <quote
+>قائمة سياقية</quote
+> تظهر ما يمكنك فعله في حالتك الحالية. جرب النقر بالزر الأيمن على الوحدات والكلمات للعثور على بعض الخيارات.</para
+></tip>
+</chapter>
+
+<chapter id="dashboard"
+><title
+>لوحة التحكم</title>
+
+<para
+>عند تشغيل المفاوض لأول مرة، ترحب بك <guilabel
+>لوحة التحكم</guilabel
+>. </para>
+
+<para
+>في البداية تكون <guilabel
+>لوحة التحكم</guilabel
+> فارغة، وبمجرد فتح بعض مجموعات المفردات، تظهر لك تلك التي عملت عليها مؤخرًا. </para>
+
+<screenshot>
+  <screeninfo
+>النافذة الرئيسة لـ المفاوض</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>لوحة تحكم مع مجموعات متعددة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>مجموعة المفردات هي ملف يحتوي على كلمات وترجماتها إلى لغات أخرى أو أزواج أخرى من الكلمات والجمل التي تريد حفظها. تُنظم الكلمات في وحدات. </para>
+
+<para
+>لـ<emphasis
+>بدء الممارسة</emphasis
+>، انقر بالزر الأيمن للفأرة على مربع <guilabel
+>مارس على أي حال</guilabel
+> على أحد أسماء مجموعات المفردات في القائمة. ستُنقل إلى <link linkend="practice-overview"
+>نظرة عامة على الممارسة</link
+>. </para>
+
+<para
+>لاحظ ظهور أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="icon-delete.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>حذف</guiicon
+> صغيرة في أسفل يسار عنصر المجموعة. يتيح لك هذا إزالة المجموعة من القائمة. </para>
+
+<para
+>إذا كنت ترغب في بدء مجموعتك الخاصة من المفردات، اضغط على الزر <guibutton
+>أنشئ مجموعة جديدة...</guibutton
+>. </para>
+
+<para
+>يمكنك أيضًا <link linkend="open-an-existing-collection"
+>فتح مجموعة</link
+> إذا كانت موجودة على حاسوبك بالفعل ولكنها ليست في القائمة. </para>
+
+<para
+>الزر الأخير في <guilabel
+>لوحة التحكم</guilabel
+> يقدم لك تنزيل مجموعات مفردات من إعداد الآخرين. عندما تنشئ ملفًا ترغب في مشاركته مع الآخرين، يمكنك رفعه بسهولة من المحرر. </para>
+
+<para
+>يأتي المفاوض مع سمات مختلفة، يمكنك التبديل إلى نمط رسومي مختلف في الإعدادات. لمزيد من المعلومات، انظر <link linkend="configure-parley"
+>اضبط المفاوض</link
+>. </para>
+</chapter>
+
+<chapter id="open-an-existing-collection"
+><title
+>افتح مجموعة موجودة</title>
+
+<para
+>لنفترض أن مجموعتك موجودة بالفعل على قرصك الصلب. </para>
+
+<para
+>هذا ما ستبدو عليه الشاشة عند تشغيل المفاوض لأول مرة: </para>
+
+<screenshot>
+  <screeninfo
+>النافذة الرئيسة لـ المفاوض</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>الشاشة الأولية</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>اضغط على الزر <guibutton
+>افتح مجموعة موجودة...</guibutton
+>. </para>
+
+<para
+>في مربع حوار اختيار الملف، انتقل إلى المجلد الذي يحتوي على ملف البيانات، وحدده بالنقر عليه. اعتمادًا على نظامك، إما يُفتح الملف فورًا، أو يجب عليك الضغط على الزر <guibutton
+>فتح</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>مربع حوار اختيار ملف</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="file_select_dialog.png" format="PNG"/></imageobject>
+    <caption
+>مربع حوار اختيار ملف</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>الآن، يُحمّل الملف، وتنتقل إلى شاشة <guilabel
+>نظرة عامة على الممارسة</guilabel
+>: انظر القسم التالي لمزيد من التفاصيل. </para>
+</chapter>
+
+<chapter id="vocabulary-practice"
+><title
+>ممارسة المفردات</title>
+
+<para
+>لبدء الممارسة، اختر مستندًا بعد تشغيل المفاوض. إذا كان المستند مفتوحًا في المحرر بالفعل، فاضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>بدء الممارسة...</guiicon
+> في شريط الأدوات. </para>
+
+<sect1 id="practice-overview"
+><title
+>نظرة عامة على التدريب</title>
+
+<para
+>قبل بدء الممارسة الفعلية، ستصل دائمًا إلى شاشة <guilabel
+>نظرة عامة على الممارسة</guilabel
+>. هناك ثلاث مناطق تتيح لك اختيار ما تريد ممارسته: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>اختيار اللغات</para
+></listitem>
+  <listitem
+><para
+>اختيار وضع الممارسة</para
+></listitem>
+  <listitem
+><para
+>اختيار الوحدات التي تُظهر أيضًا تقدمك الحالي</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>ضبط الممارسة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_practice.png" format="PNG"/></imageobject>
+    <caption
+>ضبط الممارسة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>على اليسار، يمكنك اختيار مجموعة اللغات التي ستمارسها. إذا اخترت، مثلًا، الإنجليزية إلى الفرنسية، فستُعرض عليك كلمات إنجليزية وسيطلب منك المفاوض إدخال الترجمات الفرنسية. </para>
+
+<para
+>أسفل اختيار اللغة، تختار قسم <guilabel
+>وضع الممارسة</guilabel
+>، الذي يحدد كيف ستطرح الممارسة الأسئلة عليك. </para>
+
+<para
+>يمكن استخدام القائمة المنسدلة <guilabel
+>اتجاه الممارسة</guilabel
+> لاختيار الاستعلام الذي سيُعرض أثناء الممارسة. الخيارات الممكنة هي العبارة المعروفة (<guimenuitem
+>المعروف إلى المُتعلَّم</guimenuitem
+>)، أو العبارة المُتعلَّمة (<guimenuitem
+>المُتعلَّم إلى المعروف</guimenuitem
+>)، أو مزيج العبارات (<guimenuitem
+>اتجاهات مختلطة</guimenuitem
+>). </para>
+
+<para
+>في الجزء الكبير على اليمين، ترى وحدات مجموعة المفردات. يمكنك اختيار الوحدات التي تريد ممارستها باستخدام خانة الاختيار أمام اسم الوحدة. يُعرض عدد الكلمات التي تحتويها كل وحدة بجانب اسمها. على يمين الاسم، ترى تقدمك الحالي للوحدة. </para>
+
+<para
+>يُعرض التقدم لكل وحدة كنسبة مئوية من إكمال الوحدة وأشرطة تقدم متعددة التظليل. تُحسب النسبة المئوية بناءً على العدد الإجمالي للكلمات في تلك الوحدة ومستوى الثقة لكل كلمة. تصور أشرطة التقدم عدد الكلمات في كل مستوى ثقة، مع تظليل أغمق لمستوى ثقة أعلى. يمكن أيضًا رؤية وسيلة إيضاح في أعلى اختيارات الوحدة، في العنوان. تصور الألوان في هذه الوسيلة الألوان المقابلة لأشرطة التقدم، من الكلمات المُتعلَّمة بالكامل إلى الكلمات التي لم تُمارس بعد. </para>
+</sect1>
+
+<sect1 id="advanced-practice-configuration"
+><title
+>ضبط الممارسة</title>
+
+<para
+>يتيح لك حوار <guilabel
+>ضبط الممارسة</guilabel
+> تحديد إعدادات أكثر تقدمًا ستؤثر على الممارسة. </para>
+
+<para
+>في شاشة <link linkend="practice-overview"
+>نظرة عامة على الممارسة</link
+>، تصل إلى حوار <guilabel
+>ضبط الممارسة</guilabel
+> باستخدام أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>ضبط الممارسة...</guiicon
+></link
+> في شريط الأدوات. </para>
+
+<sect2 id="general-practice-settings"
+><title
+>إعدادات التدريب العامة</title>
+
+<para
+>يمكنك العثور على عدة خيارات ضبط عامة للممارسة في صفحة <guilabel
+>عام</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>حوار ضبط الممارسة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_general.png" format="PNG"/></imageobject>
+    <caption
+>صفحة الإعدادات العامة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>أهم الخيارات هي: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>تجاهل التشكيل</guilabel
+>: بهذا الخيار، إذا أدخلت كلمة بـ <guilabel
+>e</guilabel
+> بدلًا من <guilabel
+>é</guilabel
+>، فستُحسب صحيحة.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>تجاهل الأحرف الكبيرة</guilabel
+>: يتيح لك هذا الخيار تجاهل الأحرف الكبيرة عند إدخال الكلمات.</para
+></listitem>
+
+  <listitem
+><para
+>قسم <guilabel
+>الصور والصوت</guilabel
+>: إذا فعّلت الصور، فستُعرض أثناء الممارسة إذا كانت متاحة. يُطبق الشيء نفسه على الصوت.</para
+></listitem>
+
+  <listitem
+><para
+><guilabel
+>السماح بالصور بدلًا من الكلمات</guilabel
+>: إذا فعّلت هذا الخيار، فسيسمح باستخدام صورة كسؤال أثناء الممارسة، شريطة ألا تكون ترجمة محددة لكلمة اللغة الهدف.</para
+></listitem>
+</itemizedlist>
+<!--FIXME Enable Hints Sessions Synonyms-->
+</sect2>
+
+<sect2 id="blocking"
+><title
+>حجب</title>
+
+<para
+>إذا كنت تخطط لممارسة مفرداتك بانتظام، فيجب عليك التأكد من تفعيل ميزة <emphasis
+>الحظر</emphasis
+>. اذهب إلى صفحة <guilabel
+>الحظر</guilabel
+> وحدد خانة الاختيار التي تقول <guilabel
+>الحظر</guilabel
+>. الآن يمكنك حتى ضبط الفاصل الزمني الذي ستُكرر فيه الكلمات التي أجبت عليها بشكل صحيح. </para>
+
+<para
+><emphasis
+>الحظر</emphasis
+> يعني أن الكلمات لن تُطرح لفترة زمنية معينة بعد آخر ممارسة. تعتمد هذه الفترة الزمنية على مدى معرفتك بالكلمة، بحيث تُطرح الكلمات التي لا تعرفها بعد بشكل متكرر. </para>
+
+<screenshot>
+  <screeninfo
+>حوار ضبط الممارسة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_blocking.png" format="PNG"/></imageobject>
+    <caption
+>صفحة إعدادات الحظر</caption>
+  </mediaobject>
+</screenshot>
+<!--FIXME Expiring-->
+</sect2>
+
+<sect2 id="thresholds"
+><title
+>عتبات</title>
+
+<para
+>العتبات هي طريقة أخرى لتحديد ما تريد ممارسته. </para>
+
+<screenshot>
+  <screeninfo
+>حوار ضبط الممارسة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_thresholds.png" format="PNG"/></imageobject>
+    <caption
+>صفحة إعدادات العتبات</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>يمكنك أن تقرر ممارسة الكلمات التي تعرفها بشكل أفضل أو أسوأ من مستوى ثقة معين فقط. أو يمكنك اختيار الكلمات التي مارستها عددًا معينًا من المرات فقط. </para>
+</sect2>
+
+<sect2 id="specific-practice-settings"
+><title
+>إعدادات تدريب محددة</title>
+
+<para
+>يمكن تغيير خيارات الضبط للممارسة ذات الاختيارات المتعددة باستخدام صفحة الإعدادات <guilabel
+>خاصة</guilabel
+>. </para>
+
+<screenshot>
+  <screeninfo
+>حوار ضبط الممارسة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>صفحة الإعدادات المحددة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>هنا يمكنك اختيار ما إذا كانت الخيارات من النوع نفسه وكذلك عدد الخيارات. </para>
+</sect2>
+</sect1>
+
+<sect1 id="practice"
+><title
+>التدريب</title>
+<sect2 id="flash-cards"
+><title
+>بطاقات تذكر</title>
+
+<para
+>بعد تفعيل <guilabel
+>البطاقات التعليمية</guilabel
+> في قسم <guilabel
+>وضع التمرين</guilabel
+> والضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>ابدأ التمرين...</guiicon
+> في شريط الأدوات، تظهر الشاشة التالية. يعمل وضع التدريب <guilabel
+>البطاقات التعليمية</guilabel
+> كما لو كنت تفعل ذلك باستخدام بطاقات تعليمية <quote
+>حقيقية</quote
+>. تتخيل النتيجة، وإذا أردت بعض المساعدة، يمكنك الضغط على زر <guibutton
+>تلميح</guibutton
+>، الذي سيبدأ بإعطائك النتيجة حرفًا حرفًا. </para>
+
+<para
+>يمكنك أيضًا أن تقرر تخطي كلمة الآن. عند الضغط على زر <guibutton
+>أجب لاحقًا</guibutton
+>، ستظهر الكلمة مرة أخرى في وقت لاحق. </para>
+
+<screenshot>
+  <screeninfo
+>وضع تمرين البطاقات التعليمية</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_grey.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>الضغط على زر <guibutton
+>متابعة</guibutton
+> يكشف الحل. في هذه المرحلة، عليك أن تخبر ما إذا كنت تعرف الإجابة. </para>
+
+<para
+>إذا لم تكن تعرفها، اضغط على زر <guibutton
+>لم أعرفها</guibutton
+>. إذا تذكرت الإجابة، اضغط على زر <guibutton
+>عرفتها</guibutton
+>. </para>
+
+<para
+>سينقلك هذا إلى السؤال التالي. </para>
+
+<para
+>في أسفل الجانب الأيسر من الشاشة، لديك 7 مربعات تُظهر مدى معرفتك بالمفردات. تتوافق هذه المربعات السبعة مع مستويات الحجب المحددة ضمن صفحة <link linkend="blocking"
+><guilabel
+>الحجب</guilabel
+></link
+> في حوار <guilabel
+>اضبط التمرين</guilabel
+>. </para>
+
+<tip
+><para
+>بدلًا من الضغط على زر <guibutton
+>متابعة</guibutton
+>، يمكنك أيضًا استخدام مفتاح &Space;.</para
+></tip>
+
+<screenshot>
+  <screeninfo
+>وضع تمرين البطاقات التعليمية</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_flash_solution.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - تأكيد</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>يمكنك التوقف عن التمرين في أي وقت بالضغط على زر <guibutton
+>أوقف التمرين</guibutton
+>. </para>
+</sect2>
+
+<sect2 id="mixed-letters"
+><title
+>أحرف مختلطة</title>
+
+<para
+>الحروف المختلطة هي طريقة تدريب توفر لك مساعدة فورية: جميع الحروف التي تشكل الحل تظهر مختلطة: </para>
+
+<screenshot>
+  <screeninfo
+>وضع تمرين البطاقات التعليمية</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_hint.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - حروف مختلطة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>إذا أردت بعض المساعدة، يمكنك الضغط على زر <guibutton
+>تلميح</guibutton
+>، الذي سيعطيك الحل حرفًا حرفًا. بالطبع يمكنك أيضًا أن تقرر <guibutton
+>أجب لاحقًا</guibutton
+> بالضغط على ذلك الزر. </para>
+
+<para
+>لإعطاء الإجابة، اكتبها في الحقل الفارغ أسفل الحروف المختلطة واضغط على مفتاح &Enter; أو زر <guibutton
+>متابعة</guibutton
+>. </para>
+
+<para
+>إذا كانت إجابتك صحيحة، سيخبرك المفاوض بذلك ويمكنك الضغط على &Enter; مرة أخرى أو الضغط على زر <guibutton
+>متابعة</guibutton
+> للمتابعة إلى السؤال التالي. </para>
+
+<screenshot>
+  <screeninfo
+>وضع تمرين البطاقات التعليمية</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_right.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - حروف مختلطة صحيحة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>إذا أدخلت إجابة خاطئة، سيُطلب منك <emphasis
+>المحاولة مرة أخرى</emphasis
+>: </para>
+
+<screenshot>
+  <screeninfo
+>وضع تمرين البطاقات التعليمية</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_wrong.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - إجابة خاطئة، حاول مرة أخرى</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>إذا كنت لا تعرف الإجابة، فقط اضغط على زر <guibutton
+>متابعة</guibutton
+> مرة ثانية. عندها يظهر ما يلي وتُعرض عليك الحل. تابع باستخدام <guibutton
+>متابعة</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>وضع تمرين البطاقات التعليمية</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mixed_letters_solution.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - إجابة خاطئة، أظهر الإجابة الصحيحة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>يمكنك تجاوز كيفية احتساب إجابتك. انظر <link linkend="practice-overview"
+>نظرة عامة على التمرين</link
+>. </para>
+</sect2>
+
+<sect2 id="multiple-choice"
+><title
+>اختيار متعدد</title>
+<sect3 id="automatic-selection-of-the-possible-answers"
+><title
+>اختيار تلقائي للإجابات المحتملة</title>
+
+<para
+>في وضع <guilabel
+>الاختيار من متعدد</guilabel
+>، تُعرض عليك عدد من الإجابات المحتملة، واحدة منها فقط صحيحة. بالضغط على زر <guibutton
+>تلميح</guibutton
+>، يستبعد المفاوض إحدى الإجابات الخاطئة بحيث يصبح اختيارك أكثر تقييدًا مع كل ضغطة إضافية على <guibutton
+>تلميح</guibutton
+>. يُكشف الحل عندما يتبقى خيار واحد فقط ويُحتسب السؤال كخطأ. بالطبع يمكنك أيضًا اختيار زر <guibutton
+>أجب لاحقًا</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>وضع تمرين البطاقات التعليمية</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - وضع الاختيار من متعدد</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>بمجرد أن تقوم باختيارك بالنقر على ما تعتقد أنه صحيح أو كتابة الرقم أمام الاختيار، يظهر المفاوض الشاشة أدناه إذا كانت الإجابة صحيحة. تابع إلى السؤال التالي بالضغط على زر <guibutton
+>متابعة</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>وضع تمرين البطاقات التعليمية</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-right.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - اختيار من متعدد، إجابة صحيحة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>إذا كانت إجابتك خاطئة بدلًا من ذلك، ستظهر الإجابة الصحيحة باللون الأخضر والخاطئة باللون الأحمر. هنا أيضًا تابع بالضغط على زر <guibutton
+>متابعة</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>وضع تمرين البطاقات التعليمية</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="multiple_choice-wrong.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - اختيار من متعدد، إجابة خاطئة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>يمكنك تجاوز كيفية احتساب إجابتك. انظر <link linkend="practice-overview"
+>نظرة عامة على التمرين</link
+>. </para>
+
+<para
+>إذا أردت إيقاف الممارسة، فاضغط فقط على الزر <guibutton
+>إيقاف الممارسة</guibutton
+>. </para>
+</sect3>
+
+<sect3 id="with-yes-no-answers"
+><title
+>بإجابات نعم/لا</title>
+
+<para
+>عادةً ما يقترح المفاوض آليًا إجابة صحيحة واحدة وعدة إجابات خاطئة في وضع الاختيار المتعدد. بالنسبة لبعض التمارين، سيكون لديك بدلًا من ذلك إجابات محددة مسبقًا مثل نعم/لا أو ما شابه. ولذلك، عليك ضبط الممارسة باختيار أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-setup.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="advanced-practice-configuration"
+><guiicon
+>اضبط الممارسة...</guiicon
+></link
+> في شريط الأدوات. </para>
+
+<para
+>اختر صفحة <guilabel
+>محدد</guilabel
+> وستحصل على شيء مشابه جدًا للقطة الشاشة التالية: </para>
+
+<screenshot>
+  <screeninfo
+>حوار ضبط الممارسة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_specific.png" format="PNG"/></imageobject>
+    <caption
+>صفحة محددة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>إذا كان لديك <emphasis
+>خياران فقط</emphasis
+> مثل <emphasis
+>نعم/لا</emphasis
+> في القسم <guilabel
+>اختيار متعدد</guilabel
+>، فاضبط <guilabel
+>عدد الخيارات:</guilabel
+> على <parameter
+>2</parameter
+>. </para>
+</sect3>
+</sect2>
+
+<sect2 id="written"
+><title
+>كتابة</title>
+
+<para
+>عند اختيار الخيار <guilabel
+>مكتوب</guilabel
+> لممارستك، يُفترض أن تكتب الحل. يمكنك استخدام الزر <guibutton
+>تلميح</guibutton
+>، الذي سيبدأ بإعطائك النتيجة حرفًا واحدًا في كل مرة. بالطبع، يمكنك أيضًا أن تقرر <guibutton
+>الإجابة لاحقًا</guibutton
+> بالضغط على ذلك الزر. </para>
+
+<screenshot>
+  <screeninfo
+>وضع الممارسة المكتوبة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - وضع الممارسة المكتوبة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>بمجرد إدخال الحل، اضغط على الزر <guibutton
+>متابعة</guibutton
+> وسيُظهر المفاوض ما إذا كانت إجابتك صحيحة. تابع بالضغط على <guibutton
+>متابعة</guibutton
+> مرة أخرى. </para>
+
+<screenshot>
+  <screeninfo
+>وضع الممارسة المكتوبة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_right.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - وضع الممارسة المكتوبة، إجابة صحيحة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>إذا أعطيت إجابة خاطئة، يمكنك المحاولة عدة مرات للعثور على الإجابة الصحيحة. إذا لم تحاول مرة أخرى، وضغطت فقط على الزر <guibutton
+>متابعة</guibutton
+>، فسيُعرض الحل. </para>
+
+<screenshot>
+  <screeninfo
+>وضع الممارسة المكتوبة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_written_wrong.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - وضع الممارسة المكتوبة، إجابة خاطئة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>تابع الممارسة بالضغط على <guibutton
+>متابعة</guibutton
+> أو توقف بالضغط على الزر <guibutton
+>إيقاف الممارسة</guibutton
+>. </para>
+
+<para
+>يمكنك تجاوز كيفية احتساب إجابتك. انظر <link linkend="practice-overview"
+>نظرة عامة على التمرين</link
+>. </para>
+</sect2>
+
+<sect2 id="reset-practice-to-initial-state"
+><title
+>إعادة ضبط الممارسة إلى الحالة الأولية</title>
+
+<para
+>يمكنك إعادة ضبط جميع نتائج ممارستك (إزالة مستويات الثقة) إلى الحالة الأولية. يمكنك إعادة ضبط مستويات الثقة للوحدات الفردية من داخل أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>نظرة عامة على الممارسة</guiicon
+> في شريط الأدوات وبالنقر بزر الفأرة الأيمن على الوحدة المراد إعادة ضبطها واختيار <guimenuitem
+>إزالة مستويات الثقة من هذه الوحدة</guimenuitem
+> أو باختيار <guimenuitem
+>إزالة مستويات الثقة من هذه الوحدة وجميع الوحدات الفرعية</guimenuitem
+>. </para>
+</sect2>
+</sect1>
+
+<sect1 id="summary-after-practice"
+><title
+>الملخص بعد الممارسة</title>
+
+<para
+>يظهر الملخص عند إنهاء جلسة تعلم. في الشريط الكبير في الأعلى، يُظهر مدى أدائك. </para>
+
+<para
+>يوجد أدناه جدول بجميع الكلمات التي مارستها، مع الأخطاء التي ارتكبتها. </para>
+
+<para
+>الكلمات التي تحتوي على أكبر عدد من الأخطاء تكون في الأعلى، لذا يمكنك بسهولة رؤية ما لا تعرفه بعد. </para>
+
+<para
+>اضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="document-export.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>تصدير النتائج...</guiicon
+> في شريط الأدوات أو استخدم عنصر القائمة <menuchoice
+><guimenu
+>ممارسة</guimenu
+> <guimenuitem
+>تصدير النتائج...</guimenuitem
+></menuchoice
+> لتصدير نتائج الممارسة كملف &HTML; أو OpenDocument نصي (<literal role="extension"
+>.odt</literal
+>). </para>
+
+<screenshot>
+  <screeninfo
+>الملخص بعد الممارسة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_summary.png" format="PNG"/></imageobject>
+    <caption
+>الملخص بعد الممارسة</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<!--FIXME Example Sentences practice missing -->
+<sect1 id="grammar-practice-modes"
+><title
+>أوضاع ممارسة القواعد</title>
+
+<para
+>باستخدام المفاوض، يمكنك أيضًا تعلم تراكيب نحوية محددة، مثل جنس الأسماء، وصيغ المقارنة للصفات، وتصريف الأفعال. دعنا نلقي نظرة على بعض الأمثلة. </para>
+
+<sect2 id="articles-and-gender-of-nouns"
+><title
+>أدوات التعريف وجنس الأسماء</title>
+
+<para
+>بمجرد تفعيل وضع الممارسة <guilabel
+>جنس الأسماء</guilabel
+>، اضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>ابدأ الممارسة...</guiicon
+> في شريط الأدوات. </para>
+
+<para
+>في الحالة أدناه، نستخدم الألمانية كلغة للتعلم، لذا لديك ثلاثة أجناس للاختيار من بينها: مذكر ومؤنث ومحايد. بالضغط على <guibutton
+>تلميح</guibutton
+>، يُستبعد أحد الإجابات الخاطئة. بالطبع، يمكنك أيضًا أن تقرر <guibutton
+>الإجابة لاحقًا</guibutton
+> بالضغط على ذلك الزر. </para>
+
+<para
+>يجب عليك إدخال أدوات التعريف للغة في المحرر لرؤية الأدوات بدلًا من مصطلحات الجنس النحوي. لاحظ أيضًا أن هذا يعمل فقط إذا تم ضبط جنس الكلمات بشكل صحيح. راجع <link linkend="word-types"
+>أنواع الكلمات</link
+> لمزيد من المعلومات حول كيفية تغيير نوع الكلمة إلى الجنس الصحيح. </para>
+
+<screenshot>
+  <screeninfo
+>وضع ممارسة جنس الأسماء</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - وضع ممارسة جنس الأسماء</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>عند إعطائك الإجابة الصحيحة، يُعرض ما يلي وتواصل الممارسة بالضغط على زر <guibutton
+>متابعة</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>وضع ممارسة جنس الأسماء</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_right.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - جنس الأسماء، إجابة صحيحة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>إذا أعطيت إجابة خاطئة، يُعرض ما يلي وتواصل الممارسة بالضغط على زر <guibutton
+>متابعة</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>وضع ممارسة جنس الأسماء</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="articles_and_gender_wrong.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - جنس الأسماء، إجابة خاطئة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>يمكنك التوقف عن التمرين في أي وقت بالضغط على زر <guibutton
+>أوقف التمرين</guibutton
+>. </para>
+</sect2>
+
+<sect2 id="comparison-forms-of-adjectives-and-adverbs"
+><title
+>صيغ المقارنة للصفات والظروف</title>
+
+<para
+>في قسم <guilabel
+>وضع الممارسة</guilabel
+>، اختر <guilabel
+>صيغ المقارنة</guilabel
+> ثم اضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>بدء الممارسة...</guiicon
+> في شريط الأدوات للمتابعة. </para>
+
+<para
+>يعمل هذا فقط عندما تُدخل صيغ التصريف للكلمة في مجموعة المفردات. انظر <link linkend="entering-comparison-forms"
+>إدخال صيغ المقارنة</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>ضبط الممارسة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison.png" format="PNG"/></imageobject>
+    <caption
+>وضع ممارسة صيغ المقارنة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>يتطلب التمرين إدخال صيغ المقارنة للمصطلح المعروض. في هذه الحالة، ترجمة الكلمة الإنجليزية <emphasis
+>old</emphasis
+> إلى الألمانية. تحتوي اللغة الألمانية على ثلاث صيغ: <emphasis
+>المطلق، المقارن</emphasis
+> و<emphasis
+>التفضيل</emphasis
+>. للمتابعة في التمرين، اضغط على زر <guibutton
+>متابعة</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>وضع ممارسة صيغ المقارنة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_right.png" format="PNG"/></imageobject>
+    <caption
+>كلمة جديدة - مقارنة صحيحة</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="conjugations"
+><title
+>تصريفات</title>
+
+<para
+>لممارسة التصريفات، اختر وضع <guilabel
+>التصريفات</guilabel
+> والأزمنة التي ترغب في تمرينها. </para>
+
+<para
+>في المستند، يجب إدخال صيغ التصريف للكلمات لتمكين وضع الممارسة هذا من العمل. انظر <link linkend="entering-inflection-forms"
+>إدخال صيغ التصريف</link
+>. </para>
+
+<screenshot>
+  <screeninfo
+>ضبط الممارسة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Configure_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>وضع ممارسة التصريفات</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>ثم اضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>بدء الممارسة...</guiicon
+> في شريط الأدوات. يُطلب منك إدخال صيغ التصريف الصحيحة وفقًا للزمن المعروض. للمتابعة، اضغط على زر <guibutton
+>متابعة</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>وضع ممارسة التصريفات</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_practice_conjugation.png" format="PNG"/></imageobject>
+    <caption
+>ممارسة التصريف</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<chapter id="vocabulary-editing"
+><title
+>تحرير المفردات</title>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="edit_main.png" format="PNG"/></imageobject>
+    <caption
+>تحرير الممارسات</caption>
+  </mediaobject>
+</screenshot>
+
+<sect1 id="setup"
+><title
+>الإعداد</title>
+
+<para
+>قبل البدء في استخدام مجموعة مفردات أو إنشاء مجموعتك الخاصة، من المفيد فهم العناصر المختلفة في المفاوض وضبطها وفقًا لذلك. ستوجهك الأقسام التالية خطوة بخطوة خلال هذه العملية. توجد عدة مواقع في المفاوض للإعدادات: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>خصائص...</guimenuitem
+></menuchoice
+> هذا هو مكان <guilabel
+>خصائص المستند العامة</guilabel
+>، أي بعض المعلومات حول مجموعة المفردات الخاصة بك وعنك.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>تحرير</guimenu
+> <guimenuitem
+>اللغات...</guimenuitem
+></menuchoice
+> يفتح حوار <guilabel
+>تحرير اللغات</guilabel
+>، حيث ستجد الإعدادات المتعلقة باللغات التي تستخدمها.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>ممارسة</guimenu
+> <guimenuitem
+>ضبط الممارسة...</guimenuitem
+></menuchoice
+> هنا إعدادات كيفية ممارسة مفرداتك. اعتمادًا على ما تريد فعله خلال جلسة التعلم المحددة، يمكنك تغييرها أثناء التنقل.</para
+></listitem>
+
+  <listitem
+><para
+><menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>ضبط المفاوض...</guimenuitem
+></menuchoice
+> للإعدادات العامة وإعدادات العرض.</para
+></listitem>
+</itemizedlist>
+
+<sect2 id="about-the-collection"
+><title
+>حول المجموعة</title>
+
+<para
+>إدخال البيانات الوصفية مثل عنوان ومعلومات الاتصال الخاصة بك ذو صلة إذا كنت تخطط لجعل مجموعتك متاحة للآخرين. استخدم عنصر القائمة <menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>خصائص...</guimenuitem
+></menuchoice
+> لتحرير البيانات. </para>
+
+<screenshot>
+  <screeninfo
+>حوار خصائص لـ <quote
+>filename.kvtml</quote
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="document_properties.png" format="PNG"/></imageobject>
+    <caption
+>تحرير الخصائص</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="vocabulary-columns"
+><title
+>أعمدة المفردات</title>
+
+<para
+>اعتمادًا على ما ستكون عليه جلسات التعلم الخاصة بك، قد يكون من المناسب ظهور أعمدة مفردات إضافية في قسم التحرير الخاص بك. لاختيار هذه الأعمدة، حدد عنصر القائمة <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>أعمدة المفردات...</guimenuitem
+></menuchoice
+>. هناك يمكنك تحديد ما إذا كانت أعمدة <emphasis
+>النطق، نوع الكلمة، المرادف، المتضاد، المثال، التعليق</emphasis
+> و/أو <emphasis
+>إعادة الصياغة</emphasis
+> ستُعرض. </para>
+
+<screenshot>
+  <screeninfo
+>حوار أعمدة المفردات</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="vocabulary_columns.png" format="PNG"/></imageobject>
+    <caption
+>ضبط الأعمدة</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+
+<sect2 id="languages-and-grammar"
+><title
+>اللغات والقواعد</title>
+
+<para
+>اضبط بعض تفاصيل القواعد لمساعدة المفاوض لك. استخدم عنصر القائمة <menuchoice
+><guimenu
+>تحرير</guimenu
+> <guimenuitem
+>اللغات...</guimenuitem
+></menuchoice
+> لاستدعاء القواعد. </para>
+
+<para
+>الأدوات في الإنجليزية هي ببساطة <guilabel
+>the</guilabel
+> كأداة تعريف و<guilabel
+>a</guilabel
+> كأداة تنكير. معظم اللغات الأخرى تحتوي على أدوات أكثر يمكن ملؤها في لسان <guilabel
+>الأدوات</guilabel
+>. </para>
+
+<para
+>للتصريفات، ينبغي ملء الضمائر الشخصية. معظم اللغات لا تحتوي على صيغ تصريف مختلفة لهو/هي/هو (لغير العاقل)، في هذه الحالة، ينبغي <emphasis
+>ألا</emphasis
+> تعلّم <guilabel
+>للذكر/الأنثى تصريفات مختلفة</guilabel
+>! ببساطة أدخل الضمائر لجميع الصيغ الثلاث. </para>
+
+<table>
+  <title
+>الضمائر الشخصية في الإنجليزية</title>
+  <tgroup cols="3">
+  <tbody>
+  <row>
+    <entry
+></entry>
+    <entry
+>إفراد</entry>
+    <entry
+>صيغة جموع</entry>
+  </row>
+  <row>
+    <entry
+>المتكلم</entry>
+    <entry
+>I</entry>
+    <entry
+>we</entry>
+  </row>
+  <row>
+    <entry
+>المخاطب</entry>
+    <entry
+>you</entry>
+    <entry
+>you</entry>
+  </row>
+  <row>
+    <entry
+>الغائب</entry>
+    <entry
+>هو/هي/هو (لغير العاقل)</entry>
+    <entry
+>هم</entry>
+    </row>
+  </tbody>
+  </tgroup>
+</table>
+
+<para
+>لسان <guilabel
+>الأزمنة</guilabel
+>: بناءً على اللغة، يمكنك إدخال الأزمنة الصحيحة التي تريد تعلم تصريفها لاحقًا. أمثلة: المضارع البسيط، الماضي البسيط، المستقبل الأول، إلخ… </para>
+
+<para
+>بالمناسبة، بالضغط على الزر <guibutton
+>أضف لغة</guibutton
+> يمكنك إضافة لغة إضافية إلى مجموعتك. </para>
+
+<sect3 id="lets-have-a-closer-look-at-spanish"
+><title
+>لنلقي نظرة أقرب على الإسبانية</title>
+
+<para
+>في لسان <guilabel
+>عام</guilabel
+> إعدادات اللغة الأساسية، مثل هنا: </para>
+
+<itemizedlist>
+  <listitem
+><para
+><guilabel
+>اللغة:</guilabel
+> الإسبانية</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>الاسم:</guilabel
+> الإسبانية</para
+></listitem>
+  <listitem
+><para
+><guilabel
+>تخطيط لوحة المفاتيح:</guilabel
+> us (للإنجليزية)</para
+></listitem>
+</itemizedlist>
+
+<para
+>يمكنك ترك <guilabel
+>تخطيط لوحة المفاتيح:</guilabel
+> فارغًا إذا لم تكن متأكدًا مما تستخدمه. سيتخذ المفاوض ببساطة التخطيط القياسي لحاسوبك. </para>
+
+<screenshot>
+  <screeninfo
+>حوار تحرير اللغة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_general.png" format="PNG"/></imageobject>
+    <caption
+>تحرير لغة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>لننظر إلى لسان <guilabel
+>الأدوات</guilabel
+>: الإسبانية تعرف فقط الأسماء المذكرة والمؤنثة، لذلك يبقى الحقل <guilabel
+>محايد:</guilabel
+> فارغًا. </para>
+
+<screenshot>
+  <screeninfo
+>حوار تحرير اللغة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_articles.png" format="PNG"/></imageobject>
+    <caption
+>لسان الأدوات</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>لسان <guilabel
+>الضمائر الشخصية</guilabel
+> للإسبانية يحتوي على صيغ متعددة للمفرد الغائب وجمع المتكلم والمخاطب والغائب. للبقاء متسقًا، ينبغي إدخال الاحتمالات بعلامة <guilabel
+>/</guilabel
+> بين الصيغتين. </para>
+
+<screenshot>
+  <screeninfo
+>حوار تحرير اللغة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_personal_pronouns.png" format="PNG"/></imageobject>
+    <caption
+>لسان الضمائر الشخصية</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>تحت لسان <guilabel
+>الأزمنة</guilabel
+> ستجد الأزمنة المختلفة المتاحة لصيغة فعل. يمكنك الإضافة إلى الأزمنة الموجودة بالفعل بالضغط على الأزرار <guibutton
+>جديد...</guibutton
+>، <guibutton
+>عدّل...</guibutton
+> أو في حال عدم وجود شيء بالفعل ببساطة <guibutton
+>احذف</guibutton
+> الزمن بعد تحديده. </para>
+
+<screenshot>
+  <screeninfo
+>حوار تحرير اللغة</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="lang_tenses.png" format="PNG"/></imageobject>
+    <caption
+>لسان الأزمنة</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+</sect1>
+
+<sect1 id="units"
+><title
+>الوحدات</title>
+
+<para
+>على اليسار لديك قائمة بالوحدات. إذا بدأت مجموعة جديدة، قد تكون هذه القائمة فارغة باستثناء وحدة واحدة أُنشئت افتراضيًا لك. </para>
+
+<para
+>إذا لم تتمكن من رؤية قائمة الوحدات، قد تحتاج إلى تفعيلها في مربع الاختيار <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>الوحدات</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>تُظهر خانات الاختيار أمام اسم الوحدة أي الوحدات مُضمّنة حاليًا في ممارستك. الرقم المجاور هو عدد الكلمات في الوحدة. </para>
+
+<sect2 id="new-unit"
+><title
+>وحدة جديدة</title>
+
+<para
+>اختر أين تنتمي هذه الوحدة، مثلًا المجموعة <guilabel
+>دروسي الإسبانية</guilabel
+>. </para>
+
+<para
+>يمكنك تحديد عنصر <guilabel
+>وحدة جديدة</guilabel
+> باستخدام إحدى الطرق التالية: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>أيقونة &GUI;: اختر أيقونة <guiicon
+>وحدة جديدة</guiicon
+> في شريط الأدوات.</para
+></listitem>
+
+  <listitem
+><para
+>عنصر قائمة: اختر <menuchoice
+><guimenu
+>وحدة</guimenu
+> <guimenuitem
+>وحدة جديدة</guimenuitem
+></menuchoice
+></para
+></listitem>
+
+  <listitem
+><para
+>قائمة سياقية: انقر بزر الفأرة الأيمن &RMB; على المجموعة واختر عنصر <guimenuitem
+>وحدة جديدة</guimenuitem
+>.</para
+></listitem>
+</itemizedlist>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_lesson2.png" format="PNG"/></imageobject>
+    <caption
+>المجموعة: دروسي الإسبانية</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Without gui icon in the toolbar: New Unit -->
+<para
+>يرجى التأكد من تحديد النقطة الصحيحة في الهيكل الشجري للوحدات قبل اختيار أيقونة <guiicon
+>وحدة جديدة</guiicon
+> في شريط الأدوات. في حالتنا، رغبةً في <emphasis
+>وحدة فرعية</emphasis
+> من <guilabel
+>المجموعة: دروسي الإسبانية</guilabel
+>، يجب تحديد تلك الوحدة تحديدًا قبل المتابعة باستخدام <guiicon
+>وحدة جديدة</guiicon
+>. </para>
+</sect2>
+
+<sect2 id="moving-renaming-and-deleting-units"
+><title
+>نقل الوحدات وإعادة تسميتها وحذفها</title>
+
+<para
+>لتغيير اسم وحدة، انقر نقرًا مزدوجًا عليها، أو انقر بزر الفأرة الأيمن &RMB; على الوحدة واختر <guimenuitem
+>إعادة تسمية الوحدة</guimenuitem
+>. يمكنك أيضًا حذفها بهذه الطريقة (ولكن ستفقد محتوياتها أيضًا). </para>
+
+<para
+>إذا لم تعجبك ترتيب الوحدات، يمكنك نقل وحدة باستخدام الفأرة. يمكنك سحبها إلى وحدة أخرى، فتصبح تابعة لتلك الوحدة. </para>
+</sect2>
+
+<sect2 id="splitting-a-unit"
+><title
+>تقسيم وحدة</title>
+
+<para
+>إذا كبرت وحداتك كثيرًا، يمكنك اختيار تقسيمها لتسهيل التعلم في وحدات صغيرة. 20 كلمة لكل وحدة هو حجم مناسب غالبًا. انقر بزر الفأرة الأيمن &RMB; على وحدة، أو استخدم عنصر القائمة <menuchoice
+><guimenu
+>وحدة</guimenu
+> <guimenuitem
+>تقسيم الوحدة إلى وحدات أصغر</guimenuitem
+></menuchoice
+> وستُقسّم الوحدة إلى وحدات فرعية. يمكنك اختيار عشوائية الكلمات التي توضع في الوحدات الجديدة قبل تعيينها، أو إبقائها مرتبة. </para>
+</sect2>
+
+<sect2 id="what-is-shown-in-the-table"
+><title
+>ما يُعرض في الجدول</title>
+
+<para
+>يعرض المفاوض دائمًا كلمات الوحدة التي حددتها حاليًا. يمكنك تمكين رؤية الكلمات في الوحدات الفرعية الموجودة في هذه الوحدة أيضًا. استخدم خانة الاختيار <menuchoice
+><guimenu
+>وحدة</guimenu
+> <guimenuitem
+>إظهار المدخلات من الوحدات الفرعية</guimenuitem
+></menuchoice
+> لتمكين ذلك. بهذه الطريقة، يمكنك تصفح جميع الكلمات بتحديد وحدة المستند في الأعلى. </para>
+</sect2>
+</sect1>
+
+<sect1 id="word-types"
+><title
+>أنواع الكلمات</title>
+
+<para
+>يتيح لك المفاوض ربط أنواع الكلمات بالكلمات. أنواع الكلمات هي مثلًا: الأسماء، الأفعال، الصفات، والظروف. </para>
+
+<para
+>للعمل مع أنواع الكلمات، فعّل أداة أنواع الكلمات باستخدام خانة الاختيار: <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>أنواع الكلمات</guimenuitem
+></menuchoice
+> </para>
+
+<para
+>يمكنك تصنيف أنواع الكلمات تمامًا مثل الوحدات. </para>
+
+<para
+>إذا أردت رؤية جميع الكلمات من نوع معين - &eg; جميع الأسماء، فما عليك سوى تحديد فئة الاسم، وسترى الأسماء فقط في الجدول. </para>
+
+<para
+>أسهل طريقة لتعيين نوع الكلمة هي سحب الكلمة وإفلاتها على نوعها. يمكنك فعل ذلك بعدة كلمات في نفس الوقت. </para>
+
+<!-- empty sect2
+<sect2 id="words-or-sentences"
+><title
+>Words or Sentences</title>
+</sect2
+-->
+<sect2 id="adding-new-vocabulary"
+><title
+>إضافة مفردات جديدة</title>
+
+<para
+>استخدم أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="list-add.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>إضافة مدخلة جديدة</guiicon
+> في شريط الأدوات لإضافة كلمات جديدة. يمكنك البدء بكتابة الكلمة في اللغة الأولى فورًا. بعد إدخال الكلمة الأولى، اضغط مفتاح &Tab; للانتقال إلى اللغة التالية. </para>
+</sect2>
+
+<sect2 id="editing-words"
+><title
+>تحرير الكلمات</title>
+
+<para
+>إذا أردت استبدال كلمة، حدد مدخلتها وابدأ الكتابة. لتغيير الكلمة بدلًا من ذلك، انقر نقرًا مزدوجًا على المدخلة ويمكنك تغيير محتويات الخلية دون فقدان الكلمة القديمة. </para>
+
+<para
+>اضغط مفتاح &Tab; للانتقال إلى الكلمة التالية مع البقاء في وضع التحرير. مفتاح &Enter; يخرج من هذا الوضع. يمكنك استخدام مفاتيح الأسهم للتنقل. </para>
+</sect2>
+</sect1>
+
+<sect1 id="synonyms"
+><title
+>المرادفات</title>
+
+<para
+>إعداد المترادفات صعب ولا يعمل دائمًا بشكل جيد. إليك كيفية إعدادها على أي حال: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>استخدم خانة الاختيار <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>مترادفات</guimenuitem
+></menuchoice
+> لرؤية أداة المترادفات.</para
+></listitem>
+
+  <listitem
+><para
+>حدد الكلمة الأولى (أ) التي تريد جعلها مترادفة، ثم انقر على الكلمة الثانية (ب).</para
+></listitem>
+
+  <listitem
+><para
+>يغير الزر في أداة المترادفات نصه إلى <guibutton
+>أ و ب مترادفتان</guibutton
+>.</para
+></listitem>
+</itemizedlist>
+
+<para
+>ستُعرض الكلمات الآن كمتصلات في أداة المترادفات ويمكن التعرف عليها كمترادفات في الممارسة. </para>
+</sect1>
+
+<sect1 id="adding-images"
+><title
+>إضافة الصور</title>
+
+<para
+>أولًا، أظهر أداة الصورة بتحديد مربع الاختيار <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>صورة</guimenuitem
+></menuchoice
+>. سيؤدي هذا إلى إظهار قسم <guilabel
+>صورة</guilabel
+> في الجانب الأيمن من شاشة المفاوض. </para>
+
+<para
+>لإضافة صورة إلى كلمة، تأكد من تمييز الكلمة. في قسم <guilabel
+>صورة</guilabel
+> على الجانب الأيمن، اضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>مجلد</guiicon
+> واختر الصورة التي ترغب في إقرانها. عند تحديد صورة لزوج من الترجمات، ستُوسم الزاويتان السفليتان اليمينيتان لخليتي الكلمتين بعلم أزرق. إذا أردت ذلك، افعل الشيء نفسه مع الكلمة الأخرى من الزوج. يُظهر التمرير فوق هذا العلم بمؤشر الفأرة اسم ومسار ملف الصورة. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-images.png" format="PNG"/></imageobject>
+    <caption
+>إضافة صورة</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- <para
+>The needed images can be obtained from Google search using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the image highlight a word in the list then choose the <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Image</guimenuitem
+></menuchoice
+> menu item.
+</para>
+
+<screenshot>
+  <screeninfo
+>Obtaining images from the Internet</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006b.png" format="PNG"/></imageobject>
+    <caption
+>Obtaining images from the Internet</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Choose the right image using <guibutton
+>Next</guibutton
+> and <guibutton
+>Previous</guibutton
+> buttons. You can correct the search criteria for the images using the corresponding text box.
+</para>
+
+<para
+>If you prefer only free images check the corresponding check box.
+</para>
+
+<para
+>When the selection is finished just press on the <guibutton
+>OK</guibutton
+> button and the image will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para>
+
+<warning
+><para
+>Due to the current script limitations the image files cannot be saved in the paths with Unicode symbols in the names of folders and files.
+</para
+></warning
+> -->
+</sect1>
+
+<sect1 id="adding-sound"
+><title
+>إضافة الصوت</title>
+
+<para
+>أولًا، أظهر أداة الصوت بتحديد مربع الاختيار <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>صوت</guimenuitem
+></menuchoice
+>. سيؤدي هذا إلى إظهار قسم <guilabel
+>صوت</guilabel
+> في الجانب الأيمن من شاشة المفاوض. </para>
+
+<para
+>لإضافة صوت إلى كلمة، تأكد من تمييز الكلمة. في قسم <guilabel
+>صوت</guilabel
+> على الجانب الأيمن، اضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>مجلد</guiicon
+> واختر الصوت الذي ترغب في إقرانه. عند تحديد ملف صوت لكلمة، ستُوسم الزاوية العلوية اليمنى لخلية تلك الكلمة بعلم أحمر. إذا أردت ذلك، افعل الشيء نفسه مع الكلمة الأخرى من الزوج. يُظهر التمرير فوق هذا العلم بمؤشر الفأرة اسم ومسار ملف الصوت. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="adding-sound.png" format="PNG"/></imageobject>
+    <caption
+>إضافة صوت</caption>
+  </mediaobject>
+</screenshot>
+
+<!-- Not found!
+<para
+>The needed sound files can be obtained from Wiktionary using &parley; inbuilt scripts.
+</para>
+
+<para
+>To obtain the sound file highlight a word in the list then choose <menuchoice
+><guimenu
+>Scripts</guimenu
+> <guimenuitem
+>Fetch Sound</guimenuitem
+></menuchoice
+> from the &parley; menu.
+</para>
+
+<para
+>The sound file will be saved next to the current vocabulary file in the <filename role="directory"
+><replaceable
+>name_of_vocabulary</replaceable
+>_files</filename
+> subfolder.
+</para
+> -->
+</sect1>
+
+<sect1 id="entering-comparison-forms"
+><title
+>إدخال صيغ المقارنة</title>
+
+<para
+>لإدخال صيغ المقارنة، تأكد من تمكين أداة صيغ المقارنة. تفتحها بمربع الاختيار: <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>صيغ المقارنة</guimenuitem
+></menuchoice
+> </para>
+
+<para
+>أولًا، اختر كلمة هي صفة أو ظرف. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form.png" format="PNG"/></imageobject>
+    <caption
+>أداة صيغ المقارنة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>اضغط على الزر <guibutton
+>صفة</guibutton
+> أو <guibutton
+>ظرف</guibutton
+> في أداة صيغ المقارنة. </para>
+<!--
+<screenshot>
+  <screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_edit_comparison_form_2.png" format="PNG"/></imageobject>
+    <caption
+></caption>
+  </mediaobject>
+</screenshot>
+-->
+<para
+>أدخل أشكال المقارنة. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="comparison_form_edit.png" format="PNG"/></imageobject>
+    <caption
+>تحرير صيغ المقارنة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>يمكنك الآن استخدام وضع <link linkend="comparison-forms-of-adjectives-and-adverbs"
+>ممارسة صيغ المقارنة</link
+>. </para>
+</sect1>
+
+<sect1 id="entering-inflection-forms"
+><title
+>إدخال صيغ التصريف</title>
+
+<para
+>لإدخال صيغ التصريف، تأكد من تمكين أداة صيغ التصريف. تفتحها بمربع الاختيار: <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>تصريف (أفعال، صفات، أسماء)</guimenuitem
+></menuchoice
+> </para>
+
+<para
+>أولًا، اختر كلمة هي فعل. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation.png" format="PNG"/></imageobject>
+    <caption
+>تحرير صيغ التصريف</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>اضغط على الزر <guibutton
+>فعل</guibutton
+> في أداة التصريفات. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="conjugation_edit.png" format="PNG"/></imageobject>
+    <caption
+>تحرير صيغ التصريف</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>بعد اختيار الزمن الصحيح في مربع القائمة المنسدلة <guilabel
+>الزمن:</guilabel
+>، أدخل صيغ التصريف. </para>
+
+<para
+>يمكن ضبط الأزمنة لكل لغة: <link linkend="languages-and-grammar"
+>اللغات والقواعد</link
+>. </para>
+
+<para
+>يمكنك الآن استخدام وضع <link linkend="conjugations"
+>ممارسة التصريفات</link
+>. </para>
+
+<para
+>استخدم الزر <guibutton
+>اسم</guibutton
+> أو <guibutton
+>صفة</guibutton
+> لإضافة صيغ الإعراب إلى مفرداتك. </para>
+</sect1>
+
+<sect1 id="creating-new-files"
+><title
+>إنشاء ملفات جديدة</title>
+
+<para
+>في هذا القسم، نصف كيفية إنشاء ملفات جديدة، وهذا ليس فقط مع جزء تعلم المفردات المعتاد، بل أيضًا لتمارين القواعد، والرياضيات، إلخ… </para>
+
+<sect2 id="new-collection--vocabulary-english-german"
+><title
+>مجموعة جديدة: مفردات إنجليزية-ألمانية</title>
+
+<para
+>في هذا القسم، نصف كيف يمكنك إنشاء ملف تدريب على المفردات يتضمن صورًا وصوتًا. في مرحلة ثانية، سنضيف أيضًا صفات وأفعالًا. هذا مثال كامل جدًا، وبالتالي طويل جدًا. في النهاية، لن تحتاج إلى جميع النقاط لمشروعك. </para>
+
+<para
+>بما أننا نرغب في إضافة ملفات صوت وصور، يجب أن نتأكد من أن هذه ستكون جميعها في مجلد واحد يُسمى للراحة <emphasis
+>eng-deu</emphasis
+>. سيُحفظ ملف البيانات الذي ننشئه بـ المفاوض في نفس المجلد. سيساعد هذا كثيرًا عندما تقرر مشاركة عملك مع الآخرين. </para>
+
+<para
+>إذن هذا ما لدينا من ملفات صوت وصور: </para>
+
+<screenshot>
+  <screeninfo
+>مجلّد البيانات في &dolphin;</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Folder_with_sound_and_pictures.png" format="PNG"/></imageobject>
+    <caption
+>مجلّد البيانات في &dolphin;</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>لنبدأ من <guilabel
+>لوحة القيادة</guilabel
+> التي تظهر عند تشغيل المفاوض: </para>
+
+<screenshot>
+  <screeninfo
+>النافذة الرئيسة لـ المفاوض</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>لوحة تحكم مع مجموعات متعددة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>اضغط على زر <guibutton
+>إنشاء مجموعة جديدة...</guibutton
+>. </para>
+
+<para
+>يظهر قسم <guilabel
+>خصائص المستند العامة</guilabel
+> ويُملأ كما يلي (فقط كيّف حسب ما يتعلق بملفك): </para>
+
+<screenshot>
+  <screeninfo
+>حوار الخصائص لـ ...</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="general_document_properties.png" format="PNG"/></imageobject>
+    <caption
+>حوار الخصائص لـ ...</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>بعد ذلك، اضغط على زر <guibutton
+>موافق</guibutton
+>. تطلب منك الشاشة التالية ضبط تفاصيل اللغة. هنا لا نريد تغيير أي شيء، لذا نضغط فقط على <guibutton
+>موافق</guibutton
+>. </para>
+
+<para
+>كخطوة أولى، لننشئ جزء المفردات. سنفكر في إضافة ملفات الصوت والصور في مرحلة ثانية. هذا ما تبدو عليه الوحدة: </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="new_empty_collection.png" format="PNG"/></imageobject>
+    <caption
+>مجموعة جديدة فارغة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>قبل أن نفعل أي شيء آخر، لنحفظ الملف في المجلد الذي يحتوي على الصور وملفات الصوت. استخدم عنصر القائمة <menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>حفظ</guimenuitem
+></menuchoice
+> واختر المجلد باستخدام التصفح. في هذا المثال، سنسمي الملف <guilabel
+>مدرب إنج-ألم</guilabel
+> - بمجرد إدخال الاسم، اضغط على زر <guibutton
+>حفظ</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>حوار حفظ المفردات باسم</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="save_new_collection.png" format="PNG"/></imageobject>
+    <caption
+>حفظ مجموعة جديدة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>إذا تفقدت الآن مجلدك الذي يحتوي على ملفات الصوت والصور، ستجد أيضًا الملف <filename
+>مدرب إنج-ألم.kvtml</filename
+>&nbsp;. </para>
+
+<para
+>لنلق نظرة سريعة على الكلمات التي نريد إضافتها: <emphasis
+>تفاحة، طائر، قطة، كرز، بقرة، برتقالة، كمثرى، ثعبان، فراولة</emphasis
+>. لدينا حيوانات وفواكه، لذا قررنا إنشاء وحدتين تسميان: <guilabel
+>حيوانات</guilabel
+> و <guilabel
+>فواكه</guilabel
+>. </para>
+
+<para
+>نعيد الآن تسمية <guilabel
+>الدرس 1</guilabel
+> إلى <guilabel
+>حيوانات</guilabel
+> ثم نضيف وحدة تسمى <guilabel
+>فواكه</guilabel
+>. انقر بزر الفأرة الأيمن على <guilabel
+>الدرس 1</guilabel
+> واختر <guimenuitem
+>إعادة تسمية الوحدة</guimenuitem
+> من العناصر المعروضة. الآن، <guilabel
+>الدرس 1</guilabel
+> مظلل ويمكنك ببساطة استبداله بكتابة <guilabel
+>حيوانات</guilabel
+>. عند الانتهاء، اضغط على مفتاح &Enter;. الآن انقر بزر الفأرة الأيمن على <guilabel
+>المجموعة: مدرب المفردات إ...</guilabel
+>، وهو جذر شجرة الوحدات، واختر <guimenuitem
+>وحدة جديدة</guimenuitem
+> من العناصر المعروضة. في الحقل الجديد، اكتب <guilabel
+>فواكه</guilabel
+> واضغط على مفتاح &Enter; مرة أخرى. </para>
+
+<para
+>أولًا، لنُدرج الحيوانات. من فضلك انقر على الوحدة <guilabel
+>حيوانات</guilabel
+> وستحصل على جدول فارغ يمكنك ملؤه. انقر بزر الفأرة الأيمن في الحقل الأول، وأدرج المصطلحات المصدر. ثم أدرج المصطلحات الهدف في العمود الثاني. بمجرد إدراج جميع أسماء الحيوانات الإنجليزية الأربعة مع ترجمتها الألمانية، تبدو الشاشة هكذا: </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_004.png" format="PNG"/></imageobject>
+    <caption
+>تحرير مدرب المفردات الإنجليزية-الألمانية</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>في حالتنا، نريد فقط 4 إدخالات في وحدة الحيوانات. هناك العديد من الأسطر الفارغة التي يجب حذفها. لفعل ذلك، انقر على أول حقل فارغ، واستمر في الضغط على مفتاح &Shift; أثناء النقر على آخر حقل فارغ. سيتم تظليل جميع الأسطر المراد حذفها. ثم اضغط على مفتاح &Del;. </para>
+
+<para
+>لنُضف مصطلحات الفواكه. فقط انقر على الوحدة المسماة <guilabel
+>فواكه</guilabel
+>. هذه الوحدة الثانية فارغة تمامًا. نظرًا لأن لدينا خمسة مصطلحات فواكه، نحتاج إلى إضافة خمسة أسطر. لذا، اضغط على مفتاح &Ins; خمس مرات، ثم، تمامًا كما في السابق، نضيف مصطلحاتنا. </para>
+
+<para
+>لا تنس الحفظ بين الحين والآخر ... </para>
+
+<para
+>نقرة على جذر شجرة الوحدات لدينا <guilabel
+>المجموعة: مدرب المفردات إ...</guilabel
+> وستظهر المفاوض جميع الإدخالات الموجودة في الوحدتين: </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_005.png" format="PNG"/></imageobject>
+    <caption
+>جميع الإدخالات الموجودة في وحدتين</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>حان وقت إضافة الصوت والصور. أولًا وقبل كل شيء، نحتاج إلى تفعيل عرضي <guilabel
+>الصورة</guilabel
+> و <guilabel
+>الصوت</guilabel
+>. حدد مربعي الاختيار <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>صورة</guimenuitem
+></menuchoice
+> و <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>صوت</guimenuitem
+></menuchoice
+>. بمجرد تفعيل هذين الخيارين، يظهر قسمان جديدان كعلامتي تبويب جديدتين في الجانب السفلي الأيمن من شاشة تحرير المفاوض. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_006.png" format="PNG"/></imageobject>
+    <caption
+>قسمي الصوت والصورة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>اختر الكلمة الإنجليزية <emphasis
+>تفاحة</emphasis
+> بالنقر عليها. إنها مظللة، لذا لنُضف الصورة. في قسم الصورة على الجانب الأيمن، اضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="folder-black.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>مجلد</guiicon
+> واختر الصورة التي ترغب في ربطها. </para>
+
+<para
+>لإضافة النطق للكلمة الإنجليزية تفاحة، افعل نفس الشيء في قسم الصوت، مع اختيار ملف الصوت المناسب. </para>
+
+<para
+>بالضغط على زر <guibutton
+>تشغيل</guibutton
+> في أداة الصوت، يمكنك الاستماع إلى النطق. </para>
+
+<para
+>ستبدو الشاشة بعد ذلك هكذا: </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_007.png" format="PNG"/></imageobject>
+    <caption
+>تشغيل الصوت</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>ثم انقر على الترجمة الألمانية <guilabel
+>Apfel</guilabel
+>. الحقل مظلل الآن للإشارة إلى التحديد. ستلاحظ أن الصورة مع التفاحة مرتبطة أيضًا بالمصطلح الألماني. في قسم الصوت، حدد النطق، تمامًا كما في السابق. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_008.png" format="PNG"/></imageobject>
+    <caption
+>التحقق من ربط البيانات</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>استمر هكذا مع جميع المصطلحات. </para>
+
+<para
+>حان الوقت لإضافة الصفات والأفعال كوحدات إلى مشروعنا. لذا افعل كما في السابق مع الوحدة <emphasis
+>فواكه</emphasis
+> وأنشئ وحدتين جديدتين: <emphasis
+>صفات</emphasis
+> و<emphasis
+>أفعال</emphasis
+>. لنفترض أننا سنضيف <emphasis
+>كبير، صغير، قديم، شاب، ضيق</emphasis
+> في وحدة الصفات و<emphasis
+>يذهب، يأتي، يشتري، يشرب، يأكل</emphasis
+> في وحدة الأفعال. </para>
+
+<para
+>يظهر التالي لقطة شاشة تحتوي على جميع المصطلحات المُدرجة. الآن، الكلمات مختلطة وسيكون من الجيد رؤية ما هو <emphasis
+>اسم، صفة</emphasis
+> أو <emphasis
+>فعل</emphasis
+>. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_009.png" format="PNG"/></imageobject>
+    <caption
+>يعرض جميع المصطلحات المُدرجة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>كخطوة تالية، سنعرض <guilabel
+>نوع الكلمة</guilabel
+>. حدد خانة الاختيار <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>أعمدة المفردات</guimenuitem
+></menuchoice
+>. نقوم بتنشيط <guilabel
+>نوع الكلمة</guilabel
+> لـ <emphasis
+>الإنجليزية</emphasis
+> و<emphasis
+>الألمانية</emphasis
+> بالنقر على خانة الاختيار أمام <guilabel
+>نوع الكلمة</guilabel
+>. ثم اضغط على الزر <guibutton
+>موافق</guibutton
+> لقبول التغييرات. </para>
+
+<screenshot>
+  <screeninfo
+>حوار أعمدة المفردات</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_010.png" format="PNG"/></imageobject>
+    <caption
+>اختيار عنصر نوع الكلمة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>بالنقر على الحقول في العمود <guilabel
+>نوع الكلمة</guilabel
+> يمكنك تحديد نوع الكلمة، وبالنسبة للغات التي للأسماء فيها جنس، يمكنك أيضًا تحديد تركيبة <emphasis
+>الاسم/الجنس</emphasis
+>. بدلًا من ذلك، ابدأ بكتابة الأحرف الأولى من نوع الكلمة لتحديده. أدناه عمود <guilabel
+>نوع الكلمة</guilabel
+> مع جزء من التحديدات التي تمت بالفعل. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_011.png" format="PNG"/></imageobject>
+    <caption
+>اختيار أنواع الكلمات</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>بمجرد أن نحدد جميع أنواع الكلمات، سننظر أولًا في <emphasis
+>الصفات</emphasis
+>، مضيفين <guilabel
+>صيغ المقارنة</guilabel
+> إليها. لذا دعنا ننتقل إلى وحدة <emphasis
+>الصفات</emphasis
+> فقط. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_012.png" format="PNG"/></imageobject>
+    <caption
+>اختيار صيغ المقارنة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>لعرض <guilabel
+>صيغ المقارنة</guilabel
+> على الجانب الأيمن من الشاشة، حدد خانة الاختيار <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>صيغ المقارنة</guimenuitem
+></menuchoice
+>. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_013.png" format="PNG"/></imageobject>
+    <caption
+>يعرض صيغ المقارنة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>حرر <guilabel
+>صيغ المقارنة</guilabel
+> بإضافة <guilabel
+>المقارن</guilabel
+> و<guilabel
+>التفضيل</guilabel
+> إلى الصفات المفردة. أولًا، انقر على الصفة التي ترغب في إضافة صيغ المقارنة لها، في حالتنا <emphasis
+>كبير</emphasis
+>، وأضف <emphasis
+>أكبر</emphasis
+> و<emphasis
+>الأكبر</emphasis
+>. ثم، تابع مع الصفة التالية لإكمالها، حتى يتم إدخال جميع صيغ المقارنة. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_014.png" format="PNG"/></imageobject>
+    <caption
+>إضافة المقارن والتفضيل</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>أخيرًا، دعنا ننظر في صيغة التصريف لـ <guilabel
+>الأفعال</guilabel
+>. حدد وحدة <guilabel
+>الأفعال</guilabel
+> ثم قم بتنشيط قسم التصريف على الجانب الأيمن بتحديد خانة الاختيار <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>التصريف (أفعال، صفات، أسماء)</guimenuitem
+></menuchoice
+>. كمثال، نحرر صيغة المضارع (<guilabel
+>Präsens</guilabel
+>) لـ <emphasis
+>gehen</emphasis
+>. يرجى أولًا تحديد <guilabel
+>Präsens</guilabel
+> من المربع المنسدل ثم إضافة صيغ الفعل. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_trainer_eng-deu_0-9-4_015.png" format="PNG"/></imageobject>
+    <caption
+>اختيار صيغة تصريف الفعل</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>يجب القيام بذلك لجميع الأفعال، وفي جميع الأزمنة الممكنة. </para>
+
+<para
+>بمجرد الانتهاء، يمكنك البدء في الممارسة بالضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <link linkend="vocabulary-practice"
+><guiicon
+>ممارسة</guiicon
+></link
+> في شريط الأدوات. </para>
+</sect2>
+
+<sect2 id="new-collection:-single-names-and-collective-names"
+><title
+>مجموعة جديدة: أسماء مفردة وأسماء جمعية</title>
+
+<para
+>تم إنشاء هذا التمرين للصف الثالث من مدرسة ابتدائية إيطالية. من المتوقع أن يربط التلاميذ الأسماء المفردة بالأسماء الجمعية، مثل <emphasis
+>شجرة</emphasis
+> ← <emphasis
+>غابة</emphasis
+> </para>
+
+<para
+>عند بدء المفاوض تحصل على صفحة البداية، والتي تسرد أيضًا بعض الملفات المستخدمة سابقًا (التي لا يمكنك رؤيتها هنا). </para>
+
+<screenshot>
+  <screeninfo
+>النافذة الرئيسة لـ المفاوض</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="initial_screen.png" format="PNG"/></imageobject>
+    <caption
+>لوحة التحكم</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>اضغط على الزر <guibutton
+>إنشاء مجموعة جديدة...</guibutton
+> وستظهر الشاشة التالية بحقول فارغة أو مملوءة جزئيًا: </para>
+
+<screenshot>
+  <screeninfo
+>حوار خصائص لغير مسمى</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names1.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>حوار خصائص لغير مسمى</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>املأ العنوان، هنا <guilabel
+>nomi singoli e collettivi</guilabel
+>، اسمك، عنوان بريدك الإلكتروني، في مربع النص <guilabel
+>تعليق:</guilabel
+> يمكنك كتابة وصف أكثر تفصيلًا، حدد <guilabel
+>فئتك:</guilabel
+> و<guilabel
+>ترخيصك:</guilabel
+>. ثم لدينا شيء مميز: بدلًا من الإشارة إلى <guilabel
+>اللغة الأولى:</guilabel
+> و<guilabel
+>اللغة الثانية:</guilabel
+>، كما يحدث عادة، أضفنا <emphasis
+>nome singolo</emphasis
+> (اسم مفرد) و<emphasis
+>nome collettivo</emphasis
+> (اسم جمعي). خيارات <guilabel
+>إعداد تفاصيل القواعد</guilabel
+> و<guilabel
+>تنزيل القواعد</guilabel
+> ليست مطلوبة هنا. في لقطة الشاشة، لا تزال مفعلة - يرجى إلغاء تنشيطها بمجرد النقر على خانات الاختيار. عند الانتهاء، يرجى الضغط على الزر <guibutton
+>موافق</guibutton
+>. </para>
+
+<para
+>حدد عنصر القائمة <menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>اللغات...</guimenuitem
+></menuchoice
+> ويظهر قسم <guilabel
+>خصائص لـ nome singolo</guilabel
+> وهنا تراه مع التغييرات الضرورية التي تم إجراؤها بالفعل: </para>
+
+<screenshot>
+  <screeninfo
+>حوار تحرير اللغات</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names4.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>خصائص لـ nome singolo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>على الجانب الأيسر يمكنك رؤية أين تنتمي البيانات التي تضيفها. <emphasis
+>nome singolo</emphasis
+>. اختر اللغة، هنا <emphasis
+>الإيطالية</emphasis
+> وأدخل <emphasis
+>nome singolo</emphasis
+> في حقل التحرير التالي. ثم اضغط على الزر <guibutton
+>موافق</guibutton
+>. </para>
+
+<para
+>الآن يُعرض قسم <guilabel
+>خصائص nome collettivo</guilabel
+>: </para>
+
+<screenshot>
+  <screeninfo
+>حوار تحرير اللغات</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names5.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>خصائص nome collettivo</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>كما في السابق: اختر <guilabel
+>الإيطالية</guilabel
+> كلغة وأدخل <emphasis
+>nome collettivo</emphasis
+> واضغط على الزر <guibutton
+>موافق</guibutton
+>. </para>
+
+<para
+>والآن يمكنك البدء في التحرير: </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names7.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>إنشاء مجموعة تدريب جديدة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>فقط أدخل <emphasis
+>nome singolo</emphasis
+> (الاسم المفرد) في العمود الأول و<emphasis
+>nome collettivo</emphasis
+> (الاسم الجماعي) المقابل في العمود الثاني. </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names8.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>إضافة مدخل جديد</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>إذا لم يكن عدد الحقول المتاحة كافيًا، فقط انقر بزر الفأرة الأيمن (&RMB;) في أي مكان على قسم التحرير واختر <guimenuitem
+>أضف مدخلًا جديدًا</guimenuitem
+>. لا تنس حفظ ملفك بين الحين والآخر. عندما تنتهي من إضافة جميع المدخلات، سترغب في رؤية ما إذا كان وضع التدريب يعمل بشكل جيد. حسنًا، فقط اضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>تدريب</guiicon
+> في شريط الأدوات أعلى قسم التحرير مباشرة، وستظهر صفحة إعدادات التدريب: </para>
+
+<screenshot>
+  <screeninfo
+>نافذة المحرر</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="Parley_create_new_exercise_collective_names10.png" format="PNG"/><!--FIXME update screenshot--></imageobject>
+    <caption
+>وضع تدريب الاختيار من متعدد</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>في هذه الحالة، <guilabel
+>الاختيار من متعدد</guilabel
+> هو خيار جيد، ولكن أيضًا <guilabel
+>كتابي</guilabel
+> سيكون مناسبًا. بعد اختيار وضع التدريب، فقط اضغط على أيقونة <inlinemediaobject
+><imageobject
+><imagedata fileref="practice-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>ابدأ التدريب...</guiicon
+> في شريط الأدوات واستمتع. </para>
+</sect2>
+</sect1>
+
+<sect1 id="getting-additional-collections"
+><title
+>الحصول على مجموعات إضافية</title>
+
+<para
+>عندما تكون في <guilabel
+>لوحة التحكم</guilabel
+>، لديك إمكانية تثبيت مجموعات مباشرة من الخادم، بشرط أن تكون متصلًا بالإنترنت. فقط اضغط على الزر <guibutton
+>تنزيل مجموعات جديدة...</guibutton
+>. </para>
+
+<screenshot>
+  <screeninfo
+>النافذة الرئيسة لـ المفاوض</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="dashboard.png" format="PNG"/></imageobject>
+    <caption
+>لوحة تحكم مع مجموعات متعددة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>تفتح نافذة تحتوي على العديد من المجموعات المثيرة للاهتمام. فقط اختر ما تجده الأكثر إثارة للاهتمام واضغط على الزر <guibutton
+>تثبيت</guibutton
+>. ثم افتح الملف للتدريب أو التحرير. </para>
+
+<screenshot>
+  <screeninfo
+>حوار تنزيل محتوى جديد</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="get_new_stuff.png" format="PNG"/></imageobject>
+    <caption
+>الحصول على مجموعات جديدة</caption>
+  </mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="configure-parley"
+><title
+>اضبط المفاوض</title>
+
+<para
+>يمكنك ضبط مظهر المفاوض من شاشات <guilabel
+>لوحة التحكم</guilabel
+> أو <guilabel
+>التدريب</guilabel
+> أو <guilabel
+>المحرر</guilabel
+>. اختر عنصر القائمة <menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>اضبط المفاوض...</guimenuitem
+></menuchoice
+>. </para>
+
+<sect2 id="theme-tab"
+><title
+>صفحة السمة</title>
+
+<para
+>يفتح التهيئة بصفحة <guilabel
+>السمة</guilabel
+>. هذا هو المكان الذي يمكنك فيه اختيار كيف يجب أن يستقبلك المفاوض عند تشغيله: إصدار <guilabel
+>رمادي</guilabel
+> أنيق أو <guilabel
+>النحل</guilabel
+> المزدحم دائمًا. لاحظ أنه قد لا يكون <guilabel
+>الأرنب الرقيق</guilabel
+> موجودًا في نسختك: إذا أردته، اقرأ القسم التالي. </para>
+
+<para
+>بمجرد اختيار السمة المفضلة لديك، اضغط على الزر <guibutton
+>موافق</guibutton
+>. </para>
+
+<para
+>لقطة شاشة لسمة <guilabel
+>النحل</guilabel
+>: </para>
+
+<screenshot>
+  <screeninfo
+>شاشة التدريب</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="practice_bees.png" format="PNG"/></imageobject>
+    <caption
+>سمة النحل قيد التشغيل</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>وإذا لم تكن هذه كافية: يمكنك الضغط على الزر <guibutton
+>احصل على سمات جديدة...</guibutton
+> للعثور على المزيد من السمات. بمرور الوقت، نأمل أن تظهر المزيد والمزيد من السمات. إذا كنت تعرف كيفية إنشاء رسومات &SVG; (على سبيل المثال باستخدام <ulink url="https://inkscape.org"
+><application
+>إنكسكيب</application
+></ulink
+>)، يمكنك إنشاء السمة الخاصة بك ومشاركتها مع العالم. </para>
+
+<screenshot>
+  <screeninfo
+>حوار الضبط - المفاوض</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_theme.png" format="PNG"/></imageobject>
+    <caption
+>صفحة إعدادات السمة</caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>يمكن العثور على سمات إضافية على <ulink url="https://store.kde.org/browse/cat/357/order/latest/"
+>store.kde.org</ulink
+> </para>
+</sect2>
+
+<sect2 id="general-tab"
+><title
+>صفحة عام</title>
+
+<para
+>تعطيك صفحة <guilabel
+>عام</guilabel
+> بعض الخيارات المتعلقة بسلوك المفاوض. </para>
+
+<sect3 id="open-save-options"
+><title
+>قسم الفتح/الحفظ</title>
+
+<para
+><guilabel
+>حمّل دائمًا آخر مجموعة مفتوحة عند البدء</guilabel
+> سيعيدك فورًا إلى المفردات التي كنت تتعلمها. غالبًا ستستخدم هذا مع الخيار الثاني <guilabel
+>احفظ المفردات آليًا عند الإغلاق والخروج</guilabel
+> لأنه من الملائم ألا تضطر دائمًا للإجابة على نفس السؤال حول ما إذا كان يجب حفظ التغييرات (بما في ذلك نتائج التعلم) أم لا. الخيار <guilabel
+>أنشئ نسخة احتياطية كل ... دقيقة</guilabel
+> يمكن أن يكون مفيدًا جدًا لمساعدتك في حفظ عملك بشكل متكرر. شيء أقل للتفكير فيه. </para>
+
+<para
+>أحيانًا قد يكون استيراد و/أو تصدير ملفات النص (CSV) مفيدًا جدًا، وهناك تحتاج إلى الفاصل المناسب لمعالجة البيانات لاحقًا أو لتتمكن من قراءة البيانات التي حصلت عليها من مكان آخر. يتيح لك المفاوض الاختيار من بين فواصل متعددة لضمان إمكانية إعادة استخدام بياناتك. </para>
+</sect3>
+
+<sect3 id="editing-option"
+><title
+>قسم التحرير</title>
+
+<para
+>هنا يمكنك تحديد ما إذا كان المفاوض يُضيف آليًا صفوفًا جديدة أثناء تحرير مجموعة المفردات الخاصة بك. قد يكون هذا مفيدًا إذا أردت إضافة العديد من المدخلات، قبل تقسيمها إلى وحدات مختلفة. من ناحية أخرى، قد يكون من الجيد إيقاف هذا الخيار إذا أردت العمل عن طريق إنشاء وحدات بعدد أقصى محدد من المدخلات. </para>
+
+<screenshot>
+  <screeninfo
+>حوار الضبط - المفاوض</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_generalconfig.png" format="PNG"/></imageobject>
+    <caption
+>صفحة الإعدادات العامة</caption>
+  </mediaobject>
+</screenshot>
+</sect3>
+</sect2>
+
+<sect2 id="view-tab"
+><title
+>صفحة العرض</title>
+
+<para
+>تتيح لك صفحة <guilabel
+>العرض</guilabel
+> تغيير الخط والحجم لرموز النطق، ويمكنك اختيار <guilabel
+>اللون الأساسي لعرض الدرجات:</guilabel
+> الذي تفضله. </para>
+
+<screenshot>
+  <screeninfo
+>حوار الضبط - المفاوض</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="configure_view.png" format="PNG"/></imageobject>
+    <caption
+>صفحة إعدادات العرض</caption>
+  </mediaobject>
+</screenshot>
+</sect2>
+</sect1>
+</chapter>
+
+<!--FIXME &parley; is not available on &Windows; in 16.04
+<chapter id="parley-on-windows"
+><title
+>&parley; on &Windows;</title>
+
+<para
+>It is possible to install &parley; together with other <ulink url="https://edu.kde.org"
+>Educational software</ulink
+> on &Windows; systems. For further info please visit <ulink url="https://community.kde.org/Windows"
+>this page</ulink
+>.
+</para>
+
+<para
+>The steps to be followed in short:
+</para>
+
+<para
+>Download the installer <ulink url="https://windows.kde.org/download.php"
+>here</ulink>
+</para>
+
+<para
+>Then follow the installation procedure like for any other &Windows; software.
+</para>
+
+<para
+>When you come to the <guilabel
+>Package selection screen</guilabel
+>, select the language(s) you wish the software to be available in <emphasis
+>and</emphasis
+> the package - in this case <guilabel
+>kdeedu</guilabel
+>. If you don't select any language you will automatically get English.
+</para>
+
+<para
+>Then finish the installation process by clicking on next, following the coming screens just like you normally do with other windows software.
+</para>
+
+<para
+>Please note that the &parley; team does not deal with the &Windows; Installer and therefore we cannot easily answer your questions. Should you have difficulties, please contact the &kde;-Windows team directly. You can do so by subscribing to the mailing list <ulink url="https://mail.kde.org/mailman/listinfo/kde-windows"
+>here</ulink
+> or join them on &irc; at irc://irc.libera.chat Channel: #kde-windows.
+</para>
+</chapter>
+-->
+
+<chapter id="notes-for-advanced-users"
+><title
+>ملاحظات للمستخدمين المتقدمين</title>
+<!--
+<sect1 id="using-parley-for-exam-preparation"
+><title
+>Using &parley; for Exam Preparation</title>
+
+<itemizedlist>
+  <listitem
+><para
+>what to bear in mind with long questions / answers?</para
+></listitem>
+  <listitem
+><para
+>how to start  with a new Exam</para
+></listitem>
+  <listitem
+><para
+>example 1 with capitals</para
+></listitem>
+  <listitem
+><para
+>example 2 with sentence</para
+></listitem>
+</itemizedlist>
+</sect1>
+-->
+<!-- TODO: menu item not found -->
+<sect1 id="upload-and-share-collections"
+><title
+>رفع ومشاركة المجموعات</title>
+
+<para
+>يمكنك رفع ملفاتك ومشاركتها مع الآخرين. </para>
+
+<para
+>استخدم عنصر القائمة <menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>رفع مستند المفردات</guimenuitem
+></menuchoice
+> في <guilabel
+>المحرر</guilabel
+> داخل المفاوض. </para>
+
+<para
+>إذا لم يعمل ذلك، يمكنك أيضًا زيارة <ulink url="https://store.kde.org/"
+>store.kde.org</ulink
+>. </para>
+
+<para
+>في كلتا الحالتين، ستظهر الملفات في حوار <guilabel
+>تنزيل محتوى جديد</guilabel
+> بالضغط على زر <guibutton
+>تنزيل مجموعات جديدة...</guibutton
+> في <guilabel
+>لوحة التحكم</guilabel
+>. </para>
+</sect1>
+
+<sect1 id="file-format"
+><title
+>صيغة ملف</title>
+
+<para
+>إذا كنت مهتمًا بتنسيقات الملفات التي يمكن لـ المفاوض قراءتها وتخزين مجموعات المفردات بها، زر: </para>
+
+<para
+><ulink url="https://userbase.kde.org/Parley/FileFormats"
+>تنسيقات ملفات المفاوض على userbase.kde.org</ulink>
+</para>
+</sect1>
+
+<!-- empty sect1
+<sect1 id="scripting"
+><title
+>Scripting</title>
+</sect1
+-->
+</chapter>
+
+<!--userbase-content-->
+<chapter id="credits"
+><title
+>الحقوق والترخيص</title>
+
+<sect1 id="thanks"
+><title
+>الشكر إلى</title>
+
+<para
+>أود أن أشكر الأشخاص التاليين شخصيًا على مساهمتهم في المفاوض: </para>
+
+<itemizedlist>
+  <listitem
+><para
+>Peter Hedlund الذي حافظ على &kvoctrain; حيًا وبدأ نقل كيدي 4 الذي أصبح في النهاية المفاوض</para
+></listitem>
+  <listitem
+><para
+>ديفيد كابيل</para
+></listitem>
+  <listitem
+><para
+>أفجوستينوس كاديس</para
+></listitem>
+  <listitem
+><para
+>Daniel Laidig</para
+></listitem>
+  <listitem
+><para
+>جوهانس سيمون</para
+></listitem>
+</itemizedlist>
+
+<para
+>أود أيضًا أن أشكر جميع الأشخاص الآخرين غير المذكورين، خاصة فريق كيدي بأكمله، على مساعدتهم ونقدهم البناء واقتراحاتهم أو تقارير الأخطاء. </para>
+</sect1>
+
+<sect1 id="copyright"
+><title
+>حقوق النسخ</title>
+
+<para
+>حقوق نشر المفاوض 2007-2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail; </para>
+
+<para
+>حقوق نشر الوثائق 2010 &Frederik.Gladhorn; &Frederik.Gladhorn.mail;، Sabine Eller <email
+>s.eller@voxhumanitatis.org</email
+>، Daniel Laidig <email
+>d.laidig@gmx.de</email
+>؛ 2014 Amarvir Singh <email
+>amarvir.ammu.93@gmail.com</email
+> </para>
+
+<para
+>الترجمة: زايد السعيدي <email
+>zayed.alsaidi@gmail.com</email
+></para
+> &underFDL; &underGPL; </sect1>
+</chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->
