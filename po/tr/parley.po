@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-26 00:45+0000\n"
-"PO-Revision-Date: 2026-11-04 22:45+0300\n"
+"PO-Revision-Date: 2026-11-14 18:39+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1268,7 +1268,7 @@ msgctxt ""
 "Let the user select what grammatical meaning is connected to a word type "
 "(nouns have gender, verbs conjugations etc)"
 msgid "Grammar"
-msgstr "Dilbilgisi"
+msgstr "Dil Bilgisi"
 
 #: src/editor/wordtypeview.cpp:58
 #, kde-format
@@ -1654,7 +1654,7 @@ msgstr "Dil&ler…"
 msgid ""
 "Edit which languages are in the collection and their grammar properties."
 msgstr ""
-"Hangi dillerin koleksiyonda olduğunu ve dilbilgisi özelliklerini düzenleyin."
+"Hangi dillerin koleksiyonda olduğunu ve dil bilgisi özelliklerini düzenleyin."
 
 #: src/parleyactions.cpp:151
 #, kde-format
@@ -3094,14 +3094,14 @@ msgstr "&İkinci dil:"
 #: src/settings/documentproperties.ui:311
 #, kde-format
 msgid "&Setup grammar details"
-msgstr "&Dilbilgisi ayrıntılarını ayarla"
+msgstr "&Dil bilgisi ayrıntılarını ayarla"
 
 #. i18n: ectx: property (text), widget (QCheckBox, downloadGrammarCheckBox)
 #: src/settings/documentproperties.ui:321
 #, kde-format
 msgctxt "Attept to download grammar properties for the selected languages"
 msgid "Download grammar"
-msgstr "Dilbilgisi indir"
+msgstr "Dil bilgisi indir"
 
 #. i18n: ectx: label, entry (ConjugationTenses), group (Document $(fileurl))
 #. i18n: ectx: whatsthis, entry (ConjugationTenses), group (Document $(fileurl))
@@ -3402,7 +3402,7 @@ msgstr "Klavye yerleşimi:"
 #: src/settings/languagepropertiespage.ui:75
 #, kde-format
 msgid "&Download grammar"
-msgstr "&Dilbilgisi indir"
+msgstr "&Dil bilgisi indir"
 
 #. i18n: ectx: property (text), widget (QLabel, spellcheckerLabel)
 #: src/settings/languagepropertiespage.ui:88
