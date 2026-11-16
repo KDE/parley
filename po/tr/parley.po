@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-26 00:45+0000\n"
-"PO-Revision-Date: 2026-11-14 18:39+0300\n"
+"PO-Revision-Date: 2026-11-15 20:19+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -3420,13 +3420,13 @@ msgstr "Dil:"
 #: src/settings/languagepropertiespage.ui:117
 #, kde-format
 msgid "Font (practice):"
-msgstr "Yazıtipi (alıştırma):"
+msgstr "Yazı tipi (alıştırma):"
 
 #. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
 #: src/settings/languagepropertiespage.ui:127
 #, kde-format
 msgid "Font (editor):"
-msgstr "Yazıtipi (düzenleyici):"
+msgstr "Yazı tipi (düzenleyici):"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
 #: src/settings/languagepropertiespage.ui:141
@@ -3577,13 +3577,13 @@ msgstr "Bu dil için yazım denetleyicisi"
 #: src/settings/languagesettings.kcfg:32
 #, kde-format
 msgid "The font used during practice"
-msgstr "Alıştırma boyunca kullanılan yazıtipi"
+msgstr "Alıştırma boyunca kullanılan yazı tipi"
 
 #. i18n: ectx: label, entry (EditorFont), group (Locale $(locale))
 #: src/settings/languagesettings.kcfg:36
 #, kde-format
 msgid "The font used in the editor"
-msgstr "Düzenleyicide kullanılan yazıtipi"
+msgstr "Düzenleyicide kullanılan yazı tipi"
 
 #. i18n: ectx: property (text), widget (QPushButton, cleanUpButton)
 #: src/settings/optionlistform.ui:124
@@ -3926,13 +3926,13 @@ msgstr "Ana pencerenin nasıl bölündüğü."
 #: src/settings/parley.kcfg:235
 #, kde-format
 msgid "The font used in the vocabulary table"
-msgstr "Söz dağarcığı tablosunda kullanılan yazıtipi"
+msgstr "Söz dağarcığı tablosunda kullanılan yazı tipi"
 
 #. i18n: ectx: label, entry (IPAFont), group (Appearance)
 #: src/settings/parley.kcfg:239
 #, kde-format
 msgid "The font used for phonetics"
-msgstr "Fonetikler için kullanılacak yazıtipi"
+msgstr "Fonetikler için kullanılacak yazı tipi"
 
 #. i18n: ectx: label, entry (CurrentCol), group (Appearance)
 #: src/settings/parley.kcfg:243
@@ -4231,14 +4231,14 @@ msgid ""
 "Specify which font to use for displaying pronunciations using phonetic "
 "symbols."
 msgstr ""
-"Fonetik simgeler kullanılarak sesletimlerin gösterileceği yazıtipini "
+"Fonetik simgeler kullanılarak sesletimlerin gösterileceği yazı tipini "
 "belirleyin."
 
 #. i18n: ectx: property (text), widget (QLabel, IPAFontLabel)
 #: src/settings/viewoptionsbase.ui:48
 #, kde-format
 msgid "&Pronunciation symbols font:"
-msgstr "&Sesletim simgeleri yazıtipi:"
+msgstr "&Sesletim simgeleri yazı tipi:"
 
 #. i18n: ectx: property (text), widget (QLabel, gradeColorLabel)
 #: src/settings/viewoptionsbase.ui:77
