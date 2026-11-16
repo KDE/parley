@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-26 00:45+0000\n"
-"PO-Revision-Date: 2026-11-14 18:38+0300\n"
+"PO-Revision-Date: 2026-11-15 20:19+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -3420,13 +3420,13 @@ msgstr "Dil:"
 #: src/settings/languagepropertiespage.ui:117
 #, kde-format
 msgid "Font (practice):"
-msgstr "Yazıtipi (alıştırma):"
+msgstr "Yazı tipi (alıştırma):"
 
 #. i18n: ectx: property (text), widget (QLabel, fontLabel_3)
 #: src/settings/languagepropertiespage.ui:127
 #, kde-format
 msgid "Font (editor):"
-msgstr "Yazıtipi (düzenleyici):"
+msgstr "Yazı tipi (düzenleyici):"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
 #: src/settings/languagepropertiespage.ui:141
