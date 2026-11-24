@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: parley\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-26 00:45+0000\n"
-"PO-Revision-Date: 2026-11-16 19:30+0300\n"
+"PO-Revision-Date: 2026-11-23 18:16+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -2371,7 +2371,7 @@ msgid ""
 "associated directly with the current word. With this option enabled any "
 "synonym is accepted."
 msgstr ""
-"Öntanımlı olarak mevcut sözcükle ilişkili bir eşanlamlı sözcük girinceye "
+"Varsayılan olarak mevcut sözcükle ilişkili bir eşanlamlı sözcük girinceye "
 "kadar size eşanlamlılar sorulur. Bu seçenek etkinleştirildiğinde herhangi "
 "bir eşanlamlı kabul edilir."
 
@@ -3617,7 +3617,7 @@ msgstr ""
 #, kde-format
 msgid "This sets the separator used when copying/pasting text, default is Tab"
 msgstr ""
-"Metni kopyalarken/yapıştırırken kullanılacak ayırıcıyı ayarlar; öntanımlı "
+"Metni kopyalarken/yapıştırırken kullanılacak ayırıcıyı ayarlar; varsayılan "
 "olarak Sekme düğmesidir"
 
 #. i18n: ectx: label, entry (EntriesPerLesson), group (General)
@@ -4121,7 +4121,7 @@ msgstr "İndirilen söz dağarcığını başlatmak için kullanılan komut"
 #: src/settings/parley.kcfg:395
 #, kde-format
 msgid "The folder where downloaded vocabularies are saved by default"
-msgstr "İndirilen söz dağarcıklarının öntanımlı olarak kaydedileceği klasör"
+msgstr "İndirilen söz dağarcıklarının varsayılan olarak kaydedileceği klasör"
 
 #: src/settings/parleyprefs.cpp:24
 #, kde-format
